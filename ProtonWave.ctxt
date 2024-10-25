@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=ProtonWave
+comment0.text=\r\n\ A\ proton\ wave\ that\ expands\ and\ destroys\ things\ in\ its\ path.\r\n\ \r\n\ @author\ Michael\ Kolling\r\n\ @version\ 0.1\r\n
+comment1.params=
+comment1.target=void\ initializeImages()
+comment1.text=\ \r\n\ Create\ the\ images\ for\ expanding\ the\ wave.\r\n
+comment2.params=source
+comment2.target=ProtonWave(GridObject)
+comment3.params=
+comment3.target=void\ applyPhysics()
+comment3.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment4.params=
+comment4.target=void\ checkAsteroidHit()
+comment4.text=\r\n\ Check\ whether\ we\ have\ hit\ an\ asteroid.\r\n
+comment5.params=
+comment5.target=boolean\ covertDamage()
+numComments=6

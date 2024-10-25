@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Nuke
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=
+comment1.target=Nuke()
+comment1.text=A\ bullet\ looses\ one\ life\ each\ act,\ and\ will\ disappear\ when\ life\ \=\ 0
+comment2.params=source
+comment2.target=Nuke(GridObject)
+comment3.params=
+comment3.target=void\ applyPhysics()
+comment3.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment4.params=
+comment4.target=void\ checkAsteroidHit()
+comment4.text=\r\n\ Check\ whether\ we\ have\ hit\ an\ asteroid.\r\n
+comment5.params=distance
+comment5.target=int\ getDamage(double)
+comment6.params=
+comment6.target=boolean\ covertDamage()
+numComments=7

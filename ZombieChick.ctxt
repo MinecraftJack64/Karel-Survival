@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=ZombieChick
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ZombieChick\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=hive
+comment1.target=ZombieChick(GridEntity)
+comment1.text=\r\n\ Initilise\ this\ rocket.\r\n
+comment2.params=
+comment2.target=void\ behave()
+comment2.text=\r\n\ Do\ what\ a\ rocket's\ gotta\ do.\ (Which\ is\:\ mostly\ flying\ about,\ and\ turning,\r\n\ accelerating\ and\ shooting\ when\ the\ right\ keys\ are\ pressed.)\r\n
+comment3.params=
+comment3.target=int\ getXP()
+comment4.params=
+comment4.target=java.lang.String\ getName()
+numComments=5

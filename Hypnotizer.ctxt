@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Hypnotizer
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source
+comment1.target=Hypnotizer(double,\ GridObject)
+comment1.text=A\ bullet\ looses\ one\ life\ each\ act,\ and\ will\ disappear\ when\ life\ \=\ 0
+comment2.params=rotation\ source\ thing
+comment2.target=Hypnotizer(double,\ GridObject,\ Necromancer)
+comment3.params=
+comment3.target=void\ animate()
+comment3.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment4.params=targ
+comment4.target=void\ doHit(GridEntity)
+numComments=5

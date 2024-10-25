@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Shield
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Shield\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=myG
+comment1.target=Shield(GridEntity)
+comment2.params=dmg\ source
+comment2.target=int\ processDamage(int,\ GridObject)
+comment3.params=amt\ s
+comment3.target=boolean\ damage(int,\ GridObject)
+comment4.params=
+comment4.target=void\ tick()
+comment5.params=
+comment5.target=int\ getHealth()
+comment6.params=
+comment6.target=boolean\ canBreak()
+comment7.params=
+comment7.target=GridEntity\ getHolder()
+numComments=8

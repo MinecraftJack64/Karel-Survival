@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ChargeBomb
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source
+comment1.target=ChargeBomb(double,\ GridObject)
+comment1.text=A\ bullet\ looses\ one\ life\ each\ act,\ and\ will\ disappear\ when\ life\ \=\ 0
+comment2.params=targ
+comment2.target=void\ doHit(GridEntity)
+comment3.params=
+comment3.target=void\ expire()
+comment4.params=
+comment4.target=boolean\ covertDamage()
+numComments=5

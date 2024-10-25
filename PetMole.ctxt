@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=PetMole
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ PetMole\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ fire()
+comment2.params=
+comment2.target=void\ fireUlt()
+comment3.params=
+comment3.target=int\ getUlt()
+comment4.params=
+comment4.target=void\ reload()
+comment5.params=
+comment5.target=void\ equip()
+comment6.params=
+comment6.target=void\ unequip()
+comment7.params=actor
+comment7.target=PetMole(GridObject)
+comment8.params=
+comment8.target=java.lang.String\ getName()
+comment9.params=
+comment9.target=int\ getRarity()
+numComments=10

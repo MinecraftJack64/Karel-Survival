@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ChameleonOrb
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ChameleonOrb\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=mycham\ color
+comment1.target=ChameleonOrb(Chameleon,\ int)
+comment2.params=
+comment2.target=void\ kAct()
+comment3.params=targ
+comment3.target=void\ collect(GridObject)
+numComments=4

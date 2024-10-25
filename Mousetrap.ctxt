@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Mousetrap
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=source
+comment1.target=Mousetrap(GridObject)
+comment2.params=rot\ source
+comment2.target=Mousetrap(double,\ GridObject)
+comment3.params=
+comment3.target=void\ applyPhysics()
+comment3.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment4.params=
+comment4.target=void\ checkAsteroidHit()
+comment4.text=\r\n\ Check\ whether\ we\ have\ hit\ an\ asteroid.\r\n
+comment5.params=
+comment5.target=void\ attack()
+comment6.params=
+comment6.target=void\ die()
+numComments=7

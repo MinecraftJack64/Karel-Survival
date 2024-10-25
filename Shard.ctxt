@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Shard
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source
+comment1.target=Shard(double,\ GridObject)
+comment2.params=targ
+comment2.target=void\ doHit(GridEntity)
+numComments=3

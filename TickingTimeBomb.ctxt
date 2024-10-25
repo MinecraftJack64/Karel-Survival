@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=TickingTimeBomb
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ TickingTimeBomb\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=source
+comment1.target=TickingTimeBomb(GridObject)
+comment2.params=
+comment2.target=void\ behave()
+comment3.params=killer
+comment3.target=void\ die(GridObject)
+comment4.params=
+comment4.target=boolean\ willNotify()
+comment5.params=amt
+comment5.target=void\ heal(int)
+comment6.params=
+comment6.target=GridObject\ getSource()
+numComments=7

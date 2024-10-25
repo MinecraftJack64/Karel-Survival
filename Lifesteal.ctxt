@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Lifesteal
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ hypno\ returnfast\ source
+comment1.target=Lifesteal(double,\ GridEntity,\ boolean,\ GridObject)
+comment2.params=
+comment2.target=void\ applyPhysics()
+comment2.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment3.params=
+comment3.target=void\ dieForReal()
+comment4.params=target\ amt
+comment4.target=void\ notifyDamage(GridEntity,\ int)
+comment5.params=
+comment5.target=void\ startReturn()
+numComments=6

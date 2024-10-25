@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Drone
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Drone\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=source
+comment1.target=Drone(GridEntity)
+comment2.params=
+comment2.target=GridObject\ getSource()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ attack()
+comment5.params=dx\ dy
+comment5.target=void\ reposition(double,\ double)
+numComments=6

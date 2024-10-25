@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Antibody
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ targ\ source
+comment1.target=Antibody(double,\ java.lang.Class,\ GridObject)
+comment2.params=rotation\ targ\ notify\ source
+comment2.target=Antibody(double,\ java.lang.Class,\ LymphCannon,\ GridObject)
+comment3.params=targ
+comment3.target=void\ doHit(GridEntity)
+numComments=4

@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=CircSaw
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source
+comment1.target=CircSaw(double,\ GridObject)
+comment2.params=
+comment2.target=void\ applyPhysics()
+comment2.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment3.params=
+comment3.target=void\ dieForReal()
+comment4.params=
+comment4.target=boolean\ hasReturned()
+comment5.params=
+comment5.target=void\ expire()
+comment6.params=
+comment6.target=void\ returnNow()
+comment7.params=
+comment7.target=void\ bounceBack()
+comment8.params=targ
+comment8.target=void\ doHit(GridEntity)
+numComments=9

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=PauseUI
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ PauseUI\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ create()
+comment2.params=
+comment2.target=void\ click()
+comment3.params=
+comment3.target=void\ click()
+comment4.params=
+comment4.target=void\ showPauseMenu()
+comment5.params=
+comment5.target=void\ hidePauseMenu()
+comment6.params=b
+comment6.target=void\ setPauseMenu(boolean)
+numComments=7

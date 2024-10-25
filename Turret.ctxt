@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Turret
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Turret\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=type\ toTrack\ source
+comment1.target=Turret(int,\ java.util.ArrayList,\ GridObject)
+comment2.params=
+comment2.target=void\ kAct()
+comment3.params=
+comment3.target=GridObject\ newShooter()
+comment4.params=
+comment4.target=GridObject\ newMarksman()
+comment5.params=
+comment5.target=GridObject\ newZombie()
+comment6.params=
+comment6.target=GridObject\ newShield()
+comment7.params=
+comment7.target=GridObject\ newHardHat()
+comment8.params=z
+comment8.target=void\ spawnZombie(GridObject)
+comment9.params=z\ x\ y
+comment9.target=void\ spawnZombieAt(GridObject,\ double,\ double)
+numComments=10

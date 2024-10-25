@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=CupidArrow
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source
+comment1.target=CupidArrow(double,\ GridObject)
+comment1.text=A\ bullet\ looses\ one\ life\ each\ act,\ and\ will\ disappear\ when\ life\ \=\ 0
+comment2.params=rotation\ source\ notify
+comment2.target=CupidArrow(double,\ GridObject,\ Lovestrike)
+comment3.params=targ
+comment3.target=void\ doHit(GridEntity)
+numComments=4

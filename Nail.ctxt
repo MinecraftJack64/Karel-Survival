@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Nail
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=r\ d\ rotation\ ng\ source
+comment1.target=Nail(int,\ int,\ double,\ NailGun,\ GridObject)
+comment1.text=A\ bullet\ looses\ one\ life\ each\ act,\ and\ will\ disappear\ when\ life\ \=\ 0
+comment2.params=g
+comment2.target=void\ doHit(GridEntity)
+numComments=3

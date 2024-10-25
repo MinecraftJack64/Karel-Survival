@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=BearTrap
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=source
+comment1.target=BearTrap(GridObject)
+comment2.params=
+comment2.target=void\ applyPhysics()
+comment2.text=\r\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\r\n
+comment3.params=
+comment3.target=void\ checkAsteroidHit()
+comment3.text=\r\n\ Check\ whether\ we\ have\ hit\ an\ asteroid.\r\n
+comment4.params=
+comment4.target=void\ attack()
+comment5.params=
+comment5.target=void\ die()
+comment6.params=
+comment6.target=boolean\ covertDamage()
+numComments=7

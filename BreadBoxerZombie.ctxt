@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=BreadBoxerZombie
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ BreadBoxerZombie\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=BreadBoxerZombie()
+comment1.text=\r\n\ Initilise\ this\ rocket.\r\n
+comment2.params=
+comment2.target=void\ behave()
+comment2.text=\r\n\ Do\ what\ a\ rocket's\ gotta\ do.\ (Which\ is\:\ mostly\ flying\ about,\ and\ turning,\r\n\ accelerating\ and\ shooting\ when\ the\ right\ keys\ are\ pressed.)\r\n
+comment3.params=
+comment3.target=void\ checkDodge()
+comment4.params=
+comment4.target=void\ fire()
+comment4.text=\r\n\ Check\ whether\ there\ are\ any\ key\ pressed\ and\ react\ to\ them.\r\n
+comment5.params=
+comment5.target=int\ getXP()
+comment6.params=
+comment6.target=java.lang.String\ getName()
+numComments=7

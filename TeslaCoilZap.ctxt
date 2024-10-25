@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TeslaCoilZap
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ TeslaCoilZap\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=source
+comment1.target=TeslaCoilZap(GridObject)
+comment2.params=x\ y
+comment2.target=void\ attackAt(double,\ double)
+comment3.params=
+comment3.target=void\ kAct()
+numComments=4
