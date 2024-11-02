@@ -198,7 +198,7 @@ public class Wizard extends Zombie
         if(phase>3){
             toSpawn = new HornetNeckZombie();
             if(phase==5){
-                toSpawn.applyShield(new ArmorShield(toSpawn, 200));
+                toSpawn.applyShield(new ArmorShield(new ShieldID(this, "hornetneck protection"), 200));
             }
         }else{
             toSpawn = new HivemindZombie();
@@ -256,7 +256,7 @@ public class Wizard extends Zombie
     public void die(GridObject killer){
         if(phase==5){
             setHealth(1);
-            applyShield(new ExternalImmunityShield(this, -1));
+            applyShield(new ExternalImmunityShield(new ShieldID(this), -1));
             startLastPhase();
         }else{
             explodeFleshConfetti(20);

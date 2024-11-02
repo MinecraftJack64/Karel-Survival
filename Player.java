@@ -31,7 +31,7 @@ public class Player extends GridEntity {
         diff = KWorld.me.currentDiff();
         this.startHealth(diffhealths[diff]);
         if(diff==0){
-            applyShield(new ExternalImmunityShield(this, -1));
+            applyShield(new ExternalImmunityShield(new ShieldID(this), -1));
         }
         maxsprint = diffmaxsprint[diff];
         sprintrecoverrate = diffsprintrecovery[diff];
@@ -49,8 +49,8 @@ public class Player extends GridEntity {
         this.inventory[8] = new WaterBalloons(this);
         this.inventory[9] = new Lovestrike(this);
         this.inventory[10] = new CapsaicinTorch(this);
-        this.inventory[11] = new Blowgun(this);
-        this.inventory[12] = new Hearth(this);
+        this.inventory[11] = new Reaper(this);
+        this.inventory[12] = new LilCreatures(this);
         this.inventory[13] = new AirPump(this);
         this.inventory[14] = new CrystalGun(this);
         this.inventory[15] = new Weedwacker(this);

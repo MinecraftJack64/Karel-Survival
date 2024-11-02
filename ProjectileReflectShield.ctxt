@@ -2,7 +2,7 @@
 comment0.target=ProjectileReflectShield
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ ImmunityShield\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=myG\ health
-comment1.target=ProjectileReflectShield(GridEntity,\ int)
+comment1.target=ProjectileReflectShield(ShieldID,\ int)
 comment2.params=dmg\ source
 comment2.target=int\ processDamage(int,\ GridObject)
 comment3.params=

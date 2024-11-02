@@ -7,7 +7,7 @@
 public class ExternalImmunityShield extends Shield
 {
     private int duration;
-    public ExternalImmunityShield(GridEntity myG, int health){
+    public ExternalImmunityShield(ShieldID myG, int health){
         super(myG);
         this.duration = health;
     }
@@ -18,14 +18,14 @@ public class ExternalImmunityShield extends Shield
     public void tick(){
         duration--;
         if(duration==0){
-            getHolder().removeShield();
+            remove();
         }
     }
     public boolean damage(int amt, GridObject source){
         if(duration>=0){
             duration-=amt/3;
             if(duration<=0){
-                getHolder().removeShield();
+                remove();
             }
         }
         return false;

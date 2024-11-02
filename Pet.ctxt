@@ -1,6 +1,22 @@
 #BlueJ class context
 comment0.target=Pet
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pet\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=boolean\ willNotify()
-numComments=2
+comment1.params=spawner
+comment1.target=Pet(GridEntity)
+comment2.params=
+comment2.target=GridEntity\ getSpawner()
+comment3.params=
+comment3.target=boolean\ willNotify()
+comment4.params=killer
+comment4.target=void\ die(GridObject)
+comment5.params=
+comment5.target=GridEntity\ getTarget()
+comment6.params=
+comment6.target=GridEntity\ getNearestTarget()
+comment7.params=
+comment7.target=boolean\ notifySpawnerDamage()
+comment8.params=
+comment8.target=int\ spawnImmunityLength()
+comment9.params=target\ amt
+comment9.target=void\ notifyDamage(GridEntity,\ int)
+numComments=10

@@ -48,7 +48,7 @@ public class JackITBZombie extends Zombie
         setRealRotation(0);
         setSpeed(1);
         startHealth(1, false);
-        applyShield(new HealthShield(this, 800));
+        applyShield(new HealthShield(new ShieldID(this), 800));
         inside = !spawnJoker?new Zombie(){public boolean wasInOriginalWave(){return false;}}:new JokerZombie(){public boolean wasInOriginalWave(){return false;}};
     }
     //ovveride this
@@ -110,6 +110,7 @@ public class JackITBZombie extends Zombie
     }
     public void die(GridObject source){
         if(inside==null){
+            super.die();
             return;
         }
         addObjectHere(inside);
@@ -123,7 +124,8 @@ public class JackITBZombie extends Zombie
         explodeOn(getExplosionRange(), getDamage(), null);//smash explosion later
     }
     public void feast(){
-        //
+        launchInside();
+        hit(getShield().getHealth(), this);
     }
     public double getGravity(){
         return 1;

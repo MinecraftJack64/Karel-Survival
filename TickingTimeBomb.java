@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class TickingTimeBomb here.
+ * Write a description of class TickingfTimeBomb here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -31,5 +31,8 @@ public class TickingTimeBomb extends GridEntity implements SubAffecter
     }
     public GridObject getSource(){
         return sourc;
+    }
+    public boolean acceptExternalShields(){
+        return false;
     }
 }

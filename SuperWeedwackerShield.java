@@ -7,7 +7,7 @@
 public class SuperWeedwackerShield extends Shield
 {
     private int duration;
-    public SuperWeedwackerShield(GridEntity myG, int health){
+    public SuperWeedwackerShield(ShieldID myG, int health){
         super(myG);
         this.duration = health;
     }
@@ -18,12 +18,12 @@ public class SuperWeedwackerShield extends Shield
     public void tick(){
         duration--;
         if(duration==0){
-            getHolder().removeShield();
+            remove();
         }
     }
     public boolean damage(int amt, GridObject source){
         processDamage(amt, source);
-        getHolder().removeShield();
+        remove();
         getHolder().hit(getHolder().getHealth(), source);
         return false;
     }

@@ -59,7 +59,7 @@ public class BreadBoxerZombie extends Zombie
                 for(Projectile h:getObjectsInRange(100, Projectile.class)){
                     if(h.isAggroTowards(this)){
                         initiateJump(getRealRotation()+(punchdir?-45:45), 100, 50);
-                        applyShield(new PercentageShield(this, 1, (int)(getPhysicsArc().getDuration())));
+                        applyShield(new PercentageShield(new ShieldID(this), 1, (int)(getPhysicsArc().getDuration())));
                         punchdir = !punchdir;
                         dodgereload-=80;
                         ammo = 0;

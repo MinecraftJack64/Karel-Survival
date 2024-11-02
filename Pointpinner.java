@@ -45,7 +45,7 @@ public class Pointpinner extends Weapon
         getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
     public String getName(){
-        return "Minigun";
+        return "Pointpinner";
     }
     public int getRarity(){
         return 0;

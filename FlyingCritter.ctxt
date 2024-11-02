@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=FlyingCritter
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source\ spawner\ id
+comment1.target=FlyingCritter(double,\ GridEntity,\ LilCreatures,\ int)
+comment2.params=
+comment2.target=void\ die()
+numComments=3

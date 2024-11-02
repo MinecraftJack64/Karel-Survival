@@ -34,6 +34,15 @@ public class KActor extends Actor
         rh = height;
         setLocation((int)rx, (int)(ry-rh));
     }
+    public void branchOut(KActor m, double deg, double dist){
+        setRealLocation(m.getRealX()+getBranchX(deg, dist), m.getRealY()+getBranchY(deg, dist));
+    }
+    public double getBranchX(double deg, double dist){
+        return dist*Math.cos(deg*Math.PI/180);
+    }
+    public double getBranchY(double deg, double dist){
+        return dist*Math.sin(deg*Math.PI/180);
+    }
     public double getRealX(){
         return rx;
     }

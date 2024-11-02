@@ -12,7 +12,6 @@ public class Chick extends Pet
 
     private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private GridEntity myhive;
     private int ammo = 0;
     private double strength;
     /**
@@ -20,6 +19,7 @@ public class Chick extends Pet
      */
     public Chick(double strength, GridEntity hive)
     {
+        super(hive);
         int scale = (int)(30*((strength-1)*0.5+1));
         rocket.scale(scale, scale);
         setImage(rocket);
@@ -27,8 +27,8 @@ public class Chick extends Pet
         setSpeed(3);
         startHealth((int)(100*strength));
         inherit(hive);
-        myhive = hive;
         this.strength = strength;
+        applyShield(0, new StrikeSurvivalShield(new ShieldID(this, "survive hit"), (int)(2*strength)));
     }
 
     /**
@@ -49,44 +49,11 @@ public class Chick extends Pet
         }
         
     }
-    private int damage = 10;
+    private int damage = 12;
     private static double speed = 2;
     private static double attackrange = 30;
     private static final int reloadtime = 5;
     public void attack(){
         if(isAggroTowards(getTarget()))damage(getTarget(), (int)(damage*strength));
-    }
-    public void die(GridObject killer){
-        super.die(killer);
-        try{getWorld().removeObject(this);}catch(Exception e){}
-    }
-    public GridEntity getTarget(){
-        //return getWorld().player;
-        GridEntity candidate = getNearestTarget();
-        if(candidate == null){
-            candidate = getWorld().getPlayer();
-        }
-        return candidate;//use this for now
-    }
-    public GridEntity getNearestTarget(){
-        GridEntity res = null;
-        double max = 0;
-        for(GridEntity e: getWorld().allEntities){
-            if(!isAggroTowards(e)||!e.canDetect()){
-                continue;
-            }
-            if(distanceTo(e)<max||res==null){
-                res = e;
-                max = distanceTo(e);
-            }
-        }
-        return res;
-    }
-    public void notifyDamage(GridEntity target, int amt){
-        if(myhive!=null&&!myhive.isDead()){
-            myhive.notifyDamage(target, amt);
-        }else{
-            super.notifyDamage(target, amt);
-        }
     }
 }

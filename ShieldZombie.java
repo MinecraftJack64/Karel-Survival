@@ -38,6 +38,7 @@ public class ShieldZombie extends Zombie
     private int damage = 10;
     //ShieldBar shieldBar;
     private boolean inShieldPhase = true;
+    private ShieldID shieldid = new ShieldID(this);
     /**
      * Initilise this rocket.
      */
@@ -50,7 +51,7 @@ public class ShieldZombie extends Zombie
         setRotation(180);
         setSpeed(speed);
         startHealth(200);
-        applyShield(new ArmorShield(this, 300));
+        applyShield(new ArmorShield(shieldid, 300));
         /*shieldBar = new ShieldBar(shieldhealth, 40, 5, this);
         KWorld.me.addObject(shieldBar, getRealX()*1.0, getRealY()-50);*/
     }
@@ -59,7 +60,7 @@ public class ShieldZombie extends Zombie
         return 150;
     }
     public void behave(){
-        if(inShieldPhase&&!hasShield()){
+        if(inShieldPhase&&!hasShield(shieldid)){
             inShieldPhase = false;
             setImage(rocket2);
         }

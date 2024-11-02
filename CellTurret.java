@@ -13,7 +13,6 @@ public class CellTurret extends Pet
     private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
     private GreenfootImage rocket2 = new GreenfootImage("chickzareln.png");   
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private GridEntity myhive;
     private int ammo = 0;
     private Class target;
     private int damage = 10;
@@ -29,6 +28,7 @@ public class CellTurret extends Pet
      */
     public CellTurret(double x, double y, Class targ, GridEntity hive)
     {
+        super(hive);
         int scale = 30;
         rocket.scale(scale, scale);
         rocket2.scale(40, 40);
@@ -37,7 +37,6 @@ public class CellTurret extends Pet
         setSpeed(4);
         startHealth(400);
         inherit(hive);
-        myhive = hive;
         target = targ;
         tx = x;
         ty = y;
@@ -68,7 +67,7 @@ public class CellTurret extends Pet
                 knockEnemiesBack();
                 setRealHeight(0);
             }
-            if(isattacking&&getTarget()!=myhive&&ammo>reloadtime&&canAttack()){
+            if(isattacking&&getTarget()!=getSpawner()&&ammo>reloadtime&&canAttack()){
                 attack();
                 ammo = 0;
             }
@@ -93,7 +92,7 @@ public class CellTurret extends Pet
         }
     }
     public boolean readyToTransform(Class pot){
-        cantransform = myhive!=null&&!myhive.isDead()&&distanceTo(myhive)<35&&target!=pot&&pot!=null;
+        cantransform = getSpawner()!=null&&!getSpawner().isDead()&&distanceTo(getSpawner())<35&&target!=pot&&pot!=null;
         return cantransform;
     }
     public void attack(){
@@ -111,37 +110,8 @@ public class CellTurret extends Pet
         super.die(killer);
         try{getWorld().removeObject(this);}catch(Exception e){}
     }
-    public GridEntity getTarget(){
-        //return getWorld().player;
-        GridEntity candidate = getNearestTarget();
-        if(candidate == null){
-            candidate = getWorld().getPlayer();
-        }
-        return candidate;//use this for now
-    }
-    public GridEntity getNearestTarget(){
-        GridEntity res = null;
-        double max = 0;
-        for(GridEntity e: getWorld().allEntities()){
-            if(!isAggroTowards(e)||!e.canDetect()||(target!=null&&!target.isInstance(e))){
-                continue;
-            }
-            if(distanceTo(e)<max||res==null){
-                res = e;
-                max = distanceTo(e);
-            }
-        }
-        return res;
-    }
     public void hit(int amt, GridObject source){
         super.hit((target!=null&&target.isInstance(source))?amt/10:amt, source);
-    }
-    public void notifyDamage(GridEntity target, int amt){
-        if(myhive!=null&&!myhive.isDead()){
-            myhive.notifyDamage(target, amt);
-        }else{
-            super.notifyDamage(target, amt);
-        }
     }
     public boolean canDetect(){
         return getRealHeight()>=0;

@@ -32,4 +32,7 @@ public class Crystal extends GridEntity implements SubAffecter
     public GridObject getSource(){
         return sourc;
     }
+    public boolean acceptExternalShields(){
+        return false;
+    }
 }

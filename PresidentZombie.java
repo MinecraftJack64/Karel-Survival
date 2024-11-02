@@ -34,7 +34,7 @@ public class PresidentZombie extends Zombie
         setRotation(180);
         setSpeed(2);
         startHealth(300);
-        applyShield(new ArmorShield(this, 300));
+        applyShield(new ArmorShield(new ShieldID(this), 300));
     }
 
     /**

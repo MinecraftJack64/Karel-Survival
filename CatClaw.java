@@ -7,22 +7,45 @@
 public class CatClaw extends Weapon implements LandingHandler
 {
     private static final int gunReloadTime = 20;
+    private int nextclawcooldown = 0;
     private int reloadDelayCount;
     private static final int ult = 700;
     private boolean toland;
+    private int clawtofire = 0;
+    private Claw claws[] = new Claw[4];
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime&&!toland) 
-        {
-            for(int deg = -21; deg<=21; deg+=14){
-                Claw mbullet = new Claw(getHolder().getTargetRotation()+deg, holder);
-                getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
+        if(continueUse()){
+            if(nextclawcooldown<=0){
+                fireClaw(clawtofire);
+                clawtofire++;
+                if(clawtofire==4){
+                    clawtofire = 0;
+                    setContinueUse(false);
+                    setPlayerLockRotation(false);
+                }else{
+                    nextclawcooldown = 1;
+                }
+            }else{
+                nextclawcooldown--;
             }
+        }else if (reloadDelayCount >= gunReloadTime&&canFire()) 
+        {
+            fireClaw(clawtofire);
+            setContinueUse(true);
+            setPlayerLockRotation(true);
+            clawtofire++;
             Sounds.play("clawunsheath");
             reloadDelayCount = 0;
+            nextclawcooldown = 1;
         }
     }
+    public void fireClaw(int c){
+        claws[c] = new Claw(getHolder().getTargetRotation()+(-21+14*c), getHolder());
+        getHolder().addObjectHere(claws[c]);
+    }
     public void fireUlt(){
-        if(toland){
+        if(!canFire()){
+            cancelUltReset();
             return;
         }
         Mousetrap bullet = new Mousetrap(getHolder()){
@@ -35,6 +58,17 @@ public class CatClaw extends Weapon implements LandingHandler
         toland = true;
         getHolder().initiateJump(getHolder().getTargetRotation(), d, 75);
         setLocked(true);
+    }
+    public boolean canFire(){
+        if(toland){
+            return false;
+        }
+        for(Claw c: claws){
+            if(c!=null&&!c.hasReturned()){
+                return false;
+            }
+        }
+        return true;
     }
     public void reload(){
         reloadDelayCount++;
@@ -60,6 +94,7 @@ public class CatClaw extends Weapon implements LandingHandler
             for(int i = 0; i < 8; i++){
                 SwipingClaw bullet = new SwipingClaw(getHolder().getRealRotation()+i*45, 70, getHolder());
                 getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().applyeffect(new PowerPercentageEffect(2, 60));
             }
             setLocked(false);
         }

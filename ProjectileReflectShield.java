@@ -7,7 +7,7 @@
 public class ProjectileReflectShield extends Shield
 {
     private int duration;
-    public ProjectileReflectShield(GridEntity myG, int health){
+    public ProjectileReflectShield(ShieldID myG, int health){
         super(myG);
         this.duration = health;
     }
@@ -21,13 +21,14 @@ public class ProjectileReflectShield extends Shield
             if(psource.getNumTargets()!=-1){
                 psource.setNumTargets(psource.getNumTargets()+1);
             }
-        }
-        return 0;//does not stop damage if source is self
+            return 0;
+        }else
+        return dmg;//does not stop damage if not projectile
     }
     public void tick(){
         duration--;
         if(duration==0){
-            getHolder().removeShield();
+            remove();
         }
     }
     public boolean damage(int amt, GridObject source){

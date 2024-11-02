@@ -19,8 +19,9 @@ public abstract class GridEntity extends GridObject
     private boolean detectable = true;
     boolean isdead = false;
     private GridObject killer;
-    public Shield shield;
-    ShieldBar shieldBar;
+    private ArrayList<Shield> shields = new ArrayList<Shield>();
+    private int maxshields = 10;
+    private ArrayList<ShieldBar> shieldBars = new ArrayList<ShieldBar>();
     public boolean isDead(){
         return isdead;
     }
@@ -172,35 +173,78 @@ public abstract class GridEntity extends GridObject
     public void damage(int amt){
         setHealth(getHealth()-amt);
     }
+    public void setMaxShields(int amt){
+        maxshields = amt;
+    }
+    public boolean acceptShield(Shield thing){
+        return (acceptExternalShields()||thing.getID().getKey()==this);
+    }
     public void applyShield(Shield thing){
-        if(shield!=null)return;
-        shield = thing;
-        if(shieldBar!=null){
-            getWorld().removeObject(shieldBar);
+        applyShield(shields.size(), thing);
+    }
+    public void applyShield(int pos, Shield thing){
+        if(shields.size()<maxshields&&acceptShield(thing)){
+            shields.add(pos, thing);
+            thing.setHolder(this);
         }
-        shieldBar = new ShieldBar(thing.getHealth(), 40, 5, this);
-        KWorld.me.addObject(shieldBar, getRealX()*1.0, getRealY()-50);
+        shieldBars.add(pos, new ShieldBar(thing.getHealth(), 40, 5, pos, this));
+        KWorld.me.addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
     }
     public void replaceShield(Shield thing){
-        shield = thing;
-        if(shieldBar!=null){
-            getWorld().removeObject(shieldBar);
+        replaceShield(shields.size()-1, thing);
+    }
+    public void replaceShield(ShieldID old, Shield thing){
+        int i = indexOfShield(old);
+        if(i>=0){
+            replaceShield(i, thing);
         }
-        shieldBar = new ShieldBar(thing.getHealth(), 40, 5, this);
-        KWorld.me.addObject(shieldBar, getRealX()*1.0, getRealY()-50);
+    }
+    public void replaceShield(int i, Shield thing){
+        if(i>=0&&i<shields.size()&&acceptShield(thing)){
+            shields.set(i, thing);
+            thing.setHolder(this);
+            if(shieldBars.get(i)!=null){
+                getWorld().removeObject(shieldBars.get(i));
+            }
+            shieldBars.set(i, new ShieldBar(thing.getHealth(), 40, 5, i, this));
+            getWorld().addObject(shieldBars.get(i), getRealX()*1.0, getRealY()-50-10*i);
+        }
     }
     public void removeShield(){
-        shield = null;
-        if(shieldBar!=null){
-            getWorld().removeObject(shieldBar);
-            shieldBar = null;
+        shields.remove(shields.size()-1);
+    }
+    public void removeShield(ShieldID id){
+        int i = indexOfShield(id);
+        if(i>=0){
+            shields.remove(i);
+        }
+    }
+    public void removeShield(int id){
+        shields.remove(id);
+        if(shieldBars.get(id)!=null){
+            getWorld().removeObject(shieldBars.get(id));
+            shieldBars.remove(id);
         }
     }
     public boolean hasShield(){
-        return shield!=null;
+        return shields.size()>0;
     }
-    public Shield getShield(){
-        return shield;
+    public boolean hasShield(ShieldID s){
+        return indexOfShield(s)>=0;
+    }
+    public int indexOfShield(ShieldID s){
+        for(int i = shields.size()-1; i >= 0; i--){
+            if(shields.get(i).getID().equals(s)){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public boolean acceptExternalShields(){//do not let other grid entities apply shields to me
+        return true;
+    }
+    public Shield getShield(){//get the last shield
+        return shields.get(shields.size()-1);
     }
     public boolean knockBack(double r, double d, double h, GridObject source){
         if(!canBePulled()){
@@ -211,9 +255,8 @@ public abstract class GridEntity extends GridObject
     }
     public void hit(int dmg, GridObject source){
         //dec health
-        if(shield!=null){
-            dmg = shield.processDamage(dmg, source);
-            if(hasShield())shieldSetHealth(shield.getHealth());
+        for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
+            dmg = shields.get(i).processDamage(dmg, source);
         }
         if(dmg>0){
             Sounds.play("hit");
@@ -222,12 +265,14 @@ public abstract class GridEntity extends GridObject
         if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, dmg);
         if(getHealth()<=0)die(source);
     }
-    public void shieldSetHealth(int amt){
-        shieldBar.setValue(amt);
+    public void shieldSetHealth(int id, int amt){
+        shieldBars.get(id).setValue(amt);
+        shieldBars.get(id).updateID(id);
     }
-    public void tickshield(){
-        if(shield!=null){
-            shield.tick();
+    public void tickShields(){
+        for(int i = shields.size()-1; i>=0; i--){
+            shields.get(i).tick();
+            shieldSetHealth(i, shields.get(i).getHealth());
         }
     }
     public void heal(int amt){
@@ -245,12 +290,12 @@ public abstract class GridEntity extends GridObject
     }
     public boolean trap(){
         if(healthBar!=null)healthBar.setVisible(false);
-        if(shieldBar!=null)shieldBar.setVisible(false);
+        if(shieldBars!=null)shieldBars.forEach((s)->{s.setVisible(false);});
         return true;
     }
     public void untrap(){
         if(healthBar!=null)healthBar.setVisible(true);
-        if(shieldBar!=null)shieldBar.setVisible(true);
+        if(shieldBars!=null)shieldBars.forEach((s)->{s.setVisible(true);});
     }
     public boolean canDetect(){//can be detected
         return detectable;
@@ -260,7 +305,7 @@ public abstract class GridEntity extends GridObject
     }
     public void kAct()
     {
-        tickshield();
+        tickShields();
         applyeffects();
         applyphysics();
         if(!isDead())behave();

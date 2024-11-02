@@ -4,7 +4,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Drone extends Pet implements SubAffecter
+public class Drone extends GridObject implements SubAffecter
 {
     private GridEntity source;
     private double ddx, ddy;
@@ -18,11 +18,13 @@ public class Drone extends Pet implements SubAffecter
     public GridObject getSource(){
         return source;
     }
-    public void act(){
+    public void kAct(){
         setRealLocation(source.getRealX(), source.getRealY());
         setRealRotation(90+source.getAngle(source.getRealX()+ddx, source.getRealY()+ddy));
-        if(getRealHeight()<source.getRealHeight()+hoverheight){
+        if(getRealHeight()<source.getRealHeight()+hoverheight-2.5){
             this.setRealHeight(getRealHeight()+5);
+        }else if(getRealHeight()>source.getRealHeight()+hoverheight+2.5){
+            this.setRealHeight(getRealHeight()-5);
         }
         ammo++;
         if(remainingshots>0){

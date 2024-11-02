@@ -5,21 +5,18 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Shotgun extends Weapon
+public class Shotgun extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 5;
-    private static final int ammoReloadTime = 25;
-    private static final int maxAmmo = 3;
     private int reloadDelayCount;
-    private int ammo;
-    private int ammoReloadDelay;
+    private AmmoManager ammo;
     private static final int ult = 500;
     private IBoomerang lasso;
     private int ultchargecooldown = 0;
     private int disabledcooldown = 0;
     private boolean nextammosupercharged = false;
     public void fire(){//one full ammo deals 350 damage
-        if (reloadDelayCount >= gunReloadTime&&ammo>0&&lasso==null&&disabledcooldown==0) 
+        if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()&&lasso==null&&disabledcooldown==0) 
         {
             if(nextammosupercharged){
                 disabledcooldown = 80;
@@ -32,8 +29,7 @@ public class Shotgun extends Weapon
             //bullet.move ();
             Sounds.play("shotgunshoot");
             reloadDelayCount = 0;
-            ammoReloadDelay = 0;
-            ammo--;
+            ammo.useAmmo();
             nextammosupercharged = false;
         }
     }
@@ -42,7 +38,7 @@ public class Shotgun extends Weapon
             return;
         }
         if(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY())<50){
-            if(ammo<maxAmmo)ammo++;
+            ammo.donateAmmo(1);
             reloadDelayCount = gunReloadTime;
             nextammosupercharged = true;
             Sounds.play("shotgunjam");
@@ -69,13 +65,7 @@ public class Shotgun extends Weapon
         }else{
             reloadDelayCount++;
             if(reloadDelayCount>=gunReloadTime){
-                if(ammo<maxAmmo){
-                    ammoReloadDelay++;
-                    if(ammoReloadDelay>=ammoReloadTime){
-                        ammo++;
-                        ammoReloadDelay = 0;
-                    }
-                }
+                ammo.reload();
             }
             if(ultchargecooldown<=0){
                 chargeUlt(10);
@@ -84,7 +74,7 @@ public class Shotgun extends Weapon
                 ultchargecooldown--;
             if(nextammosupercharged){
                 updateAmmo(getAmmoBar().getMax()+1);
-            }else updateAmmo(ammo*ammoReloadTime+ammoReloadDelay);
+            }else updateAmmo(ammo.getAmmoBar());
         }
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
@@ -93,15 +83,14 @@ public class Shotgun extends Weapon
     public Shotgun(GridObject actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
-        ammoReloadDelay = 0;
-        ammo = 1;
+        ammo = new AmmoManager(25, 2, 3);
     }
     public void chargeUlt(int amt){
         if(disabledcooldown==0&&!nextammosupercharged)super.chargeUlt(amt);
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(maxAmmo*ammoReloadTime, ammo*ammoReloadTime+ammoReloadDelay, 3);
+        getHolder().getWorld().gameUI().newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public String getName(){
         return "Shotgun";

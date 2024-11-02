@@ -16,6 +16,7 @@ public class HardHatZombie extends Zombie
     private int ammo = 0;
     //private int damage = 400;
     private boolean inShieldPhase = true;
+    private ShieldID hhshieldid = new ShieldID(this, false, "hardhatzombie shield"), shieldid = new ShieldID(this);
     /**
      * Initilise this rocket.
      */
@@ -28,7 +29,7 @@ public class HardHatZombie extends Zombie
         setRotation(180);
         setSpeed(1);
         startHealth(750);
-        applyShield(new ArmorShield(this, 750));
+        applyShield(new ArmorShield(shieldid, 750));
     }
 
     /**
@@ -37,7 +38,7 @@ public class HardHatZombie extends Zombie
      */
     public void behave()
     {
-        if(inShieldPhase&&!hasShield()){
+        if(inShieldPhase&&!hasShield(shieldid)){
             inShieldPhase = false;
             setImage(rocket2);
         }
@@ -60,9 +61,9 @@ public class HardHatZombie extends Zombie
     public void attack(){
         //explode if not stunned
         explodeOn(225, (g)->{
-            if(isAlliedWith(g)){//
-                int health = Math.min(300, Math.min(g.getMaxHealth(), g.getHealth()*2));//shield is 300 health by default unless zombie has less max health or health
-                g.applyShield(new ArmorShield(g, health));
+            if(isAlliedWith(g)&&!g.hasShield(hhshieldid)&&g.acceptExternalShields()){//
+                int health = (int)(Math.min(300, Math.min(g.getMaxHealth(), g.getHealth()*2))*(0.5+0.5*getPercentHealth())*getPower());//shield is 300 health by default unless zombie has less max health or health
+                g.applyShield(new ArmorShield(hhshieldid, health));
             }else if(isAggroTowards(g)){
                 g.hit(200, this);
             }

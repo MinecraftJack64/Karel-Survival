@@ -41,6 +41,7 @@ public class WatermelonZombie extends Zombie
     private int wave = 0;
     //ShieldBar shieldBar;
     private boolean inShieldPhase = true;
+    private ShieldID wmshield = new ShieldID(this);
     /**
      * Initilise this rocket.
      */
@@ -61,12 +62,12 @@ public class WatermelonZombie extends Zombie
         return 450;
     }
     public void behave(){
-        if(!hasShield()){
+        if(!hasShield(wmshield)){
             if(ultcharge>=ult&&canAttack()&&(getPercentHealth()<0.5||distanceTo(getTarget())>70)){
                 fireUlt();
             }
         }
-        if(hasShield()){
+        if(hasShield(wmshield)){
             double ang = face(getTarget(), canMove());
             walk(ang, 1);
             if(distanceTo(getTarget())<40){//unaffected by canAttack()
@@ -85,7 +86,7 @@ public class WatermelonZombie extends Zombie
                 ammo++;
             }
         }
-        if(inShieldPhase&&!hasShield()){
+        if(inShieldPhase&&!hasShield(wmshield)){
             inShieldPhase = false;
             setSpeed(2);
             setImage(rocket2);
@@ -93,7 +94,7 @@ public class WatermelonZombie extends Zombie
     }
     public void fireUlt(){
         heal((int)(0.40*(getMaxHealth()-getHealth())));
-        applyShield(new ArmorShield(this, 800));
+        applyShield(new ArmorShield(wmshield, 800));
         setSpeed(4);
         inShieldPhase = true;
         setImage(rocket);

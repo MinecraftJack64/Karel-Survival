@@ -9,4 +9,6 @@ comment3.params=killer
 comment3.target=void\ die(GridObject)
 comment4.params=
 comment4.target=GridObject\ getSource()
-numComments=5
+comment5.params=
+comment5.target=boolean\ acceptExternalShields()
+numComments=6

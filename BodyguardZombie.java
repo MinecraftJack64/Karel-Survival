@@ -102,7 +102,7 @@ public class BodyguardZombie extends SpawnableZombie
         super.feast();
     }
     public void enrage(){
-        this.applyShield(new PercentageShield(this, 0.15, -1));
+        this.applyShield(new PercentageShield(new ShieldID(this), 0.15, -1));
         this.applyeffect(new SpeedPercentageEffect(1.2, 1000));
         this.setPower(1.5);
         enraged = 1;

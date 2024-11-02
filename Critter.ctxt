@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Critter
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Critter\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=id\ spawner\ hive
+comment1.target=Critter(int,\ LilCreatures,\ GridEntity)
+comment1.text=\r\n\ Initilise\ this\ rocket.\r\n
+comment2.params=
+comment2.target=void\ behave()
+comment2.text=\r\n\ Do\ what\ a\ rocket's\ gotta\ do.\ (Which\ is\:\ mostly\ flying\ about,\ and\ turning,\r\n\ accelerating\ and\ shooting\ when\ the\ right\ keys\ are\ pressed.)\r\n
+comment3.params=
+comment3.target=GridEntity\ getTarget()
+comment4.params=
+comment4.target=void\ attack()
+comment5.params=
+comment5.target=boolean\ notifySpawnerDamage()
+comment6.params=target\ amt
+comment6.target=void\ notifyDamage(GridEntity,\ int)
+comment7.params=
+comment7.target=void\ toggleCallBack()
+comment8.params=
+comment8.target=boolean\ isCalledBack()
+comment9.params=
+comment9.target=void\ reintegrate()
+numComments=10

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=BatSwarm
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ source
+comment1.target=BatSwarm(double,\ GridObject)
+comment2.params=rotation\ reaper\ source
+comment2.target=BatSwarm(double,\ Reaper,\ GridObject)
+comment3.params=targ\ amt
+comment3.target=void\ notifyDamage(GridEntity,\ int)
+numComments=4

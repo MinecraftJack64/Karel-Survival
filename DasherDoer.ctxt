@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=DasherDoer
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DasherDoer\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=direction\ speed\ time\ radius\ onExplode\ subject
+comment1.target=DasherDoer(double,\ double,\ int,\ double,\ java.util.function.Consumer,\ GridEntity)
+comment2.params=direction\ speed\ time\ radius\ damage\ subject
+comment2.target=DasherDoer(double,\ double,\ int,\ double,\ int,\ GridEntity)
+comment3.params=
+comment3.target=boolean\ dash()
+numComments=4

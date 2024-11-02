@@ -5,18 +5,15 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Fireworks extends Weapon
+public class Fireworks extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 30;
-    private static final int ammoReloadTime = 60;
-    private static final int maxAmmo = 4;
+    private AmmoManager ammo;
     private int reloadDelayCount;
-    private int ammo;
-    private int ammoReloadDelay;
     private static final int ult = 2000;
     private boolean nextammosupercharged = false;
     public void fire(){//one full ammo deals 350 damage
-        if (reloadDelayCount >= gunReloadTime&&ammo>0) 
+        if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
             if(nextammosupercharged){
                 //
@@ -27,7 +24,7 @@ public class Fireworks extends Weapon
             //bullet.move ();
             Sounds.play("fireworkshoot");
             reloadDelayCount = 0;
-            ammo--;
+            ammo.useAmmo();
             nextammosupercharged = false;
         }
     }
@@ -43,27 +40,20 @@ public class Fireworks extends Weapon
     public void reload(){
         reloadDelayCount++;
         if(reloadDelayCount>=gunReloadTime){
-            if(ammo<maxAmmo){
-                ammoReloadDelay++;
-                if(ammoReloadDelay>=ammoReloadTime){
-                    ammo++;
-                    ammoReloadDelay = 0;
-                }
-            }
+            ammo.reload();
         }
         if(nextammosupercharged){
-            updateAmmo(getAmmoBar().getMax()+1);
-        }else updateAmmo(ammo*ammoReloadTime+ammoReloadDelay);
+            updateAmmo(ammo.getAmmo()+1);
+        }else updateAmmo(ammo.getAmmo());
     }
     public Fireworks(GridObject actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
-        ammoReloadDelay = 0;
-        ammo = 1;
+        ammo = new AmmoManager(45, 2, 4);
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(maxAmmo*ammoReloadTime, ammo*ammoReloadTime+ammoReloadDelay, 4);
+        getHolder().getWorld().gameUI().newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public String getName(){
         return "Fireworks";

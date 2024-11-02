@@ -7,7 +7,7 @@
 public class HealthShield extends Shield //kills the holder when it breaks
 {
     private int health;
-    public HealthShield(GridEntity myG, int health){
+    public HealthShield(ShieldID myG, int health){
         super(myG);
         this.health = health;
     }
@@ -15,7 +15,7 @@ public class HealthShield extends Shield //kills the holder when it breaks
         health-=dmg;
         source.notifyDamage(getHolder(), dmg+(health<0?health:0));
         if(health<=0){
-            getHolder().removeShield();
+            remove();
             getHolder().hit(getHolder().getHealth(), source);
             Sounds.play("armorshieldbreak");
         }

@@ -8,7 +8,7 @@ public class PercentageShield extends Shield
 {
     private int duration;
     private double strength;
-    public PercentageShield(GridEntity myG, double strength, int health){
+    public PercentageShield(ShieldID myG, double strength, int health){
         super(myG);
         this.duration = health;
         this.strength = strength;
@@ -20,14 +20,14 @@ public class PercentageShield extends Shield
     public void tick(){
         duration--;
         if(duration==0){
-            getHolder().removeShield();
+            remove();
         }
     }
     public boolean damage(int amt, GridObject source){
         if(duration>=0){
             duration-=amt/3;
             if(duration<=0){
-                getHolder().removeShield();
+                remove();
             }
         }
         return false;

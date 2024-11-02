@@ -25,9 +25,11 @@ public class Chameleon extends Weapon
         }
     }
     public void attack(){
-        boolean hit = 0<getHolder().explodeOn(110, "enemy", (g)->{
+        boolean[] hit = {false};
+        getHolder().explodeOn(110, "enemy", (g)->{
             if(Math.abs(getHolder().face(g, false)-getHolder().getTargetRotation())<30){
                 getHolder().damage(g, 100);
+                hit[0] = true;
                 if(isColor(0)){
                     g.applyeffect(new StunEffect(12, getHolder()));
                 }
@@ -36,7 +38,7 @@ public class Chameleon extends Weapon
                 }
             }
         }, null);
-        if(!hit){
+        if(!hit[0]){
             ChameleonTongue bullet = new ChameleonTongue (getHolder().getTargetRotation(), isColor(5), getAttackUpgrade()==1, getHolder());
             getHolder().addObjectHere(bullet);
             tongue = bullet;

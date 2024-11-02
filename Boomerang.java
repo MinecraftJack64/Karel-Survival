@@ -9,11 +9,11 @@ public class Boomerang extends Bullet implements IBoomerang
     private int phase = 0;//0 - regular, 1 - return, 2 - other
     private int returnOnExpire;//0 - on die, 1 - on expire, 2 - on finish
     private double returnSpeed;
+    private int returnDamage;
     private boolean hasreturned;
     private int damageonreturn = 0;//0 - on phase 0 only, 1 - both ways, 2 - only when returning
     public Boomerang(double dir, GridObject source){
         super(dir, source);
-        setReturnSpeed(getSpeed());
         setExpireReturn(0);
         hasreturned = false;
     }
@@ -22,8 +22,14 @@ public class Boomerang extends Bullet implements IBoomerang
     }
     public void setReturnSpeed(double s){returnSpeed = s;}
     public double getReturnSpeed(){return returnSpeed;}
+    public void setDamageOnReturn(int v){damageonreturn = v;}
+    public void setReturnDamage(int d){returnDamage = d;}
+    public int getReturnDamage(){return returnDamage;}
     public void applyPhysics(){
         if(phase==0){
+            if(damageonreturn==2){
+                setDamage(0);
+            }
             super.applyPhysics();
         }else{
             doReturn();
@@ -60,7 +66,8 @@ public class Boomerang extends Bullet implements IBoomerang
     }
     public void startReturn(){
         phase = 1;
-        setSpeed(getReturnSpeed());
+        if(getReturnSpeed()>0)setSpeed(getReturnSpeed());
+        if(damageonreturn>0){setDamage(getReturnDamage());getHitStory().clear();}
     }
     public boolean hasReturned(){
         return hasreturned;

@@ -7,7 +7,7 @@
 public class ArmorShield extends Shield
 {
     private int health;
-    public ArmorShield(GridEntity myG, int health){
+    public ArmorShield(ShieldID myG, int health){
         super(myG);
         this.health = health;
     }
@@ -15,7 +15,7 @@ public class ArmorShield extends Shield
         health-=dmg;
         source.notifyDamage(getHolder(), dmg+(health<0?health:0));
         if(health<=0){
-            getHolder().removeShield();
+            remove();
             Sounds.play("armorshieldbreak");
         }
         return 0;

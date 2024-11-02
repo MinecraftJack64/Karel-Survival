@@ -11,12 +11,17 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     private GridEntity source;
     private int ammo = 0;//5
     private double distance, angle;
+    private final ShieldID ultshieldid = new ShieldID(this, "ult"), healthshieldid = new ShieldID(this, "health");
     public WeedwackerBlade(double d, double a, GridEntity source){
         distance = d;
         angle = a;
         this.source = source;
         startHealth(1, false);
-        applyShield(new MetalHealthShield(this, 5));
+        setMaxShields(1);
+        applyShield(new MetalHealthShield(healthshieldid, 5));
+    }
+    public boolean acceptExternalShields(){
+        return false;
     }
     public WeedwackerBlade(GridEntity source){
         this(75, -90, source);
@@ -26,7 +31,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     }
     public void kAct(){
         if(source!=null){
-            setRealLocation(source.getRealX()+distance*Math.cos((source.getRealRotation()+angle)*Math.PI/180), source.getRealY()+distance*Math.sin((source.getRealRotation()+angle)*Math.PI/180));
+            branchOut(source, angle+source.getRealRotation(), distance);
         }
         super.kAct();
     }
@@ -39,8 +44,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
             die(this);
             return;
         }
-        if(!hasShield()){
-            applyShield(new MetalHealthShield(this, 5));
+        if(!hasShield(ultshieldid)){
             setOpacityPercent(1);
         }
         if(canAttack()){
@@ -56,8 +60,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         getWorld().removeObject(this);
     }
     public void ult(){
-        removeShield();
-        applyShield(new ProjectileReflectShield(this, 400));
+        applyShield(new ProjectileReflectShield(ultshieldid, 400));
         setOpacityPercent(0.5);
     }
     public void notifyDamage(GridEntity s, int dmg){
