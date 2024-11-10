@@ -11,4 +11,6 @@ comment4.params=amt\ source
 comment4.target=boolean\ damage(int,\ GridObject)
 comment5.params=
 comment5.target=boolean\ canBreak()
-numComments=6
+comment6.params=
+comment6.target=int\ getHealth()
+numComments=7

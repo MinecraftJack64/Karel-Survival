@@ -17,7 +17,7 @@ public class Beeper extends Collectible
         this.xp = xp;
     }
     public void collect(GridObject targ){
-        ((GridEntity)targ).heal(healing);
+        heal(((GridEntity)targ), healing);
         super.collect(targ);
         Sounds.play("Beeper.collect");
     }

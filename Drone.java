@@ -32,11 +32,11 @@ public class Drone extends GridObject implements SubAffecter
         }
     }
     public void attack(){
-        if(ammo>=60){remainingshots = 3; ammo = 0;}
+        if(ammo>=60){remainingshots = 4; ammo = 0;}
         if(remainingshots>0&&tbs<=0){
             tbs = 5;
             remainingshots--;
-            AerialBullet b = new AerialBullet(getRealRotation(), getRealHeight(), source.distanceTo(source.getRealX()+ddx, source.getRealY()+ddy)/(hoverheight/10), 10, source);
+            AerialBullet b = new AerialBullet(getRealRotation(), getRealHeight(), source.distanceTo(source.getRealX()+ddx, source.getRealY()+ddy)/(hoverheight/15), 15, source);
             addObjectHere(b);
         }else if(tbs>0){
             tbs--;

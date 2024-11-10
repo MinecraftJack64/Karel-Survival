@@ -51,7 +51,7 @@ public class Hypnotizer extends Bullet
             super.doHit(targ);//if hypnosis fails, then instead do damage as usual
             return;
         }
-        targ.heal(targ.getMaxHealth()-targ.getHealth());//fully heal hypnotized
+        heal(targ, targ.getMaxHealth()-targ.getHealth());//fully heal hypnotized
         if(notifier!=null){
             notifier.notifyHypno(targ);
         }

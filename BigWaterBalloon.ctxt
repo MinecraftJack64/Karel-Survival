@@ -9,6 +9,4 @@ comment3.params=
 comment3.target=void\ die()
 comment4.params=
 comment4.target=boolean\ covertDamage()
-comment5.params=
-comment5.target=boolean\ covertDamage()
-numComments=6
+numComments=5

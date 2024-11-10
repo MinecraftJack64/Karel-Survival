@@ -93,7 +93,7 @@ public class WatermelonZombie extends Zombie
         }
     }
     public void fireUlt(){
-        heal((int)(0.40*(getMaxHealth()-getHealth())));
+        heal(this, (int)(0.40*(getMaxHealth()-getHealth())));//heal 40% of missing health
         applyShield(new ArmorShield(wmshield, 800));
         setSpeed(4);
         inShieldPhase = true;

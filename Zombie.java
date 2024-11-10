@@ -36,16 +36,13 @@ import greenfoot.*;
  */
 public class Zombie extends GridEntity
 {
-    private static final int reloadtime = 5;         // The minimum delay between firing the gun.
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
     private GreenfootImage rocket = new GreenfootImage("zareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
-    private int damage = 10;
     private static double speed = 2;
-    private static double attackrange = 30;
     private static double[] dhmult = new double[]{0.5, 0.75, 1, 1.5, 3};
     private static double[] dsmult = new double[]{0.8, 0.8, 1, 1.25, 1.5};
     /**
@@ -90,23 +87,32 @@ public class Zombie extends GridEntity
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         ammo++;
-        if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
+        if(distanceTo(getTarget())>defaultRange())walk(monangle, 1);
         else{
-            if(ammo>reloadtime&&canAttack()){
+            if(ammo>defaultReloadTime()&&canAttack()){
                 attack();
                 ammo = 0;
             }
         }
     }
     public void attack(){
-        damage(getTarget(), damage);
+        damage(getTarget(), defaultDamage());
+    }
+    public int defaultDamage(){
+        return 10;
+    }
+    public int defaultReloadTime(){
+        return 5;
+    }
+    public int defaultRange(){
+        return 30;
     }
     public void feast() 
     {
         reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
+        if(distanceTo(getTarget())>defaultRange())walk(monangle, 1);
     }
     //ovveride this
     public int getXP(){

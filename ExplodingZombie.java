@@ -42,7 +42,7 @@ public class ExplodingZombie extends Zombie
         ammo++;
         if(distanceTo(getTarget())>55)walk(monangle, 1);
         else{
-            if(canAttack())hit(damage, this);
+            if(canAttack())kill(this);
         }
     }
 

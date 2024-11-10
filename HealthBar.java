@@ -34,6 +34,7 @@ public class HealthBar extends StatusBar
     }
     public void act(){
         super.act();
-        if(myGE!=null){setRealLocation(myGE.getRealX(), myGE.getRealY()-40, myGE.getRealHeight());if(myGE.isDead())getWorld().removeObject(this);}
+        if(myGE!=null){setRealLocation(myGE.getRealX(), myGE.getRealY()-40, myGE.getRealHeight());
+        if(myGE.isDead())getWorld().removeObject(this);}
     }
 }

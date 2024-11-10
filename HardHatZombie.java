@@ -61,7 +61,7 @@ public class HardHatZombie extends Zombie
     public void attack(){
         //explode if not stunned
         explodeOn(225, (g)->{
-            if(isAlliedWith(g)&&!g.hasShield(hhshieldid)&&g.acceptExternalShields()){//
+            if(isAlliedWith(g)&&!g.hasShield(hhshieldid)&&!g.hasShield(shieldid)&&g.acceptExternalShields()){//
                 int health = (int)(Math.min(300, Math.min(g.getMaxHealth(), g.getHealth()*2))*(0.5+0.5*getPercentHealth())*getPower());//shield is 300 health by default unless zombie has less max health or health
                 g.applyShield(new ArmorShield(hhshieldid, health));
             }else if(isAggroTowards(g)){

@@ -12,7 +12,7 @@ public class Gun extends Weapon
     private static final int gunReloadTime = 5;
     private boolean quickcharge = false;
     private int reloadDelayCount;
-    private static final int ult = 2000;
+    private static final int ult = 1500;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
@@ -20,23 +20,23 @@ public class Gun extends Weapon
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");
-            reloadDelayCount = quickcharge?3:0;
+            reloadDelayCount = (quickcharge?3:0)+(useGadget()?2:0);
             if(getAttackUpgrade()==1){
                 quickcharge = !quickcharge;
             }
         }
     }
     public void fireUlt(){
-        ProtonWave bullet = new ProtonWave(getHolder());
+        ProtonWave bullet = new ProtonWave(getHolder(), getUltUpgrade()==1);
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
-        List<GridEntity> l = getHolder().getGEsInRange(185);
+        /*List<GridEntity> l = getHolder().getGEsInRange(185);
         for(GridEntity g:l){
             if(getHolder().isAggroTowards(g)){
                 getHolder().damage(g, 700);
-                //g.applyeffect(new StunEffect(30, getSource()));
+                //g.applyeffect(new PoisonEffect(30, getHolder()));
             }
-        }
+        }*/
         //Explosion exp = new Explosion(3);
         //getHolder().addObjectHere(exp);
         //Sounds.play("explode");
@@ -44,6 +44,9 @@ public class Gun extends Weapon
     }
     public int getUlt(){
         return ult;
+    }
+    public void onGadgetActivate(){
+        setGadgetTimer(120);
     }
     public void reload(){
         reloadDelayCount++;
@@ -56,6 +59,9 @@ public class Gun extends Weapon
     public void equip(){
         super.equip();
         getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+    }
+    public int defaultGadgets(){
+        return 3;
     }
     public String getName(){
         return "Minigun";

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=GlueDrop
+comment0.text=\r\n\ A\ bullet\ that\ can\ hit\ asteroids.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n
+comment1.params=rotation\ targetdistance\ focus\ source
+comment1.target=GlueDrop(double,\ double,\ double,\ GridObject)
+comment2.params=
+comment2.target=double\ getGravity()
+comment3.params=targ
+comment3.target=void\ doHit(GridEntity)
+numComments=4

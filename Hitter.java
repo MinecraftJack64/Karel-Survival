@@ -9,14 +9,14 @@ import java.util.*;
 public class Hitter extends GridObject implements SubAffecter
 {
     GridObject source;
-    private int damage = 40;
+    private int damage = 0;
     private int targets;
-    private boolean isattack;
+    private boolean isattack = true;
     private boolean hitallies;
     private boolean hitself;
     private boolean multihit;
     private String collidemode = "collide";
-    HashSet<GridEntity> hitstory;
+    HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
     public Hitter(GridObject source){
         this.source = source;
     }
@@ -95,7 +95,9 @@ public class Hitter extends GridObject implements SubAffecter
         if(asteroid.size()==0||getNumTargets()==0){
             return;
         }
+        //System.out.println(asteroid.size());
         for(GridEntity thing: asteroid){
+            //System.out.println(thing);
             if(thing==getSource()){
                 if(willSelfHarm()){
                     //
@@ -149,5 +151,8 @@ public class Hitter extends GridObject implements SubAffecter
     }
     public void onHit(GridEntity thing){
         //
+    }
+    public boolean covertDamage(){
+        return getSource().covertDamage();
     }
 }

@@ -23,7 +23,7 @@ public class PoisonEffect extends Effect
             nextinterval = interval;
             damage(e);
             remainingtimes--;
-            if(remainingtimes<=0)
+            if(remainingtimes==0)
                 return false;
         }
         return true;

@@ -54,7 +54,7 @@ public class WeedwackerZombie extends Zombie
         if(bd == null){
             bd = new WeedwackerBlade(this);
             addObjectHere(bd);
-            bd.replaceShield(new SuperWeedwackerShield(new ShieldID(bd), -1));
+            bd.immunize();
         }
         if(bd.isDead()){
             super.behave();

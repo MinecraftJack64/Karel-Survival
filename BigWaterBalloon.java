@@ -19,7 +19,7 @@ public class BigWaterBalloon extends FlyingRock
     }
     public void die(){
         for(int i = 0; i <= 360; i+=72){
-            WaterBalloon wb = new WaterBalloon(i+getDirection(), this){public boolean covertDamage(){return true;}};
+            WaterBalloon wb = new WaterBalloon(i+getDirection(), this);
             addObjectHere(wb);
         }
         super.die();

@@ -26,13 +26,10 @@ public class AerialBullet extends Bullet
     }
     public void applyPhysics(){
         setRealHeight(getRealHeight()-weight);
-        super.act();
+        super.applyPhysics();
     }
     public void die(){
-        List<GridEntity> l = getObjectsInRange(30, GridEntity.class);
-        for(GridEntity g:l){
-            if(isAggroTowards(g))damage(g, 100);
-        }
+        explodeOn(30, 100);
         super.die();
     }
 }

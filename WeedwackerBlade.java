@@ -17,7 +17,6 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         angle = a;
         this.source = source;
         startHealth(1, false);
-        setMaxShields(1);
         applyShield(new MetalHealthShield(healthshieldid, 5));
     }
     public boolean acceptExternalShields(){
@@ -65,6 +64,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     }
     public void notifyDamage(GridEntity s, int dmg){
         source.notifyDamage(s, dmg);
+    }
+    public void immunize(){
+        replaceShield(healthshieldid, new SuperWeedwackerShield(new ShieldID(this, "immune"), -1));
     }
     public void attack(){
         List<GridEntity> g = (List<GridEntity>)getIntersectingObjects(GridEntity.class);

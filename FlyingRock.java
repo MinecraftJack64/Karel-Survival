@@ -35,6 +35,7 @@ public class FlyingRock extends Projectile
         path = new Arc(targetdistance, height, getGravity());
         setTeam(source.getTeam());
         setExplosionRange(100);
+        setNumTargets(-1);
     }
     
     public void setExplosionRange(int amt){

@@ -38,8 +38,8 @@ public class Player extends GridEntity {
         sprint = maxsprint;
         getWorld().gameUI().newSprint(maxsprint);
         this.setTeam("player");
-        this.inventory = new Item[20];
-        this.inventory[0] = new Pointpinner(this);
+        this.inventory = new Item[30];
+        this.inventory[0] = new DroneRemote(this);
         this.inventory[1] = new Shotgun(this);
         this.inventory[2] = new Crossbow(this);
         this.inventory[4] = new RockCatapult(this);
@@ -58,8 +58,9 @@ public class Player extends GridEntity {
         this.inventory[17] = new NailGun(this);
         this.inventory[18] = new SpearWeapon(this);
         this.inventory[19] = new Chameleon(this);
+        this.inventory[20] = new Gun(this);
         for(Item i: inventory){
-            if(i!=null)((Weapon)i).setAttackUpgrade(1);
+            if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }
         //rarities: common, uncommon, rare, epic, legendary, seasonal
         this.switchToSlot(0);
@@ -183,7 +184,7 @@ public class Player extends GridEntity {
         this.checkKeys();
         double targang = face(getTargetX(), getTargetY(), canMove()&&!rotationLocked);
         if (this.hacooldown > 20 && !this.isDead()/* && getWorld().getGame().getDifficulty<2*/) {
-            this.heal(diffheal[diff]);
+            heal(this, diffheal[diff]);
         }
 
         ++this.hacooldown;
@@ -204,6 +205,7 @@ public class Player extends GridEntity {
 
     private void checkKeys() {
         ismoving = false;
+        //handlemovement
         if(canMove()&&!movementLocked){
             if (!Greenfoot.isKeyDown("right") && !Greenfoot.isKeyDown("d")) {
                 if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) {
@@ -226,6 +228,7 @@ public class Player extends GridEntity {
             }
         }
 
+        //handle item switching
         if (Greenfoot.isKeyDown("x")) {
             if (!this.currentlyscrolling) {
                 this.prevSlot();
@@ -239,13 +242,23 @@ public class Player extends GridEntity {
         } else {
             this.currentlyscrolling = false;
         }
-
+        
+        //handle item using
         if(canAttack()){
-            if (this.getHeldItem() instanceof Weapon&&(Greenfoot.isKeyDown("space")||getHeldItem().continueUlt())) {
-                ((Weapon)this.getHeldItem()).ult();
-    
-                this.hacooldown = 0;
-            } else if (this.getHeldItem() != null&&(this.getWorld().lastClicked||getHeldItem().continueUse())) {
+            Item i = getHeldItem();
+            boolean didspecial = false;
+            if(i instanceof Weapon){
+                Weapon w = (Weapon)i;
+                didspecial = true;
+                if (Greenfoot.isKeyDown("q")&&!w.continueUlt()&&w.activateGadget()) {
+                    this.hacooldown = 0;
+                } else if ((Greenfoot.isKeyDown("space")||w.continueUlt())&&w.ult()) {
+                    this.hacooldown = 0;
+                }else{
+                    didspecial = false;
+                }
+            }
+            if (this.getHeldItem() != null&&(this.getWorld().lastClicked||getHeldItem().continueUse())&&!didspecial) {
                 isattacking = true;
                 this.getHeldItem().use();
     
@@ -254,6 +267,8 @@ public class Player extends GridEntity {
                 isattacking = false;
             }
         }
+        
+        //handle sprinting
         String sprintkey = "alt";
         if(Greenfoot.isKeyDown(sprintkey)&&!sprinting&&sprint>=6/*decreasing rate*/){
             sprinting = true;

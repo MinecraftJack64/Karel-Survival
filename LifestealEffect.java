@@ -23,7 +23,7 @@ public class LifestealEffect extends Effect
             nextinterval = interval;
             e.hit(damage, source);
             if(!source.isDead()){
-                source.heal(damage);
+                source.heal(source, damage);
             }
             remainingtimes--;
             if(remainingtimes==0)

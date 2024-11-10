@@ -16,12 +16,26 @@ public class LilCreatures extends Weapon implements ICritter
     private int regenshield = 90;//shield
     private int regencritter = 150;//cooldown for regeneration
     private int focus = 0;//which critter is being regenerated
-    private int reloadtime = 7;
+    private int reloadtime = 7;//for firing critters
     private int reload = 0;
+    private int reloadslime = 40;//for regular critter slime
     private ShieldID msshield = new ShieldID(this, "lilcreatures mucus shield");
     public void fire(){
         if(reload>reloadtime&&fireCritter()){
             reload = 0;
+        }else if(reload>reloadslime){
+            reload = 0;
+            if(getHolder().hasShield(msshield)){
+                getHolder().removeShield(msshield);
+                getHolder().explodeOn(70, 100);
+            }else{
+                CritterSlime cs = new CritterSlime(getHolder().getTargetRotation(), getHolder());
+                getHolder().addObjectHere(cs);
+                CritterSlime cs1 = new CritterSlime(getHolder().getTargetRotation()-30, getHolder());
+                getHolder().addObjectHere(cs1);
+                CritterSlime cs2 = new CritterSlime(getHolder().getTargetRotation()+30, getHolder());
+                getHolder().addObjectHere(cs2);
+            }
         }
     }
 
@@ -85,7 +99,7 @@ public class LilCreatures extends Weapon implements ICritter
             ((PassiveCritter)ic[focus]).deploy();
             return true;
         }else{
-            return false;
+            return false;//failed because no critters
         }
     }
     public void processRegeneration(){

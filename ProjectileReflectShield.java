@@ -37,4 +37,7 @@ public class ProjectileReflectShield extends Shield
     public boolean canBreak(){
         return duration>=0;
     }
+    public int getHealth(){
+        return duration>0?duration:1;
+    }
 }

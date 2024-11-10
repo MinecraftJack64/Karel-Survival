@@ -33,10 +33,15 @@ public abstract class Weapon implements Item, Tickable
     private boolean slotlocked;
     private boolean isusing;
     private boolean isulting;
+    private boolean isgadgeting;
     private boolean rotlocked, movelocked;
     public int atkup;
     public int ultup;
     public boolean ultshield = false;//set to true by ult to make next attempt to reset ult charge fail
+    public int gadgets = 0;//how many gadgets
+    public int gadgetscooldown = 0;//how long until next gadget can be activated
+    public int currentgadgetuses = 0;//how many uses current gadget has
+    public int currentgadgettimer = 0;//how long until gadget becomes inactive
     public void setUltUpgrade(int id){
         atkup = id;
     }
@@ -53,13 +58,23 @@ public abstract class Weapon implements Item, Tickable
         fire();
     }
     public void tick(){
+        update();
         reload();
+        if(currentgadgettimer>0)currentgadgettimer--;
+        if(gadgetscooldown>0)currentgadgettimer--;
     }
     public abstract void fire();
     public abstract void fireUlt();
     public abstract void reload();
+    public void update(){
+        //
+    }
+    public void onGadgetActivate(){};
     public abstract int getUlt();
-    public void ult(){
+    public int defaultGadgets(){
+        return 0;
+    }
+    public boolean ult(){
         /*if (reloadDelayCount >= gunReloadTime*5) 
         {
             ProtonWave bullet = new ProtonWave (getRotation());
@@ -70,6 +85,9 @@ public abstract class Weapon implements Item, Tickable
         if(ultready){
             fireUlt();
             resetUltCharge();
+            return true;
+        }else{
+            return false;
         }
     }
     public void resetUltCharge(){
@@ -139,10 +157,60 @@ public abstract class Weapon implements Item, Tickable
     public boolean continueUlt(){
         return isulting;
     }
+    public boolean continueGadget(){
+        return isgadgeting;
+    }
     public void setContinueUse(boolean v){
         isusing = v;
     }
     public void setContinueUlt(boolean v){
         isulting = v;
+    }
+    public void setContinueGadget(boolean v){
+        isgadgeting = v;
+    }
+    public void donateGadgets(int amt){
+        gadgets+=amt;
+    }
+    public int getGadgets(){
+        return gadgets;
+    }
+    public int getGadgetsCooldown(){
+        return gadgetscooldown;
+    }
+    public boolean canActivateGadget(){
+        return getGadgets()>0&&getGadgetsCooldown()==0;
+    }
+    public void setGadgetTimer(int t){
+        currentgadgettimer = t;
+    }
+    public int getGadgetTimer(){
+        return currentgadgettimer;
+    }
+    public int getGadgetCount(){
+        return currentgadgetuses;
+    }
+    public void setGadgetCount(int amt){
+        currentgadgetuses = amt;
+    }
+    public boolean activateGadget(){
+        //use gadget and return true if successfully used
+        if(!isUsingGadget()&&canActivateGadget()){
+            gadgets--;
+            onGadgetActivate();
+            return true;
+        }
+        return false;
+    }
+    public boolean isUsingGadget(){
+        return getGadgetCount()>0||getGadgetTimer()>0||isgadgeting;
+    }
+    public boolean useGadget(){
+        //return true if last gadget use is still active and use a gadget counter if yes
+        boolean i = isUsingGadget();
+        if(i&&getGadgetCount()>0){
+            setGadgetCount(getGadgetCount()-1);
+        }
+        return i;
     }
 }

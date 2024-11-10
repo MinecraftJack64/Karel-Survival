@@ -56,7 +56,7 @@ public class Critter extends Pet implements ICritter
             }else if(dash!=null&&!dash.dash()){
                 dash = null;
             }else if(ammo>reloadtime){
-                attack();
+                dashhome();
                 ammo = 0;
             }else{
                 walk(monangle, 2);
@@ -93,6 +93,10 @@ public class Critter extends Pet implements ICritter
             damage = 50;
         }
         dash = new DasherDoer(getRealRotation(), 15, 7, 30, damage, this);
+        dash.dash();
+    }
+    public void dashhome(){
+        dash = new Dasher(getRealRotation(), 15, 7, this);
         dash.dash();
     }
     public boolean notifySpawnerDamage(){

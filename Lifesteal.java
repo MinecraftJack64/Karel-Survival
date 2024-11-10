@@ -44,7 +44,7 @@ public class Lifesteal extends Boomerang
     }
     public void dieForReal(){
         if(getSource()!=null&&getSource() instanceof GridEntity){
-            ((GridEntity)getSource()).heal(dmgdone);
+            heal(((GridEntity)getSource()), dmgdone);
         }
         if(targ!=null)super.notifyDamage(targ, dmgdone);
         super.dieForReal();

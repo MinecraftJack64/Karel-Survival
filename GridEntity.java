@@ -186,9 +186,9 @@ public abstract class GridEntity extends GridObject
         if(shields.size()<maxshields&&acceptShield(thing)){
             shields.add(pos, thing);
             thing.setHolder(this);
+            shieldBars.add(pos, new ShieldBar(thing.getHealth(), 40, 5, pos, this));
+            KWorld.me.addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
         }
-        shieldBars.add(pos, new ShieldBar(thing.getHealth(), 40, 5, pos, this));
-        KWorld.me.addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
     }
     public void replaceShield(Shield thing){
         replaceShield(shields.size()-1, thing);
@@ -211,20 +211,18 @@ public abstract class GridEntity extends GridObject
         }
     }
     public void removeShield(){
-        shields.remove(shields.size()-1);
+        removeShield(shields.size()-1);
     }
     public void removeShield(ShieldID id){
         int i = indexOfShield(id);
         if(i>=0){
-            shields.remove(i);
+            removeShield(i);
         }
     }
     public void removeShield(int id){
         shields.remove(id);
-        if(shieldBars.get(id)!=null){
-            getWorld().removeObject(shieldBars.get(id));
-            shieldBars.remove(id);
-        }
+        getWorld().removeObject(shieldBars.get(id));
+        shieldBars.remove(id);
     }
     public boolean hasShield(){
         return shields.size()>0;
@@ -265,17 +263,29 @@ public abstract class GridEntity extends GridObject
         if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, dmg);
         if(getHealth()<=0)die(source);
     }
+    public void kill(GridObject source){
+        removeAllShields();
+        setHealth(0);
+        die(source);
+    }
+    public void removeAllShields(){
+        while(shields.size()>0){
+            removeShield();
+        }
+    }
     public void shieldSetHealth(int id, int amt){
+        if(id>=shieldBars.size())return;
         shieldBars.get(id).setValue(amt);
         shieldBars.get(id).updateID(id);
     }
     public void tickShields(){
         for(int i = shields.size()-1; i>=0; i--){
-            shields.get(i).tick();
-            shieldSetHealth(i, shields.get(i).getHealth());
+            Shield s = shields.get(i);
+            s.tick();
+            shieldSetHealth(i, s.getHealth());
         }
     }
-    public void heal(int amt){
+    public void heal(int amt, GridObject source){
         damage(-amt);
         if(getHealth()>getMaxHealth()){
             setHealth(getMaxHealth());

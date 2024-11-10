@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Michael Kolling
  * @version 0.1
  */
-public class ProtonWave extends Projectile
+public class ProtonWave extends Hitter
 {
     /** The damage this wave will deal */
     
@@ -19,12 +19,12 @@ public class ProtonWave extends Projectile
      * recreated for every object (improves performance significantly).
      */
     private static GreenfootImage[] images;
-    private static final int damage = 700;
+    private static final int damage = 600;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private int life = 60;
     private int frame = 0;
-    ArrayList<GridEntity> hitstory = new ArrayList<GridEntity>();
+    private boolean radiate;
     
     /**
      * Create a new proton wave.
@@ -54,13 +54,18 @@ public class ProtonWave extends Projectile
         }
     }
     
-    public ProtonWave(GridObject source)
+    public ProtonWave(GridObject source, boolean radiate)
     {
         super(source);
         setTeam(source.getTeam());
         //addForce(new Vector(rotation, 15));
         frame = 0;
         setImage(images[frame]);
+        setDamage(damage);
+        setNumTargets(-1);
+        setMultiHit(false);
+        setAggression(true);
+        this.radiate = radiate;
     }
     
     /**
@@ -74,24 +79,21 @@ public class ProtonWave extends Projectile
         } 
         else {
             life--;
-            //move(getRotation()-90, 10);
+            checkHit();
+            setDamage(getDamage()-10);
             setImage(images[frame]);
             frame++;
-            //checkAsteroidHit();
         }
     }
+    public void kAct(){
+        super.kAct();
+        applyPhysics();
+    }
     
-    /**
-     * Check whether we have hit an asteroid.
-     */
-    private void checkAsteroidHit()
-    {
-        Zombie asteroid = (Zombie) getOneIntersectingObject(Zombie.class);
-        if (asteroid != null&&!hitstory.contains(asteroid)){
-            //getWorld().removeObject(this);
-            asteroid.hit(damage, this);
-            Sounds.play("vaporize");
-            hitstory.add(asteroid);
+    public void doHit(GridEntity g){
+        super.doHit(g);
+        if(radiate){
+            g.applyeffect(new PoisonEffect(5, 3, -1, this));
         }
     }
     public boolean covertDamage(){

@@ -67,20 +67,14 @@ public class NailGun extends Weapon
         wavesleft--;
     }
     public void fireUlt(){
-        ProtonWave bullet = new ProtonWave(getHolder());
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
-        Sounds.play("protonwave");
-        List<GridEntity> l = getHolder().getGEsInRange(185);
-        for(GridEntity g:l){
-            if(getHolder().isAggroTowards(g)){
-                g.hit(700, bullet);
-                //g.applyeffect(new StunEffect(30, getSource()));
-            }
-        }
+        double x = getHolder().getTargetX();
+        double y = getHolder().getTargetY();
+        double d = Math.min(600, getHolder().distanceTo(x, y));
+        FlyingRock bullet = new FlyingRock(getHolder().getTargetRotation(), d, 200, getHolder());
+        getHolder().addObjectHere(bullet);
         //Explosion exp = new Explosion(3);
         //getHolder().addObjectHere(exp);
         //Sounds.play("explode");
-        reloadDelayCount = 0;
     }
     public int getUlt(){
         return ult;

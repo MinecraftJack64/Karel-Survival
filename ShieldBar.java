@@ -30,6 +30,7 @@ public class ShieldBar extends StatusBar
     }
     public void act(){
         super.act();
-        if(myGE!=null){setRealLocation(myGE.getRealX(), myGE.getRealY()-50-10*myid, myGE.getRealHeight());if(myGE.isDead())getWorld().removeObject(this);}
+        if(myGE!=null){setRealLocation(myGE.getRealX(), myGE.getRealY()-50-10*myid, myGE.getRealHeight());
+        if(myGE.isDead())getWorld().removeObject(this);}
     }
 }

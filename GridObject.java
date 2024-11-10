@@ -159,6 +159,15 @@ public abstract class GridObject extends KActor
             return false;
         }
     }
+    public boolean pullToBranch(GridObject g, double deg, double dist){
+        if(canBePulled()){
+            branchOut(g, deg, dist);
+            notifyPull();
+            return true;
+        }else{
+            return false;
+        }
+    }
     public boolean pull(double ang, double speed){
         if(canBePulled()){
             move(ang, speed);
@@ -199,11 +208,11 @@ public abstract class GridObject extends KActor
     }
     public int explodeOn(int range, String filter, Consumer<GridEntity> vore, Explosion exp){
         List<GridEntity> l = getObjectsInRange(range, GridEntity.class);
-        if(l.size()==0){
-            return 0;
-        }
         if(exp!=null){
             addObjectHere(exp);
+        }
+        if(l.size()==0){
+            return 0;
         }
         for(GridEntity g:l){
             switch(filter){
@@ -312,7 +321,7 @@ public abstract class GridObject extends KActor
     }
     
     public void heal(GridEntity targ, int amt){
-        targ.heal((int)(amt*getPower()));
+        targ.heal((int)(amt*getPower()), this);
     }
     
     public void damage(GridEntity targ, int amt){

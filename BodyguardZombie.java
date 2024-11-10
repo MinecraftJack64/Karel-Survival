@@ -88,7 +88,7 @@ public class BodyguardZombie extends SpawnableZombie
         }else if(action==2){
             if(distanceTo(getTarget())>attackrange)walk(monangle, 1.25);
             else{
-                getTarget().heal(5);
+                heal(getTarget(), 5);
             }
         }else{
             /*if(distanceTo(getTarget())>idlerange)walk(monangle, 1);
