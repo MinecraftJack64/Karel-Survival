@@ -24,9 +24,8 @@ public class EntrancePortal extends GridObject
         }
     }
     public void kAct(){
-        List<GridEntity> l = getObjectsInRange(health*5, GridEntity.class);
-        for(GridEntity g:l){
-            if(isAlliedWith(g)&&!exiters.contains(g)){
+        explodeOn(health*5, "ally", (g)->{
+            if(!exiters.contains(g)){
                 if(g.canBePulled()){
                     g.pullTowards(this, 10);
                     if(distanceTo(g)<=10){
@@ -37,7 +36,7 @@ public class EntrancePortal extends GridObject
                     exiters.add(g);
                 }
             }
-        }
+        }, null);
         for(int i = exiters.size()-1; i >= 0; i--){
             if(exiters.get(i).isDead()||distanceTo(exiters.get(i))>health*5){
                 exiters.remove(i);

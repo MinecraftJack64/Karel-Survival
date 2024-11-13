@@ -7,6 +7,4 @@ comment2.params=
 comment2.target=void\ behave()
 comment3.params=
 comment3.target=void\ repair()
-comment4.params=killer
-comment4.target=void\ die(GridObject)
-numComments=5
+numComments=4

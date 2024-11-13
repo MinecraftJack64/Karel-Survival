@@ -52,13 +52,7 @@ public class Nuke extends Projectile
      */
     public void checkAsteroidHit()
     {
-        List<GridEntity> l = getObjectsInRange(1000, GridEntity.class);
-        for(GridEntity g:l){
-            if(g!=null&&isAggroTowards(g)){
-                doHit(g);
-            }
-        }
-        getWorld().addObject(new Explosion(10), getRealX(), getRealY());
+        explodeOnEnemies(1000, (g)->{doHit(g);});
         Sounds.play("rocketcrash");
     }
     public int getDamage(double distance){

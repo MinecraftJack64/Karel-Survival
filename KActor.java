@@ -26,13 +26,11 @@ public class KActor extends Actor
     public void setRealLocation(double x, double y){
         rx = x;
         ry = y;
-        setLocation((int)rx, (int)(ry-rh));
+        if(getWorld()!=null)setLocation((int)rx, (int)(ry-rh));
     }
     public void setRealLocation(double x, double y, double height){
-        rx = x;
-        ry = y;
         rh = height;
-        setLocation((int)rx, (int)(ry-rh));
+        setRealLocation(x, y);
     }
     public void branchOut(KActor m, double deg, double dist){
         setRealLocation(m.getRealX()+getBranchX(deg, dist), m.getRealY()+getBranchY(deg, dist));
@@ -77,5 +75,11 @@ public class KActor extends Actor
     }
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
+    }
+    public void notifyWorldRemove(){
+        //
+    }
+    public void notifyWorldAdd(){
+        //
     }
 }

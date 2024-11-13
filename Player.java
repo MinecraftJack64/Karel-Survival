@@ -188,7 +188,6 @@ public class Player extends GridEntity {
         }
 
         ++this.hacooldown;
-        List<Beeper> s = this.getObjectsInRange(10, Beeper.class);
         /*Iterator var7 = s.iterator();
 
         while(var7.hasNext()) {
@@ -337,5 +336,9 @@ public class Player extends GridEntity {
     public void giveItem(Item i){
         nextEmptySlot();
         equipAtSlot(i);
+    }
+    @Override
+    public boolean removeOnDeath(){
+        return false;
     }
 }

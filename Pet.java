@@ -17,10 +17,6 @@ public class Pet extends GridEntity
     public boolean willNotify(){
         return false;
     }
-    public void die(GridObject killer){
-        super.die(killer);
-        try{getWorld().removeObject(this);}catch(Exception e){}
-    }
     public GridEntity getTarget(){
         //return getWorld().player;
         GridEntity candidate = getNearestTarget();

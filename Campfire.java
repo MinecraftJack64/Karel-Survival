@@ -32,11 +32,13 @@ public class Campfire extends Pet
     public void behave()
     {
         //setRotation(getRotation()-1);
-        List<GridEntity> l = getObjectsInRange(150, GridEntity.class);
-        for(GridEntity g:l){
+        explodeOn(150, (g)->{
             if(isAggroTowards(g))damage(g, 8);
-            else if(isAlliedWith(g)&&!(g instanceof Campfire))heal(g, 4);
-        }
+            else if(isAlliedWith(g))heal(g, 4);
+        }, null);
         heal(this, 1);
+    }
+    public void heal(int amt, GridObject source){
+        super.heal(0, source);
     }
 }

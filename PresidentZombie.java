@@ -57,12 +57,11 @@ public class PresidentZombie extends Zombie
         }
         if(distanceTo(getTarget())>140)walk(monangle, 1);
         else{
-            List<GridEntity> l = getObjectsInRange(150, GridEntity.class);
-            for(GridEntity g:l){
-                if(!targets.contains(g)&&isAggroTowards(g)){
+            explodeOn(150, "enemy", (g)->{
+                if(!targets.contains(g)){
                     targets.add(g);
                 }
-            }
+            }, null);
         }
         for(int i = targets.size()-1; i >=0; i--){
             if(targets.get(i).isDead()){

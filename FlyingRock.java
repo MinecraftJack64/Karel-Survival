@@ -88,7 +88,7 @@ public class FlyingRock extends Projectile
      */
     public void checkAsteroidHit()
     {
-        List<GridEntity> l = getObjectsInRange(getExplosionRange(), GridEntity.class);
+        List<GridEntity> l = getGEsInRange(getExplosionRange());
         if(getNumTargets()<0){
             for(GridEntity g:l){
                 if(g!=null&&isAggroTowards(g)){

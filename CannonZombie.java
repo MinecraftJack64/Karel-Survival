@@ -125,7 +125,7 @@ public class CannonZombie extends Zombie
         }
     }
     public void getNearbyZombie(){
-        List<GridEntity> l = getObjectsInRange(70, GridEntity.class);
+        List<GridEntity> l = getGEsInRange(70);
         scammed = null;
         for(GridEntity g:l){
             if(isAlliedWith(g)&&!blacklist.contains(g)){
@@ -189,12 +189,8 @@ public class CannonZombie extends Zombie
         }
         try{
             //explode if not stunned
-            List<GridEntity> l = getObjectsInRange(70, GridEntity.class);
-            addObjectHere(new Explosion(1));
             super.die(source);
-            for(GridEntity g:l){
-                damage(g, damage);
-            }
+            explodeOn(70, damage);
             Sounds.play("explode");
         }catch(IllegalStateException e){
             //

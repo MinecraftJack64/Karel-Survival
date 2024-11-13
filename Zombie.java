@@ -43,8 +43,8 @@ public class Zombie extends GridEntity
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double speed = 2;
-    private static double[] dhmult = new double[]{0.5, 0.75, 1, 1.5, 3};
-    private static double[] dsmult = new double[]{0.8, 0.8, 1, 1.25, 1.5};
+    private static double[] dhmult = new double[]{0.5, 0.75, 1, 1.5, 2};//difficulty health multiplier
+    private static double[] dsmult = new double[]{0.8, 0.8, 1, 1.25, 1.3};//difficulty speed multiplier
     /**
      * Initilise this rocket.
      */
@@ -129,7 +129,6 @@ public class Zombie extends GridEntity
         }
         //if(wasInOriginalWave())getWorld().getGame().getSpawner().wavehealth--;
         super.die(killer);
-        try{getWorld().removeObject(this);}catch(Exception e){}
     }
     public GridEntity getTarget(){
         //return getWorld().player;

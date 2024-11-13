@@ -75,17 +75,14 @@ public class AdventureSpawner implements Spawner
                 break;
         }
         KWorld.me.addToGrid(toSpawn, x, y);
-        //if(toSpawn instanceof GridEntity)KWorld.me.allEntities.add((GridEntity)toSpawn);
     }
     public void spawnZombieRandom(GridObject toSpawn){
         int x = Greenfoot.getRandomNumber(KWorld.me.gridwidth);
         int y = Greenfoot.getRandomNumber(KWorld.me.gridheight);
         KWorld.me.addToGrid(toSpawn, x, y);
-        //if(toSpawn instanceof GridEntity)KWorld.me.allEntities.add((GridEntity)toSpawn);
     }
     public void spawnZombie(GridEntity toSpawn, int x, int y){
         KWorld.me.addToGrid(toSpawn, x, y);
-        KWorld.me.allEntities.add(toSpawn);
     }
     public void heraldBossFight(){
         spawnZombie(new ZombieHerald(), KWorld.me.gridwidth/2, KWorld.me.gridheight/2);

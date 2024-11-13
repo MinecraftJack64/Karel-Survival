@@ -35,8 +35,4 @@ public class Baby extends GridEntity
     public void repair(){
         lvl++;
     }
-    public void die(GridObject killer){
-        super.die(killer);
-        getWorld().removeObject(this);
-    }
 }

@@ -56,7 +56,7 @@ public class BreadBoxerZombie extends Zombie
                 checkdodge--;
             }else if(canMove()){
                 checkdodge = 3;
-                for(Projectile h:getObjectsInRange(100, Projectile.class)){
+                for(Projectile h:getGOsInRange(100, Projectile.class)){
                     if(h.isAggroTowards(this)){
                         initiateJump(getRealRotation()+(punchdir?-45:45), 100, 50);
                         applyShield(new PercentageShield(new ShieldID(this), 1, (int)(getPhysicsArc().getDuration())));

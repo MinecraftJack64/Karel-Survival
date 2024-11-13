@@ -20,7 +20,7 @@ public class TeslaCoilZap extends Projectile
         attacked = 1;
         setRealLocation(x, y);
         setVisible(true);
-        List<GridEntity> l = getObjectsInRange(100, GridEntity.class);
+        List<GridEntity> l = getGEsInRange(100);
         int dmg = (int)(14*Math.pow(2, -0.8*l.size())+1)*(int)Math.min(0, Math.max(1, 1-(distanceTo(source)-400)/100));//500 should be 0, 400 should be 1
         for(GridEntity g:l){
             if(isAggroTowards(g))damage(g, dmg);

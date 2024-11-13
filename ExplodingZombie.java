@@ -55,12 +55,8 @@ public class ExplodingZombie extends Zombie
     public void die(GridObject source){
         try{
             //explode if not stunned
-            List<GridEntity> l = getObjectsInRange(60, GridEntity.class);
-            addObjectHere(new Explosion(1));
             super.die(source);
-            for(GridEntity g:l){
-                damage(g, damage);
-            }
+            explodeOn(60, damage);
             Sounds.play("explode");
         }catch(IllegalStateException e){
             //

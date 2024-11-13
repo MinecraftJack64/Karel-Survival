@@ -26,7 +26,6 @@ public class SupplyCrate extends GridEntity
             getWorld().addObject(g, getRealX(), getRealY());
         }
         super.die(killer);
-        getWorld().removeObject(this);
     }
     public boolean willNotify(GridObject source){
         return false;

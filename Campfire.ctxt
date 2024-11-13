@@ -7,4 +7,6 @@ comment1.text=\r\n\ Initilise\ this\ rocket.\r\n
 comment2.params=
 comment2.target=void\ behave()
 comment2.text=\r\n\ Do\ what\ a\ rocket's\ gotta\ do.\ (Which\ is\:\ mostly\ flying\ about,\ and\ turning,\r\n\ accelerating\ and\ shooting\ when\ the\ right\ keys\ are\ pressed.)\r\n
-numComments=3
+comment3.params=amt\ source
+comment3.target=void\ heal(int,\ GridObject)
+numComments=4

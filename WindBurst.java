@@ -29,9 +29,8 @@ public class WindBurst extends Bullet
             super.doHit(targ);
             targ.knockBack(face(targ, false), 55, 30, this);
         }
-        List<GridEntity> l = getObjectsInRange(75, GridEntity.class);
-        for(GridEntity g:l){
-            if(isAggroTowards(g)&&targ!=g){
+        explodeOn(75, "enemy", (g)->{
+            if(targ!=g){
                 damage(g, getDamage()/5);
                 if(!isSuper){
                     g.applyeffect(new StunEffect(5, this));
@@ -39,7 +38,7 @@ public class WindBurst extends Bullet
                     g.knockBack(face(g, false), 80, 50, this);
                 }
             }
-        }
+        }, null);
         if(getSource() instanceof GridEntity&&!((GridEntity)getSource()).isDead()&&distanceTo(getSource())<=75){
             if(toNotify!=null){
                 toNotify.startJump(face(getSource(), false), distanceTo(getSource()), isSuper);

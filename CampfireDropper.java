@@ -13,7 +13,6 @@ public class CampfireDropper extends FlyingRock
     {
         super(rotation, targetdistance, height, source);
         load = toSpawn;
-        //if(load instanceof GridEntity)getWorld().allEntities.add((GridEntity)load);
     }
     public double getGravity(){
         return 1;

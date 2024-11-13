@@ -3,6 +3,7 @@ import java.util.Objects;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Write a description of class GridObject here.
@@ -199,6 +200,7 @@ public abstract class GridObject extends KActor
     public boolean isAlliedWith(GridObject other){
         return getWorld().getTeams().getAllies(getTeam()).contains(other.getTeam());
     }
+    //@CallSuper
     public void die(){
         clearFakeTeam();
         clearTeam();
@@ -207,7 +209,7 @@ public abstract class GridObject extends KActor
         setTeam(oldteam);
     }
     public int explodeOn(int range, String filter, Consumer<GridEntity> vore, Explosion exp){
-        List<GridEntity> l = getObjectsInRange(range, GridEntity.class);
+        List<GridEntity> l = getGEsInRange(range);
         if(exp!=null){
             addObjectHere(exp);
         }
@@ -252,6 +254,9 @@ public abstract class GridObject extends KActor
         }else{
             return explodeOn(range, "ally", (g)->{heal(g, dmg);}, exp);
         }
+    }
+    public int explodeOnEnemies(int range, Consumer<GridEntity> vore){
+        return explodeOn(range, "enemy", vore, new Explosion(((double)range)/60));
     }
     public GridEntity getNearestTarget() {
         GridEntity res = null;
@@ -311,7 +316,22 @@ public abstract class GridObject extends KActor
         getWorld().addObject(obj, getRealX(), getRealY());
     }
     public List<GridEntity> getGEsInRange(int rng){
-        return getObjectsInRange(rng, GridEntity.class);
+        ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
+        for(GridEntity g:getWorld().allEntities()){
+            if(distanceTo(g)<=rng){
+                gs.add(g);
+            }
+        }
+        return gs;
+    }
+    public <T extends GridObject> List<T> getGOsInRange(int rng, Class<T> cls){
+        ArrayList<T> gs = new ArrayList<>();
+        for(GridObject g:getWorld().allObjects()){
+            if(distanceTo(g)<=rng&&cls.isInstance(g)){
+                gs.add(cls.cast(g));
+            }
+        }
+        return gs;
     }
     public double getPower(){
         return powermultiplier;
@@ -340,5 +360,13 @@ public abstract class GridObject extends KActor
     }
     public void kAct(){
         //
+    }
+    public void notifyWorldRemove(){
+        super.notifyWorldRemove();
+        getWorld().allObjects().remove(this);
+    }
+    public void notifyWorldAdd(){
+        super.notifyWorldAdd();
+        getWorld().allObjects().add(this);
     }
 }

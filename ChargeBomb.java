@@ -22,13 +22,10 @@ public class ChargeBomb extends Bullet
         setDamage(500);
     }
     public void doHit(GridEntity targ){
-        List<GridEntity> l = getObjectsInRange(100, GridEntity.class);
-        for(GridEntity g:l){
-            if(isAggroTowards(g)){
-                super.doHit(g);
-                g.applyeffect(new StunEffect(30, getSource()));
-            }
-        }
+        explodeOnEnemies(100, (g)->{
+            super.doHit(g);
+            g.applyeffect(new StunEffect(30, getSource()));
+        });
         Explosion exp = new Explosion(1);
         getWorld().addObject(exp, getRealX(), getRealY());
         Sounds.play("explode");

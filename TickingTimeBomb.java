@@ -21,7 +21,6 @@ public class TickingTimeBomb extends GridEntity implements SubAffecter
     public void die(GridObject killer){
         explodeOn(50, 350);
         super.die(killer);
-        getWorld().removeObject(this);
     }
     public boolean willNotify(){
         return false;

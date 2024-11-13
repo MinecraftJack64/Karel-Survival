@@ -25,15 +25,22 @@ public abstract class GridEntity extends GridObject
     public boolean isDead(){
         return isdead;
     }
-
+    public void notifyWorldRemove(){
+        super.notifyWorldRemove();
+        getWorld().allEntities().remove(this);
+    }
+    public void notifyWorldAdd(){
+        super.notifyWorldRemove();
+        getWorld().allEntities().add(this);
+    }
     public void die(GridObject source){
         isdead = true;
         killer = source;
         while(killer instanceof SubAffecter&&((SubAffecter)killer).getSource()!=null){
             killer = ((SubAffecter)killer).getSource();
         }
-        getWorld().allEntities().remove(this);
         super.die();
+        if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){}//remove from world if set to true
     }
     
     public GridObject getKiller(){
@@ -42,7 +49,6 @@ public abstract class GridEntity extends GridObject
     
     public void revive(){
         isdead = false;
-        getWorld().allEntities().add(this);
         super.revive();
     }
     public void reviveWithHealth(){
@@ -115,6 +121,9 @@ public abstract class GridEntity extends GridObject
     }
     
     public boolean collidesWithWalls(){
+        return true;
+    }
+    public boolean removeOnDeath(){
         return true;
     }
 

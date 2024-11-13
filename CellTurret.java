@@ -82,14 +82,11 @@ public class CellTurret extends Pet
         target = targ;
     }
     public void knockEnemiesBack(){
-        List<GridEntity> l = getObjectsInRange(50, GridEntity.class);
-        for(GridEntity g:l){
-            if(isAggroTowards(g)){
-                damage(g, 10);
-                g.knockBack(face(g, false), 50, 20, this);
-                g.applyeffect(new PowerPercentageEffect(0.2, 90));
-            }
-        }
+        explodeOn(50, "enemy", (g)->{
+            damage(g, 10);
+            g.knockBack(face(g, false), 50, 20, this);
+            g.applyeffect(new PowerPercentageEffect(0.2, 90));
+        }, null);
     }
     public boolean readyToTransform(Class pot){
         cantransform = getSpawner()!=null&&!getSpawner().isDead()&&distanceTo(getSpawner())<35&&target!=pot&&pot!=null;
@@ -100,13 +97,10 @@ public class CellTurret extends Pet
         addObjectHere(bullet);
     }
     public void die(GridObject killer){
-        List<GridEntity> l = getObjectsInRange(300, GridEntity.class);
-        for(GridEntity g:l){
-            if(isAggroTowards(g)){
-                SmallAntibody bullet = new SmallAntibody(face(g, false), target, this);
-                addObjectHere(bullet);
-            }
-        }
+        explodeOn(300, "enemy", (g)->{
+            SmallAntibody bullet = new SmallAntibody(face(g, false), target, this);
+            addObjectHere(bullet);
+        }, null);
         super.die(killer);
         try{getWorld().removeObject(this);}catch(Exception e){}
     }

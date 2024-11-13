@@ -56,7 +56,6 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     }
     public void die(GridObject source){
         super.die(source);
-        getWorld().removeObject(this);
     }
     public void ult(){
         applyShield(new ProjectileReflectShield(ultshieldid, 400));

@@ -43,10 +43,7 @@ public class Rocket extends FlyingRock
         if(targetsymbol!=null){
             getWorld().removeObject(targetsymbol);
         }
-        List<GridEntity> l = getObjectsInRange(getExplosionRange(), GridEntity.class);
-        for(GridEntity g:l){
-            doHit(g);
-        }
+        super.checkAsteroidHit();
         Sounds.play("rocketcrash");
     }
     public void doHit(GridEntity g){

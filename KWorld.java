@@ -332,6 +332,9 @@ public class KWorld extends World
     public ArrayList<GridEntity> allEntities(){
         return allEntities;
     }
+    public ArrayList<GridObject> allObjects(){
+        return allGridObjects;
+    }
     public boolean isPaused(){
         return paused;
     }
@@ -342,9 +345,13 @@ public class KWorld extends World
             KActor g = (KActor)a;
             g.rx = x;
             g.ry = y;
-            if(a instanceof GridEntity){
-                allEntities.add((GridEntity)a);
-            }
+            g.notifyWorldAdd();
+        }
+    }
+    public void removeObject(Actor a){
+        super.removeObject(a);
+        if(a instanceof KActor){
+            ((KActor)a).notifyWorldRemove();
         }
     }
 }
