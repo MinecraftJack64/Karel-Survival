@@ -101,6 +101,10 @@ public class NinjaZombie extends Zombie
         }
         inviscooldown--;
     }
+    @Override
+    public boolean canDetect(){
+        return getOpacity()>0;
+    }
     public void feast(){
         if(getOpacity()<255){
             setOpacity(getOpacity()+51);
@@ -125,6 +129,10 @@ public class NinjaZombie extends Zombie
         super.damage(amt);
         isinvis = false;
         inviscooldown = 10;
+    }
+    @Override
+    public boolean prioritizeTarget(){
+        return getNearestTarget()!=null&&distanceTo(getNearestTarget())>=90;
     }
     
     public String getName(){

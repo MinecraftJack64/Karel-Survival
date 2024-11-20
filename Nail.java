@@ -16,7 +16,7 @@ public class Nail extends Bullet
     public Nail(int r, int d, double rotation, NailGun ng, GridObject source)
     {
         super(rotation, source);
-        setSpeed(20);
+        setSpeed(25);
         setLife(r/((int)getSpeed()));
         setDamage(d);
         myNG = ng;

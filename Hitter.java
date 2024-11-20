@@ -53,6 +53,9 @@ public class Hitter extends GridObject implements SubAffecter
     public int getDamage(){
         return damage;
     }
+    public int getDamage(GridEntity g){
+        return getDamage();
+    }
     public boolean willSelfHarm(){
         return hitself;
     }
@@ -144,7 +147,7 @@ public class Hitter extends GridObject implements SubAffecter
         }*/
     }
     public void doHit(GridEntity asteroid){
-        damage(asteroid, getDamage());
+        damage(asteroid, getDamage(asteroid));
     }
     public boolean checkHeight(GridEntity other){
         return Math.abs(other.getRealHeight()-getRealHeight())<5;

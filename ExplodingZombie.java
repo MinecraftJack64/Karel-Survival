@@ -51,7 +51,10 @@ public class ExplodingZombie extends Zombie
     public int getXP(){
         return 200;
     }
-
+    @Override
+    public boolean prioritizeTarget(){
+        return true;
+    }
     public void die(GridObject source){
         try{
             //explode if not stunned

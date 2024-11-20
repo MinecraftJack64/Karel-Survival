@@ -76,6 +76,10 @@ public class RocketZombie extends Zombie
         ride.applyTarget(getTarget().getRealX(), getTarget().getRealY());
         rocketPhase = 1;
     }
+    @Override
+    public boolean prioritizeTarget(){
+        return true;
+    }
     
     public String getName(){
         return "Rocket Zombie";

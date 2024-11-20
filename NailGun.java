@@ -17,7 +17,7 @@ public class NailGun extends Weapon
     private int reloadDelayCount;
     private int wavesleft = 0;
     private int r[] = {500, 350, 250, 100};
-    private int r2[] = {500, 375, 300, 200};
+    private int r2[] = {500, 375, 300, 175};
     private int d[] = {100, 75, 50, 35};
     private static final int ult = 1500;
     public void fire(){

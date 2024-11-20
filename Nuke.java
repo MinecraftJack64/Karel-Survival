@@ -58,6 +58,10 @@ public class Nuke extends Projectile
     public int getDamage(double distance){
         return (int)(400+Math.pow(2, -(distance-975)/100));
     }
+    public void doHit(GridEntity targ){
+        super.doHit(targ);
+        damage(targ, getDamage(distanceTo(targ)));
+    }
     
     public boolean covertDamage(){
         return true;

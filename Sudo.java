@@ -43,7 +43,7 @@ public class Sudo extends Weapon
         getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
     public String getName(){
-        return "Minigun";
+        return "Sudo";
     }
     public int getRarity(){
         return 0;

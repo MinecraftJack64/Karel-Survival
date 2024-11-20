@@ -43,6 +43,7 @@ public class Zombie extends GridEntity
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double speed = 2;
+    private GridEntity target;
     private static double[] dhmult = new double[]{0.5, 0.75, 1, 1.5, 2};//difficulty health multiplier
     private static double[] dsmult = new double[]{0.8, 0.8, 1, 1.25, 1.3};//difficulty speed multiplier
     /**
@@ -73,9 +74,13 @@ public class Zombie extends GridEntity
             return;
         }
         super.act();
+        clearTarget();
     }
     public void processSounds(){
         //when sound cooldown 0, groan and set cooldown to new random value
+    }
+    public void clearTarget(){
+        target = null;
     }
 
     /**
@@ -130,12 +135,25 @@ public class Zombie extends GridEntity
         //if(wasInOriginalWave())getWorld().getGame().getSpawner().wavehealth--;
         super.die(killer);
     }
+    public boolean prioritizeTarget(){
+        return false;
+    }
+    // cache target for the current update cycle
+    public boolean useCache(){
+        return true;
+    }
     public GridEntity getTarget(){
-        //return getWorld().player;
+        if(target!=null&&useCache()){//cache target
+            return target;
+        }
+        if(prioritizeTarget()&&getWorld().getPlayer().canDetect()&&isAggroTowards(getWorld().getPlayer())){
+            return getWorld().getPlayer();
+        }
         GridEntity candidate = getNearestTarget();
         if(candidate == null){
             candidate = getWorld().getPlayer();
         }
+        target = candidate;
         return candidate;//use this for now
     }
     public GridEntity getNearestTarget(){

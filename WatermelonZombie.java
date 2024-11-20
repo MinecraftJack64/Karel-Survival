@@ -92,6 +92,10 @@ public class WatermelonZombie extends Zombie
             setImage(rocket2);
         }
     }
+    @Override
+    public boolean prioritizeTarget(){
+        return hasShield(wmshield);
+    }
     public void fireUlt(){
         heal(this, (int)(0.40*(getMaxHealth()-getHealth())));//heal 40% of missing health
         applyShield(new ArmorShield(wmshield, 800));

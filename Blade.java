@@ -7,42 +7,71 @@ import greenfoot.*;
  */
 public class Blade extends Weapon
 {
-    private static final int gunReloadTime = 30;
+    private static final int gunReloadTime = 20;
     private int reloadDelayCount;
-    private static final int ult = 800;
+    private AmmoManager ammo;
+    private static final int ult = 3000;
+    private int remainingslices = 160;
+    private int slicecooldown = 0;//2 by default
+    private boolean nextdir = false;
+    private int nextstabdir;//0, 45, 90...
+    private ShieldID shield = new ShieldID(this);
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
-            Sword bullet = new Sword(getHolder().getTargetRotation(), 40, getHolder());
+            ammo.useAmmo();
+            Sword bullet = new Sword(getHolder().getTargetRotation(), ammo.getAmmo(), nextdir, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
+            nextdir = !nextdir;
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
         }
     }
     public void fireUlt(){
-        Nuke bullet = new Nuke(getHolder());
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
-        Sounds.play("protonwave");
-        reloadDelayCount = 0;
+        if(!continueUlt()){
+            getHolder().applyeffect(new SpeedPercentageEffect(1.5, 160));
+            getHolder().applyShield(new PercentageShield(shield, 0.5, 160));
+            setContinueUlt(true);
+            slicecooldown = 2;
+            remainingslices = 160;
+            fireSword();
+        }else{
+            fireSword();
+            if(remainingslices<=0){
+                setContinueUlt(false);
+            }
+        }
+    }
+    public void fireSword(){
+        remainingslices--;
+        CuttingSword s = new CuttingSword(nextstabdir, getHolder());
+        nextstabdir+=45;
+        nextstabdir%=360;
+        getHolder().addObjectHere(s);
     }
     public int getUlt(){
         return ult;
     }
     public void reload(){
         reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+        if(reloadDelayCount>=gunReloadTime){
+            ammo.reload();
+        }
+        updateAmmo(ammo.getAmmoBar());
     }
     public Blade(GridObject actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
+        ammo = new AmmoManager(25, 3, 3);
+        chargeUlt(10000);
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        getHolder().getWorld().gameUI().newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public String getName(){
-        return "Minigun";
+        return "Blade";
     }
     public int getRarity(){
         return 0;

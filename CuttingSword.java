@@ -5,26 +5,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * 
  * @author Poul Henriksen
  */
-public class Sword extends Melee
+public class CuttingSword extends Melee
 {
     /** The damage this bullet will deal */
     //private static final int damage = 50;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 15;
+    private int life = 6;
     private double degtotarg, radius;
-    private boolean clockwise;
+    private double xmax, ymax;
     
-    public Sword(double rotation, int strength, boolean dir, GridObject source)
+    public CuttingSword(double rotation, GridObject source)
     {
         super(rotation, source);
         setSpeed(15);
         setLife(life);
-        setDamage(200+strength*50);
+        setDamage(20);
+        setMultiHit(false);
         setNumTargets(-1);
-        degtotarg = rotation+(dir?180:0);
-        clockwise = dir;
+        degtotarg = rotation;
         this.radius = 120;
+        xmax = radius*Math.cos(degtotarg*Math.PI/180);
+        ymax = radius*Math.sin(degtotarg*Math.PI/180);
+        degtotarg = 0;
     }
     
     public void applyPhysics(){
@@ -34,20 +37,20 @@ public class Sword extends Melee
         else {
             life--;
             double centerx = getSource().getRealX(), centery = getSource().getRealY();
-            setRealLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
-            setRealRotation(degtotarg);
-            if(clockwise)degtotarg+=12;
-            else degtotarg-=12;
+            setRealLocation(centerx+xmax*Math.sin(degtotarg*Math.PI/180), centery+ymax*Math.sin(degtotarg*Math.PI/180));
+            //setRealRotation(degtotarg);
+            degtotarg+=30;
             checkHit();
         }
     }
+    @Override
     public int getDamage(GridEntity targ){
         return getDamage();
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
         if(targ.isDead()){
-            notifyDamage(targ, getDamage(targ)*5);
+            notifyDamage(targ, getDamage(targ)*100);
         }
     }
 }

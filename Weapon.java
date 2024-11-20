@@ -55,7 +55,10 @@ public abstract class Weapon implements Item, Tickable
         return atkup;
     }
     public void use(){
-        fire();
+        if(!continueUlt()&&!allowAttackWhileContinueUlt())fire();
+    }
+    public boolean allowAttackWhileContinueUlt(){
+        return false;
     }
     public void tick(){
         update();
@@ -75,13 +78,10 @@ public abstract class Weapon implements Item, Tickable
         return 0;
     }
     public boolean ult(){
-        /*if (reloadDelayCount >= gunReloadTime*5) 
-        {
-            ProtonWave bullet = new ProtonWave (getRotation());
-            getWorld().addObject (bullet, getX(), getY());
-            //bullet.move ();
-            reloadDelayCount = 0;
-        }*/
+        if(continueUlt()){
+            fireUlt();
+            return ultready;
+        }
         if(ultready){
             fireUlt();
             resetUltCharge();

@@ -16,7 +16,8 @@ public class LaserZombie extends Zombie
     private GreenfootImage rocket = new GreenfootImage("laserzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
-    private static double attackrange = 300;
+    private static double attackrange = 320, attackrange2 = 150;
+    private static double retreatrange = 300, pointblankrange = 50;
     /**
      * Initilise this rocket.
      */
@@ -26,7 +27,7 @@ public class LaserZombie extends Zombie
         rocket.scale(45, 45);
         setImage(rocket);
         setRotation(180);
-        setSpeed(3);
+        setSpeed(4);
         startHealth(150);
     }
 
@@ -40,7 +41,9 @@ public class LaserZombie extends Zombie
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         ammo++;
-        if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
+        double d = distanceTo(getTarget());
+        if(d>attackrange||d<attackrange2&&d>pointblankrange)walk(monangle, 1);
+        else if(d<retreatrange&&d>pointblankrange)walk(monangle, -1);
         else{
             fire();
         }

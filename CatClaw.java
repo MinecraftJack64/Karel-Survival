@@ -97,6 +97,7 @@ public class CatClaw extends Weapon implements LandingHandler
                 getHolder().applyeffect(new PowerPercentageEffect(2, 60));
             }
             setLocked(false);
+            getHolder().applyeffect(new SpeedPercentageEffect(1.5, 60));
         }
     }
     public String getName(){

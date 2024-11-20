@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Hearth extends Weapon
 {
-    private double focus = 0;//30 framse to reach 1.5
+    private double focus = 0;//40 framse to reach 1
     private static final int ult = 1500;
     public void fire(){
         //do 8 damage while not moving and 4 damage while moving
@@ -37,11 +37,14 @@ public class Hearth extends Weapon
         }else if(!getHolder().isAttacking()&&focus>0){
             focus-=0.025;
         }
+        if(!getHolder().isMoving()&&!getHolder().isAttacking()){
+            chargeUlt((int)((1-focus)*10));
+        }
         updateAmmo((int)(focus*40));
     }
     public Hearth(GridObject actor){
         super(actor);
-        chargeUlt(1500);
+        //chargeUlt(1500);
     }
     public void equip(){
         super.equip();

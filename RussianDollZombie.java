@@ -132,6 +132,10 @@ public class RussianDollZombie extends Zombie
     public boolean isWall(){
         return size>=3;
     }
+    @Override
+    public boolean prioritizeTarget(){
+        return size>=3;
+    }
     
     public String getName(){
         return "Russian Doll Zombie";

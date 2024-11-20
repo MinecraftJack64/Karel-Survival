@@ -158,6 +158,10 @@ public class CannonZombie extends Zombie
     public void setTargetLocation(){
         target.setRealLocation(getRealX()+Math.cos((aimdir-90)*Math.PI/180)*aimdist, getRealY()+Math.sin((aimdir-90)*Math.PI/180)*aimdist);
     }
+    @Override
+    public boolean prioritizeTarget(){
+        return true;
+    }
     public void shoot(){
         if(hold!=null){
             hold.untrap();

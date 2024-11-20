@@ -47,6 +47,10 @@ public class PortalZombie extends Zombie
             }
         }
     }
+    @Override
+    public boolean prioritizeTarget(){
+        return portals>0;
+    }
     //ovveride this
     public int getXP(){
         return 500;
