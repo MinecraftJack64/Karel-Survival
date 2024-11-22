@@ -11,7 +11,8 @@ public class Player extends GridEntity {
     private Item[] inventory;
     private boolean currentlyscrolling;
     private int currentItemIndex;
-    private boolean movementLocked, rotationLocked;
+    private boolean movementLocked, rotationLocked, targetLocked;
+    private double oldtargetx, oldtargety;
     private int hacooldown;
     private int diff;
     private static int[] diffhealths = new int[]{1, 5000, 2500, 750, 1};
@@ -62,6 +63,7 @@ public class Player extends GridEntity {
         this.inventory[21] = new Sudo(this);
         this.inventory[22] = new Hearth(this);
         this.inventory[23] = new Blade(this);
+        this.inventory[24] = new GlueGun(this);
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }
@@ -160,6 +162,8 @@ public class Player extends GridEntity {
         if(autoaim){
             GridEntity targ = this.getNearestTarget();
             if(targ!=null)return targ.getRealX();
+        }else if(targetLocked){
+            return oldtargetx;
         }
         return this.getWorld().getMouseX();
     }
@@ -167,11 +171,22 @@ public class Player extends GridEntity {
         if(autoaim){
             GridEntity targ = this.getNearestTarget();
             if(targ!=null)return targ.getRealY();
+        }else if(targetLocked){
+            return oldtargety;
         }
         return this.getWorld().getMouseY();
     }
+    //TODO
+    @Override
     public double getTargetRotation(){
         return getRealRotation();
+    }
+    public void setTargetLock(boolean t){
+        if(!targetLocked&&t){
+            oldtargetx = getTargetX();
+            oldtargety = getTargetY();
+        }
+        targetLocked = t;
     }
     public void setRotationLock(boolean t){
         rotationLocked = t;

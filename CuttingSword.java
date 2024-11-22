@@ -49,7 +49,7 @@ public class CuttingSword extends Melee
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        if(targ.isDead()){
+        if(targ.isDead()&&!targ.covertDamage()){
             notifyDamage(targ, getDamage(targ)*100);
         }
     }

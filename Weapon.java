@@ -117,6 +117,26 @@ public abstract class Weapon implements Item, Tickable
         }
         getHolder().getWorld().setUltCharge(ultcharge);
     }
+    public void dischargeUlt(int amt){
+        ultcharge-=amt;
+        if(ultcharge<getUlt()&&ultready){
+            ultready = false;
+        }
+        if(ultcharge<0){
+            ultcharge = 0;
+        }
+        getHolder().getWorld().setUltCharge(ultcharge);
+    }
+    public void setUltCharge(int amt){
+        if(amt<ultcharge){
+            dischargeUlt(ultcharge-amt);
+        }else if(amt>ultcharge){
+            chargeUlt(amt-ultcharge);
+        }
+    }
+    public int getUltCharge(){
+        return ultcharge;
+    }
     public void updateAmmo(int amt){
         getHolder().getWorld().gameUI().setAmmo(amt);
     }
@@ -140,6 +160,7 @@ public abstract class Weapon implements Item, Tickable
     public void setPlayerLockRotation(boolean t){
         rotlocked = t;
         getHolder().setRotationLock(t);
+        getHolder().setTargetLock(t);
     }
     public void setPlayerLockMovement(boolean t){
         movelocked = t;

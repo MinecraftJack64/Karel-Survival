@@ -20,7 +20,7 @@ public class Blade extends Weapon
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
             ammo.useAmmo();
-            Sword bullet = new Sword(getHolder().getTargetRotation(), ammo.getAmmo(), nextdir, getHolder());
+            Sword bullet = new Sword(getHolder().getTargetRotation(), ammo.getAmmo(), nextdir, getAttackUpgrade()==1, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             nextdir = !nextdir;

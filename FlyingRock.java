@@ -102,15 +102,14 @@ public class FlyingRock extends Projectile
                 if(i==-1){
                     break;
                 }
-                doHit(l.remove(i));
-                n--;
+                GridEntity g = l.remove(i);
+                if(isAggroTowards(g)){
+                    doHit(g);
+                    n--;
+                }
             }
             setNumTargets(0);
         }
         Sounds.play("rocksmash");
-    }
-    
-    public void doHit(GridEntity g){
-        damage(g, damage);
     }
 }

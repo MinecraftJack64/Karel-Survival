@@ -14,8 +14,9 @@ public class Sword extends Melee
     private int life = 15;
     private double degtotarg, radius;
     private boolean clockwise;
+    private boolean issuper;
     
-    public Sword(double rotation, int strength, boolean dir, GridObject source)
+    public Sword(double rotation, int strength, boolean dir, boolean issuper, GridObject source)
     {
         super(rotation, source);
         setSpeed(15);
@@ -25,6 +26,7 @@ public class Sword extends Melee
         degtotarg = rotation+(dir?180:0);
         clockwise = dir;
         this.radius = 120;
+        this.issuper = issuper;
     }
     
     public void applyPhysics(){
@@ -41,12 +43,13 @@ public class Sword extends Melee
             checkHit();
         }
     }
+    @Override
     public int getDamage(GridEntity targ){
-        return getDamage();
+        return issuper?(int)((90-source.getFacingDistance(targ))*3/5+getDamage()):getDamage();
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        if(targ.isDead()){
+        if(targ.isDead()&&!targ.covertDamage()){
             notifyDamage(targ, getDamage(targ)*5);
         }
     }

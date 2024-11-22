@@ -79,6 +79,15 @@ public abstract class GridObject extends KActor
         if(face)setRealRotation(monangle);
         return monangle;
     }
+    public double getFacingOffset(GridObject other){
+        return face(other, false)-getTargetRotation();
+    }
+    public double getFacingDistance(GridObject other){
+        return Math.abs(getFacingOffset(other));
+    }
+    public double getTargetRotation(){
+        return getRealRotation();
+    }
     public float getAngle(double x, double y) {
         float angle = (float) Math.toDegrees(Math.atan2(y - getRealY(), x - getRealX()));
 
