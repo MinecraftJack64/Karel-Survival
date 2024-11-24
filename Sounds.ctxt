@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=Sounds
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Sounds\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=id
-comment1.target=void\ play(java.lang.String)
-comment2.params=v
-comment2.target=void\ setVolume(int)
-numComments=3

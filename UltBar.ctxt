@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=UltBar
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ UltBar\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=max\ size\ height
-comment1.target=UltBar(int,\ int,\ int)
-comment2.params=val
-comment2.target=void\ setValue(int)
-numComments=3

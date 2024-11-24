@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=WeaponFrag
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ WeaponFrag\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=targ
-comment1.target=void\ collect(GridObject)
-comment1.text=\r\n\ \ \ \ public\ void\ kAct()\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ if(\!getWorld().gameStatus().equals("running"))return;\r\n\ \ \ \ \ \ \ \ int\ targang\ \=\ (int)getAngle(getWorld().getPlayer().getX(),\ getWorld().getPlayer().getY())+90;\r\n\ \ \ \ \ \ \ \ int\ monangle\ \=\ targang;\r\n\ \ \ \ \ \ \ \ //setRotation(monangle);\r\n\ \ \ \ \ \ \ \ if(distanceTo(getWorld().getPlayer().getX(),getWorld().getPlayer().getY())<40&&getWorld().getPlayer().acceptingFrags())move(monangle,\ 9);\r\n}
-numComments=2
