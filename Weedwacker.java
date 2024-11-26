@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Weedwacker extends Weapon
 {
-    private static final int ult = 1;
+    private static final int ult = 1000;
     private WeedwackerBlade drone;
     private int resurrect = 120;
     public void fire(){
@@ -20,13 +20,15 @@ public class Weedwacker extends Weapon
         //Sounds.play("electicity");
     }
     public void fireUlt(){
-        if(drone!=null){
-            drone.ult();
-        }else{
+        if(drone==null){
             drone = new WeedwackerBlade(getHolder());
             getHolder().addObjectHere(drone);
             resurrect = 120;
+        }
+        if(!drone.hasUlt()){
             drone.ult();
+        }else{
+            cancelUltReset();
         }
     }
     public int getUlt(){
@@ -58,7 +60,6 @@ public class Weedwacker extends Weapon
     public Weedwacker(GridObject actor){
         super(actor);
         drone = new WeedwackerBlade(getHolder());
-        chargeUlt(100);
     }
     public String getName(){
         return "Weedwacker";

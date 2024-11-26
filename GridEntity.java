@@ -224,8 +224,9 @@ public abstract class GridEntity extends GridObject
     }
     public void removeShield(ShieldID id){
         int i = indexOfShield(id);
-        if(i>=0){
+        while(i>=0){
             removeShield(i);
+            i = indexOfShield(id);
         }
     }
     public void removeShield(int id){

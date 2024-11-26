@@ -37,7 +37,7 @@ public class ThrownSpear extends Bullet
                 setRealLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getRealX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getRealY());
                 drawcooldown--;
                 if(drawcooldown<=0){
-                    if(myspear.throwSpear()){phase = 1;setDamage(100);myspear.resetUltCharge();}
+                    if(myspear.throwSpear()){phase = 1;setDamage(100);myspear.resetUltCharge();myspear.leaveHand();}
                     else {phase = 2;drawcooldown = -30;}
                 }
             }else if(phase==2){
@@ -56,6 +56,7 @@ public class ThrownSpear extends Bullet
             super.applyPhysics();
             if(distanceTo(returnto)<9){
                 myspear.returnSpear(isAttack()/*is this called back or from melee*/?scores:null);
+                myspear.enterHand();
                 super.die();
             }
         }
@@ -71,10 +72,7 @@ public class ThrownSpear extends Bullet
     
     public void doHit(GridEntity targ){
         if(isreturning||phase==1){
-            if(!scores.containsKey(targ)){
-                scores.put(targ, 0);
-            }
-            scores.put(targ, scores.get(targ)+1);
+            scores.put(targ, scores.getOrDefault(targ, 0) + 1);
         }else{
             targ.knockBack(getDirection(), 40, 20, this);
         }

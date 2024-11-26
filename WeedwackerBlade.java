@@ -61,6 +61,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         applyShield(new ProjectileReflectShield(ultshieldid, 400));
         setOpacityPercent(0.5);
     }
+    public boolean hasUlt(){
+        return hasShield(ultshieldid);
+    }
     public void notifyDamage(GridEntity s, int dmg){
         source.notifyDamage(s, dmg);
     }

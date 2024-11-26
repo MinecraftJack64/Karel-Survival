@@ -1,11 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
-
+import java.util.HashMap;
 /**
  * A bullet that can hit asteroids.
  * 
  * @author Poul Henriksen
  */
-public class Sword extends Melee
+public class WardingSpear extends Melee
 {
     /** The damage this bullet will deal */
     //private static final int damage = 50;
@@ -14,19 +14,21 @@ public class Sword extends Melee
     private int life = 15;
     private double degtotarg, radius;
     private boolean clockwise;
-    private boolean issuper;
+    private SpearWeapon spear;
+    private HashMap<GridEntity, Integer> scores;
     
-    public Sword(double rotation, int strength, boolean dir, boolean issuper, GridObject source)
+    public WardingSpear(double rotation, boolean dir, SpearWeapon p, GridObject source)
     {
         super(rotation, source);
         setSpeed(15);
         setLife(life);
-        setDamage(200+strength*50);
+        setDamage(100);
         setNumTargets(-1);
         degtotarg = rotation+(dir?180:0);
         clockwise = dir;
+        spear = p;
         this.radius = 120;
-        this.issuper = issuper;
+        scores = new HashMap<GridEntity, Integer>();
     }
     
     public void applyPhysics(){
@@ -43,14 +45,17 @@ public class Sword extends Melee
             checkHit();
         }
     }
-    @Override
-    public int getDamage(GridEntity targ){
-        return issuper?(int)((90-source.getFacingDistance(targ))*3/5+getDamage()):getDamage();
-    }
     public void doHit(GridEntity targ){
+        scores.put(targ, scores.getOrDefault(targ, 0) + 1);
         super.doHit(targ);
-        if(targ.isDead()&&!targ.willNotify(this)){
-            notifyDamage(targ, getDamage(targ)*5);
+    }
+    public void die(){
+        if(!clockwise){
+            WardingSpear ws = new WardingSpear(degtotarg-180, true, spear, getSource());
+            addObjectHere(ws);
+        }else{
+            spear.returnSpear(scores);
         }
+        super.die();
     }
 }

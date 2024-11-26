@@ -38,6 +38,7 @@ public class LandedSpear extends Collectible
     public void collect(GridObject targ){
         myspear.returnSpear(hs);
         myspear.removeSpear();
+        myspear.enterHand();
         super.collect(targ);
         Sounds.play("LandedSpear.collect");
     }

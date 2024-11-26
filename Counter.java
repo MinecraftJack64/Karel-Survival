@@ -30,16 +30,23 @@ public class Counter extends TextDisplay
     }
     
     public void act() {
-        if(Math.abs(value-target)<5){
-            value = target;
-            setText(prefix+value);
+        int d = Math.abs(value-target);
+        int inc = 0;
+        if(d<5){
+            inc = 1;
+        }else if(d<=100){
+            inc = 5;
+        }else if(d<=1000){
+            inc = 50;
+        }else{
+            inc = (int)Math.pow(10, Math.log10(d));
         }
         if(value < target) {
-            value+=5;
+            value+=inc;
             setText(prefix+value);
         }
         else if(value > target) {
-            value-=5;
+            value-=inc;
             setText(prefix+value);
         }
         super.act();

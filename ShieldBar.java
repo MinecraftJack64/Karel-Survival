@@ -10,20 +10,19 @@ public class ShieldBar extends StatusBar
 {
     GridEntity myGE;
     private int myid = 0;
-    public ShieldBar(int max, int size, int height)
+    /*public ShieldBar(int max, int size, int height)
     {
         super(max, max, size, height);
-    }
+    }*/
     public ShieldBar(int max, int size, int height, int id, GridEntity of)
     {
-        super(max, max, size, height, Color.BLUE.brighter());
+        super(max, max, size, height, new Color(26, 148, 229));//BLUE
         myGE = of;
         myid = id;
     }
     public void setValue(int val){
         if(val<=0)getWorld().removeObject(this);
         else super.setValue(val);
-        setColor(Color.BLUE);
     }
     public void updateID(int n){
         myid = n;
