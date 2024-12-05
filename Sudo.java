@@ -13,7 +13,7 @@ public class Sudo extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            ChargeBomb bullet = new ChargeBomb (getHolder().getTargetRotation(), getHolder());
+            ChargeBomb bullet = new ChargeBomb (getHolder().getTargetRotation(), true, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");

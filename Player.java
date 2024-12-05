@@ -64,6 +64,10 @@ public class Player extends GridEntity {
         this.inventory[22] = new Hearth(this);
         this.inventory[23] = new Blade(this);
         this.inventory[24] = new GlueGun(this);
+        this.inventory[25] = new TeslaCoil(this);
+        this.inventory[26] = new EasterBasket(this);
+        this.inventory[27] = new Pointpinner(this);
+        this.inventory[28] = new AirPump(this);
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }

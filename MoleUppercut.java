@@ -8,13 +8,14 @@ import java.util.List;
  */
 public class MoleUppercut extends FlyingRock
 {
-    private double focus;
-    private boolean firstact;
-    public MoleUppercut(double rotation, double targetdistance, double height, GridObject source)
+    private boolean firstact, issuper;
+    public MoleUppercut(double rotation, double targetdistance, double height, boolean sup, GridObject source)
     {
         super(rotation, targetdistance, height, source);
         setExplosionRange(50);
+        setDamage(125);
         firstact = true;
+        issuper = sup;
     }
     public void applyPhysics(){
         if(firstact){//so that it hits enemies on launch
@@ -27,9 +28,11 @@ public class MoleUppercut extends FlyingRock
         return 5;
     }
     public void doHit(GridEntity targ){
-        targ.hit(100, this);
-        targ.applyeffect(new PoisonEffect(20+(int)(20*focus/3), 40, 3, this));
-        targ.applyeffect(new SpeedPercentageEffect(0.5, 120));
+        super.doHit(targ);
+        if(issuper){
+            if(firstact)targ.knockBack(0, 0, 20, this);
+            else targ.applyeffect(new StunEffect(10, this));
+        }
     }
     /*public boolean covertDamage(){
         return true;

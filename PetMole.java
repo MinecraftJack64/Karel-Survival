@@ -19,7 +19,7 @@ public class PetMole extends Weapon
         //Sounds.play("electicity");
     }
     public void fireUlt(){
-        ChargeBomb bullet = new ChargeBomb(getHolder().getTargetRotation(), getHolder());
+        ChargeBomb bullet = new ChargeBomb(getHolder().getTargetRotation(), false, getHolder());
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
     }
@@ -31,7 +31,7 @@ public class PetMole extends Weapon
     }
     public void equip(){
         super.equip();
-        zap = new TeslaCoilZap(getHolder());
+        zap = new TeslaCoilZap(getHolder(), false);
         getHolder().getWorld().addObject(zap, getHolder().getRealX(), getHolder().getRealY());
     }
     public void unequip(){

@@ -28,7 +28,7 @@ public class Collectible extends GridObject
     }
     public void kAct()
     {
-        if(!getWorld().gameStatus().equals("running"))return;
+        //if(!getWorld().gameStatus().equals("running"))return;
         double targang = face(getTarget(), false);
         double monangle = targang;
         //setRotation(monangle);

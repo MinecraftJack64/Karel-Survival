@@ -20,6 +20,7 @@ public class Harpoon extends Boomerang
         setReturnSpeed(10);
         setLife(40);
         setDamage(0);
+        setExpireReturn(2);//die if no target hit
         phase = 2;
     }
     /**

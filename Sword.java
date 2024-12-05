@@ -49,7 +49,7 @@ public class Sword extends Melee
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        if(targ.isDead()&&!targ.willNotify(this)){
+        if(targ.isDead()&&targ.willNotify(this)){
             notifyDamage(targ, getDamage(targ)*5);
         }
     }

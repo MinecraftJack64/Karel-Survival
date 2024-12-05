@@ -9,6 +9,7 @@ import greenfoot.*;
 public class AirPump extends Weapon implements LandingHandler
 {
     private static final int gunReloadTime = 40;
+    private int secondWind = 0;
     private int reloadDelayCount;
     private static final int ult = 225;
     private int chance;
@@ -34,12 +35,19 @@ public class AirPump extends Weapon implements LandingHandler
             double d = dist*(isSuper?7:2);
             getHolder().initiateJump(rot, d, isSuper?300:40);
         }
+        if(getUltUpgrade()==1&&isSuper){
+            getHolder().applyeffect(new SpeedPercentageEffect(1.5, 150));
+            secondWind = 120;
+        }
     }
     public void doLanding(){
         setLocked(false);//allow switching weapons
     }
     public void reload(){
-        reloadDelayCount++;
+        reloadDelayCount+=secondWind>0?2:1;
+        if(secondWind>0){
+            secondWind--;
+        }
         updateAmmo(nextIsSuper?gunReloadTime+1:Math.min(reloadDelayCount, gunReloadTime));
     }
     public int getUlt(){

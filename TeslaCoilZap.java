@@ -6,13 +6,15 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TeslaCoilZap extends Projectile
+public class TeslaCoilZap extends Hitter
 {
     private int attacked;
-    public TeslaCoilZap(GridObject source)
+    private boolean weak;
+    public TeslaCoilZap(GridObject source, boolean isweak)
     {
         super(source);
         attacked = 0;
+        weak = isweak;
         setVisible(false);
         setTeam(source.getTeam());
     }
@@ -21,9 +23,14 @@ public class TeslaCoilZap extends Projectile
         setRealLocation(x, y);
         setVisible(true);
         List<GridEntity> l = getGEsInRange(100);
-        int dmg = (int)(14*Math.pow(2, -0.8*l.size())+1)*(int)Math.min(0, Math.max(1, 1-(distanceTo(source)-400)/100));//500 should be 0, 400 should be 1
-        for(GridEntity g:l){
-            if(isAggroTowards(g))damage(g, dmg);
+        //int dmg = (int)(14*Math.pow(2, -0.8*l.size())+1)*(int)Math.max(0, Math.max(1, 1-(distanceTo(getSource())-400)/100));//500 should be 0, 400 should be 1
+        if(l.size()>0){
+            double totaldmg = 18*Math.pow(2, -l.size());
+            double distmult = Math.sqrt(400-Math.min(400, distanceTo(getSource())))/20;
+            int dmg = (int)((totaldmg/l.size()+2)*distmult)/(weak?2:1);
+            for(GridEntity g:l){
+                if(isAggroTowards(g))damage(g, dmg);
+            }
         }
     }
     public void kAct(){
