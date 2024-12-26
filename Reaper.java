@@ -24,8 +24,10 @@ public class Reaper extends Weapon implements AmmoHolder
         {
             if(getAttackUpgrade()==1){
                 dash = new DasherDoer(getHolder().getTargetRotation(), 20, 10, 60, (g)->{
-                    getHolder().heal(getHolder(), 50);
-                    getHolder().damage(g, 150);
+                    if(getHolder().isAggroTowards(g)){
+                        if(g.willNotify(getHolder()))getHolder().heal(getHolder(), 50);
+                        getHolder().damage(g, 150);
+                    }
                 }, getHolder());
             }else{
                 dash = new DasherDoer(getHolder().getTargetRotation(), 20, 10, 60, 150, getHolder());

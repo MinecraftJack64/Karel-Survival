@@ -36,7 +36,7 @@ public class Boomerang extends Bullet implements IBoomerang
         }
     }
     public void doReturn(){
-        if(getSource()==null||distanceTo(getSource())<getReturnSpeed()/2){
+        if(getSource()==null||distanceTo(getSource())<=getSpeed()/2){
             dieForReal();
             return;
         }
@@ -46,6 +46,9 @@ public class Boomerang extends Bullet implements IBoomerang
         }
         setDirection(face(getSource(), false));
         move(getDirection(), getSpeed());
+    }
+    public void animate(){
+        super.animate();
         setRealRotation(getDirection()+90);
     }
     public void expire(){
@@ -67,7 +70,13 @@ public class Boomerang extends Bullet implements IBoomerang
     public void startReturn(){
         phase = 1;
         if(getReturnSpeed()>0)setSpeed(getReturnSpeed());
-        if(damageonreturn>0){setDamage(getReturnDamage());getHitStory().clear();}
+        if(damageonreturn>0){
+            if(getReturnDamage()==0){
+                setReturnDamage(getDamage());
+            }
+            setDamage(getReturnDamage());
+            getHitStory().clear();
+        }
     }
     public boolean hasReturned(){
         return hasreturned;

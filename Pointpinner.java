@@ -10,8 +10,9 @@ import java.util.List;
 public class Pointpinner extends Weapon
 {
     private static final int gunReloadTime = 30;
+    private int ultcooldown = 0;//5
     private int reloadDelayCount;
-    private static final int ult = 2000;
+    private static final int ult = 2;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
@@ -23,17 +24,28 @@ public class Pointpinner extends Weapon
         }
     }
     public void fireUlt(){
-        Pinpoint bullet = new Pinpoint(getUltUpgrade()==1, getHolder());
-        getHolder().getWorld().addObject(bullet, getHolder().getTargetX(), getHolder().getTargetY());
+        if(ultcooldown<=0){
+            Pinpoint bullet = new Pinpoint(getUltUpgrade()==1, getHolder());
+            getHolder().getWorld().addObject(bullet, getHolder().getTargetX(), getHolder().getTargetY());
+            ultcooldown = 5;
+        }else{
+            cancelUltReset();
+        }
     }
     public void notifyHit(){
         if(getAttackUpgrade()==1)reloadDelayCount+=15;
+    }
+    public int getUltMaxUses(){
+        return getHolder().getGEsInRange(250).size()+1;
     }
     public int getUlt(){
         return ult;
     }
     public void reload(){
         reloadDelayCount++;
+        if(ultcooldown>0){
+            ultcooldown--;
+        }
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
     public Pointpinner(GridObject actor){
@@ -48,6 +60,6 @@ public class Pointpinner extends Weapon
         return "Pointpinner";
     }
     public int getRarity(){
-        return 0;
+        return 2;
     }
 }

@@ -38,6 +38,8 @@ public abstract class Weapon implements Item, Tickable
     public int atkup;
     public int ultup;
     public boolean ultshield = false;//set to true by ult to make next attempt to reset ult charge fail
+    public int ultuses = 0;
+    public int ultstoretype = 0;//TODO; 0 - single use, 1 - store multiple uses(like hypercharges), 2 - split uses(like melodie)
     public int gadgets = 0;//how many gadgets
     public int gadgetscooldown = 0;//how long until next gadget can be activated
     public int currentgadgetuses = 0;//how many uses current gadget has
@@ -55,7 +57,7 @@ public abstract class Weapon implements Item, Tickable
         return atkup;
     }
     public void use(){
-        if(!continueUlt()&&!allowAttackWhileContinueUlt())fire();
+        if(!continueUlt()&&!allowAttackWhileContinueUlt()&&(canAttackInAir()||getHolder().isOnGround()))fire();
     }
     public boolean allowAttackWhileContinueUlt(){
         return false;
@@ -77,6 +79,18 @@ public abstract class Weapon implements Item, Tickable
     public int defaultGadgets(){
         return 0;
     }
+    public boolean canAttackInAir(){
+        return false;
+    }
+    public boolean canUltInAir(){
+        return false;
+    }
+    public int getUltMaxUses(){
+        return 1;
+    }
+    public int getUltUses(){
+        return ultuses;
+    }
     public boolean ult(){
         if(continueUlt()){
             fireUlt();
@@ -84,7 +98,11 @@ public abstract class Weapon implements Item, Tickable
         }
         if(ultready){
             fireUlt();
-            resetUltCharge();
+            if(!ultshield)ultuses--;
+            if(ultuses<=0){
+                resetUltCharge();
+            }
+            ultshield = false;
             return true;
         }else{
             return false;
@@ -110,10 +128,14 @@ public abstract class Weapon implements Item, Tickable
         return (Player)holder;
     }
     public void chargeUlt(int amt){
+        if(ultuses>0){
+            return;
+        }
         ultcharge+=amt;
         if(ultcharge>=getUlt()){
             ultcharge = getUlt();
             ultready = true;
+            ultuses = getUltMaxUses();
         }
         getHolder().getWorld().setUltCharge(ultcharge);
     }

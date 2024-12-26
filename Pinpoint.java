@@ -51,5 +51,8 @@ public class Pinpoint extends FlyingRock
     public void applyPhysics(){
         if(percentDone()<=0.5){setRealHeight(80);continueFrame();}
         else super.applyPhysics();
+        if(getRealHeight()==0&&target==null){//didn't hit anything
+            die();
+        }
     }
 }

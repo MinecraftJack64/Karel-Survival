@@ -23,6 +23,7 @@ public class CupidArrow extends Bullet
         setSpeed(20);
         setLife(7);
         setDamage(0);
+        setNumTargets(-1);
         notifier = notify;
     }
     public void doHit(GridEntity targ){

@@ -6,10 +6,10 @@
  */
 public class ArmorShield extends Shield
 {
-    private int health;
+    private int health, maxhealth;
     public ArmorShield(ShieldID myG, int health){
         super(myG);
-        this.health = health;
+        this.health = this.maxhealth = health;
     }
     public int processDamage(int dmg, GridObject source){
         health-=dmg;
@@ -23,6 +23,14 @@ public class ArmorShield extends Shield
     public boolean damage(int amt, GridObject source){
         processDamage(amt, source);
         return false;
+    }
+    protected void changeHealth(int amt){
+        health+=amt;
+        if(health<=0){
+            remove();
+        }else if(health>maxhealth){
+            health = maxhealth;
+        }
     }
     public boolean canBreak(){
         return true;

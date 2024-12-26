@@ -195,6 +195,14 @@ public abstract class GridObject extends KActor
             return pull(face(targ, false), speed);
         }
     }
+    public boolean pullTowards(double x, double y, double speed){
+        if(distanceTo(x, y)<=speed/2){
+            return pullTo(x, y);
+        }
+        else{
+            return pull(face(x, y, false), speed);
+        }
+    }
     public boolean knockBack(double r, double d, double h, GridObject source){
         if(!canBePulled()){
             return false;
@@ -306,6 +314,9 @@ public abstract class GridObject extends KActor
             doLanding();
         }
     }
+    public boolean isOnGround(){
+        return getRealHeight()<=0;
+    }
     public Arc getPhysicsArc(){
         return arcmomentum;
     }
@@ -327,7 +338,7 @@ public abstract class GridObject extends KActor
     public List<GridEntity> getGEsInRange(int rng){
         ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
         for(GridEntity g:getWorld().allEntities()){
-            if(distanceTo(g)<=rng){
+            if(this!=g&&distanceTo(g)<=rng){
                 gs.add(g);
             }
         }

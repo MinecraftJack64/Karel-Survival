@@ -28,12 +28,12 @@ public class DasherDoer extends Dasher
             return false;
         }
         if(damage>0){
-            getSubject().explodeOn((int)radius, (g)->{
-                if(getSubject().isAggroTowards(g)&&!hitstory.contains(g)){
+            getSubject().explodeOnEnemies((int)radius, (g)->{
+                if(!hitstory.contains(g)){
                     getSubject().damage(g, damage);
                     hitstory.add(g);
                 }
-            }, null);
+            });
         }else if(onExplode!=null){
             getSubject().explodeOn((int)radius, (g)->{
                 if(!hitstory.contains(g)){

@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class FlyingRock extends Projectile
     protected int frame;
     private int range;
     private boolean dieonhit = true;
+    private HashSet<GridEntity> hitstory;
     public FlyingRock()
     {
         super(null);
@@ -30,8 +32,7 @@ public class FlyingRock extends Projectile
     {
         super(source);
         rot = rotation;
-        //addForce(new Vector(rotation, 15));
-        //speed = ;
+        hitstory = new HashSet<GridEntity>();
         path = new Arc(targetdistance, height, getGravity());
         setTeam(source.getTeam());
         setExplosionRange(100);
@@ -66,12 +67,13 @@ public class FlyingRock extends Projectile
      */
     public void applyPhysics()
     {
-        if(getRealHeight()<0) {
+        if(getRealHeight()<=0&&path.percentDone(frame)>0.5) {
+            setRealHeight(0);
             checkAsteroidHit();
             if(dieonhit)die();
         } 
         else {
-            move(rot, path.getRate());// = -(x^2+bx)/b
+            move(rot, path.getRate());
             setRealHeight(path.getHeight(frame));
             continueFrame();
         }
@@ -82,6 +84,10 @@ public class FlyingRock extends Projectile
     }
     public void continueFrame(){
         frame++;
+    }
+    @Override
+    public HashSet<GridEntity> getHitStory(){
+        return hitstory;
     }
     
     /**
@@ -111,6 +117,7 @@ public class FlyingRock extends Projectile
             }
             setNumTargets(0);
         }
+        hitstory.addAll(l);
         Sounds.play("rocksmash");
     }
 }

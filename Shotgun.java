@@ -44,10 +44,11 @@ public class Shotgun extends Weapon implements AmmoHolder
             Sounds.play("shotgunjam");
             return;
         }
-        Harpoon bullet = new Harpoon(getHolder().getTargetRotation(), getHolder());
-        getHolder().addObjectHere(bullet);
-        //bullet.move ();
-        lasso = bullet;
+        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 600);
+        lasso = getUltUpgrade()==1?new Lasso(getHolder().getTargetRotation(), d, getHolder()):new Harpoon(getHolder().getTargetRotation(), getHolder());
+        getHolder().addObjectHere((GridObject)lasso);
+        //TEST
+        //getHolder().addObjectHere(new Harpoon(getHolder().getTargetRotation(), getHolder()));
         Sounds.play("lassoshoot");
     }
     public int getUlt(){

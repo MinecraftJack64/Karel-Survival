@@ -39,7 +39,7 @@ public class Player extends GridEntity {
         sprint = maxsprint;
         getWorld().gameUI().newSprint(maxsprint);
         this.setTeam("player");
-        this.inventory = new Item[30];
+        this.inventory = new Item[40];
         this.inventory[0] = new DroneRemote(this);
         this.inventory[1] = new Shotgun(this);
         this.inventory[2] = new Crossbow(this);
@@ -68,6 +68,8 @@ public class Player extends GridEntity {
         this.inventory[26] = new EasterBasket(this);
         this.inventory[27] = new Pointpinner(this);
         this.inventory[28] = new AirPump(this);
+        this.inventory[29] = new Flail(this);
+        this.inventory[30] = new Highjacker(this);
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }

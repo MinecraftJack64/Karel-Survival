@@ -254,6 +254,17 @@ public abstract class GridEntity extends GridObject
     public Shield getShield(){//get the last shield
         return shields.get(shields.size()-1);
     }
+    public Shield getShield(int id){
+        return id>shields.size()?null:shields.get(id);
+    }
+    public Shield getShield(ShieldID s){
+        for(int i = shields.size()-1; i >= 0; i--){
+            if(shields.get(i).getID().equals(s)){
+                return shields.get(i);
+            }
+        }
+        return null;
+    }
     public boolean knockBack(double r, double d, double h, GridObject source){
         if(!canBePulled()){
             return false;

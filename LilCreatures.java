@@ -25,10 +25,7 @@ public class LilCreatures extends Weapon implements ICritter
             reload = 0;
         }else if(reload>reloadslime){
             reload = 0;
-            if(getHolder().hasShield(msshield)){
-                getHolder().removeShield(msshield);
-                getHolder().explodeOn(70, 100);
-            }else{
+            if(!getHolder().hasShield(msshield)){
                 CritterSlime cs = new CritterSlime(getHolder().getTargetRotation(), getHolder());
                 getHolder().addObjectHere(cs);
                 CritterSlime cs1 = new CritterSlime(getHolder().getTargetRotation()-30, getHolder());
@@ -68,7 +65,7 @@ public class LilCreatures extends Weapon implements ICritter
             regenshield--;
             if(regenshield<=0){
                 regenshield = 90;
-                myS = new ArmorShield(msshield, 200);
+                myS = new MucusShield(msshield, 300);
                 getHolder().applyShield(myS);
             }
         }
@@ -199,5 +196,19 @@ public class LilCreatures extends Weapon implements ICritter
 
     public int getRarity(){
         return 7;
+    }
+    
+    class MucusShield extends ArmorShield{
+        public MucusShield(ShieldID myG, int health){
+            super(myG, health);
+        }
+        public void remove(){
+            getHolder().explodeOn(70, 100);
+            super.remove();
+        }
+        public void tick(){
+            super.tick();
+            changeHealth(10);
+        }
     }
 }

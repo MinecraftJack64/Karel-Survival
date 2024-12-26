@@ -35,8 +35,11 @@ public class Weedwacker extends Weapon
         return ult;
     }
     public void reload(){
-        if(drone!=null&&drone.isDead()){
-            drone = null;
+        if(drone!=null){
+            if(drone.isDead())drone = null;
+            else{
+                if(getAttackUpgrade()==1)drone.setStrength(5-drone.getHealthShield().getHealth());
+            }
         }
         if(drone==null){
             if(resurrect<=0){

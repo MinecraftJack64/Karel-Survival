@@ -1,24 +1,22 @@
 import greenfoot.*;
 /**
- * Write a description of class Slicer here.
+ * Write a description of class Highjacker here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Slicer extends Weapon
+public class Highjacker extends Weapon
 {
-    private static final int ult = 1100, reloadtime = 15;
-    private CircSaw lasso;
+    private static final int ult = 2500;
+    private Scissors lasso;
     private int ultchargecooldown = 0;
-    private int attackcooldown = 0;
     public void fire(){//one full ammo deals 350 damage
-        if (attackcooldown<=0) 
+        if (lasso == null) 
         {
-            CircSaw bullet = new CircSaw(getHolder().getTargetRotation(), getHolder());
+            Scissors bullet = new Scissors(getHolder().getTargetRotation(), getHolder());
             getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             lasso = bullet;
-            attackcooldown = reloadtime;
             Sounds.play("lifestealshoot");
         }
     }
@@ -33,22 +31,14 @@ public class Slicer extends Weapon
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
         }
-        if(lasso==null){
-            attackcooldown--;
-        }
-        updateAmmo(Math.min(reloadtime-attackcooldown, reloadtime));
     }
-    public Slicer(GridObject actor){
+    public Highjacker(GridObject actor){
         super(actor);
     }
-    public void equip(){
-        super.equip();
-        getHolder().getWorld().gameUI().newAmmo(reloadtime, reloadtime-attackcooldown);
-    }
     public String getName(){
-        return "Slicer";
+        return "Highjacker";
     }
     public int getRarity(){
-        return 2;
+        return 5;
     }
 }

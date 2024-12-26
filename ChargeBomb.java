@@ -11,6 +11,7 @@ public class ChargeBomb extends Bullet
     /** The damage this bullet will deal */
     //private static final int damage = 50;
     private boolean lightning, heal;
+    private int totaldmg;
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
     public ChargeBomb(double rotation, boolean ult, GridObject source){
@@ -37,7 +38,7 @@ public class ChargeBomb extends Bullet
             addObjectHere(new LightningStrike(this));
         }
         if(heal){
-            //addObjectHere(new HealCharge(totaldmg, getSource()));
+            addObjectHere(new HealCharge(face(getSource(), false), getSource(), (GridEntity)getSource(), totaldmg));
         }
         Sounds.play("explode");
     }
@@ -45,7 +46,13 @@ public class ChargeBomb extends Bullet
         doHit(null);
         super.expire();
     }
-    public boolean covertDamage(){
-        return true;
+    @Override
+    public void notifyDamage(GridEntity source, int amt){
+        //super.notifyDamage(source, amt);
+        totaldmg+=amt;
+        //System.out.println("ChargeBomb notified");
     }
+    /*public boolean covertDamage(){
+        return true;
+    }*/
 }

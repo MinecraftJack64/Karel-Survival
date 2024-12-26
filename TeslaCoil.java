@@ -28,7 +28,7 @@ public class TeslaCoil extends Weapon
         //Sounds.play("electicity");
     }
     public void fireUlt(){
-        ChargeBomb bullet = new ChargeBomb(getHolder().getTargetRotation(), getUltUpgrade()==1, false, getHolder());
+        ChargeBomb bullet = new ChargeBomb(getHolder().getTargetRotation(), getUltUpgrade()==1, useGadget(), getHolder());
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
     }
@@ -37,6 +37,12 @@ public class TeslaCoil extends Weapon
     }
     public void reload(){
         //
+    }
+    public void onGadgetActivate(){
+        setGadgetCount(1);
+    }
+    public int defaultGadgets(){
+        return 5;
     }
     public void equip(){
         super.equip();

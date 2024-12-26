@@ -11,12 +11,14 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     private GridEntity source;
     private int ammo = 0;//5
     private double distance, angle;
+    private int strength;
     private final ShieldID ultshieldid = new ShieldID(this, "ult"), healthshieldid = new ShieldID(this, "health");
     public WeedwackerBlade(double d, double a, GridEntity source){
         distance = d;
         angle = a;
         this.source = source;
         startHealth(1, false);
+        strength = 0;
         applyShield(new MetalHealthShield(healthshieldid, 5));
     }
     public boolean acceptExternalShields(){
@@ -27,6 +29,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     }
     public GridObject getSource(){
         return source;
+    }
+    public void setStrength(int s){
+        strength = s;
     }
     public void kAct(){
         if(source!=null){
@@ -64,6 +69,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public boolean hasUlt(){
         return hasShield(ultshieldid);
     }
+    public Shield getHealthShield(){
+        return getShield(0);
+    }
     public void notifyDamage(GridEntity s, int dmg){
         source.notifyDamage(s, dmg);
     }
@@ -74,7 +82,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         List<GridEntity> g = (List<GridEntity>)getIntersectingObjects(GridEntity.class);
         for(GridEntity e: g){
             if(isAggroTowards(e)){
-                damage(e, 50);
+                damage(e, 50+strength*10);
             }
         }
     }

@@ -21,7 +21,7 @@ public class ChameleonTongue extends Boomerang
         setSpeed(25);
         setReturnSpeed(20);
         setLife(18);
-        setDamage(40);
+        setDamage(60);
         sticky = issticky;
         if(ispurple){
             setNumTargets(-1);

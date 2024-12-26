@@ -17,7 +17,7 @@ public class Pin extends Bullet
     {
         super(rotation, source);
         setSpeed(1);
-        setLife(25);
+        setLife(28);
         setDamage(10);
         me = p;
     }
