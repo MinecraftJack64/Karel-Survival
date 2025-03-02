@@ -28,7 +28,7 @@ public class RocketZombie extends Zombie
     private GreenfootImage rocket = new GreenfootImage("rocketzareln.png");
     private GreenfootImage rocket2 = new GreenfootImage("zareln.png");
     //ShieldBar shieldBar;
-    private int rocketPhase = 0;
+    private int rocketPhase = 0;//0 - start flying, 1 - currently flying, 2 - done flying
     private Rocket ride;
     private Target targetsymbol;
     /**
@@ -62,7 +62,7 @@ public class RocketZombie extends Zombie
                 rocketPhase = 2;
                 targetsymbol = null;
                 setImage(rocket2);
-                applyeffect(new SpeedPercentageEffect(1.5, 150));
+                applyEffect(new SpeedPercentageEffect(1.5, 150, this));
             }else{
                 super.behave();
             }
@@ -78,7 +78,7 @@ public class RocketZombie extends Zombie
     }
     @Override
     public boolean prioritizeTarget(){
-        return true;
+        return rocketPhase<=1;
     }
     
     public String getName(){

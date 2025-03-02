@@ -1,34 +1,41 @@
 import greenfoot.*;
 /**
- * Write a description of class LifestealEffect here.
+ * Deal damage over time to target while healing the source
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class LifestealEffect extends Effect
+public class LifestealEffect extends TickingEffect
 {
-    int damage, interval, nextinterval, remainingtimes;
-    GridEntity source;
+    private int damage;
+    private GridEntity healtarget;
+    /*
+     * Use this if entity is applying effect directly
+     */
     public LifestealEffect(int damage, int interval, int times, GridEntity source){
-        this.damage = (int)(damage*source.getPower());
-        this.interval = interval;
-        this.nextinterval = interval;
-        this.remainingtimes = times;
-        this.source = source;
+        this(damage, interval, times, source, new EffectID(source));
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        nextinterval--;
-        if(nextinterval<=0){
-            nextinterval = interval;
-            e.hit(damage, source);
-            if(!source.isDead()){
-                source.heal(source, damage);
-            }
-            remainingtimes--;
-            if(remainingtimes==0)
-                return false;
+    /*
+     * Use this if an object like a projectile is applying effect on behalf of an entity
+     */
+    public LifestealEffect(int damage, int interval, int times, GridObject source, GridEntity target){
+        this(damage, interval, times, source, target, new EffectID(source));
+    }
+    public LifestealEffect(int damage, int interval, int times, GridEntity source, EffectID id){
+        this(damage, interval, times, source, source, id);
+    }
+    public LifestealEffect(int damage, int interval, int times, GridObject source, GridEntity target, EffectID id){
+        super(interval, times, source, id);
+        this.damage = (int)(damage*getSource().getPower());
+        healtarget = target;
+    }
+    public void tick(){
+        damage(getTarget());
+    }
+    public void damage(GridEntity e){
+        e.hit(damage, getSource());
+        if(!healtarget.isDead()){
+            healtarget.heal(healtarget, damage);
         }
-        return true;
     }
 }

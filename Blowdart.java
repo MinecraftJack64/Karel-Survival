@@ -33,6 +33,6 @@ public class Blowdart extends Bullet
             }
         }
         super.doHit(targ);
-        targ.applyeffect(new PoisonEffect(50+poisonmultiplier*5, 50, 4, this));
+        targ.applyEffect(new PoisonEffect(50+poisonmultiplier*5, 50, 4, this));
     }
 }

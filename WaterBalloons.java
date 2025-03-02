@@ -7,14 +7,14 @@ import greenfoot.*;
  */
 public class WaterBalloons extends Weapon implements AmmoHolder
 {
-    private static final int gunReloadTime = 15;
+    private static final int gunReloadTime = 20;
     private int reloadDelayCount;
     private static final int ult = 800;
     AmmoManager ammo;
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
-            WaterBalloon wb = new WaterBalloon(getHolder().getTargetRotation(), getHolder());
+            WaterBalloon wb = new WaterBalloon(getHolder().getTargetRotation(), getHolder(), getAttackUpgrade()==1);
             getHolder().addObjectHere(wb);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -43,7 +43,7 @@ public class WaterBalloons extends Weapon implements AmmoHolder
     public WaterBalloons(GridObject actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
-        ammo = new AmmoManager(35, 1, 2);
+        ammo = new AmmoManager(20, 1, 2);
     }
     public void equip(){
         super.equip();

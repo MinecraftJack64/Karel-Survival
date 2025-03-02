@@ -43,7 +43,7 @@ public class Hornet extends SpawnableZombie
     }
     public void attack(){
         super.attack();
-        if(Greenfoot.getRandomNumber(10)==0)myhive.getTarget().applyeffect(new PoisonEffect(3, 20, 3, this));
+        if(Greenfoot.getRandomNumber(10)==0)myhive.getTarget().applyEffect(new PoisonEffect(3, 20, 3, this));
     }
     
     //ovveride this

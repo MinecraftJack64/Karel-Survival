@@ -45,14 +45,11 @@ public class BearTrap extends Trap
     private void checkAsteroidHit()
     {
         GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
-        if (asteroid != null&&isAggroTowards(asteroid)&&!(asteroid instanceof SpawnableZombie)){
-            //getWorld().removeObject(this);
+        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
             isset = false;
             target = asteroid;
             Sounds.play("mousetrapsnap");
-            //asteroid.hit(damage, this);
-            target.applyeffect(new StunEffect(150, null));
-            //target.applyeffect(new SpeedPercentageEffect(5, 300));
+            target.stun(new EffectID(this));
             attack();
         }
     }
@@ -65,11 +62,15 @@ public class BearTrap extends Trap
             hitcooldown = hitrate;
             hitcount--;
             //check status of target
-            target.hit(damage, this);
+            damage(target, damage);
         }
         hitcooldown--;
     }
     public void die(){
+        if(!isset){
+            target.unstun(new EffectID(this));
+        }
+        super.die();
         getWorld().removeObject(this);
     }
     public boolean covertDamage(){

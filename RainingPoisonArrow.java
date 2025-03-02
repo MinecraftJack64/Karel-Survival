@@ -20,8 +20,8 @@ public class RainingPoisonArrow extends FlyingRock
     }
     public void doHit(GridEntity targ){
         damage(targ, (int)(40*focus));
-        targ.applyeffect(new PoisonEffect(20+(int)(20*focus/3), 40, 3, this));
-        targ.applyeffect(new SpeedPercentageEffect(0.5, 120));
+        targ.applyEffect(new PoisonEffect(20+(int)(20*focus/3), 40, 3, this));
+        targ.applyEffect(new SpeedPercentageEffect(0.5, 120, this));
     }
     /*public boolean covertDamage(){
         return true;

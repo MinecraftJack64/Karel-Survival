@@ -1,27 +1,23 @@
 import greenfoot.*;
 /**
- * Write a description of class SilenceEffect here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Temporarily mutes the target, preventing abilities like attacks.
+ * @author MinecraftJack64
  */
-public class SilenceEffect extends Effect
+public class SilenceEffect extends DurationEffect
 {
-    int duration;
-    GridObject source;
     public SilenceEffect(int duration, GridObject source){
-        this.duration = duration;
-        this.source = source;
+        super(duration, source);
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        duration--;
-        e.mute();
-        if(duration<=0){
-            e.unmute();
-            return false;
-        }
-        return true;
+    public SilenceEffect(int duration, GridObject source, EffectID id){
+        super(duration, source, id);
     }
-    public void appliedTo(GridEntity source){Sounds.play("stun");}
+    public SilenceEffect(int duration, EffectID id){
+        super(duration, id);
+    }
+    public void onClear(){
+        getTarget().unmute(getID());
+    }
+    public void onApply(){
+        getTarget().mute(getID());
+    }
 }

@@ -1,27 +1,23 @@
 import greenfoot.*;
 /**
- * Write a description of class InvisibilityEffect here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Temporarily makes the target undetectable to others TODO
+ * @author MinecraftJack64
  */
-public class InvisibilityEffect extends Effect
+public class InvisibilityEffect extends DurationEffect
 {
-    int duration;
-    GridObject source;
     public InvisibilityEffect(int duration, GridObject source){
-        this.duration = duration;
-        this.source = source;
+        super(duration, source);
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        duration--;
-        e.setDetectable(false);
-        if(duration<=0){
-            e.setDetectable(true);
-            return false;
-        }
-        return true;
+    public InvisibilityEffect(int duration, GridObject source, EffectID id){
+        super(duration, source, id);
     }
-    public void appliedTo(GridEntity source){Sounds.play("stun");}
+    public InvisibilityEffect(int duration, EffectID id){
+        super(duration, id);
+    }
+    public void onClear(){
+        getTarget().setDetectable(true);// TODO: accountability
+    }
+    public void onApply(){
+        getTarget().setDetectable(false);
+    }
 }

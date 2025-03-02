@@ -1,34 +1,24 @@
 import greenfoot.*;
 /**
- * Write a description of class PoisonEffect here.
+ * Deal damage over time
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PoisonEffect extends Effect
+public class PoisonEffect extends TickingEffect
 {
-    int damage, interval, nextinterval, remainingtimes;
-    GridObject source;
+    private int damage;
     public PoisonEffect(int damage, int interval, int times, GridObject source){
-        this.damage = (int)(damage*source.getPower());
-        this.interval = interval;
-        this.nextinterval = interval;
-        this.remainingtimes = times;
-        this.source = source;
+        this(damage, interval, times, source, new EffectID(source));
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        nextinterval--;
-        if(nextinterval<=0){
-            nextinterval = interval;
-            damage(e);
-            remainingtimes--;
-            if(remainingtimes==0)
-                return false;
-        }
-        return true;
+    public PoisonEffect(int damage, int interval, int times, GridObject source, EffectID id){
+        super(interval, times, source, id);
+        this.damage = (int)(damage*getSource().getPower());
+    }
+    public void tick(){
+        damage(getTarget());
     }
     public void damage(GridEntity e){
-        e.hit(damage, source);
+        e.hitIgnoreShield(damage, getSource());
     }
 }

@@ -12,12 +12,14 @@ public class Pinpoint extends FlyingRock
 {
     GridEntity target;
     double tx, ty;
+    EffectID immobilize;
     public Pinpoint(boolean issuper, GridObject source)
     {
         super(0, 0, 80, source);
         setExplosionRange(35);
         setNumTargets(1);
         setDieOnHit(false);
+        immobilize = new EffectID(this);
         //if(load instanceof GridEntity)getWorld().allEntities.add((GridEntity)load);
     }
     public double getGravity(){
@@ -26,7 +28,7 @@ public class Pinpoint extends FlyingRock
     public void doHit(GridEntity g){
         damage(g, 150);
         g.ground();
-        g.setSpeedMultiplier(0);
+        g.setSpeedMultiplier(0, immobilize);
         target = g;
         tx = target.getRealX();
         ty = target.getRealY();
@@ -36,12 +38,13 @@ public class Pinpoint extends FlyingRock
             if(target.isDead())die();
             else{
                 target.ground();
-                target.setSpeedMultiplier(0);
+                target.setSpeedMultiplier(0, immobilize);
                 if(distanceTo(target)<50){
                     target.pullTo(tx, ty);
                 }else{
                     target.unground();
-                    target.setSpeedMultiplier(1);
+                    target.setSpeedMultiplier(1, immobilize);
+                    die();
                 }
             }
         }else{

@@ -1,27 +1,23 @@
 import greenfoot.*;
 /**
- * Write a description of class StunEffect here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Temporarily stuns the target, stopping their movement and abilities
+ * @author MinecraftJack64
  */
-public class StunEffect extends Effect
+public class StunEffect extends DurationEffect
 {
-    int duration;
-    GridObject source;
     public StunEffect(int duration, GridObject source){
-        this.duration = duration;
-        this.source = source;
+        super(duration, source);
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        duration--;
-        e.stun();
-        if(duration<=0){
-            e.unstun();
-            return false;
-        }
-        return true;
+    public StunEffect(int duration, GridObject source, EffectID id){
+        super(duration, source, id);
     }
-    public void appliedTo(GridEntity source){Sounds.play("stun");}
+    public StunEffect(int duration, EffectID id){
+        super(duration, id);
+    }
+    public void onClear(){
+        getTarget().unstun(getID());
+    }
+    public void onApply(){
+        getTarget().stun(getID());
+    }
 }

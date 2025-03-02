@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Lasso extends Reelin
 {
     private List<GridEntity> targets;
+    private EffectID pullStun, afterStun;
     private boolean immobiletarget;//if a target is immobile, pull source to center of all immovable targets instead
     private int latchx, latchy;//where the source is pulled too, the center point between all immovable objects
     public Lasso(double rotation, double targetdistance, GridObject source)
@@ -17,31 +18,33 @@ public class Lasso extends Reelin
         super(rotation, targetdistance, targetdistance/2, source);
         setExplosionRange(100);
         targets = new ArrayList<GridEntity>();
+        pullStun = new EffectID(this, "pull");
+        afterStun = new EffectID(this, "pullfinish");
         setDamage(0);
         setSpeed(10);
     }
     public void doReturn(){
         if(!updateCenter()){
             for(GridEntity target: targets){
-                target.stun();
+                target.stun(pullStun);
                 target.pullTowards(this, 15);
             }
             super.doReturn();
         }else{
             pullTowards(latchx, latchy, 20);
-            getSource().stun();
+            getSource().stun(pullStun);
             getSource().pullTowards(this, 10);
         }
     }
     public void die(){
         for(GridEntity target:targets){
             if(!target.isDead()){
-                target.unstun();
-                target.applyeffect(new StunEffect(20, getSource()));
+                target.unstun(pullStun);
+                target.applyEffect(new StunEffect(20, getSource(), afterStun));
             }
             if(immobiletarget){
                 if(getSource()!=null&&!getSource().isDead()){
-                    getSource().unstun();
+                    getSource().unstun(pullStun);
                 }
             }
         }
@@ -69,7 +72,7 @@ public class Lasso extends Reelin
     public void doHit(GridEntity targ){
         super.doHit(targ);
         targets.add(targ);
-        targ.stun();
+        targ.stun(pullStun);
     }
     public GridEntity getSource(){
         return (GridEntity)(super.getSource());

@@ -58,13 +58,13 @@ public class Mousetrap extends Trap
     private void checkAsteroidHit()
     {
         GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
-        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.getRealHeight()<=0){
+        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()){
             //getWorld().removeObject(this);
             isset = false;
             target = asteroid;
             Sounds.play("mousetrapsnap");
             //asteroid.hit(damage, this);
-            target.applyeffect(new StunEffect(150, null));
+            target.applyEffect(new StunEffect(150, this));
             //target.applyeffect(new SpeedPercentageEffect(5, 300));
             attack();
         }
@@ -86,6 +86,7 @@ public class Mousetrap extends Trap
         }
     }
     public void die(){
+        super.die();
         getWorld().removeObject(this);
     }
 }

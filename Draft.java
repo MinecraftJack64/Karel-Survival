@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 import java.util.ArrayList;
 
 /**
- * A bullet that can hit asteroids.
+ * A single projectile from the Gale weapon attack. Pierces infinitely but range is reduced after hitting first enemy. Damages and slows on hit, but only if it's the first of its wave of attacks to hit the enemy.
  * 
  * @author Poul Henriksen
  */
@@ -31,7 +31,7 @@ public class Draft extends Bullet
         hitstory2 = refhit;
     }
     public void doHit(GridEntity g){
-        g.applyeffect(new SpeedPercentageEffect(0.75, 1));
+        g.applyEffect(new SpeedPercentageEffect(0.75, 1, this));
         super.doHit(g);
     }
     public void onHit(GridEntity g){

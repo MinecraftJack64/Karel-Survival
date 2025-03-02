@@ -23,7 +23,7 @@ public class PepperFlame extends Bullet
     }
     
     public void doHit(GridEntity targ){
-        targ.applyeffect(new PoisonEffect(1,1,7,this));
+        targ.applyEffect(new PoisonEffect(1,1,7,this));
         super.doHit(targ);
     }
 }

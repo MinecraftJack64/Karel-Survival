@@ -30,7 +30,7 @@ public class Blade extends Weapon
     }
     public void fireUlt(){
         if(!continueUlt()){
-            getHolder().applyeffect(new SpeedPercentageEffect(1.5, 160));
+            getHolder().applyEffect(new SpeedPercentageEffect(1.5, 160, getHolder(), new EffectID(getHolder(), "ultspeed")));
             getHolder().applyShield(new PercentageShield(shield, 0.5, 160));
             setContinueUlt(true);
             slicecooldown = 2;

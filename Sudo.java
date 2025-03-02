@@ -18,6 +18,7 @@ public class Sudo extends Weapon
             //bullet.move ();
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
+            getHolder().getWorld().addObject(ZombieFactory.createZombie("exploding"), 50.0, 50.0);
             chargeUlt(1);
         }
     }

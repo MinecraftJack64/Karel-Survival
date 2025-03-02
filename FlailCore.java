@@ -22,7 +22,7 @@ public class FlailCore extends Reelin
     }
     public void doHit(GridEntity targ){
         if(distanceTo(targ)>naildistance){
-            targ.knockBack(face(targ, false), 50, 15, this);
+            targ.knockBack(face(targ, false), 5, 15, this);
         }
         super.doHit(targ);
     }

@@ -11,14 +11,18 @@ public class Hitter extends GridObject implements SubAffecter
     GridObject source;
     private int damage = 0;
     private int targets;
-    private boolean isattack = true;
-    private boolean hitallies;
-    private boolean hitself;
-    private boolean multihit;
+    private int range = 0;// for radius collision
+    private boolean isattack = true;// hit enemies
+    private boolean hitallies;// hit allies
+    private boolean hitself;// hit source
+    private boolean multihit;// hit enemies more than once
+    private boolean trackAfterHit;// if this hitter checks and calls afterHit
+    private boolean clipHits;// ignore hitstory, allowing hitting enemies multiple times while passing through them
     private String collidemode = "collide";
     HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
     public Hitter(GridObject source){
         this.source = source;
+        inherit(source);
     }
     public GridObject getSource(){
         return source;
@@ -74,6 +78,24 @@ public class Hitter extends GridObject implements SubAffecter
     public String getCollisionMode(){
         return collidemode;
     }
+    public void setRange(int r){
+        range = r;
+    }
+    public int getRange(){
+        return range;
+    }
+    public boolean getTrackAfterHit(){
+        return trackAfterHit;
+    }
+    public void setTrackAfterHit(boolean t){
+        trackAfterHit = t;
+    }
+    public void setClipHits(boolean t){
+        clipHits = t;
+    }
+    public boolean clipHits(){
+        return clipHits;
+    }
     public void setHitStory(HashSet<GridEntity> h){
         hitstory = h;
     }
@@ -95,12 +117,11 @@ public class Hitter extends GridObject implements SubAffecter
     {
         HashSet<GridEntity> asteroid = new HashSet<GridEntity>();
         if(getCollisionMode().equals("collide"))asteroid.addAll((ArrayList<GridEntity>)getIntersectingObjects(GridEntity.class));
+        else if(getCollisionMode().equals("radius"))asteroid.addAll(getGEsInRange(getRange()));
         if(asteroid.size()==0||getNumTargets()==0){
             return;
         }
-        //System.out.println(asteroid.size());
         for(GridEntity thing: asteroid){
-            //System.out.println(thing);
             if(thing==getSource()){
                 if(willSelfHarm()){
                     //
@@ -118,13 +139,17 @@ public class Hitter extends GridObject implements SubAffecter
                         break;
                     }
                     continue;
+                }else if(clipHits()){
+                    doHit(thing);
+                    onHit(thing);
+                    continue;
                 }else{
                     onHit(thing);
                     continue;
                 }
             }
             if(willHitAllies()&&isAlliedWith(thing)&&checkHeight(thing)){
-                if(!hitstory.contains(thing)){
+                if(!hitstory.contains(thing)||clipHits()){
                     doHit(thing);
                     onHit(thing);
                     changeNumTargets(-1);
@@ -132,19 +157,28 @@ public class Hitter extends GridObject implements SubAffecter
                     if(getNumTargets()==0){
                         break;
                     }
+                }else if(clipHits()){
+                    doHit(thing);
+                    onHit(thing);
+                    continue;
                 }else{
                     onHit(thing);
                     continue;
                 }
             }
         }
+        if(getTrackAfterHit()){
+            HashSet<GridEntity> g = new HashSet<GridEntity>();
+            g.addAll(getHitStory());
+            g.removeAll(asteroid);
+            System.out.println((getHitStory().size()>=1)+" "+(asteroid.size()>=1));
+            for(GridEntity e: g){
+                if((isAttack()&&isAggroTowards(e)&&checkHeight(e))&&(willHitAllies()&&isAlliedWith(e)&&checkHeight(e)))afterHit(e);
+            }
+        }
         if(canMultiHit()){
             setHitStory(asteroid);
         }
-        /*if (asteroid != null&&asteroid.getRealHeight()==0){
-            getWorld().removeObject(this);
-            asteroid.hit(damage, this);
-        }*/
     }
     public void doHit(GridEntity asteroid){
         damage(asteroid, getDamage(asteroid));
@@ -152,7 +186,11 @@ public class Hitter extends GridObject implements SubAffecter
     public boolean checkHeight(GridEntity other){
         return Math.abs(other.getRealHeight()-getRealHeight())<5;
     }
+    // always runs even when enemy was hit before
     public void onHit(GridEntity thing){
+        //
+    }
+    public void afterHit(GridEntity thing){
         //
     }
     public boolean covertDamage(){

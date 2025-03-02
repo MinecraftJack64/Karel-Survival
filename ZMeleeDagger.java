@@ -1,9 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 
 /**
- * A bullet that can hit asteroids.
+ * A short range projectile that teleports the shooter to the back of the enemy hit. Used by AssassinZombie
  * 
- * @author Poul Henriksen
+ * @author Jack Liu
  */
 public class ZMeleeDagger extends Bullet
 {
@@ -20,7 +20,7 @@ public class ZMeleeDagger extends Bullet
     public void doHit(GridEntity targ){
         GridEntity gs = (GridEntity)getSource();
         if(!gs.isDead()&&gs.canBePulled())gs.pullToBranch(targ, targ.getRealRotation()+90, 30);
-        targ.applyeffect(new PowerPercentageEffect(0.65, 60));
+        targ.applyEffect(new PowerPercentageEffect(0.65, 60, this));
         super.doHit(targ);
     }
 }

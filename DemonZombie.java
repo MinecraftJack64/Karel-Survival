@@ -43,7 +43,7 @@ public class DemonZombie extends SpawnableZombie
     }
     public void attack(){
         super.attack();
-        getTarget().applyeffect(new PoisonEffect(2, 2, 2, this));
+        getTarget().applyEffect(new PoisonEffect(2, 2, 2, this));
         GridObject t = getTarget();
         pullToBranch(t, t.getRealRotation()+90, distanceTo(t)-10);
         heal(this, 2);
@@ -66,7 +66,7 @@ public class DemonZombie extends SpawnableZombie
         super.hit(amt, source);
     }
     
-    //ovveride this
+    @Override
     public int getXP(){
         return 0;
     }
@@ -76,6 +76,6 @@ public class DemonZombie extends SpawnableZombie
     }
     
     public String getName(){
-        return "Zombie DemonZombie";
+        return "Demon Zombie";
     }
 }

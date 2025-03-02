@@ -2,10 +2,9 @@ import greenfoot.*;
 import java.util.List;
 
 /**
- * Write a description of class FungalZombie here.
+ * A zombie that slows you when you are nearby. Occasionally sprays to poison you and boost other zombies.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
  */
 public class FungalZombie extends Zombie
 {
@@ -53,7 +52,7 @@ public class FungalZombie extends Zombie
         if(distanceTo(getTarget())>200)
             walk(monangle, 1);
     }
-    //ovveride this
+    @Override
     public int getXP(){
         return 750;
     }
@@ -63,16 +62,16 @@ public class FungalZombie extends Zombie
         explodeOn(225, (g)->{
             if(isAlliedWith(g)){//
                 //g.applyeffect(new DamagePercentageEffect(1.5, 120));
-                g.applyeffect(new SpeedPercentageEffect(1.5, 120));
+                g.applyEffect(new SpeedPercentageEffect(1.5, 120, this, new EffectID(this, "speedboost")));
             }else if(isAggroTowards(g)){
-                g.applyeffect(new PoisonEffect((int)(75+(225-distanceTo(g))), 30, 4, this));
+                g.applyEffect(new PoisonEffect((int)(75+(225-distanceTo(g))), 30, 4, this));
                 g.hit(50, this);
             }
         }, null);//replace with better explosion later
         Sounds.play("sporespray");
     }
     public void passiveattack(){
-        explodeOn(250, "enemy", (g)->{g.applyeffect(new SpeedPercentageEffect(distanceTo(g)/400+0.3, 4));}, null);
+        explodeOn(250, "enemy", (g)->{g.applyEffect(new SpeedPercentageEffect(distanceTo(g)/400+0.3, 4, this, new EffectID(this, "slow")));}, null);
     }
     public String getName(){
         return "Fungal Zombie";

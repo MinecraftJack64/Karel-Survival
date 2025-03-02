@@ -28,15 +28,8 @@ public class Gale extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        updateAmmo(1);
-    }
     public Gale(GridObject actor){
         super(actor);
-    }
-    public void equip(){
-        super.equip();
-        getHolder().getWorld().gameUI().newAmmo(1, 0);
     }
     public String getName(){
         return "Gale";

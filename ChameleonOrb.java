@@ -1,15 +1,12 @@
 import greenfoot.*;
 /**
- * Write a description of class ChameleonOrb here.
+ * a collectible dropped by the Chameleon weapon when the player kills a zombie by pulling them, changes the Chameleon's color when collected by the player
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
 public class ChameleonOrb extends Collectible
 {
-    /** The damage this bullet will deal */
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
     private int healing = 200;
     private int color;
     private Chameleon mycham;

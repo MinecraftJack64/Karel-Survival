@@ -36,7 +36,7 @@ public class AirPump extends Weapon implements LandingHandler
             getHolder().initiateJump(rot, d, isSuper?300:40);
         }
         if(getUltUpgrade()==1&&isSuper){
-            getHolder().applyeffect(new SpeedPercentageEffect(1.5, 150));
+            getHolder().applyEffect(new SpeedPercentageEffect(1.5, 150, getHolder()));
             secondWind = 120;
         }
     }

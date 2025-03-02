@@ -9,13 +9,15 @@ import java.util.List;
 public class MoleUppercut extends FlyingRock
 {
     private boolean firstact, issuper;
-    public MoleUppercut(double rotation, double targetdistance, double height, boolean sup, GridObject source)
+    private Mole mole;
+    public MoleUppercut(double rotation, double targetdistance, double height, boolean sup, GridObject source, Mole tonotify)
     {
         super(rotation, targetdistance, height, source);
-        setExplosionRange(50);
+        setExplosionRange(75);
         setDamage(125);
         firstact = true;
         issuper = sup;
+        mole = tonotify;
     }
     public void applyPhysics(){
         if(firstact){//so that it hits enemies on launch
@@ -31,8 +33,15 @@ public class MoleUppercut extends FlyingRock
         super.doHit(targ);
         if(issuper){
             if(firstact)targ.knockBack(0, 0, 20, this);
-            else targ.applyeffect(new StunEffect(10, this));
+            else targ.applyEffect(new StunEffect(10, this));
         }
+    }
+    public void animate(){
+        setRealRotation(getRealRotation()+40);
+    }
+    public void die(){
+        mole.notifyLand(getRealX(), getRealY());
+        super.die();
     }
     /*public boolean covertDamage(){
         return true;

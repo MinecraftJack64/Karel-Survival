@@ -29,6 +29,7 @@ public class Wizard extends Zombie
     private static final int sporereload = 700;         // The minimum delay between firing the gun.
     private ArrayList<FungalZombie> spores;
     private ArrayList<GridEntity> turrets;
+    private EffectID wizardStun;// The stuns placed on all other enemies on death
     private int sporeammo;               // How long ago we fired the gun the last time.
     private int hivereload = 850;
     private int hiveammo;
@@ -60,6 +61,7 @@ public class Wizard extends Zombie
         phase = 1;
         spores = new ArrayList<FungalZombie>();
         turrets = new ArrayList<GridEntity>();
+        wizardStun = new EffectID(this);
     }
     //ovveride this
     public int getXP(){
@@ -181,7 +183,7 @@ public class Wizard extends Zombie
     }
     public RussianDollZombie newRDZ(){
         RussianDollZombie r = new RussianDollZombie();
-        r.applyeffect(new SpeedPercentageEffect(0, 800));
+        r.applyEffect(new SpeedPercentageEffect(0, 800, this));
         return r;
     }
     public void sporeAttack(){
@@ -222,8 +224,8 @@ public class Wizard extends Zombie
         phase = 6;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)){
-                g.stun();
-                g.applyeffect(new LifestealEffect(20, 1, -1, this));
+                g.stun(wizardStun);
+                g.applyEffect(new LifestealEffect(20, 1, -1, this));
             }
         }
     }
@@ -233,8 +235,8 @@ public class Wizard extends Zombie
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)&&!g.isDead()){
                 found = true;
-                if(g.canMove()||g.canAttack())g.stun();
-                if(!g.hasEffect(LifestealEffect.class))g.applyeffect(new LifestealEffect(20, 1, -1, this));
+                if(g.canMove()||g.canAttack())g.stun(wizardStun);
+                if(!g.hasEffect(LifestealEffect.class))g.applyEffect(new LifestealEffect(20, 1, -1, this));
             }
         }
         return found;
@@ -245,9 +247,9 @@ public class Wizard extends Zombie
     public boolean isWall(){
         return false;
     }
-    public boolean applyeffect(Effect e){
+    public boolean applyEffect(Effect e){
         if(!(e instanceof TeamSwitchEffect)){
-            super.applyeffect(e);
+            super.applyEffect(e);
             return true;
         }
         return false;

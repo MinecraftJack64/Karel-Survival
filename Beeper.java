@@ -1,15 +1,12 @@
 import greenfoot.*;
 /**
- * Write a description of class Beeper here.
+ * a collectible usually dropped from zombies when killed that can be collected by the player, healing them
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
 public class Beeper extends Collectible
 {
-    /** The damage this bullet will deal */
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
     private int healing = 50;
     private int xp;
     public Beeper(int xp)

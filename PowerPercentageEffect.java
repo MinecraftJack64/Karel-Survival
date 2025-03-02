@@ -6,17 +6,16 @@
  */
 public class PowerPercentageEffect extends PercentageEffect
 {
-    public PowerPercentageEffect(double percentage, int duration){
-        super(percentage, duration);
+    public PowerPercentageEffect(double percentage, int duration, GridObject source){
+        super(percentage, duration, source);
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        duration--;
-        e.setPower(percentage);
-        if(duration<=0){
-            e.setPower(1);
-            return false;
-        }
-        return true;
+    public PowerPercentageEffect(double percentage, int duration, GridObject source, EffectID id){
+        super(percentage, duration, source, id);
+    }
+    public void onApply(){
+        getTarget().setPower(getPercentage(), getID());
+    }
+    public void onClear(){
+        getTarget().setPower(1, getID());
     }
 }

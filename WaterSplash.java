@@ -23,7 +23,7 @@ public class WaterSplash extends Bullet
         super(rotation, h, source);
         setSpeed(17);
         setLife(11);
-        setDamage(25);
+        setDamage(30);
         setNumTargets(-1);
         setMultiHit(false);
     }

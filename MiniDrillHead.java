@@ -23,7 +23,7 @@ public class MiniDrillHead extends Bullet
     }
     
     public void doHit(GridEntity targ){
-        targ.applyeffect(new SpeedPercentageEffect(0.5, 60));
+        targ.applyEffect(new SpeedPercentageEffect(0.5, 60, this));
         super.doHit(targ);
     }
 }

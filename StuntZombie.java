@@ -116,7 +116,8 @@ public class StuntZombie extends Zombie implements LandingHandler
     }
     public void doLanding(){
         explodeOn(50, 400);
-        applyeffect(new SpeedPercentageEffect(1.5, 60));
+        applyEffect(new SpeedPercentageEffect(1.5, 60, this));
+        applyShield(new MetalShield(new ShieldID(this), 3));
     }
     //ovveride this
     public int getXP(){

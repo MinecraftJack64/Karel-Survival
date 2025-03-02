@@ -32,7 +32,7 @@ public class Critter extends Pet implements ICritter
         startHealth(100);
         setSpeed(4);
         if(hive!=null)inherit(hive);
-        applyeffect(new StunEffect(15, this));
+        applyEffect(new StunEffect(15, this));
         perch = spawner;
     }
 

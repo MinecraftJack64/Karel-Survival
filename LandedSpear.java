@@ -2,16 +2,13 @@ import greenfoot.*;
 import java.util.HashMap;
 
 /**
- * Write a description of class LandedSpear here.
+ * represents the Spear weapon when it is on the ground. When collected by the player, it returns to their hand
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
 public class LandedSpear extends Collectible
 {
-    /** The damage this bullet will deal */
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
     private SpearWeapon myspear;
     private HashMap<GridEntity, Integer> hs;
     public LandedSpear(SpearWeapon sp, HashMap<GridEntity, Integer> scores)

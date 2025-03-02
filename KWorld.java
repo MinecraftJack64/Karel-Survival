@@ -20,45 +20,47 @@ import java.awt.event.*;
  */
 
 /**
- * Space. Something for rockets to fly in.
+ * The main Karel World, the grid all objects are in. Also manages everything, like the flow of gamemodes
  * 
- * @author Michael Kolling
+ * @author MinecraftJack64
  * @version 1.0
  */
 public class KWorld extends World
 {
-    private int startAsteroids = 1;//TMP
-    public static KWorld me;
-    ScrollingListener scrollsensor = new ScrollingListener();
-    public int scroll = 0;
-    public Grid<Actor> grid = new Grid<Actor>();
-    public ArrayList<GridEntity> allEntities = new ArrayList<GridEntity>();
-    public ArrayList<GridObject> allGridObjects = new ArrayList<GridObject>();
-    public int lastX = 0, lastY = 0;
-    //public ZombieSpawner spawner;
-    public boolean lastClicked = false;
+    public static KWorld me; // the current world being used
+    ScrollingListener scrollsensor = new ScrollingListener(); // detect scrolling(deprecated)
+    public int scroll = 0; // current scroll
+    public Grid<Actor> grid = new Grid<Actor>(); // grid for pathfinding(unused currently)
+    public ArrayList<GridEntity> allEntities = new ArrayList<GridEntity>(); // a list of all grid entities in the world
+    public ArrayList<GridObject> allGridObjects = new ArrayList<GridObject>(); // a list of all grid objects in the world excluding grid entities
+    
+    //these store inputs, updated every frame
+    public int lastX = 0, lastY = 0; // last recorded mouse coordinates
+    public boolean lastClicked = false; // whether or not the mouse is down
     private boolean shiftkey = false;
-    //public Player player;
-    //public Baby baby;
+    
+    //these are constant default values, to be deprecated
     public int gridheight = 16;
     public int gridwidth = 24;
-    private double gravity = -5;
-    private int score = 0;
-    //public String gameStatus;
+    private final double gravity = -5;
+    
     public String currentMenu = "mainmenu";
-    public UI ui;
-    public UI ui2;
-    //private Teams teams;
+    public UI ui; // main game ui
+    public UI ui2; // overlay ui, usually pause menu
+    
+    //mode information, used for mode select
     private String[] modenames;
     private String[] modeids;
-    private int modehs[];
     private String[] diffnames;
-    String gameMode;
-    int gameDiff;
-    private int cmode;
-    private int cdiff = 1;
-    private int respawncooldown;
-    private GameMode game;
+    private int cmode; // currently selected mode
+    private int cdiff = 1; // currently selected difficulty
+    
+    private int modehs[]; // high scores of each mode
+    
+    String gameMode; // current game mode
+    int gameDiff; // current game difficulty
+    private GameMode game; // current game
+    
     private boolean paused = false;
     private boolean currentlypausing = false;
     private boolean currentlycrafting = false;
@@ -84,12 +86,12 @@ public class KWorld extends World
         //setAvailableModes
         setOptions();
         //Set paint order for the KActors
-        setPaintOrder(Overlay.class, Projectile.class, Player.class, Zombie.class, Collectible.class, Target.class);
+        setPaintOrder(Overlay.class, StatusBar.class, Projectile.class, Player.class, Zombie.class, Collectible.class, Target.class);
         startGame("tutorial");
         //Explosion.initializeImages();
         //ProtonWave.initializeImages();
         //background.logicalBottomEdge();
-        grid.print();
+        //grid.print();
     }
     public void startGame(String mode){
         //clear old UI

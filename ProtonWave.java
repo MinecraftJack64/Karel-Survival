@@ -57,7 +57,6 @@ public class ProtonWave extends Hitter
     public ProtonWave(GridObject source, boolean radiate)
     {
         super(source);
-        setTeam(source.getTeam());
         //addForce(new Vector(rotation, 15));
         frame = 0;
         setImage(images[frame]);
@@ -93,7 +92,7 @@ public class ProtonWave extends Hitter
     public void doHit(GridEntity g){
         super.doHit(g);
         if(radiate){
-            g.applyeffect(new PoisonEffect(5, 3, -1, this));
+            g.applyEffect(new PoisonEffect(5, 3, -1, this));
         }
     }
     public boolean covertDamage(){

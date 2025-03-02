@@ -23,8 +23,8 @@ public class GlueDrop extends FlyingRock
     }
     public void doHit(GridEntity targ){
         if(focus>0){
-            targ.applyeffect(new SpeedPercentageEffect(1-focus*0.9, 15));
-            targ.applyeffect(new PowerPercentageEffect(1-focus*0.8, 15));
+            targ.applyEffect(new SpeedPercentageEffect(1-focus*0.9, 15, this, new EffectID(this, "slow")));
+            targ.applyEffect(new PowerPercentageEffect(1-focus*0.8, 15, this, new EffectID(this, "weaken")));
         }
         super.doHit(targ);
     }

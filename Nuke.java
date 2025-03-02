@@ -19,7 +19,6 @@ public class Nuke extends Projectile
     {
         super(source);
         setRealRotation(90);
-        setTeam(source.getTeam());
         setRealHeight(2000);
     }
     

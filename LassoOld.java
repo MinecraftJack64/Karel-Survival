@@ -16,6 +16,7 @@ public class LassoOld extends Projectile
     private boolean isSingleTarget;
     private int phase;
     private GridEntity target;
+    private EffectID pullStun, afterStun;
     private boolean hasreturned;
     private boolean wasted;
     
@@ -32,6 +33,8 @@ public class LassoOld extends Projectile
         setTeam(source.getTeam());
         setSpeed(15);
         setSingleTarget(true);
+        pullStun = new EffectID(this, "pull");
+        afterStun = new EffectID(this, "pullfinish");
         phase = 1;
         hasreturned = false;
     }
@@ -68,11 +71,11 @@ public class LassoOld extends Projectile
                 setRealRotation(face(getSource(), false)+90);
                 move(getRealRotation()-90, getSpeed());
                 if(!target.isDead()){
-                    target.stun();
+                    target.stun(pullStun);
                     if(!target.pullTo(getRealX(), getRealY())){
                         setRealLocation(getSource().getRealX(), getSource().getRealY());
                         phase = 3;
-                        getSource().stun();
+                        getSource().stun(pullStun);
                         if(!getSource().pullTo(getRealX(), getRealY())){
                             die();
                         }
@@ -86,11 +89,11 @@ public class LassoOld extends Projectile
                 setRealRotation(face(target, false)+90);
                 move(getRealRotation()-90, getSpeed());
                 if(!getSource().isDead()){
-                    getSource().stun();
+                    getSource().stun(pullStun);
                     if(!getSource().pullTo(getRealX(), getRealY())){
                         setRealLocation(target.getRealX(), target.getRealY());
                         phase = 2;
-                        getSource().unstun();
+                        getSource().unstun(pullStun);
                         if(!target.pullTo(getRealX(), getRealY())){
                             die();
                         }
@@ -102,12 +105,12 @@ public class LassoOld extends Projectile
     public void die(){
         getWorld().removeObject(this);
         if(target!=null&&!target.isDead()){
-            target.unstun();
-            target.applyeffect(new StunEffect(20, getSource()));
+            target.unstun(pullStun);
+            target.applyEffect(new StunEffect(20, getSource(), afterStun));
         }
         if(phase==3){
             if(getSource()!=null&&!getSource().isDead()){
-                getSource().unstun();
+                getSource().unstun(pullStun);
             }
         }
         hasreturned = true;
@@ -131,7 +134,7 @@ public class LassoOld extends Projectile
     {
         GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
         if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.getRealHeight()==0){
-            asteroid.stun();
+            asteroid.stun(pullStun);
             target = asteroid;
             Sounds.play("lassotighten");
             phase = 2;

@@ -19,7 +19,6 @@ public class LightningStrike extends Projectile
     {
         super(source);
         setRealRotation(90);
-        setTeam(source.getTeam());
         setRealHeight(2000);
         setDamage(250);
     }
@@ -41,7 +40,7 @@ public class LightningStrike extends Projectile
                 getWorld().removeObject(targ);
                 targ = null;
             }
-            super.die();
+            die();
         } 
         else {
             setRealHeight(getRealHeight()-100);

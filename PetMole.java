@@ -10,40 +10,49 @@ import java.util.List;
 public class PetMole extends Weapon
 {
     private static final int ult = 1800;
-    private TeslaCoilZap zap;
+    private Mole zap;
     public void fire(){
-        if(zap!=null){
-            zap.attackAt(getHolder().getTargetX(), getHolder().getTargetY());
+        if(zap.getWorld()!=null){
+            if(zap.inUlt()){
+                zap.stopUlt();
+            }
+            zap.attackAt(getHolder().getTargetX(), getHolder().getTargetY(), getAttackUpgrade()==1, getUltUpgrade()==1);
         }
         //show the lightning
         //Sounds.play("electicity");
     }
     public void fireUlt(){
-        ChargeBomb bullet = new ChargeBomb(getHolder().getTargetRotation(), false, getHolder());
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
-        Sounds.play("protonwave");
+        if(zap.getWorld()!=null){
+            if(zap.inUlt()){
+                zap.stopUlt();
+            }
+            zap.startUlt();
+        }
     }
     public int getUlt(){
         return ult;
     }
     public void reload(){
-        //
+        if(zap.getWorld()!=null)
+            zap.target(getHolder().getTargetX(), getHolder().getTargetY());
     }
     public void equip(){
         super.equip();
-        zap = new TeslaCoilZap(getHolder(), false);
         getHolder().getWorld().addObject(zap, getHolder().getRealX(), getHolder().getRealY());
     }
     public void unequip(){
+        if(zap.inUlt()){
+            zap.stopUlt();
+        }
         getHolder().getWorld().removeObject(zap);
-        zap = null;
         super.unequip();
     }
     public PetMole(GridObject actor){
         super(actor);
+        zap = new Mole(getHolder());
     }
     public String getName(){
-        return "MMM";
+        return "Mole";
     }
     public int getRarity(){
         return 3;

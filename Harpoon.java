@@ -11,6 +11,7 @@ public class Harpoon extends Boomerang
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private GridEntity target;
+    private EffectID pullStun, afterStun;
     private int phase;
     
     public Harpoon(double rotation, GridEntity source)
@@ -21,6 +22,8 @@ public class Harpoon extends Boomerang
         setLife(40);
         setDamage(0);
         setExpireReturn(2);//die if no target hit
+        pullStun = new EffectID(this, "pull");
+        afterStun = new EffectID(this, "pullfinish");
         phase = 2;
     }
     /**
@@ -31,11 +34,11 @@ public class Harpoon extends Boomerang
         if(phase==2){
             super.doReturn();
             if(!target.isDead()){
-                target.stun();
+                //stun target
                 if(!target.pullTo(getRealX(), getRealY())){
                     setRealLocation(getSource().getRealX(), getSource().getRealY());
                     phase = 3;
-                    getSource().stun();
+                    getSource().stun(pullStun);
                     if(!getSource().pullTo(getRealX(), getRealY())){
                         dieForReal();
                     }
@@ -49,11 +52,11 @@ public class Harpoon extends Boomerang
             setRealRotation(face(target, false)+90);
             move(getRealRotation()-90, getSpeed());
             if(!getSource().isDead()){
-                getSource().stun();
+                //stun source
                 if(!getSource().pullTo(getRealX(), getRealY())){
                     setRealLocation(target.getRealX(), target.getRealY());
                     phase = 2;
-                    getSource().unstun();
+                    getSource().unstun(pullStun);
                     if(!target.pullTo(getRealX(), getRealY())){
                         dieForReal();
                     }
@@ -63,12 +66,12 @@ public class Harpoon extends Boomerang
     }
     public void dieForReal(){
         if(target!=null&&!target.isDead()){
-            target.unstun();
-            target.applyeffect(new StunEffect(20, getSource()));
+            target.unstun(pullStun);
+            target.applyEffect(new StunEffect(20, getSource(), afterStun));
         }
         if(phase==3){
             if(getSource()!=null&&!getSource().isDead()){
-                getSource().unstun();
+                getSource().unstun(pullStun);
             }
         }
         super.dieForReal();
@@ -83,7 +86,7 @@ public class Harpoon extends Boomerang
     public void doHit(GridEntity asteroid)
     {
         if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.getRealHeight()==0){
-            asteroid.stun();
+            asteroid.stun(pullStun);
             target = asteroid;
             Sounds.play("lassotighten");
         }

@@ -43,7 +43,7 @@ public class Zombee extends SpawnableZombie
         if(distanceTo(getTarget())>30)walk(monangle, 1);
         else{
             if(canAttack()){
-                if(Greenfoot.getRandomNumber(10)==0)getTarget().applyeffect(new PoisonEffect(damage, 20, 3, this));
+                if(Greenfoot.getRandomNumber(10)==0)getTarget().applyEffect(new PoisonEffect(damage, 20, 3, this));
                 else damage(getTarget(), damage);
                 hit(damage, this);
             }
@@ -53,10 +53,11 @@ public class Zombee extends SpawnableZombie
         }
     }
     
-    //ovveride this
+    @Override
     public int getXP(){
         return 0;
     }
+    @Override
     public GridEntity getTarget(){
         return myhive.getTarget();
     }

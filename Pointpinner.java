@@ -12,7 +12,7 @@ public class Pointpinner extends Weapon
     private static final int gunReloadTime = 30;
     private int ultcooldown = 0;//5
     private int reloadDelayCount;
-    private static final int ult = 2;
+    private static final int ult = 2000;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {

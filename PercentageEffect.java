@@ -4,12 +4,20 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PercentageEffect extends Effect
+public class PercentageEffect extends DurationEffect
 {
-    double percentage, duration;
-    public PercentageEffect(double percentage, int duration)
+    private double percentage;
+    public PercentageEffect(double percentage, int duration, GridObject source)
     {
+        super(duration, source);
         this.percentage = percentage;
-        this.duration = duration;
+    }
+    public PercentageEffect(double percentage, int duration, GridObject source, EffectID id)
+    {
+        super(duration, source, id);
+        this.percentage = percentage;
+    }
+    public double getPercentage(){
+        return percentage;
     }
 }

@@ -29,7 +29,6 @@ public class Bullet extends Projectile
         setDirection(rotation);
         setRealRotation(rotation+90);
         //addForce(new Vector(rotation, 15));
-        setTeam(source.getTeam());
         setSpeed(15);
         setDamage(50);
         setNumTargets(1);

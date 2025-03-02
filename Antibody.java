@@ -28,7 +28,7 @@ public class Antibody extends Bullet
         target = targ;
     }
     public void doHit(GridEntity targ){
-        targ.applyeffect(new InfectionEffect(target!=null?(target.isInstance(targ)?150:75):100, 30, this));
+        targ.applyEffect(new InfectionEffect(target!=null?(target.isInstance(targ)?150:75):100, 30, this));
         if(notifier!=null)notifier.notifyHit(targ.getClass());
     }
 }

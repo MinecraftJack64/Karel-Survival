@@ -1,15 +1,15 @@
 /**
- * Write a description of class Drone here.
+ * represents the drone hovering above a player with the DroneRemote weapon. At the command of the weapon, it shoots 4 consecutive bullets at a targeted location, which also changes at the command of the weapon
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
 public class Drone extends GridObject implements SubAffecter
 {
     private GridEntity source;
     private double ddx, ddy;
     public int hoverheight = 100;
-    private int remainingshots = 0;//3
+    private int remainingshots = 0;//4
     private int tbs = 0;//5
     private int ammo = 0;//60
     public Drone(GridEntity source){

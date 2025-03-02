@@ -13,15 +13,17 @@ public class BigWaterBalloon extends FlyingRock
     {
         super(rotation, targetdistance, height, source);
         setExplosionRange(50);
+        setDamage(400);
     }
     public double getGravity(){
         return 2;
     }
     public void die(){
         for(int i = 0; i <= 360; i+=72){
-            WaterBalloon wb = new WaterBalloon(i+getDirection(), this);
+            WaterBalloon wb = new WaterBalloon(i+getDirection(), this, true);
             addObjectHere(wb);
         }
+        addObjectHere(new WaterPuddle(150, this));
         super.die();
     }
     public boolean covertDamage(){

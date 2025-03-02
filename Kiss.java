@@ -31,7 +31,7 @@ public class Kiss extends Bullet
             notifier.notifyHit(bullet);
         }
         addObjectHere(bullet);
-        targ.applyeffect(new StunEffect(50, this));
+        targ.applyEffect(new StunEffect(50, this));
         if(!((GridEntity)(getSource())).isDead()&&((GridEntity)(getSource())).canBePulled())((GridEntity)(getSource())).pullToBranch(targ, targ.getRealRotation()-90, 30);
         //targ.getRealX()-Math.cos((targ.getRealRotation()+90)*Math.PI/180)*30, targ.getRealY()-Math.sin((targ.getRealRotation()+90)*Math.PI/180)*30);
     }

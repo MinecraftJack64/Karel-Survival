@@ -70,7 +70,7 @@ public abstract class Weapon implements Item, Tickable
     }
     public abstract void fire();
     public abstract void fireUlt();
-    public abstract void reload();
+    public void reload(){}
     public void update(){
         //
     }
@@ -143,6 +143,7 @@ public abstract class Weapon implements Item, Tickable
         ultcharge-=amt;
         if(ultcharge<getUlt()&&ultready){
             ultready = false;
+            ultuses = 0;
         }
         if(ultcharge<0){
             ultcharge = 0;

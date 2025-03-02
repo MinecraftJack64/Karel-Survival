@@ -85,7 +85,7 @@ public class CellTurret extends Pet
         explodeOn(50, "enemy", (g)->{
             damage(g, 10);
             g.knockBack(face(g, false), 50, 20, this);
-            g.applyeffect(new PowerPercentageEffect(0.2, 90));
+            g.applyEffect(new PowerPercentageEffect(0.2, 90, this));
         }, null);
     }
     public boolean readyToTransform(Class pot){

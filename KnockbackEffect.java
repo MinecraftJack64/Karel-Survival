@@ -5,34 +5,23 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class KnockbackEffect extends Effect
+public class KnockbackEffect extends StunEffect
 {
-    int duration;
-    double rot, d, h;
-    GridObject source;
+    private double rot, d, h;
     public KnockbackEffect(double r, double dist, double h, GridObject source){
-        this.duration = 1;
+        super(1, source);//don't know how long the jump is
         rot = r;
         d = dist;
         this.h = h;
-        this.source = source;
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        duration--;
-        e.stun();
-        if(duration<=0){
-            e.unstun();
-            return false;
-        }
-        return true;
-    }
-    public void appliedTo(GridEntity source){
+    public void onApply(){
+        GridEntity source = getTarget();
         if(source.canBePulled()){
             source.initiateJump(rot, d, h);
-            duration = (int)(source.getPhysicsArc().getDuration());
+            setDuration((int)(source.getPhysicsArc().getDuration()));
+            super.onApply();
         }else{
-            duration = 0;
+            clear();
         }
     }
 }

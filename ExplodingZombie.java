@@ -59,7 +59,7 @@ public class ExplodingZombie extends Zombie
         try{
             //explode if not stunned
             super.die(source);
-            explodeOn(60, damage);
+            explodeOnAll(60, damage);
             Sounds.play("explode");
         }catch(IllegalStateException e){
             //

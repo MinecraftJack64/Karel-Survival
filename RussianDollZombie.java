@@ -81,7 +81,7 @@ public class RussianDollZombie extends Zombie
         explodeOn(getExplosionRange(), getDamage(), null);//smash explosion later
     }
     public void feast(){
-        mute();
+        if(canAttack())mute(new EffectID(this));// prevent from processing landing explosion and wasting time.
         if(jumpcooldown<=0){
             if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getRealHeight()==0){//spawn inside
                 getWorld().addObject(inside, getRealX(), getRealY());

@@ -28,6 +28,6 @@ public class FireworkRocket extends FlyingRock
         }
     }
     public void doHit(GridEntity targ){
-        targ.applyeffect(new PoisonEffect(50, 40, 5, this));
+        targ.applyEffect(new PoisonEffect(50, 40, 5, this));
     }
 }

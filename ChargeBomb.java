@@ -30,7 +30,7 @@ public class ChargeBomb extends Bullet
     public void doHit(GridEntity targ){
         explodeOnEnemies(100, (g)->{
             super.doHit(g);
-            g.applyeffect(new StunEffect(30, getSource()));
+            g.applyEffect(new StunEffect(30, getSource()));
         });
         Explosion exp = new Explosion(1);
         getWorld().addObject(exp, getRealX(), getRealY());//INTENDED FOR NOW

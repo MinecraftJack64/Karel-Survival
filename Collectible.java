@@ -1,8 +1,8 @@
 /**
- * Write a description of class Collectible here.
+ * a object that moves towards a certain other object to be collected by them
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
 public class Collectible extends GridObject
 {

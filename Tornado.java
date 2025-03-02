@@ -15,6 +15,7 @@ public class Tornado extends Bullet
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
     ArrayList<GridEntity> suckedenemies = new ArrayList<GridEntity>();
+    EffectID stun;
     public Tornado(double rotation, GridObject source)
     {
         super(rotation, source);
@@ -23,6 +24,7 @@ public class Tornado extends Bullet
         setDamage(0);
         setNumTargets(-1);
         setMultiHit(false);
+        stun = new EffectID(this);
     }
     public void applyPhysics(){
         if(getLife()<90){
@@ -40,10 +42,10 @@ public class Tornado extends Bullet
         for(int i = suckedenemies.size()-1; i>=0; i--){
             GridEntity g = suckedenemies.get(i);
             if(g.isDead()||!g.canBePulled()){
-                g.unstun();
+                g.unstun(stun);
                 suckedenemies.remove(i);
             }else{
-                g.stun();
+                g.stun(stun);
                 g.pullTowards(this, 20);
             }
         }
@@ -51,7 +53,7 @@ public class Tornado extends Bullet
     }
     public void die(){
         for(GridEntity g:suckedenemies){
-            g.unstun();
+            g.unstun(stun);
         }
         super.die();
     }

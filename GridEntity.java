@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.HashSet;
 
 /**
  * Write a description of class GridEntity here.
@@ -14,9 +15,12 @@ public abstract class GridEntity extends GridObject
     private int health = maxHealth;
     HealthBar healthBar;
     public double movementspeed = 5, speedmultiplier = 1;
-    private boolean canmove = true;
-    private boolean isactive = true;
-    private boolean detectable = true;
+    private HashSet<EffectID> immobilizers;//these store the affectors behind each effect
+    private boolean canmove = true;//if you can move
+    private HashSet<EffectID> silencers;
+    private boolean isactive = true;//if you can attack or do stuff
+    private HashSet<EffectID> hiders;
+    private boolean detectable = true;//if enemies can see you
     boolean isdead = false;
     private GridObject killer;
     private ArrayList<Shield> shields = new ArrayList<Shield>();
@@ -64,7 +68,7 @@ public abstract class GridEntity extends GridObject
         return movementspeed*speedmultiplier;
     }
 
-    public void setSpeedMultiplier(double perc){
+    public void setSpeedMultiplier(double perc, EffectID ctrl){
         speedmultiplier = perc;
     }
 
@@ -80,11 +84,34 @@ public abstract class GridEntity extends GridObject
         return false;
     }
 
-    public boolean applyeffect(Effect e){
+    public boolean applyEffect(Effect e){
+        //TODO: check immunities: for i in immunities, if i.blocks(e)return false;
+        switch(e.getCollisionProtocol()){
+            case 1://stacking
+                Effect other = getExistingEffect(e);
+                if(other!=null){
+                    other.stack(e);
+                    return true;
+                }
+            break;
+            case 2://dominant
+                Effect other2 = getExistingEffect(e);
+                if(other2!=null){
+                    clearEffect(other2);
+                    return true;
+                }
+            break;
+            case 3://recessive
+                Effect other3 = getExistingEffect(e);
+                if(other3!=null){
+                    return false;
+                }
+            break;
+        }
         effects.add(e);
         e.appliedTo(this);
         return true;
-        //System.out.println("Effect applied");
+        //TODO: Check immunities and return false if immune
     }
     public boolean hasEffect(Class cls){
         for(Effect e: effects){
@@ -94,22 +121,56 @@ public abstract class GridEntity extends GridObject
         }
         return false;
     }
-    public void stun(){
-        canmove = false;
-        isactive = false;
+    public boolean hasEffect(EffectID id){
+        for(Effect e: effects){
+            if(e.getID().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Effect getExistingEffect(Effect f){
+        for(Effect e: effects){
+            if(e.equals(f)){
+                return e;
+            }
+        }
+        return null;
+    }
+    public void clearEffect(EffectID id){
+        for(int i = effects.size()-1; i >= 0; i--){
+            if(effects.get(i).getID().equals(id)){
+                effects.remove(i);
+            }
+        }
+    }
+    public void clearEffect(Effect eff){
+        effects.remove(eff);
+    }
+    public void stun(EffectID ctrl){
+        immobilize(ctrl);
+        mute(ctrl);
     }
 
-    public void unstun(){
-        canmove = true;
-        isactive = true;
+    public void unstun(EffectID ctrl){
+        mobilize(ctrl);
+        unmute(ctrl);
     }
     
-    public void mute(){
+    public void mute(EffectID ctrl){
         isactive = false;
     }
     
-    public void unmute(){
+    public void unmute(EffectID ctrl){
         isactive = true;
+    }
+    
+    public void immobilize(EffectID ctrl){
+        canmove = false;
+    }
+    
+    public void mobilize(EffectID ctrl){
+        canmove = true;
     }
 
     public boolean canAttack(){
@@ -127,15 +188,9 @@ public abstract class GridEntity extends GridObject
         return true;
     }
 
-    public void applyeffects(){ 
-        for (int i=effects.size()-1;i>=0;i--) {
-            Effect e = effects.get(i);
-            //System.out.println("Effect taking hold");
-            if(!e.affect(this)){
-                effects.remove(e);
-                //System.out.println("Effect wore off");
-            }
-            //effects.remove(i);
+    public void applyEffects(){ 
+        for (int i = effects.size()-1; i>= 0; i--) {
+            effects.get(i).affect();
             if(isDead()){
                 break;
             }
@@ -269,7 +324,7 @@ public abstract class GridEntity extends GridObject
         if(!canBePulled()){
             return false;
         }
-        applyeffect(new KnockbackEffect(r, d, h, source));
+        applyEffect(new KnockbackEffect(r, d, h, source));
         return true;
     }
     public void hit(int dmg, GridObject source){
@@ -277,6 +332,18 @@ public abstract class GridEntity extends GridObject
         for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             dmg = shields.get(i).processDamage(dmg, source);
         }
+        if(dmg>0){
+            Sounds.play("hit");
+        }
+        damage(dmg);
+        if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, dmg);
+        if(getHealth()<=0)die(source);
+    }
+    public void hitIgnoreShield(int dmg, GridObject source){
+        //dec health
+        /*for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
+            shields.get(i);
+        }*/
         if(dmg>0){
             Sounds.play("hit");
         }
@@ -337,8 +404,8 @@ public abstract class GridEntity extends GridObject
     public void kAct()
     {
         tickShields();
-        applyeffects();
-        applyphysics();
+        applyEffects();
+        applyPhysics();
         if(!isDead())behave();
     }
     public void behave(){}

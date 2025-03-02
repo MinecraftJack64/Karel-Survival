@@ -34,7 +34,6 @@ public class FlyingRock extends Projectile
         rot = rotation;
         hitstory = new HashSet<GridEntity>();
         path = new Arc(targetdistance, height, getGravity());
-        setTeam(source.getTeam());
         setExplosionRange(100);
         setDamage(damage);
         setNumTargets(-1);

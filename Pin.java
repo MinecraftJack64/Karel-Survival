@@ -16,15 +16,19 @@ public class Pin extends Bullet
     public Pin(double rotation, GridObject source, Pointpinner p)
     {
         super(rotation, source);
-        setSpeed(1);
+        setSpeed(0.9);
         setLife(28);
-        setDamage(10);
+        setDamage(40);
         me = p;
     }
     public void applyPhysics(){
         super.applyPhysics();
-        setDamage(getDamage()+(int)(getSpeed()*2/3));
+        setDamage(getDamage()+(int)getSpeed());
         setSpeed(getSpeed()+1);
+    }
+    public void die(){
+        super.die();
+        System.out.println(getDamage());
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

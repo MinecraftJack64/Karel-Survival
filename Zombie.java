@@ -66,14 +66,17 @@ public class Zombie extends GridEntity
      */
     public void act()
     {
-        processSounds();
         if(getWorld().gameStatus().equals("lose")){
-            applyeffects();
-            applyphysics();
+            applyEffects();
+            applyPhysics();
             feast();
             return;
         }
         super.act();
+    }
+    public void kAct(){
+        processSounds();
+        super.kAct();
         clearTarget();
     }
     public void processSounds(){

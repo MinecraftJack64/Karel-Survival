@@ -17,6 +17,7 @@ public class Chameleon extends Weapon
     private boolean greenboostson = false;
     private static final int ult = 2000;
     private ChameleonTongue tongue;
+    private EffectID greenspeed;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime&&!checkTongue()) 
         {
@@ -31,7 +32,7 @@ public class Chameleon extends Weapon
                 getHolder().damage(g, 100);
                 hit[0] = true;
                 if(isColor(0)){
-                    g.applyeffect(new StunEffect(12, getHolder()));
+                    g.applyEffect(new StunEffect(12, getHolder()));
                 }
                 if(g.isDead()){
                     createOrb(g.getRealX(), g.getRealY());
@@ -92,11 +93,11 @@ public class Chameleon extends Weapon
         if(colorCooldown>0)colorCooldown--;
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
         if(!greenboostson&&isColor(3)){
-            getHolder().setSpeedMultiplier(1.5);
+            getHolder().setSpeedMultiplier(1.5, greenspeed);
             getHolder().ground();
             greenboostson = true;
         }else if(greenboostson&&!isColor(3)){
-            getHolder().setSpeedMultiplier(1);
+            getHolder().setSpeedMultiplier(1, greenspeed);
             getHolder().unground();
             greenboostson = false;
         }
@@ -104,6 +105,7 @@ public class Chameleon extends Weapon
     public Chameleon(GridObject actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
+        greenspeed = new EffectID(actor, "chameleon_ult_speed");
     }
     public void equip(){
         super.equip();
@@ -112,7 +114,7 @@ public class Chameleon extends Weapon
     public void unequip(){
         super.unequip();
         if(greenboostson){
-            getHolder().setSpeedMultiplier(1);
+            getHolder().setSpeedMultiplier(1, greenspeed);
             getHolder().unground();
             greenboostson = false;
         }

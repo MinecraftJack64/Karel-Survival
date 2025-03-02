@@ -47,7 +47,7 @@ public class Hypnotizer extends Bullet
         setRealRotation(getRealRotation()+15);
     }
     public void doHit(GridEntity targ){
-        if(!targ.applyeffect(new TeamSwitchEffect(400, getTeam(), this))){
+        if(!targ.applyEffect(new TeamSwitchEffect(getTeam(), 400, this))){
             super.doHit(targ);//if hypnosis fails, then instead do damage as usual
             return;
         }

@@ -1,12 +1,12 @@
 import greenfoot.Actor;
 
 /**
- * Write a description of class KActor here.
+ * An actor with additional methods and helpers
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
-public class KActor extends Actor
+public abstract class KActor extends Actor
 {
     double rx, ry, rh, rrot;
     public KWorld getWorld(){
@@ -76,10 +76,6 @@ public class KActor extends Actor
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
     }
-    public void notifyWorldRemove(){
-        //
-    }
-    public void notifyWorldAdd(){
-        //
-    }
+    public void notifyWorldRemove(){};
+    public void notifyWorldAdd(){};
 }

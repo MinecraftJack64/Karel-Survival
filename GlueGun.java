@@ -59,8 +59,8 @@ public class GlueGun extends Weapon
             if(explodecooldown<=0){
                 explodecooldown = -1;
                 getHolder().explodeOnEnemies(225, (g)->{
-                    g.applyeffect(new SpeedPercentageEffect(0.1, 170));
-                    g.applyeffect(new SilenceEffect(170, getHolder()));
+                    g.applyEffect(new SpeedPercentageEffect(0.1, 170, getHolder()));
+                    g.applyEffect(new SilenceEffect(170, getHolder()));
                     double d = getHolder().distanceTo(g)+100;
                     GlueDrop bullet = new GlueDrop(getHolder().face(g, false), d, 5, getHolder());
                     getHolder().addObjectHere(bullet);
@@ -78,16 +78,12 @@ public class GlueGun extends Weapon
     }
     public void reload(){
         reloadDelayCount++;
-        //updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
-        //chargeUlt(10000);
     }
     public GlueGun(GridObject actor){
         super(actor);
-        //reloadDelayCount = gunReloadTime;
     }
     public void equip(){
         super.equip();
-        //getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
     public int defaultGadgets(){
         return 3;

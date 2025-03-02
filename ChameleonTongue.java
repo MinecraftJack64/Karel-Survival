@@ -11,6 +11,7 @@ public class ChameleonTongue extends Boomerang
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private GridEntity target;
+    private EffectID pullStun, afterStun;
     private boolean hasTarget;
     private boolean hashitfirst = false;
     private boolean sticky;
@@ -22,6 +23,8 @@ public class ChameleonTongue extends Boomerang
         setReturnSpeed(20);
         setLife(18);
         setDamage(60);
+        pullStun = new EffectID(this, "pull");
+        afterStun = new EffectID(this, "pullfinish");
         sticky = issticky;
         if(ispurple){
             setNumTargets(-1);
@@ -40,9 +43,9 @@ public class ChameleonTongue extends Boomerang
         }else{
             super.doReturn();
             if(!target.isDead()){
-                target.stun();
+                //target.stun(pullStun);
                 if(!target.pullTo(getRealX(), getRealY())){
-                    target.unstun();
+                    target.unstun(pullStun);
                     target = null;
                     hasTarget = false;
                 }
@@ -51,8 +54,8 @@ public class ChameleonTongue extends Boomerang
     }
     public void dieForReal(){
         if(target!=null&&!target.isDead()){
-            target.unstun();
-            target.applyeffect(new StunEffect(10, getSource()));
+            target.unstun(pullStun);
+            target.applyEffect(new StunEffect(10, getSource(), afterStun));
         }
         super.dieForReal();
     }
@@ -66,9 +69,9 @@ public class ChameleonTongue extends Boomerang
     public void doHit(GridEntity asteroid)
     {
         super.doHit(asteroid);
-        if(sticky)asteroid.applyeffect(new SpeedPercentageEffect(0.5, 10));
+        if(sticky)asteroid.applyEffect(new SpeedPercentageEffect(0.5, 10, this));
         if(getNumTargets()>=0&&(asteroid.getPercentHealth()<=(sticky?0.35:0.2)||asteroid.getHealth()<=getPower()*100)){
-            asteroid.stun();
+            asteroid.stun(pullStun);
             target = asteroid;
             hasTarget = true;
             Sounds.play("lassotighten");

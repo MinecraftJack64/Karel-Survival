@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Write a description of class GridObject here.
+ * Represents an object inside the game world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author MinecraftJack64
+ * @version 1.0
  */
 public abstract class GridObject extends KActor
 {
@@ -148,9 +148,7 @@ public abstract class GridObject extends KActor
     public boolean canBePulled(){
         return !isGrounded();
     }
-    public void notifyPull(){
-        //
-    }
+    public void notifyPull(){}
     public boolean pullTo(double x, double y){
         if(canBePulled()){
             setRealLocation(x, y);
@@ -217,7 +215,6 @@ public abstract class GridObject extends KActor
     public boolean isAlliedWith(GridObject other){
         return getWorld().getTeams().getAllies(getTeam()).contains(other.getTeam());
     }
-    //@CallSuper
     public void die(){
         clearFakeTeam();
         clearTeam();
@@ -265,6 +262,9 @@ public abstract class GridObject extends KActor
             return explodeOn(range, "ally", (g)->{heal(g, dmg);}, null);
         }
     }
+    public int explodeOnAll(int range, int dmg){
+        return explodeOn(range, (g)->{damage(g, dmg);}, new Explosion(((double)range)/60));
+    }
     public int explodeOn(int range, int dmg, Explosion exp){
         if(dmg>=0){
             return explodeOn(range, "enemy", (g)->{damage(g, dmg);}, exp);
@@ -276,34 +276,30 @@ public abstract class GridObject extends KActor
         return explodeOn(range, "enemy", vore, new Explosion(((double)range)/60));
     }
     public GridEntity getNearestTarget() {
-        GridEntity res = null;
-        double max = 0.0D;
-        Iterator var4 = this.getWorld().allEntities.iterator();
-
-        while(true) {
-            GridEntity e;
-            do {
-                do {
-                    if (!var4.hasNext()) {
-                        return res;
-                    }
-
-                    e = (GridEntity)var4.next();
-                } while(!this.isAggroTowards(e));
-            } while(!(this.distanceTo(e) < max) && res != null);
-
-            res = e;
-            max = this.distanceTo(e);
+        GridEntity nearestTarget = null;
+        double closestDistance = 0;
+    
+        for (GridEntity entity : this.getWorld().allEntities) {
+            if (isAggroTowards(entity)&&entity.canDetect()) {
+                double currentDistance = this.distanceTo(entity);
+                
+                if (nearestTarget == null || currentDistance < closestDistance) {
+                    nearestTarget = entity;
+                    closestDistance = currentDistance;
+                }
+            }
         }
+    
+        return nearestTarget;
     }
     public double getGravity(){
         return 3;
     }
-    public void applyphysics(){
+    public void applyPhysics(){
         if(arcmomentum==null){
             return;
         }
-        move(dirmomentum, arcmomentum.getRate());// = -(x^2+bx)/b
+        move(dirmomentum, arcmomentum.getRate());
         setRealHeight(arcmomentum.getHeight(arcframe));
         arcframe++;
         if(getRealHeight()<0&&arcframe>0){
@@ -356,6 +352,9 @@ public abstract class GridObject extends KActor
     public double getPower(){
         return powermultiplier;
     }
+    public void setPower(double perc, EffectID ctrl){
+        powermultiplier = perc;
+    }
     public void setPower(double perc){
         powermultiplier = perc;
     }
@@ -367,6 +366,9 @@ public abstract class GridObject extends KActor
     public void damage(GridEntity targ, int amt){
         targ.hit((int)(amt*getPower()), this);
     }
+    public void damageIgnoreShield(GridEntity targ, int amt){
+        targ.hitIgnoreShield((int)(amt*getPower()), this);
+    }
     public void act(){
         if(getWorld().isPaused())return;
         kAct();
@@ -375,12 +377,8 @@ public abstract class GridObject extends KActor
     public boolean isWall(){
         return !canBePulled();
     }
-    public void animate(){
-        //nothing by default
-    }
-    public void kAct(){
-        //
-    }
+    public void animate(){}
+    public void kAct(){}
     public void notifyWorldRemove(){
         super.notifyWorldRemove();
         getWorld().allObjects().remove(this);

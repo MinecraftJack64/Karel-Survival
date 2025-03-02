@@ -91,13 +91,13 @@ public class CatClaw extends Weapon implements LandingHandler
     public void doLanding(){
         if(toland){
             toland = false;
+            getHolder().applyEffect(new PowerPercentageEffect(2, 60, getHolder(), new EffectID(getHolder(), "strengthen")));
             for(int i = 0; i < 8; i++){
                 SwipingClaw bullet = new SwipingClaw(getHolder().getRealRotation()+i*45, 70, getHolder());
                 getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
-                getHolder().applyeffect(new PowerPercentageEffect(2, 60));
             }
             setLocked(false);
-            getHolder().applyeffect(new SpeedPercentageEffect(1.5, 60));
+            getHolder().applyEffect(new SpeedPercentageEffect(1.5, 60, getHolder(), new EffectID(getHolder(), "speedup")));
         }
     }
     public String getName(){

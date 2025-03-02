@@ -33,7 +33,7 @@ public class SlammingSpear extends FlyingRock
             if(!thing.getKey().isDead()){
                 thing.getKey().knockBack(face(thing.getKey(), false), 80, 40, this);
                 if(thing.getValue()>=2){
-                    thing.getKey().applyeffect(new StunEffect(65, this));
+                    thing.getKey().applyEffect(new StunEffect(65, this));
                 }
             }
         }

@@ -1,32 +1,20 @@
 import greenfoot.*;
 /**
- * Write a description of class TeamSwitchEffect here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Temporarily makes the target part of another team
+ * @author MinecraftJack64
  */
-public class TeamSwitchEffect extends Effect
+public class TeamSwitchEffect extends DurationEffect
 {
-    int duration;
-    GridObject source;
     String team;
-    public TeamSwitchEffect(int duration, String team, GridObject source){
-        this.duration = duration;
-        this.source = source;
+    public TeamSwitchEffect(String team, int duration, GridObject source){
+        super(duration, source);
         this.team = team;
     }
-    public boolean affect(GridEntity e){
-        //System.out.println("Poison info: "+nextinterval+" "+remainingtimes);
-        duration--;
-        e.setFakeTeam(team);
-        if(duration<=0){
-            e.clearFakeTeam();
-            return false;
-        }
-        return true;
-    }
-    public void appliedTo(GridEntity source){
-        source.setFakeTeam(team);
+    public void onApply(){
+        getTarget().setFakeTeam(team);
         Sounds.play("hypnotize");
+    }
+    public void onClear(){
+        getTarget().clearFakeTeam();
     }
 }
