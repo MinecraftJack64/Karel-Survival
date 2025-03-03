@@ -7,20 +7,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  */
 public class FlashBolt extends Bullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 50;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 10;
-    
+    private GridEntity nextIntendedTarget;
+    private FlashBolt other;
     public FlashBolt(double rotation, GridObject source)
     {
         super(rotation, source);
         setSpeed(25);
         setLife(12);
         setDamage(40);
-        setNumTargets(10);
+        setNumTargets(5);
         setMultiHit(false);
+    }
+    public void setOther(FlashBolt b){
+        other = b;
+    }
+    public GridEntity nextTarget(){
+        return nextIntendedTarget;
     }
     public void animate(){
         setRealRotation(getRealRotation()+30);
@@ -30,7 +32,7 @@ public class FlashBolt extends Bullet
         //point to next target
         GridEntity next = null;
         for(GridEntity g: getWorld().allEntities()){
-            if(targ!=g&&!getHitStory().contains(g)&&isAggroTowards(g)&&(next==null||distanceTo(g)<distanceTo(next))){
+            if(targ!=g&&!getHitStory().contains(g)&&isAggroTowards(g)&&(other==null||!other.getHitStory().contains(g)&&g!=other.nextTarget())&&(next==null||distanceTo(g)<distanceTo(next))){
                 next = g;
             }
         }
@@ -39,9 +41,11 @@ public class FlashBolt extends Bullet
         }else{
             double monangle = face(next, false);
             setDirection(monangle);
+            setDamage(getDamage()-7);
             if(getLife()<=4){
                 setLife(4);
             }
         }
+        nextIntendedTarget = next;
     }
 }

@@ -16,6 +16,8 @@ public class FlashDrive extends Weapon
             getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
             FlashBolt bullet3 = new FlashBolt(getHolder().getTargetRotation()-15, getHolder());
             getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
+            bullet2.setOther(bullet3);
+            bullet3.setOther(bullet2);
             ammo = 0;
             Sounds.play("gunshoot");
         }

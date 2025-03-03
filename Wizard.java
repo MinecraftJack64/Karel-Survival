@@ -29,6 +29,7 @@ public class Wizard extends Zombie
     private static final int sporereload = 700;         // The minimum delay between firing the gun.
     private ArrayList<FungalZombie> spores;
     private ArrayList<GridEntity> turrets;
+    private ArrayList<GridEntity> lasers;
     private EffectID wizardStun;// The stuns placed on all other enemies on death
     private int sporeammo;               // How long ago we fired the gun the last time.
     private int hivereload = 850;
@@ -40,6 +41,8 @@ public class Wizard extends Zombie
     private int rocketammo;
     private int meleereload = 15;
     private int meleeammo;
+    private static final int laserReload = 700;
+    private int laserAmmo;
     private int deathwaitcooldown = 100;
     private GreenfootImage rocket = new GreenfootImage("heraldzareln.png");
     private int phase;//5 phases
@@ -61,6 +64,7 @@ public class Wizard extends Zombie
         phase = 1;
         spores = new ArrayList<FungalZombie>();
         turrets = new ArrayList<GridEntity>();
+        lasers = new ArrayList<GridEntity>();
         wizardStun = new EffectID(this);
     }
     //ovveride this
@@ -87,6 +91,7 @@ public class Wizard extends Zombie
         phase = Math.max(5-(5*(getHealth()-1)/getMaxHealth()), op);
         if(op!=phase){
             healSelfAttack();
+            fungalDefense();
             hashived = false;
             if(phase==5){
                 tankAttack();
@@ -123,9 +128,16 @@ public class Wizard extends Zombie
             rocketammo = 0;
         }
         
+        checkLasers();
+        laserAmmo++;
+        if(laserAmmo>=laserReload){
+            laserAttack();
+            laserAmmo = 0;
+        }
+        
         meleeammo++;
         if(distanceTo(getTarget())<40&&meleeammo>=meleereload){
-            damage(getTarget(), 100);
+            damageIgnoreShield(getTarget(), 150);// melee attack
             meleeammo = 0;
         }
     }
@@ -158,6 +170,25 @@ public class Wizard extends Zombie
             turrets.clear();
         }
         return true;
+    }
+    public void checkLasers(){
+        for(int i = lasers.size()-1; i >= 0; i--){
+            if(lasers.get(i).isDead()){
+                lasers.remove(i);
+            }
+        }
+        if(lasers.size()>=6){
+            for(int i = 0; i < lasers.size()-6; i++){
+                lasers.get(i).applyEffect(new FatalPoisonEffect(10, 1, this));
+            }
+        }
+    }
+    public void fungalDefense(){
+        for(GridEntity g: getGEsInRange(110)){
+            if(isAggroTowards(g)){
+                spawnZombieAt(new FungalZombie(), g.getRealX(), g.getRealY());
+            }
+        }
     }
     public void spawnZombieAt(GridObject z, double x, double y){
         double d = distanceTo(x, y);
@@ -213,6 +244,28 @@ public class Wizard extends Zombie
             double y = getRandomCellY();
             spawnZombieAt(new Turret(phase, turrets, this), x, y);
         }
+    }
+    public void laserAttack(){
+        double sx = 0, sy = 0;
+        int n = 0;
+        for(GridEntity g: lasers){
+            sx+=g.getRealX()-getRealX();
+            sy+=g.getRealY()-getRealY();
+            n++;
+        }
+        for(GridEntity g: spores){
+            sx+=g.getRealX()-getRealX();
+            sy+=g.getRealY()-getRealY();
+            n++;
+        }
+        for(GridEntity g: turrets){
+            sx+=g.getRealX()-getRealX();
+            sy+=g.getRealY()-getRealY();
+            n++;
+        }
+        sx/=n;
+        sy/=n;
+        spawnZombieAt(new LaserSquad(phase, lasers, this), getRealX()*2-sx, getRealY()*2-sy);
     }
     public void rocketAttack(){
         for(int i = 75; i <= 195; i+=30){
