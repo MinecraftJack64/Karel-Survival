@@ -23,16 +23,30 @@ public class CapsaicinTorch extends Weapon
             //bullet.move ();
             Sounds.play("gunshoot");
             ammo--;
-            reloadDelayCount = 7;
+            if(range>0)range--;
+            reloadDelayCount = 7;// time between ammo reloads
         }
     }
     public void fireUlt(){
-        ultammo+=5;
-        setPlayerLockRotation(true);
-        setContinueUlt(true);
+        if(continueUlt()){
+            ultammo--;
+            SuperPepperFlame bullet = new SuperPepperFlame(getHolder().getTargetRotation(), getHolder(), this);
+            getHolder().addObjectHere(bullet);
+            if(ultammo<=0){
+                setContinueUlt(false);
+                setPlayerLockRotation(false);
+            }
+        }else{
+            setPlayerLockRotation(true);
+            setContinueUlt(true);
+            ultammo+=5;
+        }
     }
     public void notifyHit(){
-        //
+        range+=8;
+        if(range>2000){
+            range = 2000;
+        }
     }
     public int getUlt(){
         return ult;

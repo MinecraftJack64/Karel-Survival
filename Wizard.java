@@ -98,7 +98,7 @@ public class Wizard extends Zombie
             }
             getWorld().getGame().getSpawner().setBossPhase(phase);
         }
-        
+        //if(true)return;// DEBUG
         if(checkSpores()){
             sporeammo++;
         }

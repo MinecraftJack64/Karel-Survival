@@ -5,25 +5,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * 
  * @author Poul Henriksen
  */
-public class PepperFlame extends Bullet
+public class SuperPepperFlame extends Bullet
 {
     /** The damage this bullet will deal */
-    //private static final int damage = 50;
+    private CapsaicinTorch torch;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
     
-    public PepperFlame(double rotation, int rg, GridObject source)
+    public SuperPepperFlame(double rotation, GridObject source, CapsaicinTorch toNotify)
     {
         super(rotation, source);
-        setSpeed(18);
-        setLife(7+rg/4);
-        setDamage(1);
         setNumTargets(-1);
+        torch = toNotify;
     }
     
     public void doHit(GridEntity targ){
-        targ.applyEffect(new PoisonEffect(1,1,getLife()+7,this));
+        targ.applyEffect(new PoisonEffect(1,1,7,this));
         super.doHit(targ);
+        torch.notifyHit();
     }
 }

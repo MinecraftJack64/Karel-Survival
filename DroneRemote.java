@@ -14,7 +14,7 @@ public class DroneRemote extends Weapon
     private int ultreload = 0;
     public void fire(){
         if(drone!=null){
-            drone.attack();
+            drone.attack(getAttackUpgrade()==1);
         }
         //show the lightning
         //Sounds.play("electicity");
@@ -28,7 +28,7 @@ public class DroneRemote extends Weapon
         return ult;
     }
     public void reload(){
-        if(ultreload>=5){chargeUlt(1);ultreload = 0;}
+        if(ultreload>=5){chargeUlt(5);ultreload = 0;}
         else{
             ultreload++;
         }
