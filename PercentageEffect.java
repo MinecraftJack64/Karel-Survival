@@ -20,4 +20,14 @@ public class PercentageEffect extends DurationEffect
     public double getPercentage(){
         return percentage;
     }
+    public void setPercentage(double val){
+        percentage = val;
+    }
+    public double getEffectiveness(){
+        return (1-getPercentage())*getDuration();
+    }
+    public void stack(Effect other){
+        super.stack(other);
+        setPercentage((getEffectiveness()+((PercentageEffect)other).getEffectiveness())/((DurationEffect)other).getDuration());
+    }
 }

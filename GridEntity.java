@@ -336,7 +336,7 @@ public abstract class GridEntity extends GridObject
             Sounds.play("hit");
         }
         damage(dmg);
-        if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, dmg);
+        if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, (int)(dmg*source.damageSecrecy()*damageExposure()));
         if(getHealth()<=0)die(source);
     }
     public void hitIgnoreShield(int dmg, GridObject source){

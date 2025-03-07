@@ -43,4 +43,7 @@ public class DurationEffect extends Effect
     public int getCollisionProtocol(){
         return 1;
     }
+    public void stack(Effect other){
+        duration+=((DurationEffect)other).getDuration();
+    }
 }

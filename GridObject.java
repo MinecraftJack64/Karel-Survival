@@ -321,11 +321,21 @@ public abstract class GridObject extends KActor
         dirmomentum = direction;
         arcframe = 0;
     }
+    // if this object will be notified when it does damage
     public boolean covertDamage(){
         return false;
     }
+    // 0 to 1, how much this object should be notified when it does damage
+    public double damageSecrecy(){
+        return 1;
+    }
+    // if this object will notify when damaged
     public boolean willNotify(GridObject source){
         return true;
+    }
+    // 0 to 1, how much this object should notify its damagers
+    public double damageExposure(){
+        return 1;
     }
     public void doLanding(){}
     public void addObjectHere(GridObject obj){

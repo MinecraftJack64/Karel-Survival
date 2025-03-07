@@ -92,7 +92,7 @@ public class ProtonWave extends Hitter
     public void doHit(GridEntity g){
         super.doHit(g);
         if(radiate){
-            g.applyEffect(new PoisonEffect(5, 3, -1, this));
+            g.applyEffect(new FatalPoisonEffect(5, 3, this));
         }
     }
     public boolean covertDamage(){
