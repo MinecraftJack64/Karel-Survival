@@ -60,6 +60,7 @@ public class WeedwackerZombie extends Zombie
             super.behave();
         }else{
             double ang = face(getTarget(), true);
+            bd.spin();
             if(distanceTo(getTarget())>68)walk(ang, 0.8);
             else if(distanceTo(getTarget())<30)super.behave();
         }

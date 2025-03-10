@@ -27,7 +27,7 @@ public class LaserZombie extends Zombie
         rocket.scale(45, 45);
         setImage(rocket);
         setRotation(180);
-        setSpeed(4);
+        setSpeed(3.2);
         startHealth(150);
     }
 

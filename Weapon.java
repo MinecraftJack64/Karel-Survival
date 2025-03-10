@@ -112,6 +112,7 @@ public abstract class Weapon implements Item, Tickable
         if(!ultshield){
             ultcharge = 0;
             ultready = false;
+            ultuses = 0;
             getHolder().getWorld().setUltCharge(ultcharge);
         }else{
             ultshield = false;

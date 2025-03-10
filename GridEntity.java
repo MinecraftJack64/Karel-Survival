@@ -23,9 +23,11 @@ public abstract class GridEntity extends GridObject
     private boolean detectable = true;//if enemies can see you
     boolean isdead = false;
     private GridObject killer;
+    private Shield healthShield;
     private ArrayList<Shield> shields = new ArrayList<Shield>();
     private int maxshields = 10;
     private ArrayList<ShieldBar> shieldBars = new ArrayList<ShieldBar>();
+    private HashSet<Class> effectImmunities = new HashSet<Class>();
     public boolean isDead(){
         return isdead;
     }
@@ -40,6 +42,7 @@ public abstract class GridEntity extends GridObject
     public void die(GridObject source){
         isdead = true;
         killer = source;
+        setHealth(0);
         while(killer instanceof SubAffecter&&((SubAffecter)killer).getSource()!=null){
             killer = ((SubAffecter)killer).getSource();
         }
@@ -85,6 +88,9 @@ public abstract class GridEntity extends GridObject
     }
 
     public boolean applyEffect(Effect e){
+        if(isImmuneTo(e)){
+            return false;
+        }
         //TODO: check immunities: for i in immunities, if i.blocks(e)return false;
         switch(e.getCollisionProtocol()){
             case 1://stacking
@@ -111,7 +117,6 @@ public abstract class GridEntity extends GridObject
         effects.add(e);
         e.appliedTo(this);
         return true;
-        //TODO: Check immunities and return false if immune
     }
     public boolean hasEffect(Class cls){
         for(Effect e: effects){
@@ -146,6 +151,22 @@ public abstract class GridEntity extends GridObject
     }
     public void clearEffect(Effect eff){
         effects.remove(eff);
+    }
+    public HashSet<Class> getEffectImmunities(){
+        return effectImmunities;
+    }
+    public void addEffectImmunities(Class... clss){
+        for(Class cls: clss){
+            getEffectImmunities().add(cls);
+        }
+    }
+    public boolean isImmuneTo(Effect eff){
+        for(Class cls: getEffectImmunities()){
+            if(cls.isInstance(eff)){
+                return true;
+            }
+        }
+        return false;
     }
     public void stun(EffectID ctrl){
         immobilize(ctrl);
@@ -205,7 +226,7 @@ public abstract class GridEntity extends GridObject
         }
         health = maxHealth = amt;
         if(showbar){
-            healthBar = new HealthBar(amt,40,5,this);
+            healthBar = new LifeBar(amt,40,5,this);
             KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
         }
     }
@@ -220,7 +241,7 @@ public abstract class GridEntity extends GridObject
     }
     public void setHealth(int h){
         health = h;
-        if(healthBar!=null)healthBar.setValue(h);
+        if(healthBar!=null&&!hasHealthShield())healthBar.setValue(h);
     }
     public int getHealth(){
         return health;
@@ -244,15 +265,33 @@ public abstract class GridEntity extends GridObject
         return (acceptExternalShields()||thing.getID().getKey()==this);
     }
     public void applyShield(Shield thing){
-        applyShield(shields.size(), thing);
+        if(acceptShield(thing))applyShield(shields.size(), thing);
     }
     public void applyShield(int pos, Shield thing){
         if(shields.size()<maxshields&&acceptShield(thing)){
             shields.add(pos, thing);
-            thing.setHolder(this);
+            thing.applyTo(this);
             shieldBars.add(pos, new ShieldBar(thing.getHealth(), 40, 5, pos, this));
             KWorld.me.addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
         }
+    }
+    public void startHealthShield(Shield amt){
+        startHealthShield(amt, true);
+    }
+    public void startHealthShield(Shield thing, boolean showbar){
+        if(healthBar!=null){
+            KWorld.me.removeObject(healthBar);
+        }
+        healthShield = thing;
+        thing.applyTo(this);
+        health = maxHealth = 1;
+        if(showbar){
+            healthBar = new ShieldBar(thing.getHealth(),40,5,-1,this);
+            KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
+        }
+    }
+    public Shield getHealthShield(){
+        return healthShield;
     }
     public void replaceShield(Shield thing){
         replaceShield(shields.size()-1, thing);
@@ -275,9 +314,12 @@ public abstract class GridEntity extends GridObject
         }
     }
     public void removeShield(){
-        removeShield(shields.size()-1);
+        if(hasShield())removeShield(shields.size()-1);
     }
     public void removeShield(ShieldID id){
+        if(hasHealthShield()&&getHealthShield().getID().equals(id)){
+            removeShield(-1);
+        }
         int i = indexOfShield(id);
         while(i>=0){
             removeShield(i);
@@ -285,15 +327,22 @@ public abstract class GridEntity extends GridObject
         }
     }
     public void removeShield(int id){
-        shields.remove(id);
-        getWorld().removeObject(shieldBars.get(id));
-        shieldBars.remove(id);
+        if(id>=0){
+            shields.remove(id);
+            getWorld().removeObject(shieldBars.get(id));
+            shieldBars.remove(id);
+        }else if(id==-1&&hasHealthShield()){
+            kill(this);
+        }
     }
     public boolean hasShield(){
         return shields.size()>0;
     }
     public boolean hasShield(ShieldID s){
         return indexOfShield(s)>=0;
+    }
+    public boolean hasHealthShield(){
+        return healthShield!=null;
     }
     public int indexOfShield(ShieldID s){
         for(int i = shields.size()-1; i >= 0; i--){
@@ -332,6 +381,12 @@ public abstract class GridEntity extends GridObject
         for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             dmg = shields.get(i).processDamage(dmg, source);
         }
+        if(healthShield!=null){
+            dmg = healthShield.processDamage(dmg, source);
+            if(healthShield==null){
+                setHealth(0);
+            }
+        }
         if(dmg>0){
             Sounds.play("hit");
         }
@@ -340,10 +395,16 @@ public abstract class GridEntity extends GridObject
         if(getHealth()<=0)die(source);
     }
     public void hitIgnoreShield(int dmg, GridObject source){
-        //dec health
+        //TODO: some shields can ignore them
         /*for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             shields.get(i);
         }*/
+        if(healthShield!=null){
+            dmg = healthShield.processDamage(dmg, source);
+            if(healthShield==null){
+                setHealth(0);
+            }
+        }
         if(dmg>0){
             Sounds.play("hit");
         }
@@ -353,7 +414,6 @@ public abstract class GridEntity extends GridObject
     }
     public void kill(GridObject source){
         removeAllShields();
-        setHealth(0);
         die(source);
     }
     public void removeAllShields(){
@@ -371,6 +431,9 @@ public abstract class GridEntity extends GridObject
             Shield s = shields.get(i);
             s.tick();
             shieldSetHealth(i, s.getHealth());
+        }
+        if(hasHealthShield()){
+            healthBar.setValue(healthShield.getHealth());
         }
     }
     public void heal(int amt, GridObject source){

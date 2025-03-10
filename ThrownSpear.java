@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class ThrownSpear extends Bullet
 {
     /** The damage this bullet will deal */
-    private static final int maxdrawcooldown = 30;
+    private static final int maxdrawcooldown = 15;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
@@ -37,10 +37,11 @@ public class ThrownSpear extends Bullet
                 setRealLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getRealX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getRealY());
                 drawcooldown--;
                 if(drawcooldown<=0){
-                    if(myspear.throwSpear()){phase = 1;setDamage(100);myspear.resetUltCharge();myspear.leaveHand();}
-                    else {phase = 2;drawcooldown = -30;}
+                    // check if throw spear
+                    if(myspear.throwSpear()){phase = 1;setDamage(100);myspear.leaveHand();}
+                    else {phase = 2;drawcooldown = -15;}
                 }
-            }else if(phase==2){
+            }else if(phase==2){//stabbing
                 setRealLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown)+returnto.getRealX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown)+returnto.getRealY());
                 drawcooldown += 10;
                 checkHit();
@@ -77,8 +78,5 @@ public class ThrownSpear extends Bullet
             targ.knockBack(getDirection(), 40, 20, this);
         }
         super.doHit(targ);
-    }
-    public boolean covertDamage(){
-        return isreturning;
     }
 }

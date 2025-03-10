@@ -23,7 +23,7 @@ public class LandedSpear extends Collectible
         int ct = 3;
         for(GridEntity g:getGEsInRange(60)){
             if(isAggroTowards(g)){
-                g.hit(1, this);
+                damage(g, 1);
                 ct--;
             }
             if(ct<=0){

@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class BossBar extends HealthBar
+public class BossBar extends LifeBar
 {
     GridEntity myGE;
     public BossBar(int max, int size, int height)

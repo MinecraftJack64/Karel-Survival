@@ -17,15 +17,15 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         distance = d;
         angle = a;
         this.source = source;
-        startHealth(1, false);
         strength = 0;
-        applyShield(new MetalHealthShield(healthshieldid, 5));
+        startHealthShield(new MetalShield(healthshieldid, 6));
+        addEffectImmunities(PoisonEffect.class);
     }
     public boolean acceptExternalShields(){
         return false;
     }
     public WeedwackerBlade(GridEntity source){
-        this(75, -90, source);
+        this(125, -90, source);
     }
     public GridObject getSource(){
         return source;
@@ -40,7 +40,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         super.kAct();
     }
     public void animate(){
-        if(canAttack())setRealRotation(getRealRotation()+30);
+        //if(canAttack())setRealRotation(getRealRotation()+30);
     }
     public void behave(){
         matchTeam(source);
@@ -51,7 +51,10 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         if(!hasShield(ultshieldid)){
             setOpacityPercent(1);
         }
+    }
+    public void spin(){
         if(canAttack()){
+            setRealRotation(getRealRotation()+30);
             ammo++;
             if(ammo>=3){
                 attack();
@@ -69,9 +72,6 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public boolean hasUlt(){
         return hasShield(ultshieldid);
     }
-    public Shield getHealthShield(){
-        return getShield(0);
-    }
     public void notifyDamage(GridEntity s, int dmg){
         source.notifyDamage(s, dmg);
     }
@@ -87,10 +87,13 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         }
     }
     public void hit(int dmg, GridObject s){
-        source.notifyDamage(null, dmg);
+        source.notifyDamage(this, dmg);
         super.hit(dmg, s);
     }
     public boolean canDetect(){
+        return false;
+    }
+    public boolean canBePulled(){
         return false;
     }
     public boolean canAttack(){

@@ -59,6 +59,7 @@ public class SpearWeapon extends Weapon
     }
     public void leaveHand(){
         spearinhand = false;
+        resetUltCharge();
     }
     public void enterHand(){
         spearinhand = true;
@@ -85,6 +86,7 @@ public class SpearWeapon extends Weapon
             getHolder().addObjectHere(bullet);
         }else{
             hasspear = true;
+            getHolder().heal(getHolder(), 200);
         }
     }
     public SpearWeapon(GridObject actor){

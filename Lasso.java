@@ -34,6 +34,9 @@ public class Lasso extends Reelin
             pullTowards(latchx, latchy, 20);
             getSource().stun(pullStun);
             getSource().pullTowards(this, 10);
+            if(distanceTo(getSource())<20){
+                die();
+            }
         }
     }
     public void die(){
@@ -67,6 +70,7 @@ public class Lasso extends Reelin
         }
         if(immobs>0){latchx/=immobs;
         latchy/=immobs;}
+        immobiletarget = immobs>0;
         return immobs>0;
     }
     public void doHit(GridEntity targ){

@@ -30,9 +30,10 @@ public class Player extends GridEntity {
         this.setImage(this.rocket);
         this.setRotation(0);
         diff = KWorld.me.currentDiff();
-        this.startHealth(diffhealths[diff]);
         if(diff==0){
-            applyShield(new ExternalImmunityShield(new ShieldID(this), -1));
+            startHealthShield(new ExternalImmunityShield(new ShieldID(this), -1));
+        }else{
+            this.startHealth(diffhealths[diff]);
         }
         maxsprint = diffmaxsprint[diff];
         sprintrecoverrate = diffsprintrecovery[diff];
