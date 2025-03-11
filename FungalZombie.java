@@ -58,17 +58,18 @@ public class FungalZombie extends Zombie
     }
 
     public void attack(){
-        //explode if not stunned
+        //explode, works when stunned
         explodeOn(225, (g)->{
             if(isAlliedWith(g)){//
                 //g.applyeffect(new DamagePercentageEffect(1.5, 120));
                 g.applyEffect(new SpeedPercentageEffect(1.5, 120, this, new EffectID(this, "speedboost")));
-            }else if(isAggroTowards(g)){
-                g.applyEffect(new PoisonEffect((int)(75+(225-distanceTo(g))), 30, 4, this));
-                g.hit(50, this);
             }
-        }, null);//replace with better explosion later
+        }, null);//TODO replace with better explosion later
+        addObjectHere(new FungalWave(this));
         Sounds.play("sporespray");
+    }
+    public void notifyHit(GridEntity g){
+        g.applyEffect(new PoisonEffect((int)(75+(225-distanceTo(g))), 30, 4, this));
     }
     public void passiveattack(){
         explodeOn(250, "enemy", (g)->{g.applyEffect(new SpeedPercentageEffect(distanceTo(g)/400+0.3, 4, this, new EffectID(this, "slow")));}, null);
