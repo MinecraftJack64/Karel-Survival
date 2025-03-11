@@ -12,7 +12,7 @@ public class FlailCore extends Reelin
     public FlailCore(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, source);
-        setExplosionRange(100);
+        setRange(100);
         setDamage(450);
         setSpeed(13);
     }

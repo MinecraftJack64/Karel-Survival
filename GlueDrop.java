@@ -13,7 +13,7 @@ public class GlueDrop extends FlyingRock
     {
         //focus is 0 to 1
         super(rotation, targetdistance, Math.max(30, 30*focus), source);
-        setExplosionRange(25);
+        setRange(25);
         setNumTargets(focus>=0.5?2:1);
         this.focus = focus;
         setDamage((int)(focus*10+15));

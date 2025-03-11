@@ -16,7 +16,7 @@ public class Pinpoint extends FlyingRock
     public Pinpoint(boolean issuper, GridObject source)
     {
         super(0, 0, 80, source);
-        setExplosionRange(35);
+        setRange(35);
         setNumTargets(1);
         setDieOnHit(false);
         immobilize = new EffectID(this);

@@ -17,7 +17,7 @@ public class SlammingSpear extends FlyingRock
         super(0, 0, 30, source);
         scores = hs;
         myspear = sp;
-        setExplosionRange(35);
+        setRange(35);
         //if(load instanceof GridEntity)getWorld().allEntities.add((GridEntity)load);
     }
     public double getGravity(){
@@ -28,7 +28,7 @@ public class SlammingSpear extends FlyingRock
     }
     
     public void checkAsteroidHit(){
-        super.checkAsteroidHit();
+        super.checkHit();
         for(var thing: scores.entrySet()){
             if(!thing.getKey().isDead()){
                 thing.getKey().knockBack(face(thing.getKey(), false), 80, 40, this);

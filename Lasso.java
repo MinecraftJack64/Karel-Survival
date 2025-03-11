@@ -16,7 +16,7 @@ public class Lasso extends Reelin
     public Lasso(double rotation, double targetdistance, GridObject source)
     {
         super(rotation, targetdistance, targetdistance/2, source);
-        setExplosionRange(100);
+        setRange(100);
         targets = new ArrayList<GridEntity>();
         pullStun = new EffectID(this, "pull");
         afterStun = new EffectID(this, "pullfinish");

@@ -30,7 +30,7 @@ public class Bullet extends Projectile
         setRealRotation(rotation+90);
         //addForce(new Vector(rotation, 15));
         setSpeed(15);
-        setDamage(50);
+        setDamage(40);
         setNumTargets(1);
         setAggression(true);
         setSelfHarm(false);

@@ -11,7 +11,7 @@ public class FireworkRocket extends FlyingRock
     public FireworkRocket(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, source);
-        setExplosionRange(150);
+        setRange(150);
     }
     public double getGravity(){
         return 1;

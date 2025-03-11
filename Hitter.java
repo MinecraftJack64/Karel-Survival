@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Write a description of class Hitter here.
@@ -115,57 +116,12 @@ public class Hitter extends GridObject implements SubAffecter
      */
     public void checkHit()
     {
-        HashSet<GridEntity> asteroid = new HashSet<GridEntity>();
-        if(getCollisionMode().equals("collide"))asteroid.addAll((ArrayList<GridEntity>)getIntersectingObjects(GridEntity.class));
-        else if(getCollisionMode().equals("radius"))asteroid.addAll(getGEsInRange(getRange()));
+        HashSet<GridEntity> asteroid = getColliding();
         if(asteroid.size()==0||getNumTargets()==0){
             return;
         }
         for(GridEntity thing: asteroid){
-            if(thing==getSource()){
-                if(willSelfHarm()){
-                    //
-                }else{
-                    continue;//avoid hitting source
-                }
-            }
-            if(isAttack()&&isAggroTowards(thing)&&checkHeight(thing)){
-                if(!hitstory.contains(thing)){
-                    doHit(thing);
-                    onHit(thing);
-                    changeNumTargets(-1);
-                    if(!canMultiHit())hitstory.add(thing);
-                    if(getNumTargets()==0){
-                        break;
-                    }
-                    continue;
-                }else if(clipHits()){
-                    doHit(thing);
-                    onHit(thing);
-                    continue;
-                }else{
-                    onHit(thing);
-                    continue;
-                }
-            }
-            if(willHitAllies()&&isAlliedWith(thing)&&checkHeight(thing)){
-                if(!hitstory.contains(thing)||clipHits()){
-                    doHit(thing);
-                    onHit(thing);
-                    changeNumTargets(-1);
-                    if(!canMultiHit())hitstory.add(thing);
-                    if(getNumTargets()==0){
-                        break;
-                    }
-                }else if(clipHits()){
-                    doHit(thing);
-                    onHit(thing);
-                    continue;
-                }else{
-                    onHit(thing);
-                    continue;
-                }
-            }
+            if(!processPotentialHit(thing))break;
         }
         if(getTrackAfterHit()){
             HashSet<GridEntity> g = new HashSet<GridEntity>();
@@ -179,6 +135,39 @@ public class Hitter extends GridObject implements SubAffecter
         if(canMultiHit()){
             setHitStory(asteroid);
         }
+    }
+    //return false if no more targets
+    public boolean processPotentialHit(GridEntity thing){
+        if(willHit(thing)){
+            if(!hitstory.contains(thing)){
+                doHit(thing);
+                onHit(thing);
+                changeNumTargets(-1);
+                if(!canMultiHit())hitstory.add(thing);
+                if(getNumTargets()==0){
+                    return false;
+                }
+            }else if(clipHits()){
+                doHit(thing);
+                onHit(thing);
+            }else{
+                onHit(thing);
+            }
+        }
+        return true;
+    }
+    public HashSet<GridEntity> getColliding(){
+        HashSet<GridEntity> asteroid = new HashSet<GridEntity>();
+        if(getCollisionMode().equals("collide"))asteroid.addAll(getCollidingGEs());
+        else if(getCollisionMode().equals("radius"))asteroid.addAll(getGEsInRange(getRange()));
+        return asteroid;
+    }
+    public List<GridEntity> getCollidingGEs(){
+        List<GridEntity> ges = (List<GridEntity>)getIntersectingObjects(GridEntity.class);
+        return ges.stream().filter(g->checkHeight(g)).collect(Collectors.toList());
+    }
+    public boolean willHit(GridEntity thing){
+        return thing==getSource()&&willSelfHarm() || isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing);
     }
     public void doHit(GridEntity asteroid){
         damage(asteroid, getDamage(asteroid));

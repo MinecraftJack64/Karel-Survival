@@ -13,7 +13,7 @@ public class MoleUppercut extends FlyingRock
     public MoleUppercut(double rotation, double targetdistance, double height, boolean sup, GridObject source, Mole tonotify)
     {
         super(rotation, targetdistance, height, source);
-        setExplosionRange(75);
+        setRange(75);
         setDamage(125);
         firstact = true;
         issuper = sup;
@@ -21,7 +21,7 @@ public class MoleUppercut extends FlyingRock
     }
     public void applyPhysics(){
         if(firstact){//so that it hits enemies on launch
-            checkAsteroidHit();
+            checkHit();
             firstact = false;
         }
         super.applyPhysics();

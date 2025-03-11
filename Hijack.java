@@ -13,15 +13,8 @@ public class Hijack extends Rocket
     {
         super(rotation, targetdistance, height, source, source);
         this.toNotify = toNotify;
-        setExplosionRange(200);
+        setRange(200);
         setNumTargets(1);
-    }
-    public void applyPhysics(){
-        super.applyPhysics();
-    }
-    
-    public void checkAsteroidHit(){
-        super.checkAsteroidHit();
     }
     public void doHit(GridEntity g){
         toNotify.notifyHit(g);

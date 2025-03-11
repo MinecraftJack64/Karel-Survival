@@ -13,7 +13,7 @@ public class RainingPoisonArrow extends FlyingRock
     {
         super(rotation, targetdistance, height, source);
         focus = fc;
-        setExplosionRange(50);
+        setRange(50);
     }
     public double getGravity(){
         return 5;
