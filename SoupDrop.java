@@ -6,20 +6,11 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class SoupDrop extends FlyingRock
+public class SoupDrop extends Dropper
 {
-    private GridObject load;
     public SoupDrop(double rotation, double targetdistance, double height, double fc, GridObject source)
     {
-        super(rotation, targetdistance, height, source);
-        load = new SoupBoost(fc, this);
-    }
-    public double getGravity(){
-        return 1;
-    }
-    
-    public void checkAsteroidHit(){
-        getWorld().addObject(load, getRealX(), getRealY());
-        Sounds.play("drop");
+        super(rotation, targetdistance, height, null, source);
+        setLoad(new SoupBoost(fc, this));
     }
 }

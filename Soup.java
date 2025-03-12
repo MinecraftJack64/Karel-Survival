@@ -46,6 +46,7 @@ public class Soup extends Weapon
             ammo.reload();
             updateAmmo((int)(focus*40));
         }
+        chargeUlt(100);
     }
     public Soup(GridObject actor){
         super(actor);

@@ -100,6 +100,10 @@ public class Hitter extends GridObject implements SubAffecter
     public void setHitStory(HashSet<GridEntity> h){
         hitstory = h;
     }
+    public void setHitStory(List<GridEntity> h){
+        clearHitStory();
+        hitstory.addAll(h);
+    }
     public void clearHitStory(){
         hitstory.clear();
     }
@@ -116,7 +120,7 @@ public class Hitter extends GridObject implements SubAffecter
      */
     public void checkHit()
     {
-        HashSet<GridEntity> asteroid = getColliding();
+        List<GridEntity> asteroid = getColliding();
         if(asteroid.size()==0||getNumTargets()==0){
             return;
         }
@@ -129,7 +133,7 @@ public class Hitter extends GridObject implements SubAffecter
             g.removeAll(asteroid);
             System.out.println((getHitStory().size()>=1)+" "+(asteroid.size()>=1));
             for(GridEntity e: g){
-                if((isAttack()&&isAggroTowards(e)&&checkHeight(e))&&(willHitAllies()&&isAlliedWith(e)&&checkHeight(e)))afterHit(e);
+                if(willHit(e))afterHit(e);
             }
         }
         if(canMultiHit()){
@@ -156,10 +160,11 @@ public class Hitter extends GridObject implements SubAffecter
         }
         return true;
     }
-    public HashSet<GridEntity> getColliding(){
-        HashSet<GridEntity> asteroid = new HashSet<GridEntity>();
+    public List<GridEntity> getColliding(){
+        List<GridEntity> asteroid = new ArrayList<GridEntity>();
         if(getCollisionMode().equals("collide"))asteroid.addAll(getCollidingGEs());
         else if(getCollisionMode().equals("radius"))asteroid.addAll(getGEsInRange(getRange()));
+        Collections.sort(asteroid, Comparator.comparingDouble(this::distanceTo));
         return asteroid;
     }
     public List<GridEntity> getCollidingGEs(){

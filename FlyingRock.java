@@ -38,6 +38,7 @@ public class FlyingRock extends Projectile
         setCollisionMode("radius");
         setRange(100);
         setNumTargets(-1);
+        setClipHits(true);//consider allowing projectiles to hit while in the air TODO
     }
     
     public double percentDone(){

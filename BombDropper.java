@@ -6,20 +6,10 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class BombDropper extends FlyingRock
+public class BombDropper extends Dropper
 {
-    private GridObject load;
     public BombDropper(double rotation, double targetdistance, double height, GridObject toSpawn, GridObject source)
     {
-        super(rotation, targetdistance, height, source);
-        load = toSpawn;
-    }
-    public double getGravity(){
-        return 1;
-    }
-    
-    public void checkAsteroidHit(){
-        getWorld().addObject(load, getRealX(), getRealY());
-        Sounds.play("drop");
+        super(rotation, targetdistance, height, toSpawn, source);
     }
 }

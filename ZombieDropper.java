@@ -1,25 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
-import java.util.List;
 
 /**
  * A bullet that can hit asteroids.
  * 
  * @author Poul Henriksen
  */
-public class ZombieDropper extends FlyingRock
+public class ZombieDropper extends Dropper
 {
-    private GridObject load;
     public ZombieDropper(double rotation, double targetdistance, double height, GridObject toSpawn, GridObject source)
     {
-        super(rotation, targetdistance, height, source);
-        load = toSpawn;
-    }
-    public double getGravity(){
-        return 1;
-    }
-    
-    public void checkAsteroidHit(){
-        getWorld().addObject(load, getRealX(), getRealY());
-        Sounds.play("zombiedrop");
+        super(rotation, targetdistance, height, toSpawn, source);
     }
 }

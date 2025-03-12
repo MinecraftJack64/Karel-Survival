@@ -6,20 +6,10 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class CampfireDropper extends FlyingRock
+public class CampfireDropper extends Dropper
 {
-    private GridObject load;
     public CampfireDropper(double rotation, double targetdistance, double height, GridObject toSpawn, GridObject source)
     {
-        super(rotation, targetdistance, height, source);
-        load = toSpawn;
-    }
-    public double getGravity(){
-        return 1;
-    }
-    
-    public void checkAsteroidHit(){
-        getWorld().addObject(load, getRealX(), getRealY());
-        Sounds.play("zombiedrop");
+        super(rotation, targetdistance, height, toSpawn, source);
     }
 }
