@@ -7,7 +7,7 @@ import greenfoot.*;
  */
 public class Highjacker extends Weapon
 {
-    private static final int ult = 2500, reload = 70;
+    private static final int ult = 2500, reload = 50;
     private Scissors lasso;
     private int ultchargecooldown = 0, ammo;
     private boolean mounted = false;
@@ -18,9 +18,9 @@ public class Highjacker extends Weapon
         if(mounted){
             if(ammo>=reload&&mount.isOnGround()){
                 double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 400);
-                FlyingRock bullet = new FlyingRock (getHolder().getTargetRotation(), d, d/2, getHolder());
+                HijackHealer bullet = new HijackHealer (getHolder().getTargetRotation(), d, d/2, mount);
                 mount.addObjectHere(bullet);
-                ammo = getAttackUpgrade()==1?(50-(int)(d/8)):0;
+                ammo = 0;
             }
         }else if (lasso == null) 
         {

@@ -27,7 +27,7 @@ public class SlammingSpear extends FlyingRock
         damage(g, 100);
     }
     
-    public void checkAsteroidHit(){
+    public void checkHit(){
         super.checkHit();
         for(var thing: scores.entrySet()){
             if(!thing.getKey().isDead()){
