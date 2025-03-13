@@ -34,16 +34,11 @@ public class FlyingRock extends Projectile
         rot = rotation;
         hitstory = new HashSet<GridEntity>();
         path = new Arc(targetdistance, height, getGravity());
-        setExplosionRange(100);
         setDamage(damage);
+        setCollisionMode("radius");
+        setRange(100);
         setNumTargets(-1);
-    }
-    
-    public void setExplosionRange(int amt){
-        range = amt;
-    }
-    public int getExplosionRange(){
-        return range;
+        setClipHits(true);//consider allowing projectiles to hit while in the air TODO
     }
     
     public double percentDone(){
@@ -68,7 +63,7 @@ public class FlyingRock extends Projectile
     {
         if(getRealHeight()<=0&&path.percentDone(frame)>0.5) {
             setRealHeight(0);
-            checkAsteroidHit();
+            checkHit();
             if(dieonhit)die();
         } 
         else {
@@ -92,9 +87,9 @@ public class FlyingRock extends Projectile
     /**
      * Check whether we have hit an asteroid.
      */
-    public void checkAsteroidHit()
+    public void oldCheckAsteroidHit()
     {
-        List<GridEntity> l = getGEsInRange(getExplosionRange());
+        List<GridEntity> l = getGEsInRange(getRange());
         if(getNumTargets()<0){
             for(GridEntity g:l){
                 if(g!=null&&isAggroTowards(g)){

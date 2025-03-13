@@ -12,7 +12,7 @@ public class Gun extends Weapon
     private static final int gunReloadTime = 5;
     private boolean quickcharge = false;
     private int reloadDelayCount;
-    private static final int ult = 1500;
+    private static final int ult = 1750;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {

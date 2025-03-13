@@ -63,7 +63,7 @@ public class Shotgun extends Weapon implements AmmoHolder
             if(disabledcooldown ==0){
                 getAmmoBar().reset();
             }
-        }else{
+        }else if(lasso==null){
             reloadDelayCount++;
             if(reloadDelayCount>=gunReloadTime){
                 ammo.reload();

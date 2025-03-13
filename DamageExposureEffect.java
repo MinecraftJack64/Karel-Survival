@@ -16,6 +16,10 @@ public class DamageExposureEffect extends PercentageEffect
     public void onApply(){
         getTarget().applyShield(new PercentageShield(shield, 1-getPercentage(), -1));
     }
+    public void setPercentage(double val){
+        super.setPercentage(val);
+        //TODO
+    }
     public void onClear(){
         getTarget().removeShield(shield);
     }

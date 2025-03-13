@@ -12,9 +12,10 @@ public class FlailCore extends Reelin
     public FlailCore(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, source);
-        setExplosionRange(100);
+        setRange(100);
         setDamage(450);
         setSpeed(13);
+        setDamageOnReturn(true);
     }
     public int getDamage(GridEntity targ){
         double multiplier = distanceTo(targ)<=naildistance?1.25:1;

@@ -66,6 +66,7 @@ public class Wizard extends Zombie
         turrets = new ArrayList<GridEntity>();
         lasers = new ArrayList<GridEntity>();
         wizardStun = new EffectID(this);
+        addEffectImmunities(TeamSwitchEffect.class);
     }
     //ovveride this
     public int getXP(){
@@ -300,14 +301,6 @@ public class Wizard extends Zombie
     public boolean isWall(){
         return false;
     }
-    public boolean applyEffect(Effect e){
-        if(!(e instanceof TeamSwitchEffect)){
-            super.applyEffect(e);
-            return true;
-        }
-        return false;
-        //System.out.println("Effect applied");
-    }
     public void die(GridObject killer){
         if(phase==5){
             setHealth(1);
@@ -318,5 +311,8 @@ public class Wizard extends Zombie
             Sounds.play("bossdie");
             super.die(killer);
         }
+    }
+    public String getName(){
+        return "Setup Wizard";
     }
 }

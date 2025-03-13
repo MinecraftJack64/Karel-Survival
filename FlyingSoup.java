@@ -13,7 +13,7 @@ public class FlyingSoup extends FlyingRock
     {
         super(rotation, targetdistance, height, source);
         focus = fc;
-        setExplosionRange(100);
+        setRange(100);
         setDamage((int)(100*focus));
     }
     public double getGravity(){

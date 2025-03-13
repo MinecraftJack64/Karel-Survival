@@ -14,7 +14,7 @@ public class Weedwacker extends Weapon
     private int resurrect = 120;
     public void fire(){
         if(drone!=null){
-            //
+            //drone.spin();
         }
         //show the lightning
         //Sounds.play("electicity");
@@ -39,9 +39,9 @@ public class Weedwacker extends Weapon
             if(drone.isDead())drone = null;
             else{
                 if(getAttackUpgrade()==1)drone.setStrength(5-drone.getHealthShield().getHealth());
+                drone.spin();
             }
-        }
-        if(drone==null){
+        }else{
             if(resurrect<=0){
                 drone = new WeedwackerBlade(getHolder());
                 getHolder().addObjectHere(drone);

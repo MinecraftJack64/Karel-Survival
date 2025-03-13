@@ -16,7 +16,9 @@ public class Rocket extends FlyingRock
     {
         super(rotation, targetdistance, height, source);
         load = toSpawn;
-        setExplosionRange(150);
+        setRange(150);
+        setHitAllies(true);
+        setSelfHarm(true);
         hasLanded = false;
         loadStun = new EffectID(this, "carryload");
         load.stun(loadStun);
@@ -40,14 +42,14 @@ public class Rocket extends FlyingRock
         return hasLanded;
     }
     
-    public void checkAsteroidHit(){
+    public void checkHit(){
         load.pullTo(getRealX(), getRealY(), 0);
         load.unstun(loadStun);
         hasLanded = true;
         if(targetsymbol!=null){
             getWorld().removeObject(targetsymbol);
         }
-        super.checkAsteroidHit();
+        super.checkHit();
         Sounds.play("rocketcrash");
     }
     public void doHit(GridEntity g){

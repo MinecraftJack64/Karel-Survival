@@ -8,11 +8,10 @@ import java.util.List;
  */
 public class BigWaterBalloon extends FlyingRock
 {
-    private double focus;
     public BigWaterBalloon(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, source);
-        setExplosionRange(50);
+        setRange(50);
         setDamage(400);
     }
     public double getGravity(){

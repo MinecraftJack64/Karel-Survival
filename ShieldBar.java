@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ShieldBar extends StatusBar
+public class ShieldBar extends HealthBar
 {
     GridEntity myGE;
     private int myid = 0;
@@ -16,7 +16,7 @@ public class ShieldBar extends StatusBar
     }*/
     public ShieldBar(int max, int size, int height, int id, GridEntity of)
     {
-        super(max, max, size, height, new Color(26, 148, 229));//BLUE
+        super(max, size, height, new Color(26, 148, 229));//BLUE
         myGE = of;
         myid = id;
     }

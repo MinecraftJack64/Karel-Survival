@@ -17,8 +17,11 @@ public class Dropper extends FlyingRock
     public double getGravity(){
         return 1;
     }
+    public void setLoad(GridObject n){
+        load = n;
+    }
     
-    public void checkAsteroidHit(){
+    public void checkHit(){
         getWorld().addObject(load, getRealX(), getRealY());
         Sounds.play("zombiedrop");
     }

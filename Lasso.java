@@ -16,7 +16,7 @@ public class Lasso extends Reelin
     public Lasso(double rotation, double targetdistance, GridObject source)
     {
         super(rotation, targetdistance, targetdistance/2, source);
-        setExplosionRange(100);
+        setRange(100);
         targets = new ArrayList<GridEntity>();
         pullStun = new EffectID(this, "pull");
         afterStun = new EffectID(this, "pullfinish");
@@ -34,6 +34,9 @@ public class Lasso extends Reelin
             pullTowards(latchx, latchy, 20);
             getSource().stun(pullStun);
             getSource().pullTowards(this, 10);
+            if(distanceTo(getSource())<20){
+                die();
+            }
         }
     }
     public void die(){
@@ -67,6 +70,7 @@ public class Lasso extends Reelin
         }
         if(immobs>0){latchx/=immobs;
         latchy/=immobs;}
+        immobiletarget = immobs>0;
         return immobs>0;
     }
     public void doHit(GridEntity targ){
