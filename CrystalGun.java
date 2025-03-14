@@ -7,7 +7,7 @@ import greenfoot.*;
  */
 public class CrystalGun extends Weapon
 {
-    private static final int gunReloadTime = 30;
+    private static final int gunReloadTime = 25;
     private int reloadDelayCount;
     private static final int ult = 1000;
     public void fire(){

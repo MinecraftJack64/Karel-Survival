@@ -49,7 +49,7 @@ public class FungalZombie extends Zombie
             passiveattack();
             passivereloadDelayCount = 0;
         }
-        if(distanceTo(getTarget())>200)
+        if(distanceTo(getTarget())>150)
             walk(monangle, 1);
     }
     @Override

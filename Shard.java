@@ -18,16 +18,16 @@ public class Shard extends Bullet
         super(rotation, source);
         setSpeed(13);
         setLife(30);
-        setDamage(100);
+        setDamage(120);
         setNumTargets(-1);
-        bonus = 30;
+        bonus = 60;
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        if(face(targ, false)>getDirection()){
-            setDirection(getDirection()+90);
-        }else{
+        if(face(targ, false)%360>getDirection()%360){
             setDirection(getDirection()-90);
+        }else{
+            setDirection(getDirection()+90);
         }
         setRealRotation(getRealRotation()+90);
         addLife(bonus);
