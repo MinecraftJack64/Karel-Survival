@@ -264,6 +264,7 @@ public class Wizard extends Zombie
             sy+=g.getRealY()-getRealY();
             n++;
         }
+        if(n==0)return;
         sx/=n;
         sy/=n;
         spawnZombieAt(new LaserSquad(phase, lasers, this), getRealX()*2-sx, getRealY()*2-sy);

@@ -21,7 +21,7 @@ public class ZombieFactory
             case "ninja": return new NinjaZombie();
             case "doctor": return new DoctorZombie();
             case "hornetneck": return new HornetNeckZombie();
-            //hornet
+            case "hornet": return new Hornet();
             case "laserblaster": return new LaserZombie();
             case "easterbunny": return new EasterZombie();
             case "russiandoll": return new RussianDollZombie();
@@ -31,8 +31,8 @@ public class ZombieFactory
             case "portal": return new PortalZombie();
             case "warrior": return new WarriorZombie();
             case "splitter": return new SplitterZombie();
-            //light
-            //heavy
+            case "light": return new LightZombie();
+            case "heavy": return new HeavyZombie();
             //cop
             //shaman
             case "exorcist": return new ExorcistZombie();
@@ -65,7 +65,7 @@ public class ZombieFactory
             //case "guardianangel"
             //wizard apprentice
             //vacuum
-            //assassin
+            case "assassin": return new AssassinZombie();
             //steak
             //milky
             //kitebaby
@@ -74,7 +74,7 @@ public class ZombieFactory
             //case "laser": return new SuperLaserZombie();
             //challenger
             //stripper
-            //arson
+            case "arson": return new ArsonZombie();
             //network
             //earthblock
         }

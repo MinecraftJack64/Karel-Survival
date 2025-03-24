@@ -15,6 +15,7 @@ public abstract class GridEntity extends GridObject
     private int health = maxHealth;
     HealthBar healthBar;
     public double movementspeed = 5, speedmultiplier = 1;
+    private double exposureMultiplier = 1;
     private HashSet<EffectID> immobilizers;//these store the affectors behind each effect
     private boolean canmove = true;//if you can move
     private HashSet<EffectID> silencers;
@@ -41,11 +42,8 @@ public abstract class GridEntity extends GridObject
     }
     public void die(GridObject source){
         isdead = true;
-        killer = source;
+        killer = source.getParentAffecter();
         setHealth(0);
-        while(killer instanceof SubAffecter&&((SubAffecter)killer).getSource()!=null){
-            killer = ((SubAffecter)killer).getSource();
-        }
         super.die();
         if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){}//remove from world if set to true
     }
@@ -73,6 +71,16 @@ public abstract class GridEntity extends GridObject
 
     public void setSpeedMultiplier(double perc, EffectID ctrl){
         speedmultiplier = perc;
+    }
+    
+    public double getExposure(){
+        return exposureMultiplier;
+    }
+    public void setExposure(double perc, EffectID ctrl){
+        exposureMultiplier = perc;
+    }
+    public void setExposure(double perc){
+        exposureMultiplier = perc;
     }
 
     public void setSpeed(double speed){
@@ -381,24 +389,14 @@ public abstract class GridEntity extends GridObject
         for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             dmg = shields.get(i).processDamage(dmg, source);
         }
-        if(healthShield!=null){
-            dmg = healthShield.processDamage(dmg, source);
-            if(healthShield==null){
-                setHealth(0);
-            }
-        }
-        if(dmg>0){
-            Sounds.play("hit");
-        }
-        damage(dmg);
-        if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, (int)(dmg*source.damageSecrecy()*damageExposure()));
-        if(getHealth()<=0)die(source);
+        hitIgnoreShield(dmg, source);
     }
     public void hitIgnoreShield(int dmg, GridObject source){
         //TODO: some shields can ignore them
         /*for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             shields.get(i);
         }*/
+        dmg*=getExposure();
         if(healthShield!=null){
             dmg = healthShield.processDamage(dmg, source);
             if(healthShield==null){

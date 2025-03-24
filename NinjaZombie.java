@@ -56,11 +56,11 @@ public class NinjaZombie extends Zombie
             }
         }else{
             if(phase==2){
-                if(canMove()){
+                if(canMove()&&distanceTo(target)<attackrange+10){
                     setRealLocation((attackrange*Math.cos(lastdegtotarget*Math.PI/180)+target.getRealX()), (attackrange*Math.sin(lastdegtotarget*Math.PI/180)+target.getRealY()));
                     lastdegtotarget+=getMultipliedSpeed()*1.6;
                 }else{
-                    phasecooldown = 0;//retreat when stunned/knockbacked
+                    phasecooldown = 0;//retreat when stunned/knockbacked or target is too far away to catch up to.
                 }
                 if(canAttack()){
                     if(phasecooldown%15==0){

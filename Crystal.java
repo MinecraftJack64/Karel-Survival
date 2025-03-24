@@ -19,6 +19,7 @@ public class Crystal extends GridEntity implements SubAffecter
         else targ = null;
     }
     public void behave(){
+        setExposure(Math.pow(0.8, getGEsInRange(150).stream().filter(e->e instanceof Crystal).count()));
         hit(1, this);
         if(targ==null){
             die(this);

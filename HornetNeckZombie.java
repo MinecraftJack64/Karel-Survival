@@ -49,7 +49,7 @@ public class HornetNeckZombie extends Zombie
     private void fire() 
     {
         if(bees>0&&canAttack()&&reloadDelayCount>=gunReloadTime){
-            Hornet bullet = new Hornet(this);
+            Hornet bullet = new Hornet();
             getWorld().addObject (bullet, getRealX(), getRealY());
             bees--;
             reloadDelayCount = 0;

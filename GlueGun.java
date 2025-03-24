@@ -10,7 +10,7 @@ import java.util.List;
 public class GlueGun extends Weapon
 {
     private int reloadDelayCount;
-    private static final int ult = 2000;
+    private static final int ult = 800;
     private int dropsremaining = 0;
     private int explodecooldown = -1;
     public void fire(){
@@ -27,7 +27,11 @@ public class GlueGun extends Weapon
         else if (reloadDelayCount >= getReloadTime()) 
         {
             double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), getRange());
-            GlueDrop bullet = new GlueDrop(getHolder().getTargetRotation(), d, getFocus(), getHolder());
+            GlueDrop bullet = new GlueDrop(getHolder().getTargetRotation(), d, getFocus(), getHolder()){
+                public boolean covertDamage(){
+                    return false;
+                }
+            };
             getHolder().addObjectHere(bullet);
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
@@ -62,8 +66,10 @@ public class GlueGun extends Weapon
                     g.applyEffect(new SpeedPercentageEffect(0.1, 170, getHolder()));
                     g.applyEffect(new SilenceEffect(170, getHolder()));
                     double d = getHolder().distanceTo(g)+100;
-                    GlueDrop bullet = new GlueDrop(getHolder().face(g, false), d, 5, getHolder());
-                    getHolder().addObjectHere(bullet);
+                    for(int i = 0; i < 5; i++){GlueDrop bullet = new GlueDrop(getHolder().face(g, false), d, 1, getHolder()){
+                        public boolean covertDamage(){return false;}
+                    };
+                    getHolder().addObjectHere(bullet);}
                     g.knockBack(getHolder().face(g, false), 100, 30, getHolder());
                 });
                 setContinueUlt(false);

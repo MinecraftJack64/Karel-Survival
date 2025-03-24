@@ -35,19 +35,21 @@ public class HeavyZombie extends SpawnableZombie
     private static double attackrange = 30;
     private int damage = 10;
     //ShieldBar shieldBar;
-    private boolean inShieldPhase = true;
     /**
      * Initilise this rocket.
      */
     public HeavyZombie(GridObject parent)
     {
+        this();
+        inherit(parent);
+    }
+    public HeavyZombie(){
         reloadDelayCount = 5;
         rocket.scale(45, 45);
         setImage(rocket);
         setRotation(180);
         setSpeed(0.2);
         startHealth(4000);
-        inherit(parent);
     }
     //ovveride this
     public int getXP(){

@@ -42,13 +42,16 @@ public class LightZombie extends SpawnableZombie
      */
     public LightZombie(GridObject parent)
     {
+        this();
+        inherit(parent);
+    }
+    public LightZombie(){
         reloadDelayCount = 5;
         rocket.scale(45, 45);
         setImage(rocket);
         setRotation(180);
         setSpeed(10);
         startHealth(100);
-        inherit(parent);
     }
     public void attack(){
         waittime--;

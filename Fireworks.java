@@ -43,8 +43,8 @@ public class Fireworks extends Weapon implements AmmoHolder
             ammo.reload();
         }
         if(nextammosupercharged){
-            updateAmmo(ammo.getAmmo()+1);
-        }else updateAmmo(ammo.getAmmo());
+            updateAmmo(ammo.getAmmoBar()+1);
+        }else updateAmmo(ammo.getAmmoBar());
     }
     public Fireworks(GridObject actor){
         super(actor);

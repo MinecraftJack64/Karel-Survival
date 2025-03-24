@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player extends GridEntity {
     boolean autoaim = false, isattacking = false, ismoving = false;
-    private Weapon weapon;
+    private PlayerHand hand;
     private GreenfootImage rocket = new GreenfootImage("kareln.png");
     private GreenfootImage off = new GreenfootImage("karelnOff.png");
     private Item[] inventory;
@@ -25,6 +25,7 @@ public class Player extends GridEntity {
     private int sprint;
     private double sprintamt = 1;
     public Player() {
+        hand = new PlayerHand();
         this.rocket.scale(45, 45);
         this.off.scale(45, 45);
         this.setImage(this.rocket);
@@ -74,12 +75,17 @@ public class Player extends GridEntity {
         this.inventory[31] = new PetMole(this);
         this.inventory[32] = new Soup(this);
         this.inventory[33] = new FlashDrive(this);
+        this.inventory[34] = new Inferno(this);
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }
         //rarities: common, uncommon, rare, epic, legendary, seasonal
         this.switchToSlot(0);
         this.hacooldown = 0;
+    }
+    
+    public PlayerHand getHand(){
+        return hand;
     }
 
     public Item nextSlot() {
@@ -168,49 +174,13 @@ public class Player extends GridEntity {
     public int getInventorySize() {
         return this.inventory.length;
     }
-    public double getTargetX(){
-        if(autoaim){
-            GridEntity targ = this.getNearestTarget();
-            if(targ!=null)return targ.getRealX();
-        }else if(targetLocked){
-            return oldtargetx;
-        }
-        return this.getWorld().getMouseX();
-    }
-    public double getTargetY(){
-        if(autoaim){
-            GridEntity targ = this.getNearestTarget();
-            if(targ!=null)return targ.getRealY();
-        }else if(targetLocked){
-            return oldtargety;
-        }
-        return this.getWorld().getMouseY();
-    }
-    //TODO
-    @Override
-    public double getTargetRotation(){
-        return getRealRotation();
-    }
-    public void setTargetLock(boolean t){
-        if(!targetLocked&&t){
-            oldtargetx = getTargetX();
-            oldtargety = getTargetY();
-        }
-        targetLocked = t;
-    }
-    public void setRotationLock(boolean t){
-        rotationLocked = t;
-    }
-    public void setMovementLock(boolean t){
-        movementLocked = t;
-    }
     public void behave() {
         if (this.getHeldItem() instanceof Tickable) {
             ((Tickable)this.getHeldItem()).tick();
         }
         autoaim = getWorld().isShiftDown();
         this.checkKeys();
-        double targang = face(getTargetX(), getTargetY(), canMove()&&!rotationLocked);
+        double targang = face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
         if (this.hacooldown > 20 && !this.isDead()/* && getWorld().getGame().getDifficulty<2*/) {
             heal(this, diffheal[diff]);
         }
@@ -368,5 +338,47 @@ public class Player extends GridEntity {
     @Override
     public boolean removeOnDeath(){
         return false;
+    }
+    
+    public class PlayerHand implements ItemHolder{
+        //TODO
+        @Override
+        public double getTargetRotation(){
+            return getRealRotation();
+        }
+        public double getTargetX(){
+            if(autoaim){
+                GridEntity targ = getNearestTarget();
+                if(targ!=null)return targ.getRealX();
+            }else if(targetLocked){
+                return oldtargetx;
+            }
+            return getWorld().getMouseX()+getScrollX();
+        }
+        public double getTargetY(){
+            if(autoaim){
+                GridEntity targ = getNearestTarget();
+                if(targ!=null)return targ.getRealY();
+            }else if(targetLocked){
+                return oldtargety;
+            }
+            return getWorld().getMouseY()+getScrollY();
+        }
+        public void setTargetLock(boolean t){
+            if(!targetLocked&&t){
+                oldtargetx = getTargetX();
+                oldtargety = getTargetY();
+            }
+            targetLocked = t;
+        }
+        public void setRotationLock(boolean t){
+            rotationLocked = t;
+        }
+        public void setMovementLock(boolean t){
+            movementLocked = t;
+        }
+        public Player getHolder(){
+            return Player.this;
+        }
     }
 }

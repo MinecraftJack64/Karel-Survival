@@ -26,7 +26,18 @@ public abstract class KActor extends Actor
     public void setRealLocation(double x, double y){
         rx = x;
         ry = y;
-        if(getWorld()!=null)setLocation((int)rx, (int)(ry-rh));
+        setRealLocation();
+    }
+    public void setRealLocation(){
+        if(getWorld()!=null)
+        if(isInGridWorld())setLocation((int)(rx-getScrollX()), (int)(ry-rh-getScrollY()));
+        else setLocation((int)(rx), (int)(ry-rh));
+    }
+    public double getScrollX(){
+        return getWorld().getScrollX();
+    }
+    public double getScrollY(){
+        return getWorld().getScrollY();
     }
     public void setRealLocation(double x, double y, double height){
         rh = height;
@@ -52,7 +63,7 @@ public abstract class KActor extends Actor
     }
     public void setRealHeight(double h){
         rh = h;
-        setLocation((int)rx, (int)(ry-rh));
+        setRealLocation();
     }
     public void translate(double x, double y){
         setRealLocation(getRealX()+x, getRealY()+y);
@@ -78,4 +89,7 @@ public abstract class KActor extends Actor
     }
     public void notifyWorldRemove(){};
     public void notifyWorldAdd(){};
+    public boolean isInGridWorld(){
+        return false;
+    }
 }

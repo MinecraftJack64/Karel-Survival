@@ -12,18 +12,16 @@ public class Hornet extends SpawnableZombie
 
     private GreenfootImage rocket = new GreenfootImage("hornetzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private GridEntity myhive;
     /**
      * Initilise this rocket.
      */
-    public Hornet(GridEntity hive)
+    public Hornet()
     {
         rocket.scale(20, 20);
         setImage(rocket);
         setRotation(180);
         setSpeed(4.5);
         startHealth(50);
-        myhive = hive;
     }
 
     /**
@@ -37,13 +35,10 @@ public class Hornet extends SpawnableZombie
         }
         //setRotation(getRotation()-1);
         super.behave();
-        if(myhive.isDead()){
-            hit(1, this);
-        }
     }
     public void attack(){
         super.attack();
-        if(Greenfoot.getRandomNumber(10)==0)myhive.getTarget().applyEffect(new PoisonEffect(3, 20, 3, this));
+        if(Greenfoot.getRandomNumber(10)==0)getTarget().applyEffect(new PoisonEffect(3, 20, 3, this));
     }
     
     //ovveride this

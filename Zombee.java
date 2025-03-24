@@ -19,13 +19,17 @@ public class Zombee extends SpawnableZombie
      */
     public Zombee(GridEntity hive)
     {
+        this();
+        inherit(hive);
+        myhive = hive;
+    }
+    
+    public Zombee(){
         rocket.scale(15, 15);
         setImage(rocket);
         setRotation(180);
         setSpeed(4);
         startHealth(30);
-        setTeam(hive.getTeam());
-        myhive = hive;
     }
 
     /**
@@ -37,9 +41,8 @@ public class Zombee extends SpawnableZombie
         if(getRealHeight()==0){
             setRealHeight(1);
         }
-        matchTeam(myhive);
+        if(myhive!=null)matchTeam(myhive);
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
         if(distanceTo(getTarget())>30)walk(monangle, 1);
         else{
             if(canAttack()){
@@ -48,7 +51,7 @@ public class Zombee extends SpawnableZombie
                 hit(damage, this);
             }
         }
-        if(myhive.isDead()){
+        if(myhive!=null&&myhive.isDead()){
             hit(1, this);
         }
     }
@@ -59,7 +62,7 @@ public class Zombee extends SpawnableZombie
     }
     @Override
     public GridEntity getTarget(){
-        return myhive.getTarget();
+        return myhive!=null?myhive.getTarget():getTarget();
     }
     
     public boolean canFly(){

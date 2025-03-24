@@ -43,7 +43,7 @@ public class MainMenuUI extends UI
         getWorld().addObject(playButton, go.getRealX(), dfcSelectButton.getBottom()+200);
         playButton.addPuppet();
         
-        FakePlayer rocket = new FakePlayer();
+        KarelDisplay rocket = new KarelDisplay();
         getWorld().addToGrid(rocket, 12, 10);
     }
 }

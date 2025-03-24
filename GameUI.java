@@ -239,6 +239,9 @@ public class GameUI extends UI
         newAmmo(max, value);
         ammo.divideIntoPhases(phases);
     }
+    public void newAmmo(AmmoManager ammo){
+        newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
+    }
     public void disableAmmo(){
         ammo.setVisible(false);
     }

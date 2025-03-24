@@ -12,17 +12,16 @@ public class TeslaCoil extends Weapon
     private static final int ult = 1800;
     private TeslaCoilZap zap, zap2;
     public void fire(){
+        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 500);
         if(zap!=null){
-            zap.attackAt(getHolder().getTargetX(), getHolder().getTargetY());
+            zap.attackAt(getHolder().getRealRotation()-90, d);
         }
         if(getAttackUpgrade()==1){
             if(zap2==null){
                 zap2 = new TeslaCoilZap(getHolder(), true);
                 getHolder().addObjectHere(zap2);
             }
-            double x = 2*getHolder().getRealX()-getHolder().getTargetX();
-            double y = 2*getHolder().getRealY()-getHolder().getTargetY();
-            zap2.attackAt(x, y);
+            zap2.attackAt(getHolder().getRealRotation()+90, d);
         }
         //show the lightning
         //Sounds.play("electicity");

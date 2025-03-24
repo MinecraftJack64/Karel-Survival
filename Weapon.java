@@ -29,7 +29,7 @@ public abstract class Weapon implements Item, Tickable
 {
     private int ultcharge = 0;
     private boolean ultready;
-    GridObject holder;
+    private ItemHolder hand;
     private boolean slotlocked;
     private boolean isusing;
     private boolean isulting;
@@ -44,6 +44,13 @@ public abstract class Weapon implements Item, Tickable
     public int gadgetscooldown = 0;//how long until next gadget can be activated
     public int currentgadgetuses = 0;//how many uses current gadget has
     public int currentgadgettimer = 0;//how long until gadget becomes inactive
+    public Weapon(){
+        ultready = false;
+    }
+    public Weapon(ItemHolder hand){
+        this();
+        holdWith(hand);
+    }
     public void setUltUpgrade(int id){
         atkup = id;
     }
@@ -121,12 +128,14 @@ public abstract class Weapon implements Item, Tickable
     public void cancelUltReset(){
         ultshield = true;
     }
-    public Weapon(GridObject g){
-        holder = g;
-        ultready = false;
+    public void holdWith(ItemHolder hand){
+        this.hand = hand;
     }
-    public Player getHolder(){
-        return (Player)holder;
+    public GridObject getHolder(){
+        return hand.getHolder();
+    }
+    public ItemHolder getHand(){
+        return hand;
     }
     public void chargeUlt(int amt){
         if(ultuses>0){
@@ -164,6 +173,18 @@ public abstract class Weapon implements Item, Tickable
     public void updateAmmo(int amt){
         getHolder().getWorld().gameUI().setAmmo(amt);
     }
+    public void updateAmmo(AmmoManager ammo){
+        updateAmmo(ammo.getAmmoBar());
+    }
+    public void newAmmo(int max, int value){
+        getHolder().getWorld().gameUI().newAmmo(max, value);
+    }
+    public void newAmmo(int max, int value, int phases){
+        getHolder().getWorld().gameUI().newAmmo(max, value, phases);
+    }
+    public void newAmmo(AmmoManager ammo){
+        getHolder().getWorld().gameUI().newAmmo(ammo);
+    }
     public void equip(){
         getHolder().getWorld().newUltCharge(getUlt(),ultcharge);
         Sounds.play("equip");
@@ -183,12 +204,12 @@ public abstract class Weapon implements Item, Tickable
     }
     public void setPlayerLockRotation(boolean t){
         rotlocked = t;
-        getHolder().setRotationLock(t);
-        getHolder().setTargetLock(t);
+        getHand().setRotationLock(t);
+        getHand().setTargetLock(t);
     }
     public void setPlayerLockMovement(boolean t){
         movelocked = t;
-        getHolder().setMovementLock(t);
+        getHand().setMovementLock(t);
     }
     public boolean isLocked(){
         return slotlocked||rotlocked||movelocked||isusing||isulting;

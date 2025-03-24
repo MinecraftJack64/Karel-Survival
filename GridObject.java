@@ -136,6 +136,15 @@ public abstract class GridObject extends KActor
         }
         return b;
     }
+    public GridEntity getParentAffecter(){
+        if(!(this instanceof SubAffecter)){
+            if(this instanceof GridEntity){
+                return (GridEntity)this;
+            }
+            return null;
+        }
+        return ((SubAffecter)this).getSource().getParentAffecter();
+    }
     public void ground(){
         grounded = true;
     }
@@ -396,5 +405,8 @@ public abstract class GridObject extends KActor
     public void notifyWorldAdd(){
         super.notifyWorldAdd();
         getWorld().allObjects().add(this);
+    }
+    public boolean isInGridWorld(){
+        return true;
     }
 }

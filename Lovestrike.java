@@ -47,7 +47,7 @@ public class Lovestrike extends Weapon
         if(ultchargedelay<=0){
             List<GridEntity> l = getHolder().getGEsInRange(600);
             for(GridEntity g:l){
-                if(g!=null&&getHolder().isAggroTowards(g)&&g.willNotify(getHolder())){
+                if(g!=null&&getHolder().isAggroTowards(g)&&g.willNotify((GridObject)getHolder())){
                     chargeUlt(7);
                 }
             }

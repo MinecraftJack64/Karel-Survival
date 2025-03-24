@@ -18,9 +18,9 @@ public class TeslaCoilZap extends Hitter
         weak = isweak;
         setVisible(false);
     }
-    public void attackAt(double x, double y){
+    public void attackAt(double deg, double dist){
         attacked = 1;
-        setRealLocation(x, y);
+        branchOut(getSource(), deg, dist);
         setVisible(true);
         List<GridEntity> l = getGEsInRange(100);
         //int dmg = (int)(14*Math.pow(2, -0.8*l.size())+1)*(int)Math.max(0, Math.max(1, 1-(distanceTo(getSource())-400)/100));//500 should be 0, 400 should be 1

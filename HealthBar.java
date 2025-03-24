@@ -38,4 +38,7 @@ public class HealthBar extends StatusBar
             if(myGE.isDead())getWorld().removeObject(this);
         }
     }
+    public boolean isInGridWorld(){
+        return true;
+    }
 }

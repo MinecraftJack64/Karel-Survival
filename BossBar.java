@@ -24,4 +24,7 @@ public class BossBar extends LifeBar
             super.act();
         }
     }
+    public boolean isInGridWorld(){
+        return false;
+    }
 }

@@ -14,8 +14,14 @@ public class CrystalGun extends Weapon
         if (reloadDelayCount >= gunReloadTime) 
         {
             for(int deg = 45; deg<=315; deg+=90){
-                Shard mbullet = new Shard(deg, holder);
+                Shard mbullet = new Shard(deg, holder, getAttackUpgrade()==1);
                 getHolder().addObjectHere(mbullet);
+            }
+            if(getAttackUpgrade()==1){
+                for(int deg = 0; deg<=270; deg+=90){
+                    Echo mbullet = new Echo(deg, holder);
+                    getHolder().addObjectHere(mbullet);
+                }
             }
             reloadDelayCount = 0;
         }

@@ -28,4 +28,7 @@ public class GlueDrop extends FlyingRock
         }
         super.doHit(targ);
     }
+    public boolean covertDamage(){
+        return true;
+    }
 }

@@ -53,10 +53,16 @@ public class AmmoManager
         }
     }
     public boolean hasAmmo(){
-        return getAmmo()>0;
+        return hasAmmo(1);
     }
     public void useAmmo(){
-        if(ammo>0)
-        ammo--;
+        useAmmo(1);
+    }
+    public boolean hasAmmo(int amt){
+        return getAmmo()>=amt;
+    }
+    public void useAmmo(int amt){
+        if(ammo>=amt)
+        ammo-=amt;
     }
 }

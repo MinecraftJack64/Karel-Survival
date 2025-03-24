@@ -39,6 +39,9 @@ public class KWorld extends World
     public boolean lastClicked = false; // whether or not the mouse is down
     private boolean shiftkey = false;
     
+    //scrolling
+    public double scrollX = 0, scrollY = 0;
+    
     //these are constant default values, to be deprecated
     public int gridheight = 16;
     public int gridwidth = 24;
@@ -177,6 +180,10 @@ public class KWorld extends World
         grid.place(a, x, y);
         addObject(a, gridXToRealX(x), gridYToRealY(y));
     }
+    
+    public void addToGrid(KActor a, int x, int y){
+        addObject(a, gridXToRealX(x), gridYToRealY(y));
+    }
 
     public double gridXToRealX(int x){
         return 25+x*50;
@@ -192,6 +199,14 @@ public class KWorld extends World
 
     public int realYToGridY(double y){
         return Math.round((int)(y-25)/50);
+    }
+    
+    public double getScrollX(){
+        return scrollX;
+    }
+    
+    public double getScrollY(){
+        return scrollY;
     }
 
     public double getGravity(){
@@ -341,14 +356,15 @@ public class KWorld extends World
         return paused;
     }
 
-    public void addObject(Actor a, double x, double y){
-        super.addObject(a, (int)x, (int)y);
-        if(a instanceof KActor){
-            KActor g = (KActor)a;
-            g.rx = x;
-            g.ry = y;
-            g.notifyWorldAdd();
+    public void addObject(KActor a, double x, double y){
+        a.rx = x;
+        a.ry = y;
+        if(a.isInGridWorld()){
+            x-=getScrollX();
+            y-=getScrollY();
         }
+        super.addObject(a, (int)x, (int)y);
+        a.notifyWorldAdd();
     }
     public void removeObject(Actor a){
         super.removeObject(a);

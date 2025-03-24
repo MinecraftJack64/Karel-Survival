@@ -71,6 +71,7 @@ public class Highjacker extends Weapon
         getHolder().explodeOnEnemies(100, (e)->{
             if(e!=mount)e.knockBack(getHolder().face(e, false), 80, 20, getHolder());
         });
+        getHolder().applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
         mount = null;
     }
     public int getUlt(){

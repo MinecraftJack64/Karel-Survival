@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class EasterBasket extends Weapon implements LandingHandler
 {
-    private static final int gunReloadTime = 40;
+    private static final int gunReloadTime = 20;
     private int reloadDelayCount;
     private static final int ult = 1000;
     private int hopsLeft;
