@@ -9,11 +9,11 @@ public class Gale extends Weapon
 {
     private static final int ult = 2000;
     public void fire(){
-        Draft bullet = new Draft(getHolder().getTargetRotation(), getHolder());
+        Draft bullet = new Draft(getHand().getTargetRotation(), getHolder());
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-        Draft bullet2 = new Draft(getHolder().getTargetRotation()+5, getHolder());
+        Draft bullet2 = new Draft(getHand().getTargetRotation()+5, getHolder());
         getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
-        Draft bullet3 = new Draft(getHolder().getTargetRotation()-5, getHolder());
+        Draft bullet3 = new Draft(getHand().getTargetRotation()-5, getHolder());
         getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
         bullet2.setHitStory(bullet.getHitStory());
         bullet3.setHitStory(bullet.getHitStory());//projectiles share same reference to not damage twice
@@ -21,14 +21,14 @@ public class Gale extends Weapon
         Sounds.play("gunshoot");
     }
     public void fireUlt(){
-        Tornado bullet = new Tornado(getHolder().getTargetRotation(), getHolder());
+        Tornado bullet = new Tornado(getHand().getTargetRotation(), getHolder());
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
     }
     public int getUlt(){
         return ult;
     }
-    public Gale(GridObject actor){
+    public Gale(ItemHolder actor){
         super(actor);
     }
     public String getName(){
@@ -38,3 +38,7 @@ public class Gale extends Weapon
         return 2;
     }
 }
+
+
+
+

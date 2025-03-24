@@ -12,9 +12,9 @@ public class FlashDrive extends Weapon
     private int ammo;
     public void fire(){
         if(ammo>=reloadTime){
-            FlashBolt bullet2 = new FlashBolt(getHolder().getTargetRotation()+15, getHolder());
+            FlashBolt bullet2 = new FlashBolt(getHand().getTargetRotation()+15, getHolder());
             getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
-            FlashBolt bullet3 = new FlashBolt(getHolder().getTargetRotation()-15, getHolder());
+            FlashBolt bullet3 = new FlashBolt(getHand().getTargetRotation()-15, getHolder());
             getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
             bullet2.setOther(bullet3);
             bullet3.setOther(bullet2);
@@ -23,8 +23,8 @@ public class FlashDrive extends Weapon
         }
     }
     public void fireUlt(){
-        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 200);
-        ICDropper bullet = new ICDropper(getHolder().getTargetRotation(), d, d, getHolder());
+        double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 200);
+        ICDropper bullet = new ICDropper(getHand().getTargetRotation(), d, d, getHolder());
         getHolder().addObjectHere(bullet);
         Sounds.play("protonwave");
     }
@@ -35,7 +35,7 @@ public class FlashDrive extends Weapon
         if(ammo<reloadTime)ammo++;
         updateAmmo(ammo);
     }
-    public FlashDrive(GridObject actor){
+    public FlashDrive(ItemHolder actor){
         super(actor);
         ammo = reloadTime;
     }
@@ -50,3 +50,9 @@ public class FlashDrive extends Weapon
         return 4;
     }
 }
+
+
+
+
+
+

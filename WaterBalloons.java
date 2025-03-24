@@ -14,7 +14,7 @@ public class WaterBalloons extends Weapon implements AmmoHolder
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
-            WaterBalloon wb = new WaterBalloon(getHolder().getTargetRotation(), getHolder(), getAttackUpgrade()==1);
+            WaterBalloon wb = new WaterBalloon(getHand().getTargetRotation(), getHolder(), getAttackUpgrade()==1);
             getHolder().addObjectHere(wb);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -24,10 +24,10 @@ public class WaterBalloons extends Weapon implements AmmoHolder
     }
     public void fireUlt(){
         Sounds.play("crossbowshoot");
-        double x = getHolder().getTargetX();
-        double y = getHolder().getTargetY();
+        double x = getHand().getTargetX();
+        double y = getHand().getTargetY();
         double d = Math.min(600, getHolder().distanceTo(x, y));
-        BigWaterBalloon bullet = new BigWaterBalloon(getHolder().getTargetRotation(), d, 200, getHolder());
+        BigWaterBalloon bullet = new BigWaterBalloon(getHand().getTargetRotation(), d, 200, getHolder());
         getHolder().addObjectHere(bullet);
     }
     public int getUlt(){
@@ -40,7 +40,7 @@ public class WaterBalloons extends Weapon implements AmmoHolder
         }
         updateAmmo(ammo.getAmmoBar());
     }
-    public WaterBalloons(GridObject actor){
+    public WaterBalloons(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(20, 1, 2);
@@ -56,3 +56,9 @@ public class WaterBalloons extends Weapon implements AmmoHolder
         return 1;
     }
 }
+
+
+
+
+
+

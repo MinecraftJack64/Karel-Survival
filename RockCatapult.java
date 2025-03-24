@@ -12,8 +12,8 @@ public class RockCatapult extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 400);
-            FlyingRock bullet = new FlyingRock (getHolder().getTargetRotation(), d, d/2, getHolder());
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
+            FlyingRock bullet = new FlyingRock (getHand().getTargetRotation(), d, d/2, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             Sounds.play("airtoss");
             //d400=reload70, d0=reload20
@@ -21,7 +21,7 @@ public class RockCatapult extends Weapon
         }
     }
     public void fireUlt(){
-        Asteroid bullet = new Asteroid(getHolder().getTargetRotation(), getHolder());
+        Asteroid bullet = new Asteroid(getHand().getTargetRotation(), getHolder());
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
     }
     public void reload(){
@@ -31,7 +31,7 @@ public class RockCatapult extends Weapon
     public int getUlt(){
         return ult;
     }
-    public RockCatapult(GridObject actor){
+    public RockCatapult(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -46,3 +46,9 @@ public class RockCatapult extends Weapon
         return 1;
     }
 }
+
+
+
+
+
+

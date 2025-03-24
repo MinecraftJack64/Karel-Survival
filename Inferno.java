@@ -35,11 +35,11 @@ public class Inferno extends Weapon
         }
     }
     public void fireWave(){
-        InfernalFlame bullet = new InfernalFlame(getHolder().getTargetRotation(), getHolder());
+        InfernalFlame bullet = new InfernalFlame(getHand().getTargetRotation(), getHolder());
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-        InfernalFlame bullet2 = new InfernalFlame(getHolder().getTargetRotation()+5, getHolder());
+        InfernalFlame bullet2 = new InfernalFlame(getHand().getTargetRotation()+5, getHolder());
         getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
-        InfernalFlame bullet3 = new InfernalFlame(getHolder().getTargetRotation()-5, getHolder());
+        InfernalFlame bullet3 = new InfernalFlame(getHand().getTargetRotation()-5, getHolder());
         getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
         bullet2.setHitStory(bullet.getHitStory());
         bullet3.setHitStory(bullet.getHitStory());
@@ -53,7 +53,7 @@ public class Inferno extends Weapon
                 for(int j = 0; j < 3; j++){
                     HashSet<GridEntity> hs = null;
                     for(int i = 0; i < 360; i+=5){// create 3 waves of attack bullets
-                        InfernalFlame bullet = new InfernalFlame(getHolder().getTargetRotation()+i, getHolder()){
+                        InfernalFlame bullet = new InfernalFlame(getHand().getTargetRotation()+i, getHolder()){
                             public boolean covertDamage(){
                                 return true;
                             }
@@ -69,8 +69,8 @@ public class Inferno extends Weapon
             }
         }else{
             ultTeleportCooldown = 30;
-            tpX = getHolder().getTargetX();
-            tpY = getHolder().getTargetY();
+            tpX = getHand().getTargetX();
+            tpY = getHand().getTargetY();
             setPlayerLockMovement(true);
             setPlayerLockRotation(true);
             setContinueUlt(true);
@@ -83,7 +83,7 @@ public class Inferno extends Weapon
         ammo.reload();
         updateAmmo(ammo);
     }
-    public Inferno(GridObject actor){
+    public Inferno(ItemHolder actor){
         super(actor);
         chargeUlt(getUlt()/2);
         ammo = new AmmoManager(50, 3, 3);
@@ -99,3 +99,9 @@ public class Inferno extends Weapon
         return 1;
     }
 }
+
+
+
+
+
+

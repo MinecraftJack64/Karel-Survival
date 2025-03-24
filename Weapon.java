@@ -131,7 +131,7 @@ public abstract class Weapon implements Item, Tickable
     public void holdWith(ItemHolder hand){
         this.hand = hand;
     }
-    public GridObject getHolder(){
+    public GridEntity getHolder(){
         return hand.getHolder();
     }
     public ItemHolder getHand(){
@@ -280,3 +280,5 @@ public abstract class Weapon implements Item, Tickable
         return i;
     }
 }
+
+

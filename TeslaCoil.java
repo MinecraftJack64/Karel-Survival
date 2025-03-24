@@ -12,7 +12,7 @@ public class TeslaCoil extends Weapon
     private static final int ult = 1800;
     private TeslaCoilZap zap, zap2;
     public void fire(){
-        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 500);
+        double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 500);
         if(zap!=null){
             zap.attackAt(getHolder().getRealRotation()-90, d);
         }
@@ -27,7 +27,7 @@ public class TeslaCoil extends Weapon
         //Sounds.play("electicity");
     }
     public void fireUlt(){
-        ChargeBomb bullet = new ChargeBomb(getHolder().getTargetRotation(), getUltUpgrade()==1, useGadget(), getHolder());
+        ChargeBomb bullet = new ChargeBomb(getHand().getTargetRotation(), getUltUpgrade()==1, useGadget(), getHolder());
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
     }
@@ -53,7 +53,7 @@ public class TeslaCoil extends Weapon
         zap = null;
         super.unequip();
     }
-    public TeslaCoil(GridObject actor){
+    public TeslaCoil(ItemHolder actor){
         super(actor);
     }
     public String getName(){
@@ -63,3 +63,9 @@ public class TeslaCoil extends Weapon
         return 3;
     }
 }
+
+
+
+
+
+

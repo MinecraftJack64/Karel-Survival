@@ -33,7 +33,7 @@ public class NailGun extends Weapon
                     //shoot drill
                     reloadDelayCount = -40;
                     getAmmoBar().disable();
-                    MiniDrillHead bullet = new MiniDrillHead(getHolder().getTargetRotation(), getHolder());
+                    MiniDrillHead bullet = new MiniDrillHead(getHand().getTargetRotation(), getHolder());
                     getHolder().addObjectHere(bullet);
                     drillnext = false;
                 }else{
@@ -60,17 +60,17 @@ public class NailGun extends Weapon
         double beginning = -atkphase*spread/2;
         for(int i = 0; i < atkphase; i++){
             double shift = beginning+i*spread;
-            Nail bullet = new Nail(getAttackUpgrade()==1?r2[atkphase-1]:r[atkphase-1], d[atkphase-1], getHolder().getTargetRotation()+shift/2, atkphase==4?this:null, getHolder());
-            getHolder().getWorld().addObject(bullet, getHolder().getRealX()+shift*Math.cos(Math.PI/180*getHolder().getTargetRotation()), getHolder().getRealY()+shift*Math.sin(Math.PI/180*getHolder().getTargetRotation()));
+            Nail bullet = new Nail(getAttackUpgrade()==1?r2[atkphase-1]:r[atkphase-1], d[atkphase-1], getHand().getTargetRotation()+shift/2, atkphase==4?this:null, getHolder());
+            getHolder().getWorld().addObject(bullet, getHolder().getRealX()+shift*Math.cos(Math.PI/180*getHand().getTargetRotation()), getHolder().getRealY()+shift*Math.sin(Math.PI/180*getHand().getTargetRotation()));
         }
         reloadDelayCount = 0;
         wavesleft--;
     }
     public void fireUlt(){
-        double x = getHolder().getTargetX();
-        double y = getHolder().getTargetY();
+        double x = getHand().getTargetX();
+        double y = getHand().getTargetY();
         double d = Math.min(600, getHolder().distanceTo(x, y));
-        FlyingRock bullet = new FlyingRock(getHolder().getTargetRotation(), d, 200, getHolder());
+        FlyingRock bullet = new FlyingRock(getHand().getTargetRotation(), d, 200, getHolder());
         getHolder().addObjectHere(bullet);
         //Explosion exp = new Explosion(3);
         //getHolder().addObjectHere(exp);
@@ -100,7 +100,7 @@ public class NailGun extends Weapon
             }
         }
     }
-    public NailGun(GridObject actor){
+    public NailGun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -115,3 +115,9 @@ public class NailGun extends Weapon
         return 2;
     }
 }
+
+
+
+
+
+

@@ -16,15 +16,15 @@ public class Hearth extends Weapon
         //range 75
         List<GridEntity> l = getHolder().getGEsInRange(150);
         for(GridEntity g:l){
-            if(getHolder().isAggroTowards(g))getHolder().damage(g, (int)(focus*(getHolder().isMoving()?4:8)));
+            if(getHolder().isAggroTowards(g))getHolder().damage(g, (int)(focus*(getHand().isMoving()?4:8)));
         }
     }
     public void fireUlt(){
         Sounds.play("crossbowshoot");
-        double x = getHolder().getTargetX();
-        double y = getHolder().getTargetY();
+        double x = getHand().getTargetX();
+        double y = getHand().getTargetY();
         double d = Math.min(400, getHolder().distanceTo(x, y));
-        CampfireDropper bullet = new CampfireDropper(getHolder().getTargetRotation(), d, d/2, new Campfire(getHolder()), getHolder());
+        CampfireDropper bullet = new CampfireDropper(getHand().getTargetRotation(), d, d/2, new Campfire(getHolder()), getHolder());
         getHolder().addObjectHere(bullet);
         focus = 0;
     }
@@ -32,17 +32,17 @@ public class Hearth extends Weapon
         return ult;
     }
     public void reload(){
-        if(getHolder().isAttacking()&&focus<1){
+        if(getHand().isAttacking()&&focus<1){
             focus+=0.025;
-        }else if(!getHolder().isAttacking()&&focus>0){
+        }else if(!getHand().isAttacking()&&focus>0){
             focus-=0.025;
         }
-        if(!getHolder().isMoving()&&!getHolder().isAttacking()){
+        if(!getHand().isMoving()&&!getHand().isAttacking()){
             chargeUlt((int)((1-focus)*10));
         }
         updateAmmo((int)(focus*40));
     }
-    public Hearth(GridObject actor){
+    public Hearth(ItemHolder actor){
         super(actor);
         //chargeUlt(1500);
     }
@@ -57,3 +57,9 @@ public class Hearth extends Weapon
         return 1;
     }
 }
+
+
+
+
+
+

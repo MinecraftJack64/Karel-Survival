@@ -28,7 +28,7 @@ public class Chameleon extends Weapon
     public void attack(){
         boolean[] hit = {false};
         getHolder().explodeOn(110, "enemy", (g)->{
-            if(Math.abs(getHolder().face(g, false)-getHolder().getTargetRotation())<30){
+            if(Math.abs(getHolder().face(g, false)-getHand().getTargetRotation())<30){
                 getHolder().damage(g, 100);
                 hit[0] = true;
                 if(isColor(0)){
@@ -40,7 +40,7 @@ public class Chameleon extends Weapon
             }
         }, null);
         if(!hit[0]){
-            ChameleonTongue bullet = new ChameleonTongue (getHolder().getTargetRotation(), isColor(5), getAttackUpgrade()==1, getHolder());
+            ChameleonTongue bullet = new ChameleonTongue (getHand().getTargetRotation(), isColor(5), getAttackUpgrade()==1, getHolder());
             getHolder().addObjectHere(bullet);
             tongue = bullet;
             if(isColor(2)){
@@ -102,7 +102,7 @@ public class Chameleon extends Weapon
             greenboostson = false;
         }
     }
-    public Chameleon(GridObject actor){
+    public Chameleon(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         greenspeed = new EffectID(actor, "chameleon_ult_speed");
@@ -126,3 +126,7 @@ public class Chameleon extends Weapon
         return 0;
     }
 }
+
+
+
+

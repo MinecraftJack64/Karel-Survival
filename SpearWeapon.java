@@ -18,7 +18,7 @@ public class SpearWeapon extends Weapon
         if(continueUse()){
             reloadDelay--;
             if(reloadDelay<=0){
-                SpearlessPunch sp = new SpearlessPunch(getHolder().getTargetRotation()+15, getHolder());
+                SpearlessPunch sp = new SpearlessPunch(getHand().getTargetRotation()+15, getHolder());
                 getHolder().addObjectHere(sp);
                 setContinueUse(false);
                 setPlayerLockRotation(false);
@@ -27,7 +27,7 @@ public class SpearWeapon extends Weapon
         }
         else if (hasspear&&reloadDelay<=0) 
         {
-            ThrownSpear bullet = new ThrownSpear(false, getHolder(), this, getHolder().getTargetRotation(), getHolder());
+            ThrownSpear bullet = new ThrownSpear(false, getHolder(), this, getHand().getTargetRotation(), getHolder());
             getHolder().addObjectHere(bullet);
             //bullet.move ();
             hasspear = false;
@@ -36,7 +36,7 @@ public class SpearWeapon extends Weapon
             //should throwing remove ult?
         }else if(!spearinhand&&reloadDelay<=0){
             //melee attack
-            SpearlessPunch sp = new SpearlessPunch(getHolder().getTargetRotation()-15, getHolder());
+            SpearlessPunch sp = new SpearlessPunch(getHand().getTargetRotation()-15, getHolder());
             getHolder().addObjectHere(sp);
             setContinueUse(true);
             setPlayerLockRotation(true);
@@ -45,7 +45,7 @@ public class SpearWeapon extends Weapon
     }
     public void fireUlt(){
         if(hasspear){//swing in front of you
-            WardingSpear ws = new WardingSpear(getHolder().getTargetRotation(), false, this, getHolder());
+            WardingSpear ws = new WardingSpear(getHand().getTargetRotation(), false, this, getHolder());
             getHolder().addObjectHere(ws);
             hasspear = false;
         }else if(spear!=null){//pull spear back
@@ -77,7 +77,7 @@ public class SpearWeapon extends Weapon
         spear = null;
     }
     public boolean throwSpear(){
-        return getHolder().isAttacking();
+        return getHand().isAttacking();
     }
     public void returnSpear(HashMap<GridEntity, Integer> s){
         if(s!=null&&!s.isEmpty()){
@@ -89,7 +89,7 @@ public class SpearWeapon extends Weapon
             getHolder().heal(getHolder(), 200);
         }
     }
-    public SpearWeapon(GridObject actor){
+    public SpearWeapon(ItemHolder actor){
         super(actor);
     }
     public String getName(){
@@ -99,3 +99,7 @@ public class SpearWeapon extends Weapon
         return 6;
     }
 }
+
+
+
+

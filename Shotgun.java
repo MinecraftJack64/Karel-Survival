@@ -23,8 +23,8 @@ public class Shotgun extends Weapon implements AmmoHolder
                 getAmmoBar().disable();
             }
             for(int deg = -30; deg<=30; deg+=nextammosupercharged?2:10){
-                Projectile mbullet = getAttackUpgrade()==1?(new SuperShot(getHolder().getTargetRotation()+deg, holder)):(new Shot(getHolder().getTargetRotation()+deg, holder));
-                getHolder().getWorld().addObject (mbullet, holder.getRealX(), holder.getRealY());
+                Projectile mbullet = getAttackUpgrade()==1 ? (new SuperShot(getHand().getTargetRotation()+deg, getHolder())) : (new Shot(getHand().getTargetRotation()+deg, getHolder()));
+                getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
             }
             //bullet.move ();
             Sounds.play("shotgunshoot");
@@ -37,18 +37,18 @@ public class Shotgun extends Weapon implements AmmoHolder
         if(lasso!=null||disabledcooldown>0){
             return;
         }
-        if(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY())<50){
+        if(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY())<50){
             ammo.donateAmmo(1);
             reloadDelayCount = gunReloadTime;
             nextammosupercharged = true;
             Sounds.play("shotgunjam");
             return;
         }
-        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 600);
-        lasso = getUltUpgrade()==1?new Lasso(getHolder().getTargetRotation(), d, getHolder()):new Harpoon(getHolder().getTargetRotation(), getHolder());
+        double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 600);
+        lasso = getUltUpgrade()==1?new Lasso(getHand().getTargetRotation(), d, getHolder()):new Harpoon(getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere((GridObject)lasso);
         //TEST
-        //getHolder().addObjectHere(new Harpoon(getHolder().getTargetRotation(), getHolder()));
+        //getHolder().addObjectHere(new Harpoon(getHand().getTargetRotation(), getHolder()));
         Sounds.play("lassoshoot");
     }
     public int getUlt(){
@@ -81,7 +81,7 @@ public class Shotgun extends Weapon implements AmmoHolder
             lasso = null;
         }
     }
-    public Shotgun(GridObject actor){
+    public Shotgun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(25, 2, 3);
@@ -100,3 +100,12 @@ public class Shotgun extends Weapon implements AmmoHolder
         return 1;
     }
 }
+
+
+
+
+
+
+
+
+

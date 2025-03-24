@@ -16,11 +16,11 @@ public class Crossbow extends Weapon
         {
             double deg = 30-(focus-0.5)*25;
             boolean ug = getAttackUpgrade()==1;
-            PoisonArrow mbullet = new PoisonArrow (getHolder().getTargetRotation(), focus, ug, holder);
+            PoisonArrow mbullet = new PoisonArrow (getHand().getTargetRotation(), focus, ug, getHolder());
             getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
-            PoisonArrow rbullet = new PoisonArrow (getHolder().getTargetRotation()-deg, focus, ug, holder);
+            PoisonArrow rbullet = new PoisonArrow (getHand().getTargetRotation()-deg, focus, ug, getHolder());
             getHolder().getWorld().addObject (rbullet, getHolder().getRealX(), getHolder().getRealY());
-            PoisonArrow lbullet = new PoisonArrow (getHolder().getTargetRotation()+deg, focus, ug, holder);
+            PoisonArrow lbullet = new PoisonArrow (getHand().getTargetRotation()+deg, focus, ug, getHolder());
             getHolder().getWorld().addObject (lbullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("crossbowshoot");
@@ -31,8 +31,8 @@ public class Crossbow extends Weapon
     public void fireUlt(){
         Sounds.play("crossbowshoot");
         for(int i = 1000; i <= 1350; i+=50){
-            double x = getHolder().getTargetX()+(int)(Math.random()*41)-20;
-            double y = getHolder().getTargetY()+(int)(Math.random()*41)-20;
+            double x = getHand().getTargetX()+(int)(Math.random()*41)-20;
+            double y = getHand().getTargetY()+(int)(Math.random()*41)-20;
             RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, getHolder().distanceTo(x, y), i, focus, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
         }
@@ -48,7 +48,7 @@ public class Crossbow extends Weapon
             updateAmmo((int)(focus*40));
         }
     }
-    public Crossbow(GridObject actor){
+    public Crossbow(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -63,3 +63,10 @@ public class Crossbow extends Weapon
         return 2;
     }
 }
+
+
+
+
+
+
+

@@ -60,7 +60,7 @@ public class Weedwacker extends Weapon
         getHolder().getWorld().removeObject(drone);
         super.unequip();
     }
-    public Weedwacker(GridObject actor){
+    public Weedwacker(ItemHolder actor){
         super(actor);
         drone = new WeedwackerBlade(getHolder());
     }
@@ -71,3 +71,6 @@ public class Weedwacker extends Weapon
         return 4;
     }
 }
+
+
+

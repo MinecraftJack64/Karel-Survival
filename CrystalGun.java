@@ -14,12 +14,12 @@ public class CrystalGun extends Weapon
         if (reloadDelayCount >= gunReloadTime) 
         {
             for(int deg = 45; deg<=315; deg+=90){
-                Shard mbullet = new Shard(deg, holder, getAttackUpgrade()==1);
+                Shard mbullet = new Shard(deg, getHolder(), getAttackUpgrade()==1);
                 getHolder().addObjectHere(mbullet);
             }
             if(getAttackUpgrade()==1){
                 for(int deg = 0; deg<=270; deg+=90){
-                    Echo mbullet = new Echo(deg, holder);
+                    Echo mbullet = new Echo(deg, getHolder());
                     getHolder().addObjectHere(mbullet);
                 }
             }
@@ -28,7 +28,7 @@ public class CrystalGun extends Weapon
     }
     public void fireUlt(){
         for(int deg = 0; deg<=270; deg+=90){
-            Crystallizer mbullet = new Crystallizer(deg, holder);
+            Crystallizer mbullet = new Crystallizer(deg, getHolder());
             getHolder().addObjectHere(mbullet);
         }
     }
@@ -39,7 +39,7 @@ public class CrystalGun extends Weapon
         reloadDelayCount++;
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
-    public CrystalGun(GridObject actor){
+    public CrystalGun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -54,3 +54,6 @@ public class CrystalGun extends Weapon
         return 2;
     }
 }
+
+
+

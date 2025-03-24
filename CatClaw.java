@@ -40,7 +40,7 @@ public class CatClaw extends Weapon implements LandingHandler
         }
     }
     public void fireClaw(int c){
-        claws[c] = new Claw(getHolder().getTargetRotation()+(-21+14*c), getHolder());
+        claws[c] = new Claw(getHand().getTargetRotation()+(-21+14*c), getHolder());
         getHolder().addObjectHere(claws[c]);
     }
     public void fireUlt(){
@@ -54,9 +54,9 @@ public class CatClaw extends Weapon implements LandingHandler
             }
         };
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
-        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 300);
+        double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 300);
         toland = true;
-        getHolder().initiateJump(getHolder().getTargetRotation(), d, 75);
+        getHolder().initiateJump(getHand().getTargetRotation(), d, 75);
         setLocked(true);
     }
     public boolean canFire(){
@@ -77,7 +77,7 @@ public class CatClaw extends Weapon implements LandingHandler
     public int getUlt(){
         return ult;
     }
-    public CatClaw(GridObject actor){
+    public CatClaw(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         chargeUlt(700);
@@ -107,3 +107,9 @@ public class CatClaw extends Weapon implements LandingHandler
         return 4;
     }
 }
+
+
+
+
+
+

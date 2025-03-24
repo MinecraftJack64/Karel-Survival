@@ -1,10 +1,10 @@
 /**
- * Write a description of class StrikeSurvivalShield here.
+ * Allow the holder to survive a certain number of lethal hits with 1 health
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class StrikeSurvivalShield extends Shield//allow the holder to survive a certain number of lethal strikes with 1 health
+public class StrikeSurvivalShield extends Shield
 {
     private int health;
     public StrikeSurvivalShield(ShieldID myG, int health){
@@ -37,3 +37,5 @@ public class StrikeSurvivalShield extends Shield//allow the holder to survive a 
         return health;
     }
 }
+
+

@@ -62,3 +62,5 @@ public class EntrancePortal extends GridObject
         getWorld().removeObject(this);
     }
 }
+
+

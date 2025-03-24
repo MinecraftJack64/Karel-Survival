@@ -42,40 +42,40 @@ public class Player extends GridEntity {
         getWorld().gameUI().newSprint(maxsprint);
         this.setTeam("player");
         this.inventory = new Item[40];
-        this.inventory[0] = new DroneRemote(this);
-        this.inventory[1] = new Shotgun(this);
-        this.inventory[2] = new Crossbow(this);
-        this.inventory[4] = new RockCatapult(this);
-        this.inventory[5] = new Necromancer(this);
-        this.inventory[6] = new CatClaw(this);
-        this.inventory[7] = new Slicer(this);
-        this.inventory[8] = new WaterBalloons(this);
-        this.inventory[9] = new Lovestrike(this);
-        this.inventory[10] = new CapsaicinTorch(this);
-        this.inventory[11] = new Reaper(this);
-        this.inventory[12] = new LilCreatures(this);
-        this.inventory[13] = new AirPump(this);
-        this.inventory[14] = new CrystalGun(this);
-        this.inventory[15] = new Weedwacker(this);
-        this.inventory[16] = new LymphCannon(this);
-        this.inventory[17] = new NailGun(this);
-        this.inventory[18] = new SpearWeapon(this);
-        this.inventory[19] = new Chameleon(this);
-        this.inventory[20] = new Gun(this);
-        this.inventory[21] = new Sudo(this);
-        this.inventory[22] = new Hearth(this);
-        this.inventory[23] = new Blade(this);
-        this.inventory[24] = new GlueGun(this);
-        this.inventory[25] = new TeslaCoil(this);
-        this.inventory[26] = new EasterBasket(this);
-        this.inventory[27] = new Pointpinner(this);
-        this.inventory[28] = new AirPump(this);
-        this.inventory[29] = new Flail(this);
-        this.inventory[30] = new Highjacker(this);
-        this.inventory[31] = new PetMole(this);
-        this.inventory[32] = new Soup(this);
-        this.inventory[33] = new FlashDrive(this);
-        this.inventory[34] = new Inferno(this);
+        this.inventory[0] = new DroneRemote(getHand());
+        this.inventory[1] = new Shotgun(getHand());
+        this.inventory[2] = new Crossbow(getHand());
+        this.inventory[4] = new RockCatapult(getHand());
+        this.inventory[5] = new Necromancer(getHand());
+        this.inventory[6] = new CatClaw(getHand());
+        this.inventory[7] = new Slicer(getHand());
+        this.inventory[8] = new WaterBalloons(getHand());
+        this.inventory[9] = new Lovestrike(getHand());
+        this.inventory[10] = new CapsaicinTorch(getHand());
+        this.inventory[11] = new Reaper(getHand());
+        this.inventory[12] = new LilCreatures(getHand());
+        this.inventory[13] = new AirPump(getHand());
+        this.inventory[14] = new CrystalGun(getHand());
+        this.inventory[15] = new Weedwacker(getHand());
+        this.inventory[16] = new LymphCannon(getHand());
+        this.inventory[17] = new NailGun(getHand());
+        this.inventory[18] = new SpearWeapon(getHand());
+        this.inventory[19] = new Chameleon(getHand());
+        this.inventory[20] = new Gun(getHand());
+        this.inventory[21] = new Sudo(getHand());
+        this.inventory[22] = new Hearth(getHand());
+        this.inventory[23] = new Blade(getHand());
+        this.inventory[24] = new GlueGun(getHand());
+        this.inventory[25] = new TeslaCoil(getHand());
+        this.inventory[26] = new EasterBasket(getHand());
+        this.inventory[27] = new Pointpinner(getHand());
+        this.inventory[28] = new AirPump(getHand());
+        this.inventory[29] = new Flail(getHand());
+        this.inventory[30] = new Highjacker(getHand());
+        this.inventory[31] = new PetMole(getHand());
+        this.inventory[32] = new Soup(getHand());
+        this.inventory[33] = new FlashDrive(getHand());
+        this.inventory[34] = new Inferno(getHand());
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }
@@ -198,6 +198,43 @@ public class Player extends GridEntity {
     }
     public boolean acceptingFrags(){
         return !getWorld().getGame().beeperbagfull();
+    }
+    
+    //TODO
+    @Override
+    public double getTargetRotation(){
+        return getRealRotation();
+    }
+    public double getTargetX(){
+        if(autoaim){
+            GridEntity targ = getNearestTarget();
+            if(targ!=null)return targ.getRealX();
+        }else if(targetLocked){
+            return oldtargetx;
+        }
+        return getWorld().getMouseX()+getScrollX();
+    }
+    public double getTargetY(){
+        if(autoaim){
+            GridEntity targ = getNearestTarget();
+            if(targ!=null)return targ.getRealY();
+        }else if(targetLocked){
+            return oldtargety;
+        }
+        return getWorld().getMouseY()+getScrollY();
+    }
+    public void setTargetLock(boolean t){
+        if(!targetLocked&&t){
+            oldtargetx = getTargetX();
+            oldtargety = getTargetY();
+        }
+        targetLocked = t;
+    }
+    public void setRotationLock(boolean t){
+        rotationLocked = t;
+    }
+    public void setMovementLock(boolean t){
+        movementLocked = t;
     }
 
     private void checkKeys() {
@@ -344,41 +381,32 @@ public class Player extends GridEntity {
         //TODO
         @Override
         public double getTargetRotation(){
-            return getRealRotation();
+            return getHolder().getTargetRotation();
         }
         public double getTargetX(){
-            if(autoaim){
-                GridEntity targ = getNearestTarget();
-                if(targ!=null)return targ.getRealX();
-            }else if(targetLocked){
-                return oldtargetx;
-            }
-            return getWorld().getMouseX()+getScrollX();
+            return getHolder().getTargetX();
         }
         public double getTargetY(){
-            if(autoaim){
-                GridEntity targ = getNearestTarget();
-                if(targ!=null)return targ.getRealY();
-            }else if(targetLocked){
-                return oldtargety;
-            }
-            return getWorld().getMouseY()+getScrollY();
+            return getHolder().getTargetY();
         }
         public void setTargetLock(boolean t){
-            if(!targetLocked&&t){
-                oldtargetx = getTargetX();
-                oldtargety = getTargetY();
-            }
-            targetLocked = t;
+            getHolder().setTargetLock(t);
         }
         public void setRotationLock(boolean t){
-            rotationLocked = t;
+            getHolder().setRotationLock(t);
         }
         public void setMovementLock(boolean t){
-            movementLocked = t;
+            getHolder().setMovementLock(t);
+        }
+        public boolean isAttacking(){
+            return getHolder().isAttacking();
+        }
+        public boolean isMoving(){
+            return getHolder().isMoving();
         }
         public Player getHolder(){
             return Player.this;
         }
     }
 }
+

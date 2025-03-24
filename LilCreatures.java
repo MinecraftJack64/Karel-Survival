@@ -26,11 +26,11 @@ public class LilCreatures extends Weapon implements ICritter
         }else if(reload>reloadslime){
             reload = 0;
             if(!getHolder().hasShield(msshield)){
-                CritterSlime cs = new CritterSlime(getHolder().getTargetRotation(), getHolder());
+                CritterSlime cs = new CritterSlime(getHand().getTargetRotation(), getHolder());
                 getHolder().addObjectHere(cs);
-                CritterSlime cs1 = new CritterSlime(getHolder().getTargetRotation()-30, getHolder());
+                CritterSlime cs1 = new CritterSlime(getHand().getTargetRotation()-30, getHolder());
                 getHolder().addObjectHere(cs1);
-                CritterSlime cs2 = new CritterSlime(getHolder().getTargetRotation()+30, getHolder());
+                CritterSlime cs2 = new CritterSlime(getHand().getTargetRotation()+30, getHolder());
                 getHolder().addObjectHere(cs2);
             }
         }
@@ -186,7 +186,7 @@ public class LilCreatures extends Weapon implements ICritter
         super.unequip();
     }
 
-    public LilCreatures(GridObject actor){
+    public LilCreatures(ItemHolder actor){
         super(actor);
     }
 
@@ -212,3 +212,7 @@ public class LilCreatures extends Weapon implements ICritter
         }
     }
 }
+
+
+
+

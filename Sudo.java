@@ -13,7 +13,7 @@ public class Sudo extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            ChargeBomb bullet = new ChargeBomb (getHolder().getTargetRotation(), true, true, getHolder());
+            ChargeBomb bullet = new ChargeBomb (getHand().getTargetRotation(), true, true, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");
@@ -35,7 +35,7 @@ public class Sudo extends Weapon
         reloadDelayCount++;
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
-    public Sudo(GridObject actor){
+    public Sudo(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -50,3 +50,7 @@ public class Sudo extends Weapon
         return 0;
     }
 }
+
+
+
+

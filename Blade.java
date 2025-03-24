@@ -20,7 +20,7 @@ public class Blade extends Weapon
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
             ammo.useAmmo();
-            Sword bullet = new Sword(getHolder().getTargetRotation(), ammo.getAmmo(), nextdir, getAttackUpgrade()==1, getHolder());
+            Sword bullet = new Sword(getHand().getTargetRotation(), ammo.getAmmo(), nextdir, getAttackUpgrade()==1, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             nextdir = !nextdir;
@@ -60,7 +60,7 @@ public class Blade extends Weapon
         }
         updateAmmo(ammo.getAmmoBar());
     }
-    public Blade(GridObject actor){
+    public Blade(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(25, 3, 3);
@@ -77,3 +77,7 @@ public class Blade extends Weapon
         return 0;
     }
 }
+
+
+
+

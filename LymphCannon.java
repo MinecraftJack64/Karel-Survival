@@ -17,7 +17,7 @@ public class LymphCannon extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime) 
         {
-            Antibody bullet = new Antibody(getHolder().getTargetRotation(), target, this, getHolder());
+            Antibody bullet = new Antibody(getHand().getTargetRotation(), target, this, getHolder());
             getHolder().addObjectHere(bullet);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -28,7 +28,7 @@ public class LymphCannon extends Weapon
         target = targ;
     }
     public void fireUlt(){
-        CellTurret bullet = new CellTurret(getHolder().getTargetX(), getHolder().getTargetY(), target, getHolder());
+        CellTurret bullet = new CellTurret(getHand().getTargetX(), getHand().getTargetY(), target, getHolder());
         getHolder().addObjectHere(bullet);
         mycells.add(bullet);
         target = null;
@@ -43,7 +43,7 @@ public class LymphCannon extends Weapon
         for(int i = mycells.size()-1; i >= 0; i--){
             if(!mycells.get(i).isDead()){
                 if(mycells.get(i).readyToTransform(target)){
-                    if(!getHolder().isMoving()){
+                    if(!getHand().isMoving()){
                         mycells.get(i).setNewTarget(target);
                     }
                 }
@@ -52,7 +52,7 @@ public class LymphCannon extends Weapon
             }
         }
     }
-    public LymphCannon(GridObject actor){
+    public LymphCannon(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -67,3 +67,9 @@ public class LymphCannon extends Weapon
         return 2;
     }
 }
+
+
+
+
+
+

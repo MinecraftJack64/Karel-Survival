@@ -16,7 +16,7 @@ public class Gun extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            Bullet bullet = new Bullet (getHolder().getTargetRotation(), getHolder());
+            Bullet bullet = new Bullet (getHand().getTargetRotation(), getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");
@@ -52,7 +52,7 @@ public class Gun extends Weapon
         reloadDelayCount++;
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
-    public Gun(GridObject actor){
+    public Gun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -70,3 +70,7 @@ public class Gun extends Weapon
         return 0;
     }
 }
+
+
+
+

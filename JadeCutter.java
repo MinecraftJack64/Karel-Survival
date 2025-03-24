@@ -12,12 +12,12 @@ public class JadeCutter extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (lasso.canAttack()) 
         {
-            lasso.fire(getHolder().getTargetRotation());
+            lasso.fire(getHand().getTargetRotation());
             lasso = null;
         }
     }
     public void fireUlt(){
-        FlyingCircSaw bullet = new FlyingCircSaw(getHolder().getTargetRotation(), getHolder());
+        FlyingCircSaw bullet = new FlyingCircSaw(getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere(bullet);
     }
     public int getUlt(){
@@ -29,7 +29,7 @@ public class JadeCutter extends Weapon
         }
         //updateAmmo(Math.min(reloadtime-attackcooldown, reloadtime));
     }
-    public JadeCutter(GridObject actor){
+    public JadeCutter(ItemHolder actor){
         super(actor);
     }
     public void equip(){
@@ -43,3 +43,7 @@ public class JadeCutter extends Weapon
         return 3;
     }
 }
+
+
+
+

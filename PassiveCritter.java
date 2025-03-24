@@ -6,26 +6,26 @@
  */
 public class PassiveCritter extends GridObject implements SubAffecter, ICritter
 {
-    private Player source;
+    private ItemHolder source;
     private static final int reloadtime = 30;
     private int ammo = 0;//60
     private int id;
     private double deg, dist;
     private LilCreatures spawner;
-    public PassiveCritter(int id, double deg, double dist, LilCreatures spawner, Player source){
+    public PassiveCritter(int id, double deg, double dist, LilCreatures spawner, Itemholder source){
         this.source = source;//do not set power
         this.id = id;
         this.deg = deg;
         this.dist = dist;
         this.spawner = spawner;
     }
-    public Player getSource(){
-        return source;
+    public GridEntity getSource(){
+        return source.getHolder();
     }
     public void kAct(){
-        branchOut(getSource(), deg+getSource().getTargetRotation(), dist);
+        branchOut(source.getHolder(), deg+source.getTargetRotation(), dist);
         ammo++;
-        face(getSource().getTargetX(), getSource().getTargetY(), true);
+        face(source.getTargetX(), source.getTargetY(), true);
         if(ammo>=reloadtime&&getSource().canAttack()&&!getSource().isDead()){
             attack();
             ammo = 0;
@@ -42,7 +42,7 @@ public class PassiveCritter extends GridObject implements SubAffecter, ICritter
         addObjectHere(bullet);
     }
     public void deploy(){
-        face(getSource().getTargetX(), getSource().getTargetY(), true);
+        face(source.getTargetX(), source.getTargetY(), true);
         FlyingCritter bullet = new FlyingCritter(getRealRotation(), getSource(), spawner, id);
         addObjectHere(bullet);
         spawner.notifyCritterPhaseChange(id, bullet);

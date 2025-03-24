@@ -14,7 +14,7 @@ public class Necromancer extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (lasso==null) 
         {
-            Lifesteal bullet = new Lifesteal(getHolder().getTargetRotation(), hypno, getAttackUpgrade()==1, getHolder());
+            Lifesteal bullet = new Lifesteal(getHand().getTargetRotation(), hypno, getAttackUpgrade()==1, getHolder());
             getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             lasso = bullet;
@@ -22,7 +22,7 @@ public class Necromancer extends Weapon
         }
     }
     public void fireUlt(){
-        Hypnotizer bullet = new Hypnotizer(getHolder().getTargetRotation(), getHolder(), this);
+        Hypnotizer bullet = new Hypnotizer(getHand().getTargetRotation(), getHolder(), this);
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("swirl");
     }
@@ -42,7 +42,7 @@ public class Necromancer extends Weapon
         hypno = targ;
         //System.out.println("hypno notified");
     }
-    public Necromancer(GridObject actor){
+    public Necromancer(ItemHolder actor){
         super(actor);
     }
     public String getName(){
@@ -52,3 +52,7 @@ public class Necromancer extends Weapon
         return 6;
     }
 }
+
+
+
+

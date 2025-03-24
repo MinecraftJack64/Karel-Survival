@@ -17,7 +17,7 @@ public class Lovestrike extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            CupidArrow bullet = new CupidArrow (getHolder().getTargetRotation(), getHolder(), this);
+            CupidArrow bullet = new CupidArrow (getHand().getTargetRotation(), getHolder(), this);
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");
@@ -25,7 +25,7 @@ public class Lovestrike extends Weapon
         }
     }
     public void fireUlt(){
-        Kiss bullet = new Kiss(getHolder().getTargetRotation(), getHolder(), this);
+        Kiss bullet = new Kiss(getHand().getTargetRotation(), getHolder(), this);
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
     }
@@ -56,7 +56,7 @@ public class Lovestrike extends Weapon
             ultchargedelay--;
         }
     }
-    public Lovestrike(GridObject actor){
+    public Lovestrike(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -71,3 +71,7 @@ public class Lovestrike extends Weapon
         return 7;
     }
 }
+
+
+
+

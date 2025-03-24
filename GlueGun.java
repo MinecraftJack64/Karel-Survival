@@ -15,8 +15,8 @@ public class GlueGun extends Weapon
     private int explodecooldown = -1;
     public void fire(){
         if(continueUse()){
-            double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), getRange());
-            GlueDrop bullet = new GlueDrop(getHolder().getTargetRotation(), d, getFocus(), getHolder());
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), getRange());
+            GlueDrop bullet = new GlueDrop(getHand().getTargetRotation(), d, getFocus(), getHolder());
             getHolder().addObjectHere(bullet);
             dropsremaining--;
             if(dropsremaining<=0){
@@ -26,8 +26,8 @@ public class GlueGun extends Weapon
         }
         else if (reloadDelayCount >= getReloadTime()) 
         {
-            double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), getRange());
-            GlueDrop bullet = new GlueDrop(getHolder().getTargetRotation(), d, getFocus(), getHolder()){
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), getRange());
+            GlueDrop bullet = new GlueDrop(getHand().getTargetRotation(), d, getFocus(), getHolder()){
                 public boolean covertDamage(){
                     return false;
                 }
@@ -85,7 +85,7 @@ public class GlueGun extends Weapon
     public void reload(){
         reloadDelayCount++;
     }
-    public GlueGun(GridObject actor){
+    public GlueGun(ItemHolder actor){
         super(actor);
     }
     public void equip(){
@@ -101,3 +101,9 @@ public class GlueGun extends Weapon
         return 2;
     }
 }
+
+
+
+
+
+

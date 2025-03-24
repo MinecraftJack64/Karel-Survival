@@ -16,7 +16,7 @@ public class PetMole extends Weapon
             if(zap.inUlt()){
                 zap.stopUlt();
             }
-            zap.attackAt(getHolder().getTargetX(), getHolder().getTargetY(), getAttackUpgrade()==1, getUltUpgrade()==1);
+            zap.attackAt(getHand().getTargetX(), getHand().getTargetY(), getAttackUpgrade()==1, getUltUpgrade()==1);
         }
         //show the lightning
         //Sounds.play("electicity");
@@ -34,7 +34,7 @@ public class PetMole extends Weapon
     }
     public void reload(){
         if(zap.getWorld()!=null)
-            zap.target(getHolder().getTargetX(), getHolder().getTargetY());
+            zap.target(getHand().getTargetX(), getHand().getTargetY());
     }
     public void equip(){
         super.equip();
@@ -47,7 +47,7 @@ public class PetMole extends Weapon
         getHolder().getWorld().removeObject(zap);
         super.unequip();
     }
-    public PetMole(GridObject actor){
+    public PetMole(ItemHolder actor){
         super(actor);
         zap = new Mole(getHolder());
     }
@@ -58,3 +58,8 @@ public class PetMole extends Weapon
         return 3;
     }
 }
+
+
+
+
+

@@ -21,7 +21,7 @@ public class Blowgun extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime&&ammo>0) 
         {
-            Blowdart bullet = new Blowdart(getHolder().getTargetRotation(), scores, getHolder());
+            Blowdart bullet = new Blowdart(getHand().getTargetRotation(), scores, getHolder());
             getHolder().addObjectHere(bullet);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -30,7 +30,7 @@ public class Blowgun extends Weapon
         }
     }
     public void fireUlt(){
-        PocketKnife bullet = new PocketKnife(getHolder().getTargetRotation(), 120, 60, scores, this, getHolder());
+        PocketKnife bullet = new PocketKnife(getHand().getTargetRotation(), 120, 60, scores, this, getHolder());
         getHolder().addObjectHere(bullet);
         Sounds.play("lassoshoot");
     }
@@ -56,7 +56,7 @@ public class Blowgun extends Weapon
         }
         updateAmmo(ammo*ammoReloadTime+ammoReloadDelay);
     }
-    public Blowgun(GridObject actor){
+    public Blowgun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammoReloadDelay = 0;
@@ -73,3 +73,7 @@ public class Blowgun extends Weapon
         return 2;
     }
 }
+
+
+
+

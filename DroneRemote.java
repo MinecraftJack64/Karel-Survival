@@ -21,7 +21,7 @@ public class DroneRemote extends Weapon
     }
     public void fireUlt(){
         if(drone!=null){
-            drone.reposition(getHolder().getTargetX()-getHolder().getRealX(), getHolder().getTargetY()-getHolder().getRealY());
+            drone.reposition(getHand().getTargetX()-getHolder().getRealX(), getHand().getTargetY()-getHolder().getRealY());
         }
     }
     public int getUlt(){
@@ -41,7 +41,7 @@ public class DroneRemote extends Weapon
         getHolder().getWorld().removeObject(drone);
         super.unequip();
     }
-    public DroneRemote(GridObject actor){
+    public DroneRemote(ItemHolder actor){
         super(actor);
         drone = new Drone(getHolder());
         chargeUlt(100);
@@ -53,3 +53,8 @@ public class DroneRemote extends Weapon
         return 0;
     }
 }
+
+
+
+
+

@@ -472,3 +472,5 @@ public abstract class GridEntity extends GridObject
     public void behave(){}
     public String getName(){return "Grid Entity";}
 }
+
+

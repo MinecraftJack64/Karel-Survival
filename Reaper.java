@@ -23,14 +23,14 @@ public class Reaper extends Weapon implements AmmoHolder
         else if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
             if(getAttackUpgrade()==1){
-                dash = new DasherDoer(getHolder().getTargetRotation(), 20, 10, 60, (g)->{
+                dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, (g)->{
                     if(getHolder().isAggroTowards(g)){
                         if(g.willNotify(getHolder()))getHolder().heal(getHolder(), 50);
                         getHolder().damage(g, 150);
                     }
                 }, getHolder());
             }else{
-                dash = new DasherDoer(getHolder().getTargetRotation(), 20, 10, 60, 150, getHolder());
+                dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, 150, getHolder());
             }
             setContinueUse(true);
             setPlayerLockRotation(true);
@@ -44,7 +44,7 @@ public class Reaper extends Weapon implements AmmoHolder
     }
     public void fireUlt(){
         Sounds.play("bats");
-        BatSwarm bullet = new BatSwarm(getHolder().getTargetRotation(), this, getHolder());
+        BatSwarm bullet = new BatSwarm(getHand().getTargetRotation(), this, getHolder());
         getHolder().addObjectHere(bullet);
     }
     public int getUlt(){
@@ -62,7 +62,7 @@ public class Reaper extends Weapon implements AmmoHolder
             ammo.donateAmmoBar(30);
         }
     }
-    public Reaper(GridObject actor){
+    public Reaper(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(60, 3, 4);
@@ -78,3 +78,7 @@ public class Reaper extends Weapon implements AmmoHolder
         return 7;
     }
 }
+
+
+
+

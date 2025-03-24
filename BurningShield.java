@@ -42,3 +42,5 @@ public class BurningShield extends Shield
         return duration>=0;
     }
 }
+
+

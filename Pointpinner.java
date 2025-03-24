@@ -16,7 +16,7 @@ public class Pointpinner extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            Pin bullet = new Pin(getHolder().getTargetRotation(), getHolder(), this);
+            Pin bullet = new Pin(getHand().getTargetRotation(), getHolder(), this);
             getHolder().addObjectHere(bullet);
             reloadDelayCount = 0;
             //bullet.move ();
@@ -26,7 +26,7 @@ public class Pointpinner extends Weapon
     public void fireUlt(){
         if(ultcooldown<=0){
             Pinpoint bullet = new Pinpoint(getUltUpgrade()==1, getHolder());
-            getHolder().getWorld().addObject(bullet, getHolder().getTargetX(), getHolder().getTargetY());
+            getHolder().getWorld().addObject(bullet, getHand().getTargetX(), getHand().getTargetY());
             ultcooldown = 5;
         }else{
             cancelUltReset();
@@ -48,7 +48,7 @@ public class Pointpinner extends Weapon
         }
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
-    public Pointpinner(GridObject actor){
+    public Pointpinner(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -63,3 +63,9 @@ public class Pointpinner extends Weapon
         return 2;
     }
 }
+
+
+
+
+
+

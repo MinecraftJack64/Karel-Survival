@@ -18,7 +18,7 @@ public class CapsaicinTorch extends Weapon
     public void fire(){
         if (ammo>0)
         {
-            PepperFlame bullet = new PepperFlame(getHolder().getTargetRotation(), range, getHolder());
+            PepperFlame bullet = new PepperFlame(getHand().getTargetRotation(), range, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");
@@ -30,7 +30,7 @@ public class CapsaicinTorch extends Weapon
     public void fireUlt(){
         if(continueUlt()){
             ultammo--;
-            SuperPepperFlame bullet = new SuperPepperFlame(getHolder().getTargetRotation(), getHolder(), this);
+            SuperPepperFlame bullet = new SuperPepperFlame(getHand().getTargetRotation(), getHolder(), this);
             getHolder().addObjectHere(bullet);
             if(ultammo<=0){
                 setContinueUlt(false);
@@ -59,7 +59,7 @@ public class CapsaicinTorch extends Weapon
         }
         updateAmmo(Math.min(ammo, maxAmmo));
     }
-    public CapsaicinTorch(GridObject actor){
+    public CapsaicinTorch(ItemHolder actor){
         super(actor);
     }
     public void equip(){
@@ -73,3 +73,7 @@ public class CapsaicinTorch extends Weapon
         return 0;
     }
 }
+
+
+
+

@@ -14,7 +14,7 @@ public class Slicer extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (attackcooldown<=0) 
         {
-            CircSaw bullet = new CircSaw(getHolder().getTargetRotation(), getHolder());
+            CircSaw bullet = new CircSaw(getHand().getTargetRotation(), getHolder());
             getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             lasso = bullet;
@@ -23,7 +23,7 @@ public class Slicer extends Weapon
         }
     }
     public void fireUlt(){
-        FlyingCircSaw bullet = new FlyingCircSaw(getHolder().getTargetRotation(), getHolder());
+        FlyingCircSaw bullet = new FlyingCircSaw(getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere(bullet);
     }
     public int getUlt(){
@@ -38,7 +38,7 @@ public class Slicer extends Weapon
         }
         updateAmmo(Math.min(reloadtime-attackcooldown, reloadtime));
     }
-    public Slicer(GridObject actor){
+    public Slicer(ItemHolder actor){
         super(actor);
     }
     public void equip(){
@@ -52,3 +52,7 @@ public class Slicer extends Weapon
         return 2;
     }
 }
+
+
+
+

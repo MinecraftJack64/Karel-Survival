@@ -16,8 +16,8 @@ public class Soup extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
-            double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 450);
-            FlyingSoup bullet = new FlyingSoup (getHolder().getTargetRotation(), d, 225+d/4, focus, getHolder());
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 450);
+            FlyingSoup bullet = new FlyingSoup (getHand().getTargetRotation(), d, 225+d/4, focus, getHolder());
             getHolder().addObjectHere(bullet);
             ammo.useAmmo();
             focus-=0.375;
@@ -30,8 +30,8 @@ public class Soup extends Weapon
         }
     }
     public void fireUlt(){
-        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 200);
-        SoupDrop bullet = new SoupDrop (getHolder().getTargetRotation(), d, d*2, focus, getHolder());
+        double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 200);
+        SoupDrop bullet = new SoupDrop (getHand().getTargetRotation(), d, d*2, focus, getHolder());
         getHolder().addObjectHere(bullet);
         if(getUltUpgrade()==1)focus = (focus+0.5)/2;
         else focus = 0.5;
@@ -48,7 +48,7 @@ public class Soup extends Weapon
         }
         // chargeUlt(100);
     }
-    public Soup(GridObject actor){
+    public Soup(ItemHolder actor){
         super(actor);
         ammo = new AmmoManager(45, 3, 3);
         reloadDelayCount = gunReloadTime;
@@ -64,3 +64,9 @@ public class Soup extends Weapon
         return 3;
     }
 }
+
+
+
+
+
+

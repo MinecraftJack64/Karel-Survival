@@ -18,8 +18,8 @@ public class Fireworks extends Weapon implements AmmoHolder
             if(nextammosupercharged){
                 //
             }
-            double d = Math.min(2*getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 800);
-            FireworkRocket bullet = new FireworkRocket (getHolder().getTargetRotation(), d, 400, getHolder());
+            double d = Math.min(2*getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 800);
+            FireworkRocket bullet = new FireworkRocket (getHand().getTargetRotation(), d, 400, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -46,7 +46,7 @@ public class Fireworks extends Weapon implements AmmoHolder
             updateAmmo(ammo.getAmmoBar()+1);
         }else updateAmmo(ammo.getAmmoBar());
     }
-    public Fireworks(GridObject actor){
+    public Fireworks(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(45, 2, 4);
@@ -62,3 +62,9 @@ public class Fireworks extends Weapon implements AmmoHolder
         return 3;
     }
 }
+
+
+
+
+
+

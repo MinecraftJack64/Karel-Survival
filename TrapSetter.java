@@ -12,7 +12,7 @@ public class TrapSetter extends Weapon
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            Mousetrap bullet = getAttackUpgrade()==1?new Mousetrap(getHolder().getTargetRotation(), getHolder()):new Mousetrap(getHolder());
+            Mousetrap bullet = getAttackUpgrade()==1?new Mousetrap(getHand().getTargetRotation(), getHolder()):new Mousetrap(getHolder());
             //WeaponFrag bullet = new WeaponFrag();
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             Sounds.play("setuptrap");
@@ -42,7 +42,7 @@ public class TrapSetter extends Weapon
         super.equip();
         getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
-    public TrapSetter(GridObject actor){
+    public TrapSetter(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -53,3 +53,7 @@ public class TrapSetter extends Weapon
         return 0;
     }
 }
+
+
+
+

@@ -17,14 +17,14 @@ public class Highjacker extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if(mounted){
             if(ammo>=reload&&mount.isOnGround()){
-                double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 400);
-                HijackHealer bullet = new HijackHealer (getHolder().getTargetRotation(), d, d/2, mount);
+                double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
+                HijackHealer bullet = new HijackHealer (getHand().getTargetRotation(), d, d/2, mount);
                 mount.addObjectHere(bullet);
                 ammo = 0;
             }
         }else if (lasso == null) 
         {
-            Scissors bullet = new Scissors(getHolder().getTargetRotation(), getHolder());
+            Scissors bullet = new Scissors(getHand().getTargetRotation(), getHolder());
             getHolder().addObjectHere(bullet);
             //bullet.move ();
             lasso = bullet;
@@ -39,8 +39,8 @@ public class Highjacker extends Weapon
         if(mounted){
             unmount();
         }else{
-            double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 350);
-            Hijack bullet = new Hijack(getHolder().getTargetRotation(), d, 75, this, getHolder());
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 350);
+            Hijack bullet = new Hijack(getHand().getTargetRotation(), d, 75, this, getHolder());
             getHolder().addObjectHere(bullet);
         }
     }
@@ -99,7 +99,7 @@ public class Highjacker extends Weapon
     public boolean canUltInAir(){
         return mounted;
     }
-    public Highjacker(GridObject actor){
+    public Highjacker(ItemHolder actor){
         super(actor);
     }
     public String getName(){
@@ -109,3 +109,9 @@ public class Highjacker extends Weapon
         return 5;
     }
 }
+
+
+
+
+
+

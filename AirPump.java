@@ -17,9 +17,9 @@ public class AirPump extends Weapon implements LandingHandler
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 350);
-            WindBurst bullet = new WindBurst(getHolder().getTargetRotation(), d, nextIsSuper, getHolder(), getAttackUpgrade()==1?this:null);
-            getHolder().getWorld().addObject (bullet, holder.getRealX(), holder.getRealY());
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 350);
+            WindBurst bullet = new WindBurst(getHand().getTargetRotation(), d, nextIsSuper, getHolder(), getAttackUpgrade()==1?this:null);
+            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             reloadDelayCount = 0;
             nextIsSuper = false;
         }
@@ -53,7 +53,7 @@ public class AirPump extends Weapon implements LandingHandler
     public int getUlt(){
         return ult;
     }
-    public AirPump(GridObject actor){
+    public AirPump(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;//
     }
@@ -68,3 +68,11 @@ public class AirPump extends Weapon implements LandingHandler
         return 4;
     }
 }
+
+
+
+
+
+
+
+

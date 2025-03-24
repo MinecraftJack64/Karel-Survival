@@ -21,8 +21,8 @@ public class Flail extends Weapon implements AmmoHolder
             }
         }else{
             if(reloadDelayCount>=gunReloadTime){
-                double d = Math.max(50, Math.min(150, getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY())));
-                core = new FlailCore(getHolder().getTargetRotation(), d, d/3, getHolder());
+                double d = Math.max(50, Math.min(150, getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY())));
+                core = new FlailCore(getHand().getTargetRotation(), d, d/3, getHolder());
                 getHolder().addObjectHere(core);
                 setContinueUse(true);
                 setPlayerLockMovement(true);
@@ -45,14 +45,14 @@ public class Flail extends Weapon implements AmmoHolder
         else 
         {
             if(getAttackUpgrade()==1){
-                dash = new DasherDoer(getHolder().getTargetRotation(), 16, 31, 100, (g)->{
+                dash = new DasherDoer(getHand().getTargetRotation(), 16, 31, 100, (g)->{
                     if(getHolder().isAggroTowards(g)){
                         if(g.canBePulled())g.knockBack(getHolder().face(g, false)+90, getHolder().distanceTo(g)*1.5, 25, getHolder());
                         getHolder().damage(g, 300);
                     }
                 }, getHolder());
             }else{
-                dash = new DasherDoer(getHolder().getTargetRotation(), 20, 10, 60, 150, getHolder());
+                dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, 150, getHolder());
             }
             setContinueUlt(true);
             setPlayerLockRotation(true);
@@ -69,7 +69,7 @@ public class Flail extends Weapon implements AmmoHolder
         reloadDelayCount++;
         updateAmmo(Math.min(gunReloadTime, reloadDelayCount));
     }
-    public Flail(GridObject actor){
+    public Flail(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
     }
@@ -84,3 +84,9 @@ public class Flail extends Weapon implements AmmoHolder
         return 3;
     }
 }
+
+
+
+
+
+

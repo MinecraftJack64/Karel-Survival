@@ -18,8 +18,8 @@ public class EasterBasket extends Weapon implements LandingHandler
         if (reloadDelayCount >= gunReloadTime&&hopsLeft==0) 
         {
             boolean willspawn = Greenfoot.getRandomNumber(9)<defaultchance;
-            EasterEgg bullet = new EasterEgg(getHolder().getTargetRotation(), willspawn, getHolder());
-            getHolder().getWorld().addObject (bullet, holder.getRealX(), holder.getRealY());
+            EasterEgg bullet = new EasterEgg(getHand().getTargetRotation(), willspawn, getHolder());
+            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             reloadDelayCount = 0;
             if(getAttackUpgrade()==1){
                 if(willspawn){
@@ -41,8 +41,8 @@ public class EasterBasket extends Weapon implements LandingHandler
         startJump();
     }
     public void startJump(){
-        double d = Math.min(getHolder().distanceTo(getHolder().getTargetX(), getHolder().getTargetY()), 275);
-        getHolder().initiateJump(getHolder().getTargetRotation(), d, 200);
+        double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 275);
+        getHolder().initiateJump(getHand().getTargetRotation(), d, 200);
         Chick spawn = new Chick(1.5, getHolder());
         getHolder().getWorld().addObject(spawn, getHolder().getRealX(), getHolder().getRealY());
     }
@@ -65,7 +65,7 @@ public class EasterBasket extends Weapon implements LandingHandler
     public int getUlt(){
         return ult;
     }
-    public EasterBasket(GridObject actor){
+    public EasterBasket(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;//
         chance = defaultchance;
@@ -81,3 +81,11 @@ public class EasterBasket extends Weapon implements LandingHandler
         return 7;
     }
 }
+
+
+
+
+
+
+
+
