@@ -9,25 +9,28 @@ import java.util.List;
  */
 public class ArsonZombie extends Zombie
 {
-    private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
+    private static final int attackCooldown = 200;         // The minimum delay between firing the gun.
+    private static final int firingCooldown = 20;
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private int firingDelay;
 
     private GreenfootImage rocket = new GreenfootImage("gunzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
-    private static double attackrange = 400, retreatrange = 300;
+    private int nextAmmo = 1;
+    private static double attackrange = 800, retreatrange = 700;
     /**
      * Initilise this rocket.
      */
     public ArsonZombie()
     {
-        reloadDelayCount = 5;
+        reloadDelayCount = 0;
         rocket.scale(45, 45);
         setImage(rocket);
         setRotation(180);
-        setSpeed(3);
-        startHealth(150);
+        setSpeed(2);
+        startHealth(200);
     }
 
     /**
@@ -39,7 +42,8 @@ public class ArsonZombie extends Zombie
         reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        ammo++;
+        firingDelay++;
+        if(ammo>0)fire();
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
         else if(distanceTo(getTarget())<retreatrange){fire();walk(monangle, -1);}
         else{
@@ -52,12 +56,38 @@ public class ArsonZombie extends Zombie
      */
     private void fire() 
     {
-        if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZBullet bullet = new ZBullet (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+        if(ammo>0){
+            if(firingDelay>=firingCooldown&&canAttack()){
+                if(ammo==5){
+                    superFire();
+                    ammo = 1;
+                }
+                fireOne();
+                ammo--;
+                firingDelay = 0;
+            }
+        }
+        else if (reloadDelayCount>=attackCooldown&&canAttack()){
+            fireOne();
+            firingDelay = 0;
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
+            ammo = nextAmmo;
+            nextAmmo++;
+            if(nextAmmo>5){
+                nextAmmo = 1;
+            }
         }
+    }
+    public void fireOne(){
+        double d = distanceTo(getTarget());
+        MolotovCocktail bullet = new MolotovCocktail (getRealRotation(), d, d/2, this);
+        getWorld().addObject (bullet, getRealX(), getRealY());
+    }
+    public void superFire(){
+        for(int i = 0; i < 4; i++){double d = distanceTo(getTarget())+Greenfoot.getRandomNumber(60)-30;
+        MolotovCocktail bullet = new MolotovCocktail (getRealRotation()+Greenfoot.getRandomNumber(30)-15, d, d/2, this);
+        getWorld().addObject (bullet, getRealX(), getRealY());}
     }
     //ovveride this
     public int getXP(){

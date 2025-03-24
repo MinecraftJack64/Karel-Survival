@@ -121,11 +121,11 @@ public class LilCreatures extends Weapon implements ICritter
     public void regenerate(int id){
         int am = getSyncAmmo();
         if(id<6){
-            PassiveCritter c = new PassiveCritter(id, id*60, 35, this, getHolder());
+            PassiveCritter c = new PassiveCritter(id, id*60, 35, this, getHand());
             ic[id] = c;
             getHolder().addObjectHere(c);
         }else{
-            PassiveCritter c = new PassiveCritter(id, 0, 0, this, getHolder());
+            PassiveCritter c = new PassiveCritter(id, 0, 0, this, getHand());
             ic[id] = c;
             getHolder().addObjectHere(c);
         }
