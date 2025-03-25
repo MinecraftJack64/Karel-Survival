@@ -15,6 +15,7 @@ public class Bullet extends Projectile
     private int life = 40;
     private double speed;
     private double direction;
+    private boolean isDone = false;
     
     
     public Bullet()
@@ -83,8 +84,12 @@ public class Bullet extends Projectile
     
     public void die(){
         getWorld().removeObject(this);
+        isDone = true;
         super.die();
     }
     public void expire(){die();}
     public void finish(){die();}
+    public boolean isDone(){
+        return isDone;
+    }
 }

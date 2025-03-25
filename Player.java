@@ -76,6 +76,7 @@ public class Player extends GridEntity {
         this.inventory[32] = new Soup(getHand());
         this.inventory[33] = new FlashDrive(getHand());
         this.inventory[34] = new Inferno(getHand());
+        this.inventory[35] = new Blowgun(getHand());
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }

@@ -68,7 +68,6 @@ public class ArsonZombie extends Zombie
             }
         }
         else if (reloadDelayCount>=attackCooldown&&canAttack()){
-            fireOne();
             firingDelay = 0;
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
@@ -81,12 +80,12 @@ public class ArsonZombie extends Zombie
     }
     public void fireOne(){
         double d = distanceTo(getTarget());
-        MolotovCocktail bullet = new MolotovCocktail (getRealRotation(), d, d/2, this);
+        MolotovCocktail bullet = new MolotovCocktail (getRealRotation(), d, 400+d/4, this);
         getWorld().addObject (bullet, getRealX(), getRealY());
     }
     public void superFire(){
         for(int i = 0; i < 4; i++){double d = distanceTo(getTarget())+Greenfoot.getRandomNumber(60)-30;
-        MolotovCocktail bullet = new MolotovCocktail (getRealRotation()+Greenfoot.getRandomNumber(30)-15, d, d/2, this);
+        MolotovCocktail bullet = new MolotovCocktail (getRealRotation()+Greenfoot.getRandomNumber(30)-15, d, 100+d/2, this);
         getWorld().addObject (bullet, getRealX(), getRealY());}
     }
     //ovveride this
