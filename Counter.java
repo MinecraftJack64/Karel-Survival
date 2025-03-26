@@ -53,6 +53,7 @@ public class Counter extends TextDisplay
     }
     public void setValue(int value){
         this.value = target = value;
+        setText(prefix+value);
     }
     public void setTarget(int score)
     {

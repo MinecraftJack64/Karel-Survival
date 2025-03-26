@@ -11,7 +11,7 @@ public class ZombieSpawner implements Spawner
 {
     public int wavehealth = 0;
     public int wavemaxhealth = 0;
-    public int wavelevel = 1;
+    public int wavelevel = 30;
     private int bossphase = 0;
     private boolean bossfight;
     public int cwavecooldown = 200;
@@ -35,7 +35,6 @@ public class ZombieSpawner implements Spawner
         if(!bossfight){if(allSpawnedDied()/*3.0*wavemaxhealth/4*/){
             wavelevel++;
             if(!isBossWave()){
-                ((GameUI)(KWorld.me.ui)).waveCounter.setValue(wavelevel);
                 spawnZombies(Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2);
                 if(Greenfoot.getRandomNumber(3)<2){
                     SupplyCrate thing = new SupplyCrate(new WeaponFrag());

@@ -279,6 +279,37 @@ public abstract class Weapon implements Item, Tickable
         }
         return i;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide{
+        public static int getEffectiveRange(){
+            return 100;
+        }
+        public static int getIdealRange(){
+            return getEffectiveRange();
+        }
+        public static int getUltEffectiveRange(){
+            return 0;
+        }
+        public static int getUltIdealRange(){
+            return getUltEffectiveRange();
+        }
+        //how many degrees to turn from a target to lead shots based on distance
+        public static double getLead(double d){
+            return 0;
+        }
+        public static double getUltLead(double d){
+            return 0;
+        }
+        //if weapon should use ult/attack if available
+        public boolean shouldUse(){
+            return true;
+        }
+        public boolean shouldUseUlt(){
+            return true;
+        }
+    }
 }
 
 

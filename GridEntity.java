@@ -279,7 +279,8 @@ public abstract class GridEntity extends GridObject
         if(shields.size()<maxshields&&acceptShield(thing)){
             shields.add(pos, thing);
             thing.applyTo(this);
-            shieldBars.add(pos, new ShieldBar(thing.getHealth(), 40, 5, pos, this));
+            ShieldBar shieldBar = thing.getHealth()>0?new ShieldBar(thing.getHealth(), 40, 5, pos, this):new BadShieldBar(thing.getHealth(), 40, 5, pos, this);
+            shieldBars.add(pos, shieldBar);
             KWorld.me.addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
         }
     }

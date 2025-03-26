@@ -10,43 +10,52 @@ import java.util.List;
 public class PaintGun extends Weapon
 {
     private static final int gunReloadTime = 30;
-    private boolean quickcharge = false;
+    private static final int ultReloadTime = 4;
     private int reloadDelayCount;
-    private static final int ult = 1500;
+    private static final int ult = 2000;
+    private int ultAmmo = 0; // 3
+    private int startUltCooldown = 0; // 30
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
-            Bullet bullet = new Bullet (getHand().getTargetRotation(), getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-            //bullet.move ();
-            Sounds.play("gunshoot");
-            reloadDelayCount = (quickcharge?3:0)+(useGadget()?2:0);
-            if(getAttackUpgrade()==1){
-                quickcharge = !quickcharge;
+            for(int i = -5; i <= 5; i+=2){
+                PaintDrop bullet = new PaintDrop (getHand().getTargetRotation()+i, false, getHolder());
+                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             }
+            //bullet.move ();
+            reloadDelayCount = 0;
+            Sounds.play("gunshoot");
         }
     }
     public void fireUlt(){
-        ProtonWave bullet = new ProtonWave(getHolder(), getUltUpgrade()==1);
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
-        Sounds.play("protonwave");
-        /*List<GridEntity> l = getHolder().getGEsInRange(185);
-        for(GridEntity g:l){
-            if(getHolder().isAggroTowards(g)){
-                getHolder().damage(g, 700);
-                //g.applyeffect(new PoisonEffect(30, getHolder()));
+        if(continueUlt()){
+            if(startUltCooldown>0){
+                startUltCooldown--;
+            }else{
+                if(reloadDelayCount>=ultReloadTime){
+                    reloadDelayCount = 0;
+                    double spread = (ultAmmo+4)*1.5; // 8 at 3 ammo, 6 at 1 ammo
+                    for(double i = -spread; i <= spread; i+=3){
+                        PaintDrop bullet = new PaintDrop (getHand().getTargetRotation()+i, true, getHolder());
+                        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                    }
+                    ultAmmo--;
+                    if(ultAmmo<=0){
+                        setContinueUlt(false);
+                        setPlayerLockRotation(false);
+                    }
+                }
             }
-        }*/
-        //Explosion exp = new Explosion(3);
-        //getHolder().addObjectHere(exp);
-        //Sounds.play("explode");
-        reloadDelayCount = 0;
+        }else{
+            startUltCooldown = 30;
+            reloadDelayCount = 0;
+            ultAmmo = 3;
+            setPlayerLockRotation(true);
+            setContinueUlt(true);
+        }
     }
     public int getUlt(){
         return ult;
-    }
-    public void onGadgetActivate(){
-        setGadgetTimer(120);
     }
     public void reload(){
         reloadDelayCount++;
@@ -60,14 +69,25 @@ public class PaintGun extends Weapon
         super.equip();
         getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
-    public int defaultGadgets(){
-        return 3;
-    }
     public String getName(){
         return "Paint Sprayer";
     }
     public int getRarity(){
-        return 2;
+        return 1;
+    }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    private class BotGuide extends Weapon.BotGuide{
+        public static int getEffectiveRange(){
+            return 600;
+        }
+        public static int getUltEffectiveRange(){
+            return 300;
+        }
+        public static int getUltIdealRange(){
+            return 0;
+        }
     }
 }
 
