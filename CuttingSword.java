@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 
 /**
- * A bullet that can hit asteroids.
+ * Single slice used by Blade weapon ult
  * 
  * @author Poul Henriksen
  */

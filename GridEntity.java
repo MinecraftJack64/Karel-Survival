@@ -42,7 +42,7 @@ public abstract class GridEntity extends GridObject
     }
     public void die(GridObject source){
         isdead = true;
-        killer = source.getParentAffecter();
+        if(source!=null)killer = source.getParentAffecter();
         setHealth(0);
         super.die();
         if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){}//remove from world if set to true
@@ -99,7 +99,6 @@ public abstract class GridEntity extends GridObject
         if(isImmuneTo(e)){
             return false;
         }
-        //TODO: check immunities: for i in immunities, if i.blocks(e)return false;
         switch(e.getCollisionProtocol()){
             case 1://stacking
                 Effect other = getExistingEffect(e);
@@ -111,7 +110,7 @@ public abstract class GridEntity extends GridObject
             case 2://dominant
                 Effect other2 = getExistingEffect(e);
                 if(other2!=null){
-                    clearEffect(other2);
+                    other2.clear();
                     return true;
                 }
             break;

@@ -9,12 +9,21 @@ import java.util.ArrayList;
 public class Baby extends GridEntity
 {
     private int lvl;
+    private int diff;
     private int gunReloadTime, reloadDelayCount;
+    private int protonWaveReloadTime, protonWaveAmmo;
+    private static int[] diffhealths = new int[]{1, 7000, 4000, 2000, 1000};
     public Baby(){
-        startHealth(2000);
+        diff = KWorld.me.currentDiff();
+        if(diff==0){
+            startHealthShield(new ExternalImmunityShield(new ShieldID(this), -1));
+        }else{
+            this.startHealth(diffhealths[diff]);
+        }
         setTeam("player");
         lvl = 0;
-        gunReloadTime = 32;
+        gunReloadTime = 12;
+        protonWaveReloadTime = 12;
         reloadDelayCount = 0;
         repair();
     }
@@ -23,13 +32,25 @@ public class Baby extends GridEntity
             case 0:
             break;
             case 1:
-                reloadDelayCount++;
-                if(reloadDelayCount>=gunReloadTime){
-                    Bullet bullet = new Bullet(face(getNearestTarget(), false), this);
-                    getWorld().addObject(bullet, getRealX(), getRealY());
-                    reloadDelayCount = 0;
-                }
+                gunAttack();
+                protonWaveAttack();
             break;
+        }
+    }
+    public void gunAttack(){
+        reloadDelayCount++;
+        if(reloadDelayCount>=gunReloadTime){
+            Bullet bullet = new Bullet(face(getNearestTarget(), false), this);
+            getWorld().addObject(bullet, getRealX(), getRealY());
+            protonWaveAmmo++;
+            reloadDelayCount = 0;
+        }
+    }
+    public void protonWaveAttack(){
+        if(protonWaveAmmo>=protonWaveReloadTime){
+            protonWaveAmmo = 0;
+            ProtonWave bullet = new ProtonWave(this, false);
+            addObjectHere(bullet);
         }
     }
     public void repair(){
