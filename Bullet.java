@@ -67,6 +67,10 @@ public class Bullet extends Projectile
      */
     public void applyPhysics()
     {
+        applyPhysics(true);
+    }
+    public void applyPhysics(boolean willCheck)
+    {
         if(life <= 0) {
             expire();
         } 
@@ -77,7 +81,7 @@ public class Bullet extends Projectile
             }
             life--;
             move(getDirection(), getSpeed());
-            checkHit();
+            if(willCheck)checkHit();
         }
     }
     

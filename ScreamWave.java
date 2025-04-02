@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 public class ScreamWave extends Bullet
 {
     /** The damage this bullet will deal */
-    private static final double range = 250;
+    private static final double range = 300;
     /** A bullet looses one life each act, and will disappear when life = 0 */
     public ScreamWave(double rotation, int life, int damage, GridObject source)
     {

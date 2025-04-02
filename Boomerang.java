@@ -27,10 +27,7 @@ public class Boomerang extends Bullet implements IBoomerang
     public int getReturnDamage(){return returnDamage;}
     public void applyPhysics(){
         if(phase==0){
-            if(damageonreturn==2){
-                setDamage(0);
-            }
-            super.applyPhysics();
+            super.applyPhysics(damageonreturn!=2);
         }else{
             doReturn();
         }

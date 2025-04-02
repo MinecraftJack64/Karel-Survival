@@ -111,7 +111,6 @@ public abstract class GridEntity extends GridObject
                 Effect other2 = getExistingEffect(e);
                 if(other2!=null){
                     other2.clear();
-                    return true;
                 }
             break;
             case 3://recessive

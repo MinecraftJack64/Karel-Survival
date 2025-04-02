@@ -40,7 +40,7 @@ public class CatClaw extends Weapon implements LandingHandler
         }
     }
     public void fireClaw(int c){
-        claws[c] = new Claw(getHand().getTargetRotation()+(-21+14*c), getHolder());
+        claws[c] = getAttackUpgrade()==1?new PullingClaw(getHand().getTargetRotation()+(-21+14*c), getHolder()):new Claw(getHand().getTargetRotation()+(-21+14*c), getHolder());
         getHolder().addObjectHere(claws[c]);
     }
     public void fireUlt(){

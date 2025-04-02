@@ -78,6 +78,7 @@ public class Player extends GridEntity {
         this.inventory[34] = new Inferno(getHand());
         this.inventory[35] = new Blowgun(getHand());
         this.inventory[36] = new PaintGun(getHand());
+        this.inventory[37] = new Scream(getHand());
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }
@@ -285,6 +286,9 @@ public class Player extends GridEntity {
             boolean didspecial = false;
             if(i instanceof Weapon){
                 Weapon w = (Weapon)i;
+                if(Greenfoot.isKeyDown("z")){// TODO remove debug code
+                    w.chargeUlt(100);
+                }
                 didspecial = true;
                 if (Greenfoot.isKeyDown("q")&&!w.continueUlt()&&w.activateGadget()) {
                     this.hacooldown = 0;

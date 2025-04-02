@@ -36,7 +36,7 @@ import greenfoot.*;
  */
 public class Zombie extends GridEntity
 {
-
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
     private GreenfootImage rocket = new GreenfootImage("zareln.png");    
@@ -184,6 +184,9 @@ public class Zombie extends GridEntity
     }
     public void walk(double ang, double multiplier){
         super.walk(ang, multiplier*dsmult[getWorld().currentDiff()]);
+    }
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     public String getName(){
         return "Zombie";
