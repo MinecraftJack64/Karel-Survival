@@ -20,7 +20,7 @@ public class ChameleonTongue extends Boomerang
     {
         super(rotation, source);
         setSpeed(25);
-        setReturnSpeed(20);
+        setReturnSpeed(25);
         setLife(18);
         setDamage(60);
         pullStun = new EffectID(this, "pull");
@@ -55,7 +55,7 @@ public class ChameleonTongue extends Boomerang
     public void dieForReal(){
         if(target!=null&&!target.isDead()){
             target.unstun(pullStun);
-            target.applyEffect(new StunEffect(10, getSource(), afterStun));
+            target.applyEffect(new StunEffect(30, getSource(), afterStun));
         }
         super.dieForReal();
     }
@@ -70,10 +70,11 @@ public class ChameleonTongue extends Boomerang
     {
         super.doHit(asteroid);
         if(sticky)asteroid.applyEffect(new SpeedPercentageEffect(0.5, 10, this));
-        if(getNumTargets()>=0&&(asteroid.getPercentHealth()<=(sticky?0.35:0.2)||asteroid.getHealth()<=getPower()*100)){
+        if(getNumTargets()>=0&&(asteroid.getPercentHealth()<=(sticky?0.45:0.3)||asteroid.getHealth()<=getPower()*100)){
             asteroid.stun(pullStun);
             target = asteroid;
             hasTarget = true;
+            setReturnSpeed(18);
             Sounds.play("lassotighten");
         }else{
             //

@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class Chameleon extends Weapon
 {
-    private static final int gunReloadTime = 15;
+    private static final int gunReloadTime = 10;
     private int colorCooldown = 0;
-    private int color = 3;//0,1,2,3,4,5 - red-purple
+    private int color = 2;//0,1,2,3,4,5 - red-purple
     private int nextColor = 4;
     private int reloadDelayCount;
     private boolean greenboostson = false;
@@ -44,7 +44,18 @@ public class Chameleon extends Weapon
             getHolder().addObjectHere(bullet);
             tongue = bullet;
             if(isColor(2)){
-                //
+                double bestResidual[] = new double[]{180};
+                getHolder().explodeOn(480, "enemy", (g)->{
+                    if(Math.abs(getHolder().face(g, false)-getHand().getTargetRotation()-180)%360<90){
+                        double residual = Math.abs(getHolder().face(g, false)-getHand().getTargetRotation())%360;
+                        System.out.println(residual+" "+getHolder().face(g, false)+" "+getHand().getTargetRotation());
+                        if(residual<bestResidual[0]){
+                            bestResidual[0] = residual;
+                        }
+                    }
+                }, null);
+                ChameleonTongue bullet2 = new ChameleonTongue (getHand().getTargetRotation()+bestResidual[0], false, false, getHolder());
+                getHolder().addObjectHere(bullet2);
             }
         }//bullet.move ();
         Sounds.play("gunshoot");
@@ -70,15 +81,23 @@ public class Chameleon extends Weapon
         }
     }
     public void notifyColorChange(int c, int heal, GridEntity catcher){
-        if(catcher==getHolder())color = c;
-        getHolder().heal(catcher, heal*(isColor(4)?2:1));
+        //if(catcher==getHolder())color = c;
+        getHolder().heal(catcher, heal);
     }
     public boolean isColor(int chk){
+        if(chk==2)return true;
         return colorCooldown>0&&color==chk;
     }
     public void fireUlt(){
         colorCooldown = 300;
-        if(isColor(1))chargeUlt(250);
+    }
+    public boolean ult(){
+        if(super.ult()){
+            if(isColor(1))chargeUlt(getUlt()/4);
+            return true;
+        }else{
+            return false;
+        }
     }
     public void chargeUlt(int amt){
         if(isColor(1))super.chargeUlt(amt*2);
@@ -100,6 +119,9 @@ public class Chameleon extends Weapon
             getHolder().setSpeedMultiplier(1, greenspeed);
             getHolder().unground();
             greenboostson = false;
+        }
+        if(isColor(4)){
+            getHolder().heal(getHolder(), 10);
         }
     }
     public Chameleon(ItemHolder actor){
