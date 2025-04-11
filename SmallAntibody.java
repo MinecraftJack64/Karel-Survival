@@ -18,13 +18,13 @@ public class SmallAntibody extends Bullet
         super(rotation, source);
         setSpeed(17);
         setLife(20);
-        setDamage(10);
-        setNumTargets(5);
+        setDamage(4);
+        setNumTargets(-1);
         target = targ;
     }
     public void doHit(GridEntity targ){
         if(target!=null&&target.isInstance(targ)){
-            damage(targ, getDamage());
+            damage(targ, getDamage()*4);
         }
         super.doHit(targ);
     }

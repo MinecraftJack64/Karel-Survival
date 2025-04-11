@@ -5,23 +5,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * 
  * @author Poul Henriksen
  */
-public class BearTrap extends Trap
+public class BearTrap extends Pet
 {
     /** The damage this bullet will deal */
     private static final int damage = 75;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 2000;
+    private int life = 0;
     private boolean isset;
     private GridEntity target;
     private int hitcooldown, hitrate = 20, hitcount = 4;
-    
-    public BearTrap(GridObject source)
+    private int speed;
+    private double dir;
+    public BearTrap(double rot, GridEntity source)
     {
         super(source);
-        isset = true;
+        isset = false;
+        startHealth(400);
         hitcooldown = 0;
         setTeam(source.getTeam());
+        speed = 22;
+        dir = rot;
     }
     
     /**
@@ -29,14 +33,16 @@ public class BearTrap extends Trap
      */
     public void applyPhysics()
     {
-        if(life <= 0) {
-            die();
-        } 
-        else {
-            //move(getRealRotation()-90, 15);
-            if(isset){checkAsteroidHit();life--;}
-            else attack();
+        //move(getRealRotation()-90, 15);
+        if(speed>0){
+            move(dir, speed);
+            speed*=0.9;
+            if(speed == 0){
+                isset = true;
+            }
         }
+        if(isset){checkAsteroidHit();hit(1, this);}
+        else if(target!=null) attack();
     }
     
     /**
@@ -48,14 +54,14 @@ public class BearTrap extends Trap
         if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
             isset = false;
             target = asteroid;
-            Sounds.play("mousetrapsnap");
-            target.stun(new EffectID(this));
+            Sounds.play("beartrapsnap");
+            target.immobilize(new EffectID(this));
             attack();
         }
     }
     private void attack(){
         if(target.isDead()){
-            die();
+            kill(this);
             return;
         }
         if(hitcooldown<=0){
@@ -66,9 +72,12 @@ public class BearTrap extends Trap
         }
         hitcooldown--;
     }
+    public int spawnImmunityLength(){
+        return 15;
+    }
     public void die(){
-        if(!isset){
-            target.unstun(new EffectID(this));
+        if(!isset&&target!=null){
+            target.mobilize(new EffectID(this));
         }
         super.die();
         getWorld().removeObject(this);

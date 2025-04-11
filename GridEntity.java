@@ -383,7 +383,9 @@ public abstract class GridEntity extends GridObject
         applyEffect(new KnockbackEffect(r, d, h, source));
         return true;
     }
+    
     public void hit(int dmg, GridObject source){
+        if(source==null)source = this;
         //dec health
         for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             dmg = shields.get(i).processDamage(dmg, source);
@@ -391,10 +393,7 @@ public abstract class GridEntity extends GridObject
         hitIgnoreShield(dmg, source);
     }
     public void hitIgnoreShield(int dmg, GridObject source){
-        //TODO: some shields can ignore them
-        /*for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
-            shields.get(i);
-        }*/
+        if(source==null)source = this;
         dmg*=getExposure();
         if(healthShield!=null){
             dmg = healthShield.processDamage(dmg, source);

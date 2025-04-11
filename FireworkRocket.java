@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class FireworkRocket extends FlyingRock
 {
+    private boolean exploded;
     public FireworkRocket(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, source);
@@ -21,6 +22,8 @@ public class FireworkRocket extends FlyingRock
             super.applyPhysics();
         }
         else if(percentDone()>=0.5){
+            if(!exploded)explodeOn(250, 50);
+            exploded = true;
             setRealHeight(getPath().getHeight(frame));
             continueFrame();
         }else{

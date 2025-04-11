@@ -5,30 +5,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * 
  * @author Poul Henriksen
  */
-public class Mousetrap extends Trap
+public class BearTrapOld extends Trap
 {
     /** The damage this bullet will deal */
-    private int damage = 100;
+    private static final int damage = 75;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 150;
+    private int life = 2000;
     private boolean isset;
     private GridEntity target;
-    private int hitcooldown, hitrate = 30, hitcount = 4;
-    private int speed;
-    private double dir;
-    public Mousetrap(GridObject source)
+    private int hitcooldown, hitrate = 20, hitcount = 4;
+    
+    public BearTrapOld(GridObject source)
     {
         super(source);
         isset = true;
         hitcooldown = 0;
         setTeam(source.getTeam());
-    }
-    public Mousetrap(double rot, GridObject source)
-    {
-        this(source);
-        speed = 22;
-        dir = rot;
     }
     
     /**
@@ -41,13 +34,7 @@ public class Mousetrap extends Trap
         } 
         else {
             //move(getRealRotation()-90, 15);
-            if(isset){
-                if(speed>0){
-                    move(dir, speed);
-                    speed*=0.9;
-                }
-                checkAsteroidHit();life--;
-            }
+            if(isset){checkAsteroidHit();life--;}
             else attack();
         }
     }
@@ -58,14 +45,11 @@ public class Mousetrap extends Trap
     private void checkAsteroidHit()
     {
         GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
-        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()){
-            //getWorld().removeObject(this);
+        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
             isset = false;
             target = asteroid;
             Sounds.play("mousetrapsnap");
-            //asteroid.hit(damage, this);
-            target.applyEffect(new StunEffect(150, this));
-            //target.applyeffect(new SpeedPercentageEffect(5, 300));
+            target.stun(new EffectID(this));
             attack();
         }
     }
@@ -78,16 +62,18 @@ public class Mousetrap extends Trap
             hitcooldown = hitrate;
             hitcount--;
             //check status of target
-            target.hit(damage, this);
-            damage-=30;
+            damage(target, damage);
         }
         hitcooldown--;
-        if(hitcount<=0){
-            die();
-        }
     }
     public void die(){
+        if(!isset){
+            target.unstun(new EffectID(this));
+        }
         super.die();
         getWorld().removeObject(this);
+    }
+    public boolean covertDamage(){
+        return hitcount>0;
     }
 }

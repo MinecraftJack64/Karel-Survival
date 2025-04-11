@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Player extends GridEntity {
-    boolean autoaim = false, isattacking = false, ismoving = false;
+    boolean autoaim = false, autoattack = false, autoult = false, isattacking = false, ismoving = false;
     private PlayerHand hand;
     private GreenfootImage rocket = new GreenfootImage("kareln.png");
     private GreenfootImage off = new GreenfootImage("karelnOff.png");
@@ -16,7 +16,7 @@ public class Player extends GridEntity {
     private int hacooldown;
     private int diff;
     private static int[] diffhealths = new int[]{1, 5000, 2500, 750, 1};
-    private static int[] diffheal = new int[]{0, 2, 1, 0, 1};
+    private static int[] diffheal = new int[]{0, 4, 2, 1, 0};
     private static int[] diffmaxsprint = new int[]{100000, 400, 200, 100, 50};
     private static int[] diffsprintrecovery = new int[]{100000, 3, 2, 1, 1};
     private boolean sprinting;
@@ -79,6 +79,8 @@ public class Player extends GridEntity {
         this.inventory[35] = new Blowgun(getHand());
         this.inventory[36] = new PaintGun(getHand());
         this.inventory[37] = new Scream(getHand());
+        this.inventory[38] = new TrapSetter(getHand());
+        this.inventory[39] = new Fireworks(getHand());
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }
@@ -182,6 +184,8 @@ public class Player extends GridEntity {
             ((Tickable)this.getHeldItem()).tick();
         }
         autoaim = getWorld().isShiftDown();
+        autoult = getWorld().autoUlt();
+        autoattack = getWorld().autoAttack();
         this.checkKeys();
         double targang = face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
         if (this.hacooldown > 20 && !this.isDead()/* && getWorld().getGame().getDifficulty<2*/) {
@@ -292,13 +296,13 @@ public class Player extends GridEntity {
                 didspecial = true;
                 if (Greenfoot.isKeyDown("q")&&!w.continueUlt()&&w.activateGadget()) {
                     this.hacooldown = 0;
-                } else if ((Greenfoot.isKeyDown("space")||w.continueUlt())&&w.ult()) {
+                } else if ((Greenfoot.isKeyDown("space")||autoult||w.continueUlt())&&w.ult()) {
                     this.hacooldown = 0;
                 }else{
                     didspecial = false;
                 }
             }
-            if (this.getHeldItem() != null&&(this.getWorld().lastClicked||getHeldItem().continueUse())&&!didspecial) {
+            if (this.getHeldItem() != null&&(this.getWorld().lastClicked||autoattack||getHeldItem().continueUse())&&!didspecial) {
                 isattacking = true;
                 this.getHeldItem().use();
     
@@ -361,6 +365,7 @@ public class Player extends GridEntity {
     }
 
     public void notifyDamage(GridEntity target, int amt) {
+        if(target==this)return;
         if (this.getHeldItem() instanceof Weapon) {
             ((Weapon)this.getHeldItem()).chargeUlt(amt);
         }
@@ -381,6 +386,9 @@ public class Player extends GridEntity {
     @Override
     public boolean removeOnDeath(){
         return false;
+    }
+    public String getName(){
+        return "Player";
     }
     
     public class PlayerHand implements ItemHolder{

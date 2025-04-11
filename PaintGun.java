@@ -36,7 +36,11 @@ public class PaintGun extends Weapon
                     reloadDelayCount = 0;
                     double spread = (ultAmmo+4)*1.5; // 8 at 3 ammo, 6 at 1 ammo
                     for(double i = -spread; i <= spread; i+=3){
-                        PaintDrop bullet = new PaintDrop (getHand().getTargetRotation()+i, true, getHolder());
+                        PaintDrop bullet = new PaintDrop (getHand().getTargetRotation()+i, true, getHolder()){
+                            public double damageSecrecy(){
+                                return super.damageSecrecy()*ultAmmo*0.33;
+                            }
+                        };
                         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
                     }
                     ultAmmo--;

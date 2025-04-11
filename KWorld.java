@@ -41,10 +41,13 @@ public class KWorld extends World
     
     //scrolling
     public double scrollX = 0, scrollY = 0;
+    private boolean scrollToPlayer = true;
     
     //these are constant default values, to be deprecated
     public int gridheight = 16;
     public int gridwidth = 24;
+    public int xLowerBound = -500, yLowerBound = -500;
+    public int xUpperBound = 1700, yUpperBound = 1300;
     private final double gravity = -5;
     
     public String currentMenu = "mainmenu";
@@ -66,6 +69,12 @@ public class KWorld extends World
     
     private boolean paused = false;
     private boolean currentlypausing = false;
+    
+    private boolean autoattack = false;
+    private boolean currentlyTogglingAutoattack = false;
+    
+    private boolean autoult = false;
+    private boolean currentlyTogglingAutoult = false;
     private boolean currentlycrafting = false;
     public KWorld() 
     {
@@ -305,8 +314,27 @@ public class KWorld extends World
         if(ocp&&!currentlypausing&&currentMenu.equals("game")&&gameStatus().equals("running")){
             togglePause();
         }
+        boolean otaa = currentlyTogglingAutoattack;
+        currentlyTogglingAutoattack = Greenfoot.isKeyDown("control");
+        if(otaa&&!currentlyTogglingAutoattack&&currentMenu.equals("game")&&gameStatus().equals("running")){
+            toggleAutoattack();
+        }
+        boolean otau = currentlyTogglingAutoult;
+        currentlyTogglingAutoult = Greenfoot.isKeyDown("u");
+        if(otau&&!currentlyTogglingAutoult&&currentMenu.equals("game")&&gameStatus().equals("running")){
+            toggleAutoult();
+        }
         if(currentMenu.equals("game")&&gameStatus().equals("running")){
             game.tick();
+            for(int i = allEntities().size()-1; i >=0; i--){
+                GridEntity g = allEntities().get(i);
+                if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
+                    g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
+                if(scrollToPlayer){
+                    scrollX = getGame().getPlayer().getRealX()-600;
+                    scrollY = getGame().getPlayer().getRealY()-400;
+                }
+            }
             if(Greenfoot.isKeyDown("e")&&!currentlycrafting){
                 game.craftWeapon();
             }
@@ -345,6 +373,18 @@ public class KWorld extends World
             paused = true;
             pauseUI().showPauseMenu();
         }
+    }
+    public void toggleAutoattack(){
+        autoattack = !autoattack;
+    }
+    public void toggleAutoult(){
+        autoult = !autoult;
+    }
+    public boolean autoAttack(){
+        return autoattack;
+    }
+    public boolean autoUlt(){
+        return autoult;
     }
     public ArrayList<GridEntity> allEntities(){
         return allEntities;

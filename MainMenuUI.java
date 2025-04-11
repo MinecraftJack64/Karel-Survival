@@ -10,7 +10,7 @@ public class MainMenuUI extends UI
     private Button playButton, modeSelectButton, dfcSelectButton;
     private TextDisplay go, modeText, dfcText;
     public void create(){
-        go = new TextDisplay("KAREL ADVENTURE", 90, Color.GREEN);
+        go = new TextDisplay("KAREL SURVIVAL", 90, Color.GREEN);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0-45);
         modeText = new TextDisplay("Mode", 25, Color.GREEN);
         getWorld().addObject(modeText, go.getRealX()-200, go.getBottom()+15);

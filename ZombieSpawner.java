@@ -11,7 +11,7 @@ public class ZombieSpawner implements Spawner
 {
     public int wavehealth = 0;
     public int wavemaxhealth = 0;
-    public int wavelevel = 1;
+    public int wavelevel = 29;
     private int bossphase = 0;
     private boolean bossfight;
     public int cwavecooldown = 200;

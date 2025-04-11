@@ -6,29 +6,66 @@
  */
 public class TrapSetter extends Weapon
 {
-    private static final int gunReloadTime = 50;
+    private Dasher dash;
+    private static final int gunReloadTime = 65;
+    private static final int dashWaitTime = 12;
+    private static final int bearTrapTime = 15;
+    private double nextAngle = 0;
+    private int jumpDelayCount = 0;
+    private int bearTrapDelay = 0;
+    private int remainingBearTraps = 0; // 3
     private int reloadDelayCount;
     private static final int ult = 700;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if(continueUse()){
+            if(dash!=null&&!dash.dash()){
+                dash = null;
+                jumpDelayCount = dashWaitTime;
+                Mousetrap bullet = getAttackUpgrade()==1?new Mousetrap(getHand().getTargetRotation(), getHolder()):new Mousetrap(getHolder());
+                //WeaponFrag bullet = new WeaponFrag();
+                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            }
+            jumpDelayCount--;
+            if(jumpDelayCount==0){
+                getHolder().initiateJump(getHand().getTargetRotation()+180, 150, 30);
+                getHand().setTargetLock(false);
+                setContinueUse(false);
+            }
+        }else if (reloadDelayCount >= gunReloadTime) 
         {
-            Mousetrap bullet = getAttackUpgrade()==1?new Mousetrap(getHand().getTargetRotation(), getHolder()):new Mousetrap(getHolder());
-            //WeaponFrag bullet = new WeaponFrag();
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHand().setTargetLock(true);
+            dash = new Dasher(getHand().getTargetRotation(), 15, 10, getHolder());
+            setContinueUse(true);
             Sounds.play("setuptrap");
             reloadDelayCount = 0;
         }
     }
     public void fireUlt(){
-        setTrap(100, 100);
-        setTrap(-100, -100);
-        setTrap(-100, 100);
-        setTrap(100, -100);
+        if(continueUlt()){
+            bearTrapDelay--;
+            if(bearTrapDelay<=0){
+                bearTrapDelay = bearTrapTime;
+                setTrap(nextAngle);
+                nextAngle+=90;
+                remainingBearTraps--;
+                if(remainingBearTraps<=0){
+                    setContinueUlt(false);
+                    getHolder().setSpeedMultiplier(1, new EffectID(this));
+                }
+            }
+        }else{
+            setContinueUlt(true);
+            setTrap(getHand().getTargetRotation());
+            getHolder().setSpeedMultiplier(0.5, new EffectID(this));
+            nextAngle = getHand().getTargetRotation()+90;
+            remainingBearTraps = 3;
+            bearTrapDelay = bearTrapTime;
+        }
     }
-    public void setTrap(double offsetx, double offsety){
-        BearTrap bullet = new BearTrap(getHolder());
+    public void setTrap(double rot){
+        BearTrap bullet = new BearTrap(rot, getHolder());
         //WeaponFrag bullet = new WeaponFrag();
-        getHolder().getWorld().addObject (bullet, getHolder().getRealX()+offsetx, getHolder().getRealY()+offsety);
+        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("setuptrap");
     }
     public void reload(){

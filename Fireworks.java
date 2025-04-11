@@ -19,7 +19,7 @@ public class Fireworks extends Weapon implements AmmoHolder
                 //
             }
             double d = Math.min(2*getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 800);
-            FireworkRocket bullet = new FireworkRocket (getHand().getTargetRotation(), d, 400, getHolder());
+            FireworkRocket bullet = new FireworkRocket (getHand().getTargetRotation(), d, ammo.getAmmo()*100, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("fireworkshoot");

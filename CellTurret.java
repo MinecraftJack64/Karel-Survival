@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class CellTurret extends Pet
 {
-
     private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
     private GreenfootImage rocket2 = new GreenfootImage("chickzareln.png");   
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
@@ -62,9 +61,9 @@ public class CellTurret extends Pet
                 isattacking = false;
                 setRealHeight(-7);
             }
-            else if(!isattacking&&distanceTo(getTarget())<=attackrange){
-                isattacking = true;
+            else if(!isattacking&&distanceTo(getTarget())<=attackrange&&getTarget()!=getSpawner()){
                 knockEnemiesBack();
+                isattacking = true;
                 setRealHeight(0);
             }
             if(isattacking&&getTarget()!=getSpawner()&&ammo>reloadtime&&canAttack()){
@@ -104,10 +103,35 @@ public class CellTurret extends Pet
         super.die(killer);
         try{getWorld().removeObject(this);}catch(Exception e){}
     }
+    public GridEntity getNearestTarget() {
+        if(target==null)return super.getNearestTarget();
+        GridEntity nearestTarget = null;
+        double closestDistance = 0;
+    
+        for (GridEntity entity : this.getWorld().allEntities) {
+            if (isAggroTowards(entity)&&entity.canDetect()&&target.isInstance(entity)&&distanceTo(entity)<attackrange) {
+                double currentDistance = this.distanceTo(entity);
+                
+                if (nearestTarget == null || currentDistance < closestDistance) {
+                    nearestTarget = entity;
+                    closestDistance = currentDistance;
+                }
+            }
+        }
+        if(nearestTarget==null){
+            nearestTarget = super.getNearestTarget();
+        }
+        return nearestTarget;
+    }
     public void hit(int amt, GridObject source){
         super.hit((target!=null&&target.isInstance(source))?amt/10:amt, source);
     }
     public boolean canDetect(){
         return getRealHeight()>=0;
+    }
+    public void notifyDamage(GridEntity source, int amt){
+        if(target!=null&&target.isInstance(source)){
+            super.notifyDamage(source, amt);
+        }
     }
 }
