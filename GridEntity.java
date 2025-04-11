@@ -35,10 +35,12 @@ public abstract class GridEntity extends GridObject
     public void notifyWorldRemove(){
         super.notifyWorldRemove();
         getWorld().allEntities().remove(this);
+        removeGraphics();
     }
     public void notifyWorldAdd(){
         super.notifyWorldRemove();
         getWorld().allEntities().add(this);
+        addGraphics();
     }
     public void die(GridObject source){
         isdead = true;
@@ -233,7 +235,6 @@ public abstract class GridEntity extends GridObject
         health = maxHealth = amt;
         if(showbar){
             healthBar = new LifeBar(amt,40,5,this);
-            KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
         }
     }
     public void startHealthAsBoss(int amt, int numphases){
@@ -294,7 +295,6 @@ public abstract class GridEntity extends GridObject
         health = maxHealth = 1;
         if(showbar){
             healthBar = new ShieldBar(thing.getHealth(),40,5,-1,this);
-            KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
         }
     }
     public Shield getHealthShield(){
@@ -445,14 +445,20 @@ public abstract class GridEntity extends GridObject
         //remove status bars
         //remove all components
     }
+    public void addGraphics(){
+        if(healthBar!=null)KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
+        if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getRealX(), getRealY());});
+    }
+    public void removeGraphics(){
+        if(healthBar!=null)getWorld().removeObject(healthBar);
+        if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().removeObject(s);});
+    }
     public boolean trap(){
-        if(healthBar!=null)healthBar.setVisible(false);
-        if(shieldBars!=null)shieldBars.forEach((s)->{s.setVisible(false);});
+        removeGraphics();
         return true;
     }
     public void untrap(){
-        if(healthBar!=null)healthBar.setVisible(true);
-        if(shieldBars!=null)shieldBars.forEach((s)->{s.setVisible(true);});
+        addGraphics();
     }
     public boolean canDetect(){//can be detected
         return detectable;

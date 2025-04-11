@@ -10,7 +10,7 @@ public class SupplyCrate extends GridEntity
 {
     ArrayList<GridObject> loot;
     public SupplyCrate(ArrayList<GridObject> todrop){
-        startHealth(30000);
+        startHealth(350);
         setTeam("lootbox");
         loot = todrop;
     }

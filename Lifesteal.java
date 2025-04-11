@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 public class Lifesteal extends Boomerang
 {
     /** The damage this bullet will deal */
-    private int damage = 25;
+    private int damage = 35;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private int life = 50;
@@ -22,7 +22,7 @@ public class Lifesteal extends Boomerang
     public Lifesteal(double rotation, GridEntity hypno, boolean returnfast, GridObject source)
     {
         super(rotation, source);
-        setSpeed(12);
+        setSpeed(14);
         setNumTargets(1);
         hypnoed = hypno;
         if(returnfast){
@@ -36,7 +36,7 @@ public class Lifesteal extends Boomerang
      */
     public void applyPhysics()
     {
-        if(damage<145){
+        if(damage<165){
             damage+=10;
             setDamage(damage);
         }

@@ -41,7 +41,7 @@ public class KWorld extends World
     
     //scrolling
     public double scrollX = 0, scrollY = 0;
-    private boolean scrollToPlayer = true;
+    private boolean scrollToPlayer = false;
     
     //these are constant default values, to be deprecated
     public int gridheight = 16;
