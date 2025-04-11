@@ -13,7 +13,7 @@ public class ExorcistZombie extends Zombie
 
     private int ammocooldown;               // How long ago we fired the gun the last time.
     private int attackcooldown = 400;
-    private GreenfootImage rocket = new GreenfootImage("doczareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("exorcistzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private int ammoreload = 0;

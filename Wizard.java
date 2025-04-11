@@ -44,7 +44,7 @@ public class Wizard extends Zombie
     private static final int laserReload = 700;
     private int laserAmmo;
     private int deathwaitcooldown = 100;
-    private GreenfootImage rocket = new GreenfootImage("heraldzareln.png");
+    private GreenfootImage rocket = new GreenfootImage("angryheraldzareln.png");
     private int phase;//5 phases
     /**
      * Initilise this rocket.

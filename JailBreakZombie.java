@@ -14,7 +14,7 @@ public class JailBreakZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("gunzareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("jailbreakzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 280, retreatrange = 300, bombrange = 40;
