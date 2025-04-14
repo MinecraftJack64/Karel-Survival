@@ -27,7 +27,8 @@ public class HuggingZombie extends Zombie
     private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private GreenfootImage rocket = new GreenfootImage("lovezareln.png");
+    private GreenfootImage rocket = new GreenfootImage("sadhuggingzareln.png");
+    private GreenfootImage rocket2 = new GreenfootImage("huggingzareln.png");
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     //private int shieldhealth = 300;
     private int ammo = 0;
@@ -44,6 +45,7 @@ public class HuggingZombie extends Zombie
     {
         reloadDelayCount = 5;
         rocket.scale(55, 55);
+        rocket2.scale(55, 55);
         setImage(rocket);
         setRotation(180);
         setSpeed(10);
@@ -53,11 +55,13 @@ public class HuggingZombie extends Zombie
         if(attack){
             super.attack();
             attack = false;
+            setImage(rocket2);
         }
     }
     public void walk(double ang, double mult){
         super.walk(ang, mult);
         attack = true;
+        setImage(rocket);
     }
     public boolean canBePulled(){
         return false;

@@ -15,7 +15,7 @@ public class AssassinZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("russianzareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("assassinzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private static double attackrange = 820, retreatrange = 800, assassinrange = 75;
     /**

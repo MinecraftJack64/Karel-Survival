@@ -15,7 +15,7 @@ public class ArsonZombie extends Zombie
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private int firingDelay;
 
-    private GreenfootImage rocket = new GreenfootImage("gunzareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("arsonzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private int nextAmmo = 1;

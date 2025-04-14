@@ -48,7 +48,7 @@ public class Flail extends Weapon implements AmmoHolder
                 dash = new DasherDoer(getHand().getTargetRotation(), 16, 31, 100, (g)->{
                     if(getHolder().isAggroTowards(g)){
                         if(g.canBePulled())g.knockBack(getHolder().face(g, false)+90, getHolder().distanceTo(g)*1.5, 25, getHolder());
-                        getHolder().damage(g, 200);
+                        getHolder().damage(g, 300, 0.6);
                     }
                 }, getHolder());
             }else{

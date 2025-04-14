@@ -384,15 +384,18 @@ public abstract class GridEntity extends GridObject
         return true;
     }
     
-    public void hit(int dmg, GridObject source){
+    public void hit(int dmg, double exposure, GridObject source){
         if(source==null)source = this;
         //dec health
         for(int i = shields.size()-1; i >=0; i--){//process damage through each shield
             dmg = shields.get(i).processDamage(dmg, source);
         }
-        hitIgnoreShield(dmg, source);
+        hitIgnoreShield(dmg, exposure, source);
     }
-    public void hitIgnoreShield(int dmg, GridObject source){
+    public void hit(int dmg, GridObject source){
+        hit(dmg, 1, source);
+    }
+    public void hitIgnoreShield(int dmg, double exposure, GridObject source){
         if(source==null)source = this;
         dmg*=getExposure();
         if(healthShield!=null){
@@ -405,8 +408,11 @@ public abstract class GridEntity extends GridObject
             Sounds.play("hit");
         }
         damage(dmg);
-        if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, dmg);
+        if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, (int)(dmg*damageExposure()*exposure*source.damageSecrecy()));
         if(getHealth()<=0)die(source);
+    }
+    public void hitIgnoreShield(int dmg, GridObject source){
+        hitIgnoreShield(dmg, 1, source);
     }
     public void kill(GridObject source){
         removeAllShields();

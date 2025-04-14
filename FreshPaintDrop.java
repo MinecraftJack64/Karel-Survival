@@ -6,27 +6,16 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class PaintDrop extends Bullet
+public class FreshPaintDrop extends PaintDrop
 {
     /** The damage this bullet will deal */
     //private static final int damage = 50;
-    private boolean isSuper;
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
     
-    public PaintDrop(double rotation, boolean isSuper, GridObject source)
+    public FreshPaintDrop(double rotation, GridObject source)
     {
-        super(rotation, source);
-        setSpeed(20);
-        setLife(isSuper?15:30);
-        setDamage(isSuper?70:35);
-        this.isSuper = isSuper;
-    }
-    public void doHit(GridEntity targ){
-        super.doHit(targ);
-        if(!targ.isDead()){
-            targ.applyShield(getPaintShield());
-        }
+        super(rotation, false, source);
     }
     public Shield getPaintShield(){
         return new PaintExposureShield(new ShieldID(this), -0.5);
@@ -37,7 +26,7 @@ public class PaintDrop extends Bullet
         }
         public int processDamage(int amt, GridObject source){
             remove();
-            return super.processDamage(amt, source);
+            return super.processDamage((int)(amt*(getDuration()/200.0+1)), source);
         }
     }
 }

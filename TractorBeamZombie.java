@@ -47,8 +47,7 @@ public class TractorBeamZombie extends Zombie
     private void fire() 
     {
         if (canAttack()){
-            ZBigBullet bullet = new ZBigBullet (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            //
             Sounds.play("gunshoot");
         }
     }

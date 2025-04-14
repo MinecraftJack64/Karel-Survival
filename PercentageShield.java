@@ -32,6 +32,9 @@ public class PercentageShield extends Shield
         }
         return false;
     }
+    public int getDuration(){
+        return duration;
+    }
     public int getHealth(){
         return -1;
     }

@@ -13,7 +13,7 @@ public class BreadBoxerZombie extends Zombie
     private static final int punchReloadTime = 5;
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private int punchDelay;
-    private GreenfootImage rocket = new GreenfootImage("laserzareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("breadzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private boolean punchdir;

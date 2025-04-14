@@ -383,10 +383,16 @@ public abstract class GridObject extends KActor
     }
     
     public void damage(GridEntity targ, int amt){
-        targ.hit((int)(amt*getPower()), this);
+        damage(targ, amt, 1);
+    }
+    public void damage(GridEntity targ, int amt, double exposure){
+        targ.hit((int)(amt*getPower()), exposure, this);
     }
     public void damageIgnoreShield(GridEntity targ, int amt){
-        targ.hitIgnoreShield((int)(amt*getPower()), this);
+        damageIgnoreShield(targ, amt, 1);
+    }
+    public void damageIgnoreShield(GridEntity targ, int amt, double exposure){
+        targ.hitIgnoreShield((int)(amt*getPower()), exposure, this);
     }
     public void act(){
         if(getWorld().isPaused())return;
