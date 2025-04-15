@@ -63,6 +63,7 @@ public abstract class Effect
     private GridEntity target;// the GE this effect is attached to, it should call affect when it updates. cannot be null
     private GridObject source;// the GO that created this effect. can be null
     private EffectID id;// associated effect id. nullability unknown
+    private int collisionProtocol = 0;
     public Effect(EffectID id){
         setID(id);
     }
@@ -102,7 +103,11 @@ public abstract class Effect
     }
     //0-3, independent(codominant), stack(incomplete), override(dominant), fail(recessive)
     public int getCollisionProtocol(){
-        return 0;
+        return collisionProtocol;
+    }
+    public Effect setCollisionProtocol(int cp){
+        collisionProtocol = cp;
+        return this;
     }
     public boolean equals(Object o){
         if(!getClass().equals(o.getClass())){

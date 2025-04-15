@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 import java.util.HashMap;
 
 /**
- * A bullet that can hit asteroids.
+ * blowgun ult
  * 
  * @author Poul Henriksen
  */
@@ -54,13 +54,14 @@ public class PocketKnife extends Melee
         if(poisonscores!=null){
             if(poisonscores.containsKey(targ)){
                 poisonmultiplier = poisonscores.get(targ);
-                if(poisonmultiplier<13)poisonscores.put(targ, poisonmultiplier+1);
+                poisonscores.put(targ, (poisonmultiplier+=3));
+                if(poisonmultiplier>13)poisonscores.put(targ, 13);
             }else{
                 poisonscores.put(targ, 1);
             }
         }
         super.doHit(targ);
-        if(poisonmultiplier>0)targ.hit(poisonmultiplier*10, this);
+        if(poisonmultiplier>0)damage(targ, poisonmultiplier*10);
     }
     public boolean covertDamage(){
         return true;

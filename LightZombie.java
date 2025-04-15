@@ -74,4 +74,7 @@ public class LightZombie extends SpawnableZombie
         }else
             super.damage(amt);
     }*/
+    public String getName(){
+        return "Light Zombie";
+    }
 }

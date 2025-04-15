@@ -66,4 +66,7 @@ public class HeavyZombie extends SpawnableZombie
         }else
             super.damage(amt);
     }*/
+    public String getName(){
+        return "Heavy Zombie";
+    }
 }

@@ -13,10 +13,12 @@ public class DurationEffect extends Effect
         super(id);
         this.duration = duration;
         setSource(source);
+        setCollisionProtocol(1);
     }
     public DurationEffect(int duration, EffectID id){
         super(id);
         this.duration = duration;
+        setCollisionProtocol(1);
     }
     public int getDuration(){
         return duration;
@@ -40,9 +42,6 @@ public class DurationEffect extends Effect
     }
     public void onApply(){}
     public void onClear(){}
-    public int getCollisionProtocol(){
-        return 1;
-    }
     public void stack(Effect other){
         duration+=((DurationEffect)other).getDuration();
     }

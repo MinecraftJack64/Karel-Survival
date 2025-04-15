@@ -15,6 +15,7 @@ public class FatalPoisonEffect extends Effect
         super(id);
         setSource(source);
         this.damage = (int)(damage*getSource().getPower());
+        setCollisionProtocol(3);
         cooldown = this.interval = interval;
     }
     public void affect(){
@@ -23,9 +24,6 @@ public class FatalPoisonEffect extends Effect
             damage(getTarget());
             cooldown = interval;
         }
-    }
-    public int getCollisionProtocol(){
-        return 3;
     }
     public void damage(GridEntity e){
         e.hitIgnoreShield(damage, getSource());

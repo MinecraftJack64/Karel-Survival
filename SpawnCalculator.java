@@ -20,7 +20,7 @@ public class SpawnCalculator
     public Class[] spawnables = new Class[]{
         Zombie.class, ShieldZombie.class, ShooterZombie.class, ExplodingZombie.class, HardHatZombie.class, HivemindZombie.class,
         MarksmanZombie.class, RocketZombie.class, FungalZombie.class, NinjaZombie.class, DoctorZombie.class, HornetNeckZombie.class,
-        LaserZombie.class, EasterZombie.class, RussianDollZombie.class, /*WeedWhacker*/Zombie.class, SplitterZombie.class, /*Shaman*/Zombie.class,
+        LaserZombie.class, EasterZombie.class, RussianDollZombie.class, WeedwackerZombie.class, SplitterZombie.class, /*Shaman*/Zombie.class,
         WarriorZombie.class, FlamethrowerZombie.class, PresidentZombie.class, JokerZombie.class, JackITBZombie.class, CannonZombie.class, StuntZombie.class, PortalZombie.class,
         WatermelonZombie.class};
     public int[] minlevels = new int[]{1, 3, 5, 7, 8, 9, 10, 13, 15, 17, 18, 19, 21, 23, 25, 27, 32, 33, 35, 39, 45, 47, 49, 51, 53, 55, 56};//18 is doctor

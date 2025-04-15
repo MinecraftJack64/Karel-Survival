@@ -40,8 +40,13 @@ public class Button extends Overlay
         barColor = c;
         updateImage();
     }
-    public void addPuppet(){
+    public void notifyWorldAdd(){
+        super.notifyWorldAdd();
         getWorld().addObject(puppet, getRealX(), getRealY());
+    }
+    public void notifyWorldRemove(){
+        getWorld().removeObject(puppet);
+        super.notifyWorldRemove();
     }
     public void setText(String s){
         puppet.setText(s);

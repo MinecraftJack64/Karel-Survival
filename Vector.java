@@ -12,7 +12,7 @@ public final class Vector
 {
     double dx;
     double dy;
-    int direction;
+    double direction;
     double length;
     
     /**
@@ -26,7 +26,7 @@ public final class Vector
      * Create a vector with given direction and length. The direction should be in
      * the range [0..359], where 0 is EAST, and degrees increase clockwise.
      */
-    public Vector(int direction, double length)
+    public Vector(double direction, double length)
     {
         this.length = length;
         this.direction = direction;
@@ -36,7 +36,7 @@ public final class Vector
     /**
      * Create a vector by specifying the x and y offsets from start to end points.
      */
-    public Vector(double dx, double dy)
+    public Vector(double dx, double dy, double dh)
     {
         this.dx = dx;
         this.dy = dy;
@@ -46,7 +46,7 @@ public final class Vector
     /**
      * Set the direction of this vector, leaving the length intact.
      */
-    public void setDirection(int direction) 
+    public void setDirection(double direction) 
     {
         this.direction = direction;
         updateCartesian();
@@ -124,7 +124,7 @@ public final class Vector
     /**
      * Return the direction of this vector (in degrees). 0 is EAST.
      */
-    public int getDirection() {
+    public double getDirection() {
         return direction;
     }
     
@@ -140,7 +140,7 @@ public final class Vector
      */
     private void updatePolar() 
     {
-        this.direction = (int) Math.toDegrees(Math.atan2(dy, dx));
+        this.direction = Math.toDegrees(Math.atan2(dy, dx));
         this.length = Math.sqrt(dx*dx+dy*dy);
     }   
     

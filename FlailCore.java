@@ -13,7 +13,7 @@ public class FlailCore extends Reelin
     {
         super(rotation, targetdistance, height, source);
         setRange(100);
-        setDamage(450);
+        setDamage(300);
         setSpeed(13);
         setDamageOnReturn(true);
     }

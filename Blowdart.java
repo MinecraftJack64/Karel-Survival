@@ -28,11 +28,12 @@ public class Blowdart extends Bullet
             if(poisonscores.containsKey(targ)){
                 poisonmultiplier = poisonscores.get(targ);
                 if(poisonmultiplier<11)poisonscores.put(targ, poisonmultiplier+1);
+                else poisonscores.remove(targ);
             }else{
                 poisonscores.put(targ, 1);
             }
         }
         super.doHit(targ);
-        targ.applyEffect(new PoisonEffect(50+poisonmultiplier*5, 50, 4, this));
+        targ.applyEffect(new PoisonEffect(30+poisonmultiplier*5, 50, 4, this));
     }
 }

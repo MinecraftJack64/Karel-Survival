@@ -66,9 +66,17 @@ public abstract class GridObject extends KActor
             matchTeam((GridObject)other);
         }
     }
-    public void inherit(GridObject other){
-        setTeam(other.getTeam());
+    public void matchPower(GridObject other){
         setPower(other.getPower());
+    }
+    public void matchPower(GridEntity other){
+        if(other!=null&&!other.isDead()){
+            matchPower((GridObject)other);
+        }
+    }
+    public void inherit(GridObject other){
+        matchTeam(other);
+        matchPower(other);
     }
     public double face(GridObject obj, boolean face){
         return face(obj.getRealX(), obj.getRealY(), face);
@@ -394,6 +402,14 @@ public abstract class GridObject extends KActor
     public void damageIgnoreShield(GridEntity targ, int amt, double exposure){
         targ.hitIgnoreShield((int)(amt*getPower()), exposure, this);
     }
+    
+    public void mount(GridObject other){
+        //
+    }
+    public void unmount(GridObject other){
+        //
+    }
+    
     public void act(){
         if(getWorld().isPaused())return;
         kAct();

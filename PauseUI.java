@@ -19,7 +19,6 @@ public class PauseUI extends UI
             }
         };
         getWorld().addObject(resumeButton, go.getRealX(), go.getBottom()+25);
-        resumeButton.addPuppet();
         quitButton = new Button(150, 75, "Quit", Color.GREEN){
             public void click(){
                 //example of click function
@@ -27,7 +26,6 @@ public class PauseUI extends UI
             }
         };
         getWorld().addObject(quitButton, go.getRealX(), resumeButton.getBottom()+100);
-        quitButton.addPuppet();
         hidePauseMenu();
     }
     

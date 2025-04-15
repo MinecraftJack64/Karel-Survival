@@ -58,6 +58,9 @@ public class KWorld extends World
     private String[] modenames;
     private String[] modeids;
     private String[] diffnames;
+    private String[] modeDescriptions;
+    private String[] difficultyDescriptions;
+    private String[] tips;
     private int cmode; // currently selected mode
     private int cdiff = 1; // currently selected difficulty
     
@@ -164,11 +167,23 @@ public class KWorld extends World
     public String selectedDiffName(){
         return diffnames[cdiff];
     }
+    public String getDifficultyDescription(){
+        return difficultyDescriptions[cdiff];
+    }
+    public String getModeDescription(){
+        return modeDescriptions[cmode];
+    }
+    public String getTip(){
+        return "Tip: "+tips[Greenfoot.getRandomNumber(tips.length)]+"!";
+    }
     public void setOptions(){
         modenames = new String[]{"Adventure", "Survival", "Protect"};
         modeids = new String[]{"adventure", "survival", "protect"};
         modehs = new int[]{0, 0, 0};
         diffnames = new String[]{"Peaceful", "Easy", "Normal", "Hard", "Impossible"};
+        difficultyDescriptions = new String[]{"Do not worry about dying, just kill zombies!", "Weaker zombies and more health", "Nice and basic", "Tougher zombies and lower health", "One hit and you die!"};
+        modeDescriptions = new String[]{"Progress through challenging worlds and discover the story!", "Endless waves of zombies! Survive as long as you can!", "Protecting your turret is your only goal!"};
+        tips = new String[]{"Allow your Blade wielding teammates the kill", "Try Impossible difficulty >:)", "Stay away from Fungal Zombies, they do a ton of damage", "Press the alt key to sprint"};
         //difficulties: peaceful: immunity shield, easy: 5000, normal: 2500, hard: 750, impossible: 1
     }
     public void removeUI(){

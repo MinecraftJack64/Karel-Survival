@@ -21,7 +21,7 @@ public class Blowgun extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime&&ammo>0) 
         {
-            Blowdart bullet = new Blowdart(getHand().getTargetRotation(), scores, getHolder());
+            Blowdart bullet = getAttackUpgrade()==1?new UpgradedBlowdart(getHand().getTargetRotation(), scores, getHolder()): new Blowdart(getHand().getTargetRotation(), scores, getHolder());
             getHolder().addObjectHere(bullet);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -35,7 +35,7 @@ public class Blowgun extends Weapon
         Sounds.play("lassoshoot");
     }
     public void notifySlash(GridEntity targ){
-        ammo+=4;
+        ammo+=3;
         if(ammo>maxAmmo){
             ammo = maxAmmo;
         }

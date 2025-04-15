@@ -80,7 +80,7 @@ public class OldAsteroid extends SmoothMover
         }
         else 
         {
-            int r = getMovement().getDirection() + Greenfoot.getRandomNumber(45);
+            int r = (int)getMovement().getDirection() + Greenfoot.getRandomNumber(45);
             double l = getMovement().getLength();
             Vector speed1 = new Vector(r + 60, l * 1.2);
             Vector speed2 = new Vector(r - 60, l * 1.2);        

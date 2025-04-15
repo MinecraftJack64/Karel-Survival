@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Player extends GridEntity {
     boolean autoaim = false, autoattack = false, autoult = false, isattacking = false, ismoving = false;
+    private Vector lastMoveDirection = new Vector(0, 0);
     private PlayerHand hand;
     private GreenfootImage rocket = new GreenfootImage("kareln.png");
     private GreenfootImage off = new GreenfootImage("karelnOff.png");
@@ -32,7 +33,7 @@ public class Player extends GridEntity {
         this.setRotation(0);
         diff = KWorld.me.currentDiff();
         if(diff==0){
-            startHealthShield(new ExternalImmunityShield(new ShieldID(this), -1));
+            startHealthShield(new ImmunityShield(new ShieldID(this), -1));
         }else{
             this.startHealth(diffhealths[diff]);
         }
@@ -212,6 +213,9 @@ public class Player extends GridEntity {
     public double getTargetRotation(){
         return getRealRotation();
     }
+    public double getLastMoveDirection(){
+        return lastMoveDirection.getDirection();
+    }
     public double getTargetX(){
         if(autoaim){
             GridEntity targ = getNearestTarget();
@@ -246,28 +250,31 @@ public class Player extends GridEntity {
 
     private void checkKeys() {
         ismoving = false;
-        //handlemovement
+        //handle movement
+        int xd = 0, yd = 0;
         if(canMove()&&!movementLocked){
             if (!Greenfoot.isKeyDown("right") && !Greenfoot.isKeyDown("d")) {
                 if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) {
-                    this.translate(-this.getMultipliedSpeed()*sprintamt, 0.0D);
+                    xd = -1;
                     ismoving = true;
                 }
             } else {
-                this.translate(this.getMultipliedSpeed()*sprintamt, 0.0D);
+                xd = 1;
                 ismoving = true;
             }
 
             if (!Greenfoot.isKeyDown("up") && !Greenfoot.isKeyDown("w")) {
                 if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) {
-                    this.translate(0.0D, this.getMultipliedSpeed()*sprintamt);
+                    yd = 1;
                     ismoving = true;
                 }
             } else {
-                this.translate(0.0D, -this.getMultipliedSpeed()*sprintamt);
+                yd = -1;
                 ismoving = true;
             }
         }
+        Vector v = new Vector(xd, yd, 0);
+        walk(v.getDirection()+90, (int)v.getLength());
 
         //handle item switching
         if (Greenfoot.isKeyDown("x")) {
@@ -320,18 +327,20 @@ public class Player extends GridEntity {
         }else if(!Greenfoot.isKeyDown(sprintkey)||sprint<2){
             sprinting = false;
         }
-        if(sprinting){
+        if(sprinting&&isMoving()){
             sprint-=2;
             getWorld().gameUI().setSprint(sprint);
         }else{
-            if(sprint<maxsprint&&!Greenfoot.isKeyDown(sprintkey)){
+            if(sprint<maxsprint){
                 sprint+=sprintrecoverrate;
                 if(sprint>=maxsprint){
                     sprint = maxsprint;
-                    getWorld().gameUI().stopSprint();
                 }
                 getWorld().gameUI().setSprint(sprint);
             }//else sprint is already max
+            else if(!Greenfoot.isKeyDown(sprintkey)){
+                getWorld().gameUI().stopSprint();
+            }
         }
         if(sprinting){
             sprintamt = 2;

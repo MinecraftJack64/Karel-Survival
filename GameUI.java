@@ -113,7 +113,6 @@ public class GameUI extends UI
             }
         };
         getWorld().addObject(goToMenuBtn, scoreCounter.getRealX(), waveCounter.getBottom()+25+10);
-        goToMenuBtn.addPuppet();
     }
     public void gameOver(int level, boolean complete) //ADVENTURE
     {
@@ -145,7 +144,6 @@ public class GameUI extends UI
             }
         };
         getWorld().addObject(goToMenuBtn, scoreCounter.getRealX(), waveCounter.getBottom()+25+10);
-        goToMenuBtn.addPuppet();
         nextLvlBtn = new Button(140, 60, complete?"Next Level":"Retry", Color.GREEN){
             public void click(){
                 //example of click function
@@ -154,7 +152,6 @@ public class GameUI extends UI
             }
         };
         getWorld().addObject(nextLvlBtn, scoreCounter.getRealX(), goToMenuBtn.getBottom()+100);
-        nextLvlBtn.addPuppet();
     }
     
     public void gameOver(String thing, boolean complete) //TUTORIAL
@@ -186,7 +183,6 @@ public class GameUI extends UI
             }
         };
         getWorld().addObject(goToMenuBtn, scoreCounter.getRealX(), waveCounter.getBottom()+25+10);
-        goToMenuBtn.addPuppet();
         nextLvlBtn = new Button(140, 60, "Retry", Color.GREEN){
             public void click(){
                 //example of click function
@@ -195,7 +191,6 @@ public class GameUI extends UI
             }
         };
         getWorld().addObject(nextLvlBtn, scoreCounter.getRealX(), goToMenuBtn.getBottom()+100);
-        nextLvlBtn.addPuppet();
         nextLvlBtn.setActive(!complete);
     }
     

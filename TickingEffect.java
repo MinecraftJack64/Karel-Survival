@@ -13,11 +13,13 @@ public abstract class TickingEffect extends DurationEffect
     }
     public TickingEffect(int interval, int duration, GridObject source, EffectID id){
         super(duration, source, id);
+        setCollisionProtocol(0);
         this.interval = interval;
         tick = 0;
     }
     public TickingEffect(int interval, int duration, EffectID id){
         super(duration, id);
+        setCollisionProtocol(0);
         this.interval = interval;
         tick = 0;
     }
@@ -42,7 +44,4 @@ public abstract class TickingEffect extends DurationEffect
         }
     }
     public abstract void tick();
-    public int getCollisionProtocol(){
-        return 0;
-    }
 }
