@@ -72,8 +72,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public boolean hasUlt(){
         return hasShield(ultshieldid);
     }
-    public void notifyDamage(GridEntity s, int dmg){
-        source.notifyDamage(s, dmg);
+    public void hit(int dmg, GridObject s){
+        source.notifyDamage(s.getParentAffecter(), dmg);
+        super.hit(dmg, s);
     }
     public void immunize(){
         replaceShield(healthshieldid, new SuperWeedwackerShield(new ShieldID(this, "immune"), -1));
@@ -86,10 +87,10 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
             }
         }
     }
-    public void hit(int dmg, GridObject s){
+    /*public void hit(int dmg, GridObject s){
         source.notifyDamage(this, dmg);
         super.hit(dmg, s);
-    }
+    }*/
     public boolean canDetect(){
         return false;
     }

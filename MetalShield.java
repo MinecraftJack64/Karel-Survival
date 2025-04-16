@@ -12,6 +12,7 @@ public class MetalShield extends Shield
         this.health = this.maxhealth = health;
     }
     public int processDamage(int dmg, GridObject source){
+        if(dmg<=0)return 0;
         health--;
         source.notifyDamage(getHolder(), dmg+(health<0?health:0));
         if(health<=0){
