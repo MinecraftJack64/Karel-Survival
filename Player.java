@@ -374,7 +374,7 @@ public class Player extends GridEntity {
     }
 
     public void notifyDamage(GridEntity target, int amt) {
-        if(target==this)return;
+        if(target!=null&&isAlliedWith(target))return;
         if (this.getHeldItem() instanceof Weapon) {
             ((Weapon)this.getHeldItem()).chargeUlt(amt);
         }

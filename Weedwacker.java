@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Weedwacker extends Weapon
 {
-    private static final int ult = 1000;
+    private static final int ult = 1500;
     private WeedwackerBlade drone;
     private int resurrect = 120;
     public void fire(){

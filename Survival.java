@@ -33,8 +33,14 @@ public class Survival extends GameMode
         teams.setAggro("player", "lootbox", false);
         teams.setAlly("zombie", "zombie", false);
         teams.setAlly("player", "player", false);
+        teams.addTeam("god");
+        teams.setAggro("god", "zombie", false);
+        teams.setAggro("god", "player", false);
+        teams.setAggro("god", "lootbox", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
+        GOD god = new GOD();
+        //getWorld().addToGrid(god, 0, 0);
         player = rocket;
         spawner = new ZombieSpawner();
         spawner.spawnZombies(1);
