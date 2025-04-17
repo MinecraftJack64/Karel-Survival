@@ -54,6 +54,8 @@ public class Weedwacker extends Weapon
         super.equip();
         drone.untrap();
         getHolder().addObjectHere(drone);
+        drone.kAct();
+        getHolder().mount(drone, 0, 100);
     }
     public void unequip(){
         drone.trap();

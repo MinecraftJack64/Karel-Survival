@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Represents an object inside the game world
@@ -13,6 +14,7 @@ import java.util.ArrayList;
  */
 public abstract class GridObject extends KActor
 {
+    private HashMap<GridObject, Vector> mounts;
     String team;
     String faketeam;
     String joinedteam;
@@ -77,6 +79,21 @@ public abstract class GridObject extends KActor
     public void inherit(GridObject other){
         matchTeam(other);
         matchPower(other);
+    }
+    public void setRealLocation(double x, double y){
+        super.setRealLocation(x, y);
+        updateMounts();
+    }
+    public void setRealRotation(double rot){
+        super.setRealRotation(rot);
+        updateMounts();
+    }
+    public void updateMounts(){
+        if(mounts!=null){
+            for(var g: mounts.entrySet()){
+                g.getKey().branchOut(this, g.getValue().getDirection()+getRealRotation(), g.getValue().getLength());
+            }
+        }
     }
     public double face(GridObject obj, boolean face){
         return face(obj.getRealX(), obj.getRealY(), face);
@@ -404,10 +421,15 @@ public abstract class GridObject extends KActor
     }
     
     public void mount(GridObject other){
-        //
+        if(mounts==null)mounts = new HashMap<GridObject, Vector>();
+        mounts.put(other, new Vector(other.getRealX()-getRealX(), other.getRealY()-getRealY(), 0));
+    }
+    public void mount(GridObject other, double deg, double dist){
+        if(mounts==null)mounts = new HashMap<GridObject, Vector>();
+        mounts.put(other, new Vector(deg, dist));
     }
     public void unmount(GridObject other){
-        //
+        if(mounts!=null)mounts.remove(other);
     }
     
     public void act(){
