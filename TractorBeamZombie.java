@@ -47,7 +47,12 @@ public class TractorBeamZombie extends Zombie
     private void fire() 
     {
         if (canAttack()){
-            //
+            explodeOn(800, "enemy", (g)->{
+                if(Math.abs(face(g, false)-getRotation())<40){
+                    g.pullTowards(this, 1);
+                    if(distanceTo(g)<200)damage(g, 2);
+                }
+            }, null);
             Sounds.play("gunshoot");
         }
     }
