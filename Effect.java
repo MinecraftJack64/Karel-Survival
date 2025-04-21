@@ -101,6 +101,9 @@ public abstract class Effect
     public boolean isApplied(){
         return getTarget()!=null;
     }
+    public boolean isMalicious(){
+        return false;
+    }
     //0-3, independent(codominant), stack(incomplete), override(dominant), fail(recessive)
     public int getCollisionProtocol(){
         return collisionProtocol;

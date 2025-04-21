@@ -24,4 +24,7 @@ public class KnockbackEffect extends StunEffect
             clear();
         }
     }
+    public boolean isMalicious(){
+        return false;
+    }
 }

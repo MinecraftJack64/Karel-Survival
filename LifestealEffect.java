@@ -29,6 +29,9 @@ public class LifestealEffect extends TickingEffect
         this.damage = (int)(damage*getSource().getPower());
         healtarget = target;
     }
+    public boolean isMalicious(){
+        return true;
+    }
     public void tick(){
         damage(getTarget());
     }

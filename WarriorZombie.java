@@ -116,6 +116,6 @@ public class WarriorZombie extends Zombie
     }
     
     public String getName(){
-        return "Easter Zombie";
+        return "Warrior Zombie";
     }
 }

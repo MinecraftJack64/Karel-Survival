@@ -19,6 +19,9 @@ public class LandedSpear extends Collectible
         setRange(60);
         setTeam(myspear.getHolder().getTeam());
     }
+    public GridObject getTarget(){
+        return myspear.getHolder();
+    }
     public void kAct(){
         int ct = 3;
         for(GridEntity g:getGEsInRange(60)){

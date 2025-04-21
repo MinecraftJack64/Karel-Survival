@@ -41,9 +41,9 @@ public class JokerZombie extends Zombie
     public int getXP(){
         return 500;
     }
-    public void hit(int amt, GridObject source){
+    public void hitIgnoreShield(int amt, double exp, GridObject source){
         if(counterct>0){
-            super.hit(amt, source);
+            super.hitIgnoreShield(amt, exp, source);
             counterct--;
         }else{
             counterct = Greenfoot.getRandomNumber(3);

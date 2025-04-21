@@ -50,7 +50,7 @@ public class ShooterZombie extends Zombie
     /**
      * Check whether there are any key pressed and react to them.
      */
-    private void fire() 
+    public void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
             ZBullet bullet = new ZBullet (getRealRotation(), this);

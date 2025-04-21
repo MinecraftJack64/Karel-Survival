@@ -56,7 +56,7 @@ public class NinjaZombie extends Zombie
             }
         }else{
             if(phase==2){
-                if(canMove()&&distanceTo(target)<attackrange+10){
+                if(canMove()&&distanceTo(target)<attackrange+10&&!target.hasMounter()){
                     setRealLocation((attackrange*Math.cos(lastdegtotarget*Math.PI/180)+target.getRealX()), (attackrange*Math.sin(lastdegtotarget*Math.PI/180)+target.getRealY()));
                     lastdegtotarget+=getMultipliedSpeed()*1.6;
                 }else{

@@ -21,7 +21,12 @@ public class Collectible extends GridObject
         return speed;
     }
     public GridObject getTarget(){
-        return getWorld().getPlayer();
+        GridObject targ = getNearestTarget();
+        if(targ==null)return getWorld().getPlayer();
+        return targ;
+    }
+    public boolean isPotentialTarget(GridEntity g){
+        return isAlliedWith(g);
     }
     public boolean isActive(){
         return true;

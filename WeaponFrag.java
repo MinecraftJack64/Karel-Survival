@@ -12,4 +12,7 @@ public class WeaponFrag extends Collectible
         Sounds.play("weaponfragcollect");
         super.collect(targ);
     }
+    public GridObject getTarget(){
+        return getWorld().getPlayer();
+    }
 }

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.HashSet;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 /**
  * Write a description of class GridEntity here.
@@ -38,7 +40,7 @@ public abstract class GridEntity extends GridObject
         removeGraphics();
     }
     public void notifyWorldAdd(){
-        super.notifyWorldRemove();
+        super.notifyWorldAdd();
         getWorld().allEntities().add(this);
         addGraphics();
     }
@@ -47,7 +49,7 @@ public abstract class GridEntity extends GridObject
         if(source!=null)killer = source.getParentAffecter();
         setHealth(0);
         super.die();
-        if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){}//remove from world if set to true
+        if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){System.out.println("FAILED TO REMOVE"+e);}//remove from world if set to true
     }
     
     public GridObject getKiller(){
@@ -159,6 +161,22 @@ public abstract class GridEntity extends GridObject
     }
     public void clearEffect(Effect eff){
         effects.remove(eff);
+    }
+    public void clearEffects(){
+        for(int i = effects.size()-1; i > 0; i--){
+            effects.get(i).clear();
+        }
+    }
+    public void clearEffects(Predicate<Effect> vore){
+        for(int i = effects.size()-1; i > 0; i--){
+            if(vore.test(effects.get(i)))effects.get(i).clear();
+        }
+    }
+    public void clearMaliciousEffects(){
+        clearEffects(e->e.isMalicious());
+    }
+    public void filterEffects(Predicate<Effect> vore){
+        clearEffects(vore.negate());
     }
     public HashSet<Class> getEffectImmunities(){
         return effectImmunities;
@@ -363,7 +381,7 @@ public abstract class GridEntity extends GridObject
         return true;
     }
     public Shield getShield(){//get the last shield
-        return shields.get(shields.size()-1);
+        return shields.size()>0?shields.get(shields.size()-1):null;
     }
     public Shield getShield(int id){
         return id>shields.size()?null:shields.get(id);
@@ -467,7 +485,7 @@ public abstract class GridEntity extends GridObject
         addGraphics();
     }
     public boolean canDetect(){//can be detected
-        return detectable;
+        return detectable&&!hasMounter();
     }
     public void setDetectable(boolean b){
         detectable = b;

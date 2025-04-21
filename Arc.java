@@ -29,6 +29,6 @@ public class Arc
         return f==t;
     }
     public double percentDone(double f){
-        return f/t;
+        return t>0?f/t:1;
     }
 }

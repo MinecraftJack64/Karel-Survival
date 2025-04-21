@@ -51,14 +51,15 @@ public class HornetNeckZombie extends Zombie
         if(bees>0&&canAttack()&&reloadDelayCount>=gunReloadTime){
             Hornet bullet = new Hornet();
             getWorld().addObject (bullet, getRealX(), getRealY());
+            bullet.applyShield(new PercentageShield(new ShieldID(bullet), 0.6, 30));
             bees--;
             reloadDelayCount = 0;
         }
     }
     
-    public void hit(int amt, GridObject source){
+    public void hitIgnoreShield(int amt, double exp, GridObject source){
         fire();
-        super.hit(amt, source);
+        super.hitIgnoreShield(amt, exp, source);
     }
     //ovveride this
     public int getXP(){

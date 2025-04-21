@@ -3,7 +3,7 @@ import greenfoot.*;
  * Temporarily stuns the target, stopping their movement and abilities
  * @author MinecraftJack64
  */
-public class StunEffect extends DurationEffect
+public class StunEffect extends MaliciousEffect
 {
     public StunEffect(int duration, GridObject source){
         super(duration, source);

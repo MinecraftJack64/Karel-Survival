@@ -14,7 +14,7 @@ public class StrikeSurvivalShield extends Shield
     public int processDamage(int dmg, GridObject source){
         if(dmg>=getHolder().getHealth()){
             health--;
-            source.notifyDamage(getHolder(), dmg);
+            if(!source.covertDamage())source.notifyDamage(getHolder(), (int)(source.damageSecrecy()*dmg));
             if(health<=0){
                 remove();
                 Sounds.play("armorshieldbreak");

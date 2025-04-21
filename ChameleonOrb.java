@@ -16,6 +16,9 @@ public class ChameleonOrb extends Collectible
         this.mycham = mycham;
         this.color = color;
     }
+    public GridObject getTarget(){
+        return mycham.getHolder();
+    }
     public void kAct(){
         if(cooldown>0){
             cooldown--;

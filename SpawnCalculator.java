@@ -22,9 +22,9 @@ public class SpawnCalculator
         MarksmanZombie.class, RocketZombie.class, FungalZombie.class, NinjaZombie.class, DoctorZombie.class, HornetNeckZombie.class,
         LaserZombie.class, EasterZombie.class, RussianDollZombie.class, WeedwackerZombie.class, SplitterZombie.class, /*Shaman*/Zombie.class,
         WarriorZombie.class, FlamethrowerZombie.class, PresidentZombie.class, JokerZombie.class, JackITBZombie.class, CannonZombie.class, StuntZombie.class, PortalZombie.class,
-        WatermelonZombie.class};
-    public int[] minlevels = new int[]{1, 3, 5, 7, 8, 9, 10, 13, 15, 17, 18, 19, 21, 23, 25, 27, 32, 33, 35, 39, 45, 47, 49, 51, 53, 55, 56};//18 is doctor
-    public int[] maxnums = new int[]{8, 5, 3, 4, 2, 3, 2, 3, 2, 2, 4, 1, 1, 2, 2, 2, 3, 1, 3, 2, 1, 3, 3, 4, 8, 2, 2};
+        WatermelonZombie.class, SteakZombie.class};
+    public int[] minlevels = new int[]{1, 3, 5, 7, 8, 9, 10, 13, 15, 17, 18, 19, 21, 23, 25, 27, 32, 33, 35, 39, 45, 47, 49, 51, 53, 55, 56, 65};//18 is doctor
+    public int[] maxnums = new int[]{8, 5, 3, 4, 2, 3, 2, 3, 2, 2, 4, 1, 1, 2, 2, 2, 3, 1, 3, 2, 1, 3, 3, 4, 8, 2, 2, 5};
     public ArrayList<Integer> canSpawn = new ArrayList<Integer>(), forceSpawn = new ArrayList<Integer>();
     public ArrayList<Integer> spawnTypes = new ArrayList<Integer>(), spawnCount = new ArrayList<Integer>();
     public SpawnData calculateSpawn(int count, int wave)

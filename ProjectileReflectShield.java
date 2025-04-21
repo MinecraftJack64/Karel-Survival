@@ -12,7 +12,7 @@ public class ProjectileReflectShield extends Shield
         this.duration = health;
     }
     public int processDamage(int dmg, GridObject source){
-        source.notifyDamage(getHolder(), dmg);
+        if(!source.covertDamage())source.notifyDamage(getHolder(), (int)(source.damageSecrecy()*dmg));
         if(source instanceof Bullet){
             Bullet psource = (Bullet)source;
             psource.setDirection(psource.getDirection()-180);

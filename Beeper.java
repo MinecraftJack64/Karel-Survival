@@ -13,6 +13,9 @@ public class Beeper extends Collectible
     {
         this.xp = xp;
     }
+    public GridObject getTarget(){
+        return getWorld().getPlayer();
+    }
     public void collect(GridObject targ){
         heal(((GridEntity)targ), healing);
         super.collect(targ);

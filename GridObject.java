@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Represents an object inside the game world
@@ -15,6 +16,7 @@ import java.util.HashMap;
 public abstract class GridObject extends KActor
 {
     private HashMap<GridObject, Vector> mounts;
+    private GridObject mounter;
     String team;
     String faketeam;
     String joinedteam;
@@ -91,7 +93,7 @@ public abstract class GridObject extends KActor
     public void updateMounts(){
         if(mounts!=null){
             for(var g: mounts.entrySet()){
-                g.getKey().branchOut(this, g.getValue().getDirection()+getRealRotation(), g.getValue().getLength());
+                g.getKey().branchOut(this, g.getValue().getDirection()+getRealRotation(), g.getValue().getLength(), g.getValue().getHeight());
             }
         }
     }
@@ -314,7 +316,7 @@ public abstract class GridObject extends KActor
         double closestDistance = 0;
     
         for (GridEntity entity : this.getWorld().allEntities) {
-            if (isAggroTowards(entity)&&entity.canDetect()) {
+            if (isPotentialTarget(entity)) {
                 double currentDistance = this.distanceTo(entity);
                 
                 if (nearestTarget == null || currentDistance < closestDistance) {
@@ -325,6 +327,9 @@ public abstract class GridObject extends KActor
         }
     
         return nearestTarget;
+    }
+    public boolean isPotentialTarget(GridEntity entity){
+        return isAggroTowards(entity)&&entity.canDetect();
     }
     public double getGravity(){
         return 3;
@@ -420,16 +425,60 @@ public abstract class GridObject extends KActor
         targ.hitIgnoreShield((int)(amt*getPower()), exposure, this);
     }
     
-    public void mount(GridObject other){
+    public boolean mount(GridObject other){
+        if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<GridObject, Vector>();
         mounts.put(other, new Vector(other.getRealX()-getRealX(), other.getRealY()-getRealY(), 0));
+        other.notifyMount(this);
+        return true;
     }
-    public void mount(GridObject other, double deg, double dist){
+    public boolean mount(GridObject other, double deg, double dist){
+        if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<GridObject, Vector>();
         mounts.put(other, new Vector(deg, dist));
+        other.notifyMount(this);
+        return true;
     }
-    public void unmount(GridObject other){
-        if(mounts!=null)mounts.remove(other);
+    public boolean mount(GridObject other, double x, double y, double height){
+        if(!isInWorld())return false;
+        if(mounts==null)mounts = new HashMap<GridObject, Vector>();
+        mounts.put(other, new Vector(x, y, height));
+        other.notifyMount(this);
+        return true;
+    }
+    public boolean unmount(GridObject other){
+        if(mounts!=null){
+            boolean removed = mounts.remove(other)!=null;
+            if(removed)other.notifyUnmount(this);
+            return removed;
+        }
+        return false;
+    }
+    
+    public void notifyMount(GridObject other){
+        if(hasMounter())mounter.unmount(this);
+        mounter = other;
+    }
+    public void notifyUnmount(GridObject other){
+        mounter = null;
+    }
+    
+    public void clearMounting(){
+        if(hasMounter())mounter.unmount(this);
+        if(mounts!=null){
+            for(var g: mounts.entrySet()){
+                g.getKey().notifyUnmount(this);
+            }
+            mounts = null;
+        }
+    }
+    
+    public GridObject getMounter(){
+        return mounter;
+    }
+    
+    public boolean hasMounter(){
+        return mounter!=null;
     }
     
     public void act(){
@@ -445,6 +494,7 @@ public abstract class GridObject extends KActor
     public void notifyWorldRemove(){
         super.notifyWorldRemove();
         getWorld().allObjects().remove(this);
+        clearMounting();
     }
     public void notifyWorldAdd(){
         super.notifyWorldAdd();

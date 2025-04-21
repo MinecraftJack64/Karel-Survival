@@ -9,6 +9,7 @@ import greenfoot.Actor;
 public abstract class KActor extends Actor
 {
     double rx, ry, rh, rrot;
+    boolean isInWorld;
     public KWorld getWorld(){
         try{
         if(super.getWorld()!=null)return (KWorld)super.getWorld();else return KWorld.me;}catch(Exception e){
@@ -45,6 +46,9 @@ public abstract class KActor extends Actor
     }
     public void branchOut(KActor m, double deg, double dist){
         setRealLocation(m.getRealX()+getBranchX(deg, dist), m.getRealY()+getBranchY(deg, dist));
+    }
+    public void branchOut(KActor m, double deg, double dist, double height){
+        setRealLocation(m.getRealX()+getBranchX(deg, dist), m.getRealY()+getBranchY(deg, dist), height);
     }
     public double getBranchX(double deg, double dist){
         return dist*Math.cos(deg*Math.PI/180);
@@ -87,9 +91,12 @@ public abstract class KActor extends Actor
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
     }
-    public void notifyWorldRemove(){};
-    public void notifyWorldAdd(){};
+    public void notifyWorldRemove(){isInWorld = false;}
+    public void notifyWorldAdd(){isInWorld = true;}
     public boolean isInGridWorld(){
         return false;
+    }
+    public boolean isInWorld(){
+        return isInWorld;
     }
 }

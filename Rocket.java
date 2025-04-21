@@ -53,6 +53,10 @@ public class Rocket extends FlyingRock
         Sounds.play("rocketcrash");
     }
     public void doHit(GridEntity g){
+        if(g==getSource()){
+            damage(g, Math.min(400, g.getMaxHealth()*2/3));
+            return;
+        }
         damage(g, (int)(400-distanceTo(g)));
     }
 }

@@ -19,8 +19,9 @@ public class DoctorZombie extends Zombie
     private boolean hastarget = false;
     private boolean shouldheal = false;
     private boolean healself = false;
+    private boolean mustbehurt = false;
     private GridEntity priority;
-    private static double attackrange = 250, retreatrange = 400;
+    private static double attackrange = 200, retreatrange = 400;
     /**
      * Initilise this rocket.
      */
@@ -126,18 +127,11 @@ public class DoctorZombie extends Zombie
             }
         }
         
-        GridEntity res = null;
-        double max = 0;
-        for(GridEntity e: getWorld().allEntities()){
-            if(e instanceof DoctorZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth()))){
-                continue;
-            }
-            if(distanceTo(e)<max||res==null){
-                res = e;
-                max = distanceTo(e);
-            }
-        }
-        return res;
+        this.mustbehurt = mustbehurt;
+        return getNearestTarget();
+    }
+    public boolean isPotentialTarget(GridEntity e){
+        return !(e instanceof DoctorZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
     }
     public String getName(){
         return "Doctor Zombie";

@@ -12,6 +12,7 @@ public final class Vector
 {
     double dx;
     double dy;
+    double dh;
     double direction;
     double length;
     
@@ -40,6 +41,7 @@ public final class Vector
     {
         this.dx = dx;
         this.dy = dy;
+        this.dh = dh;
         updatePolar();
     }
 
@@ -119,6 +121,10 @@ public final class Vector
      */
     public double getY() {
         return  dy;
+    }
+    
+    public double getHeight(){
+        return dh;
     }
     
     /**

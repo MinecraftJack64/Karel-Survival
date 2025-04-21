@@ -159,7 +159,7 @@ public class Zombie extends GridEntity
         target = candidate;
         return candidate;//use this for now
     }
-    public GridEntity getNearestTarget(){
+    /*public GridEntity getNearestTarget(){
         GridEntity res = null;
         double max = 0;
         for(GridEntity e: getWorld().allEntities()){
@@ -172,7 +172,7 @@ public class Zombie extends GridEntity
             }
         }
         return res;
-    }
+    }*/
     public void explodeFleshConfetti(int amt){
         for(int i = 0; i < Greenfoot.getRandomNumber(amt)+amt; i++){
             ZFleshConfetti fc = new ZFleshConfetti(Greenfoot.getRandomNumber(360), this);

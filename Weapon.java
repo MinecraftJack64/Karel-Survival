@@ -214,8 +214,11 @@ public abstract class Weapon implements Item, Tickable
     public boolean isLocked(){
         return slotlocked||rotlocked||movelocked||isusing||isulting;
     }
-    public boolean isRotLocked(){
+    public boolean isPlayerRotationLocked(){
         return rotlocked;
+    }
+    public boolean isPlayerMovementLocked(){
+        return movelocked;
     }
     public boolean continueUse(){
         return isusing;

@@ -70,13 +70,13 @@ public class NailGun extends Weapon
         double x = getHand().getTargetX();
         double y = getHand().getTargetY();
         double d = Math.min(600, getHolder().distanceTo(x, y));
-        WatermelonZombie wz = new WatermelonZombie();
+        JailBreakZombie wz = new JailBreakZombie();
         wz.setTeam(getHolder().getTeam());
         wz.startHealthShield(new StrikeSurvivalShield(new ShieldID(this), 100000));
-        AssassinZombie dz = new AssassinZombie();
+        LaserZombie dz = new LaserZombie();
         dz.setTeam(getHolder().getTeam());
         dz.startHealthShield(new ImmunityShield(new ShieldID(this), -1));
-        ZombieDropper bullet = new ZombieDropper(getHand().getTargetRotation(), d, 200, wz, getHolder());
+        ZombieDropper bullet = new ZombieDropper(getHand().getTargetRotation()+180, d, 200, wz, getHolder());
         getHolder().addObjectHere(bullet);
         ZombieDropper bullet2 = new ZombieDropper(getHand().getTargetRotation(), d, 200, dz, getHolder());
         getHolder().addObjectHere(bullet2);

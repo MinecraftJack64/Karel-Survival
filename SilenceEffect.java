@@ -3,7 +3,7 @@ import greenfoot.*;
  * Temporarily mutes the target, preventing abilities like attacks.
  * @author MinecraftJack64
  */
-public class SilenceEffect extends DurationEffect
+public class SilenceEffect extends MaliciousEffect
 {
     public SilenceEffect(int duration, GridObject source){
         super(duration, source);

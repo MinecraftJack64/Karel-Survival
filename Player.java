@@ -43,7 +43,7 @@ public class Player extends GridEntity {
         getWorld().gameUI().newSprint(maxsprint);
         this.setTeam("player");
         this.inventory = new Item[40];
-        this.inventory[0] = new DroneRemote(getHand());
+        this.inventory[0] = new NailGun(getHand());
         this.inventory[1] = new Shotgun(getHand());
         this.inventory[2] = new Crossbow(getHand());
         this.inventory[4] = new RockCatapult(getHand());
@@ -59,7 +59,7 @@ public class Player extends GridEntity {
         this.inventory[14] = new CrystalGun(getHand());
         this.inventory[15] = new Weedwacker(getHand());
         this.inventory[16] = new LymphCannon(getHand());
-        this.inventory[17] = new NailGun(getHand());
+        this.inventory[17] = new DroneRemote(getHand());
         this.inventory[18] = new SpearWeapon(getHand());
         this.inventory[19] = new Chameleon(getHand());
         this.inventory[20] = new Gun(getHand());

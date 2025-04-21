@@ -3,7 +3,7 @@ import greenfoot.*;
  * Temporarily makes the target part of another team
  * @author MinecraftJack64
  */
-public class TeamSwitchEffect extends DurationEffect
+public class TeamSwitchEffect extends MaliciousEffect
 {
     String team;
     public TeamSwitchEffect(String team, int duration, GridObject source){

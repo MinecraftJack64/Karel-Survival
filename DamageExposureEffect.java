@@ -16,4 +16,7 @@ public class DamageExposureEffect extends PercentageEffect
     public void onClear(){
         getTarget().setExposure(1, getID());
     }
+    public boolean isMalicious(){
+        return getPercentage()>1;
+    }
 }

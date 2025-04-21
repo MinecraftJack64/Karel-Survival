@@ -65,7 +65,7 @@ public class JackITBZombie extends Zombie
                             windspeed++;
                             if(windspeed==150){
                                 launchInside();
-                                hit(getShield().getHealth(), this);//intended
+                                kill(this);
                             }
                         }
                     }
@@ -109,7 +109,7 @@ public class JackITBZombie extends Zombie
     }
     public void die(GridObject source){
         if(inside==null){
-            super.die();
+            super.die(source);
             return;
         }
         addObjectHere(inside);
@@ -124,7 +124,7 @@ public class JackITBZombie extends Zombie
     }
     public void feast(){
         launchInside();
-        hit(getShield().getHealth(), this);
+        kill(this);
     }
     public double getGravity(){
         return 1;

@@ -3,7 +3,7 @@ import greenfoot.*;
  * Temporarily immobilizes the target, preventing movement abilities.
  * @author MinecraftJack64
  */
-public class ImmobilizeEffect extends DurationEffect
+public class ImmobilizeEffect extends MaliciousEffect
 {
     public ImmobilizeEffect(int duration, GridObject source){
         super(duration, source);

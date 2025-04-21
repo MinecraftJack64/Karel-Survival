@@ -13,7 +13,7 @@ public class ArmorShield extends Shield
     }
     public int processDamage(int dmg, GridObject source){
         health-=dmg;
-        source.notifyDamage(getHolder(), dmg+(health<0?health:0));
+        if(!source.covertDamage())source.notifyDamage(getHolder(), (int)(source.damageSecrecy()*(dmg+(health<0?health:0))));
         if(health<=0){
             remove();
             Sounds.play("armorshieldbreak");

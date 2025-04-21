@@ -15,6 +15,9 @@ public class PoisonEffect extends TickingEffect
         super(interval, times, source, id);
         this.damage = (int)(damage*getSource().getPower());
     }
+    public boolean isMalicious(){
+        return true;
+    }
     public void tick(){
         damage(getTarget());
     }

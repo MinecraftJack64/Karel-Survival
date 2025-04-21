@@ -23,6 +23,7 @@ public class Weedwacker extends Weapon
         if(drone==null){
             drone = new WeedwackerBlade(getHolder());
             getHolder().addObjectHere(drone);
+            getHolder().mount(drone, -90, 125);
             resurrect = 120;
         }
         if(!drone.hasUlt()){
@@ -45,6 +46,7 @@ public class Weedwacker extends Weapon
             if(resurrect<=0){
                 drone = new WeedwackerBlade(getHolder());
                 getHolder().addObjectHere(drone);
+                getHolder().mount(drone, -90, 125);
                 resurrect = 120;
             }
             resurrect--;
@@ -54,8 +56,7 @@ public class Weedwacker extends Weapon
         super.equip();
         drone.untrap();
         getHolder().addObjectHere(drone);
-        drone.kAct();
-        getHolder().mount(drone, 0, 100);
+        getHolder().mount(drone, -90, 125);
     }
     public void unequip(){
         drone.trap();

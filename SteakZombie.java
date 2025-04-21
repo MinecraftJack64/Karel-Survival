@@ -2,39 +2,38 @@ import greenfoot.*;
 import java.util.List;
 
 /**
- * Write a description of class ExorcistZombie here.
+ * Write a description of class SteakZombie here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ExorcistZombie extends Zombie
+public class SteakZombie extends ShooterZombie
 {
-    private static final int gunReloadTime = 60;         // The minimum delay between firing the gun.
+    private static final int gunReloadTime = 25;         // The minimum delay between firing the gun.
 
-    private int ammocooldown;               // How long ago we fired the gun the last time.
-    private int attackcooldown = 400;
-    private GreenfootImage rocket = new GreenfootImage("exorcistzareln.png");    
+    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private GreenfootImage rocket = new GreenfootImage("doczareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
-    private int ammoreload = 0;
+    private AmmoManager ammo = new AmmoManager(30, 3, 3);
     private boolean hastarget = false;
     private boolean shouldheal = false;
     private boolean healself = false;
-    private boolean mustbehurt;
+    private boolean mustbehurt = false;
     private GridEntity priority;
-    private static double attackrange = 250, retreatrange = 400;
+    private static double attackrange = 400, retreatrange = 600;
     /**
      * Initilise this rocket.
      */
-    public ExorcistZombie()
+    public SteakZombie()
     {
+        reloadDelayCount = 5;
         rocket.scale(45, 45);
         setImage(rocket);
         setRotation(180);
-        setSpeed(5.5);
-        startHealth(400);
+        setSpeed(2);
+        startHealth(500);
     }
-    public ExorcistZombie(GridEntity target)
+    public SteakZombie(GridEntity target)
     {
         this();
         priority = target;
@@ -46,56 +45,43 @@ public class ExorcistZombie extends Zombie
      */
     public void behave()
     {
-        double monangle = face(getTarget(), canMove()&&ammo==0);
+        reloadDelayCount++;
+        heal(this, 1);
+        double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        ammoreload++;
+        if(reloadDelayCount>=gunReloadTime)ammo.reload();
         if(!hastarget){
-            if(attackcooldown>0){
-                //die if survival mode
-                attackcooldown--;
-            }else{
-                super.behave();
-                getTarget();
-                if(shouldheal&&healself){
-                    startattack();
-                }
-                return;
+            super.behave();
+            getTarget();
+            if(shouldheal&&healself){
+                fire();
             }
+            return;
         }
-        if(ammo>0){
-            fire();
-        }else if(hastarget&&distanceTo(getTarget())>attackrange)walk(monangle, 1);
+        if(hastarget&&distanceTo(getTarget())>attackrange)walk(monangle, 1);
         else if(!hastarget&&distanceTo(getTarget())<retreatrange){
             walk(monangle, -1);
         }
         else if(shouldheal){
-            startattack();
+            fire();
             return;
         }
         if(shouldheal&&healself){
-            startattack();
+            fire();
         }
     }
 
     /**
      * Check whether there are any key pressed and react to them.
      */
-    private void startattack() 
+    public void fire() 
     {
-        if (ammoreload>=gunReloadTime&&canAttack()){
-            ammo = 3;
-            fire();
-            ammoreload = 0;
-        }
-    }
-    private void fire(){
-        if (ammocooldown<=0&&ammo>0){
-            ammo--;
-            ZExorcistShot bullet = new ZExorcistShot (getRealRotation(), this, healself);
+        if (reloadDelayCount>=gunReloadTime&&canAttack()&&ammo.hasAmmo()){
+            double d = healself?3:distanceTo(getTarget());
+            SteakDropper bullet = new SteakDropper(getRealRotation(), d, d/2, this);
             addObjectHere(bullet);
-            ammocooldown = 10;
-        }else{
-            ammocooldown--;
+            reloadDelayCount = 0;
+            ammo.useAmmo();
         }
     }
     //ovveride this
@@ -108,7 +94,7 @@ public class ExorcistZombie extends Zombie
         shouldheal = true;
         healself = false;
         GridEntity candidate = getNearestAlly(true);
-        if(candidate==null){//are there no allies who need healing?
+        if(candidate==null){
             shouldheal = false;
             if(getHealth()<getMaxHealth()){//not at max health, no targets, then heal self
                 shouldheal = true;
@@ -119,11 +105,10 @@ public class ExorcistZombie extends Zombie
                 hastarget = false;
             }
         }
-        if(getHealth()<getMaxHealth()){//less than half health, heal self
+        if(getHealth()<getMaxHealth()/2){//less than half health, heal self
             shouldheal = true;
             healself = true;
         }
-        if(candidate!=null)attackcooldown = 400;
         //healself = getHealth()<getMaxHealth()/2;
         return candidate==null?super.getTarget():candidate;
     }
@@ -137,13 +122,14 @@ public class ExorcistZombie extends Zombie
                 return priority;
             }
         }
+        
         this.mustbehurt = mustbehurt;
         return getNearestTarget();
     }
     public boolean isPotentialTarget(GridEntity e){
-        return !(e instanceof ExorcistZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
+        return !(e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
     }
     public String getName(){
-        return "Doctor Zombie";
+        return "Steak Zombie";
     }
 }

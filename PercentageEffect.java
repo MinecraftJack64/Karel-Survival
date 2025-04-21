@@ -30,4 +30,7 @@ public class PercentageEffect extends DurationEffect
         super.stack(other);
         setPercentage((getEffectiveness()+((PercentageEffect)other).getEffectiveness())/((DurationEffect)other).getDuration());
     }
+    public boolean isMalicious(){
+        return percentage<1;
+    }
 }

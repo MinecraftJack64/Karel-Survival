@@ -54,6 +54,7 @@ public class WeedwackerZombie extends Zombie
         if(bd == null){
             bd = new WeedwackerBlade(this);
             addObjectHere(bd);
+            mount(bd, -90, 125);
             bd.immunize();
         }
         if(bd.isDead()){
@@ -61,13 +62,13 @@ public class WeedwackerZombie extends Zombie
         }else{
             double ang = face(getTarget(), true);
             bd.spin();
-            if(distanceTo(getTarget())>68)walk(ang, 0.8);
-            else if(distanceTo(getTarget())<30)super.behave();
+            if(distanceTo(getTarget())>128)walk(ang, 0.8);
+            else if(distanceTo(getTarget())<60)super.behave();
         }
     }
     //ovveride this
     public int getXP(){
-        return 150;
+        return 250;
     }
     /*public void damage(int amt){
         if(shieldhealth>0&&amt>0){

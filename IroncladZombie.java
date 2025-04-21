@@ -27,7 +27,7 @@ public class IroncladZombie extends Zombie
         setImage(rocket);
         setRotation(180);
         setSpeed(1);
-        startHealth(4500);
+        startHealthShield(new ArmorShield(new ShieldID(this), 4500));
     }
 
     /**
@@ -41,13 +41,19 @@ public class IroncladZombie extends Zombie
         //setRotation(getRotation()-1);
         ammo++;
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
-        else{
+        else if(distanceTo(getTarget())>30){
             walk(monangle, 0.4);
             fire();
-        }
+        }else fire();
     }
     public boolean canBePulled(){
         return false;
+    }
+    public void hitIgnoreShield(int amt, double exp, GridObject source){
+        super.hitIgnoreShield(amt, exp, source);
+        if(source.isAggroTowards(this)){
+            explodeOn(60, amt/3);
+        }
     }
     public void die(GridObject source){
         try{

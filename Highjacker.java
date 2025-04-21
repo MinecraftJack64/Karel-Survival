@@ -45,6 +45,7 @@ public class Highjacker extends Weapon
         }
     }
     public void notifyHit(GridEntity targ){
+        if(!targ.mount(getHolder(), 0, 0, mountHeight))return;
         mount = targ;
         mounted = true;
         setPlayerLockMovement(true);
@@ -59,6 +60,7 @@ public class Highjacker extends Weapon
     public void unmount(){
         mounted = false;
         setPlayerLockMovement(false);
+        if(mount.isInWorld())mount.unmount(getHolder());
         getHolder().pullTo(getHolder().getRealX(), getHolder().getRealY(), 0);
         if(hypno.getDuration()>0){
             int duration = hypno.getDuration();
@@ -74,6 +76,16 @@ public class Highjacker extends Weapon
         getHolder().applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
         mount = null;
     }
+    public void confirmUnmount(){
+        mounted = false;
+        mount = null;
+        setPlayerLockMovement(false);
+        getHolder().pullTo(getHolder().getRealX(), getHolder().getRealY(), 0);
+        getHolder().explodeOnEnemies(100, (e)->{
+            if(e!=mount)e.knockBack(getHolder().face(e, false), 80, 20, getHolder());
+        });
+        getHolder().applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
+    }
     public int getUlt(){
         return ult;
     }
@@ -83,13 +95,14 @@ public class Highjacker extends Weapon
         }
         if(mounted){
             if(hypno.getDuration()>0&&!mount.isDead()){
-                getHolder().pullTo(mount.getRealX(), mount.getRealY(), mount.getRealHeight()+mountHeight);
                 ammo++;
                 updateAmmo(Math.min(ammo, reload));
             }else{
                 unmount();
                 dischargeUlt(2500);
             }
+        }else if(isPlayerMovementLocked()){
+            confirmUnmount();
         }
         chargeUlt(2);
     }

@@ -345,10 +345,11 @@ public class KWorld extends World
                 GridEntity g = allEntities().get(i);
                 if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
                     g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
-                if(scrollToPlayer){
-                    scrollX = getGame().getPlayer().getRealX()-600;
-                    scrollY = getGame().getPlayer().getRealY()-400;
-                }
+                
+            }
+            if(scrollToPlayer){
+                scrollX = getGame().getPlayer().getRealX()-600;
+                scrollY = getGame().getPlayer().getRealY()-400;
             }
             if(Greenfoot.isKeyDown("e")&&!currentlycrafting){
                 game.craftWeapon();
@@ -407,10 +408,24 @@ public class KWorld extends World
     public ArrayList<GridObject> allObjects(){
         return allGridObjects;
     }
+    public void cleanUpEntities(){
+        for(int i = allEntities.size()-1; i >= 0; i--){
+            GridEntity obj = allEntities.get(i);
+            if(obj.isDead()&&obj.removeOnDeath()||!obj.isInWorld()){
+                if(obj.isInWorld()){
+                    removeObject(obj);
+                }
+                allEntities.remove(i);
+            }
+        }
+    }
     public boolean isPaused(){
         return paused;
     }
-
+    
+    public void addObject(KActor a, int x, int y){
+        addObject(a, x*1.0, y*1.0);
+    }
     public void addObject(KActor a, double x, double y){
         a.rx = x;
         a.ry = y;

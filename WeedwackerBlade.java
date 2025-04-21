@@ -19,6 +19,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         this.source = source;
         strength = 0;
         startHealthShield(new MetalShield(healthshieldid, 6));
+        setDetectable(false);
         addEffectImmunities(PoisonEffect.class);
     }
     public boolean acceptExternalShields(){
@@ -34,9 +35,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         strength = s;
     }
     public void kAct(){
-        if(source!=null){
+        /*if(source!=null){
             branchOut(source, angle+source.getRealRotation(), distance);
-        }
+        }*/
         super.kAct();
     }
     public void animate(){
@@ -67,6 +68,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     }
     public void ult(){
         applyShield(new ProjectileReflectShield(ultshieldid, 400));
+        startHealthShield(new MetalShield(healthshieldid, 6));
         setOpacityPercent(0.5);
     }
     public boolean hasUlt(){
@@ -80,7 +82,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         source.notifyDamage(s, dmg);
     }
     public void immunize(){
-        replaceShield(healthshieldid, new SuperWeedwackerShield(new ShieldID(this, "immune"), -1));
+        startHealthShield(new SuperWeedwackerShield(new ShieldID(this, "immune"), -1));
     }
     public void attack(){
         List<GridEntity> g = (List<GridEntity>)getIntersectingObjects(GridEntity.class);
@@ -89,13 +91,6 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
                 damage(e, 50+strength*10);
             }
         }
-    }
-    /*public void hit(int dmg, GridObject s){
-        source.notifyDamage(this, dmg);
-        super.hit(dmg, s);
-    }*/
-    public boolean canDetect(){
-        return false;
     }
     public boolean canBePulled(){
         return false;
