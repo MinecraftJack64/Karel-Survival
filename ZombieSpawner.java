@@ -19,6 +19,7 @@ public class ZombieSpawner implements Spawner
     SpawnCalculator calculator = new SpawnCalculator();
     private SpawnData toSpawn;
     private int nextSpawn;
+    private int remainingSections;
     private int forceNextSpawn; // 450
     public ArrayList<GridEntity> currentlySpawned;
     public boolean isBossWave(){
@@ -36,7 +37,8 @@ public class ZombieSpawner implements Spawner
         if(!bossfight){
             if(toSpawn!=null){
                 if(currentlySpawned.size()<=nextSpawn||forceNextSpawn<=0){
-                    spawnZombies(toSpawn);
+                    remainingSections--;
+                    spawnZombies(toSpawn, remainingSections);
                 }
                 forceNextSpawn--;
                 if(toSpawn.isClear()){
@@ -47,8 +49,8 @@ public class ZombieSpawner implements Spawner
             wavelevel++;
             if(!isBossWave()){
                 int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
-                int sections = count/3;
-                spawnZombies(count);
+                remainingSections = count/3;
+                spawnZombies(count, remainingSections);
                 KWorld.me.cleanUpEntities(); // TODO
                 if(Greenfoot.getRandomNumber(3)<2){
                     SupplyCrate thing = new SupplyCrate(new WeaponFrag());
@@ -78,15 +80,18 @@ public class ZombieSpawner implements Spawner
             }
         }
     }
-    public void spawnZombies(int count)
+    public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
-        spawnZombies(toSpawn);
+        spawnZombies(toSpawn, sections);
     }
-    public void spawnZombies(SpawnData dat){
+    public void spawnZombies(SpawnData dat, int sections){
         currentlySpawned = new ArrayList<GridEntity>();
         for(int i = 0; i < dat.size(); i++){
-            int amt = dat.count(i);
+            int amt = randomCenter(dat.count(i)); // TODO
+            if(sections==1){
+                amt = dat.count(i);
+            }
             for(int f = 0; f < amt; f++){
                 try{
                     GridEntity toSpawn = (GridEntity)(dat.pop(i).newInstance());
@@ -150,5 +155,8 @@ public class ZombieSpawner implements Spawner
     }
     public void setBossPhase(int p){
         bossphase = p;
+    }
+    public int randomCenter(int max){
+        return Math.max(Math.min((int)((new Random()).nextGaussian()*max/3+max/2), max), 0);
     }
 }
