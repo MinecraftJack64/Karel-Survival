@@ -8,6 +8,23 @@ class SpawnData{
         spawnTypes = types;
         spawnCount = count;
     }
+    public boolean isClear(){
+        for(int i: spawnCount){
+            if(i>0)return false;
+        }
+        return true;
+    }
+    public int size(){
+        return spawnCount.size();
+    }
+    public int count(int i){
+        return spawnCount.get(i);
+    }
+    public Class pop(int id){
+        int val = spawnCount.get(id);
+        if(val>0)spawnCount.set(id, val-1);
+        return spawnTypes.get(id);
+    }
 }
 /**
  * Write a description of class ZombieSpawner here.

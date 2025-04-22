@@ -17,8 +17,9 @@ public class ZombieSpawner implements Spawner
     public int cwavecooldown = 200;
     public GridEntity boss;
     SpawnCalculator calculator = new SpawnCalculator();
-    public ArrayList<Class> spawnTypes;
-    public ArrayList<Integer> spawnCount;
+    private SpawnData toSpawn;
+    private int nextSpawn;
+    private int forceNextSpawn; // 450
     public ArrayList<GridEntity> currentlySpawned;
     public boolean isBossWave(){
         return wavelevel==31||wavelevel==30;
@@ -32,10 +33,22 @@ public class ZombieSpawner implements Spawner
         return true;
     }
     public void checkSpawn(){
-        if(!bossfight){if(allSpawnedDied()/*3.0*wavemaxhealth/4*/){
+        if(!bossfight){
+            if(toSpawn!=null){
+                if(currentlySpawned.size()<=nextSpawn||forceNextSpawn<=0){
+                    spawnZombies(toSpawn);
+                }
+                forceNextSpawn--;
+                if(toSpawn.isClear()){
+                    toSpawn = null;
+                }
+            }
+            if(toSpawn==null&&allSpawnedDied()/*3.0*wavemaxhealth/4*/){
             wavelevel++;
             if(!isBossWave()){
-                spawnZombies(Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2);
+                int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
+                int sections = count/3;
+                spawnZombies(count);
                 KWorld.me.cleanUpEntities(); // TODO
                 if(Greenfoot.getRandomNumber(3)<2){
                     SupplyCrate thing = new SupplyCrate(new WeaponFrag());
@@ -54,11 +67,7 @@ public class ZombieSpawner implements Spawner
                     if(bossphase>=3)spawnZombie(new NinjaZombie());
                     if(bossphase==5)spawnZombie(new NinjaZombie());
                     if(bossphase>=4&&Greenfoot.getRandomNumber(4)==0){
-                        if(Greenfoot.getRandomNumber(2)==0){
-                            spawnZombie(new LaserZombie());
-                        }else{
-                            spawnZombie(new EasterZombie());
-                        }
+                        spawnZombie(new EasterZombie());
                     }
                     cwavecooldown = Greenfoot.getRandomNumber(300)+600;
                 }
@@ -71,16 +80,23 @@ public class ZombieSpawner implements Spawner
     }
     public void spawnZombies(int count)
     {
-        SpawnData dat = calculator.calculateSpawn(count, wavelevel);
-        spawnTypes = dat.spawnTypes;
-        spawnCount = dat.spawnCount;//graphics, sound, spawner, tutorial
+        toSpawn = calculator.calculateSpawn(count, wavelevel);
+        spawnZombies(toSpawn);
+    }
+    public void spawnZombies(SpawnData dat){
         currentlySpawned = new ArrayList<GridEntity>();
-        for(int i = 0; i < spawnTypes.size(); i++){
-            for(int f = 0; f < spawnCount.get(i); f++){
-                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).newInstance());
-                spawnZombie(toSpawn);currentlySpawned.add(toSpawn);}catch(Exception e){e.printStackTrace();}
+        for(int i = 0; i < dat.size(); i++){
+            int amt = dat.count(i);
+            for(int f = 0; f < amt; f++){
+                try{
+                    GridEntity toSpawn = (GridEntity)(dat.pop(i).newInstance());
+                    spawnZombie(toSpawn);
+                    currentlySpawned.add(toSpawn);
+                }catch(Exception e){e.printStackTrace();}
             }
         }
+        nextSpawn = currentlySpawned.size()/2;
+        forceNextSpawn = 450;
         System.out.println("Spawning "+currentlySpawned.size()+" zombies");
     }
 
