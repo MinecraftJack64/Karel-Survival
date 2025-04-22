@@ -8,14 +8,16 @@ import java.util.List;
  */
 public class HijackHealer extends FlyingRock
 {
-    public HijackHealer(double rotation, double targetdistance, double height, GridObject source)
+    GridEntity h;
+    public HijackHealer(double rotation, double targetdistance, double height, GridObject source, GridEntity myMount)
     {
         super(rotation, targetdistance, height, source);
         setRange(120);
         setDamage(300);
+        h = myMount;
     }
     public void doHit(GridEntity g){
-        addObjectHere(new HealCharge(0, getSource(), getDamage()));
+        g.addObjectHere(new HealCharge(0, getSource(), h, getDamage()));
         super.doHit(g);
     }
     public double getGravity(){

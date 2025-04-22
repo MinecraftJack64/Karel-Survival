@@ -18,7 +18,7 @@ public class Highjacker extends Weapon
         if(mounted){
             if(ammo>=reload&&mount.isOnGround()){
                 double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
-                HijackHealer bullet = new HijackHealer (getHand().getTargetRotation(), d, d/2, mount);
+                HijackHealer bullet = new HijackHealer (getHand().getTargetRotation(), d, d/2, getHolder(), mount);
                 mount.addObjectHere(bullet);
                 ammo = 0;
             }

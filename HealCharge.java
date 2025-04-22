@@ -16,7 +16,7 @@ public class HealCharge extends Bullet
     
     public HealCharge(double rotation, GridObject source, int amt)
     {
-        this(rotation, source, null, amt);
+        this(rotation, source, source, amt);
     }
     public HealCharge(double rotation, GridObject source, GridEntity notify, int amt)
     {
