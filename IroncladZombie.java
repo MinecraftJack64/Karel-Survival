@@ -10,7 +10,7 @@ import java.util.List;
 public class IroncladZombie extends Zombie
 {
     private static final int gunReloadTime = 160;         // The minimum delay between firing the gun.
-
+    private boolean canRetaliate = true;
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
     private GreenfootImage rocket = new GreenfootImage("tankzareln.png");    
@@ -36,6 +36,7 @@ public class IroncladZombie extends Zombie
      */
     public void behave()
     {
+        canRetaliate = true;
         reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
@@ -51,7 +52,8 @@ public class IroncladZombie extends Zombie
     }
     public void hitIgnoreShield(int amt, double exp, GridObject source){
         super.hitIgnoreShield(amt, exp, source);
-        if(source.isAggroTowards(this)){
+        if(source.isAggroTowards(this)&&canRetaliate){
+            canRetaliate = false;
             explodeOn(60, amt/3);
         }
     }

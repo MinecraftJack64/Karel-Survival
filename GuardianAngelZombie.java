@@ -10,7 +10,7 @@ import java.util.List;
 public class GuardianAngelZombie extends Zombie
 {
     private ShieldID myShield, immuneShield;
-    private GreenfootImage rocket = new GreenfootImage("hornetzareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("angelzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     /**
      * Initilise this rocket.
@@ -54,7 +54,7 @@ public class GuardianAngelZombie extends Zombie
         if(isAggroTowards(getTarget()))super.attack();
         else if(isAlliedWith(getTarget())){
             getTarget().mount(this, 90, 60);
-            removeShield(myShield);
+            //removeShield(myShield);
             heal(this, getMaxHealth());
             getTarget().applyShield(new GuardianShield(immuneShield, this));
         }
@@ -62,7 +62,7 @@ public class GuardianAngelZombie extends Zombie
     
     @Override
     public boolean isPotentialTarget(GridEntity entity){
-        return isAlliedWith(entity)&&entity.canDetect();
+        return isAlliedWith(entity)&&entity.canDetect()&&!(entity instanceof GuardianAngelZombie);
     }
     
     //ovveride this

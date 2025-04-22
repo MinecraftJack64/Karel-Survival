@@ -24,7 +24,7 @@ public class TractorBeamZombie extends Zombie
         setImage(rocket);
         setRotation(180);
         setSpeed(1);
-        startHealth(4500);
+        startHealth(300);
     }
 
     /**

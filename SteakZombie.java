@@ -12,7 +12,7 @@ public class SteakZombie extends ShooterZombie
     private static final int gunReloadTime = 25;         // The minimum delay between firing the gun.
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private GreenfootImage rocket = new GreenfootImage("doczareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("steakzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private AmmoManager ammo = new AmmoManager(30, 3, 3);
     private boolean hastarget = false;
@@ -27,7 +27,7 @@ public class SteakZombie extends ShooterZombie
     public SteakZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
+        rocket.scale(50, 50);
         setImage(rocket);
         setRotation(180);
         setSpeed(2);

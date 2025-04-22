@@ -166,8 +166,13 @@ public class CannonZombie extends Zombie
         if(hold!=null){
             hold.untrap();
             addObjectHere(hold);
-            hold.knockBack(aimdir, Math.min(aimdist, 700), 400, this);
-            keeptargetcooldown = (int)hold.getPhysicsArc().getDuration();
+            if(hold.knockBack(aimdir, Math.min(aimdist, 700), 400, this)){
+                keeptargetcooldown = (int)hold.getPhysicsArc().getDuration();
+            }else{
+                keeptargetcooldown = 0;
+                getWorld().removeObject(target);
+            }
+            
             hold = null;
         }else{
             BombDropper bd = new BombDropper(aimdir, Math.min(aimdist, 700), 400, new TickingTimeBomb(this), this);

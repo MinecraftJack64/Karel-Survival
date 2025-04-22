@@ -342,6 +342,7 @@ public class KWorld extends World
         if(currentMenu.equals("game")&&gameStatus().equals("running")){
             game.tick();
             for(int i = allEntities().size()-1; i >=0; i--){
+                if(i>=allEntities().size())continue;
                 GridEntity g = allEntities().get(i);
                 if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
                     g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);

@@ -10,7 +10,7 @@ import java.util.List;
 public class EvilSpiritZombie extends SpawnableZombie
 {
 
-    private GreenfootImage rocket = new GreenfootImage("beezareln.png");    
+    private GreenfootImage rocket = new GreenfootImage("spiritzareln.png");    
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int damage = 50;
     private GridEntity myhive;
