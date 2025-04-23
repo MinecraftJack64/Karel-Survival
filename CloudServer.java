@@ -19,12 +19,12 @@ import java.util.ArrayList;
  * enforce-mint: zombie
  */
 /**
- * Write a description of class Wizard here.
+ * Write a description of class CloudServer here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Wizard extends Boss
+public class CloudServer extends Boss
 {
     private static final int sporereload = 700;         // The minimum delay between firing the gun.
     private ArrayList<FungalZombie> spores;
@@ -49,7 +49,7 @@ public class Wizard extends Boss
     /**
      * Initilise this rocket.
      */
-    public Wizard()
+    public CloudServer()
     {
         sporeammo = 400;
         meleeammo = 15;
@@ -60,7 +60,7 @@ public class Wizard extends Boss
         setImage(rocket);
         setRealRotation(0);
         setSpeed(0);
-        startHealthAsBoss(10000, 5);
+        startHealthAsBoss(9000, 3);
         phase = 1;
         spores = new ArrayList<FungalZombie>();
         turrets = new ArrayList<GridEntity>();
@@ -314,6 +314,6 @@ public class Wizard extends Boss
         }
     }
     public String getName(){
-        return "Setup Wizard";
+        return "Cloud Server";
     }
 }

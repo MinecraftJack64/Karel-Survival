@@ -57,7 +57,7 @@ public class ZombieSpawner implements Spawner
                     spawnZombieRandom(thing);
                 }
             }else{
-                if(wavelevel==31)startBossFight();
+                if(wavelevel==31)startBossFight(new Wizard());
                 else heraldBossFight();
             }
         }}
@@ -138,8 +138,7 @@ public class ZombieSpawner implements Spawner
         wavemaxhealth = wavehealth = 1;
         currentlySpawned.add(h);
     }
-    public void startBossFight(){
-        Wizard wizzie = new Wizard();
+    public void startBossFight(wizzie){
         spawnZombie(wizzie, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
         wavemaxhealth = wavehealth = 1;
         bossphase = 1;
