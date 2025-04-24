@@ -43,7 +43,7 @@ public class Survival extends GameMode
         //getWorld().addToGrid(god, 0, 0);
         player = rocket;
         spawner = new ZombieSpawner();
-        spawner.spawnZombies(1);
+        spawner.spawnZombies(1, 1);
         status = "running";
         resetScore();
         System.out.println(teams);

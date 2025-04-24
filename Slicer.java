@@ -7,7 +7,7 @@ import greenfoot.*;
  */
 public class Slicer extends Weapon
 {
-    private static final int ult = 1100, reloadtime = 15;
+    private static final int ult = 2100, reloadtime = 15;
     private CircSaw lasso;
     private int ultchargecooldown = 0;
     private int attackcooldown = 0;

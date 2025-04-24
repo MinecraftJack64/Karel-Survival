@@ -58,6 +58,9 @@ public class SplitterZombie extends Zombie
     public int getXP(){
         return 0;
     }
+    public String getName(){
+        return "Splitter Zombie";
+    }
     /*public void damage(int amt){
         if(shieldhealth>0&&amt>0){
             shieldhealth-=amt;

@@ -3,10 +3,18 @@ import java.util.ArrayList;
 
 class SpawnData{
     public ArrayList<Class> spawnTypes;
+    public ArrayList<GridEntity> spawn;
     public ArrayList<Integer> spawnCount;
     public SpawnData(ArrayList<Class> types, ArrayList<Integer> count){
         spawnTypes = types;
         spawnCount = count;
+        initializeSpawn();
+    }
+    public void initializeSpawn(){
+        spawn = new ArrayList<GridEntity>();
+        for(Class cls: spawnTypes){
+            try{spawn.add((GridEntity)cls.newInstance());}catch(Exception e){e.printStackTrace();spawn.add(new Zombie());}
+        }
     }
     public boolean isClear(){
         for(int i: spawnCount){
@@ -17,13 +25,27 @@ class SpawnData{
     public int size(){
         return spawnCount.size();
     }
+    public int numSpawns(){
+        int i = 0;
+        for(int c: spawnCount){
+            i+=c;
+        }
+        return i;
+    }
+    public int totalHealth(){
+        int i = 0;
+        for(GridEntity c: spawn){
+            i+=c.getHealth();
+        }
+        return i;
+    }
     public int count(int i){
         return spawnCount.get(i);
     }
-    public Class pop(int id){
+    public GridEntity pop(int id){
         int val = spawnCount.get(id);
         if(val>0)spawnCount.set(id, val-1);
-        return spawnTypes.get(id);
+        return spawn.get(id);
     }
 }
 /**

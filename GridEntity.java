@@ -29,6 +29,7 @@ public abstract class GridEntity extends GridObject
     private Shield healthShield;
     private ArrayList<Shield> shields = new ArrayList<Shield>();
     private int maxshields = 10;
+    private boolean isBoss;
     private ArrayList<ShieldBar> shieldBars = new ArrayList<ShieldBar>();
     private HashSet<Class> effectImmunities = new HashSet<Class>();
     public boolean isDead(){
@@ -262,7 +263,7 @@ public abstract class GridEntity extends GridObject
         }
         healthBar = new BossBar(amt,500,10,this);
         healthBar.divideIntoPhases(numphases);
-        KWorld.me.gameUI().addBossBar((BossBar)healthBar);
+        isBoss = true;
     }
     public void setHealth(int h){
         health = h;
@@ -470,7 +471,10 @@ public abstract class GridEntity extends GridObject
         //remove all components
     }
     public void addGraphics(){
-        if(healthBar!=null)KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
+        if(healthBar!=null){
+            if(!isBoss)KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
+            else KWorld.me.gameUI().addBossBar((BossBar)healthBar);
+        }
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getRealX(), getRealY());});
     }
     public void removeGraphics(){

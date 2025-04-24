@@ -68,6 +68,6 @@ public class FlamethrowerZombie extends Zombie
     }
     
     public String getName(){
-        return "Flamethrower Zombie";
+        return "Firebreather Zombie";
     }
 }

@@ -52,7 +52,7 @@ public class IroncladZombie extends Zombie
     }
     public void hitIgnoreShield(int amt, double exp, GridObject source){
         super.hitIgnoreShield(amt, exp, source);
-        if(source.isAggroTowards(this)&&canRetaliate){
+        if(source!=null&&source.isAggroTowards(this)&&canRetaliate){
             canRetaliate = false;
             explodeOn(60, amt/3);
         }

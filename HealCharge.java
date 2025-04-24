@@ -14,7 +14,7 @@ public class HealCharge extends Bullet
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
     
-    public HealCharge(double rotation, GridObject source, int amt)
+    public HealCharge(double rotation, GridEntity source, int amt)
     {
         this(rotation, source, source, amt);
     }

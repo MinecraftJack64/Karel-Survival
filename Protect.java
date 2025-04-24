@@ -53,7 +53,7 @@ public class Protect extends GameMode
         baby = obj;
         player = rocket;
         spawner = new ZombieSpawner();
-        spawner.spawnZombies(1);
+        spawner.spawnZombies(1, 1);
         status = "running";
         resetScore();
         System.out.println(teams);

@@ -17,7 +17,7 @@ import greenfoot.*;
  * enforce-mint: zombie
  */
 /**
- * Write a description of class HuggingZombie here.
+ * A fast tanky zombie that only attacks once when it moves
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -69,6 +69,9 @@ public class HuggingZombie extends Zombie
     //ovveride this
     public int getXP(){
         return 500;
+    }
+    public String getName(){
+        return "Hugging Zombie";
     }
     /*public void damage(int amt){
         if(shieldhealth>0&&amt>0){

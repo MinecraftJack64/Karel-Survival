@@ -144,6 +144,6 @@ public class ExorcistZombie extends Zombie
         return !(e instanceof ExorcistZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
     }
     public String getName(){
-        return "Doctor Zombie";
+        return "Exorcist Zombie";
     }
 }

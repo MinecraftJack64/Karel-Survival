@@ -42,4 +42,7 @@ public class FlyingCircSaw extends Bullet
             setLife(15);
         }
     }
+    public double damageSecrecy(){
+        return super.damageSecrecy()*0.5;
+    }
 }

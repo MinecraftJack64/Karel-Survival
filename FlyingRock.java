@@ -26,7 +26,7 @@ public class FlyingRock extends Projectile
         super(null);
     }
     public double getGravity(){
-        return 3;
+        return 2;
     }
     public FlyingRock(double rotation, double targetdistance, double height, GridObject source)
     {

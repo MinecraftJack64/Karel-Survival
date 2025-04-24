@@ -1,5 +1,7 @@
 import greenfoot.*;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.HashMap;
 
 /**
  * Write a description of class ZombieSpawner here.
@@ -9,22 +11,34 @@ import java.util.ArrayList;
  */
 public class ZombieSpawner implements Spawner
 {
-    public int wavehealth = 0;
-    public int wavemaxhealth = 0;
-    public int wavelevel = 64;
+    public int waveHealth = 0;
+    public int waveMaxHealth = 0;
+    public int wavelevel = 29;
+    
+    public QueueMap<Integer, Boss> bosses;
+    private int nextBossWave;
+    public int cwavecooldown = 200;
     private int bossphase = 0;
     private boolean bossfight;
-    public int cwavecooldown = 200;
     public GridEntity boss;
+    
     SpawnCalculator calculator = new SpawnCalculator();
     private SpawnData toSpawn;
     private int nextSpawn;
     private int remainingSections;
     private int forceNextSpawn; // 450
     public ArrayList<GridEntity> currentlySpawned;
-    public boolean isBossWave(){
-        return wavelevel==31||wavelevel==30;
+    
+    public ZombieSpawner(){
+        bosses = new QueueMap<Integer, Boss>();
+        bosses.add(31, new Wizard());
+        bosses.add(45, new CloudServer());
+        nextBossWave = bosses.peek().getKey();
     }
+    public boolean isBossWave(){
+        return wavelevel==nextBossWave||wavelevel==nextBossWave-1;
+    }
+
     public boolean allSpawnedDied(){
         for(GridEntity g:currentlySpawned){
             if(!g.isDead()){
@@ -33,34 +47,49 @@ public class ZombieSpawner implements Spawner
         }
         return true;
     }
+
+    public int getNumLiving(){
+        int c = 0;
+        for(GridEntity g:currentlySpawned){
+            if(!g.isDead()){
+                c++;
+            }
+        }
+        return c;
+    }
+
     public void checkSpawn(){
         if(!bossfight){
             if(toSpawn!=null){
-                if(currentlySpawned.size()<=nextSpawn||forceNextSpawn<=0){
+                if(getNumLiving()<=nextSpawn||forceNextSpawn<=0){
                     remainingSections--;
                     spawnZombies(toSpawn, remainingSections);
                 }
-                forceNextSpawn--;
+                // forceNextSpawn--;
                 if(toSpawn.isClear()){
                     toSpawn = null;
                 }
             }
             if(toSpawn==null&&allSpawnedDied()/*3.0*wavemaxhealth/4*/){
-            wavelevel++;
-            if(!isBossWave()){
-                int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
-                remainingSections = count/3;
-                spawnZombies(count, remainingSections);
-                KWorld.me.cleanUpEntities(); // TODO
-                if(Greenfoot.getRandomNumber(3)<2){
-                    SupplyCrate thing = new SupplyCrate(new WeaponFrag());
-                    spawnZombieRandom(thing);
+                wavelevel++;
+                if(!isBossWave()){
+                    int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
+                    remainingSections = count/3;
+                    spawnZombies(count, remainingSections);
+                    KWorld.me.cleanUpEntities(); // TODO
+                    if(Greenfoot.getRandomNumber(3)<2){
+                        SupplyCrate thing = new SupplyCrate(new WeaponFrag());
+                        spawnZombieRandom(thing);
+                    }
+                }else{
+                    if(wavelevel==nextBossWave){
+                        startBossFight(bosses.remove().getValue());
+                        nextBossWave = bosses.peek().getKey();
+                    }
+                    else heraldBossFight();
                 }
-            }else{
-                if(wavelevel==31)startBossFight(new Wizard());
-                else heraldBossFight();
             }
-        }}
+        }
         else{
             if(bossphase < 6){
                 cwavecooldown--;
@@ -80,11 +109,13 @@ public class ZombieSpawner implements Spawner
             }
         }
     }
+
     public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
         spawnZombies(toSpawn, sections);
     }
+
     public void spawnZombies(SpawnData dat, int sections){
         currentlySpawned = new ArrayList<GridEntity>();
         for(int i = 0; i < dat.size(); i++){
@@ -94,7 +125,7 @@ public class ZombieSpawner implements Spawner
             }
             for(int f = 0; f < amt; f++){
                 try{
-                    GridEntity toSpawn = (GridEntity)(dat.pop(i).newInstance());
+                    GridEntity toSpawn = dat.pop(i);
                     spawnZombie(toSpawn);
                     currentlySpawned.add(toSpawn);
                 }catch(Exception e){e.printStackTrace();}
@@ -124,37 +155,42 @@ public class ZombieSpawner implements Spawner
         }
         KWorld.me.addToGrid(toSpawn, x, y);
     }
+
     public void spawnZombieRandom(GridObject toSpawn){
         int x = Greenfoot.getRandomNumber(KWorld.me.gridwidth);
         int y = Greenfoot.getRandomNumber(KWorld.me.gridheight);
         KWorld.me.addToGrid(toSpawn, x, y);
     }
+
     public void spawnZombie(GridEntity toSpawn, int x, int y){
         KWorld.me.addToGrid(toSpawn, x, y);
     }
+
     public void heraldBossFight(){
         ZombieHerald h = new ZombieHerald();
         spawnZombie(h, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
-        wavemaxhealth = wavehealth = 1;
         currentlySpawned.add(h);
     }
-    public void startBossFight(wizzie){
+
+    public void startBossFight(GridEntity wizzie){
         spawnZombie(wizzie, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
-        wavemaxhealth = wavehealth = 1;
         bossphase = 1;
         boss = wizzie;
         bossfight = true;
         KWorld.me.bossBG();
     }
+
     public void stopBossFight(){
         bossfight = false;
         bossphase = 0;
         KWorld.me.resetBG();
         boss = null;
     }
+
     public void setBossPhase(int p){
         bossphase = p;
     }
+
     public int randomCenter(int max){
         return Math.max(Math.min((int)((new Random()).nextGaussian()*max/3+max/2), max), 0);
     }

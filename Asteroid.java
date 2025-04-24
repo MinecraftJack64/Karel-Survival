@@ -32,7 +32,8 @@ public class Asteroid extends Bullet
         //setTeam(source.getTeam());
         setLife(200);
         setMultiHit(false);
-        setDamage(size*100);
+        //size 3, 2, 1
+        setDamage(size*70);
         setSpeed(3+5*size);//18, 13, 8
         this.size = size;
     }

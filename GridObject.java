@@ -182,7 +182,7 @@ public abstract class GridObject extends KActor
         return grounded;
     }
     public boolean canBePulled(){
-        return !isGrounded();
+        return !isGrounded()&&!hasMounter();
     }
     public void notifyPull(){}
     public boolean pullTo(double x, double y){

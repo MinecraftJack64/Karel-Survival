@@ -17,7 +17,7 @@ import greenfoot.*;
  * enforce-mint: zombie
  */
 /**
- * Write a description of class ZombieHerald here.
+ * Does not move, indicates that killing it will result in the boss spawning. Takes on the appearance of the boss
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -51,6 +51,9 @@ public class ZombieHerald extends Zombie
     //ovveride this
     public int getXP(){
         return 0;
+    }
+    public String getName(){
+        return "Zombie Herald";
     }
     /*public void damage(int amt){
         if(shieldhealth>0&&amt>0){

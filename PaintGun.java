@@ -44,7 +44,7 @@ public class PaintGun extends Weapon
                     for(double i = -spread; i <= spread; i+=density){
                         PaintDrop bullet = new PaintDrop (getHand().getTargetRotation()+i, true, getHolder()){
                             public double damageSecrecy(){
-                                return super.damageSecrecy()*ammoid*0.33;
+                                return super.damageSecrecy()*ammoid*0.165+0.4;
                             }
                         };
                         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());

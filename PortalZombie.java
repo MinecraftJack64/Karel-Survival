@@ -68,4 +68,7 @@ public class PortalZombie extends Zombie
             portals--;
         }
     }
+    public String getName(){
+        return "Portal Zombie";
+    }
 }

@@ -83,4 +83,7 @@ public class JokerZombie extends Zombie
             break;
         }
     }
+    public String getName(){
+        return "Joker Zombie";
+    }
 }
