@@ -266,10 +266,12 @@ public class GameUI extends UI
     }
     public void addBossBar(BossBar bar){
         boss = bar;
-        getWorld().addObject(bar, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, 25.0);
+        waveCounter.setVisible(false);
+        getWorld().addObject(bar, waveCounter.getRealX(), scoreCounter.getBottom());
     }
     public void removeBossBar(){
         getWorld().removeObject(boss);
+        waveCounter.setVisible(true);
         boss = null;
     }
     public void showWeaponFrags(int s){

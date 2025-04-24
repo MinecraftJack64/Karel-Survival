@@ -36,12 +36,12 @@ public class ZombieFactory
             //cop
             //shaman
             case "exorcist": return new ExorcistZombie();
-            //evil spirit
-            //cloud server
+            //case "evilspirit": return new EvilSpiritZombie();
+            case "cloudserver": return new CloudServer();
             ////case "shapeshifter": return new ShapeshifterZombie();
             //chief
             //dancer
-            //tractor beam
+            case "tractorbeam": return new TractorBeamZombie();
             case "president": return new PresidentZombie();
             case "bodyguard": return new BodyguardZombie();
             case "joker": return new JokerZombie();
@@ -62,11 +62,11 @@ public class ZombieFactory
             //drone
             //helicopter
             case "breadboxer": return new BreadBoxerZombie();
-            //case "guardianangel"
+            case "guardianangel": return new GuardianAngelZombie();
             //wizard apprentice
             //vacuum
             case "assassin": return new AssassinZombie();
-            //steak
+            case "steak": return new SteakZombie();
             //milky
             //kitebaby
             //kitemother
