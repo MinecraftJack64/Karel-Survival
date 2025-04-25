@@ -1,4 +1,5 @@
 import greenfoot.Actor;
+import greenfoot.GreenfootImage;
 
 /**
  * An actor with additional methods and helpers
@@ -9,7 +10,11 @@ import greenfoot.Actor;
 public abstract class KActor extends Actor
 {
     double rx, ry, rh, rrot;
+    int rop = 255/*real opacity*/;
     boolean isInWorld;
+    public KActor(){
+        setImage(getImage());
+    }
     public KWorld getWorld(){
         try{
         if(super.getWorld()!=null)return (KWorld)super.getWorld();else return KWorld.me;}catch(Exception e){
@@ -80,13 +85,28 @@ public abstract class KActor extends Actor
         }
     }
     public void setOpacityPercent(double perc){
-        getImage().setTransparency((int)(perc*255));
+        setOpacity((int)(perc*255));
     }
     public void setOpacity(int amt){//0-255(visible)
-        getImage().setTransparency(amt);
+        rop = amt;
+        processImage();
+    }
+    public void processImage(){
+        processImage(getImage());
+    }
+    public void processImage(GreenfootImage g){
+        g.setTransparency(getOpacity());
     }
     public int getOpacity(){//0-255(visible)
-        return getImage().getTransparency();
+        return rop;
+    }
+    public void setImage(GreenfootImage g){
+        processImage(g);
+        super.setImage(g);
+    }
+    public void setImage(String path){
+        super.setImage(path);
+        processImage();
     }
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());

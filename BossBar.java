@@ -24,6 +24,9 @@ public class BossBar extends LifeBar
             super.act();
         }
     }
+    public String getLabel(){
+        return myGE.getName();
+    }
     public boolean isInGridWorld(){
         return false;
     }

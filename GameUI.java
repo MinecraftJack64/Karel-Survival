@@ -10,17 +10,18 @@ import java.util.ArrayList;
 public class GameUI extends UI  
 {
     public Counter scoreCounter, waveCounter;
+    public WaveBar waveHealth;
     private UltBar ultCharge;
     private AmmoBar ammo;
     private StatusBar sprint;
-    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, tut1, tut2;
+    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, tut1, tut2, bossName;
     private Button goToMenuBtn, nextLvlBtn;
     private BossBar boss;
     private ArrayList<TextDisplay> weaponchances = new ArrayList<TextDisplay>();
     public void create(){
         waveCounter = new Counter("Wave ", 20);
-        getWorld().addObject(waveCounter, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(0)*1.0-15);
-        waveCounter.setValue(1);
+        scoreCounter = new Counter("Score: ", 20);
+        placeScoreBar();
         
         heldItem = new TextDisplay("Item", 20, Color.GRAY);
         getWorld().addObject(heldItem, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-1)*1.0-15);
@@ -37,32 +38,40 @@ public class GameUI extends UI
         sprintText.setVisible(false);
         getWorld().addObject(sprintText, sprint.getRealX(), sprint.getRealY()+30);
         
-        scoreCounter = new Counter("Score: ", 20);
-        getWorld().addObject(scoreCounter, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, waveCounter.getBottom());
         
         ultCharge = new UltBar(100, 350, 30);
-        getWorld().addObject(ultCharge, 25, 400.0);
-
         ultMessage = new TextDisplay("Space", 20, Color.ORANGE);
         ultMessage2 = new TextDisplay("to fire!", 20, Color.ORANGE);
-        getWorld().addObject(ultMessage, 35, 170.0);
-        getWorld().addObject(ultMessage2, 35, ultMessage.getBottom());
-        ultMessage.setVisible(false);
-        ultMessage2.setVisible(false);
+        placeUltBar();
         
         weaponmessagerarity = new ShyTextDisplay("", 20, Color.GRAY);
-        getWorld().addObject(weaponmessagerarity, getWorld().gridXToRealX(getWorld().gridwidth)/5.0, getWorld().gridYToRealY(getWorld().gridheight)-150);
         weaponmessage = new ShyTextDisplay("You found a weapon fragment", 20, Color.GRAY);
-        getWorld().addObject(weaponmessage, weaponmessagerarity.getRealX(), weaponmessagerarity.getBottom()+10);
         weaponmessage2 = new ShyTextDisplay("Press e to craft", 20, Color.GRAY);
-        getWorld().addObject(weaponmessage2, weaponmessage.getRealX(), weaponmessage.getBottom()+10);
         weaponmessage3 = new ShyTextDisplay("You have 0 fragments", 20, Color.GRAY);
-        getWorld().addObject(weaponmessage3, weaponmessage2.getRealX(), weaponmessage2.getBottom()+10);
+        placeCraftMessage();
         tut1 = new TextDisplay("", 20, Color.GRAY);
         getWorld().addObject(tut1, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         tut2 = new TextDisplay("", 20, Color.GRAY);
         getWorld().addObject(tut2, tut1.getRealX(), tut1.getBottom()+10);
-    } 
+    }
+    public void placeUltBar(){
+        getWorld().addObject(ultCharge, 25, 400.0);
+        getWorld().addObject(ultMessage, 35, 170.0);
+        getWorld().addObject(ultMessage2, 35, ultMessage.getBottom());
+        ultMessage.setVisible(false);
+        ultMessage2.setVisible(false);
+    }
+    public void placeScoreBar(){
+        getWorld().addObject(waveCounter, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(0)*1.0-15);
+        waveCounter.setValue(1);
+        getWorld().addObject(scoreCounter, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, waveCounter.getBottom());
+    }
+    public void placeCraftMessage(){
+        getWorld().addObject(weaponmessagerarity, getWorld().gridXToRealX(getWorld().gridwidth)/5.0, getWorld().gridYToRealY(getWorld().gridheight)-150);
+        getWorld().addObject(weaponmessage, weaponmessagerarity.getRealX(), weaponmessagerarity.getBottom()+10);
+        getWorld().addObject(weaponmessage2, weaponmessage.getRealX(), weaponmessage.getBottom()+10);
+        getWorld().addObject(weaponmessage3, weaponmessage2.getRealX(), weaponmessage2.getBottom()+10);
+    }
     public void setTutorial(String thing){
         tut1.setText(thing);
     }
@@ -267,11 +276,16 @@ public class GameUI extends UI
     public void addBossBar(BossBar bar){
         boss = bar;
         waveCounter.setVisible(false);
-        getWorld().addObject(bar, waveCounter.getRealX(), scoreCounter.getBottom());
+        scoreCounter.setRealLocation(waveCounter.getRealX(), waveCounter.getRealY());
+        bossName = new TextDisplay(bar.getLabel(), 30);
+        getWorld().addObject(bossName, waveCounter.getRealX(), scoreCounter.getBottom());
+        getWorld().addObject(bar, waveCounter.getRealX(), bossName.getBottom());
     }
     public void removeBossBar(){
         getWorld().removeObject(boss);
+        getWorld().removeObject(bossName);
         waveCounter.setVisible(true);
+        placeScoreBar();
         boss = null;
     }
     public void showWeaponFrags(int s){

@@ -16,6 +16,17 @@ public class ZombieChick extends SpawnableZombie
     /**
      * Initilise this rocket.
      */
+    public ZombieChick(GridObject source, GridEntity hive)
+    {
+        rocket.scale(30, 30);
+        setImage(rocket);
+        setRotation(180);
+        setSpeed(3);
+        startHealth(100);
+        myhive = hive;
+        inherit(source);
+    }
+    
     public ZombieChick(GridEntity hive)
     {
         rocket.scale(30, 30);

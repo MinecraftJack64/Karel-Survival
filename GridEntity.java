@@ -478,7 +478,10 @@ public abstract class GridEntity extends GridObject
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getRealX(), getRealY());});
     }
     public void removeGraphics(){
-        if(healthBar!=null)getWorld().removeObject(healthBar);
+        if(healthBar!=null){
+            if(!isBoss)getWorld().removeObject(healthBar);
+            else KWorld.me.gameUI().removeBossBar();
+        }
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().removeObject(s);});
     }
     public boolean trap(){

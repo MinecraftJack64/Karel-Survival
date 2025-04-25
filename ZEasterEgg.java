@@ -26,7 +26,7 @@ public class ZEasterEgg extends ZBullet
     public void doHit(GridEntity targ){
         Sounds.play("eggcrack");
         if(Greenfoot.getRandomNumber(3)==0){
-            ZombieChick spawn = new ZombieChick((GridEntity)getSource());
+            ZombieChick spawn = new ZombieChick(this, (GridEntity)getSource());
             getWorld().addObject(spawn, getRealX(), getRealY());
         }
         super.doHit(targ);

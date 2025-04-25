@@ -411,13 +411,13 @@ public class KWorld extends World
     }
     public void cleanUpEntities(){
         for(int i = allEntities.size()-1; i >= 0; i--){
-            GridEntity obj = allEntities.get(i);
+            try{GridEntity obj = allEntities.get(i);
             if(obj.isDead()&&obj.removeOnDeath()||!obj.isInWorld()){
                 if(obj.isInWorld()){
                     removeObject(obj);
                 }
                 allEntities.remove(i);
-            }
+            }}catch(Exception e){}
         }
     }
     public boolean isPaused(){
@@ -428,6 +428,10 @@ public class KWorld extends World
         addObject(a, x*1.0, y*1.0);
     }
     public void addObject(KActor a, double x, double y){
+        if(a.isInWorld()){
+            a.setRealLocation(x, y);
+            return;
+        }
         a.rx = x;
         a.ry = y;
         if(a.isInGridWorld()){
