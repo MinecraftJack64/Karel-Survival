@@ -17,7 +17,7 @@ public abstract class GridEntity extends GridObject
     private int health = maxHealth;
     HealthBar healthBar;
     public double movementspeed = 5, speedmultiplier = 1;
-    private double exposureMultiplier = 1;
+    private double exposureMultiplier = 1, sizeMultiplier = 1;
     private HashSet<EffectID> immobilizers;//these store the affectors behind each effect
     private boolean canmove = true;//if you can move
     private HashSet<EffectID> silencers;
@@ -71,7 +71,7 @@ public abstract class GridEntity extends GridObject
     }
 
     public double getMultipliedSpeed(){
-        return movementspeed*speedmultiplier;
+        return movementspeed*speedmultiplier*sizeMultiplier;
     }
 
     public void setSpeedMultiplier(double perc, EffectID ctrl){
@@ -79,7 +79,7 @@ public abstract class GridEntity extends GridObject
     }
     
     public double getExposure(){
-        return exposureMultiplier;
+        return exposureMultiplier*(1.0/sizeMultiplier);
     }
     public void setExposure(double perc, EffectID ctrl){
         exposureMultiplier = perc;
@@ -90,6 +90,28 @@ public abstract class GridEntity extends GridObject
 
     public void setSpeed(double speed){
         movementspeed = speed;
+    }
+    
+    public double getPower(){
+        return super.getPower()*sizeMultiplier;
+    }
+    
+    public void setSizeMultiplier(double perc, EffectID ctrl){
+        sizeMultiplier = perc;
+    }
+    public void setSizeMultiplier(double perc){
+        sizeMultiplier = perc;
+    }
+    public void scaleSize(double amt){
+        setSizeMultiplier(amt*getSizeMultiplier());
+        getImage().scale((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
+    }
+    public void scaleSize(double amt, EffectID ctrl){
+        setSizeMultiplier(amt*getSizeMultiplier(), ctrl);
+        getImage().scale((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
+    }
+    public double getSizeMultiplier(){
+        return sizeMultiplier;
     }
 
     public void walk(double angle, double speed){

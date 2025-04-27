@@ -7,34 +7,73 @@ import greenfoot.*;
  */
 public class JadeCutter extends Weapon
 {
-    private static final int ult = 1100;
+    private static final int ult = 1680;
+    private static final int reloadTime = 15;
+    private int ammo = 15;
+    private boolean nextUltUpgraded;
     private StaticJadeBlade lasso;
     public void fire(){//one full ammo deals 350 damage
-        if (lasso.canAttack()) 
+        if (lasso!=null&&lasso.canAttack()) 
         {
-            lasso.fire(getHand().getTargetRotation());
+            lasso.fire(getHand().getTargetRotation(), getAttackUpgrade()==1);
             lasso = null;
         }
     }
     public void fireUlt(){
-        FlyingCircSaw bullet = new FlyingCircSaw(getHand().getTargetRotation(), getHolder());
-        getHolder().addObjectHere(bullet);
+        if(lasso!=null){
+            lasso.upgrade(getUltUpgrade()==1);
+            if(getUltUpgrade()==1)nextUltUpgraded = true;
+        }else{
+            cancelUltReset();
+        }
     }
     public int getUlt(){
         return ult;
     }
+    public void onGadgetActivate(){
+        if(lasso!=null){
+            lasso.gadget();
+            setContinueGadget(true);
+        }
+    }
+    public int defaultGadgets(){
+        return 4;
+    }
     public void reload(){
         if(lasso==null){
-            lasso = new StaticJadeBlade(getHolder());
+            if(ammo>=reloadTime){
+                lasso = new StaticJadeBlade(getHolder(), nextUltUpgraded);
+                if(nextUltUpgraded)nextUltUpgraded = false;
+                getHolder().addObjectHere(lasso);
+                getHolder().mount(lasso, 0, 0);
+                ammo = 0;
+            }else ammo++;
+        }else if(!lasso.isInWorld()){
+            if(continueGadget())setContinueGadget(false);
+            lasso = null;
         }
-        //updateAmmo(Math.min(reloadtime-attackcooldown, reloadtime));
     }
     public JadeCutter(ItemHolder actor){
         super(actor);
     }
     public void equip(){
         super.equip();
-        //getHolder().getWorld().gameUI().newAmmo(reloadtime, reloadtime-attackcooldown);
+        if(lasso==null&&ammo>=reloadTime){
+            lasso = new StaticJadeBlade(getHolder(), nextUltUpgraded);
+            if(nextUltUpgraded)nextUltUpgraded = false;
+            ammo = 0;
+        }
+        if(lasso!=null&&!lasso.isInWorld()){
+            getHolder().addObjectHere(lasso);
+            getHolder().mount(lasso, 0, 0);
+        }
+    }
+    public void unequip(){
+        if(lasso!=null&&lasso.isInWorld()){
+            getHolder().getWorld().removeObject(lasso);
+            getHolder().unmount(lasso);
+        }
+        super.unequip();
     }
     public String getName(){
         return "Jade Cutter";

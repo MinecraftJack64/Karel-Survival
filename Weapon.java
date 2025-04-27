@@ -105,6 +105,7 @@ public abstract class Weapon implements Item, Tickable
         }
         if(ultready){
             fireUlt();
+            if(getGadgets()<defaultGadgets())donateGadgets(1); //TODO remove
             if(!ultshield)ultuses--;
             if(ultuses<=0){
                 resetUltCharge();
@@ -125,6 +126,7 @@ public abstract class Weapon implements Item, Tickable
             ultshield = false;
         }
     }
+    /** Use exclusively inside fireUlt() to stop the ult charge from being used up */
     public void cancelUltReset(){
         ultshield = true;
     }
@@ -238,6 +240,7 @@ public abstract class Weapon implements Item, Tickable
     public void setContinueGadget(boolean v){
         isgadgeting = v;
     }
+    
     public void donateGadgets(int amt){
         gadgets+=amt;
     }
