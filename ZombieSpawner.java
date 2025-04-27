@@ -57,6 +57,13 @@ public class ZombieSpawner implements Spawner
         }
         return c;
     }
+    public int totalHealth(){
+        int c = 0;
+        for(GridEntity g:currentlySpawned){
+            if(!g.isDead())c+=g.getHealth();
+        }
+        return c;
+    }
 
     public void checkSpawn(){
         if(!bossfight){
@@ -89,6 +96,7 @@ public class ZombieSpawner implements Spawner
                     else heraldBossFight();
                 }
             }
+            KWorld.me.gameUI().updateWaveHealth(totalHealth());
         }
         else{
             if(bossphase < 6){
@@ -113,6 +121,7 @@ public class ZombieSpawner implements Spawner
     public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
+        KWorld.me.gameUI().newWave(toSpawn.totalHealth());
         spawnZombies(toSpawn, sections);
     }
 
@@ -170,6 +179,7 @@ public class ZombieSpawner implements Spawner
         ZombieHerald h = new ZombieHerald();
         spawnZombie(h, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
         currentlySpawned.add(h);
+        KWorld.me.gameUI().newWave(totalHealth());
     }
 
     public void startBossFight(GridEntity wizzie){

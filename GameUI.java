@@ -21,6 +21,7 @@ public class GameUI extends UI
     public void create(){
         waveCounter = new Counter("Wave ", 20);
         scoreCounter = new Counter("Score: ", 20);
+        waveHealth = new WaveBar(1,100,5);
         placeScoreBar();
         
         heldItem = new TextDisplay("Item", 20, Color.GRAY);
@@ -65,6 +66,7 @@ public class GameUI extends UI
         getWorld().addObject(waveCounter, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(0)*1.0-15);
         waveCounter.setValue(1);
         getWorld().addObject(scoreCounter, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, waveCounter.getBottom());
+        getWorld().addObject(waveHealth, waveCounter.getRealX(), scoreCounter.getBottom());
     }
     public void placeCraftMessage(){
         getWorld().addObject(weaponmessagerarity, getWorld().gridXToRealX(getWorld().gridwidth)/5.0, getWorld().gridYToRealY(getWorld().gridheight)-150);
@@ -77,6 +79,14 @@ public class GameUI extends UI
     }
     public void setTutorial2(String thing){
         tut2.setText(thing);
+    }
+    public void newWave(int health){
+        if(health<=0)health = 1;
+        waveHealth.setMax(health);
+        waveHealth.setValue(health);
+    }
+    public void updateWaveHealth(int n){
+        waveHealth.setValue(n);
     }
     /**
      * This method is called when the game is over to display the final score.
@@ -276,6 +286,7 @@ public class GameUI extends UI
     public void addBossBar(BossBar bar){
         boss = bar;
         waveCounter.setVisible(false);
+        waveHealth.setVisible(false);
         scoreCounter.setRealLocation(waveCounter.getRealX(), waveCounter.getRealY());
         bossName = new TextDisplay(bar.getLabel(), 30);
         getWorld().addObject(bossName, waveCounter.getRealX(), scoreCounter.getBottom());
@@ -285,6 +296,7 @@ public class GameUI extends UI
         getWorld().removeObject(boss);
         getWorld().removeObject(bossName);
         waveCounter.setVisible(true);
+        waveHealth.setVisible(true);
         placeScoreBar();
         boss = null;
     }
