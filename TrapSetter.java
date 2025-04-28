@@ -63,7 +63,7 @@ public class TrapSetter extends Weapon
         }
     }
     public void setTrap(double rot){
-        BearTrap bullet = new BearTrap(rot, getHolder());
+        BearTrap bullet = getUltUpgrade()==1?new UpgradedBearTrap(rot, getHolder()):new BearTrap(rot, getHolder());
         //WeaponFrag bullet = new WeaponFrag();
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("setuptrap");

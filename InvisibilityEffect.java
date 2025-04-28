@@ -16,8 +16,10 @@ public class InvisibilityEffect extends DurationEffect
     }
     public void onClear(){
         getTarget().setDetectable(true);// TODO: accountability
+        getTarget().setOpacityPercent(1);
     }
     public void onApply(){
         getTarget().setDetectable(false);
+        getTarget().setOpacityPercent(0.5);
     }
 }

@@ -52,12 +52,16 @@ public class BearTrap extends Pet
     {
         GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
         if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
-            isset = false;
-            target = asteroid;
-            Sounds.play("beartrapsnap");
-            target.immobilize(new EffectID(this));
-            attack();
+            snap(asteroid);
         }
+    }
+    
+    public void snap(GridEntity asteroid){
+        isset = false;
+        target = asteroid;
+        Sounds.play("beartrapsnap");
+        target.immobilize(new EffectID(this));
+        attack();
     }
     private void attack(){
         if(target.isDead()){

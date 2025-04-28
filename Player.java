@@ -84,6 +84,7 @@ public class Player extends GridEntity {
         this.inventory[39] = new Fireworks(getHand());
         this.inventory[40] = new JadeCutter(getHand());
         this.inventory[41] = new GrenadeLauncher(getHand());
+        this.inventory[42] = new Farmer(getHand());
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }

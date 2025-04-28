@@ -53,7 +53,7 @@ public class Mole extends Hitter
         if(inUlt)stopUlt();
         pullTo(getSource().getRealX(), getSource().getRealY());
         explodeOn(120, 200);
-        explodeOn(120, (g)->{
+        explodeOnEnemies(120, (g)->{
             g.knockBack(face(g, false), 100, 20, this);
         });
         msp = new MoleSpikePuddle(this);

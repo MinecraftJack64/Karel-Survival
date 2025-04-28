@@ -42,7 +42,10 @@ public class HealCharge extends Bullet
     public void applyPhysics()
     {
         System.out.println(health);
-        if(notifier!=null)setDirection(face(notifier, false));
+        if(notifier!=null){
+            setDirection(face(notifier, false));
+            if(notifier.isDead()){expire();return;}
+        }
         move(getDirection(), getSpeed());
         checkHit();
         if(getHitStory().contains(notifier)||health==0){
