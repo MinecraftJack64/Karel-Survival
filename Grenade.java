@@ -13,7 +13,7 @@ public class Grenade extends FlyingRock
     {
         super(rotation, targetdistance, height, source);
         setRange(100);
-        setDamage(200);
+        setDamage(250);
         setCheckHitMode(2);
         setDieOnHit(false);
     }

@@ -9,7 +9,7 @@ public class GrenadeLauncher extends Weapon
     private static final int gunReloadTime = 60;
     private int reloadDelayCount;
     private int sid;
-    private static final int ult = 500;
+    private static final int ult = 1000;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
