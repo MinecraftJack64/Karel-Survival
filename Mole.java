@@ -12,6 +12,7 @@ public class Mole extends Hitter
     private int gunReloadTime = 15;
     private MoleUppercut mu;
     private MoleSinkhole ms;
+    private MoleSpikePuddle msp;
     private double tx, ty;
     private boolean inUlt = false;
     public Mole(GridObject source)
@@ -47,6 +48,19 @@ public class Mole extends Hitter
         ms.die();
         ms = null;
         inUlt = false;
+    }
+    public void gadget(){
+        if(inUlt)stopUlt();
+        pullTo(getSource().getRealX(), getSource().getRealY());
+        explodeOn(120, 200);
+        explodeOn(120, (g)->{
+            g.knockBack(face(g, false), 100, 20, this);
+        });
+        msp = new MoleSpikePuddle(this);
+        addObjectHere(msp);
+    }
+    public boolean canGadget(){
+        return !(msp!=null&&msp.isInWorld());
     }
     public boolean inUlt(){
         return inUlt;

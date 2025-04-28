@@ -20,6 +20,7 @@ public class FlyingRock extends Projectile
     protected int frame;
     private int range;
     private boolean dieonhit = true;
+    private int checkHitMode = 0; // 0 - default check when hit ground, 1 - check when hit ground and on death, 2 - only checkHit on death
     private HashSet<GridEntity> hitstory;
     public FlyingRock()
     {
@@ -56,6 +57,10 @@ public class FlyingRock extends Projectile
         dieonhit = val;
     }
     
+    public void setCheckHitMode(int val){
+        checkHitMode = val;
+    }
+    
     /**
      * The bullet will damage asteroids if it hits them.
      */
@@ -63,7 +68,7 @@ public class FlyingRock extends Projectile
     {
         if(getRealHeight()<=0&&path.percentDone(frame)>0.5) {
             setRealHeight(0);
-            checkHit();
+            if(checkHitMode<=1)checkHit();
             if(dieonhit)die();
         } 
         else {
@@ -73,6 +78,7 @@ public class FlyingRock extends Projectile
         }
     }
     public void die(){
+        if(checkHitMode>=1)checkHit();
         getWorld().removeObject(this);
         super.die();
     }

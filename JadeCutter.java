@@ -16,6 +16,7 @@ public class JadeCutter extends Weapon
         if (lasso!=null&&lasso.canAttack()) 
         {
             lasso.fire(getHand().getTargetRotation(), getAttackUpgrade()==1);
+            if(continueGadget())setContinueGadget(false);
             lasso = null;
         }
     }

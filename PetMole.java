@@ -32,6 +32,17 @@ public class PetMole extends Weapon
     public int getUlt(){
         return ult;
     }
+    public void onGadgetActivate(){
+        if(zap!=null){
+            zap.gadget();
+        }
+    }
+    public boolean isUsingGadget(){
+        return zap!=null&&!zap.canGadget();
+    }
+    public int defaultGadgets(){
+        return 7;
+    }
     public void reload(){
         if(zap.getWorld()!=null)
             zap.target(getHand().getTargetX(), getHand().getTargetY());
