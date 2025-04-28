@@ -55,7 +55,7 @@ public class GrenadeLauncher extends Weapon
         getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
     public String getName(){
-        return "Rock Launcher";
+        return "Grenades";
     }
     public int getRarity(){
         return 1;
