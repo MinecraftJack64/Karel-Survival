@@ -15,8 +15,9 @@ public class Hoe extends Melee
     private double degtotarg, radius;
     private boolean clockwise;
     private boolean issuper;
+    private Farmer myFarmer;
     
-    public Hoe(double rotation, boolean issuper, GridObject source)
+    public Hoe(double rotation, boolean issuper, Farmer farmer, GridObject source)
     {
         super(rotation, source);
         setSpeed(15);
@@ -25,8 +26,9 @@ public class Hoe extends Melee
         setNumTargets(-1);
         degtotarg = rotation+90;
         clockwise = true;
-        this.radius = 120;
+        this.radius = 110;
         this.issuper = issuper;
+        myFarmer = farmer;
     }
     
     public void applyPhysics(){
@@ -48,5 +50,11 @@ public class Hoe extends Melee
         if(targ.distanceTo(getSource())>100){ // critical hit
             super.doHit(targ);
         }
+        if(targ.isDead()&&targ.willNotify(this)){
+            addObjectHere(new HarvestBeeper(myFarmer));
+        }
+    }
+    public double damageSecrecy(){
+        return super.damageSecrecy()*(issuper?1.33:1);
     }
 }

@@ -8,6 +8,8 @@ public class Collectible extends GridObject
 {
     private double range = 40;//how far away this collectible has to be to move towards collector
     private double speed = 9;//how fast this collectible will move towards its collector
+    private int cooldown; //wait a certain amount of time before being able to be picked up
+    private boolean active = true, collected = false;
     public void setRange(double r){
         range = r;
     }
@@ -29,19 +31,29 @@ public class Collectible extends GridObject
         return isAlliedWith(g);
     }
     public boolean isActive(){
-        return true;
+        return cooldown==0&&active;
+    }
+    public void setActive(boolean v){
+        active = v;
+    }
+    public void setCooldown(int c){
+        cooldown = c;
     }
     public void kAct()
     {
         //if(!getWorld().gameStatus().equals("running"))return;
         double targang = face(getTarget(), false);
         double monangle = targang;
-        //setRotation(monangle);
+        if(cooldown>0)cooldown--;
         if(distanceTo(getTarget())<getRange()&&isActive())move(monangle, getSpeed());
         if(distanceTo(getTarget())<getSpeed()/2+1&&isActive())collect(getTarget());
     }
     public void collect(GridObject t){
+        collected = true;
         die();
+    }
+    public boolean collected(){
+        return collected;
     }
     public void die(){
         getWorld().removeObject(this);

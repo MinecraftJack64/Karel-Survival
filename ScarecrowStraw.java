@@ -22,6 +22,6 @@ public class ScarecrowStraw extends Bullet
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        addObjectHere(new HealCharge(face(getSource(), false), this, (GridEntity)getSource(), 50));
+        addObjectHere(new HealCharge(face(getSource(), false), this, (GridEntity)getSource(), 25));
     }
 }

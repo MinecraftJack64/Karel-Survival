@@ -64,7 +64,7 @@ public abstract class Weapon implements Item, Tickable
         return atkup;
     }
     public void use(){
-        if(!continueUlt()&&!allowAttackWhileContinueUlt()&&(canAttackInAir()||getHolder().isOnGround()))fire();
+        if((!continueUlt()||allowAttackWhileContinueUlt())&&(canAttackInAir()||getHolder().isOnGround()))fire();
     }
     public boolean allowAttackWhileContinueUlt(){
         return false;

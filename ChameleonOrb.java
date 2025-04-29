@@ -10,21 +10,14 @@ public class ChameleonOrb extends Collectible
     private int healing = 200;
     private int color;
     private Chameleon mycham;
-    private int cooldown = 15;
     public ChameleonOrb(Chameleon mycham, int color)
     {
         this.mycham = mycham;
         this.color = color;
+        setCooldown(15);
     }
     public GridObject getTarget(){
         return mycham.getHolder();
-    }
-    public void kAct(){
-        if(cooldown>0){
-            cooldown--;
-        }else{
-            super.kAct();
-        }
     }
     public void collect(GridObject targ){
         mycham.notifyColorChange(color, healing, (GridEntity)targ);
