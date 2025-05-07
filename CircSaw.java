@@ -25,8 +25,8 @@ public class CircSaw extends Boomerang
         setNumTargets(-1);
         phase = 1;
         hasreturned = false;
-        setDamage(100);
-        setLife(25);
+        setDamage(150);
+        setLife(22);
         setDamageOnReturn(1);
     }
     /**

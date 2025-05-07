@@ -18,7 +18,7 @@ public class FlyingCircSaw extends Bullet
         super(rotation, source);
         setSpeed(22);
         setLife(30);
-        setDamage(200);
+        setDamage(250);
         setNumTargets(5);
         setMultiHit(false);
     }

@@ -19,7 +19,7 @@ public class PaintDrop extends Bullet
         super(rotation, source);
         setSpeed(20);
         setLife(isSuper?15:30);
-        setDamage(isSuper?70:20);
+        setDamage(isSuper?70:17);
         this.isSuper = isSuper;
     }
     public void doHit(GridEntity targ){
