@@ -1,0 +1,27 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-app</artifactId>
+  <version>1</version>
+</project>
+<dependencies>
+    <!-- Raylib-j (Java 17+ compatible) -->
+    <dependency>
+        <groupId>com.raylib-j</groupId>
+        <artifactId>raylib-j</artifactId>
+        <version>4.2.0</version> <!-- Check for latest version -->
+    </dependency>
+
+    <!-- LWJGL (auto-downloads correct natives for your OS) -->
+    <dependency>
+        <groupId>org.lwjgl</groupId>
+        <artifactId>lwjgl</artifactId>
+        <version>3.3.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.lwjgl</groupId>
+        <artifactId>lwjgl</artifactId>
+        <version>3.3.1</version>
+        <classifier>natives-windows</classifier> <!-- Auto-detects OS -->
+    </dependency>
+</dependencies>

@@ -1,4 +1,4 @@
-//package com.KarelSurvival;
+//package src;
 
 import com.raylib.java.Raylib;
 import com.raylib.java.core.Color;
