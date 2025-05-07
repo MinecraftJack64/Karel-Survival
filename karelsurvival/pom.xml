@@ -13,15 +13,15 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <dependencies>
-        <!-- Raylib-j (Java 17+ compatible) -->
+        <!-- https://mvnrepository.com/artifact/io.github.electronstudio/jaylib-ffm -->
         <dependency>
-            <groupId>com.raylib-j</groupId>
-            <artifactId>raylib-j</artifactId>
-            <version>4.2.0</version> <!-- Check for latest version -->
+            <groupId>io.github.electronstudio</groupId>
+            <artifactId>jaylib-ffm</artifactId>
+            <version>5.5.0-2</version>
         </dependency>
 
         <!-- LWJGL (auto-downloads correct natives for your OS) -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
             <version>3.3.1</version>
@@ -30,7 +30,7 @@
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
             <version>3.3.1</version>
-            <classifier>natives-windows</classifier> <!-- Auto-detects OS -->
-        </dependency>
+            <classifier>natives-windows</classifier>
+        </dependency>-->
     </dependencies>
 </project>
