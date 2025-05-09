@@ -1,4 +1,6 @@
-package com.karel.game;
+package com.karel.game.ui.bars;
+
+import com.karel.game.GridEntity;
 
 /**
  * Write a description of class BossBar here.
@@ -18,10 +20,10 @@ public class BossBar extends LifeBar
         super(max, size, height);
         myGE = of;
     }
-    public void act(){
+    public void update(){
         if(myGE!=null&&myGE.isDead())getWorld().gameUI().removeBossBar();
         else{
-            super.act();
+            super.update();
         }
     }
     public String getLabel(){

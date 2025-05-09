@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import com.karel.game.ui.bars.BadShieldBar;
+import com.karel.game.ui.bars.BossBar;
+import com.karel.game.ui.bars.HealthBar;
+import com.karel.game.ui.bars.LifeBar;
+import com.karel.game.ui.bars.ShieldBar;
+
 /**
  * Write a description of class GridEntity here.
  * 
@@ -105,11 +111,11 @@ public abstract class GridEntity extends GridObject
     }
     public void scaleSize(double amt){
         setSizeMultiplier(amt*getSizeMultiplier());
-        getImage().scale((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
+        scaleTexture((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
     }
     public void scaleSize(double amt, EffectID ctrl){
         setSizeMultiplier(amt*getSizeMultiplier(), ctrl);
-        getImage().scale((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
+        scaleTexture((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
     }
     public double getSizeMultiplier(){
         return sizeMultiplier;

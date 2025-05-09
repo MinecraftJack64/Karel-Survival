@@ -1,5 +1,8 @@
-package com.karel.game;
-import java.util.ArrayList;
+package com.karel.game.ui.bars;
+
+import com.karel.game.GridEntity;
+import com.raylib.Color;
+import static com.raylib.Raylib.*;
 
 /**
  * Write a description of class LifeBar here.
@@ -28,12 +31,12 @@ public class LifeBar extends HealthBar
         }
         double perc = getPerc();
         if(perc>1){
-            setColor(Color.BLUE);
+            setColor(BLUE);
         }else
-            setColor(new Color(perc>=0.5?(int)(255*(1-perc)*2):255, perc<=0.5?(int)(255*(perc)*2):255, 0));
+            setColor(new Color(perc>=0.5?(byte)(255*(1-perc)*2-128):127, perc<=0.5?(byte)(255*(perc)*2-128):127, (byte)0, (byte)1));
     }
-    public void act(){
-        super.act();
+    public void update(){
+        super.update();
         if(myGE!=null){
             setRealLocation(myGE.getRealX(), myGE.getRealY()-40, myGE.getRealHeight());
             if(myGE.isDead())getWorld().removeObject(this);

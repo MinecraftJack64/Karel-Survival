@@ -1,6 +1,13 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.ui.Overlay;
+import com.karel.game.ui.bars.AmmoBar;
+import com.karel.game.ui.bars.BossBar;
+import com.karel.game.ui.bars.StatusBar;
+import com.karel.game.ui.bars.UltBar;
+import com.karel.game.ui.bars.WaveBar;
+
 /**
  * Write a description of class GameUI here.
  * 

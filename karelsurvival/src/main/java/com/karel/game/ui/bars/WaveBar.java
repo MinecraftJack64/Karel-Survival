@@ -1,4 +1,6 @@
-package com.karel.game;
+package com.karel.game.ui.bars;
+
+import com.karel.game.GridEntity;
 
 /**
  * Write a description of class WaveBar here.

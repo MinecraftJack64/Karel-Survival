@@ -1,8 +1,7 @@
 package com.karel.game;
 
 import static com.raylib.Raylib.*;
-
-import com.raylib.jextract.*;
+import com.raylib.Texture;
 /**
  * An actor with additional methods and helpers
  * 
@@ -116,6 +115,8 @@ public abstract class KActor
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
     }
+    public abstract void update();
+    public abstract void render();//TODO params
     public void notifyWorldRemove(){isInWorld = false;}
     public void notifyWorldAdd(){isInWorld = true;}
     public boolean isInGridWorld(){

@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.ui.bars;
+
+import static com.raylib.Raylib.BLUE;
+
+import com.karel.game.GridEntity;
 
 /**
  * Write a description of class ShieldBar here.
@@ -16,7 +20,7 @@ public class ShieldBar extends HealthBar
     }*/
     public ShieldBar(int max, int size, int height, int id, GridEntity of)
     {
-        super(max, size, height, new Color(26, 148, 229));//BLUE
+        super(max, size, height, BLUE);//BLUE
         myGE = of;
         myid = id;
     }
@@ -27,8 +31,8 @@ public class ShieldBar extends HealthBar
     public void updateID(int n){
         myid = n;
     }
-    public void act(){
-        super.act();
+    public void update(){
+        super.update();
         if(myGE!=null){setRealLocation(myGE.getRealX(), myGE.getRealY()-50-10*myid, myGE.getRealHeight());
         if(myGE.isDead())getWorld().removeObject(this);}
     }

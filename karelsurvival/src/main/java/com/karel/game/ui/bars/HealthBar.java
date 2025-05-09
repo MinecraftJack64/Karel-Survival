@@ -1,8 +1,10 @@
-package com.karel.game;
-import java.util.ArrayList;
+package com.karel.game.ui.bars;
+
+import com.karel.game.*;
+import com.raylib.Color;
 
 /**
- * Write a description of class HealthBar here.
+ * A StatusBar that appears above a GridEntity and tracks health.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -32,8 +34,8 @@ public class HealthBar extends StatusBar
         if(val<0)super.setValue(0);
         else super.setValue(val);
     }
-    public void act(){
-        super.act();
+    public void update(){
+        super.update();
         if(myGE!=null){
             if(myGE.isDead())getWorld().removeObject(this);
         }

@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.ui.bars;
 
+import com.raylib.Color;
+import static com.raylib.Raylib.*;
 /**
  * Write a description of class AmmoBar here.
  * 
@@ -8,31 +10,30 @@ package com.karel.game;
  */
 public class AmmoBar extends StatusBar
 {
+    public static final Color COLOR = ORANGE;
+    public static final Color SUPER_COLOR = SKYBLUE;
+    public static final Color DISABLED_COLOR = RED;
     public AmmoBar(int ammo, int max, int size, int height)
     {
-        super(ammo, max, size, height, Color.ORANGE.darker());
+        super(ammo, max, size, height, COLOR);
     }
     public AmmoBar(int ammo, int max, int size, int height, int phases)
     {
-        super(ammo, max, size, height, Color.ORANGE.darker());
+        super(ammo, max, size, height, COLOR);
         divideIntoPhases(phases);
     }
     public void disable(){
-        setColor(Color.RED);
+        setColor(DISABLED_COLOR);
     }
     public void reset(){
-        setColor(Color.ORANGE.darker());
+        setColor(COLOR);
     }
     public void setValue(int amt){
         super.setValue(amt);
         if(amt>getMax()){
-            setColor(Color.BLUE.brighter());
+            setColor(SUPER_COLOR);
         }else{
-            setColor(Color.ORANGE.darker());
+            setColor(COLOR);
         }
     }
-    /*public void update(){
-        if(!getColor().equals(Color.ORANGE.darker()))setColor(Color.ORANGE.darker());
-        else super.update();
-    }*/
 }

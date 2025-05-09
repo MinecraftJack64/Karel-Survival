@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.ui.Overlay;
+
 /**
  * Write a description of class Button here.
  * 

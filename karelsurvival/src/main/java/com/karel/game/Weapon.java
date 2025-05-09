@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.ui.bars.AmmoBar;
+
 /*
  * weapons:
  * Minigun(Gun) - shoots long range pellets quickly

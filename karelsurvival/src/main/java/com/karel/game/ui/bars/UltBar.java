@@ -1,4 +1,6 @@
-package com.karel.game;
+package com.karel.game.ui.bars;
+
+import static com.raylib.Raylib.*;
 
 /**
  * Write a description of class UltBar here.
@@ -10,12 +12,12 @@ public class UltBar extends StatusBar
 {
     public UltBar(int max, int size, int height)
     {
-        super(0, max, size, height, Color.ORANGE);
+        super(0, max, size, height, ORANGE);
         setRealRotation(-90);
     }
     public void setValue(int val){
         if(val<=0)val=0;
         super.setValue(val);
-        setColor(Color.ORANGE);
+        setColor(ORANGE);
     }
 }

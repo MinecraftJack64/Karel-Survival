@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.ui.bars;
 import java.util.ArrayList;
+
+import com.karel.game.ui.Overlay;
+import com.raylib.Color;
+import static com.raylib.Raylib.*;
 
 /**
  * Write a description of class StatusBar here.
@@ -9,11 +13,10 @@ import java.util.ArrayList;
  */
 public class StatusBar extends Overlay
 {
-    private Color bgColor = Color.BLACK, barColor = Color.GREEN;
+    private Color bgColor = BLACK, barColor = GREEN;
     private int size = 0;
     private int value, max;
     private int width, height;
-    private int stringLength;
     protected ArrayList<Integer> phases = new ArrayList<Integer>();
 
     public StatusBar()
@@ -27,37 +30,20 @@ public class StatusBar extends Overlay
         this.value = value;
         this.width = size;
         this.height = height;
-        setImage(new GreenfootImage(width, height));
-        updateImage();
     }
     public StatusBar(int value, int max, int size, int height, Color c)
     {
         this(value, max, size, height);
         barColor = c;
-        updateImage();
-    }
-    
-    public void act() {
-        if(needsupdate){
-            updateImage();
-        }
-        needsupdate = false;
-    }
-    private boolean needsupdate = false;
-    public void update(){
-        needsupdate = true;
     }
     public void setValue(int val){
         value = val;
-        update();
     }
     public void setMax(int val){
         max = val;
-        update();
     }
     public void setColor(Color c){
         barColor = c;
-        update();
     }
     public Color getColor(){
         return barColor;
@@ -75,9 +61,7 @@ public class StatusBar extends Overlay
     public boolean isFull(){
         return value>=max;
     }
-    /**
-     * Make the image
-     */
+    /*
     protected void updateImage()
     {
         GreenfootImage image = getImage();
@@ -86,10 +70,19 @@ public class StatusBar extends Overlay
         image.fillRect(0, 0, width, height);
         image.setColor(barColor);
         image.fillRect(0, 0, width*value/max, height);
-        image.setColor(bgColor.brighter());
+        image.setColor(bgColor);
         for(int i: phases){
             image.fillRect(width*i/max-1, 0, 2, height);
         }
+    }
+    TODO*/
+    public void render(){
+        //TODO
+        /*drawRectangle(getRealX(), getRealY(), size, height, bgColor);
+        drawRectangle(getRealX(), getRealY(), size*getPerc(), height, barColor);
+        for(int i: phases){
+            drawRectangle(getRealX()+size*i/max-1, getRealY(), 2, height, bgColor);
+        }*/
     }
     public double getBottom(){
         return size+getRealY();
@@ -99,10 +92,8 @@ public class StatusBar extends Overlay
         for(int i = 1; i < numphases; i++){
             phases.add(i*interval);
         }
-        update();
     }
     public void clearPhases(){
         phases.clear();
-        update();
     }
 }
