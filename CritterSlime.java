@@ -18,7 +18,7 @@ public class CritterSlime extends Bullet
         super(rotation, source);
         setSpeed(15);
         setLife(20);
-        setDamage(30);
+        setDamage(40);
         setNumTargets(2);
     }
 }

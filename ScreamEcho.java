@@ -5,19 +5,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * 
  * @author Poul Henriksen
  */
-public class ScreamWave extends Bullet
+public class ScreamEcho extends Bullet
 {
     /** The damage this bullet will deal */
     private static final double range = 300;
     /** A bullet looses one life each act, and will disappear when life = 0 */
-    public ScreamWave(double rotation, int life, int damage, GridObject source)
+    public ScreamEcho(double rotation, GridObject source)
     {
         super(rotation, source);
-        setSpeed(range/life);
+        setSpeed(20);
         setRealRotation(rotation);
         getImage().scale(150, 15);
-        setLife(life);
-        setDamage(damage);
-        setNumTargets(-1);
+        setLife(10);
+        setDamage(20);
+        setNumTargets(1);
+    }
+    public boolean covertDamage(){
+        return true;
     }
 }

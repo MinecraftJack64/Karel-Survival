@@ -19,15 +19,15 @@ public class Scream extends Weapon
         if (reloadDelayCount >= gunReloadTime) 
         {
             for(int i = 0; i <= 0; i+=1){
-                ScreamWave bullet = new ScreamWave (getHand().getTargetRotation()+i, 10, 50, getHolder());
+                ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 10, 50);
                 getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             }
             for(int i = 0; i <= 0; i+=1){
-                ScreamWave bullet = new ScreamWave (getHand().getTargetRotation()+i, 20, 100, getHolder());
+                ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 20, 100);
                 getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             }
             for(int i = 0; i <= 0; i+=1){
-                ScreamWave bullet = new ScreamWave (getHand().getTargetRotation()+i, 25, 50, getHolder());
+                ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 25, 50);
                 getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             }
             //bullet.move ();
@@ -42,7 +42,7 @@ public class Scream extends Weapon
             }else{
                 if(reloadDelayCount>=ultReloadTime){
                     reloadDelayCount = 0;
-                    SonicBlast bullet = new SonicBlast(getHand().getTargetRotation(), getUltUpgrade()==1, getHolder());
+                    SonicBlast bullet = new SonicBlast(getHand().getTargetRotation(), getUltUpgrade()==1, useGadget(), getHolder());
                     getHolder().addObjectHere(bullet);
                     ultAmmo--;
                     if(ultAmmo<=0){
@@ -60,6 +60,15 @@ public class Scream extends Weapon
             getHolder().setSpeedMultiplier(0.2, new EffectID(this));
             setContinueUlt(true);
         }
+    }
+    public void onGadgetActivate(){
+        setGadgetCount(10);
+    }
+    public int defaultGadgets(){
+        return 6;
+    }
+    public ScreamWave getProjectile(double rotation, int life, int damage){
+        return getAttackUpgrade()==1?new DeafeningScreamWave(rotation, life, damage, getHolder()):new ScreamWave(rotation, life, damage, getHolder());
     }
     public int getUlt(){
         return ult;

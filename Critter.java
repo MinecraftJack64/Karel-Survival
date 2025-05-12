@@ -99,6 +99,11 @@ public class Critter extends Pet implements ICritter
         dash = new Dasher(getRealRotation(), 15, 7, this);
         dash.dash();
     }
+    public void gadget(){
+        heal(getMaxHealth()-getHealth(), this);
+        addObjectHere(new HealCharge(0, getSpawner(), getSpawner().getMaxHealth()/10));
+        applyEffect(new PowerPercentageEffect(1.5, 120, this));
+    }
     public boolean notifySpawnerDamage(){
         return false;
     }

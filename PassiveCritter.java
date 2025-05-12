@@ -48,6 +48,10 @@ public class PassiveCritter extends GridObject implements SubAffecter, ICritter
         spawner.notifyCritterPhaseChange(id, bullet);
         die();
     }
+    public void gadget(){
+        addObjectHere(new HealCharge(0, getSource(), getSource().getMaxHealth()/10));
+        setPower(1.5);
+    }
     public void die(){
         getWorld().removeObject(this);
         super.die();

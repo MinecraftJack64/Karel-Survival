@@ -6,5 +6,5 @@
  */
 public interface ICritter
 {
-    //
+    public void gadget();
 }

@@ -23,6 +23,10 @@ public class FlyingCritter extends Bullet implements ICritter
         master = spawner;
         this.id = id;
     }
+    public void gadget(){
+        addObjectHere(new HealCharge(0, (GridEntity)getSource(), ((GridEntity)getSource()).getMaxHealth()/10));
+        setPower(1.5);
+    }
     public void die(){
         Critter spawn = new Critter(id, master, (GridEntity)getSource());
         addObjectHere(spawn);
