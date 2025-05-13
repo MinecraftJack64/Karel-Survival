@@ -5,7 +5,7 @@ package com.karel.game;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class UI  
+public class UI extends World
 {
     public KWorld getWorld(){
         return KWorld.me;

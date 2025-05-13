@@ -51,6 +51,8 @@ public class Game
     private static int cdiff = 1; // currently selected difficulty
     
     private static int modehs[]; // high scores of each mode
+
+    public static boolean shiftkey;
     
     static String gameMode; // current game mode
     static int gameDiff; // current game difficulty
@@ -63,21 +65,18 @@ public class Game
     private static boolean autoult = false;
     private static boolean currentlyTogglingAutoult = false;
     private static boolean currentlycrafting = false;
-    public Game() 
+    static 
     {
         //setAvailableModes
         setOptions();
         startGame("tutorial");
     }
-    public void startGame(String mode){
-        //clear old UI
-        removeUI();
+    public static void startGame(String mode){
         //Create the Game UI
         ui = new GameUI();
         initGameUI();
         ui2 = new PauseUI();
         initPauseUI();
-        paused = false;
         gameDiff = cdiff;
         //Create the player and initial enemies
         if(mode.equals("protect")){
@@ -99,46 +98,46 @@ public class Game
         currentMenu = "game";
         gameMode = mode;
     }
-    public void nextMode(){
+    public static void nextMode(){
         cmode++;
         if(cmode>=modeids.length){
             cmode = 0;
         }
     }
-    public void nextDiff(){
+    public static void nextDiff(){
         cdiff++;
         if(cdiff>=diffnames.length){
             cdiff = 0;
         }
     }
-    public String selectedMode(){
+    public static String selectedMode(){
         return modeids[cmode];
     }
-    public int selectedDiff(){
+    public static int selectedDiff(){
         return cdiff;
     }
-    public String currentMode(){
+    public static String currentMode(){
         return gameMode;
     }
-    public int currentDiff(){
+    public static int currentDiff(){
         return gameDiff;
     }
-    public String selectedModeName(){
+    public static String selectedModeName(){
         return modenames[cmode];
     }
-    public String selectedDiffName(){
+    public static String selectedDiffName(){
         return diffnames[cdiff];
     }
-    public String getDifficultyDescription(){
+    public static String getDifficultyDescription(){
         return difficultyDescriptions[cdiff];
     }
-    public String getModeDescription(){
+    public static String getModeDescription(){
         return modeDescriptions[cmode];
     }
-    public String getTip(){
+    public static String getTip(){
         return "Tip: "+tips[Greenfoot.getRandomNumber(tips.length)]+"!";
     }
-    public void setOptions(){
+    public static void setOptions(){
         modenames = new String[]{"Adventure", "Survival", "Protect"};
         modeids = new String[]{"adventure", "survival", "protect"};
         modehs = new int[]{0, 0, 0};
@@ -148,16 +147,11 @@ public class Game
         tips = new String[]{"Allow your Blade wielding teammates the kill", "Try Impossible difficulty >:)", "Stay away from Fungal Zombies, they do a ton of damage", "Press the alt key to sprint"};
         //difficulties: peaceful: immunity shield, easy: 5000, normal: 2500, hard: 750, impossible: 1
     }
-    public void removeUI(){
-        for(KActor k: getObjects(KActor.class)){
-            removeObject(k);
-        }
-    }
-    public void initGameUI(){
+    public static void initGameUI(){
         //Create the UI
         ui.create();
     }
-    public void initPauseUI(){
+    public static void initPauseUI(){
         //Create the UI
         ui2.create();
     }
@@ -166,202 +160,128 @@ public class Game
      * This method is called when the game is over to display the final score.
      */
     
-    public Teams getTeams(){
+    public static Teams getTeams(){
         return game.getTeams();
     }
-    public GameMode getGame(){
+    public static GameMode getGame(){
         return game;
     }
-    public Player getPlayer(){
+    public static Player getPlayer(){
         return game.getPlayer();
     }
-    public String gameStatus(){
+    public static String gameStatus(){
         if(game==null){
             return "";
         }
         return game.getStatus();
     }
 
-    public void increaseScore(int amt){
+    public static void increaseScore(int amt){
         game.increaseScore(amt);
     }
-    public int getHighScore(){
+    public static int getHighScore(){
         return game.getHighScore();
     }
 
-    public void setUltCharge(int amt){
+    public static void setUltCharge(int amt){
         if(gameUI()!=null)gameUI().setUltCharge(amt);
     }
 
-    public void newUltCharge(int max, int value){
+    public static void newUltCharge(int max, int value){
         if(gameUI()!=null)gameUI().newUltCharge(max, value);
     }
-    public void disableUltCharge(){
+    public static void disableUltCharge(){
         if(gameUI()!=null)gameUI().disableUltCharge();
     }
     
-    public void changeHeldItem(String t){
+    public static void changeHeldItem(String t){
         if(gameUI()!=null)gameUI().changeHeldItem(t);
     }
-    public GameUI gameUI(){
+    public static GameUI gameUI(){
         return ui instanceof GameUI?(GameUI)ui:null;
     }
-    public PauseUI pauseUI(){
+    public static PauseUI pauseUI(){
         return ui2 instanceof PauseUI?(PauseUI)ui2:null;
     }
 
-    public void act(){
-        if(Greenfoot.getMouseInfo()!=null){
-            lastX = Greenfoot.getMouseInfo().getX();
-            lastY = Greenfoot.getMouseInfo().getY();
-        }
-        if(Greenfoot.mousePressed(null)){
+    public static void act(){
+        lastX = Greenfoot.getMouseX();
+        lastY = Greenfoot.getMouseY();
+        if(Greenfoot.isActive("attack")){ //TODO: split attack and click
             lastClicked = true;
         }
-        if(Greenfoot.mouseClicked(null)){
+        if(Greenfoot.isActive("attack")){
             lastClicked = false;
         }
-        shiftkey = Greenfoot.isKeyDown("shift");
-        scroll+=scrollsensor.getScroll();
+        shiftkey = Greenfoot.isActive("shift");
         boolean ocp = currentlypausing;
-        currentlypausing = Greenfoot.isKeyDown("escape");
+        currentlypausing = Greenfoot.isActive("escape");
         if(ocp&&!currentlypausing&&currentMenu.equals("game")&&gameStatus().equals("running")){
             togglePause();
         }
         boolean otaa = currentlyTogglingAutoattack;
-        currentlyTogglingAutoattack = Greenfoot.isKeyDown("control");
+        currentlyTogglingAutoattack = Greenfoot.isActive("control");
         if(otaa&&!currentlyTogglingAutoattack&&currentMenu.equals("game")&&gameStatus().equals("running")){
             toggleAutoattack();
         }
         boolean otau = currentlyTogglingAutoult;
-        currentlyTogglingAutoult = Greenfoot.isKeyDown("u");
+        currentlyTogglingAutoult = Greenfoot.isActive("u");
         if(otau&&!currentlyTogglingAutoult&&currentMenu.equals("game")&&gameStatus().equals("running")){
             toggleAutoult();
         }
-        if(currentMenu.equals("game")&&gameStatus().equals("running")){
-            game.tick();
-            for(int i = allEntities().size()-1; i >=0; i--){
-                if(i>=allEntities().size())continue;
-                GridEntity g = allEntities().get(i);
-                if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
-                    g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
-                
-            }
-            if(scrollToPlayer){
-                scrollX = getGame().getPlayer().getRealX()-600;
-                scrollY = getGame().getPlayer().getRealY()-400;
-            }
-            if(Greenfoot.isKeyDown("e")&&!currentlycrafting){
-                game.craftWeapon();
-            }
-            currentlycrafting = Greenfoot.isKeyDown("e");
+        if(currentMenu.equals("game")){
+            world.update();
+            ui.update();
+            ui2.update();
+            world.render();
+            ui.render();
+            ui2.render();
         }
     }
-    public int getMouseX(){
+    public static int getMouseX(){
         return lastX;
     }
-    public int getMouseY(){
+    public static int getMouseY(){
         return lastY;
     }
-    public boolean isMouseDown(){
+    public static boolean isMouseDown(){
         return lastClicked;
     }
-    public boolean isShiftDown(){
+    public static boolean isShiftDown(){
         return shiftkey;
     }
-    public void goToMenu(){
+    public static void goToMenu(){
         if(game!=null){
             game.stopGame();
             game = null;
-            paused = false;
         }
         ui2 = null;
-        resetBG();
+        world = null;
         ui = new MainMenuUI();
         ui.create();
         currentMenu = "mainmenu";
     }
-    public void togglePause(){
+    public static void togglePause(){
+        world.togglePause();
         if(isPaused()){
-            paused = false;
             pauseUI().hidePauseMenu();
         }else{
-            paused = true;
             pauseUI().showPauseMenu();
         }
     }
-    public void toggleAutoattack(){
+    public static void toggleAutoattack(){
         autoattack = !autoattack;
     }
-    public void toggleAutoult(){
+    public static void toggleAutoult(){
         autoult = !autoult;
     }
-    public boolean autoAttack(){
+    public static boolean autoAttack(){
         return autoattack;
     }
-    public boolean autoUlt(){
+    public static boolean autoUlt(){
         return autoult;
     }
-    public ArrayList<GridEntity> allEntities(){
-        return allEntities;
-    }
-    public ArrayList<GridObject> allObjects(){
-        return allGridObjects;
-    }
-    public void cleanUpEntities(){
-        for(int i = allEntities.size()-1; i >= 0; i--){
-            try{GridEntity obj = allEntities.get(i);
-            if(obj.isDead()&&obj.removeOnDeath()||!obj.isInWorld()){
-                if(obj.isInWorld()){
-                    removeObject(obj);
-                }
-                allEntities.remove(i);
-            }}catch(Exception e){}
-        }
-    }
-    public boolean isPaused(){
-        return paused;
-    }
-    
-    public void addObject(KActor a, int x, int y){
-        addObject(a, x*1.0, y*1.0);
-    }
-    public void addObject(KActor a, double x, double y){
-        if(a.isInWorld()){
-            a.setRealLocation(x, y);
-            return;
-        }
-        a.rx = x;
-        a.ry = y;
-        if(a.isInGridWorld()){
-            x-=getScrollX();
-            y-=getScrollY();
-        }
-        super.addObject(a, (int)x, (int)y);
-        a.notifyWorldAdd();
-    }
-    public void removeObject(KActor a){
-        // super.removeObject(a);
-        if(a instanceof KActor){
-            ((KActor)a).notifyWorldRemove();
-        }
-    }
-}
-class ScrollingListener implements MouseWheelListener
-{
-    int scroll = 0;
-     
-    public void mouseWheelMoved(MouseWheelEvent MWE)
-    {
-        scroll+=MWE.getWheelRotation();  
-        MWE.consume();
-        System.out.println("mouse scrolled");
-    }
-     
-    public int getScroll()
-    {
-        int a=scroll;
-        scroll=0;
-        return a;
+    public static boolean isPaused(){
+        return world.isPaused();
     }
 }

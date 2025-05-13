@@ -148,7 +148,7 @@ public class World
     }
 
     public void update(){
-        if(currentMenu.equals("game")&&gameStatus().equals("running")){
+        if(gameStatus().equals("running")){
             for(GridObject g: allObjects()){
                 g.update();
             }
@@ -165,15 +165,17 @@ public class World
                     allObjects().remove(i);
                 }
             }
-
-            //render remaining objects MOVE TO render()
-            for(GridObject g: allObjects()){
-                g.render();
-            }
             if(scrollToPlayer){
-                scrollX = getGame().getPlayer().getRealX()-600;
-                scrollY = getGame().getPlayer().getRealY()-400;
+                scrollX = getPlayer().getRealX()-600;
+                scrollY = getPlayer().getRealY()-400;
             }
+        }
+    }
+    public void render(){
+        //TODO: render background
+        //render remaining objects MOVE TO render()
+        for(GridObject g: allObjects()){
+            g.render();
         }
     }
     public void togglePause(){
@@ -216,7 +218,7 @@ public class World
         a.notifyWorldAdd();
     }
     public void removeObject(KActor a){
-        a.remove();
+        //a.remove();
         a.notifyWorldRemove();
     }
 }

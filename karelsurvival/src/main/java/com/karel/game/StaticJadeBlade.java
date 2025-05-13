@@ -40,7 +40,7 @@ public class StaticJadeBlade extends Hitter{
         return true;
     }
     public void kAct(){
-        getImage().scale(size, size);
+        scaleTexture(size, size);
         setDamage(size*5);
         if(getSource()!=null&&(!(getSource() instanceof GridEntity)||!((GridEntity)getSource()).isDead())&&!getSource().getTeam().equals(getTeam())){//make sure team is same as source
             setTeam(getSource().getTeam());

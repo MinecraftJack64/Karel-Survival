@@ -7,5 +7,7 @@ package com.karel.game;
  */
 public class Target extends KActor
 {
-    //
+    public Target(){
+        setTexture("target.png");
+    }
 }

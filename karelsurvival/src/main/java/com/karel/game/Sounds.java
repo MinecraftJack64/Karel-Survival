@@ -12,7 +12,7 @@ public class Sounds
     public static void play(String id){
         //System.out.println(id);
         if(volume>0&&!thifn.contains(id)){
-            try{Greenfoot.playSound(id+".wav");}catch(Exception e){System.out.println(e);}
+            //try{Greenfoot.playSound(id+".wav");}catch(Exception e){System.out.println(e);}
         }
     }
     public static void setVolume(int v){

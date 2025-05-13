@@ -12,8 +12,9 @@ public abstract class KActor
 {
     double rx, ry, rh, rrot;
     int rop = 255/*real opacity*/;
-    boolean isInWorld;
+    World world;
     Texture image;
+    boolean shouldRemove;
     public KActor(){
         setImage(getImage());
     }
@@ -117,12 +118,19 @@ public abstract class KActor
     }
     public abstract void update();
     public abstract void render();//TODO params
-    public void notifyWorldRemove(){isInWorld = false;}
-    public void notifyWorldAdd(){isInWorld = true;}
+    public void remove(){}
+    public void setWorld(World w){
+        world = w;
+    }
+    public boolean shouldRemove(){
+        return shouldRemove;
+    }
+    public void notifyWorldRemove(){world = null;}
+    public void notifyWorldAdd(){setWorld(null);}
     public boolean isInGridWorld(){
         return false;
     }
     public boolean isInWorld(){
-        return isInWorld;
+        return world!=null;
     }
 }
