@@ -57,7 +57,7 @@ public class AirPump extends Weapon implements LandingHandler
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        Game.gameUI().newAmmo(gunReloadTime, reloadDelayCount);
     }
     public String getName(){
         return "Air Pump";

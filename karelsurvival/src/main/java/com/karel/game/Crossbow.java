@@ -54,7 +54,7 @@ public class Crossbow extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(60, (int)(focus*40));
+        newAmmo(60, (int)(focus*40));
     }
     public String getName(){
         return "Crossbow";

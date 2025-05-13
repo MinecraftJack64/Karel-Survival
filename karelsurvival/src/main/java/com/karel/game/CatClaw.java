@@ -87,7 +87,7 @@ public class CatClaw extends Weapon implements LandingHandler
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, reloadDelayCount);
     }
     public void doLanding(){
         if(toland){

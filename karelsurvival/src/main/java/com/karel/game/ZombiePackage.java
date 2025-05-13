@@ -5,7 +5,7 @@ package com.karel.game;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ZombiePackage extends GridObject
+public abstract class ZombiePackage extends GridObject
 {
     GridObject source;
     public ZombiePackage(GridObject source){
@@ -18,5 +18,4 @@ public class ZombiePackage extends GridObject
         source = s;
     }
     public void render(){}
-    public void update(){}
 }

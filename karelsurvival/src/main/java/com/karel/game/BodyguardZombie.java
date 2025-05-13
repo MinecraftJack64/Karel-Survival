@@ -13,7 +13,7 @@ public class BodyguardZombie extends SpawnableZombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("bodyguardzareln.png");    
+    public static String getStaticTextureURL(){return "bodyguardzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double shootrange = 400, attackrange = 30, retreatrange = 100, idlerange = 20;
@@ -29,9 +29,6 @@ public class BodyguardZombie extends SpawnableZombie
     public BodyguardZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(50, 50);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(4);
         startHealth(450);
     }

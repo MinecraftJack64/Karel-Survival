@@ -15,7 +15,7 @@ public class Baby extends GridEntity
     private int protonWaveReloadTime, protonWaveAmmo;
     private static int[] diffhealths = new int[]{1, 7000, 4000, 2000, 1000};
     public Baby(){
-        diff = KWorld.me.currentDiff();
+        diff = Game.currentDiff();
         if(diff==0){
             startHealthShield(new ExternalImmunityShield(new ShieldID(this), -1));
         }else{

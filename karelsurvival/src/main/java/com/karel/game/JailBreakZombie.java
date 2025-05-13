@@ -14,9 +14,7 @@ public class JailBreakZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("jailbreakzareln.png");    
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
+    public static String getStaticTextureURL(){return "jailbreakzareln.png";}
     private static double attackrange = 280, retreatrange = 300, bombrange = 40;
     private int calccannoncooldown = 0;
     private int strafecooldown = 0;
@@ -29,9 +27,7 @@ public class JailBreakZombie extends Zombie
     public JailBreakZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(50, 50);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(50, 50);
         setSpeed(5);
         startHealth(500);
     }
@@ -62,8 +58,6 @@ public class JailBreakZombie extends Zombie
         }
         reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())<retreatrange&&canBomb()){
             if(distanceTo(getTarget())<bombrange){
                 fire();

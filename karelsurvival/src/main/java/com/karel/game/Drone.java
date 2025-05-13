@@ -22,7 +22,7 @@ public class Drone extends GridObject implements SubAffecter
     public GridObject getSource(){
         return source;
     }
-    public void kAct(){
+    public void update(){
         setRealLocation(source.getRealX(), source.getRealY());
         setRealRotation(90+source.getAngle(source.getRealX()+ddx, source.getRealY()+ddy));
         if(getRealHeight()<source.getRealHeight()+hoverheight-2.5){
@@ -45,7 +45,7 @@ public class Drone extends GridObject implements SubAffecter
                 ultAttack();
             }
         }
-        super.kAct();
+        super.update();
     }
     public void attack(boolean startCombo){
         if(ammo>=40&&remainingUlt==0){

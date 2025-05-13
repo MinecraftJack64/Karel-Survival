@@ -168,18 +168,11 @@ public class Hitter extends GridObject implements SubAffecter
         Collections.sort(asteroid, Comparator.comparingDouble(this::distanceTo));
         return asteroid;
     }
-    public List<GridEntity> getCollidingGEs(){
-        List<GridEntity> ges = (List<GridEntity>)getIntersectingObjects(GridEntity.class);
-        return ges.stream().filter(g->checkHeight(g)).collect(Collectors.toList());
-    }
     public boolean willHit(GridEntity thing){
         return thing==getSource()&&willSelfHarm() || isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing);
     }
     public void doHit(GridEntity asteroid){
         damage(asteroid, getDamage(asteroid));
-    }
-    public boolean checkHeight(GridEntity other){
-        return Math.abs(other.getRealHeight()-getRealHeight())<5;
     }
     // always runs even when enemy was hit before
     public void onHit(GridEntity thing){

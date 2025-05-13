@@ -24,16 +24,7 @@ package com.karel.game;
  */
 public class HeavyZombie extends SpawnableZombie
 {
-    private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private GreenfootImage rocket = new GreenfootImage("heavyzareln.png");
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    //private int shieldhealth = 300;
-    private int ammo = 0;
-    private static double speed = 2.5;
-    private static double attackrange = 30;
-    private int damage = 10;
+    public static String getStaticTextureURL(){return "heavyzareln.png";}
     //ShieldBar shieldBar;
     /**
      * Initilise this rocket.
@@ -44,10 +35,6 @@ public class HeavyZombie extends SpawnableZombie
         inherit(parent);
     }
     public HeavyZombie(){
-        reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(0.2);
         startHealth(4000);
     }
@@ -55,17 +42,6 @@ public class HeavyZombie extends SpawnableZombie
     public int getXP(){
         return 150;
     }
-    /*public void damage(int amt){
-        if(shieldhealth>0&&amt>0){
-            shieldhealth-=amt;
-            shieldBar.setValue(shieldhealth);
-            if(shieldhealth<=0){
-                shieldhealth = 0;
-                setImage(rocket2);
-            }
-        }else
-            super.damage(amt);
-    }*/
     public String getName(){
         return "Heavy Zombie";
     }

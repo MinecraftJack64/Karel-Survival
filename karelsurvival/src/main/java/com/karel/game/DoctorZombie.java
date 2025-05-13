@@ -13,7 +13,7 @@ public class DoctorZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private int attackcooldown = 400;
-    private GreenfootImage rocket = new GreenfootImage("doczareln.png");    
+    public static String getStaticTextureURL(){return "doczareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private boolean hastarget = false;
@@ -28,9 +28,6 @@ public class DoctorZombie extends Zombie
     public DoctorZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(4);
         startHealth(400);
     }

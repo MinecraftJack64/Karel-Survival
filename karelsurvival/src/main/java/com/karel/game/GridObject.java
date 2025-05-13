@@ -2,6 +2,7 @@ package com.karel.game;
 import java.util.Objects;
 import java.util.Iterator;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -398,6 +399,16 @@ public abstract class GridObject extends KActor
         }
         return gs;
     }
+    public List<GridEntity> getIntersectingObjects(){
+        return getGEsInRange(70);//TODO
+    }
+    public List<GridEntity> getCollidingGEs(){
+        List<GridEntity> ges = (List<GridEntity>)getIntersectingObjects();
+        return ges.stream().filter(g->checkCollisionHeight(g)).collect(Collectors.toList());
+    }
+    public boolean checkCollisionHeight(GridEntity other){
+        return Math.abs(other.getRealHeight()-getRealHeight())<5;
+    }
     public double getPower(){
         return powermultiplier;
     }
@@ -480,17 +491,12 @@ public abstract class GridObject extends KActor
     public boolean hasMounter(){
         return mounter!=null;
     }
-    
-    public void act(){
-        if(getWorld().isPaused())return;
-        kAct();
-        animate();
-    }
     public boolean isWall(){
         return !canBePulled();
     }
+    public void render(){animate();}
     public void animate(){}
-    public void kAct(){}
+    public void update(){}
     public void notifyWorldRemove(){
         super.notifyWorldRemove();
         getWorld().allObjects().remove(this);

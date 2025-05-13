@@ -41,7 +41,7 @@ public class FlashDrive extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(reloadTime, ammo);
+        newAmmo(reloadTime, ammo);
     }
     public String getName(){
         return "Flash Drive";

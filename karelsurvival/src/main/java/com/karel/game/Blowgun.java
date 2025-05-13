@@ -64,7 +64,7 @@ public class Blowgun extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(maxAmmo*ammoReloadTime, ammo*ammoReloadTime+ammoReloadDelay, maxAmmo);
+        newAmmo(maxAmmo*ammoReloadTime, ammo*ammoReloadTime+ammoReloadDelay, maxAmmo);
     }
     public String getName(){
         return "Blowgun";

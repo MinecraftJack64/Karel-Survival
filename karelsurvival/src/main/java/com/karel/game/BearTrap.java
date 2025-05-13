@@ -9,6 +9,7 @@ public class BearTrap extends Pet
 {
     /** The damage this bullet will deal */
     private static final int damage = 75;
+    private static final int range = 50;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private int life = 0;
@@ -50,8 +51,8 @@ public class BearTrap extends Pet
      */
     private void checkAsteroidHit()
     {
-        GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
-        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
+        GridEntity asteroid = getNearestTarget();
+        if (asteroid != null&&distanceTo(asteroid)<range&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
             snap(asteroid);
         }
     }

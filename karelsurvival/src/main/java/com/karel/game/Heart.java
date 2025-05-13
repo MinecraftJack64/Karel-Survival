@@ -18,7 +18,7 @@ public class Heart extends GridObject implements SubAffecter
     public GridObject getSource(){
         return source;
     }
-    public void kAct(){
+    public void update(){
         if(target.isDead()){
             die();
         }

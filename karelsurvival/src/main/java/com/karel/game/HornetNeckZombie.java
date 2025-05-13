@@ -13,22 +13,14 @@ public class HornetNeckZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("hornetnestzareln.png");    
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
+    public static String getStaticTextureURL(){return "hornetnestzareln.png";}
     private int bees = 20;
-    private int attackphasecount = 0;
-    private int attackphasecooldown = 0;
-    private boolean attackphasesuper = !(Greenfoot.getRandomNumber(5)>0);
     /**
      * Initilise this rocket.
      */
     public HornetNeckZombie()
     {
         reloadDelayCount = gunReloadTime;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(3);
         startHealth(400);
     }

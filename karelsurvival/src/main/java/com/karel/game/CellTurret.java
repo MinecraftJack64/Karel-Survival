@@ -9,9 +9,7 @@ import java.util.List;
  */
 public class CellTurret extends Pet
 {
-    private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
-    private GreenfootImage rocket2 = new GreenfootImage("chickzareln.png");   
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    public static String getStaticTextureURL(){return "chickzareln.png";}
     private int ammo = 0;
     private Class target;
     private int damage = 10;
@@ -29,10 +27,6 @@ public class CellTurret extends Pet
     {
         super(hive);
         int scale = 30;
-        rocket.scale(scale, scale);
-        rocket2.scale(40, 40);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(4);
         startHealth(400);
         inherit(hive);
@@ -71,10 +65,12 @@ public class CellTurret extends Pet
                 ammo = 0;
             }
         }
+    }
+    public void animate(){
         if(cantransform){
-            setImage(rocket2);
+            scaleTexture(40, 40);
         }else{
-            setImage(rocket);
+            scaleTexture(30, 30);
         }
     }
     public void setNewTarget(Class targ){

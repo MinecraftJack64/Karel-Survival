@@ -22,19 +22,18 @@ public class JadeBlade extends Bullet
         setNumTargets(-1);
         this.size = size;
         sizeReduction = isUpgrade?5:10;
-        getImage().scale(size, size);
         setDamage(size*5);
         setMultiHit(false);
     }
     public void animate(){
         setRealRotation(getRealRotation()+30);
+        scaleTexture(size, size);
     }
     public void applyPhysics(){
         if(size<=0){
             die();
             return;
         }
-        getImage().scale(size, size);
         setDamage(size*5);
         super.applyPhysics();
         size-=2;

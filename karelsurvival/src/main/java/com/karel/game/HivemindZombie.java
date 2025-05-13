@@ -13,7 +13,7 @@ public class HivemindZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("hivezareln.png");    
+    public static String getStaticTextureURL(){return "hivezareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double standingrange = 500;
@@ -27,9 +27,6 @@ public class HivemindZombie extends Zombie
     public HivemindZombie()
     {
         reloadDelayCount = gunReloadTime;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(2);
         startHealth(300);
     }

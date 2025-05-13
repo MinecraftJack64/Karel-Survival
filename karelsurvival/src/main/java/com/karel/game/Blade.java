@@ -68,7 +68,7 @@ public class Blade extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
+        Game.gameUI().newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public String getName(){
         return "Blade";

@@ -526,7 +526,7 @@ public abstract class GridEntity extends GridObject
     public void setDetectable(boolean b){
         detectable = b;
     }
-    public void kAct()
+    public void update()
     {
         tickShields();
         applyEffects();

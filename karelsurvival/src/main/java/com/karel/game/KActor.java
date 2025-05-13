@@ -18,8 +18,8 @@ public abstract class KActor
     public KActor(){
         setImage(getImage());
     }
-    public KWorld getWorld(){
-        return KWorld.me;/*try{
+    public World getWorld(){
+        return world;/*try{
         if(super.getWorld()!=null)return (KWorld)super.getWorld();else return KWorld.me;}catch(Exception e){
             return KWorld.me;
         }*/
@@ -116,8 +116,8 @@ public abstract class KActor
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
     }
-    public abstract void update();
-    public abstract void render();//TODO params
+    public void update(){};
+    public void render(){};//TODO params
     public void remove(){}
     public void setWorld(World w){
         world = w;
@@ -132,5 +132,8 @@ public abstract class KActor
     }
     public boolean isInWorld(){
         return world!=null;
+    }
+    public String kAct() throws ArrayIndexOutOfBoundsException{
+        return "r";
     }
 }

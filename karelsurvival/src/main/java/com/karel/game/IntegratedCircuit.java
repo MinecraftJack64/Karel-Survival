@@ -11,13 +11,13 @@ public class IntegratedCircuit extends Pet
 {   
     private LightningStrike bolt;
     private boolean started = false;
+    private static int attackrange = 35;
     /**
      * Initilise this rocket.
      */
     public IntegratedCircuit(GridEntity hive)
     {
         super(hive);
-        setRotation(180);
         setSpeed(1.5);
         startHealth(600);
         inherit(hive);
@@ -46,8 +46,6 @@ public class IntegratedCircuit extends Pet
         }
         
     }
-    private int damage = 12;
-    private static int attackrange = 35;
     public void attack(){
         explodeOn(attackrange, "enemy", (g)->{
             if(Math.abs(face(g, false)-getTargetRotation())<30){

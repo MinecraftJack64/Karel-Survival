@@ -13,9 +13,8 @@ public class IroncladZombie extends Zombie
     private boolean canRetaliate = true;
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("tankzareln.png");    
+    public static String getStaticTextureURL(){return "tankzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
     private static double attackrange = 900;
     /**
      * Initilise this rocket.
@@ -23,9 +22,7 @@ public class IroncladZombie extends Zombie
     public IroncladZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(60, 60);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(60, 60);
         setSpeed(1);
         startHealthShield(new ArmorShield(new ShieldID(this), 4500));
     }
@@ -40,7 +37,6 @@ public class IroncladZombie extends Zombie
         reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
         else if(distanceTo(getTarget())>30){
             walk(monangle, 0.4);

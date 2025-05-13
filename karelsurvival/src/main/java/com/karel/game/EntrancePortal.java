@@ -24,7 +24,7 @@ public class EntrancePortal extends GridObject
             other.link(this);
         }
     }
-    public void kAct(){
+    public void update(){
         explodeOn(health*5, "ally", (g)->{
             if(!exiters.contains(g)){
                 if(g.canBePulled()){
@@ -46,7 +46,7 @@ public class EntrancePortal extends GridObject
     }
     public void lowerHealth(){
         health--;
-        getImage().scale((int)(health*2.5+35), (int)(health*2.5+35));
+        scaleTexture((int)(health*2.5+35), (int)(health*2.5+35));
     }
     public void receive(GridEntity g){
         g.pullTo(getRealX(), getRealY());

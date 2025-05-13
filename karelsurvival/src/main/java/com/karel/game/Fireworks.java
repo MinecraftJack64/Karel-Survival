@@ -53,7 +53,7 @@ public class Fireworks extends Weapon implements AmmoHolder
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
+        newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public String getName(){
         return "Fireworks";

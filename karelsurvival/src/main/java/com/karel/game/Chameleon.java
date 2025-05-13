@@ -131,7 +131,7 @@ public class Chameleon extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, reloadDelayCount);
     }
     public void unequip(){
         super.unequip();

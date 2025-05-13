@@ -10,7 +10,7 @@ import java.util.List;
 public class DemonZombie extends SpawnableZombie
 {
 
-    private GreenfootImage rocket = new GreenfootImage("demonzareln.png");    
+    public static String getStaticTextureURL(){return "demonzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private GridEntity myhive;
     /**
@@ -18,9 +18,7 @@ public class DemonZombie extends SpawnableZombie
      */
     public DemonZombie(GridEntity hive)
     {
-        rocket.scale(20, 20);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(20, 20);
         setSpeed(4.5);
         startHealth(25);
         myhive = hive;

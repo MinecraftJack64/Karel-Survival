@@ -64,7 +64,7 @@ public class CapsaicinTorch extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(maxAmmo, ammo);
+        newAmmo(maxAmmo, ammo);
     }
     public String getName(){
         return "Capsaicin Torch";

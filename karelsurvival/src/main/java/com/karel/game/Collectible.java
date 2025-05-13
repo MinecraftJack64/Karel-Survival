@@ -40,7 +40,7 @@ public class Collectible extends GridObject
     public void setCooldown(int c){
         cooldown = c;
     }
-    public void kAct()
+    public void update()
     {
         //if(!getWorld().gameStatus().equals("running"))return;
         double targang = face(getTarget(), false);

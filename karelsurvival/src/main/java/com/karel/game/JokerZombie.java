@@ -27,14 +27,12 @@ import java.util.List;
 public class JokerZombie extends Zombie
 {
     private int counterct;
-    private GreenfootImage rocket = new GreenfootImage("russianzareln.png");
+    public static String getStaticTextureURL(){return "russianzareln.png";}
     /**
      * Initilise this rocket.
      */
     public JokerZombie()
     {
-        rocket.scale(45, 45);
-        setImage(rocket);
         startHealth(400);
     }
     //ovveride this

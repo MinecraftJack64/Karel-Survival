@@ -11,8 +11,7 @@ public class HardHatZombie extends Zombie
 {
     private static final int gunReloadTime = 200;         // The minimum delay between firing the gun.
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private GreenfootImage rocket = new GreenfootImage("constructionzareln.png");    
-    private GreenfootImage rocket2 = new GreenfootImage("hurtconstructionzareln.png");
+    public static String getStaticTextureURL(){return "constructionzareln.png";}
     private int ammo = 0;
     //private int damage = 400;
     private boolean inShieldPhase = true;
@@ -23,10 +22,6 @@ public class HardHatZombie extends Zombie
     public HardHatZombie()
     {
         reloadDelayCount = gunReloadTime;
-        rocket.scale(45, 45);
-        rocket2.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(1);
         startHealth(750);
         applyShield(new ArmorShield(shieldid, 750));
@@ -40,7 +35,7 @@ public class HardHatZombie extends Zombie
     {
         if(inShieldPhase&&!hasShield(shieldid)){
             inShieldPhase = false;
-            setImage(rocket2);
+            setImage("hurtconstructionzareln.png");
         }
         reloadDelayCount++;
         double monangle = face(getTarget(), canMove());

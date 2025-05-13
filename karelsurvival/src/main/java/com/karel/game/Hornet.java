@@ -10,16 +10,14 @@ import java.util.List;
 public class Hornet extends SpawnableZombie
 {
 
-    private GreenfootImage rocket = new GreenfootImage("hornetzareln.png");    
+    public static String getStaticTextureURL(){return "hornetzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     /**
      * Initilise this rocket.
      */
     public Hornet()
     {
-        rocket.scale(20, 20);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(20, 20);
         setSpeed(4.5);
         startHealth(50);
     }

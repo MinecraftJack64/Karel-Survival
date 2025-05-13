@@ -1,5 +1,7 @@
 package com.karel.game;
 import java.util.List;
+import static com.raylib.Raylib.*;
+import com.raylib.Texture;
 
 /**
  * Write a description of class Critter here.
@@ -10,8 +12,8 @@ import java.util.List;
 public class Critter extends Pet implements ICritter
 {
 
-    private GreenfootImage rocket = new GreenfootImage("rocket.png"); 
-    private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    public static Texture rocket = loadTexture("rocket.png");
+    public static Texture rocket2 = loadTexture("rocketWithThrust.png");
     private LilCreatures perch;
     private int ammo = 0;
     private Dasher dash;
@@ -25,10 +27,8 @@ public class Critter extends Pet implements ICritter
     {
         super(hive);
         this.id = id;
-        rocket.scale(20, 20);
-        rocketWithThrust.scale(20, 20);
         setImage(rocket);
-        setRotation(180);
+        scaleTexture(20, 20);
         startHealth(100);
         setSpeed(4);
         if(hive!=null)inherit(hive);
@@ -45,11 +45,6 @@ public class Critter extends Pet implements ICritter
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         ammo++;
-        if(getImage()==rocket&&ult>=250){
-            setImage(rocketWithThrust);
-        }else if(getImage()==rocketWithThrust&&ult<250){
-            setImage(rocket);
-        }
         if(calledback){
             if(distanceTo(getSpawner())<8){
                 reintegrate();
@@ -75,6 +70,13 @@ public class Critter extends Pet implements ICritter
             }
         }
         
+    }
+    public void animate(){
+        if(getImage()==rocket&&ult>=250){
+            setImage(rocket2);
+        }else if(getImage()==rocket2&&ult<250){
+            setImage(rocket);
+        }
     }
     public GridEntity getTarget(){
         if(calledback){

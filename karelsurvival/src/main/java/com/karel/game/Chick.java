@@ -10,8 +10,7 @@ import java.util.List;
 public class Chick extends Pet
 {
 
-    private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    public static String getStaticTextureURL(){return "chickzareln.png";}
     private int ammo = 0;
     private double strength;
     /**
@@ -21,9 +20,7 @@ public class Chick extends Pet
     {
         super(hive);
         int scale = (int)(30*((strength-1)*0.5+1));
-        rocket.scale(scale, scale);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(scale, scale);
         setSpeed(3);
         startHealth((int)(100*strength));
         inherit(hive);

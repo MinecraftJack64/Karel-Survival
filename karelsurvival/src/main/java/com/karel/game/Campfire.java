@@ -10,7 +10,7 @@ import java.util.List;
 public class Campfire extends Pet
 {
 
-    private GreenfootImage rocket = new GreenfootImage("karelnOff.png");    
+    public static String getStaticTextureURL(){return "karelnOff.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     /**
      * Initilise this rocket.
@@ -18,9 +18,6 @@ public class Campfire extends Pet
     public Campfire(GridEntity hive)
     {
         super(hive);
-        rocket.scale(30, 30);
-        setImage(rocket);
-        setRotation(180);
         startHealth(400);
         inherit(hive);
     }
