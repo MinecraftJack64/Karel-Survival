@@ -1,3 +1,0 @@
-Hello
-Using git bash
-DO NOT COMMIT THIS FILE
