@@ -44,7 +44,7 @@ public class Wizard extends Boss
     private static final int laserReload = 700;
     private int laserAmmo;
     private int deathwaitcooldown = 100;
-    private GreenfootImage rocket = new GreenfootImage("angryheraldzareln.png");
+    public static String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
     /**
      * Initilise this rocket.
@@ -56,8 +56,7 @@ public class Wizard extends Boss
         hiveammo = 400;
         turretammo = -300;
         rocketammo = 200;
-        rocket.scale(90, 90);
-        setImage(rocket);
+        scaleTexture(90, 90);
         setRealRotation(0);
         setSpeed(0);
         startHealthAsBoss(10000, 5);
@@ -97,7 +96,7 @@ public class Wizard extends Boss
             if(phase==5){
                 tankAttack();
             }
-            getWorld().getGame().getSpawner().setBossPhase(phase);
+            Game.getGame().getSpawner().setBossPhase(phase);
         }
         //if(true)return;// DEBUG
         if(checkSpores()){
@@ -275,7 +274,7 @@ public class Wizard extends Boss
         }
     }
     public void startLastPhase(){
-        getWorld().getGame().getSpawner().setBossPhase(6);
+        Game.getGame().getSpawner().setBossPhase(6);
         phase = 6;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)){
@@ -285,7 +284,7 @@ public class Wizard extends Boss
         }
     }
     public boolean checkForSurvivors(){
-        getWorld().getGame().getSpawner().setBossPhase(7);
+        Game.getGame().getSpawner().setBossPhase(7);
         boolean found = false;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)&&!g.isDead()){

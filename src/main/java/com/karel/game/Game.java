@@ -1,7 +1,10 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.ui.GameUI;
+import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.Overlay;
+import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.bars.StatusBar;
 
 import java.awt.event.*;
@@ -213,19 +216,19 @@ public class Game
         if(Greenfoot.isActive("attack")){
             lastClicked = false;
         }
-        shiftkey = Greenfoot.isActive("shift");
+        shiftkey = Greenfoot.isActive("autoaim");
         boolean ocp = currentlypausing;
-        currentlypausing = Greenfoot.isActive("escape");
+        currentlypausing = Greenfoot.isActive("pause");
         if(ocp&&!currentlypausing&&currentMenu.equals("game")&&gameStatus().equals("running")){
             togglePause();
         }
         boolean otaa = currentlyTogglingAutoattack;
-        currentlyTogglingAutoattack = Greenfoot.isActive("control");
+        currentlyTogglingAutoattack = Greenfoot.isActive("autoattack");
         if(otaa&&!currentlyTogglingAutoattack&&currentMenu.equals("game")&&gameStatus().equals("running")){
             toggleAutoattack();
         }
         boolean otau = currentlyTogglingAutoult;
-        currentlyTogglingAutoult = Greenfoot.isActive("u");
+        currentlyTogglingAutoult = Greenfoot.isActive("autoult");
         if(otau&&!currentlyTogglingAutoult&&currentMenu.equals("game")&&gameStatus().equals("running")){
             toggleAutoult();
         }

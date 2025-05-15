@@ -11,7 +11,9 @@ import java.util.List;
 public class TractorBeamZombie extends Zombie
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.controller};
-    private GreenfootImage rocket = new GreenfootImage("gunzareln.png");    
+    public static String getStaticTextureURL(){
+        return "gunzareln.png";
+    }
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 700;
@@ -20,9 +22,7 @@ public class TractorBeamZombie extends Zombie
      */
     public TractorBeamZombie()
     {
-        rocket.scale(60, 60);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(60, 60);
         setSpeed(1);
         startHealth(300);
     }
@@ -48,7 +48,7 @@ public class TractorBeamZombie extends Zombie
     {
         if (canAttack()){
             explodeOn(800, "enemy", (g)->{
-                if(Math.abs(face(g, false)-getRotation())<40){
+                if(Math.abs(face(g, false)-getRealRotation())<40){
                     g.pullTowards(this, 1);
                     if(distanceTo(g)<200)damage(g, 2);
                 }

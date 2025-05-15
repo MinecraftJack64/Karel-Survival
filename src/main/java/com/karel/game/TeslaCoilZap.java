@@ -34,7 +34,7 @@ public class TeslaCoilZap extends Hitter
             }
         }
     }
-    public void kAct(){
+    public void update(){
         if(attacked>0){
             attacked--;
         }else{

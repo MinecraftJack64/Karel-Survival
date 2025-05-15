@@ -14,8 +14,8 @@ public class Steak extends Collectible
         setRange(100);
     }
     public boolean isPotentialTarget(GridEntity t){return isAlliedWith(t)||isAggroTowards(t);}
-    public void kAct(){
-        super.kAct();
+    public void update(){
+        super.update();
         life--;
         if(life<=0){
             die();

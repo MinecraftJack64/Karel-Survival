@@ -54,7 +54,7 @@ public class Highjacker extends Weapon
         mount.applyEffect(hypno);
         mount.applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
         ammo = reload;
-        getHolder().getWorld().gameUI().newAmmo(reload, ammo);
+        newAmmo(reload, ammo);
         chargeUlt(2500);
     }
     public void unmount(){

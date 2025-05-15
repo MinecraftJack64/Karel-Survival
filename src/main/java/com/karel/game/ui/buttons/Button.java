@@ -1,6 +1,8 @@
-package com.karel.game;
+package com.karel.game.ui.buttons;
 
+import com.karel.game.Sounds;
 import com.karel.game.ui.Overlay;
+import com.karel.game.ui.text.ButtonPuppet;
 
 /**
  * Write a description of class Button here.

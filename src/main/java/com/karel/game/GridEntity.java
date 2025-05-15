@@ -278,7 +278,7 @@ public abstract class GridEntity extends GridObject
     }
     public void startHealth(int amt, boolean showbar){
         if(healthBar!=null){
-            KWorld.me.removeObject(healthBar);
+            getWorld().removeObject(healthBar);
         }
         health = maxHealth = amt;
         if(showbar){
@@ -288,7 +288,7 @@ public abstract class GridEntity extends GridObject
     public void startHealthAsBoss(int amt, int numphases){
         health = maxHealth = amt;
         if(healthBar!=null){
-            KWorld.me.removeObject(healthBar);
+            getWorld().removeObject(healthBar);
         }
         healthBar = new BossBar(amt,500,10,this);
         healthBar.divideIntoPhases(numphases);
@@ -328,7 +328,7 @@ public abstract class GridEntity extends GridObject
             thing.applyTo(this);
             ShieldBar shieldBar = thing.getHealth()>0?new ShieldBar(thing.getHealth(), 40, 5, pos, this):new BadShieldBar(thing.getHealth(), 40, 5, pos, this);
             shieldBars.add(pos, shieldBar);
-            KWorld.me.addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
+            getWorld().addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
         }
     }
     public void startHealthShield(Shield amt){
@@ -336,7 +336,7 @@ public abstract class GridEntity extends GridObject
     }
     public void startHealthShield(Shield thing, boolean showbar){
         if(healthBar!=null){
-            KWorld.me.removeObject(healthBar);
+            getWorld().removeObject(healthBar);
         }
         healthShield = thing;
         thing.applyTo(this);
@@ -501,15 +501,15 @@ public abstract class GridEntity extends GridObject
     }
     public void addGraphics(){
         if(healthBar!=null){
-            if(!isBoss)KWorld.me.addObject(healthBar, getRealX()*1.0, getRealY()-40);
-            else KWorld.me.gameUI().addBossBar((BossBar)healthBar);
+            if(!isBoss)getWorld().addObject(healthBar, getRealX()*1.0, getRealY()-40);
+            else Game.gameUI().addBossBar((BossBar)healthBar);
         }
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getRealX(), getRealY());});
     }
     public void removeGraphics(){
         if(healthBar!=null){
             if(!isBoss)getWorld().removeObject(healthBar);
-            else KWorld.me.gameUI().removeBossBar();
+            else Game.gameUI().removeBossBar();
         }
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().removeObject(s);});
     }

@@ -15,7 +15,7 @@ public class Projectile extends Hitter
     public void applyPhysics(){
         //
     }
-    public void kAct(){
+    public void update(){
         applyPhysics();
     }
 }

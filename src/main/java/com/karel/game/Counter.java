@@ -3,6 +3,8 @@ package com.karel.game;
 
 import java.awt.Graphics;
 
+import com.karel.game.ui.text.TextDisplay;
+
 /**
  * Counter that displays a text and number.
  * 

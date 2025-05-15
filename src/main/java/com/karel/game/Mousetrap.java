@@ -57,7 +57,7 @@ public class Mousetrap extends Trap
      */
     private void checkAsteroidHit()
     {
-        GridEntity asteroid = (GridEntity) getOneIntersectingObject(GridEntity.class);
+        GridEntity asteroid = getOneCollidingObject();
         if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.isOnGround()){
             //getWorld().removeObject(this);
             isset = false;

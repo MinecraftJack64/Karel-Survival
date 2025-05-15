@@ -28,14 +28,12 @@ public class PortalZombie extends Zombie
 {
     private int counterct;
     private int portals;
-    private GreenfootImage rocket = new GreenfootImage("russianzareln.png");
+    public static String getStaticTextureURL(){return "zareln.png";}
     /**
      * Initilise this rocket.
      */
     public PortalZombie()
     {
-        rocket.scale(45, 45);
-        setImage(rocket);
         startHealth(250);
         portals = 1;
     }

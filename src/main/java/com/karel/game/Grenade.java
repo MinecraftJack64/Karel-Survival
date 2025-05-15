@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.particles.Explosion;
+
 /**
  * A bullet that can hit asteroids.
  * 
@@ -20,8 +22,8 @@ public class Grenade extends FlyingRock
     public double getGravity(){
         return 2;
     }
-    public void kAct(){
-        super.kAct();
+    public void update(){
+        super.update();
         life--;
         if(life<=0){
             die();

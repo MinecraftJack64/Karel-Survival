@@ -32,7 +32,7 @@ public class Puddle extends Hitter
         this(range, interv, times, source);
         setDamage(damage);
     }
-    public void kAct()
+    public void update()
     {
         cooldown++;
         if(cooldown>=getInterval()){

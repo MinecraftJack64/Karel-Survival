@@ -14,7 +14,7 @@ public class StuntZombie extends Zombie implements LandingHandler
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("cannonzareln.png");    
+    public static String getStaticTextureURL(){return "cannonzareln.png";}  
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 55, retreatrange = 65, bombrange = 20;
@@ -29,9 +29,7 @@ public class StuntZombie extends Zombie implements LandingHandler
     public StuntZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(35, 35);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(35, 35);
         setSpeed(4);
         startHealth(150);
     }

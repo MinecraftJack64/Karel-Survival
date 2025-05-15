@@ -66,8 +66,8 @@ public class Mole extends Hitter
     public boolean inUlt(){
         return inUlt;
     }
-    public void kAct(){
-        super.kAct();
+    public void update(){
+        super.update();
         if(mu==null)reloadDelayCount++;
         if(!inUlt()){
             face(tx, ty, true);

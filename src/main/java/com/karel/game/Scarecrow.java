@@ -9,8 +9,7 @@ import java.util.List;
  */
 public class Scarecrow extends Pet
 {
-    private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
-    private GreenfootImage rocket2 = new GreenfootImage("chickzareln.png");   
+    public static String getStaticTextureURL(){return "chickzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 600;
@@ -22,9 +21,7 @@ public class Scarecrow extends Pet
     {
         super(hive);
         int scale = 40;
-        rocket.scale(scale, scale);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(scale, scale);
         startHealth(400);
         inherit(hive);
     }

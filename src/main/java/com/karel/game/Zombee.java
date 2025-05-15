@@ -10,7 +10,9 @@ import java.util.List;
 public class Zombee extends SpawnableZombie
 {
 
-    private GreenfootImage rocket = new GreenfootImage("beezareln.png");    
+    public static String getStaticTextureURL(){
+        return "beezareln.png";
+    }
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int damage = 50;
     private GridEntity myhive;
@@ -25,9 +27,7 @@ public class Zombee extends SpawnableZombie
     }
     
     public Zombee(){
-        rocket.scale(15, 15);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(15, 15);
         setSpeed(4);
         startHealth(30);
     }

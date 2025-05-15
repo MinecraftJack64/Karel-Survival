@@ -1,4 +1,4 @@
-package com.karel.game;
+package com.karel.game.ui.text;
 
 
 import java.awt.Graphics;

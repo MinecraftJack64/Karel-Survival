@@ -8,7 +8,7 @@ package com.karel.game;
 public class WeaponFrag extends Collectible
 {
     public void collect(GridObject targ){
-        getWorld().getGame().collectWeaponFrag();
+        Game.getGame().collectWeaponFrag();
         Sounds.play("weaponfragcollect");
         super.collect(targ);
     }

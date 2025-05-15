@@ -39,8 +39,7 @@ public class StaticJadeBlade extends Hitter{
     public boolean canAttack(){
         return true;
     }
-    public void kAct(){
-        scaleTexture(size, size);
+    public void update(){
         setDamage(size*5);
         if(getSource()!=null&&(!(getSource() instanceof GridEntity)||!((GridEntity)getSource()).isDead())&&!getSource().getTeam().equals(getTeam())){//make sure team is same as source
             setTeam(getSource().getTeam());
@@ -53,6 +52,9 @@ public class StaticJadeBlade extends Hitter{
         if(getNumTargets()<=0){
             die();
         }
+    }
+    public void animate(){
+        scaleTexture(size, size);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

@@ -35,7 +35,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public void setStrength(int s){
         strength = s;
     }
-    public void kAct(){
+    public void update(){
         /*if(source!=null){
             branchOut(source, angle+source.getRealRotation(), distance);
         }*/
@@ -86,7 +86,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         startHealthShield(new SuperWeedwackerShield(new ShieldID(this, "immune"), -1));
     }
     public void attack(){
-        List<GridEntity> g = (List<GridEntity>)getIntersectingObjects(GridEntity.class);
+        List<GridEntity> g = getCollidingObjects();
         for(GridEntity e: g){
             if(isAggroTowards(e)){
                 damage(e, 50+strength*10);

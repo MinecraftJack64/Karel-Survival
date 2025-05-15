@@ -14,7 +14,7 @@ public class PresidentZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("presidentzareln.png");    
+    public static String getStaticTextureURL(){return "presidentzareln.png";} 
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private int damage = 400;
@@ -29,9 +29,6 @@ public class PresidentZombie extends Zombie
     public PresidentZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(2);
         startHealth(300);
         applyShield(new ArmorShield(new ShieldID(this), 300));

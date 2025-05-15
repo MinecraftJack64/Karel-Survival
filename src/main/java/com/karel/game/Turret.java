@@ -21,7 +21,7 @@ public class Turret extends ZombiePackage
     //3 - shield zombies as meatshields
     //4 - upgrade to marksmen
     //5 - some are hardhats
-    public void kAct(){
+    public void update(){
         //setRealLocation(getRealX(), getRealY());
         switch(type){
             case 1:

@@ -3,6 +3,9 @@ import java.util.Objects;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+
+import com.karel.game.particles.Explosion;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -399,11 +402,14 @@ public abstract class GridObject extends KActor
         }
         return gs;
     }
-    public List<GridEntity> getIntersectingObjects(){
+    public GridEntity getOneCollidingObject(){
+        return getCollidingObjects().get(0);
+    }
+    public List<GridEntity> getCollidingObjects(){
         return getGEsInRange(70);//TODO
     }
     public List<GridEntity> getCollidingGEs(){
-        List<GridEntity> ges = (List<GridEntity>)getIntersectingObjects();
+        List<GridEntity> ges = (List<GridEntity>)getCollidingObjects();
         return ges.stream().filter(g->checkCollisionHeight(g)).collect(Collectors.toList());
     }
     public boolean checkCollisionHeight(GridEntity other){

@@ -22,7 +22,7 @@ public class LandedSpear extends Collectible
     public GridObject getTarget(){
         return myspear.getHolder();
     }
-    public void kAct(){
+    public void update(){
         int ct = 3;
         for(GridEntity g:getGEsInRange(60)){
             if(isAggroTowards(g)){
@@ -33,7 +33,7 @@ public class LandedSpear extends Collectible
                 break;
             }
         }
-        super.kAct();
+        super.update();
     }
     public void collect(GridObject targ){
         myspear.returnSpear(hs);

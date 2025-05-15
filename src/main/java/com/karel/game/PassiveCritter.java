@@ -23,7 +23,7 @@ public class PassiveCritter extends GridObject implements SubAffecter, ICritter
     public GridEntity getSource(){
         return source.getHolder();
     }
-    public void kAct(){
+    public void update(){
         branchOut(source.getHolder(), deg+source.getTargetRotation(), dist);
         ammo++;
         face(source.getTargetX(), source.getTargetY(), true);

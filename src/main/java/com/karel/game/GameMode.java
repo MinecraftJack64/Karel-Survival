@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.ui.GameUI;
+
 /**
  * Write a description of class GameMode here.
  * 
@@ -23,8 +26,8 @@ public abstract class GameMode implements Tickable
     public abstract void startGame();
     public abstract Teams getTeams();
     public abstract Spawner getSpawner();
-    public KWorld getWorld(){
-        return KWorld.me;
+    public World getWorld(){
+        return Game.world;
     }
     public void setUI(GameUI ui){
         myui = ui;
@@ -39,7 +42,7 @@ public abstract class GameMode implements Tickable
         //Remove player and zombies
         getWorld().allEntities().clear();
         getWorld().allGridObjects.clear();
-        getWorld().removeUI();
+        //Game.removeUI();
     }
     public void increaseScore(int amt){
         score+=amt;

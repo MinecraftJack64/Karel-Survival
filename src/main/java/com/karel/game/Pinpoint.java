@@ -33,7 +33,7 @@ public class Pinpoint extends FlyingRock
         tx = target.getRealX();
         ty = target.getRealY();
     }
-    public void kAct(){
+    public void update(){
         if(target!=null){
             if(target.isDead())die();
             else{
@@ -48,7 +48,7 @@ public class Pinpoint extends FlyingRock
                 }
             }
         }else{
-            super.kAct();
+            super.update();
         }
     }
     public void applyPhysics(){

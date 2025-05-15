@@ -1,4 +1,10 @@
-package com.karel.game;
+package com.karel.game.ui;
+
+import com.karel.game.KarelDisplay;
+import com.karel.game.UI;
+import com.karel.game.ui.buttons.Button;
+import com.karel.game.ui.text.TextDisplay;
+
 /**
  * Write a description of class MainMenuUI here.
  * 

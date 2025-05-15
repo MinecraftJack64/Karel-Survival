@@ -27,7 +27,7 @@ public class WeedwackerZombie extends Zombie
     private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private GreenfootImage rocket = new GreenfootImage("weedwackerzareln.png");
+    public static String getStaticTextureURL(){return "weedwackerzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     //private int shieldhealth = 300;
     private int ammo = 0;
@@ -44,9 +44,6 @@ public class WeedwackerZombie extends Zombie
     public WeedwackerZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(2);
         startHealth(200);
     }

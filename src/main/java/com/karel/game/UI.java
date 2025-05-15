@@ -7,8 +7,8 @@ package com.karel.game;
  */
 public class UI extends World
 {
-    public KWorld getWorld(){
-        return KWorld.me;
+    public World getWorld(){
+        return Game.world;
     }
     public void create(){}
 }

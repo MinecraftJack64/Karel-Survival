@@ -43,7 +43,7 @@ public class Slicer extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(reloadtime, reloadtime-attackcooldown);
+        newAmmo(reloadtime, reloadtime-attackcooldown);
     }
     public String getName(){
         return "Slicer";

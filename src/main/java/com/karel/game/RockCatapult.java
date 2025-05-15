@@ -38,7 +38,7 @@ public class RockCatapult extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, reloadDelayCount);
     }
     public String getName(){
         return "Rock Launcher";

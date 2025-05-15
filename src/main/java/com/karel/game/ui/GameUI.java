@@ -1,12 +1,21 @@
-package com.karel.game;
+package com.karel.game.ui;
 import java.util.ArrayList;
 
-import com.karel.game.ui.Overlay;
+import com.karel.game.AmmoManager;
+import com.karel.game.Counter;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Item;
+import com.karel.game.UI;
+import com.karel.game.ZombieSpawner;
 import com.karel.game.ui.bars.AmmoBar;
 import com.karel.game.ui.bars.BossBar;
 import com.karel.game.ui.bars.StatusBar;
 import com.karel.game.ui.bars.UltBar;
 import com.karel.game.ui.bars.WaveBar;
+import com.karel.game.ui.buttons.Button;
+import com.karel.game.ui.text.ShyTextDisplay;
+import com.karel.game.ui.text.TextDisplay;
 
 /**
  * Write a description of class GameUI here.

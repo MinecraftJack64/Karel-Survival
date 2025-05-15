@@ -125,7 +125,7 @@ public abstract class Weapon implements Item, Tickable
             ultcharge = 0;
             ultready = false;
             ultuses = 0;
-            getHolder().getWorld().setUltCharge(ultcharge);
+            Game.setUltCharge(ultcharge);
         }else{
             ultshield = false;
         }
@@ -153,7 +153,7 @@ public abstract class Weapon implements Item, Tickable
             ultready = true;
             ultuses = getUltMaxUses();
         }
-        getHolder().getWorld().setUltCharge(ultcharge);
+        Game.setUltCharge(ultcharge);
     }
     public void dischargeUlt(int amt){
         ultcharge-=amt;
@@ -164,7 +164,7 @@ public abstract class Weapon implements Item, Tickable
         if(ultcharge<0){
             ultcharge = 0;
         }
-        getHolder().getWorld().setUltCharge(ultcharge);
+        Game.setUltCharge(ultcharge);
     }
     public void setUltCharge(int amt){
         if(amt<ultcharge){
@@ -177,33 +177,33 @@ public abstract class Weapon implements Item, Tickable
         return ultcharge;
     }
     public void updateAmmo(int amt){
-        getHolder().getWorld().gameUI().setAmmo(amt);
+        Game.gameUI().setAmmo(amt);
     }
     public void updateAmmo(AmmoManager ammo){
         updateAmmo(ammo.getAmmoBar());
     }
     public void newAmmo(int max, int value){
-        getHolder().getWorld().gameUI().newAmmo(max, value);
+        Game.gameUI().newAmmo(max, value);
     }
     public void newAmmo(int max, int value, int phases){
-        getHolder().getWorld().gameUI().newAmmo(max, value, phases);
+        Game.gameUI().newAmmo(max, value, phases);
     }
     public void newAmmo(AmmoManager ammo){
-        getHolder().getWorld().gameUI().newAmmo(ammo);
+        Game.gameUI().newAmmo(ammo);
     }
     public void equip(){
-        getHolder().getWorld().newUltCharge(getUlt(),ultcharge);
+        Game.newUltCharge(getUlt(),ultcharge);
         Sounds.play("equip");
     }
     public boolean isUltReady(){
         return ultready;
     }
     public void unequip(){
-        getHolder().getWorld().disableUltCharge();
-        getHolder().getWorld().gameUI().disableAmmo();
+        Game.disableUltCharge();
+        Game.gameUI().disableAmmo();
     }
     public AmmoBar getAmmoBar(){
-        return getHolder().getWorld().gameUI().getAmmoBar();
+        return Game.gameUI().getAmmoBar();
     }
     public void setLocked(boolean t){
         slotlocked = t;

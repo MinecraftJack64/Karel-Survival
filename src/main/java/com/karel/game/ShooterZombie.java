@@ -13,7 +13,7 @@ public class ShooterZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("gunzareln.png");    
+    public static String getStaticTextureURL(){return "gunzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 400, retreatrange = 300;
@@ -23,9 +23,6 @@ public class ShooterZombie extends Zombie
     public ShooterZombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(3);
         startHealth(150);
     }

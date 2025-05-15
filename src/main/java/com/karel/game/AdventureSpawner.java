@@ -14,6 +14,7 @@ public class AdventureSpawner implements Spawner
     public int cwavecooldown = 200;
     public GridEntity boss;
     public LevelRunner runner;
+    private World myWorld = Game.world;
     public ArrayList<Class> spawnTypes;
     public ArrayList<Integer> spawnCount;
     public ArrayList<GridEntity> currentlySpawned = new ArrayList<GridEntity>();
@@ -58,47 +59,47 @@ public class AdventureSpawner implements Spawner
     }
 
     public void spawnZombie(GridObject toSpawn){
-        int x = Greenfoot.getRandomNumber(KWorld.me.gridwidth+1);
-        int y = Greenfoot.getRandomNumber(KWorld.me.gridheight+1);
+        int x = Greenfoot.getRandomNumber(myWorld.gridwidth+1);
+        int y = Greenfoot.getRandomNumber(myWorld.gridheight+1);
         switch(Greenfoot.getRandomNumber(4)){
             case 0:
                 x = -1;
                 break;
             case 1:
-                x = KWorld.me.gridwidth;
+                x = myWorld.gridwidth;
                 break;
             case 2:
                 y = -1;
                 break;
             case 3:
-                y = KWorld.me.gridheight;
+                y = myWorld.gridheight;
                 break;
         }
-        KWorld.me.addToGrid(toSpawn, x, y);
+        myWorld.addToGrid(toSpawn, x, y);
     }
     public void spawnZombieRandom(GridObject toSpawn){
-        int x = Greenfoot.getRandomNumber(KWorld.me.gridwidth);
-        int y = Greenfoot.getRandomNumber(KWorld.me.gridheight);
-        KWorld.me.addToGrid(toSpawn, x, y);
+        int x = Greenfoot.getRandomNumber(myWorld.gridwidth);
+        int y = Greenfoot.getRandomNumber(myWorld.gridheight);
+        myWorld.addToGrid(toSpawn, x, y);
     }
     public void spawnZombie(GridEntity toSpawn, int x, int y){
-        KWorld.me.addToGrid(toSpawn, x, y);
+        myWorld.addToGrid(toSpawn, x, y);
     }
     public void heraldBossFight(){
-        spawnZombie(new ZombieHerald(), KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
+        spawnZombie(new ZombieHerald(), myWorld.gridwidth/2, myWorld.gridheight/2);
     }
     public void startBossFight(){
         Wizard wizzie = new Wizard();
-        spawnZombie(wizzie, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
+        spawnZombie(wizzie, myWorld.gridwidth/2, myWorld.gridheight/2);
         bossphase = 1;
         boss = wizzie;
         bossfight = true;
-        KWorld.me.bossBG();
+        myWorld.bossBG();
     }
     public void stopBossFight(){
         bossfight = false;
         bossphase = 0;
-        KWorld.me.resetBG();
+        myWorld.resetBG();
         boss = null;
     }
     public void setBossPhase(int p){

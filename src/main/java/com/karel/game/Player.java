@@ -1,13 +1,14 @@
 package com.karel.game;
-import java.util.Iterator;
-import java.util.List;
+
+import com.raylib.Texture;
+import static com.raylib.Raylib.loadTexture;
 
 public class Player extends GridEntity {
     boolean autoaim = false, autoattack = false, autoult = false, isattacking = false, ismoving = false;
     private Vector lastMoveDirection = new Vector(0, 0);
     private PlayerHand hand;
-    private GreenfootImage rocket = new GreenfootImage("kareln.png");
-    private GreenfootImage off = new GreenfootImage("karelnOff.png");
+    private Texture rocket = loadTexture("kareln.png");
+    private Texture off = loadTexture("karelnOff.png");
     private Item[] inventory;
     private boolean currentlyscrolling;
     private int currentItemIndex;
@@ -26,11 +27,9 @@ public class Player extends GridEntity {
     private double sprintamt = 1;
     public Player() {
         hand = new PlayerHand();
-        this.rocket.scale(45, 45);
-        this.off.scale(45, 45);
+        scaleTexture(45, 45);
         this.setImage(this.rocket);
-        this.setRotation(0);
-        diff = KWorld.me.currentDiff();
+        diff = Game.currentDiff();
         if(diff==0){
             startHealthShield(new ImmunityShield(new ShieldID(this), -1));
         }else{
@@ -39,7 +38,7 @@ public class Player extends GridEntity {
         maxsprint = diffmaxsprint[diff];
         sprintrecoverrate = diffsprintrecovery[diff];
         sprint = maxsprint;
-        getWorld().gameUI().newSprint(maxsprint);
+        Game.gameUI().newSprint(maxsprint);
         this.setTeam("player");
         this.inventory = new Item[50];
         this.inventory[0] = new NailGun(getHand());
@@ -145,9 +144,9 @@ public class Player extends GridEntity {
         this.setHeldSlot(slot);
         if (this.getHeldItem() != null) {
             this.getHeldItem().equip();
-            this.getWorld().changeHeldItem(this.getHeldItem().getName());
+            Game.changeHeldItem(this.getHeldItem().getName());
         } else {
-            this.getWorld().changeHeldItem("");
+            Game.changeHeldItem("");
         }
 
         return this.getHeldItem();
@@ -157,12 +156,12 @@ public class Player extends GridEntity {
         Item old = this.getHeldItem();
         if(old!=null){
             old.unequip();
-            this.getWorld().changeHeldItem("");
+            Game.changeHeldItem("");
         }
         this.inventory[currentItemIndex] = i;
         if(i!=null){
             i.equip();
-            this.getWorld().changeHeldItem(this.getHeldItem().getName());
+            Game.changeHeldItem(this.getHeldItem().getName());
         }
         return old;
     }
@@ -186,9 +185,9 @@ public class Player extends GridEntity {
         if (this.getHeldItem() instanceof Tickable) {
             ((Tickable)this.getHeldItem()).tick();
         }
-        autoaim = getWorld().isShiftDown();
-        autoult = getWorld().autoUlt();
-        autoattack = getWorld().autoAttack();
+        autoaim = Game.isShiftDown();
+        autoult = Game.autoUlt();
+        autoattack = Game.autoAttack();
         this.checkKeys();
         double targang = face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
         if (this.hacooldown > 20 && !this.isDead()/* && getWorld().getGame().getDifficulty<2*/) {
@@ -207,7 +206,7 @@ public class Player extends GridEntity {
 
     }
     public boolean acceptingFrags(){
-        return !getWorld().getGame().beeperbagfull();
+        return !Game.getGame().beeperbagfull();
     }
     
     //TODO
@@ -225,7 +224,7 @@ public class Player extends GridEntity {
         }else if(targetLocked){
             return oldtargetx;
         }
-        return getWorld().getMouseX()+getScrollX();
+        return Game.getMouseX()+getScrollX();
     }
     public double getTargetY(){
         if(autoaim){
@@ -234,7 +233,7 @@ public class Player extends GridEntity {
         }else if(targetLocked){
             return oldtargety;
         }
-        return getWorld().getMouseY()+getScrollY();
+        return Game.getMouseY()+getScrollY();
     }
     public void setTargetLock(boolean t){
         if(!targetLocked&&t){
@@ -255,8 +254,8 @@ public class Player extends GridEntity {
         //handle movement
         int xd = 0, yd = 0;
         if(canMove()&&!movementLocked){
-            if (!Greenfoot.isKeyDown("right") && !Greenfoot.isKeyDown("d")) {
-                if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) {
+            if (!Greenfoot.isActive("right")) {
+                if (Greenfoot.isActive("left")) {
                     xd = -1;
                     ismoving = true;
                 }
@@ -265,8 +264,8 @@ public class Player extends GridEntity {
                 ismoving = true;
             }
 
-            if (!Greenfoot.isKeyDown("up") && !Greenfoot.isKeyDown("w")) {
-                if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) {
+            if (!Greenfoot.isActive("up")) {
+                if (Greenfoot.isActive("down")) {
                     yd = 1;
                     ismoving = true;
                 }
@@ -279,12 +278,12 @@ public class Player extends GridEntity {
         walk(v.getDirection()+90, (int)v.getLength());
 
         //handle item switching
-        if (Greenfoot.isKeyDown("x")) {
+        if (Greenfoot.isActive("inventoryLeft")) {
             if (!this.currentlyscrolling) {
                 this.prevSlot();
                 this.currentlyscrolling = true;
             }
-        } else if (Greenfoot.isKeyDown("c")) {
+        } else if (Greenfoot.isActive("inventoryRight")) {
             if (!this.currentlyscrolling) {
                 this.nextSlot();
                 this.currentlyscrolling = true;
@@ -299,19 +298,19 @@ public class Player extends GridEntity {
             boolean didspecial = false;
             if(i instanceof Weapon){
                 Weapon w = (Weapon)i;
-                if(Greenfoot.isKeyDown("z")){// TODO remove debug code
+                if(Greenfoot.isActive("inventory")){// TODO remove debug code
                     w.chargeUlt(100);
                 }
                 didspecial = true;
-                if (Greenfoot.isKeyDown("q")&&!w.continueUlt()&&w.activateGadget()) {
+                if (Greenfoot.isActive("gadget")&&!w.continueUlt()&&w.activateGadget()) {
                     this.hacooldown = 0;
-                } else if ((Greenfoot.isKeyDown("space")||autoult||w.continueUlt())&&w.ult()) {
+                } else if ((Greenfoot.isActive("ult")||autoult||w.continueUlt())&&w.ult()) {
                     this.hacooldown = 0;
                 }else{
                     didspecial = false;
                 }
             }
-            if (this.getHeldItem() != null&&(this.getWorld().lastClicked||autoattack||getHeldItem().continueUse())&&!didspecial) {
+            if (this.getHeldItem() != null&&(Game.lastClicked||autoattack||getHeldItem().continueUse())&&!didspecial) {
                 isattacking = true;
                 this.getHeldItem().use();
     
@@ -322,26 +321,26 @@ public class Player extends GridEntity {
         }
         
         //handle sprinting
-        String sprintkey = "alt";
-        if(Greenfoot.isKeyDown(sprintkey)&&!sprinting&&sprint>=6/*decreasing rate*/){
+        String sprintkey = "sprint";
+        if(Greenfoot.isActive(sprintkey)&&!sprinting&&sprint>=6/*decreasing rate*/){
             sprinting = true;
-            getWorld().gameUI().startSprint();
-        }else if(!Greenfoot.isKeyDown(sprintkey)||sprint<2){
+            Game.gameUI().startSprint();
+        }else if(!Greenfoot.isActive(sprintkey)||sprint<2){
             sprinting = false;
         }
         if(sprinting&&isMoving()){
             sprint-=2;
-            getWorld().gameUI().setSprint(sprint);
+            Game.gameUI().setSprint(sprint);
         }else{
             if(sprint<maxsprint){
                 sprint+=sprintrecoverrate;
                 if(sprint>=maxsprint){
                     sprint = maxsprint;
                 }
-                getWorld().gameUI().setSprint(sprint);
+                Game.gameUI().setSprint(sprint);
             }//else sprint is already max
-            else if(!Greenfoot.isKeyDown(sprintkey)){
-                getWorld().gameUI().stopSprint();
+            else if(!Greenfoot.isActive(sprintkey)){
+                Game.gameUI().stopSprint();
             }
         }
         if(sprinting){

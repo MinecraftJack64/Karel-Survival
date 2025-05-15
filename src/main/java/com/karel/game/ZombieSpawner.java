@@ -11,6 +11,8 @@ import java.util.HashMap;
  */
 public class ZombieSpawner implements Spawner
 {
+    private World myWorld = Game.world;
+
     public int waveHealth = 0;
     public int waveMaxHealth = 0;
     public int wavelevel = 29;
@@ -83,7 +85,6 @@ public class ZombieSpawner implements Spawner
                     int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
                     remainingSections = count/3;
                     spawnZombies(count, remainingSections);
-                    KWorld.me.cleanUpEntities(); // TODO
                     if(Greenfoot.getRandomNumber(3)<2){
                         SupplyCrate thing = new SupplyCrate(new WeaponFrag());
                         spawnZombieRandom(thing);
@@ -96,7 +97,7 @@ public class ZombieSpawner implements Spawner
                     else heraldBossFight();
                 }
             }
-            KWorld.me.gameUI().updateWaveHealth(totalHealth());
+            Game.gameUI().updateWaveHealth(totalHealth());
         }
         else{
             if(bossphase < 6){
@@ -121,7 +122,7 @@ public class ZombieSpawner implements Spawner
     public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
-        KWorld.me.gameUI().newWave(toSpawn.totalHealth());
+        Game.gameUI().newWave(toSpawn.totalHealth());
         spawnZombies(toSpawn, sections);
     }
 
@@ -146,54 +147,54 @@ public class ZombieSpawner implements Spawner
     }
 
     public void spawnZombie(GridObject toSpawn){
-        int x = Greenfoot.getRandomNumber(KWorld.me.gridwidth+1);
-        int y = Greenfoot.getRandomNumber(KWorld.me.gridheight+1);
+        int x = Greenfoot.getRandomNumber(myWorld.gridwidth+1);
+        int y = Greenfoot.getRandomNumber(myWorld.gridheight+1);
         switch(Greenfoot.getRandomNumber(4)){
             case 0:
                 x = -1;
                 break;
             case 1:
-                x = KWorld.me.gridwidth;
+                x = myWorld.gridwidth;
                 break;
             case 2:
                 y = -1;
                 break;
             case 3:
-                y = KWorld.me.gridheight;
+                y = myWorld.gridheight;
                 break;
         }
-        KWorld.me.addToGrid(toSpawn, x, y);
+        myWorld.addToGrid(toSpawn, x, y);
     }
 
     public void spawnZombieRandom(GridObject toSpawn){
-        int x = Greenfoot.getRandomNumber(KWorld.me.gridwidth);
-        int y = Greenfoot.getRandomNumber(KWorld.me.gridheight);
-        KWorld.me.addToGrid(toSpawn, x, y);
+        int x = Greenfoot.getRandomNumber(myWorld.gridwidth);
+        int y = Greenfoot.getRandomNumber(myWorld.gridheight);
+        myWorld.addToGrid(toSpawn, x, y);
     }
 
     public void spawnZombie(GridEntity toSpawn, int x, int y){
-        KWorld.me.addToGrid(toSpawn, x, y);
+        myWorld.addToGrid(toSpawn, x, y);
     }
 
     public void heraldBossFight(){
         ZombieHerald h = new ZombieHerald();
-        spawnZombie(h, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
+        spawnZombie(h, myWorld.gridwidth/2, myWorld.gridheight/2);
         currentlySpawned.add(h);
-        KWorld.me.gameUI().newWave(totalHealth());
+        Game.gameUI().newWave(totalHealth());
     }
 
     public void startBossFight(GridEntity wizzie){
-        spawnZombie(wizzie, KWorld.me.gridwidth/2, KWorld.me.gridheight/2);
+        spawnZombie(wizzie, myWorld.gridwidth/2, myWorld.gridheight/2);
         bossphase = 1;
         boss = wizzie;
         bossfight = true;
-        KWorld.me.bossBG();
+        myWorld.bossBG();
     }
 
     public void stopBossFight(){
         bossfight = false;
         bossphase = 0;
-        KWorld.me.resetBG();
+        myWorld.resetBG();
         boss = null;
     }
 

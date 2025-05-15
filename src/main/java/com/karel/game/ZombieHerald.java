@@ -27,7 +27,9 @@ public class ZombieHerald extends Zombie
     private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private GreenfootImage rocket = new GreenfootImage("heraldzareln.png");
+    public static String getStaticTextureURL(){
+        return "heraldzareln.png";
+    }
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     //private int shieldhealth = 300;
     private int ammo = 0;
@@ -42,9 +44,6 @@ public class ZombieHerald extends Zombie
     public ZombieHerald()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(0);
         startHealth(200);
     }

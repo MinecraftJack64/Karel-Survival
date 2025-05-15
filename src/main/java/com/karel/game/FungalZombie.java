@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.particles.FungalWave;
+
 /**
  * A zombie that slows you when you are nearby. Occasionally sprays to poison you and boost other zombies.
  * 

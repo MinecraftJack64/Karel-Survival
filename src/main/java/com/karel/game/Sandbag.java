@@ -14,7 +14,7 @@ public class Sandbag extends GridEntity
         setRealRotation(r);
         inherit(source);
     }
-    public void kAct(){
+    public void update(){
         if(speed>0){
             move(getRealRotation(), speed);
             speed-=2;

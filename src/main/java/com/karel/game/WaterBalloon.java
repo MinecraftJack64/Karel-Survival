@@ -11,7 +11,6 @@ public class WaterBalloon extends Bullet
 {
     /** The damage this bullet will deal */
     //private static final int damage = 100;
-    private GreenfootImage rocket = new GreenfootImage("rock.png");
     private boolean isSuper;
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;

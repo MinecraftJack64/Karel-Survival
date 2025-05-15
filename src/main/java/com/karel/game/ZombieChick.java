@@ -10,7 +10,9 @@ import java.util.List;
 public class ZombieChick extends SpawnableZombie
 {
 
-    private GreenfootImage rocket = new GreenfootImage("chickzareln.png");    
+    public static String getStaticTextureURL(){
+        return "chickzareln.png";
+    }
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private GridEntity myhive;
     /**
@@ -18,9 +20,7 @@ public class ZombieChick extends SpawnableZombie
      */
     public ZombieChick(GridObject source, GridEntity hive)
     {
-        rocket.scale(30, 30);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(30, 30);
         setSpeed(3);
         startHealth(100);
         myhive = hive;
@@ -29,9 +29,7 @@ public class ZombieChick extends SpawnableZombie
     
     public ZombieChick(GridEntity hive)
     {
-        rocket.scale(30, 30);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(30, 30);
         setSpeed(3);
         startHealth(100);
         myhive = hive;

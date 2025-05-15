@@ -48,7 +48,7 @@ public class Hearth extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(40, (int)(focus*40));
+        newAmmo(40, (int)(focus*40));
     }
     public String getName(){
         return "Hearth";

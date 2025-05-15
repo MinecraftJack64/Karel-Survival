@@ -78,7 +78,7 @@ public class TrapSetter extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, reloadDelayCount);
     }
     public TrapSetter(ItemHolder actor){
         super(actor);

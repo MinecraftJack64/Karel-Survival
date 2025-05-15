@@ -13,7 +13,7 @@ public class TorpedoZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("gunzareln.png");    
+    public static String getStaticTextureURL(){return "gunzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private static double attackrange = 700;
     private ZTorpedo myTorpedo;
@@ -23,9 +23,6 @@ public class TorpedoZombie extends Zombie
     public TorpedoZombie()
     {
         reloadDelayCount = 0;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
         setSpeed(1);
         startHealth(100);
     }

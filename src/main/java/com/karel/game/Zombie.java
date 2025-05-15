@@ -39,7 +39,7 @@ public class Zombie extends GridEntity
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("zareln.png");    
+    public static String getStaticTextureURL(){return "zombie.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double speed = 2;
@@ -52,9 +52,7 @@ public class Zombie extends GridEntity
     public Zombie()
     {
         reloadDelayCount = 5;
-        rocket.scale(45, 45);
-        setImage(rocket);
-        setRotation(180);
+        scaleTexture(45, 45);
         setSpeed(speed);
         setTeam("zombie");
         startHealth(200);
@@ -64,19 +62,16 @@ public class Zombie extends GridEntity
      * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
      * accelerating and shooting when the right keys are pressed.)
      */
-    public void act()
+    public void update()//TODO: fix logic
     {
+        processSounds();
         if(getWorld().gameStatus().equals("lose")){
             applyEffects();
             applyPhysics();
             feast();
             return;
         }
-        super.act();
-    }
-    public void kAct(){
-        processSounds();
-        super.kAct();
+        super.update();
         clearTarget();
     }
     public void processSounds(){
@@ -133,7 +128,7 @@ public class Zombie extends GridEntity
         if(killer.isAggroTowards(this)){
             Beeper bullet = new Beeper(getXP());
             getWorld().addObject (bullet, getRealX(), getRealY());
-            getWorld().increaseScore(getXP());
+            Game.increaseScore(getXP());
         }
         //if(wasInOriginalWave())getWorld().getGame().getSpawner().wavehealth--;
         super.die(killer);
@@ -180,10 +175,10 @@ public class Zombie extends GridEntity
         }
     }
     public void startHealth(int amt){
-        super.startHealth((int)(amt*dhmult[getWorld().currentDiff()]));
+        super.startHealth((int)(amt*dhmult[Game.currentDiff()]));
     }
     public void walk(double ang, double multiplier){
-        super.walk(ang, multiplier*dsmult[getWorld().currentDiff()]);
+        super.walk(ang, multiplier*dsmult[Game.currentDiff()]);
     }
     public ZombieClass[] getZombieClasses(){
         return classes;

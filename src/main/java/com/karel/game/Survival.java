@@ -20,7 +20,7 @@ public class Survival extends GameMode
     }
     public void tick(){
         spawner.checkSpawn();
-        getWorld().gameUI().waveCounter.setValue(spawner.wavelevel);
+        Game.gameUI().waveCounter.setValue(spawner.wavelevel);
         if(player.isDead()){
             gameOver();
         }

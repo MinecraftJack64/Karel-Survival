@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.particles;
 import java.util.ArrayList;
+
+import com.karel.game.FungalZombie;
+import com.karel.game.GridEntity;
+import com.karel.game.Hitter;
 
 /**
  * A proton wave that expands and destroys things in its path.

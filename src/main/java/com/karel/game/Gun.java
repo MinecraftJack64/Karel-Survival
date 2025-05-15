@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.particles.ProtonWave;
+
 /**
  * Write a description of class Gun here.
  * 
@@ -58,7 +60,7 @@ public class Gun extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, reloadDelayCount);
     }
     public int defaultGadgets(){
         return 3;
