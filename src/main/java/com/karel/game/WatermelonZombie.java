@@ -1,7 +1,6 @@
 package com.karel.game;
 
 import com.raylib.Texture;
-import static com.raylib.Raylib.loadTexture;
 
 /*
  * classes
@@ -32,8 +31,8 @@ public class WatermelonZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private Texture rocket = loadTexture("shieldzareln.png");
-    private Texture rocket2 = loadTexture("zareln.png");
+    private Texture rocket = Greenfoot.loadTexture("shieldzareln.png");
+    private Texture rocket2 = Greenfoot.loadTexture("zareln.png");
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     //private int shieldhealth = 300;
     private int ammo = 0;

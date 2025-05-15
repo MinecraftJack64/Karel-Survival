@@ -1,10 +1,9 @@
 package com.karel.game;
 import com.raylib.Texture;
-import static com.raylib.Raylib.loadTexture;
 public class HuggingZombie extends Zombie
 {
-    private Texture rocket = loadTexture("sadhuggingzareln.png");
-    private Texture rocket2 = loadTexture("huggingzareln.png");
+    private Texture rocket = Greenfoot.loadTexture("sadhuggingzareln.png");
+    private Texture rocket2 = Greenfoot.loadTexture("huggingzareln.png");
     private boolean attack = true;
     /**
      * Initilise this rocket.

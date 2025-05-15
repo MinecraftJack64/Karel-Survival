@@ -1,6 +1,5 @@
 package com.karel.game;
 import java.util.List;
-import static com.raylib.Raylib.*;
 import com.raylib.Texture;
 
 /**
@@ -12,8 +11,8 @@ import com.raylib.Texture;
 public class Critter extends Pet implements ICritter
 {
 
-    public static Texture rocket = loadTexture("rocket.png");
-    public static Texture rocket2 = loadTexture("rocketWithThrust.png");
+    public static Texture rocket = Greenfoot.loadTexture("rocket.png");
+    public static Texture rocket2 = Greenfoot.loadTexture("rocketWithThrust.png");
     private LilCreatures perch;
     private int ammo = 0;
     private Dasher dash;

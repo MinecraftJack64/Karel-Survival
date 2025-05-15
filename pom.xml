@@ -17,7 +17,7 @@
         <dependency>
             <groupId>io.github.electronstudio</groupId>
             <artifactId>jaylib-ffm</artifactId>
-            <version>5.5.0-2</version>
+            <version>5.5.0-0</version>
         </dependency>
 
         <!-- LWJGL (auto-downloads correct natives for your OS) -->

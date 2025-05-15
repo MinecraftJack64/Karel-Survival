@@ -1,5 +1,4 @@
 package com.karel.game;
-import static com.raylib.Raylib.loadTexture;
 import com.raylib.Texture;
 /*
  * classes
@@ -27,8 +26,8 @@ import com.raylib.Texture;
 public class RocketZombie extends Zombie
 {
     private int cooldown = 0, flightpoint = Greenfoot.getRandomNumber(50)+75;//Range from 75 150               // How long ago we fired the gun the last time.
-    private Texture rocket = loadTexture("rocketzareln.png");
-    private Texture rocket2 = loadTexture("zareln.png");
+    private Texture rocket = Greenfoot.loadTexture("rocketzareln.png");
+    private Texture rocket2 = Greenfoot.loadTexture("zareln.png");
     //ShieldBar shieldBar;
     private int rocketPhase = 0;//0 - start flying, 1 - currently flying, 2 - done flying
     private Rocket ride;

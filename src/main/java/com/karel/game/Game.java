@@ -76,6 +76,7 @@ public class Game
         startGame("tutorial");
     }
     public static void startGame(String mode){
+        world = new World();
         //Create the Game UI
         ui = new GameUI();
         initGameUI();
@@ -208,7 +209,7 @@ public class Game
         return ui2 instanceof PauseUI?(PauseUI)ui2:null;
     }
 
-    public static void act(){
+    public static void tick(){
         lastX = Greenfoot.getMouseX();
         lastY = Greenfoot.getMouseY();
         if(Greenfoot.isActive("attack")){ //TODO: split attack and click

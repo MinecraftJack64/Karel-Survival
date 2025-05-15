@@ -1,6 +1,6 @@
 package com.karel.game;
 
-import static com.raylib.Raylib.*;
+//import static com.raylib.Raylib.*;
 import com.raylib.Texture;
 /**
  * An actor with additional methods and helpers
@@ -19,10 +19,11 @@ public abstract class KActor
         setImage(getImage());
     }
     public World getWorld(){
-        return world;/*try{
+        return Game.world;/*try{
         if(super.getWorld()!=null)return (KWorld)super.getWorld();else return KWorld.me;}catch(Exception e){
             return KWorld.me;
         }*/
+        //TODO
         
     }
     public void setRealRotation(double rot){
@@ -102,7 +103,7 @@ public abstract class KActor
         processImage();
     }
     public void setImage(String path){
-        setImage(loadTexture(path));
+        setImage(Greenfoot.loadTexture(path));
     }
     public Texture getImage(){
         return image;
@@ -126,7 +127,7 @@ public abstract class KActor
         return shouldRemove;
     }
     public void notifyWorldRemove(){world = null;}
-    public void notifyWorldAdd(){setWorld(null);}
+    public void notifyWorldAdd(){setWorld(Game.world);}
     public boolean isInGridWorld(){
         return false;
     }

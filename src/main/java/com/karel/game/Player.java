@@ -1,14 +1,13 @@
 package com.karel.game;
 
 import com.raylib.Texture;
-import static com.raylib.Raylib.loadTexture;
 
 public class Player extends GridEntity {
     boolean autoaim = false, autoattack = false, autoult = false, isattacking = false, ismoving = false;
     private Vector lastMoveDirection = new Vector(0, 0);
     private PlayerHand hand;
-    private Texture rocket = loadTexture("kareln.png");
-    private Texture off = loadTexture("karelnOff.png");
+    private Texture rocket = Greenfoot.loadTexture("kareln.png");
+    private Texture off = Greenfoot.loadTexture("karelnOff.png");
     private Item[] inventory;
     private boolean currentlyscrolling;
     private int currentItemIndex;
