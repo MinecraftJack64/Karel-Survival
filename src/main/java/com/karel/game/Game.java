@@ -5,6 +5,7 @@ import com.karel.game.ui.GameUI;
 import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.Overlay;
 import com.karel.game.ui.PauseUI;
+import com.karel.game.ui.UI;
 import com.karel.game.ui.bars.StatusBar;
 
 import java.awt.event.*;

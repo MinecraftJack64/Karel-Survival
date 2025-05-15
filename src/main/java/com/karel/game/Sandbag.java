@@ -24,7 +24,7 @@ public class Sandbag extends GridEntity
                 decayDelay = 5;
             }else decayDelay--;
         }
-        super.kAct();
+        super.update();
     }
     public boolean willNotify(GridObject source){
         return false;

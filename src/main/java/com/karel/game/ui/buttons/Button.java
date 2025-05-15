@@ -2,7 +2,9 @@ package com.karel.game.ui.buttons;
 
 import com.karel.game.Sounds;
 import com.karel.game.ui.Overlay;
-import com.karel.game.ui.text.ButtonPuppet;
+import com.karel.game.Game;
+import com.raylib.Color;
+import com.raylib.Raylib;
 
 /**
  * Write a description of class Button here.
@@ -12,13 +14,13 @@ import com.karel.game.ui.text.ButtonPuppet;
  */
 public class Button extends Overlay
 {
-    private Color barColor = Color.GRAY;
+    private Color barColor = Raylib.GRAY;
     private int size = 0;
     private int width, height;
-    private int stringLength;
+    private String text;
+    private Color textColor = Raylib.GREEN;
     private int state = 0;//-1 - inactive, 0 - normal, 1 - mouse over, 2 - mouse clicked
     private boolean active = true;
-    public ButtonPuppet puppet;
     public Button()
     {
         this(80, 40);
@@ -28,47 +30,33 @@ public class Button extends Overlay
     {
         this.width = size;
         this.height = height;
-        setImage(new GreenfootImage(width, height));
-        updateImage();
     }
     public Button(int size, int height, String text, Color c)
     {
         this.width = size;
         this.height = height;
-        setImage(new GreenfootImage(width, height));
-        puppet = new ButtonPuppet(text,size/5,c);
-        updateImage();
     }
     public Button(int size, int height, Color c)
     {
         this(size, height);
         barColor = c;
-        updateImage();
-    }
-    public void notifyWorldAdd(){
-        super.notifyWorldAdd();
-        getWorld().addObject(puppet, getRealX(), getRealY());
-    }
-    public void notifyWorldRemove(){
-        getWorld().removeObject(puppet);
-        super.notifyWorldRemove();
     }
     public void setText(String s){
-        puppet.setText(s);
+        text = s;
     }
     
-    public void act() {
+    public void update() {
         //test if mouse over
         int nstate = state;
         if(active){
-            if(nstate==2&&!getWorld().isMouseDown()){
+            if(nstate==2&&!Game.isMouseDown()){
                 Sounds.play("click");
                 click();
                 nstate = 1;
             }
             if(isMouseOver()){
                 nstate = 1;
-                if(getWorld().isMouseDown()){
+                if(Game.isMouseDown()){
                     nstate = 2;
                 }
             }else{
@@ -81,19 +69,11 @@ public class Button extends Overlay
             state = nstate;
             update();
         }
-        if(needsupdate){
-            updateImage();
-        }
-        needsupdate = false;
     }
     public boolean isMouseOver(){
-        double mxx = getWorld().getMouseX()-getRealX()+width/2, myy = getWorld().getMouseY()-getRealY()+height/2;
+        double mxx = Game.getMouseX()-getRealX()+width/2, myy = Game.getMouseY()-getRealY()+height/2;
         //System.out.println(mxx+" "+myy);
         return (mxx>=0&&mxx<=width)&&(myy>=0&&myy<=height);
-    }
-    private boolean needsupdate = false;
-    public void update(){
-        needsupdate = true;
     }
     public void setColor(Color c){
         barColor = c;
@@ -107,9 +87,9 @@ public class Button extends Overlay
     /**
      * Make the image
      */
-    protected void updateImage()
+    public void render()
     {
-        GreenfootImage image = getImage();
+        /*GreenfootImage image = getImage();
         image.clear();
         if(state<0){
             image.setColor(barColor.brighter());
@@ -123,24 +103,7 @@ public class Button extends Overlay
         }else{
             image.fillRect(0, 0, width, height);
         }
-        //modify puppet
-        if(puppet==null){
-            return;
-        }
-        //
-    }
-    
-    public void setRealLocation(double x, double y){
-        super.setRealLocation(x, y);
-        if(puppet!=null){
-            puppet.setRealLocation(x, y);
-        }
-    }
-    public void setVisible(boolean b){
-        super.setVisible(b);
-        if(puppet!=null){
-            puppet.setVisible(b);
-        }
+        TODO*/
     }
     public double getBottom(){
         return size+getRealY();

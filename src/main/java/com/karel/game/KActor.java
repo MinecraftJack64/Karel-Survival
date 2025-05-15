@@ -133,7 +133,7 @@ public abstract class KActor
     public boolean isInWorld(){
         return world!=null;
     }
-    public String kAct() throws ArrayIndexOutOfBoundsException{
+    public String act() throws ArrayIndexOutOfBoundsException{
         return "r";
     }
 }

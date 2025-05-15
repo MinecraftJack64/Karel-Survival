@@ -1,7 +1,7 @@
 package com.karel.game.ui.text;
 
 
-import java.awt.Graphics;
+import com.raylib.Color;
 
 /**
  * ShyTextDisplay that displays a text and number.
@@ -27,8 +27,8 @@ public class ShyTextDisplay extends TextDisplay
             super.setVisible(b);
         }
     }
-    public void act(){
-        super.act();
+    public void update(){
+        super.update();
         if(cooldown>=0)cooldown--;
         if(cooldown==0){
             setVisible(false);

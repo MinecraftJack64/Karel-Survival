@@ -2,11 +2,10 @@ package com.karel.game.ui;
 import java.util.ArrayList;
 
 import com.karel.game.AmmoManager;
-import com.karel.game.Counter;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.Game;
 import com.karel.game.Item;
-import com.karel.game.UI;
 import com.karel.game.ZombieSpawner;
 import com.karel.game.ui.bars.AmmoBar;
 import com.karel.game.ui.bars.BossBar;
@@ -14,8 +13,11 @@ import com.karel.game.ui.bars.StatusBar;
 import com.karel.game.ui.bars.UltBar;
 import com.karel.game.ui.bars.WaveBar;
 import com.karel.game.ui.buttons.Button;
+import com.karel.game.ui.text.Counter;
 import com.karel.game.ui.text.ShyTextDisplay;
 import com.karel.game.ui.text.TextDisplay;
+import com.raylib.Color;
+import com.raylib.Raylib;
 
 /**
  * Write a description of class GameUI here.
@@ -25,6 +27,7 @@ import com.karel.game.ui.text.TextDisplay;
  */
 public class GameUI extends UI  
 {
+    public static final Color DARKRED = new Color((byte)255, (byte)0, (byte)0, (byte)1);
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
@@ -40,35 +43,35 @@ public class GameUI extends UI
         waveHealth = new WaveBar(1,100,5);
         placeScoreBar();
         
-        heldItem = new TextDisplay("Item", 20, Color.GRAY);
+        heldItem = new TextDisplay("Item", 20, Raylib.GRAY);
         getWorld().addObject(heldItem, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-1)*1.0-15);
         
         ammo = new AmmoBar(0, 1, 120, 10);
         ammo.setVisible(false);
         getWorld().addObject(ammo, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-2)*1.0+15);
         
-        sprint = new StatusBar(0, 1, 120, 10, Color.MAGENTA);
+        sprint = new StatusBar(0, 1, 120, 10, Raylib.MAGENTA);
         sprint.setVisible(false);
         getWorld().addObject(sprint, getWorld().gridXToRealX(getWorld().gridwidth)*0.8, ammo.getRealY());
         
-        sprintText = new TextDisplay("Sprint!", 20, Color.MAGENTA);
+        sprintText = new TextDisplay("Sprint!", 20, Raylib.MAGENTA);
         sprintText.setVisible(false);
         getWorld().addObject(sprintText, sprint.getRealX(), sprint.getRealY()+30);
         
         
         ultCharge = new UltBar(100, 350, 30);
-        ultMessage = new TextDisplay("Space", 20, Color.ORANGE);
-        ultMessage2 = new TextDisplay("to fire!", 20, Color.ORANGE);
+        ultMessage = new TextDisplay("Space", 20, Raylib.ORANGE);
+        ultMessage2 = new TextDisplay("to fire!", 20, Raylib.ORANGE);
         placeUltBar();
         
-        weaponmessagerarity = new ShyTextDisplay("", 20, Color.GRAY);
-        weaponmessage = new ShyTextDisplay("You found a weapon fragment", 20, Color.GRAY);
-        weaponmessage2 = new ShyTextDisplay("Press e to craft", 20, Color.GRAY);
-        weaponmessage3 = new ShyTextDisplay("You have 0 fragments", 20, Color.GRAY);
+        weaponmessagerarity = new ShyTextDisplay("", 20, Raylib.GRAY);
+        weaponmessage = new ShyTextDisplay("You found a weapon fragment", 20, Raylib.GRAY);
+        weaponmessage2 = new ShyTextDisplay("Press e to craft", 20, Raylib.GRAY);
+        weaponmessage3 = new ShyTextDisplay("You have 0 fragments", 20, Raylib.GRAY);
         placeCraftMessage();
-        tut1 = new TextDisplay("", 20, Color.GRAY);
+        tut1 = new TextDisplay("", 20, Raylib.GRAY);
         getWorld().addObject(tut1, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
-        tut2 = new TextDisplay("", 20, Color.GRAY);
+        tut2 = new TextDisplay("", 20, Raylib.GRAY);
         getWorld().addObject(tut2, tut1.getRealX(), tut1.getBottom()+10);
     }
     public void placeUltBar(){
@@ -109,11 +112,11 @@ public class GameUI extends UI
      */
     public void gameOver(boolean beaths) //SURVIVAL+OTHER MODES
     {
-        TextDisplay go = new TextDisplay("GAME OVER", 60, Color.RED);
+        TextDisplay go = new TextDisplay("GAME OVER", 60, Raylib.RED);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(kill!=null){
-            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, Color.RED.darker());
+            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{
@@ -123,39 +126,39 @@ public class GameUI extends UI
         Overlay hs;
         if(!beaths){
             hs = new Counter("High Score: ", 20);
-            ((Counter)hs).setTarget(getWorld().getHighScore());
-            ((Counter)hs).setColor(Color.GREEN.darker());
+            ((Counter)hs).setTarget(Game.getHighScore());
+            ((Counter)hs).setColor(Raylib.DARKGREEN);
             getWorld().addObject(hs, scoreCounter.getRealX(), scoreCounter.getBottom());
         }else{
-            TextDisplay beatscore = new TextDisplay("You Beat Your High Score!", 20, Color.GREEN.darker());
+            TextDisplay beatscore = new TextDisplay("You Beat Your High Score!", 20, Raylib.DARKGREEN);
             getWorld().addObject(beatscore, scoreCounter.getRealX(), scoreCounter.getBottom());
             hs = beatscore;
         }
         Counter waveCounter;
-        if(getWorld().currentMode().equals("survival")||getWorld().currentMode().equals("protect")){
+        if(Game.currentMode().equals("survival")||Game.currentMode().equals("protect")){
             waveCounter = new Counter("Waves Survived: ", 20);
-            waveCounter.setTarget(((ZombieSpawner)(getWorld().getGame().getSpawner())).wavelevel-1);
+            waveCounter.setTarget(((ZombieSpawner)(Game.getGame().getSpawner())).wavelevel-1);
             getWorld().addObject(waveCounter, scoreCounter.getRealX(), hs.getBottom());
         }else{
             waveCounter = new Counter("Level: ", 20);
             waveCounter.setTarget(0);
             getWorld().addObject(waveCounter, scoreCounter.getRealX(), hs.getBottom());
         }
-        goToMenuBtn = new Button(140, 60, "Menu", Color.GREEN){
+        goToMenuBtn = new Button(140, 60, "Menu", Raylib.GREEN){
             public void click(){
                 //example of click function
-                getWorld().goToMenu();
+                Game.goToMenu();
             }
         };
         getWorld().addObject(goToMenuBtn, scoreCounter.getRealX(), waveCounter.getBottom()+25+10);
     }
     public void gameOver(int level, boolean complete) //ADVENTURE
     {
-        TextDisplay go = new TextDisplay(complete?"LEVEL CLEARED":"GAME OVER", 60, (!complete)?Color.RED:Color.GREEN);
+        TextDisplay go = new TextDisplay(complete?"LEVEL CLEARED":"GAME OVER", 60, (!complete)?Raylib.RED:Raylib.GREEN);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(!complete&&kill!=null){
-            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, Color.RED.darker());
+            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{
@@ -163,7 +166,7 @@ public class GameUI extends UI
         }
         getWorld().removeObject(waveCounter);
         Overlay hs;
-        TextDisplay beatscore = new TextDisplay((!complete)?"You failed":"You Beat The Level", 20, Color.GREEN.darker());
+        TextDisplay beatscore = new TextDisplay((!complete)?"You failed":"You Beat The Level", 20, Raylib.DARKGREEN);
         getWorld().addObject(beatscore, scoreCounter.getRealX(), scoreCounter.getBottom());
         hs = beatscore;
         Counter waveCounter;
@@ -172,18 +175,18 @@ public class GameUI extends UI
             waveCounter.setTarget(level);
             getWorld().addObject(waveCounter, scoreCounter.getRealX(), hs.getBottom());
         }
-        goToMenuBtn = new Button(140, 60, "Menu", Color.GREEN){
+        goToMenuBtn = new Button(140, 60, "Menu", Raylib.GREEN){
             public void click(){
                 //example of click function
-                getWorld().goToMenu();
+                Game.goToMenu();
             }
         };
         getWorld().addObject(goToMenuBtn, scoreCounter.getRealX(), waveCounter.getBottom()+25+10);
-        nextLvlBtn = new Button(140, 60, complete?"Next Level":"Retry", Color.GREEN){
+        nextLvlBtn = new Button(140, 60, complete?"Next Level":"Retry", Raylib.GREEN){
             public void click(){
                 //example of click function
-                getWorld().goToMenu();
-                getWorld().startGame("adventure");
+                Game.goToMenu();
+                Game.startGame("adventure");
             }
         };
         getWorld().addObject(nextLvlBtn, scoreCounter.getRealX(), goToMenuBtn.getBottom()+100);
@@ -191,11 +194,11 @@ public class GameUI extends UI
     
     public void gameOver(String thing, boolean complete) //TUTORIAL
     {
-        TextDisplay go = new TextDisplay(complete?"TUTORIAL COMPLETE":"TUTORIAL FAILED", 60, (!complete)?Color.RED:Color.GREEN);
+        TextDisplay go = new TextDisplay(complete?"TUTORIAL COMPLETE":"TUTORIAL FAILED", 60, (!complete)?Raylib.RED:Raylib.GREEN);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(!complete&&kill!=null){
-            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, Color.RED.darker());
+            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{
@@ -203,26 +206,26 @@ public class GameUI extends UI
         }
         getWorld().removeObject(waveCounter);
         Overlay hs;
-        TextDisplay beatscore = new TextDisplay((!complete)?"You Failed the Tutorial":"You Cleared the Tutorial", 20, Color.GREEN.darker());
+        TextDisplay beatscore = new TextDisplay((!complete)?"You Failed the Tutorial":"You Cleared the Tutorial", 20, Raylib.DARKGREEN);
         getWorld().addObject(beatscore, scoreCounter.getRealX(), scoreCounter.getBottom());
         hs = beatscore;
         TextDisplay waveCounter;
         if(true){
-            waveCounter = new TextDisplay("Tutorial", 20, Color.GREEN);
+            waveCounter = new TextDisplay("Tutorial", 20, Raylib.GREEN);
             getWorld().addObject(waveCounter, scoreCounter.getRealX(), hs.getBottom());
         }
-        goToMenuBtn = new Button(140, 60, "Menu", Color.GREEN){
+        goToMenuBtn = new Button(140, 60, "Menu", Raylib.GREEN){
             public void click(){
                 //example of click function
-                getWorld().goToMenu();
+                Game.goToMenu();
             }
         };
         getWorld().addObject(goToMenuBtn, scoreCounter.getRealX(), waveCounter.getBottom()+25+10);
-        nextLvlBtn = new Button(140, 60, "Retry", Color.GREEN){
+        nextLvlBtn = new Button(140, 60, "Retry", Raylib.GREEN){
             public void click(){
                 //example of click function
-                getWorld().goToMenu();
-                getWorld().startGame("tutorial");
+                Game.goToMenu();
+                Game.startGame("tutorial");
             }
         };
         getWorld().addObject(nextLvlBtn, scoreCounter.getRealX(), goToMenuBtn.getBottom()+100);
@@ -334,7 +337,7 @@ public class GameUI extends UI
         weaponmessage.setText(i==null?"Crafting failed":"Crafting Succeeded");
         weaponmessagerarity.setVisible(true);
         String[] rarities = new String[]{"Common!", "Uncommon!", "Rare!", "Super Rare!", "Epic!", "Mythic!", "Legendary!", "Seasonal!"};
-        Color[] colors = new Color[]{Color.GRAY, Color.GREEN, Color.BLUE, Color.ORANGE, new Color(255, 0, 255), Color.RED, Color.YELLOW, Color.PINK};
+        Color[] colors = new Color[]{Raylib.GRAY, Raylib.GREEN, Raylib.BLUE, Raylib.ORANGE, new Color((byte)255, (byte)0, (byte)255, (byte)1), Raylib.RED, Raylib.YELLOW, Raylib.PINK};
         if(i!=null){
             weaponmessagerarity.setText(rarities[i.getRarity()]);
             weaponmessagerarity.setColor(colors[i.getRarity()]);

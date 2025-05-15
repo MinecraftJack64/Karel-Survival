@@ -1,7 +1,8 @@
 package com.karel.game.ui.text;
 
 
-import java.awt.Graphics;
+import com.raylib.Color;
+import com.raylib.Raylib;
 
 import com.karel.game.ui.Overlay;
 
@@ -13,11 +14,10 @@ import com.karel.game.ui.Overlay;
  */
 public class TextDisplay extends Overlay
 {
-    private Color textColor = Color.GREEN;
+    private Color textColor = Raylib.GREEN;
     private int size = 0;
     private String text;
-    private int stringLength;
-    public static Color nothing = new Color(0,0,0,0);
+    public static Color nothing = new Color((byte)0,(byte)0,(byte)0,(byte)0);
 
     public TextDisplay()
     {
@@ -28,9 +28,6 @@ public class TextDisplay extends Overlay
     {
         this.text = text;
         this.size = size;
-        updateStringLength();
-
-        newImage();
 
         updateImage();
     }
@@ -39,22 +36,12 @@ public class TextDisplay extends Overlay
         textColor = c;
         this.text = text;
         this.size = size;
-        updateStringLength();
-
-        newImage();
 
         updateImage();
     }
     
-    public void act() {
-        if(needsupdate){
-            updateImage();
-        }
-        needsupdate = false;
-    }
-    private boolean needsupdate = false;
-    public void update(){
-        needsupdate = true;
+    public void update() {
+        //TODO
     }
     public void setText(String ttxt){
         text = ttxt;
@@ -69,8 +56,7 @@ public class TextDisplay extends Overlay
         update();
     }
     public Color getColor(){
-        GreenfootImage image = getImage();
-        return image.getColor();
+        return textColor;
     }
 
     /**
@@ -85,17 +71,8 @@ public class TextDisplay extends Overlay
         }
         image.clear();
         image.drawString(text, 0, image.getFont().getSize());*/
-        setImage(new GreenfootImage(text, size, textColor, nothing));
-    }
-    private void updateStringLength(){
-        stringLength = (text.length()+1) * 10*size/20;
-    }
-    private GreenfootImage newImage(){
-        setImage(new GreenfootImage(stringLength, size));
-        GreenfootImage image = getImage();
-        image.setColor(textColor);
-        image.setFont(new Font(size));
-        return image;
+        //setImage(new GreenfootImage(text, size, textColor, nothing));
+        //TODO
     }
     public double getBottom(){
         return size+getRealY();

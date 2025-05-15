@@ -35,12 +35,6 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public void setStrength(int s){
         strength = s;
     }
-    public void update(){
-        /*if(source!=null){
-            branchOut(source, angle+source.getRealRotation(), distance);
-        }*/
-        super.kAct();
-    }
     public void animate(){
         //if(canAttack())setRealRotation(getRealRotation()+30);
     }

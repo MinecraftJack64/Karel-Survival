@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.ui;
+
+import com.karel.game.Game;
+import com.karel.game.World;
+
 /**
  * Write a description of class UI here.
  * 

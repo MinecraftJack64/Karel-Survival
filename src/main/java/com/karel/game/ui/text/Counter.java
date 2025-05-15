@@ -1,9 +1,7 @@
-package com.karel.game;
+package com.karel.game.ui.text;
 
 
 import java.awt.Graphics;
-
-import com.karel.game.ui.text.TextDisplay;
 
 /**
  * Counter that displays a text and number.
@@ -31,7 +29,7 @@ public class Counter extends TextDisplay
         setText(prefix+value);
     }
     
-    public void act() {
+    public void update() {
         int d = Math.abs(value-target);
         int inc = 0;
         if(d<5){
@@ -51,7 +49,7 @@ public class Counter extends TextDisplay
             value-=inc;
             setText(prefix+value);
         }
-        super.act();
+        super.update();
     }
     public void setValue(int value){
         this.value = target = value;
