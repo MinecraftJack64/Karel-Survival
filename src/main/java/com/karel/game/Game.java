@@ -98,7 +98,6 @@ public class Game
             //
         }
         game.setUI((GameUI)ui);
-        world = new World();
         game.startGame();
         currentMenu = "game";
         gameMode = mode;

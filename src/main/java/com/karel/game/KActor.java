@@ -19,7 +19,7 @@ public abstract class KActor
         setImage(getImage());
     }
     public World getWorld(){
-        return Game.world;/*try{
+        return world;/*try{
         if(super.getWorld()!=null)return (KWorld)super.getWorld();else return KWorld.me;}catch(Exception e){
             return KWorld.me;
         }*/

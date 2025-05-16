@@ -55,7 +55,7 @@ public abstract class GridObject extends KActor
         updateTeam();
     }
     private void updateTeam(){
-        if(Objects.equals(getTeam(), joinedteam)){
+        if(Objects.equals(getTeam(), joinedteam)||getWorld()==null){
             return;
         }
         if(joinedteam!=null){
@@ -63,6 +63,13 @@ public abstract class GridObject extends KActor
         }
         getWorld().getTeams().joinTeam(this, getTeam());
         joinedteam = getTeam();
+    }
+    /**Use specifically when removed, keep track of old team to be added back */
+    private void leaveTeam(){
+        if(joinedteam!=null){
+            getWorld().getTeams().leaveTeam(this, joinedteam);
+            joinedteam = null;
+        }
     }
     public void matchTeam(GridObject other){
         if(other!=null&&other.getTeam()!=null&&!other.getTeam().equals(getTeam())){
@@ -504,6 +511,7 @@ public abstract class GridObject extends KActor
     public void animate(){}
     public void update(){}
     public void notifyWorldRemove(){
+        leaveTeam();
         super.notifyWorldRemove();
         getWorld().allObjects().remove(this);
         clearMounting();
@@ -511,6 +519,7 @@ public abstract class GridObject extends KActor
     public void notifyWorldAdd(){
         super.notifyWorldAdd();
         getWorld().allObjects().add(this);
+        updateTeam();
     }
     public boolean isInGridWorld(){
         return true;

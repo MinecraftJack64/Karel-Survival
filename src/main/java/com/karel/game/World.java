@@ -48,26 +48,7 @@ public class World
     private boolean paused = false;
     public World() 
     {
-        //add the listener for scrolling
-        //WorldHandler.getInstance().getWorldCanvas().addMouseWheelListener(scrollsensor);
-        //Initialize background
         resetBG();
-        /*for(int i = 0; i < 24; i++){   
-        for(int j = 0; j < 16; j++){   
-        if((j+i)%4==0){
-        Zombie rocket = new Zombie();
-        addToGrid(rocket, i, j);
-        }else{
-        Rocket rocket = new Rocket();
-        addToGrid(rocket, i, j);
-        }
-        }
-        }*/
-        //Set paint order for the KActors
-        //Explosion.initializeImages();
-        //ProtonWave.initializeImages();
-        //background.logicalBottomEdge();
-        //grid.print();
     }
 
     public void addToGrid(GridObject a, int x, int y){
@@ -213,8 +194,8 @@ public class World
         if(a.getWorld()!=null){
             return;
         }
-        a.setRealLocation(x, y);
         a.setWorld(this);
+        a.setRealLocation(x, y);
         a.notifyWorldAdd();
     }
     public void removeObject(KActor a){
