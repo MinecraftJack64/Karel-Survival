@@ -1,7 +1,8 @@
 package com.karel.game;
-
-//import static com.raylib.Raylib.*;
 import com.raylib.Texture;
+import com.raylib.Raylib;
+import com.raylib.Rectangle;
+import com.raylib.Vector2;
 /**
  * An actor with additional methods and helpers
  * 
@@ -16,7 +17,10 @@ public abstract class KActor
     Texture image;
     boolean shouldRemove;
     public KActor(){
-        setImage(getImage());
+        if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
+    }
+    public static String getStaticTextureURL(){
+        return "";
     }
     public World getWorld(){
         return world;/*try{
@@ -118,7 +122,13 @@ public abstract class KActor
         getWorld().addObject(obj, getRealX(), getRealY());
     }
     public void update(){};
-    public void render(){};//TODO params
+    public void render(){//TODO: add params like x and y offset and scale
+        System.out.println(getRealRotation());
+        if(getImage()!=null){
+            int w = getImage().getWidth(), h = getImage().getHeight();
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()-w/2), (int)(getRealY()-h/2), w, h), new Vector2(w/2, h/2), (float)(getRealRotation()), Raylib.WHITE);
+        }
+    };
     public void remove(){}
     public void setWorld(World w){
         world = w;

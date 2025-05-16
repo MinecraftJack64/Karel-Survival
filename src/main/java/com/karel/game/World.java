@@ -31,6 +31,7 @@ import java.awt.event.*;
 public class World
 {
     public Grid<KActor> grid = new Grid<KActor>(); // grid for pathfinding(unused currently)
+    private ArrayList<KActor> allKActors = new ArrayList<KActor>();
     public ArrayList<GridEntity> allEntities = new ArrayList<GridEntity>(); // a list of all grid entities in the world
     public ArrayList<GridObject> allGridObjects = new ArrayList<GridObject>(); // a list of all grid objects in the world excluding grid entities
     
@@ -130,7 +131,7 @@ public class World
 
     public void update(){
         if(gameStatus().equals("running")){
-            for(GridObject g: allObjects()){
+            for(KActor g: allKActors()){
                 g.update();
             }
 
@@ -141,9 +142,9 @@ public class World
             }
 
             //remove all gridobjects that want to be
-            for(int i = allObjects().size()-1; i >= 0; i--){
-                if(allObjects().get(i).shouldRemove()){
-                    allObjects().remove(i);
+            for(int i = allKActors().size()-1; i >= 0; i--){
+                if(allKActors().get(i).shouldRemove()){
+                    allKActors().remove(i);
                 }
             }
             if(scrollToPlayer){
@@ -155,7 +156,7 @@ public class World
     public void render(){
         //TODO: render background
         //render remaining objects MOVE TO render()
-        for(GridObject g: allObjects()){
+        for(KActor g: allKActors()){
             g.render();
         }
     }
@@ -171,6 +172,9 @@ public class World
     }
     public ArrayList<GridObject> allObjects(){
         return allGridObjects;
+    }
+    public ArrayList<KActor> allKActors(){
+        return allKActors;
     }
     /*public void cleanUpEntities(){
         for(int i = allEntities.size()-1; i >= 0; i--){
@@ -195,11 +199,12 @@ public class World
             return;
         }
         a.setWorld(this);
+        allKActors.add(a);
         a.setRealLocation(x, y);
         a.notifyWorldAdd();
     }
     public void removeObject(KActor a){
-        //a.remove();
+        allKActors.remove(a);
         a.notifyWorldRemove();
     }
 }

@@ -507,7 +507,7 @@ public abstract class GridObject extends KActor
     public boolean isWall(){
         return !canBePulled();
     }
-    public void render(){animate();}
+    public void render(){animate();super.render();}
     public void animate(){}
     public void update(){}
     public void notifyWorldRemove(){

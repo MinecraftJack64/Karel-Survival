@@ -1,6 +1,6 @@
 package com.karel.game.ui.bars;
 
-import static com.raylib.Raylib.BLUE;
+import com.raylib.Raylib;
 
 import com.karel.game.GridEntity;
 
@@ -20,7 +20,7 @@ public class ShieldBar extends HealthBar
     }*/
     public ShieldBar(int max, int size, int height, int id, GridEntity of)
     {
-        super(max, size, height, BLUE);//BLUE
+        super(max, size, height, Raylib.BLUE);//BLUE
         myGE = of;
         myid = id;
     }

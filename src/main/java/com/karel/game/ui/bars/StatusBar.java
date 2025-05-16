@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import com.karel.game.ui.Overlay;
 import com.raylib.Color;
-import static com.raylib.Raylib.*;
+import com.raylib.Raylib;
 
 /**
  * Write a description of class StatusBar here.
@@ -13,7 +13,7 @@ import static com.raylib.Raylib.*;
  */
 public class StatusBar extends Overlay
 {
-    private Color bgColor = BLACK, barColor = GREEN;
+    private Color bgColor = Raylib.BLACK, barColor = Raylib.GREEN;
     private int size = 0;
     private int value, max;
     private int width, height;

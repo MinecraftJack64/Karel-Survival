@@ -2,7 +2,7 @@ package com.karel.game.ui.bars;
 
 import com.karel.game.GridEntity;
 import com.raylib.Color;
-import static com.raylib.Raylib.*;
+import com.raylib.Raylib;
 
 /**
  * Write a description of class LifeBar here.
@@ -31,7 +31,7 @@ public class LifeBar extends HealthBar
         }
         double perc = getPerc();
         if(perc>1){
-            setColor(BLUE);
+            setColor(Raylib.BLUE);
         }else
             setColor(new Color(perc>=0.5?(byte)(255*(1-perc)*2-128):127, perc<=0.5?(byte)(255*(perc)*2-128):127, (byte)0, (byte)1));
     }

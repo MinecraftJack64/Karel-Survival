@@ -1,7 +1,7 @@
 package com.karel.game.ui.bars;
 
 import com.raylib.Color;
-import static com.raylib.Raylib.*;
+import com.raylib.Raylib;
 /**
  * Write a description of class AmmoBar here.
  * 
@@ -10,9 +10,9 @@ import static com.raylib.Raylib.*;
  */
 public class AmmoBar extends StatusBar
 {
-    public static final Color COLOR = ORANGE;
-    public static final Color SUPER_COLOR = SKYBLUE;
-    public static final Color DISABLED_COLOR = RED;
+    public static final Color COLOR = Raylib.ORANGE;
+    public static final Color SUPER_COLOR = Raylib.SKYBLUE;
+    public static final Color DISABLED_COLOR = Raylib.RED;
     public AmmoBar(int ammo, int max, int size, int height)
     {
         super(ammo, max, size, height, COLOR);
