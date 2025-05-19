@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import com.karel.game.ui.Overlay;
 import com.raylib.Color;
 import com.raylib.Raylib;
+import com.raylib.Rectangle;
+import com.raylib.Vector2;
 
 /**
  * Write a description of class StatusBar here.
@@ -83,6 +85,12 @@ public class StatusBar extends Overlay
         for(int i: phases){
             drawRectangle(getRealX()+size*i/max-1, getRealY(), 2, height, bgColor);
         }*/
+        if(!(this instanceof LifeBar)){
+            return;
+        }
+        System.out.println(this+" "+(int)getRealX()+" "+(int)getRealY()+" "+size+" "+height+" "+bgColor);
+        Raylib.drawRectangle((int)getRealX(), (int)getRealY(), size, height, bgColor);
+        Raylib.drawRectanglePro(new Rectangle((float)getRealX(), (float)getRealY(), size, height), new Vector2(size/2, height/2), (float)getRealRotation(), bgColor);
     }
     public double getBottom(){
         return size+getRealY();

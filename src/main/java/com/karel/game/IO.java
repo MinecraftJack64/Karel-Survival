@@ -15,6 +15,8 @@ public class IO {
         mappings.put("right", KEY_RIGHT);
         mappings.put("up", KEY_UP);
         mappings.put("down", KEY_DOWN);
+        mappings.put("inventoryLeft", KEY_X);
+        mappings.put("inventoryRight", KEY_C);
     }
     public static boolean isActive(String action){
         return mappings.containsKey(action)&&Raylib.isKeyDown(mappings.get(action)); // TODO

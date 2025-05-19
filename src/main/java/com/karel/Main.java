@@ -14,7 +14,7 @@ public class Main {
             beginDrawing();
             clearBackground(RAYWHITE);
             Game.tick();
-            //System.out.println(Game.world.allEntities().size()==2?Game.world.allEntities().get(1).getImage():"");
+            //System.out.println(Game.world.allKActors());
             x++;
             endDrawing();
         }

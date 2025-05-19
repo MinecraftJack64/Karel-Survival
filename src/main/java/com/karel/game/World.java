@@ -157,7 +157,8 @@ public class World
         //TODO: render background
         //render remaining objects MOVE TO render()
         for(KActor g: allKActors()){
-            g.render();
+            System.out.println(g instanceof com.karel.game.ui.bars.LifeBar);
+            if(g.getOpacity()>0)g.render();
         }
     }
     public void togglePause(){
