@@ -43,8 +43,8 @@ public abstract class GridEntity extends GridObject
         return isdead;
     }
     public void notifyWorldRemove(){
-        super.notifyWorldRemove();
         getWorld().allEntities().remove(this);
+        super.notifyWorldRemove();
         removeGraphics();
     }
     public void notifyWorldAdd(){

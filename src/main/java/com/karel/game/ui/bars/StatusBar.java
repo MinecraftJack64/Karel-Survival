@@ -16,7 +16,6 @@ import com.raylib.Vector2;
 public class StatusBar extends Overlay
 {
     private Color bgColor = Raylib.BLACK, barColor = Raylib.GREEN;
-    private int size = 0;
     private int value, max;
     private int width, height;
     protected ArrayList<Integer> phases = new ArrayList<Integer>();
@@ -85,15 +84,15 @@ public class StatusBar extends Overlay
         for(int i: phases){
             drawRectangle(getRealX()+size*i/max-1, getRealY(), 2, height, bgColor);
         }*/
-        if(!(this instanceof LifeBar)){
-            return;
+        //System.out.println(this+" "+(int)getRealX()+" "+(int)getRealY()+" "+size+" "+height+" "+bgColor);
+        Raylib.drawRectanglePro(new Rectangle((float)getRealX(), (float)getRealY(), width, height), new Vector2(width/2, height/2), (float)getRealRotation(), bgColor);
+        Raylib.drawRectanglePro(new Rectangle((float)getRealX(), (float)getRealY(), (int)(width*getPerc()), height), new Vector2(width/2, height/2), (float)getRealRotation(), barColor);
+        for(int i: phases){
+            Raylib.drawRectanglePro(new Rectangle((float)(getRealX()+width*i/max-1), (float)getRealY(), 2, height), new Vector2(width/2, height/2), (float)getRealRotation(), bgColor);
         }
-        System.out.println(this+" "+(int)getRealX()+" "+(int)getRealY()+" "+size+" "+height+" "+bgColor);
-        Raylib.drawRectangle((int)getRealX(), (int)getRealY(), size, height, bgColor);
-        Raylib.drawRectanglePro(new Rectangle((float)getRealX(), (float)getRealY(), size, height), new Vector2(size/2, height/2), (float)getRealRotation(), bgColor);
     }
     public double getBottom(){
-        return size+getRealY();
+        return height+getRealY();
     }
     public void divideIntoPhases(int numphases){
         int interval = getMax()/numphases;

@@ -512,8 +512,8 @@ public abstract class GridObject extends KActor
     public void update(){}
     public void notifyWorldRemove(){
         leaveTeam();
-        super.notifyWorldRemove();
         getWorld().allObjects().remove(this);
+        super.notifyWorldRemove();
         clearMounting();
     }
     public void notifyWorldAdd(){

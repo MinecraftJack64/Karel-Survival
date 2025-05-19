@@ -131,7 +131,8 @@ public class World
 
     public void update(){
         if(gameStatus().equals("running")){
-            for(KActor g: allKActors()){
+            for(int i = 0; i < allKActors().size(); i++){
+                KActor g = allKActors().get(i);
                 g.update();
             }
 
@@ -177,17 +178,6 @@ public class World
     public ArrayList<KActor> allKActors(){
         return allKActors;
     }
-    /*public void cleanUpEntities(){
-        for(int i = allEntities.size()-1; i >= 0; i--){
-            try{GridEntity obj = allEntities.get(i);
-            if(obj.isDead()&&obj.removeOnDeath()||!obj.isInWorld()){
-                if(obj.isInWorld()){
-                    removeObject(obj);
-                }
-                allEntities.remove(i);
-            }}catch(Exception e){}
-        }
-    }*/
     public boolean isPaused(){
         return paused;
     }
