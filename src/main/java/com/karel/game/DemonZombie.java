@@ -10,7 +10,7 @@ import java.util.List;
 public class DemonZombie extends SpawnableZombie
 {
 
-    public static String getStaticTextureURL(){return "demonzareln.png";}
+    public String getStaticTextureURL(){return "demonzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private GridEntity myhive;
     /**

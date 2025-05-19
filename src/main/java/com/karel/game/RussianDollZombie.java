@@ -32,7 +32,7 @@ public class RussianDollZombie extends Zombie
     //Small: cooldown: 30, height 25, distance: 50
     private GridEntity inside;
     private boolean wasBaby;
-    public static String getStaticTextureURL(){return "russianzareln.png";}
+    public String getStaticTextureURL(){return "russianzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     //private int shieldhealth = 300;
     private int damage = 10;

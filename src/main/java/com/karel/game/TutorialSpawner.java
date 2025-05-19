@@ -9,8 +9,7 @@ import java.util.ArrayList;
  */
 public class TutorialSpawner implements Spawner
 {
-    private int bossphase = 0;
-    private boolean bossfight;
+    public boolean firstKill = false;
     public int cwavecooldown = 200;
     public GridEntity boss;
     public World myWorld = Game.world;
@@ -37,6 +36,9 @@ public class TutorialSpawner implements Spawner
     }
     public void checkSpawn(){
         if(myz==null||myz.isDead()){
+            if(myz!=null&&myz.isDead()){
+                firstKill = true;
+            }
             myz = new Zombie();
             spawnZombie(myz);
         }
@@ -82,27 +84,10 @@ public class TutorialSpawner implements Spawner
     public void spawnZombie(GridEntity toSpawn, int x, int y){
         myWorld.addToGrid(toSpawn, x, y);
     }
-    public void heraldBossFight(){
-        spawnZombie(new ZombieHerald(), myWorld.gridwidth/2, myWorld.gridheight/2);
-    }
-    public void startBossFight(){
-        Wizard wizzie = new Wizard();
-        spawnZombie(wizzie, myWorld.gridwidth/2, myWorld.gridheight/2);
-        bossphase = 1;
-        boss = wizzie;
-        bossfight = true;
-        myWorld.bossBG();
-    }
-    public void stopBossFight(){
-        bossfight = false;
-        bossphase = 0;
-        myWorld.resetBG();
-        boss = null;
-    }
-    public void setBossPhase(int p){
-        bossphase = p;
-    }
     public boolean levelComplete(){
         return complete;
+    }
+    public boolean firstKill(){
+        return firstKill;
     }
 }

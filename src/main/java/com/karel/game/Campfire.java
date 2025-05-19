@@ -10,7 +10,7 @@ import java.util.List;
 public class Campfire extends Pet
 {
 
-    public static String getStaticTextureURL(){return "karelnOff.png";}
+    public String getStaticTextureURL(){return "karelnOff.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     /**
      * Initilise this rocket.

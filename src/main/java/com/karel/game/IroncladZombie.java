@@ -13,7 +13,7 @@ public class IroncladZombie extends Zombie
     private boolean canRetaliate = true;
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    public static String getStaticTextureURL(){return "tankzareln.png";}
+    public String getStaticTextureURL(){return "tankzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private static double attackrange = 900;
     /**

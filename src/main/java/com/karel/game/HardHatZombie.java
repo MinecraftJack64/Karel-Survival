@@ -11,7 +11,7 @@ public class HardHatZombie extends Zombie
 {
     private static final int gunReloadTime = 200;         // The minimum delay between firing the gun.
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    public static String getStaticTextureURL(){return "constructionzareln.png";}
+    public String getStaticTextureURL(){return "constructionzareln.png";}
     private int ammo = 0;
     //private int damage = 400;
     private boolean inShieldPhase = true;

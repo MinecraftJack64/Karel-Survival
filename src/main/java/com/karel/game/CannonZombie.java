@@ -14,7 +14,7 @@ public class CannonZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    public static String getStaticTextureURL(){return "cannonzareln.png";}
+    public String getStaticTextureURL(){return "cannonzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private int damage = 400;

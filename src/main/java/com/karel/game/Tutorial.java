@@ -37,12 +37,18 @@ public class Tutorial extends GameMode
                 tutorialphase++;
             }
         }else if(tutorialphase==2){
+            gameUI().setTutorial("Aim at the zombie and attack it");
+            gameUI().setTutorial2("");
+            if(spawner.firstKill()){
+                tutorialphase++;
+            }
+        }else if(tutorialphase==3){
             gameUI().setTutorial("");
             gameUI().setTutorial2("");
             if(((Weapon)(getPlayer().getHeldItem())).isUltReady()){
                 tutorialphase++;
             }
-        }else if(tutorialphase==3){
+        }else if(tutorialphase==4){
             gameUI().setTutorial("Your ult ability charges from dealing damage");
             gameUI().setTutorial2("Press space to use it");
             if(!((Weapon)(getPlayer().getHeldItem())).isUltReady()){
@@ -54,13 +60,13 @@ public class Tutorial extends GameMode
                 SupplyCrate s2 = new SupplyCrate(new WeaponFrag());
                 getWorld().addToGrid(s2, 16, 8);
             }
-        }else if(tutorialphase==4){
+        }else if(tutorialphase==5){
             gameUI().setTutorial("Collect weapon fragments from the loot crates");
             gameUI().setTutorial2("Press e to craft a weapon when you have at least 2");
             if(!(getPlayer().getHeldItem() instanceof Gun)){
                 tutorialphase++;
             }
-        }else if(tutorialphase==5){
+        }else if(tutorialphase==6){
             gameUI().setTutorial("You successfully crafted a new weapon!");
             gameUI().setTutorial2("Press x or c to switch weapons");
             if(getPlayer().getHeldItem() instanceof Gun){

@@ -27,7 +27,7 @@ import java.util.List;
 public class JokerZombie extends Zombie
 {
     private int counterct;
-    public static String getStaticTextureURL(){return "russianzareln.png";}
+    public String getStaticTextureURL(){return "russianzareln.png";}
     /**
      * Initilise this rocket.
      */

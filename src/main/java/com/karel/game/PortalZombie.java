@@ -28,7 +28,7 @@ public class PortalZombie extends Zombie
 {
     private int counterct;
     private int portals;
-    public static String getStaticTextureURL(){return "zareln.png";}
+    public String getStaticTextureURL(){return "zareln.png";}
     /**
      * Initilise this rocket.
      */

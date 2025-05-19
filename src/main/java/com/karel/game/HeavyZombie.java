@@ -24,7 +24,7 @@ package com.karel.game;
  */
 public class HeavyZombie extends SpawnableZombie
 {
-    public static String getStaticTextureURL(){return "heavyzareln.png";}
+    public String getStaticTextureURL(){return "heavyzareln.png";}
     //ShieldBar shieldBar;
     /**
      * Initilise this rocket.

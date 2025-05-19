@@ -211,12 +211,7 @@ public class Game
     public static void tick(){
         lastX = Greenfoot.getMouseX();
         lastY = Greenfoot.getMouseY();
-        if(Greenfoot.isActive("attack")){ //TODO: split attack and click
-            lastClicked = true;
-        }
-        if(Greenfoot.isActive("attack")){
-            lastClicked = false;
-        }
+        lastClicked = Greenfoot.isActive("attack");
         shiftkey = Greenfoot.isActive("autoaim");
         boolean ocp = currentlypausing;
         currentlypausing = Greenfoot.isActive("pause");
@@ -234,6 +229,7 @@ public class Game
             toggleAutoult();
         }
         if(currentMenu.equals("game")){
+            game.tick();
             world.update();
             ui.update();
             ui2.update();

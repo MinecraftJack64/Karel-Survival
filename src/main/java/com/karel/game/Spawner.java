@@ -8,5 +8,5 @@ package com.karel.game;
 public interface Spawner
 {
     public void checkSpawn();
-    public void setBossPhase(int phase);
+    //public void setBossPhase(int phase);
 }

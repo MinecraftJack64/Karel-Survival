@@ -13,8 +13,8 @@ public class Main {
         while (!windowShouldClose()) {
             beginDrawing();
             clearBackground(RAYWHITE);
-            drawText("Hello world", (int)(190+50*Math.sin(x*1.0/180)), 200, 20, VIOLET);
             Game.tick();
+            //System.out.println(Game.world.allEntities().size()==2?Game.world.allEntities().get(1).getImage():"");
             x++;
             endDrawing();
         }

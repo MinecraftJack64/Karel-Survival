@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class NinjaZombie extends Zombie
 {
-    public static String getStaticTextureURL(){return "ninjazareln.png";}
+    public String getStaticTextureURL(){return "ninjazareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int phase = 0;//0 - waiting, 1 - charging, 2 - attacking, 3 - retreating
     private int phasecooldown = 0;//0 - (75-150), 1 - none, 2 - 135(turn 8 deg each time)

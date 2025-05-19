@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class CellTurret extends Pet
 {
-    public static String getStaticTextureURL(){return "chickzareln.png";}
+    public String getStaticTextureURL(){return "chickzareln.png";}
     private int ammo = 0;
     private Class target;
     private int damage = 10;

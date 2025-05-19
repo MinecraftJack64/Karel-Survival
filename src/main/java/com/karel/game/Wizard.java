@@ -44,7 +44,7 @@ public class Wizard extends Boss
     private static final int laserReload = 700;
     private int laserAmmo;
     private int deathwaitcooldown = 100;
-    public static String getStaticTextureURL(){return "angryheraldzareln.png";}
+    public String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
     /**
      * Initilise this rocket.
@@ -72,7 +72,7 @@ public class Wizard extends Boss
         return 10000;
     }
     public void behave(){
-        if(phase==6){
+        if(phase==6||phase==7){
             deathwaitcooldown--;
             setSpeed(0.5);
             Sounds.play("bossshivering");
@@ -81,7 +81,7 @@ public class Wizard extends Boss
                 setSpeed(3);
                 Sounds.play("bossupgrade");
             }
-            walk(Greenfoot.getRandomNumber(361), 1);
+            walk(Greenfoot.getRandomNumber(360), 1);
             return;
         }else if(phase==7){
             behaveInLastPhase();
@@ -96,7 +96,6 @@ public class Wizard extends Boss
             if(phase==5){
                 tankAttack();
             }
-            Game.getGame().getSpawner().setBossPhase(phase);
         }
         //if(true)return;// DEBUG
         if(checkSpores()){
@@ -274,7 +273,6 @@ public class Wizard extends Boss
         }
     }
     public void startLastPhase(){
-        Game.getGame().getSpawner().setBossPhase(6);
         phase = 6;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)){
@@ -284,7 +282,7 @@ public class Wizard extends Boss
         }
     }
     public boolean checkForSurvivors(){
-        Game.getGame().getSpawner().setBossPhase(7);
+        phase = 7;
         boolean found = false;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)&&!g.isDead()){
@@ -294,6 +292,9 @@ public class Wizard extends Boss
             }
         }
         return found;
+    }
+    public int getPhase(){
+        return phase;
     }
     public boolean canBePulled(){
         return false;

@@ -12,6 +12,7 @@ import com.raylib.Vector2;
 public abstract class KActor
 {
     double rx, ry, rh, rrot;
+    int scaleX = 0, scaleY = 0;
     int rop = 255/*real opacity*/;
     World world;
     Texture image;
@@ -19,7 +20,7 @@ public abstract class KActor
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
     }
-    public static String getStaticTextureURL(){
+    public String getStaticTextureURL(){
         return "";
     }
     public World getWorld(){
@@ -116,17 +117,19 @@ public abstract class KActor
         // TODO
     }
     public void scaleTexture(int w, int h){
-        //TODO
+        scaleX = w;
+        scaleY = h;
     }
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
     }
     public void update(){};
     public void render(){//TODO: add params like x and y offset and scale
-        System.out.println(getRealRotation());
+        if(this instanceof Zombie)System.out.println(getRealX()+" "+getRealY()+" "+getImage());
         if(getImage()!=null){
             int w = getImage().getWidth(), h = getImage().getHeight();
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()-w/2), (int)(getRealY()-h/2), w, h), new Vector2(w/2, h/2), (float)(getRealRotation()), Raylib.WHITE);
+            int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), Raylib.WHITE);
         }
     };
     public void remove(){}

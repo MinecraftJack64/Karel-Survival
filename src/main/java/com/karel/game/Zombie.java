@@ -39,7 +39,7 @@ public class Zombie extends GridEntity
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    public static String getStaticTextureURL(){return "zombie.png";}
+    public String getStaticTextureURL(){return "zareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double speed = 2;
@@ -179,6 +179,9 @@ public class Zombie extends GridEntity
     }
     public void walk(double ang, double multiplier){
         super.walk(ang, multiplier*dsmult[Game.currentDiff()]);
+    }
+    public void setImage(String path){
+        super.setImage("GridEntities/Zombies/"+path);
     }
     public ZombieClass[] getZombieClasses(){
         return classes;

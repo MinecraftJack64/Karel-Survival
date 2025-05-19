@@ -14,7 +14,7 @@ public class FungalZombie extends Zombie
     private static final int passiveReloadTime = 4; 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private int passivereloadDelayCount;
-    public static String getStaticTextureURL(){return "sporezareln.png";}  
+    public String getStaticTextureURL(){return "sporezareln.png";}  
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     //private int damage = 400;

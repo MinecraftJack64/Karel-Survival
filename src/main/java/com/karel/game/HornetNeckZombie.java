@@ -13,7 +13,7 @@ public class HornetNeckZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    public static String getStaticTextureURL(){return "hornetnestzareln.png";}
+    public String getStaticTextureURL(){return "hornetnestzareln.png";}
     private int bees = 20;
     /**
      * Initilise this rocket.

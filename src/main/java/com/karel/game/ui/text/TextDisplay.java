@@ -74,6 +74,9 @@ public class TextDisplay extends Overlay
         //setImage(new GreenfootImage(text, size, textColor, nothing));
         //TODO
     }
+    public void render(){
+        Raylib.drawText(text, size, size, size, textColor);
+    }
     public double getBottom(){
         return size+getRealY();
     }

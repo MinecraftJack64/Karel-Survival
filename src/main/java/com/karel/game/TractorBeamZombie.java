@@ -11,7 +11,7 @@ import java.util.List;
 public class TractorBeamZombie extends Zombie
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.controller};
-    public static String getStaticTextureURL(){
+    public String getStaticTextureURL(){
         return "gunzareln.png";
     }
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");

@@ -13,7 +13,7 @@ public class WarriorZombie extends Zombie
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    public static String getStaticTextureURL(){return "warriorzareln.png";} 
+    public String getStaticTextureURL(){return "warriorzareln.png";} 
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 310, retreatrange = 300;

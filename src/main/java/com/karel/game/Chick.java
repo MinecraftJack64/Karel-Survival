@@ -10,7 +10,7 @@ import java.util.List;
 public class Chick extends Pet
 {
 
-    public static String getStaticTextureURL(){return "chickzareln.png";}
+    public String getStaticTextureURL(){return "chickzareln.png";}
     private int ammo = 0;
     private double strength;
     /**

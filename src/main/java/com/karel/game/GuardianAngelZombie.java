@@ -10,7 +10,7 @@ import java.util.List;
 public class GuardianAngelZombie extends Zombie
 {
     private ShieldID myShield, immuneShield;
-    public static String getStaticTextureURL(){return "angelzareln.png";}
+    public String getStaticTextureURL(){return "angelzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     /**
      * Initilise this rocket.

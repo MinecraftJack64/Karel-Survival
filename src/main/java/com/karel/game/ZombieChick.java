@@ -10,7 +10,7 @@ import java.util.List;
 public class ZombieChick extends SpawnableZombie
 {
 
-    public static String getStaticTextureURL(){
+    public String getStaticTextureURL(){
         return "chickzareln.png";
     }
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
