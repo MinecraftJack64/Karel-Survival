@@ -19,18 +19,5 @@
             <artifactId>jaylib-ffm</artifactId>
             <version>5.5.0-0</version>
         </dependency>
-
-        <!-- LWJGL (auto-downloads correct natives for your OS) -->
-        <!--<dependency>
-            <groupId>org.lwjgl</groupId>
-            <artifactId>lwjgl</artifactId>
-            <version>3.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lwjgl</groupId>
-            <artifactId>lwjgl</artifactId>
-            <version>3.3.1</version>
-            <classifier>natives-windows</classifier>
-        </dependency>-->
     </dependencies>
 </project>

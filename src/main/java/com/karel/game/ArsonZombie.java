@@ -24,7 +24,7 @@ public class ArsonZombie extends Zombie
     public ArsonZombie()
     {
         reloadDelayCount = 0;
-        setTexture("arsonzareln");
+        setImage("arsonzareln.png");
         setRealRotation(180);
         setSpeed(2);
         startHealth(200);

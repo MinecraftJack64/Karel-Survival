@@ -277,7 +277,7 @@ public abstract class GridEntity extends GridObject
         startHealth(amt, true);
     }
     public void startHealth(int amt, boolean showbar){
-        if(healthBar!=null){
+        if(healthBar!=null&&healthBar.isInWorld()){
             getWorld().removeObject(healthBar);
         }
         health = maxHealth = amt;
@@ -287,7 +287,7 @@ public abstract class GridEntity extends GridObject
     }
     public void startHealthAsBoss(int amt, int numphases){
         health = maxHealth = amt;
-        if(healthBar!=null){
+        if(healthBar!=null&&healthBar.isInWorld()){
             getWorld().removeObject(healthBar);
         }
         healthBar = new BossBar(amt,500,10,this);
@@ -335,7 +335,7 @@ public abstract class GridEntity extends GridObject
         startHealthShield(amt, true);
     }
     public void startHealthShield(Shield thing, boolean showbar){
-        if(healthBar!=null){
+        if(healthBar!=null&&healthBar.isInWorld()){
             getWorld().removeObject(healthBar);
         }
         healthShield = thing;

@@ -21,6 +21,9 @@ public class Hitter extends GridObject implements SubAffecter
     private boolean trackAfterHit;// if this hitter checks and calls afterHit
     private boolean clipHits;// ignore hitstory, allowing hitting enemies multiple times while passing through them
     private String collidemode = "collide";
+    public String getStaticTextureURL(){
+        return "bullet.png";
+    }
     HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
     public Hitter(GridObject source){
         this.source = source;

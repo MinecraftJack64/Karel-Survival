@@ -125,11 +125,10 @@ public abstract class KActor
     }
     public void update(){};
     public void render(){//TODO: add params like x and y offset and scale
-        if(this instanceof Zombie)System.out.println(getRealX()+" "+getRealY()+" "+getImage());
         if(getImage()!=null){
             int w = getImage().getWidth(), h = getImage().getHeight();
             int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), Raylib.WHITE);
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()-getRealHeight()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), Raylib.WHITE);
         }
     };
     public void remove(){}

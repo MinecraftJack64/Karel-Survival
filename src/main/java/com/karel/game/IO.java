@@ -15,10 +15,12 @@ public class IO {
         mappings.put("right", KEY_RIGHT);
         mappings.put("up", KEY_UP);
         mappings.put("down", KEY_DOWN);
+        mappings.put("ult", KEY_SPACE);
         mappings.put("inventoryLeft", KEY_X);
         mappings.put("inventoryRight", KEY_C);
     }
     public static boolean isActive(String action){
+        if(action.equals("attack")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);}
         return mappings.containsKey(action)&&Raylib.isKeyDown(mappings.get(action)); // TODO
     }
 }
