@@ -54,13 +54,13 @@ public class Weedwacker extends Weapon
     }
     public void equip(){
         super.equip();
-        drone.untrap();
         getHolder().addObjectHere(drone);
         getHolder().mount(drone, -90, 125);
+        System.out.println(drone.getWorld());
     }
     public void unequip(){
-        drone.trap();
         getHolder().getWorld().removeObject(drone);
+        System.out.println(drone.getWorld());
         super.unequip();
     }
     public Weedwacker(ItemHolder actor){

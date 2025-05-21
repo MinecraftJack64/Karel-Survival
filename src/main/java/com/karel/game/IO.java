@@ -11,11 +11,12 @@ public class IO {
     //attack, ult, left, right, up, down, autoaim, craft, gadget, sprint, pause, inventory, inventoryLeft, inventoryRight
     public static final HashMap<String, Integer> mappings = new HashMap<String, Integer>();
     static{
-        mappings.put("left", KEY_LEFT);
-        mappings.put("right", KEY_RIGHT);
-        mappings.put("up", KEY_UP);
-        mappings.put("down", KEY_DOWN);
+        mappings.put("left", KEY_A);
+        mappings.put("right", KEY_D);
+        mappings.put("up", KEY_W);
+        mappings.put("down", KEY_S);
         mappings.put("ult", KEY_SPACE);
+        mappings.put("pause", KEY_ESCAPE);
         mappings.put("inventoryLeft", KEY_X);
         mappings.put("inventoryRight", KEY_C);
     }

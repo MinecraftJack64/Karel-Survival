@@ -12,7 +12,7 @@ public class Main {
         maximizeWindow();
         while (!windowShouldClose()) {
             beginDrawing();
-            clearBackground(RAYWHITE);
+            clearBackground(WHITE);
             Game.tick();
             endDrawing();
         }

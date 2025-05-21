@@ -21,6 +21,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         strength = 0;
         startHealthShield(new MetalShield(healthshieldid, 6));
         setDetectable(false);
+        setImage("karo.png");
         addEffectImmunities(PoisonEffect.class);
     }
     public boolean acceptExternalShields(){
