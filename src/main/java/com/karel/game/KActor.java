@@ -17,6 +17,7 @@ public abstract class KActor
     World world;
     Texture image;
     boolean shouldRemove;
+    private GridObject mounter;
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
     }
@@ -24,11 +25,7 @@ public abstract class KActor
         return "";
     }
     public World getWorld(){
-        return world;/*try{
-        if(super.getWorld()!=null)return (KWorld)super.getWorld();else return KWorld.me;}catch(Exception e){
-            return KWorld.me;
-        }*/
-        //TODO
+        return world;
         
     }
     public void setRealRotation(double rot){
@@ -131,14 +128,33 @@ public abstract class KActor
             Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()-getRealHeight()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), Raylib.WHITE);
         }
     };
-    public void remove(){}
+    public void notifyMount(GridObject other){
+        if(hasMounter())mounter.unmount(this);
+        mounter = other;
+    }
+    public void notifyUnmount(GridObject other){
+        mounter = null;
+    }
+    public GridObject getMounter(){
+        return mounter;
+    }
+    
+    public boolean hasMounter(){
+        return mounter!=null;
+    }
+    public void clearMounting(){
+        if(hasMounter())mounter.unmount(this);
+    }
+    public void remove(){
+        shouldRemove = true;
+    }
     public void setWorld(World w){
         world = w;
     }
     public boolean shouldRemove(){
         return shouldRemove;
     }
-    public void notifyWorldRemove(){world = null;}
+    public void notifyWorldRemove(){world = null;clearMounting();}
     public void notifyWorldAdd(){setWorld(Game.world);}
     public boolean isInGridWorld(){
         return false;

@@ -9,7 +9,7 @@ import com.karel.game.GridEntity;
  * @author Michael Kolling
  * @version 0.1
  */
-public class FungalWave extends Wave
+public class FungalWave extends WaveAttack
 {
     private static final int damage = 50;
     

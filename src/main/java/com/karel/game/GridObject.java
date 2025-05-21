@@ -19,8 +19,7 @@ import java.util.HashSet;
  */
 public abstract class GridObject extends KActor
 {
-    private HashMap<GridObject, Vector> mounts;
-    private GridObject mounter;
+    private HashMap<KActor, Vector> mounts;
     String team;
     String faketeam;
     String joinedteam;
@@ -93,18 +92,18 @@ public abstract class GridObject extends KActor
         matchTeam(other);
         matchPower(other);
     }
-    public void setRealLocation(double x, double y){
-        super.setRealLocation(x, y);
-        updateMounts();
-    }
-    public void setRealRotation(double rot){
-        super.setRealRotation(rot);
-        updateMounts();
-    }
     public void updateMounts(){
         if(mounts!=null){
             for(var g: mounts.entrySet()){
                 g.getKey().branchOut(this, g.getValue().getDirection()+getRealRotation(), g.getValue().getLength(), g.getValue().getHeight());
+                g.getKey().update();
+            }
+        }
+    }
+    public void renderMounts(){
+        if(mounts!=null){
+            for(var g: mounts.entrySet()){
+                g.getKey().render();
             }
         }
     }
@@ -413,7 +412,7 @@ public abstract class GridObject extends KActor
         return getCollidingObjects().get(0);
     }
     public List<GridEntity> getCollidingObjects(){
-        return getGEsInRange(70);//TODO
+        return getGEsInRange(50);//TODO
     }
     public List<GridEntity> getCollidingGEs(){
         List<GridEntity> ges = (List<GridEntity>)getCollidingObjects();
@@ -448,29 +447,29 @@ public abstract class GridObject extends KActor
     public void damageIgnoreShield(GridEntity targ, int amt, double exposure){
         targ.hitIgnoreShield((int)(amt*getPower()), exposure, this);
     }
-    
-    public boolean mount(GridObject other){
+
+    public boolean mount(KActor other){
         if(!isInWorld())return false;
-        if(mounts==null)mounts = new HashMap<GridObject, Vector>();
+        if(mounts==null)mounts = new HashMap<KActor, Vector>();
         mounts.put(other, new Vector(other.getRealX()-getRealX(), other.getRealY()-getRealY(), 0));
         other.notifyMount(this);
         return true;
     }
-    public boolean mount(GridObject other, double deg, double dist){
+    public boolean mount(KActor other, double deg, double dist){
         if(!isInWorld())return false;
-        if(mounts==null)mounts = new HashMap<GridObject, Vector>();
+        if(mounts==null)mounts = new HashMap<KActor, Vector>();
         mounts.put(other, new Vector(deg, dist));
         other.notifyMount(this);
         return true;
     }
-    public boolean mount(GridObject other, double x, double y, double height){
+    public boolean mount(KActor other, double x, double y, double height){
         if(!isInWorld())return false;
-        if(mounts==null)mounts = new HashMap<GridObject, Vector>();
+        if(mounts==null)mounts = new HashMap<KActor, Vector>();
         mounts.put(other, new Vector(x, y, height));
         other.notifyMount(this);
         return true;
     }
-    public boolean unmount(GridObject other){
+    public boolean unmount(KActor other){
         if(mounts!=null){
             boolean removed = mounts.remove(other)!=null;
             if(removed)other.notifyUnmount(this);
@@ -479,16 +478,8 @@ public abstract class GridObject extends KActor
         return false;
     }
     
-    public void notifyMount(GridObject other){
-        if(hasMounter())mounter.unmount(this);
-        mounter = other;
-    }
-    public void notifyUnmount(GridObject other){
-        mounter = null;
-    }
-    
     public void clearMounting(){
-        if(hasMounter())mounter.unmount(this);
+        super.clearMounting();
         if(mounts!=null){
             for(var g: mounts.entrySet()){
                 g.getKey().notifyUnmount(this);
@@ -496,25 +487,23 @@ public abstract class GridObject extends KActor
             mounts = null;
         }
     }
-    
-    public GridObject getMounter(){
-        return mounter;
-    }
-    
-    public boolean hasMounter(){
-        return mounter!=null;
-    }
     public boolean isWall(){
         return !canBePulled();
     }
-    public void render(){animate();super.render();}
+    public void render(){
+        animate();
+        super.render();
+        renderMounts();
+    }
     public void animate(){}
-    public void update(){}
+    public void update(){
+        super.update();
+        updateMounts();
+    }
     public void notifyWorldRemove(){
         leaveTeam();
         getWorld().allObjects().remove(this);
         super.notifyWorldRemove();
-        clearMounting();
     }
     public void notifyWorldAdd(){
         super.notifyWorldAdd();

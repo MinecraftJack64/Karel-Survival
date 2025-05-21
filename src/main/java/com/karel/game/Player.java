@@ -59,7 +59,7 @@ public class Player extends GridEntity {
         this.inventory[17] = new DroneRemote(getHand());
         this.inventory[18] = new SpearWeapon(getHand());
         this.inventory[19] = new Chameleon(getHand());
-        this.inventory[20] = new Gun(getHand());
+        this.inventory[20] = null;
         this.inventory[21] = new Sudo(getHand());
         this.inventory[22] = new Hearth(getHand());
         this.inventory[23] = new Blade(getHand());
@@ -82,6 +82,7 @@ public class Player extends GridEntity {
         this.inventory[40] = new JadeCutter(getHand());
         this.inventory[41] = new GrenadeLauncher(getHand());
         this.inventory[42] = new Farmer(getHand());
+        this.inventory[43] = new Gun(getHand());
         for(Item i: inventory){
             if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
         }

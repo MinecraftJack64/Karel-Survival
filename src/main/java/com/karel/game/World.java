@@ -133,7 +133,8 @@ public class World
         if(gameStatus().equals("running")){
             for(int i = 0; i < allKActors().size(); i++){
                 KActor g = allKActors().get(i);
-                g.update();
+                if(!g.hasMounter())
+                    g.update();
             }
 
             // hurt enemies out of bounds
@@ -145,6 +146,7 @@ public class World
             //remove all gridobjects that want to be
             for(int i = allKActors().size()-1; i >= 0; i--){
                 if(allKActors().get(i).shouldRemove()){
+                    allKActors().get(i).notifyWorldRemove();
                     allKActors().remove(i);
                 }
             }
@@ -158,7 +160,7 @@ public class World
         //TODO: render background
         //render remaining objects MOVE TO render()
         for(KActor g: allKActors()){
-            if(g.getOpacity()>0)g.render();
+            if(g.getOpacity()>0&&!g.hasMounter())g.render();
         }
     }
     public void togglePause(){
@@ -194,7 +196,6 @@ public class World
         a.notifyWorldAdd();
     }
     public void removeObject(KActor a){
-        allKActors.remove(a);
-        a.notifyWorldRemove();
+        a.remove();
     }
 }

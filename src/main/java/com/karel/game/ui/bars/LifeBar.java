@@ -33,7 +33,7 @@ public class LifeBar extends HealthBar
         if(perc>1){
             setColor(Raylib.BLUE);
         }else
-            setColor(new Color(perc>=0.5?(byte)(255*(1-perc)*2-128):127, perc<=0.5?(byte)(255*(perc)*2-128):127, (byte)0, (byte)1));
+            setColor(new Color(perc>=0.5?(byte)(255*(1-perc)*2):-1, perc<=0.5?(byte)(255*(perc)*2):-1, (byte)0, (byte)-1));
     }
     public void update(){
         super.update();

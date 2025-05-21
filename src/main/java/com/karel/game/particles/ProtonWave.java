@@ -10,7 +10,7 @@ import com.karel.game.GridObject;
  * @author Michael Kolling
  * @version 0.1
  */
-public class ProtonWave extends Wave
+public class ProtonWave extends WaveAttack
 {
     private static final int damage = 600;
     private boolean radiate;

@@ -8,18 +8,22 @@ import com.karel.game.Hitter;
  * @author Michael Kolling
  * @version 0.1
  */
-public class Wave extends GridObject
+public class WaveAttack extends Hitter
 {
     private int life = 60;
     private int frame = 1;
     private double maxRadius = 120;
     
-    public Wave()
+    public WaveAttack(GridObject source)
     {
+        super(source);
         //addForce(new Vector(rotation, 15));
         frame = 0;
         setImage("wave.png");
         scaleTexture(0, 0);
+        setNumTargets(-1);
+        setMultiHit(false);
+        setAggression(true);
     }
 
     public void setLife(int life)
@@ -51,6 +55,8 @@ public class Wave extends GridObject
             life--;
             double size = (frame/life) * maxRadius;
             scaleTexture((int)size, (int)size);
+            setRange((int)size);//TODO separate
+            checkHit();
             frame++;
         }
     }

@@ -42,10 +42,13 @@ public abstract class GridEntity extends GridObject
     public boolean isDead(){
         return isdead;
     }
+    public void remove(){
+        super.remove();
+        removeGraphics();
+    }
     public void notifyWorldRemove(){
         getWorld().allEntities().remove(this);
         super.notifyWorldRemove();
-        removeGraphics();
     }
     public void notifyWorldAdd(){
         super.notifyWorldAdd();
@@ -328,7 +331,7 @@ public abstract class GridEntity extends GridObject
             thing.applyTo(this);
             ShieldBar shieldBar = thing.getHealth()>0?new ShieldBar(thing.getHealth(), 40, 5, pos, this):new BadShieldBar(thing.getHealth(), 40, 5, pos, this);
             shieldBars.add(pos, shieldBar);
-            getWorld().addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
+            if(isInWorld())getWorld().addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
         }
     }
     public void startHealthShield(Shield amt){

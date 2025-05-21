@@ -39,7 +39,7 @@ public class TutorialSpawner implements Spawner
             if(myz!=null&&myz.isDead()){
                 firstKill = true;
             }
-            myz = new ArsonZombie();
+            myz = new ShieldZombie();
             spawnZombie(myz);
         }
     }

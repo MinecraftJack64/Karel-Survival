@@ -17,7 +17,6 @@ public class Explosion extends Wave
      */
     public Explosion(double size) 
     {
-        super(null);
         setImage("explosion-big.png");
         setMaxRadius(60*size);
         setLife(12);
