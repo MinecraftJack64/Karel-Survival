@@ -531,6 +531,7 @@ public abstract class GridEntity extends GridObject
     }
     public void update()
     {
+        super.update();
         tickShields();
         applyEffects();
         applyPhysics();

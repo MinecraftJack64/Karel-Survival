@@ -50,7 +50,7 @@ public class TutorialSpawner implements Spawner
         currentlySpawned = new ArrayList<GridEntity>();
         for(int i = 0; i < spawnTypes.size(); i++){
             for(int f = 0; f < spawnCount.get(i); f++){
-                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).newInstance());
+                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).getDeclaredConstructor().newInstance());
                 spawnZombie(toSpawn);currentlySpawned.add(toSpawn);}catch(Exception e){e.printStackTrace();}
             }
         }

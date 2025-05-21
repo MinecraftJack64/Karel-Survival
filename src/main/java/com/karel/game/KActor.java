@@ -3,6 +3,7 @@ import com.raylib.Texture;
 import com.raylib.Raylib;
 import com.raylib.Rectangle;
 import com.raylib.Vector2;
+import com.raylib.Color;
 /**
  * An actor with additional methods and helpers
  * 
@@ -18,6 +19,7 @@ public abstract class KActor
     Texture image;
     boolean shouldRemove;
     private GridObject mounter;
+    private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
     }
@@ -37,10 +39,6 @@ public abstract class KActor
     public void setRealLocation(double x, double y){
         rx = x;
         ry = y;
-        setRealLocation();
-    }
-    public void setRealLocation(){
-        //TODO
     }
     public double getScrollX(){
         return getWorld().getScrollX();
@@ -75,7 +73,6 @@ public abstract class KActor
     }
     public void setRealHeight(double h){
         rh = h;
-        setRealLocation();
     }
     public void translate(double x, double y){
         setRealLocation(getRealX()+x, getRealY()+y);
@@ -125,7 +122,8 @@ public abstract class KActor
         if(getImage()!=null){
             int w = getImage().getWidth(), h = getImage().getHeight();
             int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()-getRealHeight()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), Raylib.WHITE);
+            transColor.setA((byte)getOpacity());
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()-getRealHeight()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), transColor);
         }
     };
     public void notifyMount(GridObject other){
@@ -155,14 +153,11 @@ public abstract class KActor
         return shouldRemove;
     }
     public void notifyWorldRemove(){world = null;clearMounting();}
-    public void notifyWorldAdd(){setWorld(Game.world);}
+    public void notifyWorldAdd(){setWorld(Game.world);shouldRemove = false;}
     public boolean isInGridWorld(){
         return false;
     }
     public boolean isInWorld(){
         return world!=null;
-    }
-    public String act() throws ArrayIndexOutOfBoundsException{
-        return "r";
     }
 }
