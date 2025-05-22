@@ -130,30 +130,28 @@ public class World
     }
 
     public void update(){
-        if(gameStatus().equals("running")){
-            for(int i = 0; i < allKActors().size(); i++){
-                KActor g = allKActors().get(i);
-                if(!g.hasMounter())
-                    g.update();
-            }
+        for(int i = 0; i < allKActors().size(); i++){
+            KActor g = allKActors().get(i);
+            if(!g.hasMounter())
+                g.update();
+        }
 
-            // hurt enemies out of bounds
-            for(GridEntity g: allEntities()){
-                if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
-                    g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
-            }
+        // hurt enemies out of bounds
+        for(GridEntity g: allEntities()){
+            if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
+                g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
+        }
 
-            //remove all gridobjects that want to be
-            for(int i = allKActors().size()-1; i >= 0; i--){
-                if(allKActors().get(i).shouldRemove()){
-                    allKActors().get(i).notifyWorldRemove();
-                    allKActors().remove(i);
-                }
+        //remove all gridobjects that want to be
+        for(int i = allKActors().size()-1; i >= 0; i--){
+            if(allKActors().get(i).shouldRemove()){
+                allKActors().get(i).notifyWorldRemove();
+                allKActors().remove(i);
             }
-            if(scrollToPlayer){
-                scrollX = getPlayer().getRealX()-600;
-                scrollY = getPlayer().getRealY()-400;
-            }
+        }
+        if(scrollToPlayer){
+            scrollX = getPlayer().getRealX()-600;
+            scrollY = getPlayer().getRealY()-400;
         }
     }
     public void render(){

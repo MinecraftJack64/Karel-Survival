@@ -310,7 +310,7 @@ public class Player extends GridEntity {
                     didspecial = false;
                 }
             }
-            if (this.getHeldItem() != null&&(Game.lastClicked||autoattack||getHeldItem().continueUse())&&!didspecial) {
+            if (this.getHeldItem() != null&&(Game.isAttackDown()||autoattack||getHeldItem().continueUse())&&!didspecial) {
                 isattacking = true;
                 this.getHeldItem().use();
     

@@ -12,7 +12,7 @@ import com.karel.game.World;
 public class UI extends World
 {
     public World getWorld(){
-        return Game.world;
+        return this;
     }
     public void create(){}
 }

@@ -41,6 +41,7 @@ public class Game
     public static boolean lastClicked = false; // whether or not the mouse is down
     
     public static String currentMenu = "mainmenu";
+    private static String nextMenu = "";
     public static UI ui; // main game ui
     public static UI ui2; // overlay ui, usually pause menu
     
@@ -99,7 +100,7 @@ public class Game
         }
         game.setUI((GameUI)ui);
         game.startGame();
-        currentMenu = "game";
+        nextMenu = "game";
         gameMode = mode;
     }
     public static void nextMode(){
@@ -230,12 +231,20 @@ public class Game
         }
         if(currentMenu.equals("game")){
             game.tick();
-            world.update();
+            if(gameStatus().equals("running"))world.update();
             ui.update();
             ui2.update();
             world.render();
+            if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
             ui.render();
             ui2.render();
+        }else if(currentMenu.equals("mainmenu")){
+            ui.update();
+            ui.render();
+        }
+        if(!nextMenu.equals("")&&!nextMenu.equals(currentMenu)){
+            currentMenu = nextMenu;
+            nextMenu = "";
         }
     }
     public static int getMouseX(){
@@ -244,8 +253,11 @@ public class Game
     public static int getMouseY(){
         return lastY;
     }
-    public static boolean isMouseDown(){
+    public static boolean isAttackDown(){
         return lastClicked;
+    }
+    public static boolean isMouseDown(){
+        return Greenfoot.isMouseDown();
     }
     public static boolean isShiftDown(){
         return shiftkey;
@@ -255,11 +267,9 @@ public class Game
             game.stopGame();
             game = null;
         }
-        ui2 = null;
-        world = null;
         ui = new MainMenuUI();
         ui.create();
-        currentMenu = "mainmenu";
+        nextMenu = "mainmenu";
     }
     public static void togglePause(){
         world.togglePause();

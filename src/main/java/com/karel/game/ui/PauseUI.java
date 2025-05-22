@@ -22,7 +22,7 @@ public class PauseUI extends UI
         resumeButton = new Button(150, 75, "Resume", Raylib.GREEN){
             public void click(){
                 //example of click function
-                getWorld().togglePause();
+                Game.togglePause();
             }
         };
         getWorld().addObject(resumeButton, go.getRealX(), go.getBottom()+25);

@@ -14,10 +14,9 @@ import com.raylib.Raylib;
  */
 public class Button extends Overlay
 {
-    private Color barColor = Raylib.GRAY;
-    private int size = 0;
+    private Color barColor = Raylib.GRAY, barDisabledColor = Raylib.LIGHTGRAY, barHoverColor = Raylib.DARKGRAY;
     private int width, height;
-    private String text;
+    private String text = "";
     private Color textColor = Raylib.GREEN;
     private int state = 0;//-1 - inactive, 0 - normal, 1 - mouse over, 2 - mouse clicked
     private boolean active = true;
@@ -35,6 +34,7 @@ public class Button extends Overlay
     {
         this.width = size;
         this.height = height;
+        this.text = text;
     }
     public Button(int size, int height, Color c)
     {
@@ -46,6 +46,7 @@ public class Button extends Overlay
     }
     
     public void update() {
+        System.out.println("s");
         //test if mouse over
         int nstate = state;
         if(active){
@@ -67,12 +68,10 @@ public class Button extends Overlay
         }
         if(nstate!=state){
             state = nstate;
-            update();
         }
     }
     public boolean isMouseOver(){
         double mxx = Game.getMouseX()-getRealX()+width/2, myy = Game.getMouseY()-getRealY()+height/2;
-        //System.out.println(mxx+" "+myy);
         return (mxx>=0&&mxx<=width)&&(myy>=0&&myy<=height);
     }
     public void setColor(Color c){
@@ -89,24 +88,21 @@ public class Button extends Overlay
      */
     public void render()
     {
-        /*GreenfootImage image = getImage();
-        image.clear();
+        Color c = barColor;
         if(state<0){
-            image.setColor(barColor.brighter());
+            c = barDisabledColor;
         }else if(state>0){
-            image.setColor(barColor.darker());
-        }else{
-            image.setColor(barColor);
+            c = barHoverColor;
         }
-        if(state==2){
-            image.fillRect(5, 5, width-10, height-10);
-        }else{
-            image.fillRect(0, 0, width, height);
-        }
-        TODO*/
+        int offset = state==2?5:0;
+        int size = width/5;
+        Raylib.drawRectangle((int)(getRealX()-width/2), (int)(getRealY()-height/2), width, height, c);
+        int x = (int)getRealX()-Raylib.measureText(text, size)/2;
+        int y = (int)getRealY();
+        Raylib.drawText(text, x, y, size, textColor);
     }
     public double getBottom(){
-        return size+getRealY();
+        return height+getRealY();
     }
     public void setActive(boolean s){
         active = s;

@@ -24,4 +24,7 @@ public class IO {
         if(action.equals("attack")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);}
         return mappings.containsKey(action)&&Raylib.isKeyDown(mappings.get(action)); // TODO
     }
+    public static boolean isMouseDown(){
+        return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);
+    }
 }

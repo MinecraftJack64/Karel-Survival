@@ -33,7 +33,7 @@ public class Tutorial extends GameMode
         }else if(tutorialphase==1){
             gameUI().setTutorial("Aim with your mouse");
             gameUI().setTutorial2("Left click to attack");
-            if(Game.isMouseDown()){
+            if(Game.isAttackDown()){
                 tutorialphase++;
             }
         }else if(tutorialphase==2){
