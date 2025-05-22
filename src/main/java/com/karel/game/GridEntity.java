@@ -346,6 +346,9 @@ public abstract class GridEntity extends GridObject
         health = maxHealth = 1;
         if(showbar){
             healthBar = new ShieldBar(thing.getHealth(),40,5,-1,this);
+            if(isInWorld()){
+                getWorld().addObject(healthBar, getRealX()*1.0, getRealY()-50);
+            }
         }
     }
     public Shield getHealthShield(){
