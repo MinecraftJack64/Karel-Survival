@@ -409,7 +409,8 @@ public abstract class GridObject extends KActor
         return gs;
     }
     public GridEntity getOneCollidingObject(){
-        return getCollidingObjects().get(0);
+        List<GridEntity> o = getCollidingObjects();
+        return o.size()>0?o.get(0):null;
     }
     public List<GridEntity> getCollidingObjects(){
         return getGEsInRange(50);//TODO

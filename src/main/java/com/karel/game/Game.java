@@ -235,7 +235,7 @@ public class Game
             ui.update();
             ui2.update();
             world.render();
-            if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
+            //if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
             ui.render();
             ui2.render();
         }else if(currentMenu.equals("mainmenu")){

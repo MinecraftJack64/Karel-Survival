@@ -36,6 +36,7 @@ public class FlyingRock extends Projectile
         hitstory = new HashSet<GridEntity>();
         path = new Arc(targetdistance, height, getGravity());
         setDamage(damage);
+        setImage("rock.png");
         setCollisionMode("radius");
         setRange(100);
         setNumTargets(-1);
