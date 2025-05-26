@@ -1,5 +1,12 @@
-package com.karel.game;
+package com.karel.game.weapons;
 
+import com.karel.game.AmmoManager;
+import com.karel.game.Game;
+import com.karel.game.GridEntity;
+import com.karel.game.Item;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
+import com.karel.game.Tickable;
 import com.karel.game.ui.bars.AmmoBar;
 
 /*
@@ -81,7 +88,10 @@ public abstract class Weapon implements Item, Tickable
     }
     public abstract void fire();
     public abstract void fireUlt();
-    public void reload(){}
+    public void reload(){
+        reload(1);
+    }
+    public void reload(int amt){};
     public void update(){
         //
     }

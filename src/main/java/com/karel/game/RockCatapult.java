@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.Weapon;
+
 /**
  * Write a description of class RockCatapult here.
  * 

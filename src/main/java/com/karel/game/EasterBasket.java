@@ -1,5 +1,7 @@
 package com.karel.game;
 import java.util.List;
+
+import com.karel.game.weapons.Weapon;
 /**
  * Write a description of class EasterBasket here.
  * 

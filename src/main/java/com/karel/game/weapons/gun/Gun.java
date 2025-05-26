@@ -1,7 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.gun;
 import java.util.List;
 
+import com.karel.game.Bullet;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.particles.ProtonWave;
+import com.karel.game.weapons.Weapon;
 
 /**
  * Write a description of class Gun here.

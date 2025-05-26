@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.gun.Gun;
 import com.raylib.Texture;
 
 public class Player extends GridEntity {

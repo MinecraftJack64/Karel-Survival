@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.weapons.Weapon;
+
 /**
  * Write a description of class LymphCannon here.
  * 

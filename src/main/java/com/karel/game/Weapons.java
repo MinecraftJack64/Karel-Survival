@@ -1,5 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
+
+import com.karel.game.weapons.gun.Gun;
 /**
  * Write a description of class Weapons here.
  * 

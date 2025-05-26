@@ -8,6 +8,7 @@ import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.UI;
 import com.karel.game.ui.bars.StatusBar;
 
+import static com.raylib.Raylib.getFrameTime;
 import static com.raylib.Raylib.getScreenHeight;
 import static com.raylib.Raylib.getScreenWidth;
 
@@ -37,6 +38,8 @@ import java.awt.event.*;
  */
 public class Game
 {
+    public static final int FPS = 48; // frames per second
+    public static float timeScale = 1;
     public static World world;
     
     //these store inputs, updated every frame
@@ -214,6 +217,7 @@ public class Game
     }
 
     public static void tick(){
+        timeScale = getFrameTime()/((float)FPS);
         lastX = Greenfoot.getMouseX();
         lastY = Greenfoot.getMouseY();
         lastClicked = Greenfoot.isActive("attack");

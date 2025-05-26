@@ -1,6 +1,7 @@
 package com.karel.game;
 
 import com.karel.game.ui.GameUI;
+import com.karel.game.weapons.Weapon;
 
 /**
  * Write a description of class GameMode here.

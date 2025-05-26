@@ -19,11 +19,6 @@ dependencies {
     api(libs.io.github.electronstudio.jaylib.ffm)
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(24) // or higher
-    }
-}
 tasks.jar {
     manifest {
         attributes(
