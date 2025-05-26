@@ -82,7 +82,7 @@ public class Scream extends Weapon
     public int getRarity(){
         return 1;
     }
-    public BotGuide getBotGuide(){
+    /*public BotGuide getBotGuide(){
         return new BotGuide();
     }
     private class BotGuide extends Weapon.BotGuide{
@@ -95,7 +95,7 @@ public class Scream extends Weapon
         public static int getUltIdealRange(){
             return 0;
         }
-    }
+    }*/
 }
 
 

@@ -289,7 +289,7 @@ public abstract class Weapon implements Item, Tickable
         }
         return i;
     }
-    public BotGuide getBotGuide(){
+    /*public BotGuide getBotGuide(){
         return new BotGuide();
     }
     public class BotGuide{
@@ -319,7 +319,7 @@ public abstract class Weapon implements Item, Tickable
         public boolean shouldUseUlt(){
             return true;
         }
-    }
+    }*/
 }
 
 
