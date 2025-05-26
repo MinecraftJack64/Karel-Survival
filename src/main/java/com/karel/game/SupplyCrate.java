@@ -13,6 +13,7 @@ public class SupplyCrate extends GridEntity
     public SupplyCrate(ArrayList<GridObject> todrop){
         startHealth(350);
         setTeam("lootbox");
+        setImage("barrel.png");
         loot = todrop;
     }
     public SupplyCrate(){

@@ -224,7 +224,7 @@ public class Player extends GridEntity {
         }else if(targetLocked){
             return oldtargetx;
         }
-        return Game.getMouseX()+getScrollX();
+        return getWorld().getGridMouseX()+getScrollX();
     }
     public double getTargetY(){
         if(autoaim){
@@ -233,7 +233,7 @@ public class Player extends GridEntity {
         }else if(targetLocked){
             return oldtargety;
         }
-        return Game.getMouseY()+getScrollY();
+        return getWorld().getGridMouseY()+getScrollY();
     }
     public void setTargetLock(boolean t){
         if(!targetLocked&&t){
@@ -250,6 +250,34 @@ public class Player extends GridEntity {
     }
 
     private void checkKeys() {
+        //handle sprinting
+        String sprintkey = "sprint";
+        if(Greenfoot.isActive(sprintkey)&&!sprinting&&sprint>=6/*decreasing rate*/){
+            sprinting = true;
+            Game.gameUI().startSprint();
+        }else if(!Greenfoot.isActive(sprintkey)||sprint<2){
+            sprinting = false;
+        }
+        if(sprinting&&isMoving()){
+            sprint-=2;
+            Game.gameUI().setSprint(sprint);
+        }else{
+            if(sprint<maxsprint){
+                sprint+=sprintrecoverrate;
+                if(sprint>=maxsprint){
+                    sprint = maxsprint;
+                }
+                Game.gameUI().setSprint(sprint);
+            }//else sprint is already max
+            else if(!Greenfoot.isActive(sprintkey)){
+                Game.gameUI().stopSprint();
+            }
+        }
+        if(sprinting){
+            sprintamt = 2;
+        }else{
+            sprintamt = 1;
+        }
         ismoving = false;
         //handle movement
         int xd = 0, yd = 0;
@@ -275,7 +303,7 @@ public class Player extends GridEntity {
             }
         }
         Vector v = new Vector(xd, yd, 0);
-        walk(v.getDirection()+90, (int)v.getLength());
+        walk(v.getDirection()+90, (int)(sprintamt*v.getLength()));
 
         //handle item switching
         if (Greenfoot.isActive("inventoryLeft")) {
@@ -318,35 +346,6 @@ public class Player extends GridEntity {
             }else{
                 isattacking = false;
             }
-        }
-        
-        //handle sprinting
-        String sprintkey = "sprint";
-        if(Greenfoot.isActive(sprintkey)&&!sprinting&&sprint>=6/*decreasing rate*/){
-            sprinting = true;
-            Game.gameUI().startSprint();
-        }else if(!Greenfoot.isActive(sprintkey)||sprint<2){
-            sprinting = false;
-        }
-        if(sprinting&&isMoving()){
-            sprint-=2;
-            Game.gameUI().setSprint(sprint);
-        }else{
-            if(sprint<maxsprint){
-                sprint+=sprintrecoverrate;
-                if(sprint>=maxsprint){
-                    sprint = maxsprint;
-                }
-                Game.gameUI().setSprint(sprint);
-            }//else sprint is already max
-            else if(!Greenfoot.isActive(sprintkey)){
-                Game.gameUI().stopSprint();
-            }
-        }
-        if(sprinting){
-            sprintamt = 2;
-        }else{
-            sprintamt = 1;
         }
     }
     public boolean isAttacking(){

@@ -7,8 +7,8 @@ import static com.raylib.Raylib.KeyboardKey.*;
  * store mappings
  */
 public class IO {
-    //known mappings
-    //attack, ult, left, right, up, down, autoaim, craft, gadget, sprint, pause, inventory, inventoryLeft, inventoryRight
+    //known mappings remaining
+    //inventory
     public static final HashMap<String, Integer> mappings = new HashMap<String, Integer>();
     static{
         mappings.put("left", KEY_A);
@@ -16,6 +16,10 @@ public class IO {
         mappings.put("up", KEY_W);
         mappings.put("down", KEY_S);
         mappings.put("ult", KEY_SPACE);
+        mappings.put("sprint", KEY_LEFT_ALT);
+        mappings.put("autoaim", KEY_LEFT_SHIFT);
+        mappings.put("craft", KEY_E);
+        mappings.put("gadget", KEY_Q);
         mappings.put("pause", KEY_ESCAPE);
         mappings.put("inventoryLeft", KEY_X);
         mappings.put("inventoryRight", KEY_C);

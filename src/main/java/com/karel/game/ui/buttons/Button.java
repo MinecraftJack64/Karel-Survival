@@ -71,7 +71,7 @@ public class Button extends Overlay
         }
     }
     public boolean isMouseOver(){
-        double mxx = Game.getMouseX()-getRealX()+width/2, myy = Game.getMouseY()-getRealY()+height/2;
+        double mxx = getWorld().getMouseX()-getRealX()+width/2, myy = getWorld().getMouseY()-getRealY()+height/2;
         return (mxx>=0&&mxx<=width)&&(myy>=0&&myy<=height);
     }
     public void setColor(Color c){
@@ -96,10 +96,10 @@ public class Button extends Overlay
         }
         int offset = state==2?5:0;
         int size = width/5;
-        Raylib.drawRectangle((int)(getRealX()-width/2), (int)(getRealY()-height/2), width, height, c);
-        int x = (int)getRealX()-Raylib.measureText(text, size)/2;
-        int y = (int)getRealY();
-        Raylib.drawText(text, x, y, size, textColor);
+        Raylib.drawRectangle(renderTransformX((int)(getRealX()-width/2)), renderTransformY((int)(getRealY()-height/2)), renderOriginX(width), renderTransformY(height), c);
+        int x = renderTransformX((int)getRealX()-Raylib.measureText(text, size)/2);
+        int y = renderTransformY((int)getRealY());
+        Raylib.drawText(text, x, y, (int)(size*getWorld().getScreenScale()), textColor);
     }
     public double getBottom(){
         return height+getRealY();

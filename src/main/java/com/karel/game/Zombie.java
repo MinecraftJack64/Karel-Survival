@@ -125,7 +125,7 @@ public class Zombie extends GridEntity
         return true;
     }
     public void die(GridObject killer){
-        if(killer.isAggroTowards(this)){
+        if(isAggroTowards(killer)){
             Beeper bullet = new Beeper(getXP());
             getWorld().addObject (bullet, getRealX(), getRealY());
             Game.increaseScore(getXP());

@@ -8,6 +8,9 @@ import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.UI;
 import com.karel.game.ui.bars.StatusBar;
 
+import static com.raylib.Raylib.getScreenHeight;
+import static com.raylib.Raylib.getScreenWidth;
+
 import java.awt.event.*;
 /*
  * Welcome to Karel Adventure
@@ -78,6 +81,7 @@ public class Game
     }
     public static void startGame(String mode){
         world = new World();
+        world.resetBG();
         //Create the Game UI
         ui = new GameUI();
         initGameUI();
@@ -234,9 +238,12 @@ public class Game
             if(gameStatus().equals("running"))world.update();
             ui.update();
             ui2.update();
+            world.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             world.render();
             //if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
+            ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             ui.render();
+            ui2.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             ui2.render();
         }else if(currentMenu.equals("mainmenu")){
             ui.update();
@@ -272,12 +279,12 @@ public class Game
         nextMenu = "mainmenu";
     }
     public static void togglePause(){
-        world.togglePause();
         if(isPaused()){
             pauseUI().hidePauseMenu();
         }else{
             pauseUI().showPauseMenu();
         }
+        world.togglePause();
     }
     public static void toggleAutoattack(){
         autoattack = !autoattack;

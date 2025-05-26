@@ -5,6 +5,7 @@ import com.karel.game.ui.Overlay;
 import com.karel.game.ui.bars.StatusBar;
 
 import java.awt.event.*;
+import com.raylib.Raylib;
 /*
  * Welcome to Karel Adventure
  * Move using the wasd or arrow keys
@@ -42,14 +43,17 @@ public class World
     //these are constant default values, to be deprecated
     public int gridheight = 16;
     public int gridwidth = 24;
+    public static final int gridSize = 50; // size of each grid square in pixels
+    public double gridSizeScale = 1.0; // scale to screen size
+    public int gridXOffset = 0;
     public int xLowerBound = -500, yLowerBound = -500;
-    public int xUpperBound = 1700, yUpperBound = 1300;
+    public int xUpperBound = gridSize * gridwidth+500, yUpperBound = gridSize * gridheight+500;
+    public String bg = ""; // background image, can be "grid" or "gridBoss"
     private final double gravity = -5;
     
     private boolean paused = false;
     public World() 
     {
-        resetBG();
     }
 
     public void addToGrid(GridObject a, int x, int y){
@@ -62,19 +66,30 @@ public class World
     }
 
     public double gridXToRealX(int x){
-        return 25+x*50;
+        return 25+x*gridSize;
     }
 
     public double gridYToRealY(int y){
-        return 25+y*50;
+        return 25+y*gridSize;
     }
 
     public int realXToGridX(double x){
-        return Math.round((int)(x-25)/50);
+        return Math.round((int)(x-25)/gridSize);
     }
 
     public int realYToGridY(double y){
-        return Math.round((int)(y-25)/50);
+        return Math.round((int)(y-25)/gridSize);
+    }
+    public double getScreenScale(){
+        return gridSizeScale;
+    }
+    public double getScreenOffsetX(){
+        return gridXOffset;
+    }
+    public void setScreenScaleAndOffset(int width, int height){
+        //set the screen scale and offset based on the window size
+        gridSizeScale = Math.min((double)width/(gridwidth*gridSize), (double)height/(gridheight*gridSize));
+        gridXOffset = (int)(width/2.0 - (gridwidth * gridSize * gridSizeScale) / 2.0);
     }
     
     public double getScrollX(){
@@ -88,7 +103,20 @@ public class World
     public double getGravity(){
         return gravity;
     }
-    
+
+    public int getGridMouseX(){
+        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale);
+    }
+    public int getGridMouseY(){
+        return (int)(Game.getMouseY()/gridSizeScale);
+    }
+    public int getMouseX(){
+        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale);
+    }
+    public int getMouseY(){
+        return (int)(Game.getMouseY()/gridSizeScale);
+    }
+
     /**
      * This method is called when the game is over to display the final score.
      */
@@ -104,32 +132,34 @@ public class World
     }
     
     public void bossBG(){// TODO: replace with raylib draw
-        //change BG to boss mode
-        /*GreenfootImage background = getBackground();
-        background.setColor(Color.BLACK);
-        background.fill();
-        background.setColor(Color.WHITE);
-        for(int i = 1; i < gridwidth; i++){
-            background.drawLine(i*50, 0, i*50, getHeight());
-        }
-        for(int j = 1; j < gridheight; j++){
-            background.drawLine(0, j*50, getWidth(), j*50);
-        }*/
+        bg = "gridBoss";
     }
     public void resetBG(){
-        /*GreenfootImage background = getBackground();
-        background.setColor(Color.WHITE);
-        background.fill();
-        background.setColor(Color.BLACK);
-        for(int i = 1; i < gridwidth; i++){
-            background.drawLine(i*50, 0, i*50, getHeight());
+        bg = "grid";
+    }
+    public void drawBG(){
+        if(bg.equals("grid")){
+            for(int i = 1; i < gridwidth; i++){
+                Raylib.drawLine((int)(i*gridSize*gridSizeScale+gridXOffset), 0, (int)(i*gridSize*gridSizeScale+gridXOffset), (int)(gridSize * gridheight*gridSizeScale), Raylib.BLACK);
+            }
+            for(int j = 1; j < gridheight; j++){
+                Raylib.drawLine(0+gridXOffset, (int)(j*gridSize*gridSizeScale), (int)(gridSize*gridwidth*gridSizeScale+gridXOffset), (int)(j*gridSize*gridSizeScale), Raylib.BLACK);
+            }
+        }else if(bg.equals("gridBoss")){
+            Raylib.drawRectangle(gridXOffset, 0, (int)(gridSize*gridwidth*gridSizeScale), (int)(gridSize*gridheight*gridSizeScale), Raylib.BLACK);
+            for(int i = 1; i < gridwidth; i++){
+                Raylib.drawLine((int)(i*gridSize*gridSizeScale+gridXOffset), 0, (int)(i*gridSize*gridSizeScale+gridXOffset), (int)(gridSize * gridheight*gridSizeScale), Raylib.RED);
+            }
+            for(int j = 1; j < gridheight; j++){
+                Raylib.drawLine(0+gridXOffset, (int)(j*gridSize*gridSizeScale), (int)(gridSize*gridwidth*gridSizeScale+gridXOffset), (int)(j*gridSize*gridSizeScale), Raylib.RED);
+            }
         }
-        for(int j = 1; j < gridheight; j++){
-            background.drawLine(0, j*50, getWidth(), j*50);
-        }*/
     }
 
     public void update(){
+        if(paused){
+            return; // do not update if paused
+        }
         for(int i = 0; i < allKActors().size(); i++){
             KActor g = allKActors().get(i);
             if(!g.hasMounter())
@@ -155,11 +185,13 @@ public class World
         }
     }
     public void render(){
-        //TODO: render background
+        drawBG();
         //render remaining objects MOVE TO render()
         for(KActor g: allKActors()){
             if(g.getOpacity()>0&&!g.hasMounter())g.render();
         }
+        Raylib.drawRectangle(0, 0, gridXOffset, Raylib.getScreenHeight(), Raylib.DARKGRAY);
+        Raylib.drawRectangle((int)(gridXOffset+gridSize*gridwidth*gridSizeScale), 0, gridXOffset+2, Raylib.getScreenHeight(), Raylib.DARKGRAY);
     }
     public void togglePause(){
         if(isPaused()){

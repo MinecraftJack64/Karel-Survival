@@ -16,7 +16,7 @@ public class Crystal extends GridEntity implements SubAffecter
         setTeam(source.getTeam());
         targ = target;
         sourc = source;
-        if(target.trap())getWorld().removeObject(target);
+        if(target.trap())source.getWorld().removeObject(target);
         else targ = null;
     }
     public void behave(){

@@ -123,9 +123,18 @@ public abstract class KActor
             int w = getImage().getWidth(), h = getImage().getHeight();
             int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
             transColor.setA((byte)getOpacity());
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle((int)(getRealX()), (int)(getRealY()-getRealHeight()), dw, dh), new Vector2(dw/2, dh/2), (float)(getRealRotation()), transColor);
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getRealX())), renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX(dw), renderTransformY(dh)), new Vector2(renderOriginX(dw/2), renderTransformY(dh/2)), (float)(getRealRotation()), transColor);
         }
     };
+    public int renderTransformX(int x){
+        return (int)((x-(isInGridWorld()?getScrollX():0))*getWorld().getScreenScale()+getWorld().getScreenOffsetX());
+    }
+    public int renderOriginX(int x){
+        return (int)((x-(isInGridWorld()?getScrollX():0))*getWorld().getScreenScale());
+    }
+    public int renderTransformY(int y){
+        return (int)((y-(isInGridWorld()?getScrollY():0))*getWorld().getScreenScale());
+    }
     public void notifyMount(GridObject other){
         if(hasMounter())mounter.unmount(this);
         mounter = other;
