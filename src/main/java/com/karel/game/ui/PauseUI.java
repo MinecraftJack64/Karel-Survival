@@ -33,7 +33,7 @@ public class PauseUI extends UI
             }
         };
         getWorld().addObject(quitButton, go.getRealX(), resumeButton.getBottom()+100);
-        hidePauseMenu();
+        menuBG();
     }
     
     public void showPauseMenu(){

@@ -112,6 +112,7 @@ public class GameUI extends UI
      */
     public void gameOver(boolean beaths) //SURVIVAL+OTHER MODES
     {
+        menuBG();
         TextDisplay go = new TextDisplay("GAME OVER", 60, Raylib.RED);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
@@ -154,6 +155,7 @@ public class GameUI extends UI
     }
     public void gameOver(int level, boolean complete) //ADVENTURE
     {
+        menuBG();
         TextDisplay go = new TextDisplay(complete?"LEVEL CLEARED":"GAME OVER", 60, (!complete)?Raylib.RED:Raylib.GREEN);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
@@ -194,6 +196,7 @@ public class GameUI extends UI
     
     public void gameOver(String thing, boolean complete) //TUTORIAL
     {
+        menuBG();
         TextDisplay go = new TextDisplay(complete?"TUTORIAL COMPLETE":"TUTORIAL FAILED", 60, (!complete)?Raylib.RED:Raylib.GREEN);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();

@@ -237,15 +237,16 @@ public class Game
             game.tick();
             if(gameStatus().equals("running"))world.update();
             ui.update();
-            ui2.update();
+            if(isPaused())ui2.update();
             world.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             world.render();
             //if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
             ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             ui.render();
             ui2.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
-            ui2.render();
+            if(isPaused())ui2.render();
         }else if(currentMenu.equals("mainmenu")){
+            ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             ui.update();
             ui.render();
         }

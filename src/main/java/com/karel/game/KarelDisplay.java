@@ -9,7 +9,7 @@ package com.karel.game;
 public class KarelDisplay extends KActor
 {
     public KarelDisplay(){
-        setTexture("kareln.png");
-        scaleTexture(90, 90);
+        setImage("kareln.png");
+        scaleTexture(150, 150);
     }
 }

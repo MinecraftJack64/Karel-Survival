@@ -5,6 +5,8 @@ import com.karel.game.ui.Overlay;
 import com.karel.game.ui.bars.StatusBar;
 
 import java.awt.event.*;
+
+import com.raylib.Color;
 import com.raylib.Raylib;
 /*
  * Welcome to Karel Adventure
@@ -137,6 +139,9 @@ public class World
     public void resetBG(){
         bg = "grid";
     }
+    public void menuBG(){
+        bg = "menu";
+    }
     public void drawBG(){
         if(bg.equals("grid")){
             for(int i = 1; i < gridwidth; i++){
@@ -153,6 +158,8 @@ public class World
             for(int j = 1; j < gridheight; j++){
                 Raylib.drawLine(0+gridXOffset, (int)(j*gridSize*gridSizeScale), (int)(gridSize*gridwidth*gridSizeScale+gridXOffset), (int)(j*gridSize*gridSizeScale), Raylib.RED);
             }
+        }else if(bg.equals("menu")){
+            Raylib.drawRectangle(0, 0, Raylib.getScreenWidth(), Raylib.getScreenHeight(), new Color((byte)0, (byte)0, (byte)0, (byte)128)); // semi-transparent black
         }
     }
 

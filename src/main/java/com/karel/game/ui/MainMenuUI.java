@@ -19,7 +19,7 @@ public class MainMenuUI extends UI
     private TextDisplay go, modeText, dfcText, tip, modeDesc, diffDesc;
     public void create(){
         go = new TextDisplay("KAREL SURVIVAL", 90, Raylib.GREEN);
-        getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0-45);
+        getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-7)/2.0);
         modeText = new TextDisplay("Mode", 25, Raylib.GREEN);
         getWorld().addObject(modeText, go.getRealX()-200, go.getBottom()+15);
         dfcText = new TextDisplay("Difficulty", 25, Raylib.GREEN);
@@ -54,9 +54,10 @@ public class MainMenuUI extends UI
         };
         getWorld().addObject(playButton, go.getRealX(), dfcSelectButton.getBottom()+200);
         tip = new TextDisplay(Game.getTip(), 20, Raylib.BLUE);
-        getWorld().addObject(tip, playButton.getRealX(), playButton.getRealY()-60);
+        getWorld().addObject(tip, playButton.getRealX(), playButton.getRealY()-80);
         
         KarelDisplay rocket = new KarelDisplay();
-        getWorld().addToGrid(rocket, 12, 10);
+        getWorld().addToGrid(rocket, 12, 2);
+        resetBG();
     }
 }
