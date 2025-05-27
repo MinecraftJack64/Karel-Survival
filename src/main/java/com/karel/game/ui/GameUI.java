@@ -306,6 +306,7 @@ public class GameUI extends UI
         heldItem.setText(t);
     }
     public void addBossBar(BossBar bar){
+        System.out.println("Adding boss bar "+bar);
         boss = bar;
         waveCounter.setVisible(false);
         waveHealth.setVisible(false);
@@ -315,6 +316,7 @@ public class GameUI extends UI
         getWorld().addObject(bar, waveCounter.getRealX(), bossName.getBottom());
     }
     public void removeBossBar(){
+        System.out.println("Removing boss bar "+boss);
         getWorld().removeObject(boss);
         getWorld().removeObject(bossName);
         waveCounter.setVisible(true);

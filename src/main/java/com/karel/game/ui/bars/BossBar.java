@@ -21,12 +21,6 @@ public class BossBar extends LifeBar
         super(max, size, height);
         myGE = of;
     }
-    public void update(){
-        if(myGE!=null&&myGE.isDead())Game.gameUI().removeBossBar();
-        else{
-            super.update();
-        }
-    }
     public String getLabel(){
         return myGE.getName();
     }

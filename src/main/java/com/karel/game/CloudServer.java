@@ -82,7 +82,7 @@ public class CloudServer extends Boss
             }
             walk(Greenfoot.getRandomNumber(361), 1);
             return;
-        }else if(phase==7){
+        }else if(phase==8){
             behaveInLastPhase();
             return;
         }

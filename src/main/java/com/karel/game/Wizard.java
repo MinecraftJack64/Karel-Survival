@@ -83,7 +83,7 @@ public class Wizard extends Boss
             }
             walk(Greenfoot.getRandomNumber(360), 1);
             return;
-        }else if(phase==7){
+        }else if(phase==8){
             behaveInLastPhase();
             return;
         }
