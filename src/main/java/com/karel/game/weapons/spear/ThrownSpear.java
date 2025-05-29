@@ -27,7 +27,7 @@ public class ThrownSpear extends Bullet
     {
         super(rotation, source);
         setSpeed(17);
-        setLife(20);
+        setLife(26);
         setDamage(225);
         setNumTargets(-1);
         setImage(!isreturning?"Weapons/spear/spear.png":"Weapons/spear/spear-return.png");
