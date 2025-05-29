@@ -14,7 +14,7 @@ import com.karel.game.weapons.Weapon;
  */
 public class SpearWeapon extends Weapon
 {
-    private static final int ult = 500;
+    private static final int ult = 450;
     private LandedSpear spear;
     private boolean hasspear = true, spearinhand = true;
     private int ultchargecooldown = 0;

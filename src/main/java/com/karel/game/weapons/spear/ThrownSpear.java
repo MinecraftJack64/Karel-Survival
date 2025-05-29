@@ -28,7 +28,7 @@ public class ThrownSpear extends Bullet
         super(rotation, source);
         setSpeed(17);
         setLife(20);
-        setDamage(200);
+        setDamage(225);
         setNumTargets(-1);
         setImage(!isreturning?"Weapons/spear/spear.png":"Weapons/spear/spear-return.png");
         scaleTexture(60);
@@ -45,7 +45,7 @@ public class ThrownSpear extends Bullet
                 drawcooldown--;
                 if(drawcooldown<=0){
                     // check if throw spear
-                    if(myspear.throwSpear()){phase = 1;setDamage(100);myspear.leaveHand();}
+                    if(myspear.throwSpear()){phase = 1;setDamage(150);myspear.leaveHand();}
                     else {phase = 2;drawcooldown = -15;}
                 }
             }else if(phase==2){//stabbing
