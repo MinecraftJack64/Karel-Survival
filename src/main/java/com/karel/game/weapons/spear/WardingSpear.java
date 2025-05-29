@@ -24,6 +24,8 @@ public class WardingSpear extends Melee
     public WardingSpear(double rotation, boolean dir, SpearWeapon p, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/spear/spear.png");
+        scaleTexture(60);
         setSpeed(15);
         setLife(life);
         setDamage(100);
@@ -31,7 +33,7 @@ public class WardingSpear extends Melee
         degtotarg = rotation+(dir?180:0);
         clockwise = dir;
         spear = p;
-        this.radius = 120;
+        this.radius = 75;
         scores = new HashMap<GridEntity, Integer>();
     }
     

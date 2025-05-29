@@ -19,6 +19,7 @@ public abstract class KActor
     Texture image;
     boolean shouldRemove;
     private GridObject mounter;
+    private String drawCenter = "center"; // "top" or "center"
     private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
@@ -123,12 +124,16 @@ public abstract class KActor
         getWorld().addObject(obj, getRealX(), getRealY());
     }
     public void update(){};
+    public void setDrawCenter(String center){
+        drawCenter = center;
+    }
     public void render(){//TODO: add params like x and y offset and scale
         if(getImage()!=null){
             int w = getImage().getWidth(), h = getImage().getHeight();
             int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
             transColor.setA((byte)getOpacity());
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getRealX())), renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX(dw), renderTransformY(dh)), new Vector2(renderOriginX(dw/2), renderTransformY(dh/2)), (float)(getRealRotation()), transColor);
+            Vector2 center = drawCenter.equals("top")?new Vector2(renderOriginX(dw/2), 0):new Vector2(renderOriginX(dw/2), renderTransformY(dh/2));
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getRealX())), renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX(dw), renderTransformY(dh)), center, (float)getRealRotation(), transColor);
         }
     };
     public void renderTexture(Texture tex, double x, double y, double scaleX, double scaleY, double rot, int opacity){
