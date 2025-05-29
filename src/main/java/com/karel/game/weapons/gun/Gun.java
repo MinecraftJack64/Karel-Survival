@@ -3,8 +3,8 @@ import java.util.List;
 
 import com.karel.game.Bullet;
 import com.karel.game.ItemHolder;
+import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
-import com.karel.game.particles.ProtonWave;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -17,16 +17,16 @@ public class Gun extends Weapon
 {
     private static final int gunReloadTime = 5;
     private boolean quickcharge = false;
-    private int reloadDelayCount;
     private static final int ult = 1750;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if (getAmmo().hasAmmo()) 
         {
             Bullet bullet = new Bullet (getHand().getTargetRotation(), getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             //bullet.move ();
             Sounds.play("gunshoot");
-            reloadDelayCount = (quickcharge?3:0)+(useGadget()?2:0);
+            getAmmo().useAmmo();
+            getAmmo().donateAmmoBar((quickcharge?3:0)+(useGadget()?2:0));
             if(getAttackUpgrade()==1){
                 quickcharge = !quickcharge;
             }
@@ -36,17 +36,6 @@ public class Gun extends Weapon
         ProtonWave bullet = new ProtonWave(getHolder(), getUltUpgrade()==1);
         getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
         Sounds.play("protonwave");
-        /*List<GridEntity> l = getHolder().getGEsInRange(185);
-        for(GridEntity g:l){
-            if(getHolder().isAggroTowards(g)){
-                getHolder().damage(g, 700);
-                //g.applyeffect(new PoisonEffect(30, getHolder()));
-            }
-        }*/
-        //Explosion exp = new Explosion(3);
-        //getHolder().addObjectHere(exp);
-        //Sounds.play("explode");
-        reloadDelayCount = 0;
     }
     public int getUlt(){
         return ult;
@@ -54,17 +43,9 @@ public class Gun extends Weapon
     public void onGadgetActivate(){
         setGadgetTimer(120);
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
-    }
     public Gun(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
     }
     public int defaultGadgets(){
         return 3;

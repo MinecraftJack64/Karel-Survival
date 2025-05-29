@@ -1,6 +1,5 @@
 package com.karel.game.particles;
 import com.karel.game.GridObject;
-import com.karel.game.Hitter;
 
 /**
  * A proton wave that expands and destroys things in its path.
@@ -12,14 +11,14 @@ public class Wave extends GridObject
 {
     private int life = 60;
     private int frame = 1;
-    private double maxRadius = 120;
+    private double maxRadius = 250;
     
     public Wave()
     {
         //addForce(new Vector(rotation, 15));
         frame = 0;
         setImage("wave.png");
-        scaleTexture(0, 0);
+        scaleTexture(1, 1);
     }
 
     public void setLife(int life)
@@ -48,8 +47,7 @@ public class Wave extends GridObject
             die();
         } 
         else {
-            life--;
-            double size = (frame/life) * maxRadius;
+            double size = (frame*1.0/life) * maxRadius;
             scaleTexture((int)size, (int)size);
             frame++;
         }

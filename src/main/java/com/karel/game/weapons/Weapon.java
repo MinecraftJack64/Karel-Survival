@@ -1,6 +1,4 @@
 package com.karel.game.weapons;
-
-import com.karel.game.AmmoManager;
 import com.karel.game.Game;
 import com.karel.game.GridEntity;
 import com.karel.game.Item;
@@ -8,6 +6,7 @@ import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.Tickable;
 import com.karel.game.ui.bars.AmmoBar;
+import com.karel.game.IAmmoManager;
 
 /*
  * weapons:
@@ -41,6 +40,7 @@ public abstract class Weapon implements Item, Tickable
     private int ultcharge = 0;
     private boolean ultready;
     private ItemHolder hand;
+    private IAmmoManager ammo;
     private boolean slotlocked;
     private boolean isusing;
     private boolean isulting;
@@ -91,9 +91,21 @@ public abstract class Weapon implements Item, Tickable
     public void reload(){
         reload(1);
     }
-    public void reload(int amt){};
+    public void reload(double amt){
+        //reload ammo
+        if(getAmmo()!=null){
+            getAmmo().reload(amt);
+            updateAmmo(getAmmo());
+        }
+    }
     public void update(){
         //
+    }
+    public IAmmoManager getAmmo(){
+        return ammo;
+    }
+    public void setAmmo(IAmmoManager ammo){
+        this.ammo = ammo;
     }
     public void onGadgetActivate(){};
     public abstract int getUlt();
@@ -189,7 +201,7 @@ public abstract class Weapon implements Item, Tickable
     public void updateAmmo(int amt){
         Game.gameUI().setAmmo(amt);
     }
-    public void updateAmmo(AmmoManager ammo){
+    public void updateAmmo(IAmmoManager ammo){
         updateAmmo(ammo.getAmmoBar());
     }
     public void newAmmo(int max, int value){
@@ -198,11 +210,14 @@ public abstract class Weapon implements Item, Tickable
     public void newAmmo(int max, int value, int phases){
         Game.gameUI().newAmmo(max, value, phases);
     }
-    public void newAmmo(AmmoManager ammo){
+    public void newAmmo(IAmmoManager ammo){
         Game.gameUI().newAmmo(ammo);
     }
     public void equip(){
         Game.newUltCharge(getUlt(),ultcharge);
+        if(getAmmo()!=null){
+            Game.gameUI().newAmmo(getAmmo());
+        }
         Sounds.play("equip");
     }
     public boolean isUltReady(){

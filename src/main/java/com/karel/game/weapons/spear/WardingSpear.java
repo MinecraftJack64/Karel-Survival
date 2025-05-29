@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.spear;
 import java.util.HashMap;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Melee;
 /**
  * A bullet that can hit asteroids.
  * 

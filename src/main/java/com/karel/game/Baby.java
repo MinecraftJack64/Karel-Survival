@@ -1,7 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
-import com.karel.game.particles.ProtonWave;
+import com.karel.game.weapons.gun.ProtonWave;
 
 /**
  * Write a description of class Baby here.

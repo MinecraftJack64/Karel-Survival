@@ -114,6 +114,11 @@ public abstract class KActor
         scaleX = w;
         scaleY = h;
     }
+    public void scaleTexture(int w){
+        if(image==null)return;
+        scaleX = w;
+        scaleY = w*image.getHeight()/image.getWidth();
+    }
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getRealX(), getRealY());
     }
@@ -126,6 +131,12 @@ public abstract class KActor
             Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getRealX())), renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX(dw), renderTransformY(dh)), new Vector2(renderOriginX(dw/2), renderTransformY(dh/2)), (float)(getRealRotation()), transColor);
         }
     };
+    public void renderTexture(Texture tex, double x, double y, double scaleX, double scaleY, double rot, int opacity){
+        if(tex!=null){
+            int w = tex.getWidth(), h = tex.getHeight();
+            Raylib.drawTexturePro(tex, new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(x)), renderTransformY((int)(y)), renderOriginX((int)scaleX), renderTransformY((int)scaleY)), new Vector2(renderOriginX((int)(scaleX/2)), renderTransformY((int)(scaleY/2))), (float)(rot), new Color((byte)-1, (byte)-1, (byte)-1, (byte)opacity));
+        }
+    }
     public int renderTransformX(int x){
         return (int)((x-(isInGridWorld()?getScrollX():0))*getWorld().getScreenScale()+getWorld().getScreenOffsetX());
     }

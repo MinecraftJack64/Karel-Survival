@@ -1,6 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.spear;
 import java.util.HashMap;
 
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**

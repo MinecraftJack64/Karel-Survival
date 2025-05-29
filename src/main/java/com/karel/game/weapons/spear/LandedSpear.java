@@ -1,5 +1,12 @@
-package com.karel.game;
+package com.karel.game.weapons.spear;
 import java.util.HashMap;
+
+import com.karel.game.Collectible;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
+import com.raylib.Texture;
+import com.karel.images.TextureLoader;
 
 /**
  * represents the Spear weapon when it is on the ground. When collected by the player, it returns to their hand
@@ -11,12 +18,15 @@ public class LandedSpear extends Collectible
 {
     private SpearWeapon myspear;
     private HashMap<GridEntity, Integer> hs;
+    private Texture auraTexture = TextureLoader.loadTexture("Weapons/spear/wave.png");
     public LandedSpear(SpearWeapon sp, HashMap<GridEntity, Integer> scores)
     {
         myspear = sp;
         sp.notifySpear(this);
         hs = scores;
         setRange(60);
+        setImage("Weapons/spear/spear-ground.png");
+        scaleTexture(50, 50);
         setTeam(myspear.getHolder().getTeam());
     }
     public GridObject getTarget(){
@@ -48,6 +58,10 @@ public class LandedSpear extends Collectible
         myspear.removeSpear();
         addObjectHere(bullet);
         super.die();
+    }
+    public void render(){
+        super.render();
+        renderTexture(auraTexture, getRealX(), getRealY(), 120, 120, getRealRotation(), 127);
     }
     public void notifyDamage(GridEntity target, int amt){
         if(!myspear.getHolder().isDead()){

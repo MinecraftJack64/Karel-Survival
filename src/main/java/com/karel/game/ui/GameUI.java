@@ -1,7 +1,7 @@
 package com.karel.game.ui;
 import java.util.ArrayList;
 
-import com.karel.game.AmmoManager;
+import com.karel.game.IAmmoManager;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Game;
@@ -275,7 +275,7 @@ public class GameUI extends UI
         newAmmo(max, value);
         ammo.divideIntoPhases(phases);
     }
-    public void newAmmo(AmmoManager ammo){
+    public void newAmmo(IAmmoManager ammo){
         newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public void disableAmmo(){

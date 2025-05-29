@@ -12,7 +12,7 @@ public class WaveAttack extends Hitter
 {
     private int life = 60;
     private int frame = 1;
-    private double maxRadius = 120;
+    private double maxRadius = 250;
     
     public WaveAttack(GridObject source)
     {
@@ -20,7 +20,7 @@ public class WaveAttack extends Hitter
         //addForce(new Vector(rotation, 15));
         frame = 0;
         setImage("wave.png");
-        scaleTexture(0, 0);
+        scaleTexture(1, 1);
         setNumTargets(-1);
         setMultiHit(false);
         setAggression(true);
@@ -52,8 +52,7 @@ public class WaveAttack extends Hitter
             die();
         } 
         else {
-            life--;
-            double size = (frame/life) * maxRadius;
+            double size = (frame*1.0/life) * maxRadius;
             scaleTexture((int)size, (int)size);
             setRange((int)size);//TODO separate
             checkHit();

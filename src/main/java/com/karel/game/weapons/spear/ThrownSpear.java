@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.spear;
 import java.util.HashMap;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -26,6 +30,9 @@ public class ThrownSpear extends Bullet
         setLife(20);
         setDamage(200);
         setNumTargets(-1);
+        setImage(!isreturning?"Weapons/spear/spear.png":"Weapons/spear/spear-return.png");
+        scaleTexture(60);
+        setRealRotation(getRealRotation()+180);
         returnto = targ;
         isreturning = ir;
         myspear = sp;

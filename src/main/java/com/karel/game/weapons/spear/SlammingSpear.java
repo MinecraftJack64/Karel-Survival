@@ -1,7 +1,12 @@
-package com.karel.game;
+package com.karel.game.weapons.spear;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.karel.game.FlyingRock;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.StunEffect;
 
 /**
  * A bullet that can hit asteroids.
@@ -15,6 +20,8 @@ public class SlammingSpear extends FlyingRock
     public SlammingSpear(HashMap<GridEntity, Integer> hs, SpearWeapon sp, GridObject source)
     {
         super(0, 0, 30, source);
+        setImage("Weapons/spear/spear-loaded.png");
+        scaleTexture(60);
         scores = hs;
         myspear = sp;
         setRange(35);
@@ -25,6 +32,10 @@ public class SlammingSpear extends FlyingRock
     }
     public void doHit(GridEntity g){
         damage(g, 100);
+    }
+    public void applyPhysics(){
+        super.applyPhysics();
+        setRealRotation(getRealRotation() + 30);
     }
     
     public void checkHit(){
@@ -37,6 +48,7 @@ public class SlammingSpear extends FlyingRock
                 }
             }
         }
+        addObjectHere(new SpearSlamWave());
         myspear.returnSpear(null);
     }
 }

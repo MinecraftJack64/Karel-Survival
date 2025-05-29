@@ -7,7 +7,7 @@ package com.karel.game;
  */
 public class SimpleAmmoManager extends AmmoManager
 {
-    public SimpleAmmoManager(int reloadDelay, int maxAmmo){
-        super(reloadDelay, 1, maxAmmo);
+    public SimpleAmmoManager(int reloadDelay, int ammo){
+        super(reloadDelay, ammo, 1);
     }
 }

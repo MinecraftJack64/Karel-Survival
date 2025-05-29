@@ -1,8 +1,9 @@
-package com.karel.game.particles;
+package com.karel.game.weapons.gun;
 
 import com.karel.game.FatalPoisonEffect;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.particles.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.
@@ -33,6 +34,7 @@ public class ProtonWave extends WaveAttack
     {
         setDamage(getDamage() - 10);
         super.applyPhysics();
+        System.out.println("ProtonWave range"+getRange());
     }
     
     public void doHit(GridEntity g){

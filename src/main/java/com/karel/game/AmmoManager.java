@@ -5,12 +5,12 @@ package com.karel.game;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AmmoManager  
+public class AmmoManager implements IAmmoManager
 {
     private int ammoReloadTime;//time it takes to reload one ammo
     private int maxAmmo;//maximum holdable amount of ammo
     private int ammo;//amount of ammo
-    private int ammoReloadDelay;//current cooldown for reloading ammo
+    private double ammoReloadDelay;//current cooldown for reloading ammo
     public AmmoManager(int reloadDelay, int ammo, int maxAmmo){
         this.maxAmmo = maxAmmo;
         this.ammoReloadTime = reloadDelay;
@@ -20,11 +20,14 @@ public class AmmoManager
         return maxAmmo*ammoReloadTime;
     }
     public int getAmmoBar(){
-        return ammo*ammoReloadTime+ammoReloadDelay;
+        return (int)(ammo*ammoReloadTime+ammoReloadDelay);
     }
     public void reload(){
+        reload(1);
+    }
+    public void reload(double speed){
         if(ammo<maxAmmo){
-            ammoReloadDelay++;
+            ammoReloadDelay+=speed;
             if(ammoReloadDelay>=ammoReloadTime){
                 ammo++;
                 ammoReloadDelay = 0;
