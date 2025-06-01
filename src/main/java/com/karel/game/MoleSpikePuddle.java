@@ -1,5 +1,7 @@
 package com.karel.game;
 import java.util.HashSet;
+
+import com.karel.game.weapons.EffectID;
 /**
  * Write a description of class MoleSpikePuddle here.
  * 

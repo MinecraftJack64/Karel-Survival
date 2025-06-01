@@ -10,6 +10,8 @@ import com.karel.game.ui.bars.BossBar;
 import com.karel.game.ui.bars.HealthBar;
 import com.karel.game.ui.bars.LifeBar;
 import com.karel.game.ui.bars.ShieldBar;
+import com.karel.game.weapons.EffectID;
+import com.karel.game.weapons.ShieldID;
 
 /**
  * Write a description of class GridEntity here.

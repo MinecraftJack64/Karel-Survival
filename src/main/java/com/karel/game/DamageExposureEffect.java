@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * Temporarily makes the target take more or less damage using PercentageShield
  */

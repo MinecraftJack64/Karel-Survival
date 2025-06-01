@@ -1,5 +1,15 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.critters;
+
+import com.karel.game.Dasher;
+import com.karel.game.DasherDoer;
+import com.karel.game.ExternalImmunityShield;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.HealCharge;
+import com.karel.game.Pet;
+import com.karel.game.PowerPercentageEffect;
+import com.karel.game.StunEffect;
+import com.karel.game.weapons.ShieldID;
 import com.raylib.Texture;
 
 /**
@@ -13,7 +23,7 @@ public class Critter extends Pet implements ICritter
 
     public static Texture rocket = Greenfoot.loadTexture("rocket.png");
     public static Texture rocket2 = Greenfoot.loadTexture("rocketWithThrust.png");
-    private LilCreatures perch;
+    private LilCritters perch;
     private int ammo = 0;
     private Dasher dash;
     private boolean calledback = false;
@@ -22,7 +32,7 @@ public class Critter extends Pet implements ICritter
     /**
      * Initilise this rocket.
      */
-    public Critter(int id, LilCreatures spawner, GridEntity hive)
+    public Critter(int id, LilCritters spawner, GridEntity hive)
     {
         super(hive);
         this.id = id;
@@ -106,6 +116,11 @@ public class Critter extends Pet implements ICritter
     public void notifyDamage(GridEntity target, int amt){
         if(perch.getAttackUpgrade()==1)ult+=amt;
         super.notifyDamage(target, amt);
+    }
+    public void gadget(){
+        heal(getMaxHealth()-getHealth(), this);
+        addObjectHere(new HealCharge(0, getSpawner(), getSpawner().getMaxHealth()/10));
+        applyEffect(new PowerPercentageEffect(1.5, 120, this));
     }
     public void toggleCallBack(){
         calledback = !calledback;

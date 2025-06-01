@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import com.karel.game.particles.Explosion;
+import com.karel.game.weapons.EffectID;
 
 import java.util.List;
 import java.util.ArrayList;

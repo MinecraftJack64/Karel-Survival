@@ -1,7 +1,12 @@
 package com.karel.game;
 
+import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.critters.LilCritters;
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.paintgun.PaintGun;
+import com.karel.game.weapons.scream.Scream;
+import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.raylib.Texture;
 
@@ -54,7 +59,7 @@ public class Player extends GridEntity {
         this.inventory[9] = new Lovestrike(getHand());
         this.inventory[10] = new CapsaicinTorch(getHand());
         this.inventory[11] = new Reaper(getHand());
-        this.inventory[12] = new LilCreatures(getHand());
+        this.inventory[12] = new LilCritters(getHand());
         this.inventory[13] = new AirPump(getHand());
         this.inventory[14] = new CrystalGun(getHand());
         this.inventory[15] = new Weedwacker(getHand());

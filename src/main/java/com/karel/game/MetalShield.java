@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.ShieldID;
+
 /**
  * Tanks a certain amount of hits. A single 1 damage hit does the same damage to this shield as a 2000 damage hit
  * 

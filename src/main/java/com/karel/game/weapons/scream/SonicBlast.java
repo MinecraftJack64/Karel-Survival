@@ -1,5 +1,10 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.scream;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SoftPullEffect;
+import com.karel.game.weapons.EffectID;
 
 /**
  * A bullet that can hit asteroids.
@@ -8,11 +13,6 @@ import java.util.List;
  */
 public class SonicBlast extends Bullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 50;
-    private boolean isSuper;
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 10;
     
     public SonicBlast(double rotation, boolean isSuper, GridObject source)
     {
@@ -21,7 +21,6 @@ public class SonicBlast extends Bullet
         setLife(30);
         setDamage(40);
         setNumTargets(-1);
-        this.isSuper = isSuper;
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

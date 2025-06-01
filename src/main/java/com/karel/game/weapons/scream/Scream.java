@@ -1,6 +1,8 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.scream;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
+import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.Weapon;
 
 /**

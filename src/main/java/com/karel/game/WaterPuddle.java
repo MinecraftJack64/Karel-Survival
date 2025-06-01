@@ -1,5 +1,7 @@
 package com.karel.game;
 import java.util.HashMap;
+
+import com.karel.game.weapons.EffectID;
 /**
  * Write a description of class WaterPuddle here.
  * 

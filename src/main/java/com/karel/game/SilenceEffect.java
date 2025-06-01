@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * Temporarily mutes the target, preventing abilities like attacks.
  * @author MinecraftJack64

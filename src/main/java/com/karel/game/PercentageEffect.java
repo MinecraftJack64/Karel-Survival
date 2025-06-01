@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * Write a description of class PercentageEffect here.
  * 

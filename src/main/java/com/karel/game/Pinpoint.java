@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.karel.game.weapons.EffectID;
+
 /**
  * A bullet that can hit asteroids.
  * 

@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * An effect that lasts a specified number of frames, removing itself after.
  * @author MinecraftJack64

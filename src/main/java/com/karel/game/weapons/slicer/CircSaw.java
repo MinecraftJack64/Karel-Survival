@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.slicer;
+
+import com.karel.game.Boomerang;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -7,15 +11,7 @@ package com.karel.game;
  */
 public class CircSaw extends Boomerang
 {
-    /** The damage this bullet will deal */
-    private int damage = 25;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 50;
-    private double speed;
-    private boolean isSingleTarget;
     private int phase;
-    private GridEntity targ;
     private boolean hasreturned;
     
     public CircSaw(double rotation, GridObject source)
@@ -25,7 +21,7 @@ public class CircSaw extends Boomerang
         setNumTargets(-1);
         phase = 1;
         hasreturned = false;
-        setDamage(100);
+        setDamage(125);
         setLife(25);
         setDamageOnReturn(1);
     }

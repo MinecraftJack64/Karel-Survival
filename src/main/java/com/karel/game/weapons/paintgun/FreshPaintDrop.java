@@ -1,5 +1,9 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.paintgun;
+
+import com.karel.game.GridObject;
+import com.karel.game.PercentageShield;
+import com.karel.game.Shield;
+import com.karel.game.weapons.ShieldID;
 
 /**
  * A bullet that can hit asteroids.

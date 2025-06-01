@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * Temporarily makes the target undetectable to others TODO
  * @author MinecraftJack64

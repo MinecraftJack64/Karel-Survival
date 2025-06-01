@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * Temporarily stuns the target, stopping their movement and abilities
  * @author MinecraftJack64

@@ -2,6 +2,7 @@ package com.karel.game;
 import java.util.ArrayList;
 
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.slicer.Slicer;
 /**
  * Write a description of class Weapons here.
  * 

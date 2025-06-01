@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.critters;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.HealCharge;
 
 /**
  * A bullet that can hit asteroids.
@@ -7,14 +11,9 @@ package com.karel.game;
  */
 public class FlyingCritter extends Bullet implements ICritter
 {
-    /** The damage this bullet will deal */
-    private static final int damage = 200;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 25;
-    private LilCreatures master;
+    private LilCritters master;
     private int id;
-    public FlyingCritter(double rotation, GridEntity source, LilCreatures spawner, int id)
+    public FlyingCritter(double rotation, GridEntity source, LilCritters spawner, int id)
     {
         super(rotation, source);
         setLife(25);
@@ -22,6 +21,10 @@ public class FlyingCritter extends Bullet implements ICritter
         setDamage(100);
         master = spawner;
         this.id = id;
+    }
+    public void gadget(){
+        addObjectHere(new HealCharge(0, (GridEntity)getSource(), ((GridEntity)getSource()).getMaxHealth()/10));
+        setPower(1.5);
     }
     public void die(){
         Critter spawn = new Critter(id, master, (GridEntity)getSource());

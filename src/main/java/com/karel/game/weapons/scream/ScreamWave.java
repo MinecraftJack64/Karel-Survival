@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.scream;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.

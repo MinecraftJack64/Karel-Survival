@@ -1,4 +1,8 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+import com.karel.game.weapons.ShieldID;
+
 /**
  * Write a description of class ImmunityShield here.
  * 

@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.slicer;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -12,7 +14,6 @@ public class Slicer extends Weapon
 {
     private static final int ult = 2100, reloadtime = 15;
     private CircSaw lasso;
-    private int ultchargecooldown = 0;
     private int attackcooldown = 0;
     public void fire(){//one full ammo deals 350 damage
         if (attackcooldown<=0) 

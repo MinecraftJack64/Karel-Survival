@@ -83,6 +83,7 @@ public abstract class Weapon implements Item, Tickable
     public void tick(){
         update();
         reload();
+        reloadGadget();
         if(currentgadgettimer>0)currentgadgettimer--;
         if(gadgetscooldown>0)currentgadgettimer--;
     }
@@ -279,6 +280,16 @@ public abstract class Weapon implements Item, Tickable
     public int getGadgetsCooldown(){
         return gadgetscooldown;
     }
+    public int defaultGadgetsCooldown(){
+        return 60;
+    }
+    public void setGadgetsCooldown(int i){
+        gadgetscooldown = i;
+    }
+    public void reloadGadget(){
+        if(getGadgetsCooldown()>0)setGadgetsCooldown(getGadgetsCooldown()-1);
+        if(getGadgetTimer()>0)setGadgetTimer(getGadgetTimer()-1);
+    }
     public boolean canActivateGadget(){
         return getGadgets()>0&&getGadgetsCooldown()==0;
     }
@@ -299,6 +310,7 @@ public abstract class Weapon implements Item, Tickable
         if(!isUsingGadget()&&canActivateGadget()){
             gadgets--;
             onGadgetActivate();
+            setGadgetsCooldown(defaultGadgetsCooldown());
             return true;
         }
         return false;

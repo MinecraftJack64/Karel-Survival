@@ -8,6 +8,7 @@ package com.karel.game;
 public class Target extends KActor
 {
     public Target(){
-        setImage("target.png");
+        setImage("skull.png");
+        scaleTexture(60);
     }
 }

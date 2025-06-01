@@ -1,5 +1,8 @@
 package com.karel.game;
 import java.util.List;
+
+import com.karel.game.weapons.EffectID;
+
 import java.util.ArrayList;
 
 /**

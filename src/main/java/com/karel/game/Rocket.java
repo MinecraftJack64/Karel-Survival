@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.weapons.EffectID;
+
 /**
  * A rocket that flies an entity
  * 

@@ -1,5 +1,11 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.paintgun;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.PercentageShield;
+import com.karel.game.Shield;
+import com.karel.game.weapons.ShieldID;
 
 /**
  * A bullet that can hit asteroids.
@@ -8,9 +14,6 @@ import java.util.List;
  */
 public class PaintDrop extends Bullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 50;
-    private boolean isSuper;
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
     
@@ -19,8 +22,14 @@ public class PaintDrop extends Bullet
         super(rotation, source);
         setSpeed(20);
         setLife(isSuper?15:30);
-        setDamage(isSuper?70:20);
-        this.isSuper = isSuper;
+        setDamage(isSuper?70:17);
+        if(isSuper){
+            setImage("Weapons/paintgun/projUlt.png");
+            scaleTexture(25);
+        }else{
+            setImage("Weapons/paintgun/proj.png");
+            scaleTexture(20);
+        }
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

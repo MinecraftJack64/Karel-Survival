@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.critters;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -18,7 +21,7 @@ public class CritterSlime extends Bullet
         super(rotation, source);
         setSpeed(15);
         setLife(20);
-        setDamage(30);
+        setDamage(40);
         setNumTargets(2);
     }
 }

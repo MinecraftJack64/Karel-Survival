@@ -16,6 +16,7 @@ import com.karel.game.ui.buttons.Button;
 import com.karel.game.ui.text.Counter;
 import com.karel.game.ui.text.ShyTextDisplay;
 import com.karel.game.ui.text.TextDisplay;
+import com.karel.game.Player;
 import com.raylib.Color;
 import com.raylib.Raylib;
 
@@ -36,7 +37,6 @@ public class GameUI extends UI
     private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, tut1, tut2, bossName;
     private Button goToMenuBtn, nextLvlBtn;
     private BossBar boss;
-    private ArrayList<TextDisplay> weaponchances = new ArrayList<TextDisplay>();
     public void create(){
         waveCounter = new Counter("Wave ", 20);
         scoreCounter = new Counter("Score: ", 20);
@@ -117,7 +117,7 @@ public class GameUI extends UI
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(kill!=null){
-            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, DARKRED);
+            TextDisplay killer = new TextDisplay(kill instanceof Player?"You stepped out of bounds":("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill)), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{
@@ -160,7 +160,7 @@ public class GameUI extends UI
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(!complete&&kill!=null){
-            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, DARKRED);
+            TextDisplay killer = new TextDisplay(kill instanceof Player?"You stepped out of bounds":("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill)), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{
@@ -201,7 +201,7 @@ public class GameUI extends UI
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(!complete&&kill!=null){
-            TextDisplay killer = new TextDisplay("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill), 20, DARKRED);
+            TextDisplay killer = new TextDisplay(kill instanceof Player?"You stepped out of bounds":("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill)), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{

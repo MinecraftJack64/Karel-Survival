@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.weapons.EffectID;
+import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 
 /**

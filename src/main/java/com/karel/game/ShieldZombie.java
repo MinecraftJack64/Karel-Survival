@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.weapons.ShieldID;
 import com.raylib.Texture;
 
 /*

@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * Temporarily immobilizes the target, preventing movement abilities.
  * @author MinecraftJack64

@@ -1,6 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.paintgun;
 import java.util.List;
 
+import com.karel.game.AmmoManager;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -15,7 +18,7 @@ public class PaintGun extends Weapon
     private AmmoManager ammo;
     private static final int ultReloadTime = 4;
     private int reloadDelayCount;
-    private static final int ult = 2000;
+    private static final int ult = 1500;
     private int startUltCooldown = 0; // 30
     public void fire(){
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 

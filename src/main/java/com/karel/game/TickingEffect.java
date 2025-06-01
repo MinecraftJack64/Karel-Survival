@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.weapons.EffectID;
+
 /**
  * An effect that "ticks" a certain number of times at an interval, removing itself after.
  * Uses duration as the number of times

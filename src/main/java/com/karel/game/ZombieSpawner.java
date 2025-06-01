@@ -15,7 +15,7 @@ public class ZombieSpawner implements Spawner
 
     public int waveHealth = 0;
     public int waveMaxHealth = 0;
-    public int wavelevel = 1;
+    public int wavelevel = 29;
     
     public QueueMap<Integer, Boss> bosses;
     private int nextBossWave;

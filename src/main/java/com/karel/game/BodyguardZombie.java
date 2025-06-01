@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.weapons.ShieldID;
+
 /**
  * Write a description of class BodyguardZombie here.
  * 

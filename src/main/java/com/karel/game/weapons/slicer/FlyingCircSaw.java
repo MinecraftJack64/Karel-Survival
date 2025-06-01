@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.slicer;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -18,7 +22,7 @@ public class FlyingCircSaw extends Bullet
         super(rotation, source);
         setSpeed(22);
         setLife(30);
-        setDamage(200);
+        setDamage(250);
         setNumTargets(5);
         setMultiHit(false);
     }

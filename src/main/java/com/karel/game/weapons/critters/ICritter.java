@@ -1,4 +1,4 @@
-package com.karel.game;
+package com.karel.game.weapons.critters;
 /**
  * Write a description of class ICritter here.
  * 
@@ -7,5 +7,5 @@ package com.karel.game;
  */
 public interface ICritter
 {
-    //
+    public void gadget();
 }
