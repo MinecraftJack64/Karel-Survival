@@ -90,7 +90,7 @@ public abstract class Weapon implements Item, Tickable
     public abstract void fire();
     public abstract void fireUlt();
     public void reload(){
-        reload(1);
+        reload(getHand().getReloadSpeed());
     }
     public void reload(double amt){
         //reload ammo
@@ -213,6 +213,9 @@ public abstract class Weapon implements Item, Tickable
     }
     public void newAmmo(IAmmoManager ammo){
         Game.gameUI().newAmmo(ammo);
+    }
+    public void disableAmmo(){
+        Game.gameUI().disableAmmo();
     }
     public void equip(){
         Game.newUltCharge(getUlt(),ultcharge);

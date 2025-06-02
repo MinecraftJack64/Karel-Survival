@@ -4,10 +4,12 @@ import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.critters.LilCritters;
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
+import com.karel.game.weapons.doublegun.DoubleGun;
 import com.raylib.Texture;
 
 public class Player extends GridEntity {
@@ -67,7 +69,7 @@ public class Player extends GridEntity {
         this.inventory[17] = new DroneRemote(getHand());
         this.inventory[18] = new Shotgun(getHand());
         this.inventory[19] = new Chameleon(getHand());
-        this.inventory[20] = null;
+        this.inventory[20] = new DoubleGun(getHand());
         this.inventory[21] = new Sudo(getHand());
         this.inventory[22] = new Hearth(getHand());
         this.inventory[23] = new Blade(getHand());
@@ -197,7 +199,7 @@ public class Player extends GridEntity {
         autoult = Game.autoUlt();
         autoattack = Game.autoAttack();
         this.checkKeys();
-        double targang = face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
+        face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
         if (this.hacooldown > 20 && !this.isDead()/* && getWorld().getGame().getDifficulty<2*/) {
             heal(this, diffheal[diff]);
         }
@@ -434,6 +436,9 @@ public class Player extends GridEntity {
         }
         public boolean isMoving(){
             return getHolder().isMoving();
+        }
+        public double getReloadSpeed(){
+            return getHolder().getReloadMultiplier();
         }
         public Player getHolder(){
             return Player.this;

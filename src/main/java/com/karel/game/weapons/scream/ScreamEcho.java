@@ -7,6 +7,9 @@ public class ScreamEcho extends Bullet
     public ScreamEcho(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/scream/proj2.png");
+        scaleTexture(60);
+        setRealRotation(rotation);
         setSpeed(20);
         setRealRotation(rotation);
         setLife(10);

@@ -19,6 +19,9 @@ public class SonicBlast extends Bullet
     public SonicBlast(double rotation, boolean isSuper, boolean isGadget, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/scream/projUlt.png");
+        scaleTexture(125);
+        setRealRotation(rotation);
         setSpeed(20);
         setLife(30);
         setDamage(40);

@@ -1,4 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.necromancer;
+
+import com.karel.game.Boomerang;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
 
 /**
  * A bullet that can hit asteroids.
@@ -7,14 +12,7 @@ package com.karel.game;
  */
 public class Lifesteal extends Boomerang
 {
-    /** The damage this bullet will deal */
     private int damage = 35;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 50;
-    private double speed;
-    private boolean isSingleTarget;
-    private int phase;
     private int dmgdone = 0;
     private GridEntity targ;
     GridEntity hypnoed;

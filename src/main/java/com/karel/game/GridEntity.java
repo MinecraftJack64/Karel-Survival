@@ -26,7 +26,7 @@ public abstract class GridEntity extends GridObject
     private int health = maxHealth;
     HealthBar healthBar;
     public double movementspeed = 5, speedmultiplier = 1;
-    private double exposureMultiplier = 1, sizeMultiplier = 1;
+    private double exposureMultiplier = 1, sizeMultiplier = 1, reloadMultiplier = 1;//exposure multiplier is used to increase damage taken from bullets
     private HashSet<EffectID> immobilizers;//these store the affectors behind each effect
     private boolean canmove = true;//if you can move
     private HashSet<EffectID> silencers;
@@ -107,7 +107,15 @@ public abstract class GridEntity extends GridObject
     public double getPower(){
         return super.getPower()*sizeMultiplier;
     }
-    
+    public void setReloadMultiplier(double perc, EffectID ctrl){
+        reloadMultiplier = perc;
+    }
+    public void setReloadMultiplier(double perc){
+        reloadMultiplier = perc;
+    }
+    public double getReloadMultiplier(){
+        return reloadMultiplier;
+    }
     public void setSizeMultiplier(double perc, EffectID ctrl){
         sizeMultiplier = perc;
     }

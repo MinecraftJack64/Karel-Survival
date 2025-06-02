@@ -18,8 +18,8 @@ public class LilCritters extends Weapon
     private static final int ult = 1200;
     private ICritter[] ic = new ICritter[7];//0-5: clockwise starting from front, 6: center
     private Shield myS;
-    private int regenshield = 90;//shield
-    private int regencritter = 120;//cooldown for regeneration
+    private double regenshield = 90;//shield
+    private double regencritter = 120;//cooldown for regeneration
     private int focus = 0;//which critter is being regenerated
     private int reloadtime = 7;//for firing critters
     private int reload = 0;
@@ -57,15 +57,15 @@ public class LilCritters extends Weapon
         return ult;
     }
 
-    public void reload(){
+    public void reload(double speed){
         cleanLists();
         if(getHolder().hasShield(msshield)){
-            processRegeneration();
+            processRegeneration(speed);
         }else{
             if(regenshield==90){
                 shieldBroke();
             }
-            regenshield--;
+            regenshield-= speed;
             if(regenshield<=0){
                 regenshield = 90;
                 myS = new MucusShield(msshield, 600);
@@ -102,7 +102,7 @@ public class LilCritters extends Weapon
             return false;//failed because no critters
         }
     }
-    public void processRegeneration(){
+    public void processRegeneration(double speed){
         int nfocus = focus-1;
         if(nfocus<0){
             nfocus = 6;
@@ -114,7 +114,7 @@ public class LilCritters extends Weapon
             }
         }
         if(ic[focus]==null){
-            regencritter--;
+            regencritter-= speed;
             if(regencritter<=0){
                 regencritter = 120;
                 regenerate(focus);

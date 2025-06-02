@@ -14,7 +14,7 @@ public class Slicer extends Weapon
 {
     private static final int ult = 2100, reloadtime = 15;
     private CircSaw lasso;
-    private int attackcooldown = 0;
+    private double attackcooldown = 0;
     public void fire(){//one full ammo deals 350 damage
         if (attackcooldown<=0) 
         {
@@ -33,21 +33,21 @@ public class Slicer extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double speed){
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
         }
         if(lasso==null){
-            attackcooldown--;
+            attackcooldown-= speed;
         }
-        updateAmmo(Math.min(reloadtime-attackcooldown, reloadtime));
+        updateAmmo((int)Math.min(reloadtime-attackcooldown, reloadtime));
     }
     public Slicer(ItemHolder actor){
         super(actor);
     }
     public void equip(){
         super.equip();
-        newAmmo(reloadtime, reloadtime-attackcooldown);
+        newAmmo(reloadtime, (int)(reloadtime-attackcooldown));
     }
     public String getName(){
         return "Slicer";

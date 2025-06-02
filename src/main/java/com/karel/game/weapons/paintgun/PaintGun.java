@@ -73,19 +73,15 @@ public class PaintGun extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double speed){
         reloadDelayCount++;
-        if(!continueUlt())ammo.reload();
-        updateAmmo(ammo);
+        if(!continueUlt())super.reload(speed);
     }
     public PaintGun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(35, 3, 3);
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(ammo);
+        setAmmo(ammo);
     }
     public String getName(){
         return "Paint Sprayer";

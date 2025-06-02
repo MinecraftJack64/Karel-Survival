@@ -1,6 +1,7 @@
 package com.karel.game.weapons.scream;
 
 import com.karel.game.ItemHolder;
+import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.Weapon;
@@ -20,7 +21,7 @@ public class Scream extends Weapon
     private int ultAmmo = 0; // 10
     private int startUltCooldown = 0; // 30
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if (getAmmo().hasAmmo()) 
         {
             for(int i = 0; i <= 0; i+=1){
                 ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 10, 50);
@@ -34,8 +35,8 @@ public class Scream extends Weapon
                 ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 25, 50);
                 getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
             }
-            //bullet.move ();
-            reloadDelayCount = 0;
+            chargeUlt(1000);
+            getAmmo().useAmmo();
             Sounds.play("gunshoot");
         }
     }
@@ -77,17 +78,13 @@ public class Scream extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double speed){
         reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+        super.reload(speed);
     }
     public Scream(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
     }
     public String getName(){
         return "Scream";
