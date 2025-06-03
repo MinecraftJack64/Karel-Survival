@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.crossbow;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -11,8 +13,9 @@ import com.karel.game.weapons.Weapon;
 public class Crossbow extends Weapon
 {
     private static final int gunReloadTime = 15;
+    private int ultDelay = 0;
     private double focus = 0.5;//30 framse to reach 1.5
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 1500;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
@@ -28,24 +31,52 @@ public class Crossbow extends Weapon
             //bullet.move ();
             Sounds.play("crossbowshoot");
             reloadDelayCount = 0;
-            focus = 0.5;
+            if(!useGadget())focus = 0.5;
         }
     }
     public void fireUlt(){
+        if(continueUlt()){
+            if(ultDelay>0){
+                ultDelay--;
+                return;
+            }
+            setContinueUlt(false);
+            setPlayerLockRotation(false);
+            getHand().setTargetLock(false);
+            fireRainingArrows(true);
+        }
+        else if(getUltUpgrade()==1){
+            setContinueUlt(true);
+            setPlayerLockRotation(true);
+            getHand().setTargetLock(true);
+            fireRainingArrows(true);
+            ultDelay = 35;
+        }else{
+            fireRainingArrows(false);
+        }
         Sounds.play("crossbowshoot");
-        for(int i = 1000; i <= 1350; i+=50){
+    }
+    public void fireRainingArrows(boolean constant){
+        for(int i = 1000; i <= 1700; i+=100){
             double x = getHand().getTargetX()+(int)(Math.random()*41)-20;
             double y = getHand().getTargetY()+(int)(Math.random()*41)-20;
-            RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, getHolder().distanceTo(x, y), i, focus, getHolder());
+            RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, getHolder().distanceTo(x, y), constant?1000:i, focus, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
         }
-        focus = 0.5;
+        if(!useGadget())focus = 0.5;
+    }
+    public void onGadgetActivate(){
+        focus = 1.5;
+        setGadgetCount(4);
+    }
+    public int defaultGadgets(){
+        return 5;
     }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        reloadDelayCount++;
+    public void reload(double speed){
+        reloadDelayCount+=speed;
         if(reloadDelayCount>gunReloadTime&&focus<1.5){
             focus+=0.025;
             updateAmmo((int)(focus*40));

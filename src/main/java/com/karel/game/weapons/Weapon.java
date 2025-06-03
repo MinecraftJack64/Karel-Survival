@@ -87,6 +87,9 @@ public abstract class Weapon implements Item, Tickable
         update();
         reload();
         reloadGadget();
+        if(continueGadget()){
+            onGadgetContinue();
+        }
         if(currentgadgettimer>0)currentgadgettimer--;
         if(gadgetscooldown>0)currentgadgettimer--;
     }
@@ -112,6 +115,7 @@ public abstract class Weapon implements Item, Tickable
         this.ammo = ammo;
     }
     public void onGadgetActivate(){};
+    public void onGadgetContinue(){};
     public abstract int getUlt();
     public int defaultGadgets(){
         return 0;

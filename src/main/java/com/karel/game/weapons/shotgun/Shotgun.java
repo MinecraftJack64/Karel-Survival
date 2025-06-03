@@ -17,7 +17,7 @@ import com.karel.game.weapons.Weapon;
  */
 public class Shotgun extends Weapon implements AmmoHolder
 {
-    private static final int gunReloadTime = 5;
+    private static final int gunReloadTime = 10;
     private int reloadDelayCount;
     private AmmoManager ammo;
     private static final int ult = 500;
@@ -55,7 +55,8 @@ public class Shotgun extends Weapon implements AmmoHolder
             return;
         }
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 600);
-        lasso = getUltUpgrade()==1?new Lasso(getHand().getTargetRotation(), d, getHolder()):new Harpoon(getHand().getTargetRotation(), getHolder());
+        boolean gadget = useGadget();
+        lasso = getUltUpgrade()==1?new Lasso(getHand().getTargetRotation(), d, getHolder(), gadget):new Harpoon(getHand().getTargetRotation(), getHolder(), gadget);
         getHolder().addObjectHere((GridObject)lasso);
         //TEST
         //getHolder().addObjectHere(new Harpoon(getHand().getTargetRotation(), getHolder()));
@@ -91,10 +92,17 @@ public class Shotgun extends Weapon implements AmmoHolder
             lasso = null;
         }
     }
+    public void onGadgetActivate(){
+        chargeUlt(500);
+        setGadgetCount(1);
+    }
+    public int defaultGadgets(){
+        return 5;
+    }
     public Shotgun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
-        ammo = new AmmoManager(35, 2, 3);
+        ammo = new AmmoManager(30, 2, 3);
         setAmmo(ammo);
     }
     public void chargeUlt(int amt){

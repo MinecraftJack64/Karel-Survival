@@ -22,14 +22,14 @@ public class Harpoon extends Boomerang
     private EffectID pullStun, afterStun;
     private int phase;
     
-    public Harpoon(double rotation, GridEntity source)
+    public Harpoon(double rotation, GridEntity source, boolean fast)
     {
         super(rotation, source);
         setRealRotation(rotation);
         setImage("Weapons/shotgun/projUlt.png");
         scaleTexture(40);
-        setSpeed(15);
-        setReturnSpeed(10);
+        setSpeed(fast ? 30 : 15);
+        setReturnSpeed(fast ? 20 : 10);
         setLife(40);
         setDamage(0);
         setExpireReturn(2);//die if no target hit

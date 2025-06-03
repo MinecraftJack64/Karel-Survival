@@ -127,7 +127,10 @@ public abstract class GridObject extends KActor
         return getRealRotation();
     }
     public float getAngle(double x, double y) {
-        float angle = (float) Math.toDegrees(Math.atan2(y - getRealY(), x - getRealX()));
+        return getAngleBetween(getRealX(), getRealY(), x, y);
+    }
+    public static float getAngleBetween(double x, double y, double x2, double y2) {
+        float angle = (float) Math.toDegrees(Math.atan2(y2 - y, x2 - x));
 
         if(angle < 0){
             angle += 360;

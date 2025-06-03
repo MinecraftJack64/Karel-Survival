@@ -3,6 +3,7 @@ package com.karel.game;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.critters.LilCritters;
+import com.karel.game.weapons.crossbow.Crossbow;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;

@@ -25,9 +25,9 @@ public class Lasso extends Reelin
     private int latchx, latchy;//where the source is pulled too, the center point between all immovable objects
 
     private int animationFrame = 0;
-    public Lasso(double rotation, double targetdistance, GridObject source)
+    public Lasso(double rotation, double targetdistance, GridObject source, boolean fast)
     {
-        super(rotation, targetdistance, targetdistance/2, source);
+        super(rotation, targetdistance, targetdistance/2/(fast?2:1), source);
         setImage("Weapons/shotgun/projUltUpgrade.png");
         scaleTexture(100);
         setRange(100);

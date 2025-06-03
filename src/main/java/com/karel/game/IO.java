@@ -23,6 +23,7 @@ public class IO {
         mappings.put("pause", KEY_ESCAPE);
         mappings.put("inventoryLeft", KEY_X);
         mappings.put("inventoryRight", KEY_C);
+        mappings.put("inventory", KEY_Z);
     }
     public static boolean isActive(String action){
         if(action.equals("attack")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);}

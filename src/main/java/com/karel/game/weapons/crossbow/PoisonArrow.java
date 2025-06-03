@@ -1,5 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.crossbow;
 
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.PoisonEffect;
+import com.karel.game.PowerPercentageEffect;
+import com.karel.game.SpeedPercentageEffect;
 import com.karel.game.weapons.EffectID;
 
 /**
@@ -20,6 +26,9 @@ public class PoisonArrow extends Bullet
     public PoisonArrow(double rotation, double focus, boolean isupgraded, GridObject source)
     {
         super(rotation, source);
+        setImage(focus>1?"Weapons/crossbow/proj2.png":"Weapons/crossbow/proj.png");
+        scaleTexture(50);
+        setRealRotation(getRealRotation()-180);
         setSpeed(5+10*focus);
         setLife(20);
         setDamage((int)(40*focus));

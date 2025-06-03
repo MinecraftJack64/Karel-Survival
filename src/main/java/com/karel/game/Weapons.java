@@ -1,6 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.weapons.crossbow.Crossbow;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.shotgun.Shotgun;

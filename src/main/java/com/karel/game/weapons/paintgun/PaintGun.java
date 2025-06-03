@@ -1,5 +1,4 @@
 package com.karel.game.weapons.paintgun;
-import java.util.List;
 
 import com.karel.game.AmmoManager;
 import com.karel.game.ItemHolder;
@@ -18,6 +17,7 @@ public class PaintGun extends Weapon
     private AmmoManager ammo;
     private static final int ultReloadTime = 4;
     private int reloadDelayCount;
+    private int gadgetAngle = 0;
     private static final int ult = 1500;
     private int startUltCooldown = 0; // 30
     public void fire(){
@@ -72,6 +72,24 @@ public class PaintGun extends Weapon
     }
     public int getUlt(){
         return ult;
+    }
+    public void onGadgetActivate(){
+        gadgetAngle = 0;
+        setContinueGadget(true);
+        setPlayerLockRotation(true);
+    }
+    public void onGadgetContinue(){
+        PaintDrop bullet = new PaintDrop (gadgetAngle, false, getHolder());
+        getHolder().addObjectHere(bullet);
+        gadgetAngle += 8;
+        if(gadgetAngle == 360){
+            setContinueGadget(false);
+            setPlayerLockRotation(false);
+            gadgetAngle = 0;
+        }
+    }
+    public int defaultGadgets(){
+        return 1;
     }
     public void reload(double speed){
         reloadDelayCount++;
