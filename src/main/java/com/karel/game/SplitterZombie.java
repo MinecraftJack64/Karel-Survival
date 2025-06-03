@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+
 /*
  * classes
  * fila-mint

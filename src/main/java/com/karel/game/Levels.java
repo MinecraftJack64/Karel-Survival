@@ -1,6 +1,9 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
+
 final class ZombieGroup{
     private final Class type;
     private final int count;

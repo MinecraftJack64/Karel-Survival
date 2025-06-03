@@ -1,6 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.ShieldID;
 

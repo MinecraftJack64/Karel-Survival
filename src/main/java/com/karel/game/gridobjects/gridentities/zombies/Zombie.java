@@ -1,4 +1,13 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies;
+
+import com.karel.game.Beeper;
+import com.karel.game.Game;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.ZFleshConfetti;
+import com.karel.game.ZombieClass;
+
 /*
  * classes
  * fila-mint
@@ -37,10 +46,8 @@ package com.karel.game;
 public class Zombie extends GridEntity
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "zareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double speed = 2;
     private GridEntity target;
@@ -51,7 +58,6 @@ public class Zombie extends GridEntity
      */
     public Zombie()
     {
-        reloadDelayCount = 5;
         scaleTexture(45, 45);
         setSpeed(speed);
         setTeam("zombie");
@@ -86,7 +92,6 @@ public class Zombie extends GridEntity
      */
     public void behave() 
     {
-        reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         ammo++;
@@ -112,9 +117,7 @@ public class Zombie extends GridEntity
     }
     public void feast() 
     {
-        reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
         if(distanceTo(getTarget())>defaultRange())walk(monangle, 1);
     }
     //ovveride this
@@ -130,7 +133,6 @@ public class Zombie extends GridEntity
             getWorld().addObject (bullet, getRealX(), getRealY());
             Game.increaseScore(getXP());
         }
-        //if(wasInOriginalWave())getWorld().getGame().getSpawner().wavehealth--;
         super.die(killer);
     }
     public boolean prioritizeTarget(){
@@ -152,22 +154,8 @@ public class Zombie extends GridEntity
             candidate = getWorld().getPlayer();
         }
         target = candidate;
-        return candidate;//use this for now
+        return candidate;//use this for now(TODO: use update loop)
     }
-    /*public GridEntity getNearestTarget(){
-        GridEntity res = null;
-        double max = 0;
-        for(GridEntity e: getWorld().allEntities()){
-            if(!isAggroTowards(e)||!e.canDetect()){
-                continue;
-            }
-            if(distanceTo(e)<max||res==null){
-                res = e;
-                max = distanceTo(e);
-            }
-        }
-        return res;
-    }*/
     public void explodeFleshConfetti(int amt){
         for(int i = 0; i < Greenfoot.getRandomNumber(amt)+amt; i++){
             ZFleshConfetti fc = new ZFleshConfetti(Greenfoot.getRandomNumber(360), this);

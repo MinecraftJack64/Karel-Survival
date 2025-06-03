@@ -36,6 +36,9 @@ public class Reelin extends FlyingRock implements IBoomerang
     public boolean getDamageOnReturn(){
         return damageonreturn;
     }
+    public boolean isReturning(){
+        return phase==1;
+    }
     public void applyPhysics(){
         if(phase==0){
             super.applyPhysics();

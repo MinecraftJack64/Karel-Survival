@@ -1,7 +1,14 @@
-package com.karel.game;
+package com.karel.game.weapons.shotgun;
 import java.util.List;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Reelin;
+import com.karel.game.StunEffect;
 import com.karel.game.weapons.EffectID;
+import com.raylib.Raylib;
+import com.raylib.Vector2;
+import com.raylib.Color;
 
 import java.util.ArrayList;
 
@@ -16,15 +23,19 @@ public class Lasso extends Reelin
     private EffectID pullStun, afterStun;
     private boolean immobiletarget;//if a target is immobile, pull source to center of all immovable targets instead
     private int latchx, latchy;//where the source is pulled too, the center point between all immovable objects
+
+    private int animationFrame = 0;
     public Lasso(double rotation, double targetdistance, GridObject source)
     {
         super(rotation, targetdistance, targetdistance/2, source);
+        setImage("Weapons/shotgun/projUltUpgrade.png");
+        scaleTexture(100);
         setRange(100);
         targets = new ArrayList<GridEntity>();
         pullStun = new EffectID(this, "pull");
         afterStun = new EffectID(this, "pullfinish");
         setDamage(0);
-        setSpeed(10);
+        setSpeed(17);
     }
     public void doReturn(){
         if(!updateCenter()){
@@ -41,6 +52,25 @@ public class Lasso extends Reelin
                 die();
             }
         }
+    }
+    public void render(){
+        super.render();
+        if(isReturning()){
+            animationFrame = (int)face(getSource(), false)-90;
+        }
+        //draw line between source and me
+        double x = getRealX()+Math.cos(animationFrame*Math.PI/180)*50;
+        double y = getRealY()-getRealHeight()+Math.sin(animationFrame*Math.PI/180)*getImage().getHeight()/2;
+        animationFrame+=20;
+        if(animationFrame>=360) animationFrame = 0;
+        Raylib.drawLineEx(
+            new Vector2(renderTransformX((int)x), renderTransformY((int)y)),
+            new Vector2(renderTransformX((int)getSource().getRealX()), renderTransformY((int)(getSource().getRealY()-getSource().getRealHeight()))),
+            7,
+            new Color(
+                (byte)170, (byte)122, (byte)23, (byte)255
+            )
+        );
     }
     public void die(){
         for(GridEntity target:targets){

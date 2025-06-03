@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+
 /**
  * Write a description of class AdventureSpawner here.
  * 

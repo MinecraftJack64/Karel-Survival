@@ -1,11 +1,13 @@
-package com.karel.game;
+package com.karel.game.weapons.shotgun;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
  * 
  * @author Poul Henriksen
  */
-public class SuperShot extends Bullet
+public class SuperShot extends Shot
 {
     /** The damage this bullet will deal */
     //private static final int damage = 50;
@@ -16,9 +18,6 @@ public class SuperShot extends Bullet
     public SuperShot(double rotation, GridObject source)
     {
         super(rotation, source);
-        setSpeed(17);
-        setLife(10);
-        setDamage(50);
         setNumTargets(5);
     }
     public void doHit(GridEntity targ){

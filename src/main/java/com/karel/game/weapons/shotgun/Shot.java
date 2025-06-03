@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.shotgun;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -16,8 +19,11 @@ public class Shot extends Bullet
     public Shot(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/shotgun/proj.png");
+        scaleTexture(25);
+        setRealRotation(rotation+45);
         setSpeed(17);
-        setLife(10);
+        setLife(12);
         setDamage(50);
     }
 }

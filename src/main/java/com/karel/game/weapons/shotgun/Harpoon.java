@@ -1,6 +1,12 @@
-package com.karel.game;
+package com.karel.game.weapons.shotgun;
 
+import com.karel.game.Boomerang;
+import com.karel.game.GridEntity;
+import com.karel.game.Sounds;
+import com.karel.game.StunEffect;
 import com.karel.game.weapons.EffectID;
+import com.raylib.Raylib;
+import com.raylib.Vector2;
 
 /**
  * A bullet that can hit asteroids.
@@ -19,6 +25,9 @@ public class Harpoon extends Boomerang
     public Harpoon(double rotation, GridEntity source)
     {
         super(rotation, source);
+        setRealRotation(rotation);
+        setImage("Weapons/shotgun/projUlt.png");
+        scaleTexture(40);
         setSpeed(15);
         setReturnSpeed(10);
         setLife(40);
@@ -80,6 +89,16 @@ public class Harpoon extends Boomerang
     }
     public GridEntity getSource(){
         return (GridEntity)(super.getSource());
+    }
+    public void render(){
+        super.render();
+        //draw line between source and me
+        Raylib.drawLineEx(
+            new Vector2(renderTransformX((int)getRealX()), renderTransformY((int)getRealY())),
+            new Vector2(renderTransformX((int)getSource().getRealX()), renderTransformY((int)getSource().getRealY())),
+            7,
+            Raylib.DARKBROWN
+        );
     }
     
     /**

@@ -1,6 +1,9 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
+
 class SpawnData{
     public ArrayList<Class> spawnTypes;
     public ArrayList<GridEntity> spawn;

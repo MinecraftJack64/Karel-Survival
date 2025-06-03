@@ -7,6 +7,7 @@ import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.scream.Scream;
+import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.doublegun.DoubleGun;
@@ -94,7 +95,11 @@ public class Player extends GridEntity {
         this.inventory[42] = new Farmer(getHand());
         this.inventory[43] = new Gun(getHand());
         for(Item i: inventory){
-            if(i!=null){((Weapon)i).setAttackUpgrade(1);((Weapon)i).setUltUpgrade(1);((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());}
+            if(i!=null){
+                ((Weapon)i).setAttackUpgrade(1);
+                ((Weapon)i).setUltUpgrade(1);
+                ((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());
+            }
         }
         //rarities: common, uncommon, rare, epic, legendary, seasonal
         this.switchToSlot(0);

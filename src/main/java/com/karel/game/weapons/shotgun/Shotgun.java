@@ -1,5 +1,12 @@
-package com.karel.game;
+package com.karel.game.weapons.shotgun;
 
+import com.karel.game.AmmoHolder;
+import com.karel.game.AmmoManager;
+import com.karel.game.GridObject;
+import com.karel.game.IBoomerang;
+import com.karel.game.ItemHolder;
+import com.karel.game.Projectile;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -57,7 +64,7 @@ public class Shotgun extends Weapon implements AmmoHolder
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double speed){
         if(disabledcooldown<0){
             disabledcooldown = 0;
         }
@@ -69,7 +76,7 @@ public class Shotgun extends Weapon implements AmmoHolder
         }else if(lasso==null){
             reloadDelayCount++;
             if(reloadDelayCount>=gunReloadTime){
-                ammo.reload();
+                super.reload(speed);
             }
             if(ultchargecooldown<=0){
                 chargeUlt(10);
@@ -78,7 +85,7 @@ public class Shotgun extends Weapon implements AmmoHolder
                 ultchargecooldown--;
             if(nextammosupercharged){
                 updateAmmo(getAmmoBar().getMax()+1);
-            }else updateAmmo(ammo.getAmmoBar());
+            }
         }
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
@@ -87,14 +94,11 @@ public class Shotgun extends Weapon implements AmmoHolder
     public Shotgun(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
-        ammo = new AmmoManager(25, 2, 3);
+        ammo = new AmmoManager(35, 2, 3);
+        setAmmo(ammo);
     }
     public void chargeUlt(int amt){
         if(disabledcooldown==0&&!nextammosupercharged)super.chargeUlt(amt);
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
     }
     public String getName(){
         return "Shotgun";

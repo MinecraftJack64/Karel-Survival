@@ -1,4 +1,8 @@
 package com.karel.game;
+
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
+
 /**
  * Write a description of class ZombieFactory here.
  * 

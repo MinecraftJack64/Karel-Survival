@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+
 /**
  * Write a description of class FlamethrowerZombie here.
  * 
