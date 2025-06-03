@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -15,6 +18,7 @@ public class ZBullet extends Bullet
     public ZBullet(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Projectiles/Bullets/zbullet.png");
         setLife(50);
         setSpeed(13);
         setDamage(200);

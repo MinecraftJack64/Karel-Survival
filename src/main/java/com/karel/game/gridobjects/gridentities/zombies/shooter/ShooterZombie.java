@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.shooter;
 
 import com.karel.game.Sounds;
-import com.karel.game.ZBullet;
 import com.karel.game.ZombieClass;
+import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**

@@ -1,6 +1,6 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.doctor;
 
+import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -13,20 +13,15 @@ public class DoctorZombie extends Zombie
 {
     private static final int gunReloadTime = 25;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
     private int attackcooldown = 400;
     public String getStaticTextureURL(){return "doczareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
     private boolean hastarget = false;
     private boolean shouldheal = false;
     private boolean healself = false;
     private boolean mustbehurt = false;
     private GridEntity priority;
     private static double attackrange = 200, retreatrange = 400;
-    /**
-     * Initilise this rocket.
-     */
     public DoctorZombie()
     {
         reloadDelayCount = 5;
@@ -38,17 +33,10 @@ public class DoctorZombie extends Zombie
         this();
         priority = target;
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(!hastarget){
             if(attackcooldown>0){
                 //die if survival mode

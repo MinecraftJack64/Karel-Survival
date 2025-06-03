@@ -1,5 +1,5 @@
-package com.karel.game;
-
+package com.karel.game.gridobjects.gridentities.zombies.laser;
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 
 /**
@@ -10,20 +10,15 @@ import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 public class ZLaser extends ZBullet
 {
     /** The damage this bullet will deal */
-    //private static final int damage = 300;
+    //private static final int damage = 200;
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 150;
-    
+
     public ZLaser(double rotation, GridObject source)
     {
         super(rotation, source);
-        setSpeed(13);
-        setLife(40);
-        setDamage(150);
+        setImage("Projectiles/Bullets/laser.png");
+        scaleTexture(30);
+        setLife(25);
     }
-    
-    /**
-     * The bullet will damage asteroids if it hits them.
-     */
 }

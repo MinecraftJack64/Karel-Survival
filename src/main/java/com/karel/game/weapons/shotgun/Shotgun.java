@@ -65,6 +65,11 @@ public class Shotgun extends Weapon implements AmmoHolder
     public int getUlt(){
         return ult;
     }
+    public void update(){
+        if(lasso!=null&&lasso.hasReturned()){
+            lasso = null;
+        }
+    }
     public void reload(double speed){
         if(disabledcooldown<0){
             disabledcooldown = 0;
@@ -87,9 +92,6 @@ public class Shotgun extends Weapon implements AmmoHolder
             if(nextammosupercharged){
                 updateAmmo(getAmmoBar().getMax()+1);
             }
-        }
-        if(lasso!=null&&lasso.hasReturned()){
-            lasso = null;
         }
     }
     public void onGadgetActivate(){

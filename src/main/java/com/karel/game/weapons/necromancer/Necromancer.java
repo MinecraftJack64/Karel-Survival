@@ -36,7 +36,7 @@ public class Necromancer extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void update(){
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
         }

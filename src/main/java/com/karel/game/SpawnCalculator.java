@@ -2,6 +2,8 @@ package com.karel.game;
 import java.util.ArrayList;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
+import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 
 class SpawnData{

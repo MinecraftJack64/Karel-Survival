@@ -1,5 +1,7 @@
 package com.karel.game.weapons.paintgun;
+import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.SpeedPercentageEffect;
 
 /**
  * A bullet that can hit asteroids.
@@ -15,5 +17,9 @@ public class ThickPaintDrop extends PaintDrop
     {
         super(rotation, false, source);
         setSpeed(20);
+    }
+    public void doHit(GridEntity other){
+        super.doHit(other);
+        other.applyEffect(new SpeedPercentageEffect(0.5, 90, getSource()));
     }
 }

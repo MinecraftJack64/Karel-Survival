@@ -48,7 +48,7 @@ public class Zombie extends GridEntity
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
 
     public String getStaticTextureURL(){return "zareln.png";}
-    private int ammo = 0;
+    private double ammo = 0;
     private static double speed = 2;
     private GridEntity target;
     private static double[] dhmult = new double[]{0.5, 0.75, 1, 1.5, 2};//difficulty health multiplier
@@ -94,7 +94,7 @@ public class Zombie extends GridEntity
     {
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        ammo++;
+        ammo+= getReloadMultiplier();
         if(distanceTo(getTarget())>defaultRange())walk(monangle, 1);
         else{
             if(ammo>defaultReloadTime()&&canAttack()){

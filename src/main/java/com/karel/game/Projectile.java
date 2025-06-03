@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.*;
 
 /**
  * Write a description of class Projectile here.

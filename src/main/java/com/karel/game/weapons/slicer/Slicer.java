@@ -33,10 +33,12 @@ public class Slicer extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(double speed){
+    public void update(){
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
         }
+    }
+    public void reload(double speed){
         if(lasso==null){
             attackcooldown-= speed;
         }

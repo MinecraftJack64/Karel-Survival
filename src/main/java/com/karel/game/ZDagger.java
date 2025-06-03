@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
+
 /**
  * Short range projectile that teleports the shooter behind the target, also weakening them. Used by AssassinZombie
  * @author MinecraftJack64

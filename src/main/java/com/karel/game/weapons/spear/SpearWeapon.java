@@ -17,8 +17,7 @@ public class SpearWeapon extends Weapon
     private static final int ult = 450;
     private LandedSpear spear;
     private boolean hasspear = true, spearinhand = true;
-    private int ultchargecooldown = 0;
-    private int reloadDelay = 0;
+    private double reloadDelay = 0; // exclusive to punch
     public void fire(){//one full ammo deals 350 damage
         if(continueUse()){
             reloadDelay--;
@@ -69,10 +68,10 @@ public class SpearWeapon extends Weapon
     public void enterHand(){
         spearinhand = true;
     }
-    public void reload(){
+    public void reload(double speed){
         chargeUlt(1);
         if(reloadDelay>0){
-            reloadDelay--;
+            reloadDelay-=speed;
         }
     }
     public void notifySpear(LandedSpear thing){

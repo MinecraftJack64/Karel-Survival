@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.doctor;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 
 /**
  * A bullet that can hit asteroids.
@@ -16,6 +20,9 @@ public class ZHealShot extends ZBullet
     public ZHealShot(double rotation, GridObject source, boolean hitself)
     {
         super(rotation, source);
+        setImage("Projectiles/Bullets/syringe.png");
+        setRealRotation(getRealRotation()-180);
+        scaleTexture(40);
         setDamage(50);
         setLife(20);
         setSpeed(15);

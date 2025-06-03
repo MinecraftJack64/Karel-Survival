@@ -79,7 +79,7 @@ public class PaintGun extends Weapon
         setPlayerLockRotation(true);
     }
     public void onGadgetContinue(){
-        PaintDrop bullet = new PaintDrop (gadgetAngle, false, getHolder());
+        ThickPaintDrop bullet = new ThickPaintDrop (gadgetAngle+getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere(bullet);
         gadgetAngle += 8;
         if(gadgetAngle == 360){
@@ -93,7 +93,7 @@ public class PaintGun extends Weapon
     }
     public void reload(double speed){
         reloadDelayCount++;
-        if(!continueUlt())super.reload(speed);
+        if(!continueUlt()||startUltCooldown>0)super.reload(speed);
     }
     public PaintGun(ItemHolder actor){
         super(actor);
