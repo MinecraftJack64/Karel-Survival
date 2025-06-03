@@ -18,6 +18,7 @@ public interface ItemHolder
     public boolean isMoving();
     public boolean isAttacking();
     public double getReloadSpeed();
+    public boolean isMainWeapon();
     public GridEntity getHolder();
 }
 

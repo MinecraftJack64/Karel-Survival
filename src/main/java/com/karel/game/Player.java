@@ -445,6 +445,9 @@ public class Player extends GridEntity {
         public double getReloadSpeed(){
             return getHolder().getReloadMultiplier();
         }
+        public boolean isMainWeapon(){
+            return true; // Player's hand is always the main weapon holder
+        }
         public Player getHolder(){
             return Player.this;
         }

@@ -62,6 +62,9 @@ public abstract class Weapon implements Item, Tickable
         this();
         holdWith(hand);
     }
+    public boolean isMainWeapon(){
+        return getHand().isMainWeapon();
+    }
     public void setUltUpgrade(int id){
         atkup = id;
     }
@@ -125,6 +128,12 @@ public abstract class Weapon implements Item, Tickable
     public int getUltUses(){
         return ultuses;
     }
+    public int getUltCharge(){
+        return ultcharge;
+    }
+    public boolean ultReady(){
+        return ultready;
+    }
     public boolean ult(){
         if(continueUlt()){
             fireUlt();
@@ -148,7 +157,7 @@ public abstract class Weapon implements Item, Tickable
             ultcharge = 0;
             ultready = false;
             ultuses = 0;
-            Game.setUltCharge(ultcharge);
+            if(isMainWeapon())Game.setUltCharge(ultcharge);
         }else{
             ultshield = false;
         }
@@ -176,7 +185,7 @@ public abstract class Weapon implements Item, Tickable
             ultready = true;
             ultuses = getUltMaxUses();
         }
-        Game.setUltCharge(ultcharge);
+        if(isMainWeapon())Game.setUltCharge(ultcharge);
     }
     public void dischargeUlt(int amt){
         ultcharge-=amt;
@@ -187,7 +196,7 @@ public abstract class Weapon implements Item, Tickable
         if(ultcharge<0){
             ultcharge = 0;
         }
-        Game.setUltCharge(ultcharge);
+        if(isMainWeapon())Game.setUltCharge(ultcharge);
     }
     public void setUltCharge(int amt){
         if(amt<ultcharge){
@@ -196,38 +205,37 @@ public abstract class Weapon implements Item, Tickable
             chargeUlt(amt-ultcharge);
         }
     }
-    public int getUltCharge(){
-        return ultcharge;
-    }
     public void updateAmmo(int amt){
-        Game.gameUI().setAmmo(amt);
+        if(isMainWeapon())Game.gameUI().setAmmo(amt);
     }
     public void updateAmmo(IAmmoManager ammo){
         updateAmmo(ammo.getAmmoBar());
     }
     public void newAmmo(int max, int value){
-        Game.gameUI().newAmmo(max, value);
+        if(isMainWeapon())Game.gameUI().newAmmo(max, value);
     }
     public void newAmmo(int max, int value, int phases){
-        Game.gameUI().newAmmo(max, value, phases);
+        if(isMainWeapon())Game.gameUI().newAmmo(max, value, phases);
     }
     public void newAmmo(IAmmoManager ammo){
-        Game.gameUI().newAmmo(ammo);
+        if(isMainWeapon())Game.gameUI().newAmmo(ammo);
     }
     public void disableAmmo(){
-        Game.gameUI().disableAmmo();
+        if(isMainWeapon())Game.gameUI().disableAmmo();
     }
     public void equip(){
+        Sounds.play("equip");
+        if(!isMainWeapon())return;
         Game.newUltCharge(getUlt(),ultcharge);
         if(getAmmo()!=null){
             Game.gameUI().newAmmo(getAmmo());
         }
-        Sounds.play("equip");
     }
     public boolean isUltReady(){
         return ultready;
     }
     public void unequip(){
+        if(!isMainWeapon())return;
         Game.disableUltCharge();
         Game.gameUI().disableAmmo();
     }
