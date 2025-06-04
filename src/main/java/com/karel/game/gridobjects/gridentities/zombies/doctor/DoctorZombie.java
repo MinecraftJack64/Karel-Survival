@@ -1,6 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.doctor;
 
 import com.karel.game.GridEntity;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -11,6 +12,7 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class DoctorZombie extends Zombie
 {
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.support};
     private static final int gunReloadTime = 25;         // The minimum delay between firing the gun.
 
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
@@ -73,6 +75,9 @@ public class DoctorZombie extends Zombie
             getWorld().addObject (bullet, getRealX(), getRealY());
             reloadDelayCount = 0;
         }
+    }
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     //ovveride this
     public int getXP(){
