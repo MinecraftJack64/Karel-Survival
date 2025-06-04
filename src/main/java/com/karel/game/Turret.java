@@ -63,13 +63,13 @@ public class Turret extends ZombiePackage
     }
     public GridObject newShooter(){
         GridEntity z = new ShooterZombie();
-        z.applyEffect(new ImmobilizeEffect(800, getSource()));
+        z.applyEffect(new SpeedPercentageEffect(0, 800, getSource()));
         myspawns.add(z);
         return z;
     }
     public GridObject newMarksman(){
         GridEntity z = new MarksmanZombie();
-        z.applyEffect(new ImmobilizeEffect(800, getSource()));
+        z.applyEffect(new SpeedPercentageEffect(0, 800, getSource()));
         myspawns.add(z);
         return z;
     }

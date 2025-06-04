@@ -20,5 +20,6 @@ public class ZLaser extends ZBullet
         setImage("Projectiles/Bullets/laser.png");
         scaleTexture(30);
         setLife(25);
+        setDamage(100);
     }
 }
