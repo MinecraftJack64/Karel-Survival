@@ -16,7 +16,6 @@ public class BouncingCircSaw extends FlyingCircSaw
     public BouncingCircSaw(double rotation, GridObject source)
     {
         super(rotation, source);
-        setImage("Weapons/slicer/proj.png");
         setNumTargets(-1);
     }
     public void animate(){

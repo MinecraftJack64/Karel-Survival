@@ -20,7 +20,7 @@ public class FlyingCircSaw extends Bullet
     public FlyingCircSaw(double rotation, GridObject source)
     {
         super(rotation, source);
-        setImage("Weapons/slicer/proj.png");
+        setImage("Weapons/slicer/projUlt.png");
         scaleTexture(50);
         setSpeed(22);
         setLife(30);

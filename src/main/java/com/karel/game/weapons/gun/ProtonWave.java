@@ -19,7 +19,7 @@ public class ProtonWave extends WaveAttack
     public ProtonWave(GridObject source, boolean radiate)
     {
         super(source);
-        setImage("wave.png");
+        setImage("Weapons/gun/projUlt.png");
         setDamage(damage);
         setNumTargets(-1);
         setMultiHit(false);

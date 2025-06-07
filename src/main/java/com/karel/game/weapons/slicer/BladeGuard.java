@@ -17,7 +17,7 @@ public class BladeGuard extends Melee
     public BladeGuard(double rotation, GridObject source)
     {
         super(rotation, source);
-        setImage("Weapons/slicer/proj.png");
+        setImage("Weapons/slicer/projGadget.png");
         scaleTexture(50);
         setMultiHit(true);
         setLife(life);

@@ -1,5 +1,9 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.hivemind;
+
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.PoisonEffect;
+import com.karel.game.SpawnableZombie;
 
 /**
  * Write a description of class Zombee here.

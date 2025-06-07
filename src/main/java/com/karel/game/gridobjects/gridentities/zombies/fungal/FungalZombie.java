@@ -1,8 +1,11 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.fungal;
 
+import com.karel.game.GridEntity;
+import com.karel.game.PoisonEffect;
+import com.karel.game.Sounds;
+import com.karel.game.SpeedPercentageEffect;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.particles.FungalWave;
 import com.karel.game.weapons.EffectID;
 
 /**
@@ -12,17 +15,12 @@ import com.karel.game.weapons.EffectID;
  */
 public class FungalZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.controller, ZombieClass.tank, ZombieClass.support};
     private static final int gunReloadTime = 120;         // The minimum delay between firing the gun.
     private static final int passiveReloadTime = 4; 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
     private int passivereloadDelayCount;
-    public String getStaticTextureURL(){return "sporezareln.png";}  
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
-    //private int damage = 400;
-    /**
-     * Initilise this rocket.
-     */
+    public String getStaticTextureURL(){return "sporezareln.png";}
     public FungalZombie()
     {
         reloadDelayCount = gunReloadTime;
@@ -37,11 +35,9 @@ public class FungalZombie extends Zombie
      */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount+= getReloadMultiplier();
         passivereloadDelayCount++;
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(reloadDelayCount>=gunReloadTime&&canAttack()){
             attack();
             reloadDelayCount = 0;
@@ -52,6 +48,9 @@ public class FungalZombie extends Zombie
         }
         if(distanceTo(getTarget())>150)
             walk(monangle, 1);
+    }
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     @Override
     public int getXP(){

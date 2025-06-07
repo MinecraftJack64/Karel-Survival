@@ -1,5 +1,6 @@
 package com.karel.game.gridobjects.gridentities.zombies.weedwacker;
 
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.weedwacker.WeedwackerBlade;
 
@@ -11,6 +12,7 @@ import com.karel.game.weapons.weedwacker.WeedwackerBlade;
  */
 public class WeedwackerZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer};
     public String getStaticTextureURL(){return "weedwackerzareln.png";}
     private static final double attackrange = 128; // this is at the range of the weedwacker blade
     private static final double blindrange = 60; // target is too close to hit with the blade
@@ -39,7 +41,10 @@ public class WeedwackerZombie extends Zombie
             else if(distanceTo(getTarget())<blindrange)super.behave();
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 250;
     }

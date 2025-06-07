@@ -2,6 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies.rocket;
 import com.karel.game.Greenfoot;
 import com.karel.game.Rocket;
 import com.karel.game.SpeedPercentageEffect;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 /**
  * Write a description of class RocketZombie here.
@@ -11,6 +12,7 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class RocketZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.assault, ZombieClass.meatshield};
     private double cooldown = 0, flightpoint = Greenfoot.getRandomNumber(50)+75;//Range from 75 150               // How long ago we fired the gun the last time.
     private String rocket = "rocketzareln.png";
     private String rocket2 = "zareln.png";
@@ -57,6 +59,9 @@ public class RocketZombie extends Zombie
         getWorld().addObject(ride, getRealX(), getRealY());
         ride.applyTarget(getTarget().getRealX(), getTarget().getRealY());
         rocketPhase = 1;
+    }
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     @Override
     public boolean prioritizeTarget(){

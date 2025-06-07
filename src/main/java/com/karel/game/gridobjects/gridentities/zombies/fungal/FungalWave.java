@@ -1,7 +1,7 @@
-package com.karel.game.particles;
+package com.karel.game.gridobjects.gridentities.zombies.fungal;
 
-import com.karel.game.FungalZombie;
 import com.karel.game.GridEntity;
+import com.karel.game.particles.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.
@@ -16,7 +16,7 @@ public class FungalWave extends WaveAttack
     public FungalWave(FungalZombie source)
     {
         super(source);
-        //addForce(new Vector(rotation, 15));
+        setImage("Projectiles/Bullets/zfungalspray.png");
         setDamage(damage);
         setLife(30);
         setNumTargets(-1);

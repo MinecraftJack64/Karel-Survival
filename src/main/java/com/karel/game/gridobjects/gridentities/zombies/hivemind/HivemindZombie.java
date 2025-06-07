@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.hivemind;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -11,13 +12,12 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class HivemindZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.spawner, ZombieClass.ranger};
     private static final int gunReloadTime = 150;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "hivezareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
     private static double standingrange = 500;
     private int bees = 40;
     private int attackphasecount = 0;
@@ -32,17 +32,10 @@ public class HivemindZombie extends Zombie
         setSpeed(2);
         startHealth(300);
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount += getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())>standingrange)walk(monangle, 1);
         else if(bees<=0){
             super.behave();
@@ -52,9 +45,6 @@ public class HivemindZombie extends Zombie
         }
     }
 
-    /**
-     * Check whether there are any key pressed and react to them.
-     */
     private void fire() 
     {
         if (attackphasecount>0/*finish started attacks*/||(reloadDelayCount>=gunReloadTime&&canAttack())){
@@ -74,7 +64,9 @@ public class HivemindZombie extends Zombie
             }
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
     public int getXP(){
         return 400;
     }

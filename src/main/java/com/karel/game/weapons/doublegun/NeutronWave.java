@@ -20,7 +20,7 @@ public class NeutronWave extends WaveAttack
     public NeutronWave(GridObject source, int radiate)
     {
         super(source);
-        setImage("wave.png");
+        setImage("Weapons/doublegun/projUlt.png");
         setDamage(damage);
         setNumTargets(-1);
         setMultiHit(false);
