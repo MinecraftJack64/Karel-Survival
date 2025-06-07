@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
+import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
 
 class SpawnData{
     public ArrayList<Class> spawnTypes;

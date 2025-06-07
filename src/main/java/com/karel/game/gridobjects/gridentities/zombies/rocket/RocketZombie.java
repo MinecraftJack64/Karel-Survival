@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.rocket;
+import com.karel.game.Greenfoot;
+import com.karel.game.Rocket;
+import com.karel.game.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 /**
  * Write a description of class RocketZombie here.
@@ -8,7 +11,7 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class RocketZombie extends Zombie
 {
-    private int cooldown = 0, flightpoint = Greenfoot.getRandomNumber(50)+75;//Range from 75 150               // How long ago we fired the gun the last time.
+    private double cooldown = 0, flightpoint = Greenfoot.getRandomNumber(50)+75;//Range from 75 150               // How long ago we fired the gun the last time.
     private String rocket = "rocketzareln.png";
     private String rocket2 = "zareln.png";
     //ShieldBar shieldBar;
@@ -31,7 +34,7 @@ public class RocketZombie extends Zombie
     public void behave(){
         if(cooldown<50){
             super.behave();
-            cooldown++;
+            cooldown+=getReloadMultiplier();
         }else if(cooldown<flightpoint){
             cooldown++;
         }else{

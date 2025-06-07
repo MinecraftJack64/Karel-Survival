@@ -5,12 +5,14 @@ import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.critters.LilCritters;
 import com.karel.game.weapons.crossbow.Crossbow;
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
+import com.karel.game.weapons.weedwacker.Weedwacker;
 import com.karel.game.weapons.doublegun.DoubleGun;
 import com.raylib.Texture;
 

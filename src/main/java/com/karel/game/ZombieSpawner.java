@@ -117,6 +117,7 @@ public class ZombieSpawner implements Spawner
             }else{
                 if(boss.isDead()){
                     stopBossFight();
+                    wavelevel++;
                 }
             }
         }

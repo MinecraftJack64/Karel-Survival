@@ -19,7 +19,7 @@ public class ProjectileReflectShield extends Shield
         if(!source.covertDamage())source.notifyDamage(getHolder(), (int)(source.damageSecrecy()*dmg));
         if(source instanceof Bullet){
             Bullet psource = (Bullet)source;
-            psource.setDirection(psource.getDirection()-180);
+            redirectProjectile(psource);
             psource.setTeam(getHolder().getTeam());
             psource.setSelfHarm(true);
             if(psource.getNumTargets()!=-1){
@@ -28,6 +28,9 @@ public class ProjectileReflectShield extends Shield
             return 0;
         }else
         return dmg;//does not stop damage if not projectile
+    }
+    public void redirectProjectile(Bullet psource){
+        psource.setDirection(psource.getDirection()-180);
     }
     public void tick(){
         duration--;

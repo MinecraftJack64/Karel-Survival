@@ -1,6 +1,6 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.weedwacker;
 
+import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -13,13 +13,11 @@ public class Weedwacker extends Weapon
 {
     private static final int ult = 1500;
     private WeedwackerBlade drone;
-    private int resurrect = 120;
+    private double resurrect = 120;
     public void fire(){
         if(drone!=null){
             //drone.spin();
         }
-        //show the lightning
-        //Sounds.play("electicity");
     }
     public void fireUlt(){
         if(drone==null){
@@ -29,20 +27,26 @@ public class Weedwacker extends Weapon
             resurrect = 120;
         }
         if(!drone.hasUlt()){
-            drone.ult();
+            drone.ult(getUltUpgrade()==1);
         }else{
             cancelUltReset();
         }
     }
+    public boolean bladeActive(){
+        return drone!=null;
+    }
+    public WeedwackerBlade getBlade(){
+        return drone;
+    }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double speed){
         if(drone!=null){
             if(drone.isDead())drone = null;
             else{
                 if(getAttackUpgrade()==1)drone.setStrength(5-drone.getHealthShield().getHealth());
-                drone.spin();
+                drone.spin(speed);
             }
         }else{
             if(resurrect<=0){
@@ -51,7 +55,7 @@ public class Weedwacker extends Weapon
                 getHolder().mount(drone, -90, 125);
                 resurrect = 120;
             }
-            resurrect--;
+            resurrect-= speed;
         }
     }
     public void equip(){

@@ -315,7 +315,7 @@ public abstract class GridEntity extends GridObject
         return health;
     }
     public GridEntity getTarget(){
-        return null;
+        return getNearestTarget();
     }
     public int getMaxHealth(){
         return maxHealth;

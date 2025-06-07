@@ -1,7 +1,16 @@
-package com.karel.game;
+package com.karel.game.weapons.weedwacker;
 import java.util.List;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.MetalShield;
+import com.karel.game.PoisonEffect;
+import com.karel.game.ProjectileReflectShield;
+import com.karel.game.ProjectileParryShield;
+import com.karel.game.SubAffecter;
 import com.karel.game.weapons.ShieldID;
+import com.raylib.Raylib;
+import com.raylib.Vector2;
 
 /**
  * Write a description of class WeedwackerBlade here.
@@ -12,18 +21,19 @@ import com.karel.game.weapons.ShieldID;
 public class WeedwackerBlade extends GridEntity implements SubAffecter
 {
     private GridEntity source;
-    private int ammo = 0;//5
-    private double distance, angle;
+    private double ammo = 0;//5
+    //private double distance, angle;
     private int strength;
     private final ShieldID ultshieldid = new ShieldID(this, "ult"), healthshieldid = new ShieldID(this, "health");
     public WeedwackerBlade(double d, double a, GridEntity source){
-        distance = d;
-        angle = a;
+        //distance = d;
+        //angle = a;
         this.source = source;
         strength = 0;
         startHealthShield(new MetalShield(healthshieldid, 6));
         setDetectable(false);
-        setImage("karo.png");
+        setImage("Weapons/weedwacker/proj.png");
+        scaleTexture(40);
         addEffectImmunities(PoisonEffect.class);
     }
     public boolean acceptExternalShields(){
@@ -41,6 +51,16 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public void animate(){
         //if(canAttack())setRealRotation(getRealRotation()+30);
     }
+    public void render(){
+        super.render();
+        //draw line between source and me
+        Raylib.drawLineEx(
+            new Vector2(renderTransformX((int)getRealX()), renderTransformY((int)getRealY())),
+            new Vector2(renderTransformX((int)getSource().getRealX()), renderTransformY((int)getSource().getRealY())),
+            7,
+            Raylib.BLACK
+        );
+    }
     public void behave(){
         matchTeam(source);
         if(source.isDead()){
@@ -51,10 +71,10 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
             setOpacityPercent(1);
         }
     }
-    public void spin(){
+    public void spin(double speed){
         if(canAttack()){
             setRealRotation(getRealRotation()+30);
-            ammo++;
+            ammo+=speed;
             if(ammo>=3){
                 attack();
                 ammo = 0;
@@ -64,8 +84,8 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public void die(GridObject source){
         super.die(source);
     }
-    public void ult(){
-        applyShield(new ProjectileReflectShield(ultshieldid, 400));
+    public void ult(boolean upgraded){
+        applyShield(upgraded?new ProjectileParryShield(ultshieldid, 400):new ProjectileReflectShield(ultshieldid, 400));
         startHealthShield(new MetalShield(healthshieldid, 6));
         setOpacityPercent(0.5);
     }
@@ -80,7 +100,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         source.notifyDamage(s, dmg);
     }
     public void immunize(){
-        startHealthShield(new SuperWeedwackerShield(new ShieldID(this, "immune"), -1));
+        startHealthShield(new MetalShield(healthshieldid, 12));
     }
     public void attack(){
         List<GridEntity> g = getCollidingObjects();

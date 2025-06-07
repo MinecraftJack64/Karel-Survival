@@ -17,11 +17,13 @@ public class CircSaw extends Boomerang
     public CircSaw(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/slicer/proj.png");
+        scaleTexture(50);
         setSpeed(18);
         setNumTargets(-1);
         phase = 1;
         hasreturned = false;
-        setDamage(125);
+        setDamage(150);
         setLife(25);
         setDamageOnReturn(1);
     }
@@ -46,6 +48,9 @@ public class CircSaw extends Boomerang
                 clearHitStory();
             }
         }
+    }
+    public int getPhase(){
+        return phase;
     }
     @Override
     public void animate(){

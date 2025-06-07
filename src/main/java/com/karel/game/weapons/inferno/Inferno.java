@@ -1,6 +1,8 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.inferno;
 
+import com.karel.game.AmmoManager;
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
 
 import java.util.HashSet;
@@ -14,6 +16,7 @@ import java.util.HashSet;
 public class Inferno extends Weapon
 {
     private AmmoManager ammo;
+    private int reloadDelay = 0; // 3
     private int remainingFrames;
     private int ultTeleportCooldown; // 30
     private double tpX, tpY;
@@ -26,9 +29,10 @@ public class Inferno extends Weapon
             }else{
                 setContinueUse(false);
                 setPlayerLockRotation(false);
+                reloadDelay = 3;
             }
         }
-        else if (ammo.hasAmmo())
+        else if (ammo.hasAmmo()&&reloadDelay<=0)
         {
             fireWave();
             setContinueUse(true);
@@ -82,14 +86,17 @@ public class Inferno extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        ammo.reload();
-        updateAmmo(ammo);
+    public void reload(double speed){
+        super.reload(speed);
+        if(reloadDelay>0){
+            reloadDelay--;
+        }
     }
     public Inferno(ItemHolder actor){
         super(actor);
         chargeUlt(getUlt()/2);
         ammo = new AmmoManager(50, 3, 3);
+        setAmmo(ammo);
     }
     public void equip(){
         super.equip();
