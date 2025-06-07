@@ -1,6 +1,6 @@
 package com.karel.game;
 import java.util.*;
-import java.util.stream.Collectors;
+import com.karel.game.weapons.slicer.BladeGuard;
 
 /**
  * Write a description of class Hitter here.
@@ -125,9 +125,13 @@ public class Hitter extends GridObject implements SubAffecter
     public void checkHit()
     {
         List<GridEntity> asteroid = getColliding();
-        if(asteroid.size()==0||getNumTargets()==0){
+        if(asteroid.size()==0){
+            if(canMultiHit()){
+                setHitStory(asteroid);
+            }
             return;
         }
+        if(getNumTargets()==0)return;
         for(GridEntity thing: asteroid){
             if(!processPotentialHit(thing))break;
         }
