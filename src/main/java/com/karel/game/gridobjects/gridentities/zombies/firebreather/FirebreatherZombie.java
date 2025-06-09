@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.firebreather;
 
+import com.karel.game.Sounds;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -9,36 +10,28 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class FlamethrowerZombie extends Zombie
+public class FirebreatherZombie extends Zombie
 {
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.melee, ZombieClass.barrager};
     private static final int gunReloadTime = 3;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
+
+    private int nextNapalm = 30; // 25-35
 
     public String getStaticTextureURL(){return "zareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
     private static double attackrange = 150, retreatrange = 50;
-    /**
-     * Initilise this rocket.
-     */
-    public FlamethrowerZombie()
+    public FirebreatherZombie()
     {
         reloadDelayCount = 5;
         setSpeed(2);
         startHealth(400);
     }
 
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount+= getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
         else if(distanceTo(getTarget())<retreatrange){fire();}
         else{
@@ -54,14 +47,21 @@ public class FlamethrowerZombie extends Zombie
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
             for(int deg = -35; deg<=35; deg+=10){
+                nextNapalm--;
                 Flame mbullet = new Flame(getRealRotation()+deg, this);
-                getWorld().addObject (mbullet, getRealX(), getRealY());
+                if(nextNapalm<=0){
+                    nextNapalm = 25 + (int)(Math.random()*11);
+                    mbullet = new NapalmFlame(getRealRotation()+deg, this);
+                }
+                addObjectHere(mbullet);
             }
             Sounds.play("flame");
             reloadDelayCount = 0;
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
     public int getXP(){
         return 900;
     }

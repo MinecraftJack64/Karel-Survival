@@ -1,10 +1,8 @@
 package com.karel.game.weapons.inferno;
 import java.util.ArrayList;
-
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.BurnEffect;
+import com.karel.game.HealCharge;
 import com.karel.game.Effect;
 
 /**
@@ -12,9 +10,9 @@ import com.karel.game.Effect;
  * 
  * @author Poul Henriksen
  */
-public class InfernalFlame extends Bullet
+public class SoulInfernalFlame extends InfernalFlame
 {
-    public InfernalFlame(double rotation, GridObject source)
+    public SoulInfernalFlame(double rotation, GridObject source)
     {
         super(rotation, source);
         setSpeed(22);
@@ -23,19 +21,17 @@ public class InfernalFlame extends Bullet
         setNumTargets(-1);
         setMultiHit(false);
     }
-    public InfernalFlame(double rotation, ArrayList<GridEntity> refhit, GridObject source)
+    public SoulInfernalFlame(double rotation, ArrayList<GridEntity> refhit, GridObject source)
     {
         this(rotation, source);
     }
-    public void applyPhysics(){
-        addObjectHere(new FireTrail(getSource()));
-        super.applyPhysics();
-    }
     public Effect getEffect(){
-        return new BurnEffect(5, 30, 3, this);
+        return new SoulBurnEffect(5, 30, 3, this);
     }
     public void doHit(GridEntity g){
-        g.applyEffect(getEffect());
         super.doHit(g);
+        if(g.isDead()&&getLife()>10){
+            addObjectHere(new HealCharge(getRealRotation(), getSource().getParentAffecter(), getDamage()));
+        }
     }
 }

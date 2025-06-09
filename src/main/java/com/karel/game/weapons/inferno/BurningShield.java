@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.inferno;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.PoisonEffect;
+import com.karel.game.Shield;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.ShieldID;
 

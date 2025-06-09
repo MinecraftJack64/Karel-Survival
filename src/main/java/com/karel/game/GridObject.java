@@ -1,6 +1,5 @@
 package com.karel.game;
 import java.util.Objects;
-import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -10,7 +9,6 @@ import com.karel.game.weapons.EffectID;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Represents an object inside the game world

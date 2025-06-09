@@ -1,5 +1,4 @@
 package com.karel.game.weapons.gun;
-import java.util.List;
 
 import com.karel.game.Bullet;
 import com.karel.game.ItemHolder;

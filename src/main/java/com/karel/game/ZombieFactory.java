@@ -2,6 +2,7 @@ package com.karel.game;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
+import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
@@ -36,7 +37,7 @@ public class ZombieFactory
             case "laser": return new LaserZombie();
             case "easter": return new EasterZombie();
             case "russiandoll": return new RussianDollZombie();
-            case "firebreather": return new FlamethrowerZombie();
+            case "firebreather": return new FirebreatherZombie();
             case "weedwacker": return new WeedwackerZombie();
             case "wizard": return new Wizard();
             case "portal": return new PortalZombie();

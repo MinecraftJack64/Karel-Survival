@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
+import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
@@ -69,7 +70,7 @@ public class SpawnCalculator
         Zombie.class, ShieldZombie.class, ShooterZombie.class, ExplodingZombie.class, HardHatZombie.class, HivemindZombie.class,
         MarksmanZombie.class, RocketZombie.class, FungalZombie.class, NinjaZombie.class, DoctorZombie.class, HornetNeckZombie.class,
         LaserZombie.class, EasterZombie.class, RussianDollZombie.class, WeedwackerZombie.class, SplitterZombie.class, /*Shaman*/Zombie.class,
-        TractorBeamZombie.class, WarriorZombie.class, FlamethrowerZombie.class, PresidentZombie.class, JokerZombie.class, JackITBZombie.class, CannonZombie.class, StuntZombie.class, JailBreakZombie.class,
+        TractorBeamZombie.class, WarriorZombie.class, FirebreatherZombie.class, PresidentZombie.class, JokerZombie.class, JackITBZombie.class, CannonZombie.class, StuntZombie.class, JailBreakZombie.class,
         PortalZombie.class, WatermelonZombie.class, ArsonZombie.class, AssassinZombie.class, IroncladZombie.class, SteakZombie.class, ExorcistZombie.class, GuardianAngelZombie.class,
         TorpedoZombie.class};
     public int[] minlevels = new int[]{1, 3, 5, 7, 8, 9, 10, 13, 15, 17, 18, 19, 21, 23, 25, 27, 32, 33, 35, 39, 45, 47, 49, 49, 51, 53, 54, 55, 56, 58, 61, 63, 65, 67, 68, 69};//18 is doctor, 49 is JITB

@@ -259,7 +259,7 @@ public abstract class Weapon implements Item, Tickable
         getHand().setMovementLock(t);
     }
     public boolean isLocked(){
-        return slotlocked||rotlocked||movelocked||isusing||isulting;
+        return slotlocked||rotlocked||movelocked||isusing||isulting||isgadgeting;
     }
     public boolean isPlayerRotationLocked(){
         return rotlocked;

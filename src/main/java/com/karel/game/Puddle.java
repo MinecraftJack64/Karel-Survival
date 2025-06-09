@@ -16,6 +16,12 @@ public class Puddle extends Hitter
     public int getInterval(){
         return interval;
     }
+    public int getTimes(){
+        return times;
+    }
+    public void setTimes(int t){
+        times = t;
+    }
     public Puddle(GridObject source){
         super(source);
         setNumTargets(-1);

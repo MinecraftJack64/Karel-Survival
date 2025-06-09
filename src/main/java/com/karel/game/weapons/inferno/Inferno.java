@@ -1,9 +1,11 @@
 package com.karel.game.weapons.inferno;
 
 import com.karel.game.AmmoManager;
+import com.karel.game.ExternalImmunityShield;
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.ShieldID;
 
 import java.util.HashSet;
 
@@ -19,6 +21,7 @@ public class Inferno extends Weapon
     private int reloadDelay = 0; // 3
     private int remainingFrames;
     private int ultTeleportCooldown; // 30
+    private int underworldDuration = 0; // 180
     private double tpX, tpY;
     private static final int ult = 2100;
     public void fire(){
@@ -42,14 +45,17 @@ public class Inferno extends Weapon
         }
     }
     public void fireWave(){
-        InfernalFlame bullet = new InfernalFlame(getHand().getTargetRotation(), getHolder());
+        InfernalFlame bullet = getProjectile(0);
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-        InfernalFlame bullet2 = new InfernalFlame(getHand().getTargetRotation()+5, getHolder());
+        InfernalFlame bullet2 = getProjectile(5);
         getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
-        InfernalFlame bullet3 = new InfernalFlame(getHand().getTargetRotation()-5, getHolder());
+        InfernalFlame bullet3 = getProjectile(-5);
         getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
         bullet2.setHitStory(bullet.getHitStory());
         bullet3.setHitStory(bullet.getHitStory());
+    }
+    public InfernalFlame getProjectile(double rotation){
+        return getAttackUpgrade()==1?new SoulInfernalFlame(getHand().getTargetRotation()+rotation, getHolder()):new InfernalFlame(getHand().getTargetRotation()+rotation, getHolder());
     }
     public void fireUlt(){
         if(continueUlt()){
@@ -78,6 +84,9 @@ public class Inferno extends Weapon
             ultTeleportCooldown = 30;
             tpX = getHand().getTargetX();
             tpY = getHand().getTargetY();
+            if(getUltUpgrade()==1){
+                getHolder().applyShield(new BurningShield(new ShieldID(this), 0.4, 90));
+            }
             setPlayerLockMovement(true);
             setPlayerLockRotation(true);
             setContinueUlt(true);
@@ -91,6 +100,26 @@ public class Inferno extends Weapon
         if(reloadDelay>0){
             reloadDelay--;
         }
+    }
+    public void onGadgetContinue(){
+        if(underworldDuration>0){
+            if(underworldDuration%3==0)getHolder().addObjectHere(new FireTrail(getHolder()));
+            underworldDuration--;
+            if(underworldDuration<=0){
+                getHolder().setRealHeight(0);
+                getHolder().removeShield(new ShieldID(this, "underworld"));
+                setContinueGadget(false);
+            }
+        }
+    }
+    public void onGadgetActivate(){
+        underworldDuration = 180;
+        setContinueGadget(true);
+        getHolder().setRealHeight(-10);
+        getHolder().applyShield(new ExternalImmunityShield(new ShieldID(this, "underworld"), 360));
+    }
+    public int defaultGadgets(){
+        return 1;
     }
     public Inferno(ItemHolder actor){
         super(actor);
@@ -109,9 +138,3 @@ public class Inferno extends Weapon
         return 1;
     }
 }
-
-
-
-
-
-
