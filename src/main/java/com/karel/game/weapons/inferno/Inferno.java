@@ -27,7 +27,7 @@ public class Inferno extends Weapon
     public void fire(){
         if(continueUse()){
             if(remainingFrames>0){
-                fireWave();
+                fireWave(false);
                 remainingFrames--;
             }else{
                 setContinueUse(false);
@@ -37,25 +37,25 @@ public class Inferno extends Weapon
         }
         else if (ammo.hasAmmo()&&reloadDelay<=0)
         {
-            fireWave();
+            fireWave(true);
             setContinueUse(true);
             setPlayerLockRotation(true);
             remainingFrames = 3;
             ammo.useAmmo();
         }
     }
-    public void fireWave(){
-        InfernalFlame bullet = getProjectile(0);
+    public void fireWave(boolean firstWave){
+        InfernalFlame bullet = getProjectile(0, firstWave);
         getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-        InfernalFlame bullet2 = getProjectile(5);
+        InfernalFlame bullet2 = getProjectile(5, firstWave);
         getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
-        InfernalFlame bullet3 = getProjectile(-5);
+        InfernalFlame bullet3 = getProjectile(-5, firstWave);
         getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
         bullet2.setHitStory(bullet.getHitStory());
         bullet3.setHitStory(bullet.getHitStory());
     }
-    public InfernalFlame getProjectile(double rotation){
-        return getAttackUpgrade()==1?new SoulInfernalFlame(getHand().getTargetRotation()+rotation, getHolder()):new InfernalFlame(getHand().getTargetRotation()+rotation, getHolder());
+    public InfernalFlame getProjectile(double rotation, boolean firstWave){
+        return getAttackUpgrade()==1?new SoulInfernalFlame(getHand().getTargetRotation()+rotation, getHolder(), firstWave):new InfernalFlame(getHand().getTargetRotation()+rotation, getHolder(), firstWave);
     }
     public void fireUlt(){
         if(continueUlt()){
@@ -66,7 +66,7 @@ public class Inferno extends Weapon
                 for(int j = 0; j < 3; j++){
                     HashSet<GridEntity> hs = null;
                     for(int i = 0; i < 360; i+=5){// create 3 waves of attack bullets
-                        InfernalFlame bullet = new InfernalFlame(getHand().getTargetRotation()+i, getHolder()){
+                        InfernalFlame bullet = new InfernalFlame(getHand().getTargetRotation()+i, getHolder(), true){
                             public boolean covertDamage(){
                                 return true;
                             }

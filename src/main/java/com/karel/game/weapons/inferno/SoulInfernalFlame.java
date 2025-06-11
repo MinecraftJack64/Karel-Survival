@@ -12,9 +12,9 @@ import com.karel.game.Effect;
  */
 public class SoulInfernalFlame extends InfernalFlame
 {
-    public SoulInfernalFlame(double rotation, GridObject source)
+    public SoulInfernalFlame(double rotation, GridObject source, boolean firstWave)
     {
-        super(rotation, source);
+        super(rotation, source, firstWave);
         setSpeed(22);
         setLife(15);
         setDamage(55);
@@ -23,7 +23,7 @@ public class SoulInfernalFlame extends InfernalFlame
     }
     public SoulInfernalFlame(double rotation, ArrayList<GridEntity> refhit, GridObject source)
     {
-        this(rotation, source);
+        this(rotation, source, false);
     }
     public Effect getEffect(){
         return new SoulBurnEffect(5, 30, 3, this);

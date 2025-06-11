@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 
 import java.util.HashMap;
 

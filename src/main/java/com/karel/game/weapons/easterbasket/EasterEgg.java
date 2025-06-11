@@ -1,4 +1,10 @@
-package com.karel.game;
+package com.karel.game.weapons.easterbasket;
+
+import com.karel.game.Bullet;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
 
 /**
  * A bullet that can hit asteroids.
@@ -7,16 +13,19 @@ package com.karel.game;
  */
 public class EasterEgg extends Bullet
 {
-    /** The damage this bullet will deal */
-    private static final int damage = 200;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 25;
     private boolean attemptedspawn = false, willspawn;
     
     public EasterEgg(double rotation, boolean chance, GridObject source)
     {
         super(rotation, source);
+        if(chance){
+            setImage("Weapons/easterbasket/proj.png");
+            scaleTexture(30);
+        }else{
+            setImage("Weapons/easterbasket/proj"+Greenfoot.getRandomNumber(4)+".png");
+            scaleTexture(25);
+        }
+        setRealRotation(getRealRotation()-90);
         setLife(25);
         setSpeed(13);
         setDamage(100);

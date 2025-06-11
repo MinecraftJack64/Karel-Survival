@@ -1,6 +1,6 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.easter;
 
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -11,13 +11,12 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class EasterZombie extends Zombie
 {
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.spawner, ZombieClass.midranger, ZombieClass.assault};
     private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "easterzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
     private static double attackrange = 250, retreatrange = 150;
     /**
      * Initilise this rocket.
@@ -35,10 +34,8 @@ public class EasterZombie extends Zombie
      */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);//HOP
         else if(distanceTo(getTarget())<retreatrange){fire();walk(monangle, -1);}
         else{
@@ -61,6 +58,9 @@ public class EasterZombie extends Zombie
     //ovveride this
     public int getXP(){
         return 400;
+    }
+    public ZombieClass[] getClasses(){
+        return classes;
     }
     
     public String getName(){

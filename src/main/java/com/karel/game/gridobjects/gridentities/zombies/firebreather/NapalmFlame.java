@@ -1,7 +1,6 @@
 package com.karel.game.gridobjects.gridentities.zombies.firebreather;
 
 import com.karel.game.GridObject;
-import com.karel.game.GridEntity;
 
 public class NapalmFlame extends Flame
 {
@@ -11,8 +10,5 @@ public class NapalmFlame extends Flame
         super(rotation, source);
         setImage("Projectiles/Bullets/napalm.png");
         setDamage(20);
-    }
-    public void doHit(GridEntity targ){
-        super.doHit(targ);
     }
 }

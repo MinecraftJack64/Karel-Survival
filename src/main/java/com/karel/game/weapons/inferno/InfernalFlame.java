@@ -14,21 +14,26 @@ import com.karel.game.Effect;
  */
 public class InfernalFlame extends Bullet
 {
-    public InfernalFlame(double rotation, GridObject source)
+    private boolean createTrail;
+    public InfernalFlame(double rotation, GridObject source, boolean firstWave)
     {
         super(rotation, source);
+        setImage("Weapons/inferno/proj0.png");
+        scaleTexture(30);
+        setRealRotation(getRealRotation()-180);
         setSpeed(22);
         setLife(15);
         setDamage(55);
         setNumTargets(-1);
         setMultiHit(false);
+        createTrail = firstWave;
     }
     public InfernalFlame(double rotation, ArrayList<GridEntity> refhit, GridObject source)
     {
-        this(rotation, source);
+        this(rotation, source, false);
     }
     public void applyPhysics(){
-        addObjectHere(new FireTrail(getSource()));
+        if(createTrail) addObjectHere(new FireTrail(getSource()));
         super.applyPhysics();
     }
     public Effect getEffect(){

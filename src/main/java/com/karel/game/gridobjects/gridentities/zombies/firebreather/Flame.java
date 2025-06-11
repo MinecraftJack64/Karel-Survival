@@ -11,6 +11,9 @@ public class Flame extends Bullet
     public Flame(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Projectiles/Bullets/flame.png");
+        scaleTexture(30);
+        setRealRotation(getRealRotation()-180);
         setSpeed(15);
         setLife(15);
         setDamage(15);

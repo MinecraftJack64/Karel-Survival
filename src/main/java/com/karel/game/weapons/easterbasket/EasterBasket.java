@@ -1,6 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.easterbasket;
 import java.util.List;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
+import com.karel.game.LandingHandler;
+import com.karel.game.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 /**
  * Write a description of class EasterBasket here.
@@ -10,19 +15,18 @@ import com.karel.game.weapons.Weapon;
  */
 public class EasterBasket extends Weapon implements LandingHandler
 {
-    private static final int gunReloadTime = 20;
-    private int reloadDelayCount;
+    private static final int gunReloadTime = 30;
     private static final int ult = 1000;
     private int hopsLeft;
     private static final int defaultchance = 3;
     private int chance;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime&&hopsLeft==0) 
+        if (getAmmo().hasAmmo()&&hopsLeft==0) 
         {
-            boolean willspawn = Greenfoot.getRandomNumber(9)<defaultchance;
+            boolean willspawn = Greenfoot.getRandomNumber(9-chance)<defaultchance;
             EasterEgg bullet = new EasterEgg(getHand().getTargetRotation(), willspawn, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-            reloadDelayCount = 0;
+            getAmmo().useAmmo();
             if(getAttackUpgrade()==1){
                 if(willspawn){
                     chance = defaultchance;
@@ -60,21 +64,13 @@ public class EasterBasket extends Weapon implements LandingHandler
             setLocked(false);//allow switching weapons
         }
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
-    }
     public int getUlt(){
         return ult;
     }
     public EasterBasket(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;//
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
         chance = defaultchance;
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
     }
     public String getName(){
         return "Easter Basket";

@@ -14,6 +14,7 @@ import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.weedwacker.Weedwacker;
 import com.karel.game.weapons.doublegun.DoubleGun;
+import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.raylib.Texture;
 
 public class Player extends GridEntity {

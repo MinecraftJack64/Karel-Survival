@@ -1,6 +1,8 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.easterbasket;
 
+import com.karel.game.GridEntity;
+import com.karel.game.Pet;
+import com.karel.game.StrikeSurvivalShield;
 import com.karel.game.weapons.ShieldID;
 
 /**
@@ -12,9 +14,12 @@ import com.karel.game.weapons.ShieldID;
 public class Chick extends Pet
 {
 
-    public String getStaticTextureURL(){return "chickzareln.png";}
-    private int ammo = 0;
+    public String getStaticTextureURL(){return "chick.png";}
+    private double ammo = 0;
     private double strength;
+    private int damage = 12;
+    private static double attackrange = 30;
+    private static final int reloadtime = 5;
     /**
      * Initilise this rocket.
      */
@@ -38,20 +43,16 @@ public class Chick extends Pet
     {
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        ammo++;
+        ammo+= getReloadMultiplier();
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
         else{
-            if(ammo>reloadtime&&canAttack()){
+            if(ammo>=reloadtime&&canAttack()){
                 attack();
                 ammo = 0;
             }
         }
         
     }
-    private int damage = 12;
-    private static double speed = 2;
-    private static double attackrange = 30;
-    private static final int reloadtime = 5;
     public void attack(){
         if(isAggroTowards(getTarget()))damage(getTarget(), (int)(damage*strength));
     }

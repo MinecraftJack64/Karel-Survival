@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.easter;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 
 /**
@@ -9,15 +13,20 @@ import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
  */
 public class ZEasterEgg extends ZBullet
 {
-    /** The damage this bullet will deal */
-    private static final int damage = 200;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 25;
+    private boolean willspawn;
     
     public ZEasterEgg(double rotation, GridObject source)
     {
         super(rotation, source);
+        willspawn = Greenfoot.getRandomNumber(3)==0;
+        if(willspawn){
+            setImage("Weapons/easterbasket/proj.png");
+            scaleTexture(30);
+        }else{
+            setImage("Weapons/easterbasket/proj"+Greenfoot.getRandomNumber(4)+".png");
+            scaleTexture(25);
+        }
+        setRealRotation(getRealRotation()-90);
         setLife(25);
     }
     
@@ -27,7 +36,7 @@ public class ZEasterEgg extends ZBullet
     
     public void doHit(GridEntity targ){
         Sounds.play("eggcrack");
-        if(Greenfoot.getRandomNumber(3)==0){
+        if(willspawn){
             ZombieChick spawn = new ZombieChick(this, (GridEntity)getSource());
             getWorld().addObject(spawn, getRealX(), getRealY());
         }

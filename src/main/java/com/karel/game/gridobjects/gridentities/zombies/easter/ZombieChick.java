@@ -1,5 +1,8 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.easter;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SpawnableZombie;
 
 /**
  * Write a description of class ZombieChick here.
