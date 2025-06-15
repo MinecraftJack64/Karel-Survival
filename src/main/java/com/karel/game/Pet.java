@@ -49,8 +49,8 @@ public class Pet extends GridEntity
     public int spawnImmunityLength(){
         return 45;
     }
-    public void setImage(String path){
-        super.setImage("GridEntities/Pets/"+path);
+    public String spriteOrigin(){
+        return "GridEntities/Pets/";
     }
     public void notifyDamage(GridEntity target, int amt){
         if(notifySpawnerDamage()&&getSpawner()!=null&&!getSpawner().isDead()){

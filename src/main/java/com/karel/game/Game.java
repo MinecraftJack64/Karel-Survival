@@ -238,8 +238,8 @@ public class Game
             toggleAutoult();
         }
         if(currentMenu.equals("game")){
-            game.tick();
-            if(gameStatus().equals("running"))world.update();
+            if(gameStatus().equals("running"))game.tick();
+            /*if(gameStatus().equals("running"))*/world.update();
             ui.update();
             if(isPaused())ui2.update();
             world.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());

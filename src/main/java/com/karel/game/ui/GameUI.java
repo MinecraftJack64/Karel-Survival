@@ -1,5 +1,4 @@
 package com.karel.game.ui;
-import java.util.ArrayList;
 
 import com.karel.game.IAmmoManager;
 import com.karel.game.GridEntity;
@@ -16,6 +15,7 @@ import com.karel.game.ui.buttons.Button;
 import com.karel.game.ui.text.Counter;
 import com.karel.game.ui.text.ShyTextDisplay;
 import com.karel.game.ui.text.TextDisplay;
+import com.karel.game.ui.text.FadeInTextDisplay;
 import com.karel.game.Player;
 import com.raylib.Color;
 import com.raylib.Raylib;
@@ -28,7 +28,7 @@ import com.raylib.Raylib;
  */
 public class GameUI extends UI  
 {
-    public static final Color DARKRED = new Color((byte)255, (byte)0, (byte)0, (byte)1);
+    public static final Color DARKRED = new Color((byte)255, (byte)0, (byte)0, (byte)255);
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
@@ -117,7 +117,7 @@ public class GameUI extends UI
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         GridObject kill = getWorld().getPlayer().getKiller();
         if(kill!=null){
-            TextDisplay killer = new TextDisplay(kill instanceof Player?"You stepped out of bounds":("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill)), 20, DARKRED);
+            TextDisplay killer = new FadeInTextDisplay(kill instanceof Player?"You stepped out of bounds":("You were killed by a "+(kill instanceof GridEntity?((GridEntity)kill).getName():kill)), 20, DARKRED);
             getWorld().addObject(killer, go.getRealX(), go.getBottom());
             scoreCounter.setRealLocation(scoreCounter.getRealX(), killer.getBottom());
         }else{

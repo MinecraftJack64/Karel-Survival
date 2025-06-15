@@ -1,7 +1,10 @@
-package com.karel.game;
+package com.karel.game.weapons.blowgun;
 import java.util.HashMap;
 
 import com.karel.game.weapons.Weapon;
+import com.karel.game.ItemHolder;
+import com.karel.game.GridEntity;
+import com.karel.game.Sounds;
 
 /**
  * Write a description of class Blowgun here.

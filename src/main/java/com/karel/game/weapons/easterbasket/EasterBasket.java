@@ -1,8 +1,6 @@
 package com.karel.game.weapons.easterbasket;
-import java.util.List;
 
 import com.karel.game.Greenfoot;
-import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.LandingHandler;
 import com.karel.game.SimpleAmmoManager;
@@ -46,6 +44,19 @@ public class EasterBasket extends Weapon implements LandingHandler
         setLocked(true);
         startJump();
     }
+    public void spawnSurpriseEgg(){
+        SurpriseEasterEgg egg = new SurpriseEasterEgg(getHolder());
+        getHolder().getWorld().addObject(egg, getHolder().getRealX()+Greenfoot.getRandomNumber(500)-250, getHolder().getRealY()+Greenfoot.getRandomNumber(500)-250);
+    }
+    public void onGadgetActivate(){
+        setGadgetTimer(100);
+        for(int i = 0; i < 4; i++){
+            spawnSurpriseEgg();
+        }
+    }
+    public int defaultGadgets(){
+        return 1;
+    }
     public void startJump(){
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 275);
         getHolder().initiateJump(getHand().getTargetRotation(), d, 200);
@@ -54,10 +65,7 @@ public class EasterBasket extends Weapon implements LandingHandler
     }
     public void doLanding(){
         hopsLeft--;
-        List<GridEntity> l = getHolder().getGEsInRange(100);
-        for(GridEntity g:l){
-            if(getHolder().isAggroTowards(g))getHolder().damage(g, 200);
-        }
+        getHolder().explodeOn(100, 200);
         if(!getHolder().isDead()&&hopsLeft>0&&getHolder().canMove()&&getHolder().canAttack()){
             startJump();
         }else{

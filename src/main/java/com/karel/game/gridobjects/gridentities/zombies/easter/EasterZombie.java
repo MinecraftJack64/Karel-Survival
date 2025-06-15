@@ -15,6 +15,7 @@ public class EasterZombie extends Zombie
     private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
 
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
+    private int jumpCooldown = 50;    // How long it takes to jump again. // 50
 
     public String getStaticTextureURL(){return "easterzareln.png";}
     private static double attackrange = 250, retreatrange = 150;
@@ -36,10 +37,19 @@ public class EasterZombie extends Zombie
     {
         reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        if(distanceTo(getTarget())>attackrange)walk(monangle, 1);//HOP
+        if(distanceTo(getTarget())>attackrange)attemptHop(monangle);
         else if(distanceTo(getTarget())<retreatrange){fire();walk(monangle, -1);}
         else{
             fire();
+        }
+    }
+
+    public void attemptHop(double monangle){
+        if (canMove()&&jumpCooldown <= 0) {
+            initiateJump(monangle, Math.min(50, distanceTo(getTarget())), 50);
+            jumpCooldown = 50;
+        }else{
+            jumpCooldown--;
         }
     }
 
@@ -51,7 +61,7 @@ public class EasterZombie extends Zombie
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
             ZEasterEgg bullet = new ZEasterEgg (getRealRotation(), this);
             getWorld().addObject (bullet, getRealX(), getRealY());
-            //bullet.move ();
+            initiateJump(0, 0, 50);
             reloadDelayCount = 0;
         }
     }

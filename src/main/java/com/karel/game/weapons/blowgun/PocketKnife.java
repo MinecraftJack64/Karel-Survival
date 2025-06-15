@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.blowgun;
 import java.util.HashMap;
+
+import com.karel.game.Melee;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * blowgun ult

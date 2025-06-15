@@ -76,10 +76,13 @@ public class DoctorZombie extends Zombie
             reloadDelayCount = 0;
         }
     }
+    @Override
+    public void feast(){
+        behave();
+    }
     public ZombieClass[] getZombieClasses(){
         return classes;
     }
-    //ovveride this
     public int getXP(){
         return 500;
     }

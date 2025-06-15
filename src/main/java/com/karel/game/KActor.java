@@ -92,6 +92,9 @@ public abstract class KActor
         rop = amt;
         processImage();
     }
+    public String spriteOrigin(){
+        return "";
+    }
     public void processImage(){
         //image
     }
@@ -103,7 +106,7 @@ public abstract class KActor
         processImage();
     }
     public void setImage(String path){
-        setImage(Greenfoot.loadTexture(path));
+        setImage(Greenfoot.loadTexture(spriteOrigin()+path));
     }
     public Texture getImage(){
         return image;

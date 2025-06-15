@@ -1,5 +1,10 @@
-package com.karel.game;
+package com.karel.game.weapons.blowgun;
 import java.util.HashMap;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.PoisonEffect;
 
 /**
  * A bullet that can hit asteroids.

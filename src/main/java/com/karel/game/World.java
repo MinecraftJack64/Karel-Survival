@@ -1,10 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
-import com.karel.game.ui.Overlay;
-import com.karel.game.ui.bars.StatusBar;
-
-import java.awt.event.*;
+import com.karel.game.ui.text.TextDisplay;
 
 import com.raylib.Color;
 import com.raylib.Raylib;

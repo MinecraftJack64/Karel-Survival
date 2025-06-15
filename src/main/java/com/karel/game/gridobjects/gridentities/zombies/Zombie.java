@@ -168,8 +168,8 @@ public class Zombie extends GridEntity
     public void walk(double ang, double multiplier){
         super.walk(ang, multiplier*dsmult[Game.currentDiff()]);
     }
-    public void setImage(String path){
-        super.setImage("GridEntities/Zombies/"+path);
+    public String spriteOrigin(){
+        return "GridEntities/Zombies/";
     }
     public ZombieClass[] getZombieClasses(){
         return classes;
