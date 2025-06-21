@@ -2,7 +2,7 @@ package com.karel.game;
 import java.util.ArrayList;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
 
 /**
  * Write a description of class AdventureSpawner here.
@@ -42,7 +42,7 @@ public class TutorialSpawner implements Spawner
             if(myz!=null&&myz.isDead()){
                 firstKill = true;
             }
-            myz = new EasterZombie();
+            myz = new Zombie();
             spawnZombie(myz);
         }
     }

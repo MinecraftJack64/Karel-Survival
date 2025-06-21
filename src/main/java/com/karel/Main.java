@@ -6,6 +6,7 @@ import static com.raylib.Raylib.*;
 public class Main {
     public static void main(String args[]) {
         initWindow(1200, 800, "Karel Survival");
+        initAudioDevice();
         setTargetFPS(Game.FPS);
         setWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE);
         setExitKey(KeyboardKey.KEY_F4);

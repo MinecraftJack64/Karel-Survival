@@ -1,4 +1,12 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.steak;
+
+import com.karel.game.Collectible;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.PoisonEffect;
+import com.karel.game.PowerPercentageEffect;
+import com.karel.game.Sounds;
+
 /**
  * a collectible usually dropped from zombies when killed that can be collected by the player, healing them
  * 
@@ -10,6 +18,8 @@ public class Steak extends Collectible
     private int healing = 100;
     private int life = 150;
     public Steak(GridObject source){
+        setImage("Projectiles/Throws/steak.png");
+        scaleTexture(50);
         inherit(source);
         setRange(100);
     }

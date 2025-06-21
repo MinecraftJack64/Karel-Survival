@@ -1,8 +1,10 @@
 package com.karel.game;
 
 import com.raylib.Texture;
+import com.raylib.Sound;
 import com.raylib.Raylib;
 import com.karel.images.TextureLoader;
+import com.karel.sounds.SoundLoader;
 
 public class Greenfoot {
     public static int getRandomNumber(int lim){
@@ -18,5 +20,8 @@ public class Greenfoot {
     public static int getMouseY(){return Raylib.getMouseY();}
     public static Texture loadTexture(String url){
         return TextureLoader.loadTexture(url);
+    }
+    public static Sound loadSound(String url){
+        return SoundLoader.loadSound(url);
     }
 }

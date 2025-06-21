@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.captorch;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -12,7 +13,7 @@ import com.karel.game.weapons.Weapon;
 public class CapsaicinTorch extends Weapon
 {
     private int reloadDelayCount;
-    private int ammo = 140;
+    private double ammo = 140;
     private int maxAmmo = 140;
     private int ultammo = 0;
     private int range = 0;
@@ -22,7 +23,6 @@ public class CapsaicinTorch extends Weapon
         {
             PepperFlame bullet = new PepperFlame(getHand().getTargetRotation(), range, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
-            //bullet.move ();
             Sounds.play("gunshoot");
             ammo--;
             if(range>0)range--;
@@ -46,27 +46,28 @@ public class CapsaicinTorch extends Weapon
     }
     public void notifyHit(){
         range+=8;
-        if(range>2000){
-            range = 2000;
+        if(range>400){
+            range = 400;
         }
     }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        if(reloadDelayCount<=0)ammo+=1;
+    public void reload(double speed){
+        speed*=0.8;
+        if(reloadDelayCount<=0)ammo+=speed;
         else reloadDelayCount--;
         if(ammo>maxAmmo){
             ammo = maxAmmo;
         }
-        updateAmmo(Math.min(ammo, maxAmmo));
+        updateAmmo(Math.min((int)ammo, maxAmmo));
     }
     public CapsaicinTorch(ItemHolder actor){
         super(actor);
     }
     public void equip(){
         super.equip();
-        newAmmo(maxAmmo, ammo);
+        newAmmo(maxAmmo, (int)ammo);
     }
     public String getName(){
         return "Capsaicin Torch";

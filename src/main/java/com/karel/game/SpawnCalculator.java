@@ -10,6 +10,7 @@ import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
 
 class SpawnData{

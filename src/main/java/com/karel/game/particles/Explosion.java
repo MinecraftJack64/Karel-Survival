@@ -1,7 +1,5 @@
 package com.karel.game.particles;
 
-import com.karel.game.GridObject;
-
 /**
  * An explosion. It starts by expanding and then collapsing. 
  * The explosion will explode other obejcts that the explosion intersects.

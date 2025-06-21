@@ -1,6 +1,8 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.steak;
 
+import com.karel.game.ZombieClass;
+import com.karel.game.AmmoManager;
+import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 
 /**
@@ -11,11 +13,11 @@ import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
  */
 public class SteakZombie extends ShooterZombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.ranger, ZombieClass.penetrator};
     private static final int gunReloadTime = 25;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
     public String getStaticTextureURL(){return "steakzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private AmmoManager ammo = new AmmoManager(30, 3, 3);
     private boolean hastarget = false;
     private boolean shouldheal = false;
@@ -39,17 +41,13 @@ public class SteakZombie extends ShooterZombie
         priority = target;
     }
 
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         heal(this, 1);
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
-        if(reloadDelayCount>=gunReloadTime)ammo.reload();
+        if(reloadDelayCount>=gunReloadTime)ammo.reload(getReloadMultiplier());
         if(!hastarget){
             super.behave();
             getTarget();
@@ -125,6 +123,9 @@ public class SteakZombie extends ShooterZombie
         
         this.mustbehurt = mustbehurt;
         return getNearestTarget();
+    }
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     public boolean isPotentialTarget(GridEntity e){
         return !(e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));

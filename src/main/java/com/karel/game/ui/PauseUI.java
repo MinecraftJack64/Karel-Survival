@@ -2,7 +2,6 @@ package com.karel.game.ui;
 
 import com.karel.game.ui.buttons.Button;
 import com.karel.game.ui.text.TextDisplay;
-import com.raylib.Color;
 import com.raylib.Raylib;
 import com.karel.game.Game;
 

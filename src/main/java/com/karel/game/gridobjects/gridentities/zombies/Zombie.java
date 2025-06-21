@@ -48,6 +48,7 @@ public class Zombie extends GridEntity
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
 
     public String getStaticTextureURL(){return "zareln.png";}
+    private int soundCooldown = 0;
     private double ammo = 0;
     private static double speed = 2;
     private GridEntity target;
@@ -95,6 +96,7 @@ public class Zombie extends GridEntity
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         ammo+= getReloadMultiplier();
+        soundCooldown--;
         if(distanceTo(getTarget())>defaultRange())walk(monangle, 1);
         else{
             if(ammo>defaultReloadTime()&&canAttack()){
@@ -104,6 +106,10 @@ public class Zombie extends GridEntity
         }
     }
     public void attack(){
+        if(soundCooldown<=0){
+            playSound("Zombies/bite.wav");
+            soundCooldown = 20;
+        }
         damage(getTarget(), defaultDamage());
     }
     public int defaultDamage(){

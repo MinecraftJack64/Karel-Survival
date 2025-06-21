@@ -1,8 +1,5 @@
 package com.karel.game.ui.text;
 
-
-import java.awt.Graphics;
-
 /**
  * Counter that displays a text and number.
  * 

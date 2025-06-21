@@ -154,6 +154,11 @@ public abstract class KActor
     public int renderTransformY(int y){
         return (int)((y-(isInGridWorld()?getScrollY():0))*getWorld().getScreenScale());
     }
+    public void playSound(String sound){
+        if(isInWorld()){
+            Game.playSound(Greenfoot.loadSound(sound));
+        }
+    }
     public void notifyMount(GridObject other){
         if(hasMounter())mounter.unmount(this);
         mounter = other;

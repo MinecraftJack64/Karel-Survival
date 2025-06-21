@@ -1,7 +1,5 @@
 package com.karel.game.weapons.spear;
-import java.util.List;
 import java.util.HashMap;
-import java.util.Map;
 
 import com.karel.game.FlyingRock;
 import com.karel.game.GridEntity;

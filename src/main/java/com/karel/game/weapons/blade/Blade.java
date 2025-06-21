@@ -1,5 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.blade;
 
+import com.karel.game.AmmoManager;
+import com.karel.game.Game;
+import com.karel.game.ItemHolder;
+import com.karel.game.PercentageShield;
+import com.karel.game.Sounds;
+import com.karel.game.SpeedPercentageEffect;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
@@ -17,7 +23,6 @@ public class Blade extends Weapon
     private AmmoManager ammo;
     private static final int ult = 3000;
     private int remainingslices = 160;
-    private int slicecooldown = 0;//2 by default
     private boolean nextdir = false;
     private int nextstabdir;//0, 45, 90...
     private ShieldID shield = new ShieldID(this);
@@ -38,7 +43,6 @@ public class Blade extends Weapon
             getHolder().applyEffect(new SpeedPercentageEffect(1.5, 160, getHolder(), new EffectID(getHolder(), "ultspeed")));
             getHolder().applyShield(new PercentageShield(shield, 0.5, 160));
             setContinueUlt(true);
-            slicecooldown = 2;
             remainingslices = 160;
             fireSword();
         }else{
@@ -54,21 +58,27 @@ public class Blade extends Weapon
         nextstabdir+=45;
         nextstabdir%=360;
         getHolder().addObjectHere(s);
+        getHolder().explodeOn(120, (e) -> {
+            getHolder().damage(e, 20-(int)getHolder().distanceTo(e)/6);
+            if(e.isDead()&&e.willNotify(s)){
+                s.notifyDamage(e, 2000);
+            }
+        });
     }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double speed){
         reloadDelayCount++;
         if(reloadDelayCount>=gunReloadTime){
-            ammo.reload();
+            super.reload(speed);
         }
-        updateAmmo(ammo.getAmmoBar());
     }
     public Blade(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(25, 3, 3);
+        setAmmo(ammo);
         chargeUlt(10000);
     }
     public void equip(){

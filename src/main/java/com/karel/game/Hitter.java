@@ -179,6 +179,9 @@ public class Hitter extends GridObject implements SubAffecter
         return thing==getSource()&&willSelfHarm() || isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing);
     }
     public void doHit(GridEntity asteroid){
+        if(!hitSound().equals("")){
+            playSound(hitSound());
+        }
         damage(asteroid, getDamage(asteroid));
     }
     // always runs even when enemy was hit before
@@ -190,5 +193,8 @@ public class Hitter extends GridObject implements SubAffecter
     }
     public boolean covertDamage(){
         return getSource().covertDamage();
+    }
+    public String hitSound(){
+        return "";
     }
 }

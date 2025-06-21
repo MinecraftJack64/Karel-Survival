@@ -1,4 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.captorch;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.PoisonEffect;
 
 /**
  * A bullet that can hit asteroids.
@@ -7,15 +12,14 @@ package com.karel.game;
  */
 public class SuperPepperFlame extends Bullet
 {
-    /** The damage this bullet will deal */
     private CapsaicinTorch torch;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 10;
     
     public SuperPepperFlame(double rotation, GridObject source, CapsaicinTorch toNotify)
     {
         super(rotation, source);
+        setImage("Weapons/captorch/projUlt.png");
+        scaleTexture(50);
+        setRealRotation(getRealRotation()-180);
         setNumTargets(-1);
         torch = toNotify;
     }

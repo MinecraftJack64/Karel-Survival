@@ -1,18 +1,15 @@
 package com.karel.game;
-import java.util.ArrayList;
 
 import com.karel.game.ui.GameUI;
 import com.karel.game.ui.MainMenuUI;
-import com.karel.game.ui.Overlay;
 import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.UI;
-import com.karel.game.ui.bars.StatusBar;
 
 import static com.raylib.Raylib.getFrameTime;
 import static com.raylib.Raylib.getScreenHeight;
 import static com.raylib.Raylib.getScreenWidth;
-
-import java.awt.event.*;
+import com.raylib.Raylib;
+import com.raylib.Sound;
 /*
  * Welcome to Karel Adventure
  * Move using the wasd or arrow keys
@@ -61,7 +58,7 @@ public class Game
     private static int cmode; // currently selected mode
     private static int cdiff = 1; // currently selected difficulty
     
-    private static int modehs[]; // high scores of each mode
+    //TODO: private static int modehs[]; // high scores of each mode
 
     public static boolean shiftkey;
     
@@ -75,7 +72,7 @@ public class Game
     
     private static boolean autoult = false;
     private static boolean currentlyTogglingAutoult = false;
-    private static boolean currentlycrafting = false;
+    //TODO: private static boolean currentlycrafting = false;
     static 
     {
         //setAvailableModes
@@ -152,7 +149,7 @@ public class Game
     public static void setOptions(){
         modenames = new String[]{"Adventure", "Survival", "Protect"};
         modeids = new String[]{"adventure", "survival", "protect"};
-        modehs = new int[]{0, 0, 0};
+        //TODO: modehs = new int[]{0, 0, 0};
         diffnames = new String[]{"Peaceful", "Easy", "Normal", "Hard", "Impossible"};
         difficultyDescriptions = new String[]{"Do not worry about dying, just kill zombies!", "Weaker zombies and more health", "Nice and basic", "Tougher zombies and lower health", "One hit and you die!"};
         modeDescriptions = new String[]{"Progress through challenging worlds and discover the story!", "Endless waves of zombies! Survive as long as you can!", "Protecting your turret is your only goal!"};
@@ -273,6 +270,9 @@ public class Game
     }
     public static boolean isShiftDown(){
         return shiftkey;
+    }
+    public static void playSound(Sound sound){
+        Raylib.playSound(sound);
     }
     public static void goToMenu(){
         if(game!=null){

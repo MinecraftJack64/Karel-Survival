@@ -1,7 +1,6 @@
 package com.karel.game.ui.bars;
 
 import com.karel.game.GridEntity;
-import com.karel.game.Game;
 
 /**
  * Write a description of class BossBar here.
