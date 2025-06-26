@@ -22,6 +22,9 @@ public class CuttingSword extends Melee
     public CuttingSword(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/blade/projUlt.png");
+        scaleTexture(60);
+        setRealRotation(getRealRotation()-45);
         setSpeed(15);
         setLife(life);
         setDamage(0);

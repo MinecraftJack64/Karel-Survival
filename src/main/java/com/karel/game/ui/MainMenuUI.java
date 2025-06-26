@@ -1,8 +1,8 @@
 package com.karel.game.ui;
 
-import com.karel.game.KarelDisplay;
 import com.karel.game.ui.buttons.Button;
 import com.karel.game.ui.text.TextDisplay;
+import com.karel.game.ui.unitDisplay.KarelDisplay;
 import com.karel.game.Game;
 import com.raylib.Raylib;
 
@@ -57,6 +57,24 @@ public class MainMenuUI extends UI
         
         KarelDisplay rocket = new KarelDisplay();
         getWorld().addToGrid(rocket, 12, 2);
+        Button journal = new Button(50, 50, "Journal", Raylib.GREEN){
+            public void click(){
+                Game.openJournal();
+            }
+        };
+        getWorld().addToGrid(journal, 14, 1);
+        Button tinker = new Button(50, 50, "Tinker", Raylib.GREEN){
+            public void click(){
+                //Game.openTinker();
+            }
+        };
+        getWorld().addToGrid(tinker, 10, 1);
+        Button edit = new Button(100, 50, "Edit", Raylib.GREEN){
+            public void click(){
+                //Game.openPlayerEdit();
+            }
+        };
+        getWorld().addToGrid(edit, 12, 0);
         resetBG();
     }
 }

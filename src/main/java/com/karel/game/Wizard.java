@@ -8,6 +8,7 @@ import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.ShieldID;
+import com.karel.game.particles.Explosion;
 
 /*
  * classes
@@ -49,6 +50,7 @@ public class Wizard extends Boss
     private int rocketammo;
     private int meleereload = 15;
     private int meleeammo;
+    private int effectammo = 0; // for random effects
     private static final int laserReload = 700;
     private int laserAmmo;
     private int deathwaitcooldown = 100;
@@ -127,6 +129,12 @@ public class Wizard extends Boss
         if(turretammo>=turretreload){
             turretAttack();
             turretammo = 0;
+        }
+
+        effectammo++;
+        if(effectammo>=600){
+            applyRandomEffect();
+            effectammo = 0;
         }
         
         rocketammo++;
@@ -249,7 +257,8 @@ public class Wizard extends Boss
         for(int i = 0; i < phase/2+1; i++){
             double x = getRandomCellX();
             double y = getRandomCellY();
-            spawnZombieAt(new Turret(phase, turrets, this), x, y);
+            if(Greenfoot.getRandomNumber(3)<2)spawnZombieAt(new Turret(phase, turrets, this), x, y);
+            else spawnZombieAt(new BombTurret(phase, turrets, this), x, y);
         }
     }
     public void laserAttack(){
@@ -279,6 +288,25 @@ public class Wizard extends Boss
         for(int i = 75; i <= 195; i+=30){
             spawnZombie(new RocketZombie(50, i));
         }
+    }
+    public void applyRandomEffect(){
+        if(phase>5)return;//no random effects past last phase
+        boolean affectsAllies = Greenfoot.getRandomNumber(2)==0;
+        int r = Greenfoot.getRandomNumber(3);
+        System.out.println("Applying random effect "+r+" with allies? "+affectsAllies);
+        explodeOn(1000, (ge) -> {
+            if(ge!=this&&isAggroTowards(ge)&&!affectsAllies){
+                double amt = 1-phase/20.0;
+                if(r==0)ge.applyEffect(new SpeedPercentageEffect(amt, 600, this));
+                else if(r==1)ge.applyEffect(new PowerPercentageEffect(amt, 600, this));
+                else if(r==2)ge.applyEffect(new ReloadPercentageEffect(amt, 600, this));
+            }else if(isAlliedWith(ge)){
+                double amt = 1+phase/5.0;
+                if(r==0)ge.applyEffect(new SpeedPercentageEffect(amt, 600, this));
+                else if(r==1)ge.applyEffect(new PowerPercentageEffect(amt, 600, this));
+                else if(r==2)ge.applyEffect(new ReloadPercentageEffect(amt, 600, this));
+            }
+        }, new Explosion(10));
     }
     public void startLastPhase(){
         phase = 6;

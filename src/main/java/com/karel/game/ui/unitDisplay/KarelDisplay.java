@@ -1,4 +1,6 @@
-package com.karel.game;
+package com.karel.game.ui.unitDisplay;
+
+import com.karel.game.KActor;
 
 /**
  * Write a description of class FakePlayer here.

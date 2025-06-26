@@ -1,7 +1,9 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.exploding;
 
+import com.karel.game.GridObject;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.particles.Explosion;
 
 /**
  * Write a description of class ExplodingZombie here.
@@ -11,42 +13,27 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class ExplodingZombie extends Zombie
 {
-    private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.assault};
     public String getStaticTextureURL(){return "tntzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
     private int damage = 400;
-    /**
-     * Initilise this rocket.
-     */
     public ExplodingZombie()
     {
-        reloadDelayCount = 5;
         setSpeed(4);
-        startHealth(100);
+        startHealth(125);
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
-        reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())>55)walk(monangle, 1);
         else{
             if(canAttack())kill(this);
         }
     }
 
-    
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 200;
     }
@@ -58,10 +45,12 @@ public class ExplodingZombie extends Zombie
         try{
             //explode if not stunned
             super.die(source);
-            explodeOnAll(60, damage);
-            Sounds.play("explode");
+            explodeOn(60, (e)->{
+                damage(e, damage);
+                e.knockBack(face(e, false), 50, 30, this);
+            }, new Explosion(1));
+            playSound("Zombies/exploding/explode.wav");
         }catch(IllegalStateException e){
-            //
         }
     }
     public String getName(){

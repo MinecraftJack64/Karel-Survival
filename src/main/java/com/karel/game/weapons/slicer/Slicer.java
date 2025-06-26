@@ -3,6 +3,7 @@ package com.karel.game.weapons.slicer;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.Bullet;;
 
 /**
  * Write a description of class Slicer here.
@@ -26,7 +27,7 @@ public class Slicer extends Weapon
         }
     }
     public void fireUlt(){
-        FlyingCircSaw bullet = getUltUpgrade()==1?new BouncingCircSaw(getHand().getTargetRotation(), getHolder()):new FlyingCircSaw(getHand().getTargetRotation(), getHolder());
+        Bullet bullet = getUltUpgrade()==1?new BouncingCircSaw(getHand().getTargetRotation(), getHolder()):new FlyingCircSaw(getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere(bullet);
     }
     public int getUlt(){

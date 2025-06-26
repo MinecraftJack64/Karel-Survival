@@ -25,6 +25,7 @@ public class Blade extends Weapon
     private int remainingslices = 160;
     private boolean nextdir = false;
     private int nextstabdir;//0, 45, 90...
+    private int bonusSlices = 80;
     private ShieldID shield = new ShieldID(this);
     public void fire(){
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
@@ -49,6 +50,10 @@ public class Blade extends Weapon
             fireSword();
             if(remainingslices<=0){
                 setContinueUlt(false);
+                if(continueGadget()){
+                    setContinueGadget(false);
+                    bonusSlices = 80;
+                }
             }
         }
     }
@@ -58,7 +63,12 @@ public class Blade extends Weapon
         nextstabdir+=45;
         nextstabdir%=360;
         getHolder().addObjectHere(s);
+        if(continueGadget()&&getHolder().distanceTo(getHolder().getNearestTarget())<120){
+            remainingslices+=bonusSlices;
+            bonusSlices/=2;
+        }
         getHolder().explodeOn(120, (e) -> {
+            if(getUltUpgrade()==1)if(getHolder().distanceTo(e)>20)e.pullTowards(getHolder(), 2);
             getHolder().damage(e, 20-(int)getHolder().distanceTo(e)/6);
             if(e.isDead()&&e.willNotify(s)){
                 s.notifyDamage(e, 2000);
@@ -79,7 +89,7 @@ public class Blade extends Weapon
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(25, 3, 3);
         setAmmo(ammo);
-        chargeUlt(10000);
+        chargeUltFull();
     }
     public void equip(){
         super.equip();

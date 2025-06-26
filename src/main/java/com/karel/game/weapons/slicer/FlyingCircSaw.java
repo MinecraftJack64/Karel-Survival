@@ -25,7 +25,7 @@ public class FlyingCircSaw extends Bullet
         setSpeed(22);
         setLife(30);
         setDamage(250);
-        setNumTargets(5);
+        setNumTargets(10);
         setMultiHit(false);
     }
     public void animate(){
@@ -49,6 +49,6 @@ public class FlyingCircSaw extends Bullet
         }
     }
     public double damageSecrecy(){
-        return super.damageSecrecy()*0.5;
+        return super.damageSecrecy()*0.3;
     }
 }

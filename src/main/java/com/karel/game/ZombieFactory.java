@@ -1,8 +1,10 @@
 package com.karel.game;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
@@ -11,6 +13,7 @@ import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
+import com.karel.game.gridobjects.gridentities.zombies.cowboy.CowboyZombie;
 
 /**
  * Write a description of class ZombieFactory here.
@@ -91,6 +94,7 @@ public class ZombieFactory
             case "arson": return new ArsonZombie();
             //network
             //earthblock
+            case "cowboy": return new CowboyZombie();
         }
         return new Zombie();
     }

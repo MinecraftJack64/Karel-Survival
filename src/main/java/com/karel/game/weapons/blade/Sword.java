@@ -23,13 +23,15 @@ public class Sword extends Melee
     public Sword(double rotation, int strength, boolean dir, boolean issuper, GridObject source)
     {
         super(rotation, source);
+        setImage("Weapons/blade/proj.png");
+        scaleTexture(70);
         setSpeed(15);
         setLife(life);
         setDamage(200+strength*50);
         setNumTargets(-1);
         degtotarg = rotation+(dir?180:0);
         clockwise = dir;
-        this.radius = 120;
+        this.radius = 110;
         this.issuper = issuper;
     }
     
@@ -41,7 +43,7 @@ public class Sword extends Melee
             life--;
             double centerx = getSource().getRealX(), centery = getSource().getRealY();
             setRealLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
-            setRealRotation(degtotarg);
+            setRealRotation(degtotarg+45);
             if(clockwise)degtotarg+=12;
             else degtotarg-=12;
             checkHit();

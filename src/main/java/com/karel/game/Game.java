@@ -3,6 +3,7 @@ package com.karel.game;
 import com.karel.game.ui.GameUI;
 import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.PauseUI;
+import com.karel.game.ui.JournalSelectUI;
 import com.karel.game.ui.UI;
 
 import static com.raylib.Raylib.getFrameTime;
@@ -250,6 +251,10 @@ public class Game
             ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
             ui.update();
             ui.render();
+        }else if(currentMenu.equals("journalhome")){
+            ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
+            ui.update();
+            ui.render();
         }
         if(!nextMenu.equals("")&&!nextMenu.equals(currentMenu)){
             currentMenu = nextMenu;
@@ -282,6 +287,11 @@ public class Game
         ui = new MainMenuUI();
         ui.create();
         nextMenu = "mainmenu";
+    }
+    public static void openJournal(){
+        ui = new JournalSelectUI();
+        ui.create();
+        nextMenu = "journalhome";
     }
     public static void togglePause(){
         if(isPaused()){

@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.arson;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -11,10 +12,11 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class ArsonZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.ranger, ZombieClass.barrager, ZombieClass.penetrator};
     private static final int attackCooldown = 200;         // The minimum delay between firing the gun.
     private static final int firingCooldown = 20;
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
     private int firingDelay;
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
@@ -38,7 +40,7 @@ public class ArsonZombie extends Zombie
      */
     public void behave()
     {
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         firingDelay++;
@@ -68,7 +70,6 @@ public class ArsonZombie extends Zombie
         }
         else if (reloadDelayCount>=attackCooldown&&canAttack()){
             firingDelay = 0;
-            Sounds.play("gunshoot");
             reloadDelayCount = 0;
             ammo = nextAmmo;
             nextAmmo++;
@@ -81,15 +82,20 @@ public class ArsonZombie extends Zombie
         double d = distanceTo(getTarget());
         MolotovCocktail bullet = new MolotovCocktail (getRealRotation(), d, 400+d/4, this);
         getWorld().addObject (bullet, getRealX(), getRealY());
+        playSound("Zombies/arson/throw.wav");
     }
     public void superFire(){
         for(int i = 0; i < 4; i++){double d = distanceTo(getTarget())+Greenfoot.getRandomNumber(60)-30;
         MolotovCocktail bullet = new MolotovCocktail (getRealRotation()+Greenfoot.getRandomNumber(30)-15, d, 100+d/2, this);
         getWorld().addObject (bullet, getRealX(), getRealY());}
+        playSound("Zombies/arson/throw.wav");
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
-        return 200;
+        return 600;
     }
     
     public String getName(){
