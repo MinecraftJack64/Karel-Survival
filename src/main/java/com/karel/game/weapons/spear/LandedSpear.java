@@ -61,7 +61,7 @@ public class LandedSpear extends Collectible
     }
     public void render(){
         super.render();
-        renderTexture(auraTexture, getRealX(), getRealY(), 120, 120, getRealRotation(), 127);
+        renderTexture(auraTexture, getX(), getY(), 120, 120, getRotation(), 127);
     }
     public void notifyDamage(GridEntity target, int amt){
         if(!myspear.getHolder().isDead()){

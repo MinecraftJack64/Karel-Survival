@@ -20,9 +20,9 @@ public class MainMenuUI extends UI
         go = new TextDisplay("KAREL SURVIVAL", 90, Raylib.GREEN);
         getWorld().addObject(go, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-7)/2.0);
         modeText = new TextDisplay("Mode", 25, Raylib.GREEN);
-        getWorld().addObject(modeText, go.getRealX()-200, go.getBottom()+15);
+        getWorld().addObject(modeText, go.getX()-200, go.getBottom()+15);
         dfcText = new TextDisplay("Difficulty", 25, Raylib.GREEN);
-        getWorld().addObject(dfcText, go.getRealX()+200, go.getBottom()+15);
+        getWorld().addObject(dfcText, go.getX()+200, go.getBottom()+15);
         modeSelectButton = new Button(150, 75, Game.selectedModeName(), Raylib.GREEN){
             public void click(){
                 //example of click function
@@ -31,9 +31,9 @@ public class MainMenuUI extends UI
                 modeDesc.setText(Game.getModeDescription());
             }
         };
-        getWorld().addObject(modeSelectButton, modeText.getRealX(), modeText.getBottom()+40);
+        getWorld().addObject(modeSelectButton, modeText.getX(), modeText.getBottom()+40);
         modeDesc = new TextDisplay(Game.getModeDescription(), 20, Raylib.GRAY);
-        getWorld().addObject(modeDesc, modeSelectButton.getRealX(), modeSelectButton.getRealY()+50);
+        getWorld().addObject(modeDesc, modeSelectButton.getX(), modeSelectButton.getY()+50);
         dfcSelectButton = new Button(150, 75, Game.selectedDiffName(), Raylib.GREEN){
             public void click(){
                 //example of click function
@@ -42,18 +42,18 @@ public class MainMenuUI extends UI
                 diffDesc.setText(Game.getDifficultyDescription());
             }
         };
-        getWorld().addObject(dfcSelectButton, dfcText.getRealX(), dfcText.getBottom()+40);
+        getWorld().addObject(dfcSelectButton, dfcText.getX(), dfcText.getBottom()+40);
         diffDesc = new TextDisplay(Game.getDifficultyDescription(), 20, Raylib.GRAY);
-        getWorld().addObject(diffDesc, dfcSelectButton.getRealX(), dfcSelectButton.getRealY()+50);
+        getWorld().addObject(diffDesc, dfcSelectButton.getX(), dfcSelectButton.getY()+50);
         playButton = new Button(200, 100, "PLAY", Raylib.GREEN){
             public void click(){
                 //example of click function
                 Game.startGame(Game.selectedMode());
             }
         };
-        getWorld().addObject(playButton, go.getRealX(), dfcSelectButton.getBottom()+200);
+        getWorld().addObject(playButton, go.getX(), dfcSelectButton.getBottom()+200);
         tip = new TextDisplay(Game.getTip(), 20, Raylib.BLUE);
-        getWorld().addObject(tip, playButton.getRealX(), playButton.getRealY()-80);
+        getWorld().addObject(tip, playButton.getX(), playButton.getY()-80);
         
         KarelDisplay rocket = new KarelDisplay();
         getWorld().addToGrid(rocket, 12, 2);

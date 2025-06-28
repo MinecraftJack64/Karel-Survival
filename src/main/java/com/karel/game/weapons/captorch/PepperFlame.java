@@ -13,7 +13,7 @@ public class PepperFlame extends Bullet
         super(rotation, source);
         setImage("Weapons/captorch/proj.png");
         scaleTexture(50);
-        setRealRotation(getRealRotation()-180);
+        setRotation(getRotation()-180);
         setSpeed(18);
         maxLife = 7+rg/4;
         setLife(maxLife);

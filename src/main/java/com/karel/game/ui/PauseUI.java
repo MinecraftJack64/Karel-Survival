@@ -24,14 +24,14 @@ public class PauseUI extends UI
                 Game.togglePause();
             }
         };
-        getWorld().addObject(resumeButton, go.getRealX(), go.getBottom()+25);
+        getWorld().addObject(resumeButton, go.getX(), go.getBottom()+25);
         quitButton = new Button(150, 75, "Quit", Raylib.GREEN){
             public void click(){
                 //example of click function
                 Game.goToMenu();
             }
         };
-        getWorld().addObject(quitButton, go.getRealX(), resumeButton.getBottom()+100);
+        getWorld().addObject(quitButton, go.getX(), resumeButton.getBottom()+100);
         menuBG();
     }
     

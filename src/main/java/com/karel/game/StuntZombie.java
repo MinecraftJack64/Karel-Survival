@@ -110,8 +110,8 @@ public class StuntZombie extends Zombie implements LandingHandler
     private void fire() 
     {
         if (canBomb()){
-            ZSpear bullet = new ZSpear (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZSpear bullet = new ZSpear (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             //bullet.move ();
             reloadDelayCount = 0;
         }

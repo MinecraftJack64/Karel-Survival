@@ -59,8 +59,8 @@ public class EasterZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZEasterEgg bullet = new ZEasterEgg (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZEasterEgg bullet = new ZEasterEgg (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             initiateJump(0, 0, 50);
             reloadDelayCount = 0;
         }

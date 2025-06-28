@@ -53,11 +53,11 @@ public class RocketZombie extends Zombie
         }
     }
     public void fly(){
-        double x = getTarget().getRealX(), y = getTarget().getRealY();
+        double x = getTarget().getX(), y = getTarget().getY();
         double d = distanceTo(x, y);
         ride = new Rocket(getAngle(x, y)+90, d, 2000, this, this);
-        getWorld().addObject(ride, getRealX(), getRealY());
-        ride.applyTarget(getTarget().getRealX(), getTarget().getRealY());
+        getWorld().addObject(ride, getX(), getY());
+        ride.applyTarget(getTarget().getX(), getTarget().getY());
         rocketPhase = 1;
     }
     public ZombieClass[] getZombieClasses(){

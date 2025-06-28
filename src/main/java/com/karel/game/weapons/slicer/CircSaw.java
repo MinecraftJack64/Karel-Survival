@@ -54,7 +54,7 @@ public class CircSaw extends Boomerang
     }
     @Override
     public void animate(){
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
     }
     public void dieForReal(){
         hasreturned = true;

@@ -26,7 +26,7 @@ public class Mole extends Hitter
         if(reloadDelayCount>=gunReloadTime){
             setVisible(false);
             double d = Math.min(250, distanceTo(x, y));
-            mu = new MoleUppercut(getRealRotation(), d, inUlt()&&canfast?40:80, issuper, this, this);
+            mu = new MoleUppercut(getRotation(), d, inUlt()&&canfast?40:80, issuper, this, this);
             addObjectHere(mu);
             reloadDelayCount = 0;
         }
@@ -52,7 +52,7 @@ public class Mole extends Hitter
     }
     public void gadget(){
         if(inUlt)stopUlt();
-        pullTo(getSource().getRealX(), getSource().getRealY());
+        pullTo(getSource().getX(), getSource().getY());
         explodeOn(120, 200);
         explodeOnEnemies(120, (g)->{
             g.knockBack(face(g, false), 100, 20, this);
@@ -72,10 +72,10 @@ public class Mole extends Hitter
         if(!inUlt()){
             face(tx, ty, true);
             if(distanceTo(tx, ty)>30&&reloadDelayCount>=gunReloadTime){
-                move(getRealRotation(), 15);
+                move(getRotation(), 15);
             }
         }else{
-            attackAt(getRealX(), getRealY(), false, false);
+            attackAt(getX(), getY(), false, false);
         }
         if(getSource()!=null&&(!(getSource() instanceof GridEntity)||!((GridEntity)getSource()).isDead())&&!getSource().getTeam().equals(getTeam())){//make sure team is same as source
             setTeam(getSource().getTeam());

@@ -16,9 +16,9 @@ public class FlashDrive extends Weapon
     public void fire(){
         if(ammo>=reloadTime){
             FlashBolt bullet2 = new FlashBolt(getHand().getTargetRotation()+15, getHolder());
-            getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet2, getHolder().getX(), getHolder().getY());
             FlashBolt bullet3 = new FlashBolt(getHand().getTargetRotation()-15, getHolder());
-            getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet3, getHolder().getX(), getHolder().getY());
             bullet2.setOther(bullet3);
             bullet3.setOther(bullet2);
             ammo = 0;

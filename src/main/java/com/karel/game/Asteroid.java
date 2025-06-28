@@ -43,7 +43,7 @@ public class Asteroid extends Bullet
         }
         Asteroid l = new Asteroid(getDirection()-35, size-1, getHitStory(), getSource());
         Asteroid r = new Asteroid(getDirection()+35, size-1, getHitStory(), getSource());
-        getWorld().addObject(r, getRealX(), getRealY());
-        getWorld().addObject(l, getRealX(), getRealY());
+        getWorld().addObject(r, getX(), getY());
+        getWorld().addObject(l, getX(), getY());
     }
 }

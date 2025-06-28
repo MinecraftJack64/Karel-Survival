@@ -32,7 +32,7 @@ public class Hypnotizer extends Bullet
     }
     public void animate()
     {
-        setRealRotation(getRealRotation()+15);
+        setRotation(getRotation()+15);
     }
     public void doHit(GridEntity targ){
         TeamSwitchEffect effect = new TeamSwitchEffect(getTeam(), 400, this);

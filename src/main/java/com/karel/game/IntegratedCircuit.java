@@ -65,7 +65,7 @@ public class IntegratedCircuit extends Pet
         public Awakener(GridObject source){
             super(source);
             setDamage(600);
-            setRealHeight(4500);
+            setHeight(4500);
         }
         public void die(){
             super.die();

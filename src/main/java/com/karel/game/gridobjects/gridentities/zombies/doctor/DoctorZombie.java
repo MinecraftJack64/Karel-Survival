@@ -71,8 +71,8 @@ public class DoctorZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZHealShot bullet = new ZHealShot (getRealRotation(), this, healself);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZHealShot bullet = new ZHealShot (getRotation(), this, healself);
+            getWorld().addObject (bullet, getX(), getY());
             reloadDelayCount = 0;
         }
     }

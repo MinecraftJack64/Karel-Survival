@@ -32,8 +32,8 @@ public class Pinpoint extends FlyingRock
         g.ground();
         g.setSpeedMultiplier(0, immobilize);
         target = g;
-        tx = target.getRealX();
-        ty = target.getRealY();
+        tx = target.getX();
+        ty = target.getY();
     }
     public void update(){
         if(target!=null){
@@ -54,9 +54,9 @@ public class Pinpoint extends FlyingRock
         }
     }
     public void applyPhysics(){
-        if(percentDone()<=0.5){setRealHeight(80);continueFrame();}
+        if(percentDone()<=0.5){setHeight(80);continueFrame();}
         else super.applyPhysics();
-        if(getRealHeight()==0&&target==null){//didn't hit anything
+        if(getHeight()==0&&target==null){//didn't hit anything
             die();
         }
     }

@@ -40,7 +40,7 @@ public class Mousetrap extends Trap
             die();
         } 
         else {
-            //move(getRealRotation()-90, 15);
+            //move(getRotation()-90, 15);
             if(isset){
                 if(speed>0){
                     move(dir, speed);

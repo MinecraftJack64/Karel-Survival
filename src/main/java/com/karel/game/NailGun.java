@@ -64,7 +64,7 @@ public class NailGun extends Weapon
         for(int i = 0; i < atkphase; i++){
             double shift = beginning+i*spread;
             Nail bullet = new Nail(getAttackUpgrade()==1?r2[atkphase-1]:r[atkphase-1], d[atkphase-1], getHand().getTargetRotation()+shift/2, atkphase==4?this:null, getHolder());
-            getHolder().getWorld().addObject(bullet, getHolder().getRealX()+shift*Math.cos(Math.PI/180*getHand().getTargetRotation()), getHolder().getRealY()+shift*Math.sin(Math.PI/180*getHand().getTargetRotation()));
+            getHolder().getWorld().addObject(bullet, getHolder().getX()+shift*Math.cos(Math.PI/180*getHand().getTargetRotation()), getHolder().getY()+shift*Math.sin(Math.PI/180*getHand().getTargetRotation()));
         }
         reloadDelayCount = 0;
         wavesleft--;

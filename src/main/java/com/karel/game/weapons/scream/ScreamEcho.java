@@ -9,9 +9,9 @@ public class ScreamEcho extends Bullet
         super(rotation, source);
         setImage("Weapons/scream/proj2.png");
         scaleTexture(60);
-        setRealRotation(rotation);
+        setRotation(rotation);
         setSpeed(20);
-        setRealRotation(rotation);
+        setRotation(rotation);
         setLife(10);
         setDamage(20);
         setNumTargets(1);

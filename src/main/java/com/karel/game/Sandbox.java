@@ -39,8 +39,8 @@ public class Sandbox extends GameMode
         teams.setAlly("player", "player", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
-        playerogx = rocket.getRealX();
-        playerogy = rocket.getRealY();
+        playerogx = rocket.getX();
+        playerogy = rocket.getY();
         player = rocket;
         spawner = new TutorialSpawner();
         status = "running";

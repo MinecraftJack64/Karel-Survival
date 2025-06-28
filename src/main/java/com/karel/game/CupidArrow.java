@@ -31,6 +31,6 @@ public class CupidArrow extends Bullet
         if(notifier!=null){
             notifier.notifyHit(bullet);
         }
-        getWorld().addObject(bullet, targ.getRealX(), targ.getRealY());
+        getWorld().addObject(bullet, targ.getX(), targ.getY());
     }
 }

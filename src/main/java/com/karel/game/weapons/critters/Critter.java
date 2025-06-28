@@ -103,11 +103,11 @@ public class Critter extends Pet implements ICritter
         }else{
             damage = 50;
         }
-        dash = new DasherDoer(getRealRotation(), 15, 7, 30, damage, this);
+        dash = new DasherDoer(getRotation(), 15, 7, 30, damage, this);
         dash.dash();
     }
     public void dashhome(){
-        dash = new Dasher(getRealRotation(), 15, 7, this);
+        dash = new Dasher(getRotation(), 15, 7, this);
         dash.dash();
     }
     public boolean notifySpawnerDamage(){

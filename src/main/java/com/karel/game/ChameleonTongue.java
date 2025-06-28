@@ -46,7 +46,7 @@ public class ChameleonTongue extends Boomerang
             super.doReturn();
             if(!target.isDead()){
                 //target.stun(pullStun);
-                if(!target.pullTo(getRealX(), getRealY())){
+                if(!target.pullTo(getX(), getY())){
                     target.unstun(pullStun);
                     target = null;
                     hasTarget = false;

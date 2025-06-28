@@ -94,7 +94,7 @@ public abstract class GridObject extends KActor
     public void updateMounts(){
         if(mounts!=null){
             for(var g: mounts.entrySet()){
-                g.getKey().branchOut(this, g.getValue().getDirection()+getRealRotation(), g.getValue().getLength(), g.getValue().getHeight());
+                g.getKey().branchOut(this, g.getValue().getDirection()+getRotation(), g.getValue().getLength(), g.getValue().getHeight());
                 g.getKey().update();
             }
         }
@@ -107,12 +107,12 @@ public abstract class GridObject extends KActor
         }
     }
     public double face(GridObject obj, boolean face){
-        return face(obj.getRealX(), obj.getRealY(), face);
+        return face(obj.getX(), obj.getY(), face);
     }
     public double face(double x, double y, boolean face){
         double targang = getAngle(x, y)+90;
         double monangle = targang;
-        if(face)setRealRotation(monangle);
+        if(face)setRotation(monangle);
         return monangle;
     }
     public double getFacingOffset(GridObject other){
@@ -122,10 +122,10 @@ public abstract class GridObject extends KActor
         return Math.abs(getFacingOffset(other));
     }
     public double getTargetRotation(){
-        return getRealRotation();
+        return getRotation();
     }
     public float getAngle(double x, double y) {
-        return getAngleBetween(getRealX(), getRealY(), x, y);
+        return getAngleBetween(getX(), getY(), x, y);
     }
     public static float getAngleBetween(double x, double y, double x2, double y2) {
         float angle = (float) Math.toDegrees(Math.atan2(y2 - y, x2 - x));
@@ -137,13 +137,13 @@ public abstract class GridObject extends KActor
         return angle;
     }
     public double distanceTo(double x, double y){
-        return Math.sqrt(Math.pow(x-getRealX(), 2)+Math.pow(y-getRealY(), 2));
+        return Math.sqrt(Math.pow(x-getX(), 2)+Math.pow(y-getY(), 2));
     }
     public double distanceTo(double x, double y, double z){
-        return Math.sqrt(Math.pow(x-getRealX(), 2)+Math.pow(y-getRealY(), 2)+Math.pow(z-getRealHeight(), 2));
+        return Math.sqrt(Math.pow(x-getX(), 2)+Math.pow(y-getY(), 2)+Math.pow(z-getHeight(), 2));
     }
     public double distanceTo(GridObject obj){
-        return distanceTo(obj.getRealX(),obj.getRealY(), obj.getRealHeight());
+        return distanceTo(obj.getX(),obj.getY(), obj.getHeight());
     }
     public double getRandomCellX(){
         return getWorld().gridXToRealX(Greenfoot.getRandomNumber(getWorld().gridwidth));
@@ -153,10 +153,10 @@ public abstract class GridObject extends KActor
     }
     
     public double getXAtOffset(int val){
-        return getWorld().gridXToRealX(getWorld().realXToGridX(getRealX())+val);
+        return getWorld().gridXToRealX(getWorld().realXToGridX(getX())+val);
     }
     public double getYAtOffset(int val){
-        return getWorld().gridYToRealY(getWorld().realYToGridY(getRealY())+val);
+        return getWorld().gridYToRealY(getWorld().realYToGridY(getY())+val);
     }
     public void move(double degree, double speed){
         degree-=90;
@@ -199,7 +199,7 @@ public abstract class GridObject extends KActor
     public void notifyPull(){}
     public boolean pullTo(double x, double y){
         if(canBePulled()){
-            setRealLocation(x, y);
+            setLocation(x, y);
             notifyPull();
             return true;
         }else{
@@ -208,7 +208,7 @@ public abstract class GridObject extends KActor
     }
     public boolean pullTo(double x, double y, double h){
         if(canBePulled()){
-            setRealLocation(x, y, h);
+            setLocation(x, y, h);
             notifyPull();
             return true;
         }else{
@@ -235,7 +235,7 @@ public abstract class GridObject extends KActor
     }
     public boolean pullTowards(GridObject targ, double speed){
         if(distanceTo(targ)<=speed/2){
-            return pullTo(targ.getRealX(), targ.getRealY());
+            return pullTo(targ.getX(), targ.getY());
         }
         else{
             return pull(face(targ, false), speed);
@@ -361,18 +361,18 @@ public abstract class GridObject extends KActor
             return;
         }
         move(dirmomentum, arcmomentum.getRate());
-        setRealHeight(arcmomentum.getHeight(arcframe));
+        setHeight(arcmomentum.getHeight(arcframe));
         arcframe++;
-        if(getRealHeight()<0&&arcframe>0){
+        if(getHeight()<0&&arcframe>0){
             arcmomentum = null;
             dirmomentum = 0;
             arcframe = 0;
-            setRealHeight(0);
+            setHeight(0);
             doLanding();
         }
     }
     public boolean isOnGround(){
-        return getRealHeight()<=0;
+        return getHeight()<=0;
     }
     public Arc getPhysicsArc(){
         return arcmomentum;
@@ -400,7 +400,7 @@ public abstract class GridObject extends KActor
     }
     public void doLanding(){}
     public void addObjectHere(GridObject obj){
-        getWorld().addObject(obj, getRealX(), getRealY());
+        getWorld().addObject(obj, getX(), getY());
     }
     public List<GridEntity> getGEsInRange(int rng){
         ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
@@ -432,7 +432,7 @@ public abstract class GridObject extends KActor
         return ges.stream().filter(g->checkCollisionHeight(g)).collect(Collectors.toList());
     }
     public boolean checkCollisionHeight(GridEntity other){
-        return Math.abs(other.getRealHeight()-getRealHeight())<5;
+        return Math.abs(other.getHeight()-getHeight())<5;
     }
     public double getPower(){
         return powermultiplier;
@@ -464,7 +464,7 @@ public abstract class GridObject extends KActor
     public boolean mount(KActor other){
         if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<KActor, Vector>();
-        mounts.put(other, new Vector(other.getRealX()-getRealX(), other.getRealY()-getRealY(), 0));
+        mounts.put(other, new Vector(other.getX()-getX(), other.getY()-getY(), 0));
         other.notifyMount(this);
         return true;
     }

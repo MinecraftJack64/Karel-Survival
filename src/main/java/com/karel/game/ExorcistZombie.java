@@ -90,7 +90,7 @@ public class ExorcistZombie extends Zombie
     private void fire(){
         if (ammocooldown<=0&&ammo>0){
             ammo--;
-            ZExorcistShot bullet = new ZExorcistShot (getRealRotation(), this, healself);
+            ZExorcistShot bullet = new ZExorcistShot (getRotation(), this, healself);
             addObjectHere(bullet);
             ammocooldown = 10;
         }else{

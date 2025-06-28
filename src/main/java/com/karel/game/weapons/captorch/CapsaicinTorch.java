@@ -22,7 +22,7 @@ public class CapsaicinTorch extends Weapon
         if (ammo>0)
         {
             PepperFlame bullet = new PepperFlame(getHand().getTargetRotation(), range, getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             Sounds.play("gunshoot");
             ammo--;
             if(range>0)range--;

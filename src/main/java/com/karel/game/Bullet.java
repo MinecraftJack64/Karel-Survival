@@ -28,7 +28,7 @@ public class Bullet extends Projectile
         super(source);
         hitstory = h;
         setDirection(rotation);
-        setRealRotation(rotation+90);
+        setRotation(rotation+90);
         //addForce(new Vector(rotation, 15));
         setSpeed(15);
         setDamage(40);

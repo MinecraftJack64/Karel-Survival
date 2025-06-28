@@ -33,7 +33,7 @@ public class ShieldBar extends HealthBar
     }
     public void update(){
         super.update();
-        if(myGE!=null){setRealLocation(myGE.getRealX(), myGE.getRealY()-50-10*myid, myGE.getRealHeight());
+        if(myGE!=null){setLocation(myGE.getX(), myGE.getY()-50-10*myid, myGE.getHeight());
         if(myGE.isDead())getWorld().removeObject(this);}
     }
 }

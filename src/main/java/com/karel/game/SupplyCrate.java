@@ -25,7 +25,7 @@ public class SupplyCrate extends GridEntity
     }
     public void die(GridObject killer){
         for(GridObject g:loot){
-            getWorld().addObject(g, getRealX(), getRealY());
+            getWorld().addObject(g, getX(), getY());
         }
         super.die(killer);
     }

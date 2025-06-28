@@ -28,8 +28,8 @@ public class Hornet extends SpawnableZombie
      */
     public void behave()
     {
-        if(getRealHeight()==0){
-            setRealHeight(1);
+        if(getHeight()==0){
+            setHeight(1);
         }
         //setRotation(getRotation()-1);
         super.behave();

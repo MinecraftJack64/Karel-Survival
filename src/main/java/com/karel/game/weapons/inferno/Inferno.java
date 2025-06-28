@@ -46,11 +46,11 @@ public class Inferno extends Weapon
     }
     public void fireWave(boolean firstWave){
         InfernalFlame bullet = getProjectile(0, firstWave);
-        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         InfernalFlame bullet2 = getProjectile(5, firstWave);
-        getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject (bullet2, getHolder().getX(), getHolder().getY());
         InfernalFlame bullet3 = getProjectile(-5, firstWave);
-        getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject (bullet3, getHolder().getX(), getHolder().getY());
         bullet2.setHitStory(bullet.getHitStory());
         bullet3.setHitStory(bullet.getHitStory());
     }
@@ -71,7 +71,7 @@ public class Inferno extends Weapon
                                 return true;
                             }
                         };
-                        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                        getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
                         if(hs!=null)bullet.setHitStory(hs);
                         else hs = bullet.getHitStory();
                     }
@@ -106,7 +106,7 @@ public class Inferno extends Weapon
             if(underworldDuration%3==0)getHolder().addObjectHere(new FireTrail(getHolder()));
             underworldDuration--;
             if(underworldDuration<=0){
-                getHolder().setRealHeight(0);
+                getHolder().setHeight(0);
                 getHolder().removeShield(new ShieldID(this, "underworld"));
                 setContinueGadget(false);
             }
@@ -115,7 +115,7 @@ public class Inferno extends Weapon
     public void onGadgetActivate(){
         underworldDuration = 180;
         setContinueGadget(true);
-        getHolder().setRealHeight(-10);
+        getHolder().setHeight(-10);
         getHolder().applyShield(new ExternalImmunityShield(new ShieldID(this, "underworld"), 360));
     }
     public int defaultGadgets(){

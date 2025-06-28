@@ -34,7 +34,7 @@ public class Shotgun extends Weapon implements AmmoHolder
             }
             for(int deg = -30; deg<=30; deg+=nextammosupercharged?2:10){
                 Projectile mbullet = getAttackUpgrade()==1 ? (new SuperShot(getHand().getTargetRotation()+deg, getHolder())) : (new Shot(getHand().getTargetRotation()+deg, getHolder()));
-                getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (mbullet, getHolder().getX(), getHolder().getY());
             }
             //bullet.move ();
             Sounds.play("shotgunshoot");

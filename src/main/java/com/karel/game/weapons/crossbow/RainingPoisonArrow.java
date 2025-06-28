@@ -24,10 +24,10 @@ public class RainingPoisonArrow extends FlyingRock
         setRange(50);
     }
     public void applyPhysics(){
-        lastX = getRealX();
-        lastY = getRealY()-getRealHeight();
+        lastX = getX();
+        lastY = getY()-getHeight();
         super.applyPhysics();
-        setRealRotation(getAngleBetween(lastX, lastY, getRealX(), getRealY()-getRealHeight()));
+        setRotation(getAngleBetween(lastX, lastY, getX(), getY()-getHeight()));
     }
     public double getGravity(){
         return 5;

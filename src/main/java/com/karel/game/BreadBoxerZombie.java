@@ -58,7 +58,7 @@ public class BreadBoxerZombie extends Zombie
                 checkdodge = 3;
                 for(Projectile h:getGOsInRange(100, Projectile.class)){
                     if(h.isAggroTowards(this)){
-                        initiateJump(getRealRotation()+(punchdir?-45:45), 100, 50);
+                        initiateJump(getRotation()+(punchdir?-45:45), 100, 50);
                         applyShield(new PercentageShield(new ShieldID(this), 1, (int)(getPhysicsArc().getDuration())));
                         punchdir = !punchdir;
                         dodgereload-=80;
@@ -83,7 +83,7 @@ public class BreadBoxerZombie extends Zombie
             if(punchDelay<punchReloadTime){
                 punchDelay++;
             }else if(canAttack()){
-                PunchMissile bullet = new PunchMissile(getRealRotation()+(punchdir?-45:45), this);
+                PunchMissile bullet = new PunchMissile(getRotation()+(punchdir?-45:45), this);
                 addObjectHere(bullet);
                 punchdir = !punchdir;
                 punchDelay = 0;

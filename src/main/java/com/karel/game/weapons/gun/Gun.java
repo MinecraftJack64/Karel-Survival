@@ -21,7 +21,7 @@ public class Gun extends Weapon
         if (getAmmo().hasAmmo()) 
         {
             Bullet bullet = new Bullet (getHand().getTargetRotation(), getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             //bullet.move ();
             Sounds.play("gunshoot");
             getAmmo().useAmmo();
@@ -33,7 +33,7 @@ public class Gun extends Weapon
     }
     public void fireUlt(){
         ProtonWave bullet = new ProtonWave(getHolder(), getUltUpgrade()==1);
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("protonwave");
     }
     public int getUlt(){

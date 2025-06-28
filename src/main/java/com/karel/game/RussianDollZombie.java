@@ -49,7 +49,7 @@ public class RussianDollZombie extends Zombie
     }
     public RussianDollZombie(int size, boolean isBaby){
         scaleTexture(10+size*20, 10+size*20);
-        setRealRotation(0);
+        setRotation(0);
         setSpeed(1);
         startHealth(size*500-250);
         this.size = size;
@@ -64,12 +64,12 @@ public class RussianDollZombie extends Zombie
     }
     public void behave(){
         if(jumpcooldown<=0){
-            if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getRealHeight()==0){//spawn inside
-                getWorld().addObject(inside, getRealX(), getRealY());
+            if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getHeight()==0){//spawn inside
+                getWorld().addObject(inside, getX(), getY());
                 inside = null;
                 jumpcooldown = getJumpCooldown();
             }else if(canMove()){
-                double d = Math.min(distanceTo(getTarget().getRealX(), getTarget().getRealY()), getJumpDistance()*getMultipliedSpeed());
+                double d = Math.min(distanceTo(getTarget().getX(), getTarget().getY()), getJumpDistance()*getMultipliedSpeed());
                 initiateJump(face(getTarget(), false), d, getJumpHeight());
                 jumpcooldown = getJumpCooldown();
             }
@@ -85,12 +85,12 @@ public class RussianDollZombie extends Zombie
     public void feast(){
         if(canAttack())mute(new EffectID(this));// prevent from processing landing explosion and wasting time.
         if(jumpcooldown<=0){
-            if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getRealHeight()==0){//spawn inside
-                getWorld().addObject(inside, getRealX(), getRealY());
+            if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getHeight()==0){//spawn inside
+                getWorld().addObject(inside, getX(), getY());
                 inside = null;
                 jumpcooldown = getJumpCooldown();
-            }else if(distanceTo(getTarget().getRealX()+getFeastingRange(), getTarget().getRealY())>5){
-                double d = Math.min(distanceTo(getTarget().getRealX()+getFeastingRange(), getTarget().getRealY()), getJumpDistance()*getMultipliedSpeed());
+            }else if(distanceTo(getTarget().getX()+getFeastingRange(), getTarget().getY())>5){
+                double d = Math.min(distanceTo(getTarget().getX()+getFeastingRange(), getTarget().getY()), getJumpDistance()*getMultipliedSpeed());
                 initiateJump(face(getTarget(), false), d, getJumpHeight());
                 jumpcooldown = getJumpCooldown();
             }
@@ -123,7 +123,7 @@ public class RussianDollZombie extends Zombie
     }
     public void die(GridObject killer){
         if(inside!=null){
-            getWorld().addObject(inside, getRealX(), getRealY());
+            getWorld().addObject(inside, getX(), getY());
             inside = null;
         }
         super.die(killer);

@@ -38,7 +38,7 @@ public class TeslaCoilZap extends Hitter
         if(attacked>0){
             attacked--;
         }else{
-            if(getSource()!=null)setRealLocation(getSource().getRealX(), getSource().getRealY());
+            if(getSource()!=null)setLocation(getSource().getX(), getSource().getY());
             setVisible(false);
         }
         if(getSource()!=null&&(!(getSource() instanceof GridEntity)||!((GridEntity)getSource()).isDead())&&!getSource().getTeam().equals(getTeam())){//make sure team is same as source

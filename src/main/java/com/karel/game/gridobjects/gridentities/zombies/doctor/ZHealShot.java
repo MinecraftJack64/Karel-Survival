@@ -21,7 +21,7 @@ public class ZHealShot extends ZBullet
     {
         super(rotation, source);
         setImage("Projectiles/Bullets/syringe.png");
-        setRealRotation(getRealRotation()-180);
+        setRotation(getRotation()-180);
         scaleTexture(40);
         setDamage(50);
         setLife(20);

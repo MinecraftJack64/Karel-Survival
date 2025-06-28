@@ -43,22 +43,22 @@ public class CellTurret extends Pet
     {
         double monangle = face(getTarget(), canMove());
         if(!inposition){
-            setRealHeight(-5);
+            setHeight(-5);
             walk(face(tx, ty, canMove()), 1);
             if(distanceTo(tx, ty)<2){
                 inposition = true;
-                setRealLocation(tx, ty);
+                setLocation(tx, ty);
             }
         }else{
             ammo++;
             if(isattacking&&distanceTo(getTarget())>attackrange){
                 isattacking = false;
-                setRealHeight(-7);
+                setHeight(-7);
             }
             else if(!isattacking&&distanceTo(getTarget())<=attackrange&&getTarget()!=getSpawner()){
                 knockEnemiesBack();
                 isattacking = true;
-                setRealHeight(0);
+                setHeight(0);
             }
             if(isattacking&&getTarget()!=getSpawner()&&ammo>reloadtime&&canAttack()){
                 attack();
@@ -88,7 +88,7 @@ public class CellTurret extends Pet
         return cantransform;
     }
     public void attack(){
-        SmallAntibody bullet = new SmallAntibody(getRealRotation(), target, this);
+        SmallAntibody bullet = new SmallAntibody(getRotation(), target, this);
         addObjectHere(bullet);
     }
     public void die(GridObject killer){
@@ -123,7 +123,7 @@ public class CellTurret extends Pet
         super.hit((target!=null&&target.isInstance(source))?amt/10:amt, source);
     }
     public boolean canDetect(){
-        return getRealHeight()>=0;
+        return getHeight()>=0;
     }
     public void notifyDamage(GridEntity source, int amt){
         if(target!=null&&target.isInstance(source)){

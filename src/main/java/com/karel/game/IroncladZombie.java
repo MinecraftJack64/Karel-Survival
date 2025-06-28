@@ -74,8 +74,8 @@ public class IroncladZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZBigBullet bullet = new ZBigBullet (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZBigBullet bullet = new ZBigBullet (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
         }

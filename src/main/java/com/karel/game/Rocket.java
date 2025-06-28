@@ -35,7 +35,7 @@ public class Rocket extends FlyingRock
     }
     public void applyPhysics(){
         if(!load.isDead()){
-            load.pullTo(getRealX(), getRealY(), getRealHeight());
+            load.pullTo(getX(), getY(), getHeight());
         }
         super.applyPhysics();
     }
@@ -44,7 +44,7 @@ public class Rocket extends FlyingRock
     }
     
     public void checkHit(){
-        load.pullTo(getRealX(), getRealY(), 0);
+        load.pullTo(getX(), getY(), 0);
         load.unstun(loadStun);
         hasLanded = true;
         if(targetsymbol!=null){

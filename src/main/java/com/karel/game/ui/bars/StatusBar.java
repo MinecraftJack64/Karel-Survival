@@ -79,20 +79,20 @@ public class StatusBar extends Overlay
     TODO*/
     public void render(){
         //TODO
-        /*drawRectangle(getRealX(), getRealY(), size, height, bgColor);
-        drawRectangle(getRealX(), getRealY(), size*getPerc(), height, barColor);
+        /*drawRectangle(getX(), getY(), size, height, bgColor);
+        drawRectangle(getX(), getY(), size*getPerc(), height, barColor);
         for(int i: phases){
-            drawRectangle(getRealX()+size*i/max-1, getRealY(), 2, height, bgColor);
+            drawRectangle(getX()+size*i/max-1, getY(), 2, height, bgColor);
         }*/
-        //System.out.println(this+" "+(int)getRealX()+" "+(int)getRealY()+" "+size+" "+height+" "+bgColor);
-        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getRealX()), (float)renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX(width), renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRealRotation(), bgColor);
-        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getRealX()), (float)renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX((int)(width*getPerc())), renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRealRotation(), barColor);
+        //System.out.println(this+" "+(int)getX()+" "+(int)getY()+" "+size+" "+height+" "+bgColor);
+        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX(width), renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRotation(), bgColor);
+        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX((int)(width*getPerc())), renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRotation(), barColor);
         for(int i: phases){
-            Raylib.drawRectanglePro(new Rectangle((float)(renderTransformX((int)getRealX()+width*i/max-1)), (float)renderTransformY((int)getRealY()), 2, renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRealRotation(), bgColor);
+            Raylib.drawRectanglePro(new Rectangle((float)(renderTransformX((int)getX()+width*i/max-1)), (float)renderTransformY((int)getY()), 2, renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRotation(), bgColor);
         }
     }
     public double getBottom(){
-        return height+getRealY();
+        return height+getY();
     }
     public void divideIntoPhases(int numphases){
         int interval = getMax()/numphases;

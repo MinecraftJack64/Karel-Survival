@@ -64,7 +64,7 @@ public class CloudServer extends Boss
         hiveammo = 400;
         turretammo = -300;
         rocketammo = 200;
-        setRealRotation(0);
+        setRotation(0);
         setSpeed(0);
         startHealthAsBoss(9000, 3);
         phase = 1;
@@ -192,18 +192,18 @@ public class CloudServer extends Boss
     public void fungalDefense(){
         for(GridEntity g: getGEsInRange(110)){
             if(isAggroTowards(g)){
-                spawnZombieAt(new FungalZombie(), g.getRealX(), g.getRealY());
+                spawnZombieAt(new FungalZombie(), g.getX(), g.getY());
             }
         }
     }
     public void spawnZombieAt(GridObject z, double x, double y){
         double d = distanceTo(x, y);
         ZombieDropper pack = new ZombieDropper(getAngle(x, y)+90, d, d, z, this);
-        getWorld().addObject(pack, getRealX(), getRealY());
+        getWorld().addObject(pack, getX(), getY());
         Sounds.play("zombiedropshoot");
     }
     public void spawnZombie(GridObject z){
-        getWorld().addObject(z, getRealX(), getRealY());
+        getWorld().addObject(z, getX(), getY());
     }
     //Attacks
     public void healSelfAttack(){
@@ -242,7 +242,7 @@ public class CloudServer extends Boss
         }else{
             toSpawn = new HivemindZombie();
         }
-        getWorld().addObject(toSpawn, getRealX(), getRealY());
+        getWorld().addObject(toSpawn, getX(), getY());
     }
     public void turretAttack(){
         for(int i = 0; i < phase/2+1; i++){
@@ -255,24 +255,24 @@ public class CloudServer extends Boss
         double sx = 0, sy = 0;
         int n = 0;
         for(GridEntity g: lasers){
-            sx+=g.getRealX()-getRealX();
-            sy+=g.getRealY()-getRealY();
+            sx+=g.getX()-getX();
+            sy+=g.getY()-getY();
             n++;
         }
         for(GridEntity g: spores){
-            sx+=g.getRealX()-getRealX();
-            sy+=g.getRealY()-getRealY();
+            sx+=g.getX()-getX();
+            sy+=g.getY()-getY();
             n++;
         }
         for(GridEntity g: turrets){
-            sx+=g.getRealX()-getRealX();
-            sy+=g.getRealY()-getRealY();
+            sx+=g.getX()-getX();
+            sy+=g.getY()-getY();
             n++;
         }
         if(n==0)return;
         sx/=n;
         sy/=n;
-        spawnZombieAt(new LaserSquad(phase, lasers, this), getRealX()*2-sx, getRealY()*2-sy);
+        spawnZombieAt(new LaserSquad(phase, lasers, this), getX()*2-sx, getY()*2-sy);
     }
     public void rocketAttack(){
         for(int i = 75; i <= 195; i+=30){

@@ -59,13 +59,13 @@ public class Lasso extends Reelin
             animationFrame = (int)face(getSource(), false)-90;
         }
         //draw line between source and me
-        double x = getRealX()+Math.cos(animationFrame*Math.PI/180)*50;
-        double y = getRealY()-getRealHeight()+Math.sin(animationFrame*Math.PI/180)*getImage().getHeight()/2;
+        double x = getX()+Math.cos(animationFrame*Math.PI/180)*50;
+        double y = getY()-getHeight()+Math.sin(animationFrame*Math.PI/180)*getImage().getHeight()/2;
         animationFrame+=20;
         if(animationFrame>=360) animationFrame = 0;
         Raylib.drawLineEx(
             new Vector2(renderTransformX((int)x), renderTransformY((int)y)),
-            new Vector2(renderTransformX((int)getSource().getRealX()), renderTransformY((int)(getSource().getRealY()-getSource().getRealHeight()))),
+            new Vector2(renderTransformX((int)getSource().getX()), renderTransformY((int)(getSource().getY()-getSource().getHeight()))),
             7,
             new Color(
                 (byte)170, (byte)122, (byte)23, (byte)255
@@ -97,8 +97,8 @@ public class Lasso extends Reelin
                 targets.remove(i);
             }else if(!target.canBePulled()){
                 immobs++;
-                latchx+=target.getRealX();
-                latchy+=target.getRealY();
+                latchx+=target.getX();
+                latchy+=target.getY();
             }
         }
         if(immobs>0){latchx/=immobs;

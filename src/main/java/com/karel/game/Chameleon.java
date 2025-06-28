@@ -38,7 +38,7 @@ public class Chameleon extends Weapon
                     g.applyEffect(new StunEffect(12, getHolder()));
                 }
                 if(g.isDead()){
-                    createOrb(g.getRealX(), g.getRealY());
+                    createOrb(g.getX(), g.getY());
                 }
             }
         }, null);
@@ -67,7 +67,7 @@ public class Chameleon extends Weapon
         if(tongue!=null&&tongue.hasReturned()){
             if(tongue.target()!=null){
                 getHolder().damage(tongue.target(), tongue.target().getHealth());
-                if(tongue.target().isDead())createOrb(tongue.target().getRealX(), tongue.target().getRealY());
+                if(tongue.target().isDead())createOrb(tongue.target().getX(), tongue.target().getY());
             }
             tongue = null;
             return false;

@@ -77,9 +77,9 @@ public class WarriorZombie extends Zombie
                 chargecooldown = 125;
             }
             face(getTarget(), canMove());
-            if(distanceTo(getTarget())<chargewaitrange){fire();walk(getRealRotation(), -1);}
+            if(distanceTo(getTarget())<chargewaitrange){fire();walk(getRotation(), -1);}
         }else if(phase==1){//charging
-            walk(getRealRotation(), 2);
+            walk(getRotation(), 2);
             chargecooldown--;
             if(distanceTo(getTarget())<100){
                 if(distanceTo(getTarget())<50)if(canAttack())damage(getTarget(), 50);
@@ -103,8 +103,8 @@ public class WarriorZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZSpear bullet = new ZSpear (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZSpear bullet = new ZSpear (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             //bullet.move ();
             reloadDelayCount = 0;
         }

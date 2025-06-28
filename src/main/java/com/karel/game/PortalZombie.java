@@ -59,7 +59,7 @@ public class PortalZombie extends Zombie
         if(portals>0&&canAttack()){
             double ang = face(getTarget(), false);
             double d = 400;
-            double x = getRealX()+Math.cos((ang-90)*Math.PI/180)*d, y = getRealY()+Math.sin((ang-90)*Math.PI/180)*d;
+            double x = getX()+Math.cos((ang-90)*Math.PI/180)*d, y = getY()+Math.sin((ang-90)*Math.PI/180)*d;
             EntrancePortal one = new EntrancePortal(this);
             addObjectHere(one);
             EntrancePortal two = new EntrancePortal(this);

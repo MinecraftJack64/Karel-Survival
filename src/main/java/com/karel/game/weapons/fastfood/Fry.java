@@ -13,7 +13,7 @@ public class Fry extends Bullet
         super(rotation, source);
         setImage("Weapons/fastfood/proj.png");
         scaleTexture(20);
-        //setRealRotation(rotation+45);
+        //setRotation(rotation+45);
         setSpeed(isSuper?22:17);
         setLife(13);
         setDamage(isSuper?80:20);

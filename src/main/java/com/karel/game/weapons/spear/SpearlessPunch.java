@@ -16,7 +16,7 @@ public class SpearlessPunch extends Bullet
     public SpearlessPunch(double rotation, GridObject source)
     {
         super(rotation, source);
-        setRealRotation(getRealRotation() - 90);
+        setRotation(getRotation() - 90);
         setImage("Weapons/spear/punch.png");
         setSpeed(20);
         setLife(6);

@@ -152,11 +152,11 @@ public class CannonZombie extends Zombie
         }else if(aimdir>face(getTarget(), false)+0.5){
             aimdir-=0.5;
         }
-        setRealRotation(aimdir-90);
+        setRotation(aimdir-90);
         setTargetLocation();
     }
     public void setTargetLocation(){
-        target.setRealLocation(getRealX()+Math.cos((aimdir-90)*Math.PI/180)*aimdist, getRealY()+Math.sin((aimdir-90)*Math.PI/180)*aimdist);
+        target.setLocation(getX()+Math.cos((aimdir-90)*Math.PI/180)*aimdist, getY()+Math.sin((aimdir-90)*Math.PI/180)*aimdist);
     }
     @Override
     public boolean prioritizeTarget(){

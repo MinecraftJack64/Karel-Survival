@@ -23,7 +23,7 @@ public class SurpriseEasterEgg extends Pet
         }
     }
     public void die(GridObject killer){
-        if(targ!=null){getWorld().addObject(targ, getRealX(), getRealY());}
+        if(targ!=null){getWorld().addObject(targ, getX(), getY());}
         explodeOn(100, 200);
         super.die(killer);
     }

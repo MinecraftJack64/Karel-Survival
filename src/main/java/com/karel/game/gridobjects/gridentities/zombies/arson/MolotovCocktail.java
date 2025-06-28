@@ -16,12 +16,12 @@ public class MolotovCocktail extends FlyingRock
     }
     public void animate(){
         super.animate();
-        setRealRotation(getRealRotation() + 30);
+        setRotation(getRotation() + 30);
     }
     public void applyPhysics(){
         FlameTrail ft = new FlameTrail(1);
         addObjectHere(ft);
-        ft.setRealHeight(getRealHeight());
+        ft.setHeight(getHeight());
         super.applyPhysics();
     }
     public double getGravity(){

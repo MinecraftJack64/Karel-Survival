@@ -25,7 +25,7 @@ public class Harpoon extends Boomerang
     public Harpoon(double rotation, GridEntity source, boolean fast)
     {
         super(rotation, source);
-        setRealRotation(rotation);
+        setRotation(rotation);
         setImage("Weapons/shotgun/projUlt.png");
         scaleTexture(40);
         setSpeed(fast ? 30 : 15);
@@ -46,11 +46,11 @@ public class Harpoon extends Boomerang
             super.doReturn();
             if(!target.isDead()){
                 //stun target
-                if(!target.pullTo(getRealX(), getRealY())){
-                    setRealLocation(getSource().getRealX(), getSource().getRealY());
+                if(!target.pullTo(getX(), getY())){
+                    setLocation(getSource().getX(), getSource().getY());
                     phase = 3;
                     getSource().stun(pullStun);
-                    if(!getSource().pullTo(getRealX(), getRealY())){
+                    if(!getSource().pullTo(getX(), getY())){
                         dieForReal();
                     }
                 }
@@ -60,15 +60,15 @@ public class Harpoon extends Boomerang
                 dieForReal();
                 return;
             }
-            setRealRotation(face(target, false)+90);
-            move(getRealRotation()-90, getSpeed());
+            setRotation(face(target, false)+90);
+            move(getRotation()-90, getSpeed());
             if(!getSource().isDead()){
                 //stun source
-                if(!getSource().pullTo(getRealX(), getRealY())){
-                    setRealLocation(target.getRealX(), target.getRealY());
+                if(!getSource().pullTo(getX(), getY())){
+                    setLocation(target.getX(), target.getY());
                     phase = 2;
                     getSource().unstun(pullStun);
-                    if(!target.pullTo(getRealX(), getRealY())){
+                    if(!target.pullTo(getX(), getY())){
                         dieForReal();
                     }
                 }
@@ -94,8 +94,8 @@ public class Harpoon extends Boomerang
         super.render();
         //draw line between source and me
         Raylib.drawLineEx(
-            new Vector2(renderTransformX((int)getRealX()), renderTransformY((int)getRealY())),
-            new Vector2(renderTransformX((int)getSource().getRealX()), renderTransformY((int)getSource().getRealY())),
+            new Vector2(renderTransformX((int)getX()), renderTransformY((int)getY())),
+            new Vector2(renderTransformX((int)getSource().getX()), renderTransformY((int)getSource().getY())),
             7,
             Raylib.DARKBROWN
         );
@@ -106,7 +106,7 @@ public class Harpoon extends Boomerang
      */
     public void doHit(GridEntity asteroid)
     {
-        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.getRealHeight()==0){
+        if (asteroid != null&&isAggroTowards(asteroid)&&asteroid.getHeight()==0){
             asteroid.stun(pullStun);
             target = asteroid;
             Sounds.play("lassotighten");

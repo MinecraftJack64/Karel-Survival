@@ -58,7 +58,7 @@ public class CatClaw extends Weapon implements LandingHandler
                 return true;
             }
         };
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 300);
         toland = true;
         getHolder().initiateJump(getHand().getTargetRotation(), d, 75);
@@ -98,8 +98,8 @@ public class CatClaw extends Weapon implements LandingHandler
             toland = false;
             getHolder().applyEffect(new PowerPercentageEffect(2, 60, getHolder(), new EffectID(getHolder(), "strengthen")));
             for(int i = 0; i < 8; i++){
-                SwipingClaw bullet = new SwipingClaw(getHolder().getRealRotation()+i*45, 70, getHolder());
-                getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+                SwipingClaw bullet = new SwipingClaw(getHolder().getRotation()+i*45, 70, getHolder());
+                getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
             }
             setLocked(false);
             getHolder().applyEffect(new SpeedPercentageEffect(1.5, 60, getHolder(), new EffectID(getHolder(), "speedup")));

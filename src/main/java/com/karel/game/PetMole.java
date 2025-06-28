@@ -51,7 +51,7 @@ public class PetMole extends Weapon
     }
     public void equip(){
         super.equip();
-        getHolder().getWorld().addObject(zap, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject(zap, getHolder().getX(), getHolder().getY());
     }
     public void unequip(){
         if(zap.inUlt()){

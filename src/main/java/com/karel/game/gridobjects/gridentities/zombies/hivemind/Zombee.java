@@ -42,8 +42,8 @@ public class Zombee extends SpawnableZombie
      */
     public void behave()
     {
-        if(getRealHeight()==0){
-            setRealHeight(1);
+        if(getHeight()==0){
+            setHeight(1);
         }
         if(myhive!=null)matchTeam(myhive);
         double monangle = face(getTarget(), canMove());

@@ -28,7 +28,7 @@ public class TrapSetter extends Weapon
                 jumpDelayCount = dashWaitTime;
                 Mousetrap bullet = getAttackUpgrade()==1?new Mousetrap(getHand().getTargetRotation(), getHolder()):new Mousetrap(getHolder());
                 //WeaponFrag bullet = new WeaponFrag();
-                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
             jumpDelayCount--;
             if(jumpDelayCount==0){
@@ -70,7 +70,7 @@ public class TrapSetter extends Weapon
     public void setTrap(double rot){
         BearTrap bullet = getUltUpgrade()==1?new UpgradedBearTrap(rot, getHolder()):new BearTrap(rot, getHolder());
         //WeaponFrag bullet = new WeaponFrag();
-        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("setuptrap");
     }
     public void reload(){

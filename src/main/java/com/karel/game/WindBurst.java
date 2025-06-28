@@ -48,7 +48,7 @@ public class WindBurst extends Bullet
             }
         }
         Explosion exp = new Explosion(1);
-        getWorld().addObject(exp, getRealX(), getRealY());
+        getWorld().addObject(exp, getX(), getY());
         Sounds.play("explode");
     }
     public void expire(){

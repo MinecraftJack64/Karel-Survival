@@ -25,7 +25,7 @@ public class PaintGun extends Weapon
         {
             for(int i = -5; i <= 5; i+=2){
                 PaintDrop bullet = getAttackUpgrade()==1?new FreshPaintDrop (getHand().getTargetRotation()+i, getHolder()):new PaintDrop (getHand().getTargetRotation()+i, false, getHolder());
-                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
             ammo.useAmmo();
             reloadDelayCount = 0;
@@ -52,7 +52,7 @@ public class PaintGun extends Weapon
                                 return super.damageSecrecy()*ammoid*0.165+0.4;
                             }
                         };
-                        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                        getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
                     }
                     ammo.useAmmo();
                     if(!ammo.hasAmmo()){

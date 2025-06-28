@@ -47,7 +47,7 @@ public class Boomerang extends Bullet implements IBoomerang
     }
     public void animate(){
         super.animate();
-        setRealRotation(getDirection()+90);
+        setRotation(getDirection()+90);
     }
     public void expire(){
         if(returnOnExpire==1)startReturn();

@@ -30,7 +30,7 @@ public class FastFood extends Weapon implements AmmoHolder
         if(reloadDelayCount>=attackDelay&&nextammosupercharged){
             for(int deg = -20; deg<=20; deg+=10){
                 Projectile mbullet = getAttackUpgrade()==1 ? (new KetchupFry(getHand().getTargetRotation()+deg, getHolder(), false)) : (new Fry(getHand().getTargetRotation()+deg, getHolder(), false));
-                getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (mbullet, getHolder().getX(), getHolder().getY());
             }
             Sounds.play("shotgunshoot");
             reloadDelayCount = 0;
@@ -40,7 +40,7 @@ public class FastFood extends Weapon implements AmmoHolder
         }else if(reloadDelayCount>=gunReloadTime&&!continueUse()&&ammo.hasAmmo()){
             for(int deg = -30; deg<=30; deg+=10){
                 Projectile mbullet = getAttackUpgrade()==1 ? (new KetchupFry(getHand().getTargetRotation()+deg, getHolder(), Math.abs(deg)==20)) : (new Fry(getHand().getTargetRotation()+deg, getHolder(), Math.abs(deg)==20));
-                getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (mbullet, getHolder().getX(), getHolder().getY());
             }
             setContinueUse(true);
             reloadDelayCount = 0;

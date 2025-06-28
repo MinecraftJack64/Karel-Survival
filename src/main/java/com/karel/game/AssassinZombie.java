@@ -25,7 +25,7 @@ public class AssassinZombie extends Zombie
     {
         reloadDelayCount = 5;
         setTexture("assassinzareln.png");
-        setRealRotation(180);
+        setRotation(180);
         setSpeed(4);
         startHealth(200);
     }
@@ -69,7 +69,7 @@ public class AssassinZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()&&failcooldown<=0){
-            ZDagger bullet = new ZDagger (getRealRotation(), this);
+            ZDagger bullet = new ZDagger (getRotation(), this);
             addObjectHere(bullet);
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
@@ -78,7 +78,7 @@ public class AssassinZombie extends Zombie
     public void stab(){
         if(reloadDelayCount>=stabReloadTime&&canAttack()){
             failcooldown = 150;
-            ZMeleeDagger z = new ZMeleeDagger(getRealRotation(), this);
+            ZMeleeDagger z = new ZMeleeDagger(getRotation(), this);
             addObjectHere(z);
             reloadDelayCount = 0;
         }

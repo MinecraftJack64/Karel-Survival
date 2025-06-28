@@ -37,10 +37,10 @@ public class MoleUppercut extends FlyingRock
         }
     }
     public void animate(){
-        setRealRotation(getRealRotation()+40);
+        setRotation(getRotation()+40);
     }
     public void die(){
-        mole.notifyLand(getRealX(), getRealY());
+        mole.notifyLand(getX(), getY());
         super.die();
     }
     /*public boolean covertDamage(){

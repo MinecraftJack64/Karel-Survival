@@ -21,7 +21,7 @@ public class SonicBlast extends Bullet
         super(rotation, source);
         setImage("Weapons/scream/projUlt.png");
         scaleTexture(125);
-        setRealRotation(rotation);
+        setRotation(rotation);
         setSpeed(20);
         setLife(30);
         setDamage(40);

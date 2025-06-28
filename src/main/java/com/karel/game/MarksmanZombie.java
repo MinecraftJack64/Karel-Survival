@@ -53,8 +53,8 @@ public class MarksmanZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZSBullet bullet = new ZSBullet (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZSBullet bullet = new ZSBullet (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             Sounds.play("marksmanshoot");
             reloadDelayCount = 0;
         }

@@ -20,7 +20,7 @@ public class Slicer extends Weapon
         if (attackcooldown<=0) 
         {
             CircSaw bullet = getAttackUpgrade()==1?new StoppableCircSaw(getHand().getTargetRotation(), getHolder(), this):new CircSaw(getHand().getTargetRotation(), getHolder());
-            getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
             lasso = bullet;
             attackcooldown = reloadtime;
             Sounds.play("lifestealshoot");

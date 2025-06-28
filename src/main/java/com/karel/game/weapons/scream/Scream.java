@@ -25,15 +25,15 @@ public class Scream extends Weapon
         {
             for(int i = 0; i <= 0; i+=1){
                 ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 10, 50);
-                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
             for(int i = 0; i <= 0; i+=1){
                 ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 20, 100);
-                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
             for(int i = 0; i <= 0; i+=1){
                 ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 25, 50);
-                getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
             chargeUlt(1000);
             getAmmo().useAmmo();

@@ -49,7 +49,7 @@ public class EntrancePortal extends GridObject
         scaleTexture((int)(health*2.5+35), (int)(health*2.5+35));
     }
     public void receive(GridEntity g){
-        g.pullTo(getRealX(), getRealY());
+        g.pullTo(getX(), getY());
         exiters.add(g);
         lowerHealth();
         if(health<=0){

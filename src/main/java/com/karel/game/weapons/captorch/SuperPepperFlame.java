@@ -19,7 +19,7 @@ public class SuperPepperFlame extends Bullet
         super(rotation, source);
         setImage("Weapons/captorch/projUlt.png");
         scaleTexture(50);
-        setRealRotation(getRealRotation()-180);
+        setRotation(getRotation()-180);
         setNumTargets(-1);
         torch = toNotify;
     }

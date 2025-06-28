@@ -50,7 +50,7 @@ public class HivemindZombie extends Zombie
         if (attackphasecount>0/*finish started attacks*/||(reloadDelayCount>=gunReloadTime&&canAttack())){
             if(attackphasecooldown<=0&&bees>0){
                 Zombee bullet = new Zombee(this);
-                getWorld().addObject (bullet, getRealX(), getRealY());
+                getWorld().addObject (bullet, getX(), getY());
                 bees--;
                 attackphasecount++;
                 attackphasecooldown = 3;

@@ -23,7 +23,7 @@ public class AerialBullet extends Bullet
         setDamage(75);
         setRange(30);
         setCollisionMode("radius");
-        setRealHeight(height);
+        setHeight(height);
         weight = reduction;
     }
     public AerialBullet(double rotation, double height, double speed, double reduction, GridObject source, ComboTracker ct)
@@ -32,7 +32,7 @@ public class AerialBullet extends Bullet
         combo = ct;
     }
     public void applyPhysics(){
-        setRealHeight(getRealHeight()-weight);
+        setHeight(getHeight()-weight);
         super.applyPhysics();
     }
     public void checkHit(){

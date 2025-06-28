@@ -20,7 +20,7 @@ public class InfernalFlame extends Bullet
         super(rotation, source);
         setImage("Weapons/inferno/proj0.png");
         scaleTexture(30);
-        setRealRotation(getRealRotation()-180);
+        setRotation(getRotation()-180);
         setSpeed(22);
         setLife(15);
         setDamage(55);

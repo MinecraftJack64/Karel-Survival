@@ -35,7 +35,7 @@ public class ChargeBomb extends Bullet
             g.applyEffect(new StunEffect(30, getSource()));
         });
         Explosion exp = new Explosion(1);
-        getWorld().addObject(exp, getRealX(), getRealY());//INTENDED FOR NOW
+        getWorld().addObject(exp, getX(), getY());//INTENDED FOR NOW
         if(lightning){
             addObjectHere(new LightningStrike(this));
         }

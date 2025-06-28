@@ -33,6 +33,6 @@ public class Shuriken extends ZBullet
      */
     public void animate()
     {
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
     }
 }

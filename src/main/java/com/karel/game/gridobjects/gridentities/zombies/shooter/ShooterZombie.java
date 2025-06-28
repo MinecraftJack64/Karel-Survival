@@ -42,8 +42,8 @@ public class ShooterZombie extends Zombie
     public void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZBullet bullet = new ZBullet (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZBullet bullet = new ZBullet (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
         }

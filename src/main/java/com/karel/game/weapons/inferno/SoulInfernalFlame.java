@@ -31,7 +31,7 @@ public class SoulInfernalFlame extends InfernalFlame
     public void doHit(GridEntity g){
         super.doHit(g);
         if(g.isDead()&&getLife()>10){
-            addObjectHere(new HealCharge(getRealRotation(), getSource().getParentAffecter(), getDamage()));
+            addObjectHere(new HealCharge(getRotation(), getSource().getParentAffecter(), getDamage()));
         }
     }
 }

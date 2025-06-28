@@ -18,8 +18,8 @@ public class Nuke extends Projectile
     public Nuke(GridObject source)
     {
         super(source);
-        setRealRotation(90);
-        setRealHeight(2000);
+        setRotation(90);
+        setHeight(2000);
     }
     
     /**
@@ -29,10 +29,10 @@ public class Nuke extends Projectile
     {
         if(targ==null){
             targ = new Target();
-            getWorld().addObject(targ, getRealX(), getRealY());
+            getWorld().addObject(targ, getX(), getY());
         }
-        if(getRealHeight()<=0) {
-            setRealHeight(0);
+        if(getHeight()<=0) {
+            setHeight(0);
             checkAsteroidHit();
             getWorld().removeObject(this);
             if(targ!=null){
@@ -42,7 +42,7 @@ public class Nuke extends Projectile
             super.die();
         } 
         else {
-            setRealHeight(getRealHeight()-20);
+            setHeight(getHeight()-20);
         }
     }
     

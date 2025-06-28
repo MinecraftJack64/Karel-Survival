@@ -29,7 +29,7 @@ public class ArsonZombie extends Zombie
     {
         reloadDelayCount = 0;
         setImage("arsonzareln.png");
-        setRealRotation(180);
+        setRotation(180);
         setSpeed(2);
         startHealth(200);
     }
@@ -80,14 +80,14 @@ public class ArsonZombie extends Zombie
     }
     public void fireOne(){
         double d = distanceTo(getTarget());
-        MolotovCocktail bullet = new MolotovCocktail (getRealRotation(), d, 400+d/4, this);
-        getWorld().addObject (bullet, getRealX(), getRealY());
+        MolotovCocktail bullet = new MolotovCocktail (getRotation(), d, 400+d/4, this);
+        getWorld().addObject (bullet, getX(), getY());
         playSound("Zombies/arson/throw.wav");
     }
     public void superFire(){
         for(int i = 0; i < 4; i++){double d = distanceTo(getTarget())+Greenfoot.getRandomNumber(60)-30;
-        MolotovCocktail bullet = new MolotovCocktail (getRealRotation()+Greenfoot.getRandomNumber(30)-15, d, 100+d/2, this);
-        getWorld().addObject (bullet, getRealX(), getRealY());}
+        MolotovCocktail bullet = new MolotovCocktail (getRotation()+Greenfoot.getRandomNumber(30)-15, d, 100+d/2, this);
+        getWorld().addObject (bullet, getX(), getY());}
         playSound("Zombies/arson/throw.wav");
     }
     public ZombieClass[] getZombieClasses(){

@@ -25,7 +25,7 @@ public class EasterEgg extends Bullet
             setImage("Weapons/easterbasket/proj"+Greenfoot.getRandomNumber(4)+".png");
             scaleTexture(25);
         }
-        setRealRotation(getRealRotation()-90);
+        setRotation(getRotation()-90);
         setLife(25);
         setSpeed(13);
         setDamage(100);
@@ -40,7 +40,7 @@ public class EasterEgg extends Bullet
         Sounds.play("eggcrack");
         if(willspawn){
             Chick spawn = new Chick(1, (GridEntity)getSource());
-            getWorld().addObject(spawn, getRealX(), getRealY());
+            getWorld().addObject(spawn, getX(), getY());
         }
         attemptedspawn = true;
         super.doHit(targ);
@@ -48,7 +48,7 @@ public class EasterEgg extends Bullet
     public void die(){
         if(willspawn&&Greenfoot.getRandomNumber(2)==0&&!attemptedspawn){
             Chick spawn = new Chick(0.5, (GridEntity)getSource());
-            getWorld().addObject(spawn, getRealX(), getRealY());
+            getWorld().addObject(spawn, getX(), getY());
         }
         super.die();
     }

@@ -13,7 +13,7 @@ public class UltBar extends StatusBar
     public UltBar(int max, int size, int height)
     {
         super(0, max, size, height, Raylib.ORANGE);
-        setRealRotation(-90);
+        setRotation(-90);
     }
     public void setValue(int val){
         if(val<=0)val=0;

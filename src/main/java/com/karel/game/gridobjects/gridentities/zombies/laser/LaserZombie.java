@@ -38,14 +38,14 @@ public class LaserZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZLaser bullet = new ZLaser (getRealRotation()+10, this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
-            ZLaser bullet2 = new ZLaser (getRealRotation()-10, this);
-            getWorld().addObject (bullet2, getRealX(), getRealY());
-            ZLaser bullet3 = new ZLaser (getRealRotation()+15, this);
-            getWorld().addObject (bullet3, getRealX(), getRealY());
-            ZLaser bullet4 = new ZLaser (getRealRotation()-15, this);
-            getWorld().addObject (bullet4, getRealX(), getRealY());
+            ZLaser bullet = new ZLaser (getRotation()+10, this);
+            getWorld().addObject (bullet, getX(), getY());
+            ZLaser bullet2 = new ZLaser (getRotation()-10, this);
+            getWorld().addObject (bullet2, getX(), getY());
+            ZLaser bullet3 = new ZLaser (getRotation()+15, this);
+            getWorld().addObject (bullet3, getX(), getY());
+            ZLaser bullet4 = new ZLaser (getRotation()-15, this);
+            getWorld().addObject (bullet4, getX(), getY());
             reloadDelayCount = 0;
         }
     }

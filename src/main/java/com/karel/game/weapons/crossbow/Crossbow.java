@@ -23,11 +23,11 @@ public class Crossbow extends Weapon
             double deg = 30-(focus-0.5)*25;
             boolean ug = getAttackUpgrade()==1;
             PoisonArrow mbullet = new PoisonArrow (getHand().getTargetRotation(), focus, ug, getHolder());
-            getHolder().getWorld().addObject (mbullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (mbullet, getHolder().getX(), getHolder().getY());
             PoisonArrow rbullet = new PoisonArrow (getHand().getTargetRotation()-deg, focus, ug, getHolder());
-            getHolder().getWorld().addObject (rbullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (rbullet, getHolder().getX(), getHolder().getY());
             PoisonArrow lbullet = new PoisonArrow (getHand().getTargetRotation()+deg, focus, ug, getHolder());
-            getHolder().getWorld().addObject (lbullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (lbullet, getHolder().getX(), getHolder().getY());
             //bullet.move ();
             Sounds.play("crossbowshoot");
             reloadDelayCount = 0;
@@ -61,7 +61,7 @@ public class Crossbow extends Weapon
             double x = getHand().getTargetX()+(int)(Math.random()*41)-20;
             double y = getHand().getTargetY()+(int)(Math.random()*41)-20;
             RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, getHolder().distanceTo(x, y), constant?1000:i, focus, getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         }
         if(!useGadget())focus = 0.5;
     }

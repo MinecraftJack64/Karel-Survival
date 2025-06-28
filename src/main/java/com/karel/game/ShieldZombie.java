@@ -55,7 +55,7 @@ public class ShieldZombie extends Zombie
         startHealth(200);
         applyShield(new ArmorShield(shieldid, 300));
         /*shieldBar = new ShieldBar(shieldhealth, 40, 5, this);
-        KWorld.me.addObject(shieldBar, getRealX()*1.0, getRealY()-50);*/
+        KWorld.me.addObject(shieldBar, getX()*1.0, getY()-50);*/
     }
     //ovveride this
     public int getXP(){

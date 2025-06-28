@@ -32,7 +32,7 @@ public class ThrownSpear extends Bullet
         setNumTargets(-1);
         setImage(!isreturning?"Weapons/spear/spear.png":"Weapons/spear/spear-return.png");
         scaleTexture(60);
-        setRealRotation(getRealRotation()+180);
+        setRotation(getRotation()+180);
         returnto = targ;
         isreturning = ir;
         myspear = sp;
@@ -41,7 +41,7 @@ public class ThrownSpear extends Bullet
         if(!isreturning){//part of main attack
             if(phase==1)super.applyPhysics();//throw
             else if(phase==0){//draw back
-                setRealLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getRealX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getRealY());
+                setLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown-maxdrawcooldown)+returnto.getY());
                 drawcooldown--;
                 if(drawcooldown<=0){
                     // check if throw spear
@@ -49,7 +49,7 @@ public class ThrownSpear extends Bullet
                     else {phase = 2;drawcooldown = -15;}
                 }
             }else if(phase==2){//stabbing
-                setRealLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown)+returnto.getRealX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown)+returnto.getRealY());
+                setLocation(Math.cos((getDirection()-90)*Math.PI/180)*(drawcooldown)+returnto.getX(), Math.sin((getDirection()-90)*Math.PI/180)*(drawcooldown)+returnto.getY());
                 drawcooldown += 10;
                 checkHit();
                 if(drawcooldown>=120){
@@ -59,7 +59,7 @@ public class ThrownSpear extends Bullet
             }
         }else{//part of ult
             setDirection(face(returnto, true));
-            setRealRotation(getDirection()+90);
+            setRotation(getDirection()+90);
             setLife(2);
             super.applyPhysics();
             if(distanceTo(returnto)<9){

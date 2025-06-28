@@ -24,7 +24,7 @@ public class CuttingSword extends Melee
         super(rotation, source);
         setImage("Weapons/blade/projUlt.png");
         scaleTexture(60);
-        setRealRotation(getRealRotation()-45);
+        setRotation(getRotation()-45);
         setSpeed(15);
         setLife(life);
         setDamage(0);
@@ -43,9 +43,9 @@ public class CuttingSword extends Melee
         } 
         else {
             life--;
-            double centerx = getSource().getRealX(), centery = getSource().getRealY();
-            setRealLocation(centerx+xmax*Math.sin(degtotarg*Math.PI/180), centery+ymax*Math.sin(degtotarg*Math.PI/180));
-            //setRealRotation(degtotarg);
+            double centerx = getSource().getX(), centery = getSource().getY();
+            setLocation(centerx+xmax*Math.sin(degtotarg*Math.PI/180), centery+ymax*Math.sin(degtotarg*Math.PI/180));
+            //setRotation(degtotarg);
             degtotarg+=30;
             checkHit();
         }

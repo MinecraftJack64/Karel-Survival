@@ -45,7 +45,7 @@ public class Baby extends GridEntity
         reloadDelayCount++;
         if(reloadDelayCount>=gunReloadTime){
             Bullet bullet = new Bullet(face(getNearestTarget(), false), this);
-            getWorld().addObject(bullet, getRealX(), getRealY());
+            getWorld().addObject(bullet, getX(), getY());
             protonWaveAmmo++;
             reloadDelayCount = 0;
         }

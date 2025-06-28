@@ -57,7 +57,7 @@ public class JokerZombie extends Zombie
                 Sounds.play("explode");
             break;
             case 1://shoot
-                addObjectHere(new ZGenericBullet(dmg*2, getRealRotation(), this));
+                addObjectHere(new ZGenericBullet(dmg*2, getRotation(), this));
             break;
             case 2://heal
                 if(Greenfoot.getRandomNumber(3)>0)
@@ -79,7 +79,7 @@ public class JokerZombie extends Zombie
                         retreat = 1;
                     }
                 }
-                setRealLocation(getTarget().getRealX()+Math.cos(degs*Math.PI/180)*(dist+dmg*retreat), getTarget().getRealY()+Math.sin(degs*Math.PI/180)*(dist+dmg*retreat));
+                setLocation(getTarget().getX()+Math.cos(degs*Math.PI/180)*(dist+dmg*retreat), getTarget().getY()+Math.sin(degs*Math.PI/180)*(dist+dmg*retreat));
             break;
         }
     }

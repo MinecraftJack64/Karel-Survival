@@ -28,7 +28,7 @@ public class PoisonArrow extends Bullet
         super(rotation, source);
         setImage(focus>1?"Weapons/crossbow/proj2.png":"Weapons/crossbow/proj.png");
         scaleTexture(50);
-        setRealRotation(getRealRotation()-180);
+        setRotation(getRotation()-180);
         setSpeed(5+10*focus);
         setLife(20);
         setDamage((int)(40*focus));

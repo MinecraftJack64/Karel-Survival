@@ -18,7 +18,7 @@ public class RockCatapult extends Weapon
         {
             double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
             FlyingRock bullet = new FlyingRock (getHand().getTargetRotation(), d, d/2, getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             Sounds.play("airtoss");
             //d400=reload70, d0=reload20
             reloadDelayCount = getAttackUpgrade()==1?(50-(int)(d/8)):0;
@@ -26,7 +26,7 @@ public class RockCatapult extends Weapon
     }
     public void fireUlt(){
         Asteroid bullet = new Asteroid(getHand().getTargetRotation(), getHolder());
-        getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
     }
     public void reload(){
         reloadDelayCount++;

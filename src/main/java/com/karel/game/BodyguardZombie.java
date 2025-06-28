@@ -62,16 +62,16 @@ public class BodyguardZombie extends SpawnableZombie
             action = 1;
         }
         double monangle;
-        if(action==0&&distanceTo(owner)<=idlerange)monangle = owner.getRealRotation();
+        if(action==0&&distanceTo(owner)<=idlerange)monangle = owner.getRotation();
         else if(action!=0)monangle = face(getTarget(), canMove());//temp
         else monangle = 0;
         //setRotation(getRotation()-1);
         reloadDelayCount++;
         if(action==1){
             if(hasowner){
-                if(monangle-owner.getAngle(getTarget().getRealX(), getTarget().getRealY())-90<-5){
+                if(monangle-owner.getAngle(getTarget().getX(), getTarget().getY())-90<-5){
                     walk(monangle-90, 1);
-                }else if(monangle-owner.getAngle(getTarget().getRealX(), getTarget().getRealY())-90>5){
+                }else if(monangle-owner.getAngle(getTarget().getX(), getTarget().getY())-90>5){
                     walk(monangle+90, 1);
                 }
             }
@@ -123,8 +123,8 @@ public class BodyguardZombie extends SpawnableZombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZDefensive bullet = new ZDefensive (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZDefensive bullet = new ZDefensive (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
         }

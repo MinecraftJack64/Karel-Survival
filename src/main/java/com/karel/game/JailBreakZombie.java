@@ -106,7 +106,7 @@ public class JailBreakZombie extends Zombie
     {
         if (canBomb()){
             for(int i = 0; i < 6; i++){
-                BombDropper bd = new BombDropper(getRealRotation()+i*60, 50, 25, new TickingTimeBomb(this), this);
+                BombDropper bd = new BombDropper(getRotation()+i*60, 50, 25, new TickingTimeBomb(this), this);
                 addObjectHere(bd);
             }
             reloadDelayCount = 0;

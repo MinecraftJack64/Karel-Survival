@@ -11,12 +11,12 @@ public class Sandbag extends GridEntity
     private int decayDelay = 5;
     public Sandbag(double r, GridObject source){
         startHealth(120);
-        setRealRotation(r);
+        setRotation(r);
         inherit(source);
     }
     public void update(){
         if(speed>0){
-            move(getRealRotation(), speed);
+            move(getRotation(), speed);
             speed-=2;
         }else{
             if(decayDelay<=0){

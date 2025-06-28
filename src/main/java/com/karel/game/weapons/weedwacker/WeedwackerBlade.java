@@ -49,14 +49,14 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         strength = s;
     }
     public void animate(){
-        //if(canAttack())setRealRotation(getRealRotation()+30);
+        //if(canAttack())setRotation(getRotation()+30);
     }
     public void render(){
         super.render();
         //draw line between source and me
         Raylib.drawLineEx(
-            new Vector2(renderTransformX((int)getRealX()), renderTransformY((int)getRealY())),
-            new Vector2(renderTransformX((int)getSource().getRealX()), renderTransformY((int)getSource().getRealY())),
+            new Vector2(renderTransformX((int)getX()), renderTransformY((int)getY())),
+            new Vector2(renderTransformX((int)getSource().getX()), renderTransformY((int)getSource().getY())),
             7,
             Raylib.BLACK
         );
@@ -73,7 +73,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     }
     public void spin(double speed){
         if(canAttack()){
-            setRealRotation(getRealRotation()+30);
+            setRotation(getRotation()+30);
             ammo+=speed;
             if(ammo>=3){
                 attack();

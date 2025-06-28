@@ -18,13 +18,13 @@ public class FireworkRocket extends FlyingRock
         return 1;
     }
     public void applyPhysics(){
-        if(getRealHeight()<=0){
+        if(getHeight()<=0){
             super.applyPhysics();
         }
         else if(percentDone()>=0.5){
             if(!exploded)explodeOn(250, 50);
             exploded = true;
-            setRealHeight(getPath().getHeight(frame));
+            setHeight(getPath().getHeight(frame));
             continueFrame();
         }else{
             super.applyPhysics();

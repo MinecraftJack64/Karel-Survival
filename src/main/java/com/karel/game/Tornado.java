@@ -35,7 +35,7 @@ public class Tornado extends Bullet
                 setSpeed(getSpeed()-3);
             }
         }
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
         List<GridEntity> d = getGEsInRange(55);
         for(GridEntity g:d){
             if(isAggroTowards(g)&&!suckedenemies.contains(g)&&g.canBePulled()){

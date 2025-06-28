@@ -37,9 +37,9 @@ public class Hoe extends Melee
         } 
         else {
             life--;
-            double centerx = getSource().getRealX(), centery = getSource().getRealY();
-            setRealLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
-            setRealRotation(degtotarg);
+            double centerx = getSource().getX(), centery = getSource().getY();
+            setLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
+            setRotation(degtotarg);
             if(clockwise)degtotarg+=12;
             else degtotarg-=12;
             checkHit();

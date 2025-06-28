@@ -26,7 +26,7 @@ public class ZEasterEgg extends ZBullet
             setImage("Weapons/easterbasket/proj"+Greenfoot.getRandomNumber(4)+".png");
             scaleTexture(25);
         }
-        setRealRotation(getRealRotation()-90);
+        setRotation(getRotation()-90);
         setLife(25);
     }
     
@@ -38,7 +38,7 @@ public class ZEasterEgg extends ZBullet
         Sounds.play("eggcrack");
         if(willspawn){
             ZombieChick spawn = new ZombieChick(this, (GridEntity)getSource());
-            getWorld().addObject(spawn, getRealX(), getRealY());
+            getWorld().addObject(spawn, getX(), getY());
         }
         super.doHit(targ);
     }

@@ -45,7 +45,7 @@ public class HornetNeckZombie extends Zombie
     {
         if(bees>0&&canAttack()&&reloadDelayCount>=gunReloadTime){
             Hornet bullet = new Hornet();
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            getWorld().addObject (bullet, getX(), getY());
             bullet.applyShield(new PercentageShield(new ShieldID(bullet), 0.6, 30));
             bees--;
             reloadDelayCount = 0;

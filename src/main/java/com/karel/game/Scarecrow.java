@@ -41,7 +41,7 @@ public class Scarecrow extends Pet
         hit(2, this);
     }
     public void attack(){
-        ScarecrowStraw bullet = new ScarecrowStraw(getRealRotation(), this);
+        ScarecrowStraw bullet = new ScarecrowStraw(getRotation(), this);
         addObjectHere(bullet);
     }
     public void die(GridObject killer){

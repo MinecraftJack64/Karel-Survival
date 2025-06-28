@@ -23,7 +23,7 @@ public class DroneRemote extends Weapon
     }
     public void fireUlt(){
         if(drone!=null){
-            drone.reposition(getHand().getTargetX()-getHolder().getRealX(), getHand().getTargetY()-getHolder().getRealY());
+            drone.reposition(getHand().getTargetX()-getHolder().getX(), getHand().getTargetY()-getHolder().getY());
         }
     }
     public int getUlt(){

@@ -26,7 +26,7 @@ public class JadeBlade extends Bullet
         setMultiHit(false);
     }
     public void animate(){
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
         scaleTexture(size, size);
     }
     public void applyPhysics(){

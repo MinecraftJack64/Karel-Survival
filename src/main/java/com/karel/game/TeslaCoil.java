@@ -16,21 +16,21 @@ public class TeslaCoil extends Weapon
     public void fire(){
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 500);
         if(zap!=null){
-            zap.attackAt(getHolder().getRealRotation()-90, d);
+            zap.attackAt(getHolder().getRotation()-90, d);
         }
         if(getAttackUpgrade()==1){
             if(zap2==null){
                 zap2 = new TeslaCoilZap(getHolder(), true);
                 getHolder().addObjectHere(zap2);
             }
-            zap2.attackAt(getHolder().getRealRotation()+90, d);
+            zap2.attackAt(getHolder().getRotation()+90, d);
         }
         //show the lightning
         //Sounds.play("electicity");
     }
     public void fireUlt(){
         ChargeBomb bullet = new ChargeBomb(getHand().getTargetRotation(), getUltUpgrade()==1, useGadget(), getHolder());
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("protonwave");
     }
     public int getUlt(){

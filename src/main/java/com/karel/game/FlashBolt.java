@@ -25,7 +25,7 @@ public class FlashBolt extends Bullet
         return nextIntendedTarget;
     }
     public void animate(){
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

@@ -46,12 +46,12 @@ public class PassiveCritter extends GridObject implements SubAffecter, ICritter
         ammo = am;
     }
     public void attack(){
-        CritterSlime bullet = new CritterSlime(getRealRotation(), getSource());
+        CritterSlime bullet = new CritterSlime(getRotation(), getSource());
         addObjectHere(bullet);
     }
     public void deploy(){
         face(source.getTargetX(), source.getTargetY(), true);
-        FlyingCritter bullet = new FlyingCritter(getRealRotation(), getSource(), spawner, id);
+        FlyingCritter bullet = new FlyingCritter(getRotation(), getSource(), spawner, id);
         addObjectHere(bullet);
         spawner.notifyCritterPhaseChange(id, bullet);
         die();

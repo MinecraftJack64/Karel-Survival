@@ -22,14 +22,14 @@ public class DoubleGun extends Weapon
         if (getAmmo().hasAmmo()) 
         {
             Bullet bullet = new DoubleBullet (getHand().getTargetRotation(), getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             Bullet bullet2 = new DoubleBullet (getHand().getTargetRotation()-180, getHolder());
-            getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet2, getHolder().getX(), getHolder().getY());
             if(useGadget()){
                 Bullet bullet3 = new DoubleBullet (getHand().getTargetRotation()+90, getHolder());
-                getHolder().getWorld().addObject (bullet3, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet3, getHolder().getX(), getHolder().getY());
                 Bullet bullet4 = new DoubleBullet (getHand().getTargetRotation()-90, getHolder());
-                getHolder().getWorld().addObject (bullet4, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet4, getHolder().getX(), getHolder().getY());
             }
             //bullet.move ();
             Sounds.play("gunshoot");
@@ -44,14 +44,14 @@ public class DoubleGun extends Weapon
                 secondUltDelay--;
             }else{
                 NeutronWave bullet = new NeutronWave(getHolder(), getUltUpgrade()==1?2:0);
-                getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
                 secondUltDelay = 35;
                 Sounds.play("neutronwave");
                 setContinueUlt(false);
             }
         }else{
             NeutronWave bullet = new NeutronWave(getHolder(), getUltUpgrade()==1?1:0);
-            getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
             Sounds.play("neutronwave");
             setContinueUlt(true);
             secondUltDelay = 35;

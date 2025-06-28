@@ -29,7 +29,7 @@ public class BouncingCircSaw extends Bullet
         setNumTargets(-1);
     }
     public void animate(){
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

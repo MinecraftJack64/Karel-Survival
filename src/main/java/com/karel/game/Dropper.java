@@ -22,7 +22,7 @@ public class Dropper extends FlyingRock
     }
     
     public void checkHit(){
-        getWorld().addObject(load, getRealX(), getRealY());
+        getWorld().addObject(load, getX(), getY());
         Sounds.play("zombiedrop");
     }
 }

@@ -75,11 +75,11 @@ public class TextDisplay extends Overlay
         //TODO
     }
     public void render(){
-        int x = (int)getRealX()-Raylib.measureText(text, size)/2;
-        int y = (int)getRealY();
+        int x = (int)getX()-Raylib.measureText(text, size)/2;
+        int y = (int)getY();
         Raylib.drawText(text, renderTransformX(x), renderTransformY(y), (int)(getWorld().getScreenScale()*size), textColor);
     }
     public double getBottom(){
-        return size+getRealY();
+        return size+getY();
     }
 }

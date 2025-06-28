@@ -23,14 +23,14 @@ public class Necromancer extends Weapon
         if (lasso==null) 
         {
             Lifesteal bullet = new Lifesteal(getHand().getTargetRotation(), hypno, getAttackUpgrade()==1, getHolder());
-            getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
             lasso = bullet;
             Sounds.play("lifestealshoot");
         }
     }
     public void fireUlt(){
         Hypnotizer bullet = new Hypnotizer(getHand().getTargetRotation(), getHolder(), this);
-        getHolder().getWorld().addObject(bullet, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("swirl");
     }
     public int getUlt(){

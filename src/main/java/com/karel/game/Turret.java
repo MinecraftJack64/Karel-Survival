@@ -25,7 +25,7 @@ public class Turret extends ZombiePackage
     //4 - upgrade to marksmen
     //5 - some are hardhats
     public void update(){
-        //setRealLocation(getRealX(), getRealY());
+        //setLocation(getX(), getY());
         switch(type){
             case 1:
                 spawnZombie(newShooter());
@@ -92,11 +92,11 @@ public class Turret extends ZombiePackage
         return z;
     }
     public void spawnZombie(GridObject z){
-        getWorld().addObject(z, getRealX(), getRealY());
+        getWorld().addObject(z, getX(), getY());
     }
     public void spawnZombieAt(GridObject z, double x, double y){
         double d = distanceTo(x, y);
         ZombieDropper pack = new ZombieDropper(getAngle(x, y)+90, d, d, z, this);
-        getWorld().addObject(pack, getRealX(), getRealY());
+        getWorld().addObject(pack, getX(), getY());
     }
 }

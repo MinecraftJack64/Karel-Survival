@@ -31,7 +31,7 @@ public class Tutorial extends GameMode
         if(tutorialphase==0){
             gameUI().setTutorial("Welcome to the Adventure, Karel");
             gameUI().setTutorial2("Use Arrow keys or WASD to move");
-            if(getPlayer().getRealX()!=playerogx||getPlayer().getRealY()!=playerogy){
+            if(getPlayer().getX()!=playerogx||getPlayer().getY()!=playerogy){
                 tutorialphase++;
             }
         }else if(tutorialphase==1){
@@ -96,8 +96,8 @@ public class Tutorial extends GameMode
         teams.setAlly("player", "player", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
-        playerogx = rocket.getRealX();
-        playerogy = rocket.getRealY();
+        playerogx = rocket.getX();
+        playerogy = rocket.getY();
         player = rocket;
         spawner = new TutorialSpawner();
         status = "running";

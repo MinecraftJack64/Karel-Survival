@@ -27,8 +27,8 @@ public class PunchMissile extends Bullet
         vx = tvx;
         vy = tvy;
     }
-    public void setRealRotation(double rot){
-        super.setRealRotation(rot+90);
+    public void setRotation(double rot){
+        super.setRotation(rot+90);
     }
     public void applyPhysics(){
         super.applyPhysics();

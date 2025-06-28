@@ -136,7 +136,7 @@ public class Zombie extends GridEntity
     public void die(GridObject killer){
         if(isAggroTowards(killer)){
             Beeper bullet = new Beeper(getXP());
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            getWorld().addObject (bullet, getX(), getY());
             Game.increaseScore(getXP());
         }
         super.die(killer);
@@ -165,7 +165,7 @@ public class Zombie extends GridEntity
     public void explodeFleshConfetti(int amt){
         for(int i = 0; i < Greenfoot.getRandomNumber(amt)+amt; i++){
             ZFleshConfetti fc = new ZFleshConfetti(Greenfoot.getRandomNumber(360), this);
-            getWorld().addObject(fc, getRealX(), getRealY());
+            getWorld().addObject(fc, getX(), getY());
         }
     }
     public void startHealth(int amt){

@@ -29,7 +29,7 @@ public class FlyingCircSaw extends Bullet
         setMultiHit(false);
     }
     public void animate(){
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

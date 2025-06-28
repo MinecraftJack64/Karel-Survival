@@ -20,7 +20,7 @@ public class ZDagger extends ZBullet
     public void doHit(GridEntity targ){
         targ.applyEffect(new PowerPercentageEffect(0.4, 60, this));
         GridEntity gs = (GridEntity)getSource();
-        if(!gs.isDead()&&gs.canBePulled())gs.pullToBranch(targ, targ.getRealRotation()+90, 30);
+        if(!gs.isDead()&&gs.canBePulled())gs.pullToBranch(targ, targ.getRotation()+90, 30);
         super.doHit(targ);
     }
 }

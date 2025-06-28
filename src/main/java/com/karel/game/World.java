@@ -171,7 +171,7 @@ public class World
 
         // hurt enemies out of bounds
         for(GridEntity g: allEntities()){
-            if(g.getRealX()<xLowerBound||g.getRealX()>xUpperBound||g.getRealX()>yUpperBound||g.getRealY()<yLowerBound)
+            if(g.getX()<xLowerBound||g.getX()>xUpperBound||g.getX()>yUpperBound||g.getY()<yLowerBound)
                 g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
         }
 
@@ -183,8 +183,8 @@ public class World
             }
         }
         if(scrollToPlayer){
-            scrollX = getPlayer().getRealX()-600;
-            scrollY = getPlayer().getRealY()-400;
+            scrollX = getPlayer().getX()-600;
+            scrollY = getPlayer().getY()-400;
         }
     }
     public void render(){
@@ -221,12 +221,12 @@ public class World
     }
     public void addObject(KActor a, double x, double y){
         if(a.getWorld()!=null){
-            a.setRealLocation(x, y);
+            a.setLocation(x, y);
             return;
         }
         a.setWorld(this);
         allKActors.add(a);
-        a.setRealLocation(x, y);
+        a.setLocation(x, y);
         a.notifyWorldAdd();
     }
     public void removeObject(KActor a){

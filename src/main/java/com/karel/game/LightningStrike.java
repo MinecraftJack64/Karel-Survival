@@ -18,8 +18,8 @@ public class LightningStrike extends Projectile
     public LightningStrike(GridObject source)
     {
         super(source);
-        setRealRotation(90);
-        setRealHeight(2000);
+        setRotation(90);
+        setHeight(2000);
         setDamage(250);
     }
     
@@ -30,10 +30,10 @@ public class LightningStrike extends Projectile
     {
         if(targ==null){
             targ = new Target();
-            getWorld().addObject(targ, getRealX(), getRealY());
+            getWorld().addObject(targ, getX(), getY());
         }
-        if(getRealHeight()<=0) {
-            setRealHeight(0);
+        if(getHeight()<=0) {
+            setHeight(0);
             checkAsteroidHit();
             getWorld().removeObject(this);
             if(targ!=null){
@@ -43,7 +43,7 @@ public class LightningStrike extends Projectile
             die();
         } 
         else {
-            setRealHeight(getRealHeight()-100);
+            setHeight(getHeight()-100);
         }
     }
     

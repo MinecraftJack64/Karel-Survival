@@ -39,7 +39,7 @@ public class Farmer extends Weapon
         {
             ammo.useAmmo();
             Hoe bullet = new Hoe(getHand().getTargetRotation(), getAttackUpgrade()==1, this, getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             getHolder().addObjectHere(new HarvestBeeper(this));
             Sounds.play("gunshoot");
             reloadDelayCount = 0;

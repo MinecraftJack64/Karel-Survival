@@ -51,12 +51,12 @@ public class NinjaZombie extends Zombie
             if(distanceTo(homex, homey)<=5){
                 phase = 0;
                 phasecooldown = Greenfoot.getRandomNumber(75)+75;
-                setRealLocation(homex, homey);
+                setLocation(homex, homey);
             }
         }else{
             if(phase==2){
                 if(canMove()&&distanceTo(target)<attackrange+10&&!target.hasMounter()){
-                    setRealLocation((attackrange*Math.cos(lastdegtotarget*Math.PI/180)+target.getRealX()), (attackrange*Math.sin(lastdegtotarget*Math.PI/180)+target.getRealY()));
+                    setLocation((attackrange*Math.cos(lastdegtotarget*Math.PI/180)+target.getX()), (attackrange*Math.sin(lastdegtotarget*Math.PI/180)+target.getY()));
                     lastdegtotarget+=getMultipliedSpeed()*1.6;
                 }else{
                     phasecooldown = 0;//retreat when stunned/knockbacked or target is too far away to catch up to.
@@ -74,8 +74,8 @@ public class NinjaZombie extends Zombie
             phasecooldown--;
             if(phasecooldown<=0){
                 if(phase==0){
-                    homex = getRealX();
-                    homey = getRealY();
+                    homex = getX();
+                    homey = getY();
                 }
                 phase++;
             }
@@ -116,8 +116,8 @@ public class NinjaZombie extends Zombie
      */
     private void fire() 
     {
-        Shuriken bullet = new Shuriken (getRealRotation(), this);
-        getWorld().addObject (bullet, getRealX(), getRealY());
+        Shuriken bullet = new Shuriken (getRotation(), this);
+        getWorld().addObject (bullet, getX(), getY());
         //bullet.move ();
     }
     //ovveride this

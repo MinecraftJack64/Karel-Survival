@@ -31,13 +31,13 @@ public abstract class KActor
         return world;
         
     }
-    public void setRealRotation(double rot){
+    public void setRotation(double rot){
         rrot = rot;
     }
-    public double getRealRotation(){
+    public double getRotation(){
         return rrot;
     }
-    public void setRealLocation(double x, double y){
+    public void setLocation(double x, double y){
         rx = x;
         ry = y;
     }
@@ -47,15 +47,15 @@ public abstract class KActor
     public double getScrollY(){
         return getWorld().getScrollY();
     }
-    public void setRealLocation(double x, double y, double height){
+    public void setLocation(double x, double y, double height){
         rh = height;
-        setRealLocation(x, y);
+        setLocation(x, y);
     }
     public void branchOut(KActor m, double deg, double dist){
-        setRealLocation(m.getRealX()+getBranchX(deg, dist), m.getRealY()+getBranchY(deg, dist));
+        setLocation(m.getX()+getBranchX(deg, dist), m.getY()+getBranchY(deg, dist));
     }
     public void branchOut(KActor m, double deg, double dist, double height){
-        setRealLocation(m.getRealX()+getBranchX(deg, dist), m.getRealY()+getBranchY(deg, dist), height);
+        setLocation(m.getX()+getBranchX(deg, dist), m.getY()+getBranchY(deg, dist), height);
     }
     public double getBranchX(double deg, double dist){
         return dist*Math.cos(deg*Math.PI/180);
@@ -63,20 +63,20 @@ public abstract class KActor
     public double getBranchY(double deg, double dist){
         return dist*Math.sin(deg*Math.PI/180);
     }
-    public double getRealX(){
+    public double getX(){
         return rx;
     }
-    public double getRealY(){
+    public double getY(){
         return ry;
     }
-    public double getRealHeight(){
+    public double getHeight(){
         return rh;
     }
-    public void setRealHeight(double h){
+    public void setHeight(double h){
         rh = h;
     }
     public void translate(double x, double y){
-        setRealLocation(getRealX()+x, getRealY()+y);
+        setLocation(getX()+x, getY()+y);
     }
     public void setVisible(boolean visible){
         if(!visible){
@@ -124,7 +124,7 @@ public abstract class KActor
         scaleY = w*image.getHeight()/image.getWidth();
     }
     public void addKActorHere(KActor obj){
-        getWorld().addObject(obj, getRealX(), getRealY());
+        getWorld().addObject(obj, getX(), getY());
     }
     public void update(){};
     public void setDrawCenter(String center){
@@ -136,7 +136,7 @@ public abstract class KActor
             int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
             transColor.setA((byte)getOpacity());
             Vector2 center = drawCenter.equals("top")?new Vector2(renderOriginX(dw/2), 0):new Vector2(renderOriginX(dw/2), renderTransformY(dh/2));
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getRealX())), renderTransformY((int)(getRealY()-getRealHeight())), renderOriginX(dw), renderTransformY(dh)), center, (float)getRealRotation(), transColor);
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getX())), renderTransformY((int)(getY()-getHeight())), renderOriginX(dw), renderTransformY(dh)), center, (float)getRotation(), transColor);
         }
     };
     public void renderTexture(Texture tex, double x, double y, double scaleX, double scaleY, double rot, int opacity){

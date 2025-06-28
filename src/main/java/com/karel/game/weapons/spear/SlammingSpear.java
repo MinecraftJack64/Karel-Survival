@@ -33,7 +33,7 @@ public class SlammingSpear extends FlyingRock
     }
     public void applyPhysics(){
         super.applyPhysics();
-        setRealRotation(getRealRotation() + 30);
+        setRotation(getRotation() + 30);
     }
     
     public void checkHit(){

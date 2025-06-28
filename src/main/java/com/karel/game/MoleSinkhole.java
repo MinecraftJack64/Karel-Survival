@@ -31,7 +31,7 @@ public class MoleSinkhole extends Bullet
     }
     public void applyPhysics(){
         setLife(2);
-        setRealRotation(getRealRotation()+30);
+        setRotation(getRotation()+30);
         List<GridEntity> d = getGEsInRange(55);
         for(GridEntity g:d){
             if(isAggroTowards(g)&&!suckedenemies.contains(g)&&g.canBePulled()){

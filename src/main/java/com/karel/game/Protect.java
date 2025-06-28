@@ -26,8 +26,8 @@ public class Protect extends GameMode
             respawncooldown--;
             if(respawncooldown<=0){
                 Player np = new Player();
-                getWorld().addObject(np, player.getRealX(), player.getRealY());
-                np.setRealRotation(player.getRealRotation());
+                getWorld().addObject(np, player.getX(), player.getY());
+                np.setRotation(player.getRotation());
                 getWorld().removeObject(player);
                 player = np;
                 respawncooldown = 60;

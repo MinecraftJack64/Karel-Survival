@@ -37,7 +37,7 @@ public class Shard extends Bullet
                 addObjectHere(new Echo(getDirection()+45, this));
             }
         }
-        setRealRotation(getRealRotation()+90);
+        setRotation(getRotation()+90);
         addLife(bonus);
         bonus/=2;
     }

@@ -72,13 +72,13 @@ public class CowboyZombie extends Zombie
         //TODO
         @Override
         public double getTargetRotation(){
-            return getHolder().getRealRotation();
+            return getHolder().getRotation();
         }
         public double getTargetX(){
-            return getHolder().getTarget().getRealX();
+            return getHolder().getTarget().getX();
         }
         public double getTargetY(){
-            return getHolder().getTarget().getRealY();
+            return getHolder().getTarget().getY();
         }
         public void setTargetLock(boolean t){
             //

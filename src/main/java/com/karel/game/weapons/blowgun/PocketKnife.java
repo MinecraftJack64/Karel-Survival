@@ -41,9 +41,9 @@ public class PocketKnife extends Melee
         } 
         else {
             life--;
-            double centerx = offsetx+getSource().getRealX(), centery = offsety+getSource().getRealY();
-            setRealLocation(centerx-radius*Math.cos(degtotarg*Math.PI/180), centery-radius*Math.sin(degtotarg*Math.PI/180));
-            setRealRotation(degtotarg+90);
+            double centerx = offsetx+getSource().getX(), centery = offsety+getSource().getY();
+            setLocation(centerx-radius*Math.cos(degtotarg*Math.PI/180), centery-radius*Math.sin(degtotarg*Math.PI/180));
+            setRotation(degtotarg+90);
             degtotarg+=18;
             checkHit();
         }

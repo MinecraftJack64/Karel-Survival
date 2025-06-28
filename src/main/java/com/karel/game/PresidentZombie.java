@@ -53,7 +53,7 @@ public class PresidentZombie extends Zombie
         for(int i = 0; i < guards.length; i++){
             if(guards[i]==null||guards[i].isDead()){
                 guards[i] = new BodyguardZombie(this, i);//replace dead bodyguards
-                getWorld().addObject(guards[i], getRealX(), getRealY());
+                getWorld().addObject(guards[i], getX(), getY());
             }
         }
         if(distanceTo(getTarget())>140)walk(monangle, 1);
@@ -122,7 +122,7 @@ public class PresidentZombie extends Zombie
         try{
             //explode if not stunned
             Nuke bomb = new Nuke(this);
-            getWorld().addObject(bomb, getTarget().getRealX(), getTarget().getRealX());
+            getWorld().addObject(bomb, getTarget().getX(), getTarget().getX());
             super.die(source);
         }catch(IllegalStateException e){
             //

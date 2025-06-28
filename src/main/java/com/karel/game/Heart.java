@@ -22,12 +22,12 @@ public class Heart extends GridObject implements SubAffecter
         if(target.isDead()){
             die();
         }
-        setRealRotation(getRealRotation()+18);
-        setRealLocation(target.getRealX(), target.getRealY(), target.getRealHeight());
+        setRotation(getRotation()+18);
+        setLocation(target.getX(), target.getY(), target.getHeight());
     }
     public void die(){
         for(int i = 0; i < 10; i++){
-            Heartbreak bullet = new Heartbreak(getRealRotation()+i*36, source);
+            Heartbreak bullet = new Heartbreak(getRotation()+i*36, source);
             addObjectHere(bullet);
         }
         if(!source.isDead()){

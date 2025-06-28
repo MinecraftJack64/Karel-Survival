@@ -48,10 +48,10 @@ public class FirebreatherZombie extends Zombie
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
             for(int deg = -35; deg<=35; deg+=10){
                 nextNapalm--;
-                Flame mbullet = new Flame(getRealRotation()+deg, this);
+                Flame mbullet = new Flame(getRotation()+deg, this);
                 if(nextNapalm<=0){
                     nextNapalm = 25 + (int)(Math.random()*11);
-                    mbullet = new NapalmFlame(getRealRotation()+deg, this);
+                    mbullet = new NapalmFlame(getRotation()+deg, this);
                 }
                 addObjectHere(mbullet);
             }

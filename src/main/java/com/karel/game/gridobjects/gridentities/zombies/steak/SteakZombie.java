@@ -76,7 +76,7 @@ public class SteakZombie extends ShooterZombie
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()&&ammo.hasAmmo()){
             double d = healself?3:distanceTo(getTarget());
-            SteakDropper bullet = new SteakDropper(getRealRotation(), d, d/2, this);
+            SteakDropper bullet = new SteakDropper(getRotation(), d, d/2, this);
             addObjectHere(bullet);
             reloadDelayCount = 0;
             ammo.useAmmo();

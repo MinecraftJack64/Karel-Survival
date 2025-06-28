@@ -50,8 +50,8 @@ public class TorpedoZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZTorpedo bullet = new ZTorpedo (getRealRotation(), this);
-            getWorld().addObject (bullet, getRealX(), getRealY());
+            ZTorpedo bullet = new ZTorpedo (getRotation(), this);
+            getWorld().addObject (bullet, getX(), getY());
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
             myTorpedo = bullet;

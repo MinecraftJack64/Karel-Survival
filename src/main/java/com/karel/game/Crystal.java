@@ -27,7 +27,7 @@ public class Crystal extends GridEntity implements SubAffecter
         }
     }
     public void die(GridObject killer){
-        if(targ!=null){targ.untrap();getWorld().addObject(targ, getRealX(), getRealY());targ.hit(Math.min((int)(getPower()*1500),targ.getHealth()/2), sourc);}
+        if(targ!=null){targ.untrap();getWorld().addObject(targ, getX(), getY());targ.hit(Math.min((int)(getPower()*1500),targ.getHealth()/2), sourc);}
         super.die(killer);
     }
     public GridObject getSource(){

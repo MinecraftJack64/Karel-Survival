@@ -135,7 +135,7 @@ public abstract class GridEntity extends GridObject
     }
 
     public void walk(double angle, double speed){
-        if(canmove&&(getRealHeight()<=0||canFly()))move(angle, getMultipliedSpeed()*speed);
+        if(canmove&&(getHeight()<=0||canFly()))move(angle, getMultipliedSpeed()*speed);
     }
     
     public boolean canFly(){
@@ -341,7 +341,7 @@ public abstract class GridEntity extends GridObject
             thing.applyTo(this);
             ShieldBar shieldBar = thing.getHealth()>0?new ShieldBar(thing.getHealth(), 40, 5, pos, this):new BadShieldBar(thing.getHealth(), 40, 5, pos, this);
             shieldBars.add(pos, shieldBar);
-            if(isInWorld())getWorld().addObject(shieldBars.get(pos), getRealX()*1.0, getRealY()-50-10*pos);
+            if(isInWorld())getWorld().addObject(shieldBars.get(pos), getX()*1.0, getY()-50-10*pos);
         }
     }
     public void startHealthShield(Shield amt){
@@ -357,7 +357,7 @@ public abstract class GridEntity extends GridObject
         if(showbar){
             healthBar = new ShieldBar(thing.getHealth(),40,5,-1,this);
             if(isInWorld()){
-                getWorld().addObject(healthBar, getRealX()*1.0, getRealY()-50);
+                getWorld().addObject(healthBar, getX()*1.0, getY()-50);
             }
         }
     }
@@ -381,7 +381,7 @@ public abstract class GridEntity extends GridObject
                 getWorld().removeObject(shieldBars.get(i));
             }
             shieldBars.set(i, new ShieldBar(thing.getHealth(), 40, 5, i, this));
-            getWorld().addObject(shieldBars.get(i), getRealX()*1.0, getRealY()-50-10*i);
+            getWorld().addObject(shieldBars.get(i), getX()*1.0, getY()-50-10*i);
         }
     }
     public void removeShield(){
@@ -517,10 +517,10 @@ public abstract class GridEntity extends GridObject
     }
     public void addGraphics(){
         if(healthBar!=null){
-            if(!isBoss)getWorld().addObject(healthBar, getRealX()*1.0, getRealY()-40);
+            if(!isBoss)getWorld().addObject(healthBar, getX()*1.0, getY()-40);
             else Game.gameUI().addBossBar((BossBar)healthBar);
         }
-        if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getRealX(), getRealY());});
+        if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getX(), getY());});
     }
     public void removeGraphics(){
         if(healthBar!=null){

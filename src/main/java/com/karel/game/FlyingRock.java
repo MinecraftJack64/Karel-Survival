@@ -67,14 +67,14 @@ public class FlyingRock extends Projectile
      */
     public void applyPhysics()
     {
-        if(getRealHeight()<=0&&path.percentDone(frame)>0.5) {
-            setRealHeight(0);
+        if(getHeight()<=0&&path.percentDone(frame)>0.5) {
+            setHeight(0);
             if(checkHitMode<=1)checkHit();
             if(dieonhit)die();
         } 
         else {
             move(rot, path.getRate());
-            setRealHeight(path.getHeight(frame));
+            setHeight(path.getHeight(frame));
             continueFrame();
         }
     }

@@ -21,7 +21,7 @@ public class Shot extends Bullet
         super(rotation, source);
         setImage("Weapons/shotgun/proj.png");
         scaleTexture(25);
-        setRealRotation(rotation+45);
+        setRotation(rotation+45);
         setSpeed(17);
         setLife(12);
         setDamage(50);

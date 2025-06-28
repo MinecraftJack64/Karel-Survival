@@ -23,7 +23,7 @@ public class EasterBasket extends Weapon implements LandingHandler
         {
             boolean willspawn = Greenfoot.getRandomNumber(9-chance)<defaultchance;
             EasterEgg bullet = new EasterEgg(getHand().getTargetRotation(), willspawn, getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             getAmmo().useAmmo();
             if(getAttackUpgrade()==1){
                 if(willspawn){
@@ -46,7 +46,7 @@ public class EasterBasket extends Weapon implements LandingHandler
     }
     public void spawnSurpriseEgg(){
         SurpriseEasterEgg egg = new SurpriseEasterEgg(getHolder());
-        getHolder().getWorld().addObject(egg, getHolder().getRealX()+Greenfoot.getRandomNumber(500)-250, getHolder().getRealY()+Greenfoot.getRandomNumber(500)-250);
+        getHolder().getWorld().addObject(egg, getHolder().getX()+Greenfoot.getRandomNumber(500)-250, getHolder().getY()+Greenfoot.getRandomNumber(500)-250);
     }
     public void onGadgetActivate(){
         setGadgetTimer(100);
@@ -61,7 +61,7 @@ public class EasterBasket extends Weapon implements LandingHandler
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 275);
         getHolder().initiateJump(getHand().getTargetRotation(), d, 200);
         Chick spawn = new Chick(1.5, getHolder());
-        getHolder().getWorld().addObject(spawn, getHolder().getRealX(), getHolder().getRealY());
+        getHolder().getWorld().addObject(spawn, getHolder().getX(), getHolder().getY());
     }
     public void doLanding(){
         hopsLeft--;

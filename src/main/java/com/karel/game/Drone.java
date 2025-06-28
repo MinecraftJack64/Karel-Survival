@@ -23,12 +23,12 @@ public class Drone extends GridObject implements SubAffecter
         return source;
     }
     public void update(){
-        setRealLocation(source.getRealX(), source.getRealY());
-        setRealRotation(90+source.getAngle(source.getRealX()+ddx, source.getRealY()+ddy));
-        if(getRealHeight()<source.getRealHeight()+hoverheight-2.5){
-            this.setRealHeight(getRealHeight()+5);
-        }else if(getRealHeight()>source.getRealHeight()+hoverheight+2.5){
-            this.setRealHeight(getRealHeight()-5);
+        setLocation(source.getX(), source.getY());
+        setRotation(90+source.getAngle(source.getX()+ddx, source.getY()+ddy));
+        if(getHeight()<source.getHeight()+hoverheight-2.5){
+            this.setHeight(getHeight()+5);
+        }else if(getHeight()>source.getHeight()+hoverheight+2.5){
+            this.setHeight(getHeight()-5);
         }
         ammo++;
         if(remainingshots>0){
@@ -58,7 +58,7 @@ public class Drone extends GridObject implements SubAffecter
         if(remainingshots>0&&tbs<=0){
             tbs = 5;
             remainingshots--;
-            AerialBullet b = new AerialBullet(getRealRotation(), getRealHeight(), source.distanceTo(source.getRealX()+ddx, source.getRealY()+ddy)/(hoverheight/10), 10, source, combo);
+            AerialBullet b = new AerialBullet(getRotation(), getHeight(), source.distanceTo(source.getX()+ddx, source.getY()+ddy)/(hoverheight/10), 10, source, combo);
             addObjectHere(b);
         }else if(tbs>0){
             tbs--;
@@ -68,7 +68,7 @@ public class Drone extends GridObject implements SubAffecter
         }
     }
     public void ultAttack(){
-        AerialBullet b = new AerialBullet(getRealRotation(), getRealHeight(), source.distanceTo(source.getRealX()+ddx, source.getRealY()+ddy)/(hoverheight/10), 10, source){
+        AerialBullet b = new AerialBullet(getRotation(), getHeight(), source.distanceTo(source.getX()+ddx, source.getY()+ddy)/(hoverheight/10), 10, source){
             public boolean covertDamage(){
                 return true;
             }

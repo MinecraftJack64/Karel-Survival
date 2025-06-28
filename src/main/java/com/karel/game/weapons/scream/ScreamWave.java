@@ -18,7 +18,7 @@ public class ScreamWave extends Bullet
     {
         super(rotation, source);
         setImage("Weapons/scream/proj.png");
-        setRealRotation(rotation);
+        setRotation(rotation);
         scaleTexture(1);
         setSpeed(range/life);
         setLife(life);

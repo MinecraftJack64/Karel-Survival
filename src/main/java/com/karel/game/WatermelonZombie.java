@@ -57,7 +57,7 @@ public class WatermelonZombie extends Zombie
         setSpeed(speed);
         startHealth(300);
         /*shieldBar = new ShieldBar(shieldhealth, 40, 5, this);
-        KWorld.me.addObject(shieldBar, getRealX()*1.0, getRealY()-50);*/
+        KWorld.me.addObject(shieldBar, getX()*1.0, getY()-50);*/
     }
     //ovveride this
     public int getXP(){
@@ -107,7 +107,7 @@ public class WatermelonZombie extends Zombie
         ultcharge = 0;
     }
     public void fire(){
-        ZWatermelonSeed bullet = new ZWatermelonSeed(getRealRotation()+10*Math.sin(wave*Math.PI/4), this);
+        ZWatermelonSeed bullet = new ZWatermelonSeed(getRotation()+10*Math.sin(wave*Math.PI/4), this);
         addObjectHere(bullet);
         wave = (wave+1)%8;
     }

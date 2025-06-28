@@ -20,10 +20,10 @@ public class GrenadeLauncher extends Weapon
         {
             double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 300);
             Grenade bullet = getAttackUpgrade()==1?new UpgradedGrenade(getHand().getTargetRotation(), d, d/4, getHolder()):new Grenade (getHand().getTargetRotation(), d, d/4, getHolder());
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             if(useGadget()){
                 Flashbang bullet2 = new Flashbang(getHand().getTargetRotation(), d, d/4, getHolder());
-                getHolder().getWorld().addObject (bullet2, getHolder().getRealX(), getHolder().getRealY());
+                getHolder().getWorld().addObject (bullet2, getHolder().getX(), getHolder().getY());
             }
             Sounds.play("airtoss");
             reloadDelayCount = 0;

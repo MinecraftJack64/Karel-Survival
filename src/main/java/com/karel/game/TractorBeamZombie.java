@@ -50,7 +50,7 @@ public class TractorBeamZombie extends Zombie
     {
         if (canAttack()){
             explodeOn(800, "enemy", (g)->{
-                if(Math.abs(face(g, false)-getRealRotation())<40){
+                if(Math.abs(face(g, false)-getRotation())<40){
                     g.pullTowards(this, 1);
                     if(distanceTo(g)<200)damage(g, 2);
                 }

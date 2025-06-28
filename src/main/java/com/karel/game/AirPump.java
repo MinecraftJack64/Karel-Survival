@@ -20,7 +20,7 @@ public class AirPump extends Weapon implements LandingHandler
         {
             double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 350);
             WindBurst bullet = new WindBurst(getHand().getTargetRotation(), d, nextIsSuper, getHolder(), getAttackUpgrade()==1?this:null);
-            getHolder().getWorld().addObject (bullet, getHolder().getRealX(), getHolder().getRealY());
+            getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             reloadDelayCount = 0;
             nextIsSuper = false;
         }

@@ -41,9 +41,9 @@ public class Sword extends Melee
         } 
         else {
             life--;
-            double centerx = getSource().getRealX(), centery = getSource().getRealY();
-            setRealLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
-            setRealRotation(degtotarg+45);
+            double centerx = getSource().getX(), centery = getSource().getY();
+            setLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
+            setRotation(degtotarg+45);
             if(clockwise)degtotarg+=12;
             else degtotarg-=12;
             checkHit();

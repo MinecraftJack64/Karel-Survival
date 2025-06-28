@@ -13,7 +13,7 @@ public class Flame extends Bullet
         super(rotation, source);
         setImage("Projectiles/Bullets/flame.png");
         scaleTexture(30);
-        setRealRotation(getRealRotation()-180);
+        setRotation(getRotation()-180);
         setSpeed(15);
         setLife(15);
         setDamage(15);

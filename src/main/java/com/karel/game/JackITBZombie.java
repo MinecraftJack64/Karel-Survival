@@ -47,7 +47,7 @@ public class JackITBZombie extends Zombie
     }
     public JackITBZombie(boolean spawnJoker){
         scaleTexture(100, 70);
-        setRealRotation(0);
+        setRotation(0);
         setSpeed(1);
         startHealthShield(new ArmorShield(new ShieldID(this), 800));
         inside = !spawnJoker?new Zombie(){public boolean wasInOriginalWave(){return false;}}:new JokerZombie(){public boolean wasInOriginalWave(){return false;}};
@@ -57,7 +57,7 @@ public class JackITBZombie extends Zombie
         return 800;
     }
     public void behave(){
-        if(getRealHeight()==0){
+        if(getHeight()==0){
             if(windcooldown>0){
                 windcooldown--;
             }else{
@@ -71,7 +71,7 @@ public class JackITBZombie extends Zombie
                             }
                         }
                     }
-                    setRealRotation(getRealRotation()+windspeed/2);
+                    setRotation(getRotation()+windspeed/2);
                 }else{
                     windspeed = 0;
                 }
@@ -79,22 +79,22 @@ public class JackITBZombie extends Zombie
         }
     }
     public void applyphysics(){
-        if(getRealHeight()>0){
-            setRealHeight(getRealHeight()-100);
-            if(getRealHeight()<=0){
+        if(getHeight()>0){
+            setHeight(getHeight()-100);
+            if(getHeight()<=0){
                 doLanding();
-                setRealHeight(0);
+                setHeight(0);
             }
         }
     }
     /*public void behaveOld(){
         if(jumpcooldown<=0){
-            if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getRealHeight()==0){//spawn inside
-                getWorld().addObject(inside, getRealX(), getRealY());
+            if(distanceTo(getTarget())<getJumpDistance()&&inside!=null&&getHeight()==0){//spawn inside
+                getWorld().addObject(inside, getX(), getY());
                 inside = null;
                 jumpcooldown = getJumpCooldown();
             }else if(canMove()){
-                double d = Math.min(distanceTo(getTarget().getRealX(), getTarget().getRealY()), getJumpDistance()*getMultipliedSpeed());
+                double d = Math.min(distanceTo(getTarget().getX(), getTarget().getY()), getJumpDistance()*getMultipliedSpeed());
                 initiateJump(face(getTarget(), false), d, getJumpHeight());
                 jumpcooldown = getJumpCooldown();
             }

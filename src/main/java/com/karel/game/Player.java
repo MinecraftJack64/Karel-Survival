@@ -236,7 +236,7 @@ public class Player extends GridEntity {
     //TODO
     @Override
     public double getTargetRotation(){
-        return getRealRotation();
+        return getRotation();
     }
     public double getLastMoveDirection(){
         return lastMoveDirection.getDirection();
@@ -244,7 +244,7 @@ public class Player extends GridEntity {
     public double getTargetX(){
         if(autoaim){
             GridEntity targ = getNearestTarget();
-            if(targ!=null)return targ.getRealX();
+            if(targ!=null)return targ.getX();
         }else if(targetLocked){
             return oldtargetx;
         }
@@ -253,7 +253,7 @@ public class Player extends GridEntity {
     public double getTargetY(){
         if(autoaim){
             GridEntity targ = getNearestTarget();
-            if(targ!=null)return targ.getRealY();
+            if(targ!=null)return targ.getY();
         }else if(targetLocked){
             return oldtargety;
         }

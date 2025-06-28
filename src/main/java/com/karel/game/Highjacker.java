@@ -53,7 +53,7 @@ public class Highjacker extends Weapon
         mount = targ;
         mounted = true;
         setPlayerLockMovement(true);
-        getHolder().pullTo(targ.getRealX(), targ.getRealY(), targ.getRealHeight()+mountHeight);
+        getHolder().pullTo(targ.getX(), targ.getY(), targ.getHeight()+mountHeight);
         hypno = new TeamSwitchEffect(getHolder().getTeam(), 500, getHolder());
         mount.applyEffect(hypno);
         mount.applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
@@ -65,7 +65,7 @@ public class Highjacker extends Weapon
         mounted = false;
         setPlayerLockMovement(false);
         if(mount.isInWorld())mount.unmount(getHolder());
-        getHolder().pullTo(getHolder().getRealX(), getHolder().getRealY(), 0);
+        getHolder().pullTo(getHolder().getX(), getHolder().getY(), 0);
         if(hypno.getDuration()>0){
             int duration = hypno.getDuration();
             hypno.clear();
@@ -84,7 +84,7 @@ public class Highjacker extends Weapon
         mounted = false;
         mount = null;
         setPlayerLockMovement(false);
-        getHolder().pullTo(getHolder().getRealX(), getHolder().getRealY(), 0);
+        getHolder().pullTo(getHolder().getX(), getHolder().getY(), 0);
         getHolder().explodeOnEnemies(100, (e)->{
             if(e!=mount)e.knockBack(getHolder().face(e, false), 80, 20, getHolder());
         });

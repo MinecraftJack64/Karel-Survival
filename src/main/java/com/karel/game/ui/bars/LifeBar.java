@@ -38,7 +38,7 @@ public class LifeBar extends HealthBar
     public void update(){
         super.update();
         if(myGE!=null){
-            setRealLocation(myGE.getRealX(), myGE.getRealY()-40, myGE.getRealHeight());
+            setLocation(myGE.getX(), myGE.getY()-40, myGE.getHeight());
             if(myGE.isDead())getWorld().removeObject(this);
         }
     }

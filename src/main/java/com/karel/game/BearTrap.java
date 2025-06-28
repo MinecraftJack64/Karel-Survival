@@ -36,7 +36,7 @@ public class BearTrap extends Pet
      */
     public void applyPhysics()
     {
-        //move(getRealRotation()-90, 15);
+        //move(getRotation()-90, 15);
         if(speed>0){
             move(dir, speed);
             speed*=0.9;

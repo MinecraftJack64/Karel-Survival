@@ -30,8 +30,8 @@ public class DemonZombie extends SpawnableZombie
      */
     public void behave()
     {
-        if(getRealHeight()==0){
-            setRealHeight(1);
+        if(getHeight()==0){
+            setHeight(1);
         }
         //setRotation(getRotation()-1);
         super.behave();
@@ -43,7 +43,7 @@ public class DemonZombie extends SpawnableZombie
         super.attack();
         getTarget().applyEffect(new PoisonEffect(2, 2, 2, this));
         GridObject t = getTarget();
-        pullToBranch(t, t.getRealRotation()+90, distanceTo(t)-10);
+        pullToBranch(t, t.getRotation()+90, distanceTo(t)-10);
         heal(this, 2);
     }
     
