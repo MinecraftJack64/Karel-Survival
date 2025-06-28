@@ -18,6 +18,7 @@ import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.weedwacker.Weedwacker;
 import com.karel.game.weapons.doublegun.DoubleGun;
 import com.karel.game.weapons.easterbasket.EasterBasket;
+import com.karel.game.weapons.fastfood.FastFood;
 import com.raylib.Texture;
 
 public class Player extends GridEntity {
@@ -101,6 +102,7 @@ public class Player extends GridEntity {
         this.inventory[41] = new GrenadeLauncher(getHand());
         this.inventory[42] = new Farmer(getHand());
         this.inventory[43] = new Gun(getHand());
+        this.inventory[44] = new FastFood(getHand());
         for(Item i: inventory){
             if(i!=null){
                 ((Weapon)i).setAttackUpgrade(1);

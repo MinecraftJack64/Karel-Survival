@@ -19,8 +19,8 @@ public class ZBullet extends Bullet
     {
         super(rotation, source);
         setImage("Projectiles/Bullets/zbullet.png");
-        setLife(50);
+        setLife(40);
         setSpeed(13);
-        setDamage(200);
+        setDamage(150);
     }
 }

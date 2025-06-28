@@ -323,6 +323,16 @@ public abstract class GridObject extends KActor
     public int explodeOnEnemies(int range, Consumer<GridEntity> vore){
         return explodeOn(range, "enemy", vore, new Explosion(((double)range)/60));
     }
+    public int knockBackOnEnemies(int range, double speed){
+        return explodeOn(range, "enemy", (g)->{
+                g.knockBack(getRealRotation(), speed, 0, this);
+        }, null);
+    }
+    public int knockBackOn(int range, double speed){
+        return explodeOn(range, "all", (g)->{
+                g.knockBack(getRealRotation(), speed, 0, this);
+        }, null);
+    }
     public GridEntity getNearestTarget() {
         GridEntity nearestTarget = null;
         double closestDistance = 0;
