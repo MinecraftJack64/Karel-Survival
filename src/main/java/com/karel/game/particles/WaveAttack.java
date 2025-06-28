@@ -53,7 +53,7 @@ public class WaveAttack extends Hitter
         } 
         else {
             double size = (frame*1.0/life) * maxRadius;
-            scaleTexture((int)size, (int)size);
+            if(size>0)scaleTexture((int)size, (int)size);
             setRange((int)size);//TODO separate
             checkHit();
             frame++;

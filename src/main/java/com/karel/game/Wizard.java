@@ -192,8 +192,8 @@ public class Wizard extends Boss
                 lasers.remove(i);
             }
         }
-        if(lasers.size()>=6){
-            for(int i = 0; i < lasers.size()-6; i++){
+        if(lasers.size()>=3){
+            for(int i = 0; i < lasers.size()-3; i++){
                 lasers.get(i).applyEffect(new FatalPoisonEffect(10, 1, this));
             }
         }
@@ -254,7 +254,9 @@ public class Wizard extends Boss
         getWorld().addObject(toSpawn, getRealX(), getRealY());
     }
     public void turretAttack(){
-        for(int i = 0; i < phase/2+1; i++){
+        int num = phase/2+1;
+        if(phase>=5)num = 1;
+        for(int i = 0; i < num; i++){
             double x = getRandomCellX();
             double y = getRandomCellY();
             if(Greenfoot.getRandomNumber(3)<2)spawnZombieAt(new Turret(phase, turrets, this), x, y);

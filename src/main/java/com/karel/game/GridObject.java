@@ -325,12 +325,12 @@ public abstract class GridObject extends KActor
     }
     public int knockBackOnEnemies(int range, double speed){
         return explodeOn(range, "enemy", (g)->{
-                g.knockBack(getRealRotation(), speed, 0, this);
+                g.knockBack(face(g, false), speed, 30, this);
         }, null);
     }
     public int knockBackOn(int range, double speed){
         return explodeOn(range, "all", (g)->{
-                g.knockBack(getRealRotation(), speed, 0, this);
+                g.knockBack(face(g, false), speed, 30, this);
         }, null);
     }
     public GridEntity getNearestTarget() {

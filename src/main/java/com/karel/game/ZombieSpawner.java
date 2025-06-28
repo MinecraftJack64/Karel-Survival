@@ -5,7 +5,6 @@ import java.util.Random;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 
-import java.util.HashMap;
 
 /**
  * Write a description of class ZombieSpawner here.
@@ -26,7 +25,7 @@ public class ZombieSpawner implements Spawner
     public int cwavecooldown = 200;
     private int bossphase = 0;
     private boolean bossfight;
-    public GridEntity boss;
+    public Boss boss;
     
     SpawnCalculator calculator = new SpawnCalculator();
     private SpawnData toSpawn;
@@ -115,10 +114,12 @@ public class ZombieSpawner implements Spawner
                     }
                     cwavecooldown = Greenfoot.getRandomNumber(300)+600;
                 }
+                setBossPhase(boss.getPhase());
             }else{
                 if(boss.isDead()){
                     stopBossFight();
                     wavelevel++;
+                    System.out.println("Boss defeated, wave level now: "+wavelevel);
                 }
             }
         }
@@ -188,7 +189,7 @@ public class ZombieSpawner implements Spawner
         Game.gameUI().newWave(totalHealth());
     }
 
-    public void startBossFight(GridEntity wizzie){
+    public void startBossFight(Boss wizzie){
         spawnZombie(wizzie, myWorld.gridwidth/2, myWorld.gridheight/2);
         bossphase = 1;
         boss = wizzie;

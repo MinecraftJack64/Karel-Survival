@@ -6,7 +6,7 @@ import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
- * Write a description of class PaintGun here.
+ * The Paint Gun shoots waves of paint drops in a spread pattern.
  * 
  * @author (your name) 
  * @version (a version number or a date)

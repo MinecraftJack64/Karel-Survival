@@ -221,6 +221,7 @@ public class World
     }
     public void addObject(KActor a, double x, double y){
         if(a.getWorld()!=null){
+            a.setRealLocation(x, y);
             return;
         }
         a.setWorld(this);

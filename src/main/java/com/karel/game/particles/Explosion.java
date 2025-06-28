@@ -16,8 +16,8 @@ public class Explosion extends Wave
     public Explosion(double size) 
     {
         setImage("explosion-big.png");
-        setMaxRadius(60*size);
-        setLife(12);
+        setMaxRadius(60*size*2);
+        setLife(5);
         //Greenfoot.playSound("MetalExplosion.wav");
     }
     public Explosion(){

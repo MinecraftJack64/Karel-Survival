@@ -7,6 +7,9 @@ import com.karel.game.Projectile;
 import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.SpeedPercentageEffect;
+import com.karel.game.weapons.ShieldID;
+import com.karel.game.DecayingArmorShield;
+import com.karel.game.SodaPuddle;
 
 /**
  * Write a description of class Shotgun here.
@@ -55,13 +58,21 @@ public class FastFood extends Weapon implements AmmoHolder
                 setPlayerLockMovement(false);
                 getHolder().heal(getHolder(), getHolder().getMaxHealth()/3);
                 ammo.donateAmmo(4);
-                if(getAttackUpgrade()==1)getHolder().knockBackOnEnemies(100, 100);
+                if(getAttackUpgrade()==1){
+                    getHolder().knockBackOnEnemies(100, 100);
+                }
                 else getHolder().applyEffect(new SpeedPercentageEffect(1.3, 200, getHolder()));
             }
         }else{
             startUltCooldown = 40;
             setContinueUlt(true);
             setPlayerLockMovement(true);
+            if(getUltUpgrade()==1){
+                if(getHolder().hasShield(new ShieldID(this))){
+                    getHolder().removeShield(new ShieldID(this));
+                }
+                getHolder().applyShield(new DecayingArmorShield(new ShieldID(this), getHolder().getMaxHealth()/5));
+            }
         }
     }
     public int getUlt(){
@@ -74,7 +85,8 @@ public class FastFood extends Weapon implements AmmoHolder
         }
     }
     public void onGadgetActivate(){
-        //
+        setGadgetTimer(120);
+        getHolder().addObjectHere(new SodaPuddle(100, 300, 30, getHolder()));
     }
     public int defaultGadgets(){
         return 5;

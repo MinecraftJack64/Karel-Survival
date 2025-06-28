@@ -57,6 +57,9 @@ public class Sword extends Melee
         super.doHit(targ);
         if(targ.isDead()&&targ.willNotify(this)){
             notifyDamage(targ, getDamage(targ)*5);
+            if(getSource() instanceof GridEntity ge) {
+                heal(ge, Math.min(targ.getMaxHealth()*2, ge.getMaxHealth()/5));
+            }
         }
     }
 }
