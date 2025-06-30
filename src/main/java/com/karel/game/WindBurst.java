@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.particles.Explosion;
 
