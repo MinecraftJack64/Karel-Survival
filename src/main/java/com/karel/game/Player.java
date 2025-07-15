@@ -7,6 +7,7 @@ import com.karel.game.weapons.blowgun.Blowgun;
 import com.karel.game.weapons.captorch.CapsaicinTorch;
 import com.karel.game.weapons.critters.LilCritters;
 import com.karel.game.weapons.crossbow.Crossbow;
+import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.necromancer.Necromancer;

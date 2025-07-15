@@ -1,6 +1,5 @@
 package com.karel.game;
 import java.util.*;
-import com.karel.game.weapons.slicer.BladeGuard;
 
 /**
  * Write a description of class Hitter here.

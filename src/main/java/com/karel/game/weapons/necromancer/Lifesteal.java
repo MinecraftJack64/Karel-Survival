@@ -16,11 +16,13 @@ public class Lifesteal extends Boomerang
     private int dmgdone = 0;
     private GridEntity targ;
     GridEntity hypnoed;
+    Necromancer necromancer;
     
-    public Lifesteal(double rotation, GridEntity hypno, boolean returnfast, GridObject source)
+    public Lifesteal(double rotation, GridEntity hypno, boolean returnfast, GridObject source, Necromancer necro)
     {
         super(rotation, source);
         setSpeed(14);
+        necromancer = necro;
         setNumTargets(1);
         hypnoed = hypno;
         if(returnfast){
@@ -51,6 +53,14 @@ public class Lifesteal extends Boomerang
     public void notifyDamage(GridEntity target, int amt){
         this.targ = target;
         dmgdone+=amt;
+    }
+    public void doHit(GridEntity targ){
+        super.doHit(targ);
+        if(targ.isDead()){
+            if(necromancer!=null){
+                necromancer.notifyKill(targ);
+            }
+        }
     }
     public void startReturn(){
         super.startReturn();

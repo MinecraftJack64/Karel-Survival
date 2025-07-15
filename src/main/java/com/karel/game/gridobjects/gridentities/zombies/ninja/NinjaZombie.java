@@ -1,7 +1,9 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.ninja;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.Game;
 
 /**
  * Write a description of class NinjaZombie here.
@@ -21,6 +23,7 @@ public class NinjaZombie extends Zombie
     private GridEntity target;
     private double lastdegtotarget;
     private static double attackrange = 80;
+    private int firingDelay = 0;//delay between shots
     /**
      * Initilise this rocket.
      */
@@ -45,6 +48,7 @@ public class NinjaZombie extends Zombie
                 lastdegtotarget = targang+90;
                 target = getTarget();
                 phasecooldown = 90;
+                firingDelay = 0;
             }
         }else if(phase==3){
             walk(targang, 1);
@@ -62,14 +66,16 @@ public class NinjaZombie extends Zombie
                     phasecooldown = 0;//retreat when stunned/knockbacked or target is too far away to catch up to.
                 }
                 if(canAttack()){
-                    if(phasecooldown%15==0){
+                    if(firingDelay<=0){
                         if(isAggroTowards(target)){//make sure i'm not hypnotized
                             fire();
+                            firingDelay = 15;
                         }else{
                             phasecooldown = 0;
                         }
                     }
                 }
+                firingDelay-=getReloadMultiplier();
             }
             phasecooldown--;
             if(phasecooldown<=0){

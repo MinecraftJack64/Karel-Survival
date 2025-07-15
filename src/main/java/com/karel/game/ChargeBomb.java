@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.particles.Explosion;
 
@@ -50,9 +49,7 @@ public class ChargeBomb extends Bullet
     }
     @Override
     public void notifyDamage(GridEntity source, int amt){
-        //super.notifyDamage(source, amt);
         totaldmg+=amt;
-        //System.out.println("ChargeBomb notified");
     }
     /*public boolean covertDamage(){
         return true;

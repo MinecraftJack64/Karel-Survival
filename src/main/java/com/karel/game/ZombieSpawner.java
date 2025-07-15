@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 
 
 /**
@@ -32,6 +33,7 @@ public class ZombieSpawner implements Spawner
     private int nextSpawn;
     private int remainingSections;
     private int forceNextSpawn; // 450
+    private int lastMaxHealth = 0;
     public ArrayList<GridEntity> currentlySpawned;
     
     public ZombieSpawner(){
@@ -82,10 +84,11 @@ public class ZombieSpawner implements Spawner
                     toSpawn = null;
                 }
             }
-            if(toSpawn==null&&allSpawnedDied()/*3.0*wavemaxhealth/4*/){
+            if(toSpawn==null&&allSpawnedDied()){
                 wavelevel++;
                 if(!isBossWave()){
                     int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
+                    if(count<1)count = 1;
                     remainingSections = count/3;
                     spawnZombies(count, remainingSections);
                     if(Greenfoot.getRandomNumber(3)<2){
@@ -99,6 +102,16 @@ public class ZombieSpawner implements Spawner
                     }
                     else heraldBossFight();
                 }
+            }
+            if(!Game.isPaused()){
+                for(GridEntity ge: currentlySpawned){
+                    if(ge instanceof Zombie){
+                        System.out.println(ge.getName()+" health: "+ge.getHealth()+" isDead? "+ge.isDead());
+                    }
+                }
+                System.out.println(toSpawn);
+                System.out.println("Max health: "+lastMaxHealth);
+                System.out.println("total health: "+totalHealth()+" time until next spawn: "+forceNextSpawn+"\n");
             }
             Game.gameUI().updateWaveHealth(totalHealth());
         }
@@ -128,24 +141,40 @@ public class ZombieSpawner implements Spawner
     public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
+        lastMaxHealth = toSpawn.totalHealth();
         Game.gameUI().newWave(toSpawn.totalHealth());
+        System.out.println("first Spawn");
         spawnZombies(toSpawn, sections);
+        if(toSpawn.isClear()){
+            toSpawn = null;
+        }
     }
 
     public void spawnZombies(SpawnData dat, int sections){
         currentlySpawned = new ArrayList<GridEntity>();
+        int total = 0;
         for(int i = 0; i < dat.size(); i++){
             int amt = randomCenter(dat.count(i)); // TODO
             if(sections==1){
                 amt = dat.count(i);
             }
+            total+= amt;
             for(int f = 0; f < amt; f++){
-                try{
+                //try{
                     GridEntity toSpawn = dat.pop(i);
                     spawnZombie(toSpawn);
                     currentlySpawned.add(toSpawn);
-                }catch(Exception e){e.printStackTrace();}
+                //}catch(Exception e){e.printStackTrace();}
             }
+        }
+        if(total==0){
+            System.out.println("No zombies spawned, spawning random zombie");
+            System.out.println(dat+" "+dat.size()+" "+dat.isClear());
+            //try{
+                GridEntity toSpawn = dat.pop(Greenfoot.getRandomNumber(dat.size()));
+                spawnZombie(toSpawn);
+                currentlySpawned.add(toSpawn);
+            //}catch(Exception e){e.printStackTrace();}
         }
         nextSpawn = currentlySpawned.size()/2;
         forceNextSpawn = 450;

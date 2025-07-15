@@ -25,7 +25,7 @@ public class EasterZombie extends Zombie
     public EasterZombie()
     {
         reloadDelayCount = 5;
-        setSpeed(3);
+        setSpeed(2.5);
         startHealth(150);
     }
 
@@ -46,10 +46,13 @@ public class EasterZombie extends Zombie
 
     public void attemptHop(double monangle){
         if (canMove()&&jumpCooldown <= 0) {
-            initiateJump(monangle, Math.min(50, distanceTo(getTarget())), 50);
+            initiateJump(monangle, Math.min(50*getMultipliedSpeed()/getSpeed(), distanceTo(getTarget())), 50);
             jumpCooldown = 50;
         }else{
             jumpCooldown--;
+            if(isOnGround()){
+                walk(monangle, 1);
+            }
         }
     }
 
@@ -69,7 +72,7 @@ public class EasterZombie extends Zombie
     public int getXP(){
         return 400;
     }
-    public ZombieClass[] getClasses(){
+    public ZombieClass[] getZombieClasses(){
         return classes;
     }
     

@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
@@ -18,11 +17,7 @@ public class IroncladZombie extends Zombie
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "tankzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private static double attackrange = 900;
-    /**
-     * Initilise this rocket.
-     */
     public IroncladZombie()
     {
         reloadDelayCount = 5;
@@ -30,11 +25,6 @@ public class IroncladZombie extends Zombie
         setSpeed(1);
         startHealthShield(new ArmorShield(new ShieldID(this), 4500));
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
         canRetaliate = true;
@@ -68,9 +58,6 @@ public class IroncladZombie extends Zombie
             //
         }
     }
-    /**
-     * Check whether there are any key pressed and react to them.
-     */
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
@@ -80,7 +67,7 @@ public class IroncladZombie extends Zombie
             reloadDelayCount = 0;
         }
     }
-    //ovveride this
+    @Override
     public int getXP(){
         return 1000;
     }

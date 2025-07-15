@@ -7,12 +7,8 @@ package com.karel.game;
  */
 public class JadeBlade extends Bullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 50;
     private int size = 80;
     private int sizeReduction = 8;
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 10;
     
     public JadeBlade(double rotation, int size, boolean isUpgrade, GridObject source)
     {

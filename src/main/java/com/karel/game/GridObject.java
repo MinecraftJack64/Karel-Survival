@@ -500,8 +500,13 @@ public abstract class GridObject extends KActor
             mounts = null;
         }
     }
+    //If this object cannot be passed through by other objects with hitboxes
     public boolean isWall(){
         return !canBePulled();
+    }
+    //If objects should process hit when colliding with this object
+    public boolean hasHitbox(){
+        return false;
     }
     public void render(){
         animate();

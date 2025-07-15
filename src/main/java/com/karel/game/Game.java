@@ -73,6 +73,8 @@ public class Game
     
     private static boolean autoult = false;
     private static boolean currentlyTogglingAutoult = false;
+
+    private static boolean soundOn = false;
     //TODO: private static boolean currentlycrafting = false;
     static 
     {
@@ -277,7 +279,7 @@ public class Game
         return shiftkey;
     }
     public static void playSound(Sound sound){
-        Raylib.playSound(sound);
+        if(soundOn)Raylib.playSound(sound);
     }
     public static void goToMenu(){
         if(game!=null){

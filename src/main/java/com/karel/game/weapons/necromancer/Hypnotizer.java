@@ -38,6 +38,11 @@ public class Hypnotizer extends Bullet
         TeamSwitchEffect effect = new TeamSwitchEffect(getTeam(), 400, this);
         if(!targ.applyEffect(effect)){
             super.doHit(targ);//if hypnosis fails, then instead do damage as usual
+            if(targ.isDead()){
+                if(notifier!=null){
+                    notifier.notifyKill(targ);
+                }
+            }
             return;
         }
         heal(targ, targ.getMaxHealth()-targ.getHealth());//fully heal hypnotized

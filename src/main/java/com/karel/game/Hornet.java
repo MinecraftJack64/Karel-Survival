@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 /**
  * Write a description of class Hornet here.

@@ -1,6 +1,8 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.hardhat;
 
+import com.karel.game.ArmorShield;
+import com.karel.game.Sounds;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.ShieldID;
 
@@ -12,16 +14,12 @@ import com.karel.game.weapons.ShieldID;
  */
 public class HardHatZombie extends Zombie
 {
-    private static final int gunReloadTime = 200;         // The minimum delay between firing the gun.
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.tank, ZombieClass.support};
+    private static final int gunReloadTime = 200;
+    private double reloadDelayCount;
     public String getStaticTextureURL(){return "constructionzareln.png";}
-    private int ammo = 0;
-    //private int damage = 400;
     private boolean inShieldPhase = true;
     private ShieldID hhshieldid = new ShieldID(this, false, "hardhatzombie shield"), shieldid = new ShieldID(this);
-    /**
-     * Initilise this rocket.
-     */
     public HardHatZombie()
     {
         reloadDelayCount = gunReloadTime;
@@ -29,21 +27,14 @@ public class HardHatZombie extends Zombie
         startHealth(750);
         applyShield(new ArmorShield(shieldid, 750));
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
         if(inShieldPhase&&!hasShield(shieldid)){
             inShieldPhase = false;
             setImage("hurtconstructionzareln.png");
         }
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(reloadDelayCount>=gunReloadTime&&canAttack()){
             attack();
             reloadDelayCount = 0;
@@ -51,13 +42,12 @@ public class HardHatZombie extends Zombie
         if(distanceTo(getTarget())>200)
             walk(monangle, 1);
     }
-    //ovveride this
+    @Override
     public int getXP(){
         return 550;
     }
 
     public void attack(){
-        //explode if not stunned
         explodeOn(225, (g)->{
             if(isAlliedWith(g)&&!g.hasShield(hhshieldid)&&!g.hasShield(shieldid)&&g.acceptExternalShields()){//
                 int health = (int)(Math.min(300, Math.min(g.getMaxHealth(), g.getHealth()*2))*(0.5+0.5*getPercentHealth())*getPower());//shield is 300 health by default unless zombie has less max health or health
@@ -67,6 +57,11 @@ public class HardHatZombie extends Zombie
             }
         });
         Sounds.play("hardhatattack");
+    }
+
+    @Override
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     
     public String getName(){

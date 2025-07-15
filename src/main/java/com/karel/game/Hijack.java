@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 /**
  * The representation of the Highjacker weapon while jumping on an enemy

@@ -344,7 +344,7 @@ public abstract class Weapon implements Item, Tickable
         }
         return i;
     }
-    /*public BotGuide getBotGuide(){
+    public BotGuide getBotGuide(){
         return new BotGuide();
     }
     public class BotGuide{
@@ -355,7 +355,7 @@ public abstract class Weapon implements Item, Tickable
             return getEffectiveRange();
         }
         public static int getUltEffectiveRange(){
-            return 0;
+            return 100;
         }
         public static int getUltIdealRange(){
             return getUltEffectiveRange();
@@ -365,7 +365,7 @@ public abstract class Weapon implements Item, Tickable
             return 0;
         }
         public static double getUltLead(double d){
-            return 0;
+            return 100;
         }
         //if weapon should use ult/attack if available
         public boolean shouldUse(){
@@ -374,7 +374,7 @@ public abstract class Weapon implements Item, Tickable
         public boolean shouldUseUlt(){
             return true;
         }
-    }*/
+    }
 }
 
 

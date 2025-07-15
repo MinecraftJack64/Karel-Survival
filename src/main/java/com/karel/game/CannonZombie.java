@@ -13,9 +13,6 @@ import java.util.HashSet;
  */
 public class CannonZombie extends Zombie
 {
-    private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "cannonzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
@@ -39,7 +36,6 @@ public class CannonZombie extends Zombie
      */
     public CannonZombie()
     {
-        reloadDelayCount = 5;
         setSpeed(1.5);
         startHealth(500);
     }

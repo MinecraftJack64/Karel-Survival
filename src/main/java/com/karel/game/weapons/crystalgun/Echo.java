@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.crystalgun;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridObject;
 
 /**
  * Used by Shards and CrystalGun

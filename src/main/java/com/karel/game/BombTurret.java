@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
+import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
 
 /**
  * Write a description of class Turret here.

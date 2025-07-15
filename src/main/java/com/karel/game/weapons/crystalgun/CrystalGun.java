@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.crystalgun;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -11,11 +13,12 @@ import com.karel.game.weapons.Weapon;
 public class CrystalGun extends Weapon
 {
     private static final int gunReloadTime = 25;
-    private int reloadDelayCount;
     private static final int ult = 1000;
+    private Crystal crystal;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if (getAmmo().hasAmmo()) 
         {
+            getAmmo().useAmmo();
             for(int deg = 45; deg<=315; deg+=90){
                 Shard mbullet = new Shard(deg, getHolder(), getAttackUpgrade()==1);
                 getHolder().addObjectHere(mbullet);
@@ -26,35 +29,42 @@ public class CrystalGun extends Weapon
                     getHolder().addObjectHere(mbullet);
                 }
             }
-            reloadDelayCount = 0;
         }
     }
     public void fireUlt(){
         for(int deg = 0; deg<=270; deg+=90){
-            Crystallizer mbullet = new Crystallizer(deg, getHolder());
+            Crystallizer mbullet = new Crystallizer(deg, getHolder(), getUltUpgrade()==1);
             getHolder().addObjectHere(mbullet);
         }
+    }
+    public void update(){
+        super.update();
+        if(crystal!=null&&!crystal.isDead()){
+            if(continueGadget()){
+                setContinueGadget(false);
+            }
+        }
+    }
+    public int defaultGadgets(){
+        return 3;
+    }
+    public void onGadgetActivate(){
+        setContinueGadget(true);
+        crystal = new Crystal(getHolder(), getHolder());
+        getHolder().addObjectHere(crystal);
     }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
-    }
     public CrystalGun(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
     }
     public String getName(){
         return "Crystal Gun";
     }
     public int getRarity(){
-        return 2;
+        return 4;
     }
 }
 

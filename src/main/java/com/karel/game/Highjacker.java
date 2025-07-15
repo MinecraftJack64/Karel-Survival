@@ -13,7 +13,7 @@ public class Highjacker extends Weapon
 {
     private static final int ult = 2500, reload = 50;
     private Scissors lasso;
-    private int ultchargecooldown = 0, ammo;
+    private int ammo;
     private boolean mounted = false;
     private GridEntity mount;
     private static final int mountHeight = 60;

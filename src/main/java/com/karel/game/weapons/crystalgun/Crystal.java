@@ -1,5 +1,8 @@
-package com.karel.game;
-import java.util.ArrayList;
+package com.karel.game.weapons.crystalgun;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SubAffecter;
 
 /**
  * Write a description of class Crystal here.
@@ -20,14 +23,18 @@ public class Crystal extends GridEntity implements SubAffecter
         else targ = null;
     }
     public void behave(){
-        setExposure(Math.pow(0.8, getGEsInRange(150).stream().filter(e->e instanceof Crystal).count()));
         hit(1, this);
         if(targ==null){
             die(this);
         }
     }
     public void die(GridObject killer){
-        if(targ!=null){targ.untrap();getWorld().addObject(targ, getX(), getY());targ.hit(Math.min((int)(getPower()*1500),targ.getHealth()/2), sourc);}
+        if(targ!=null){
+            targ.untrap();
+            getWorld().addObject(targ, getX(), getY());
+            if(isAggroTowards(targ))targ.hit(Math.min((int)(getPower()*1500),targ.getHealth()/2), sourc);
+            else if(isAlliedWith(targ))targ.heal(targ.getHealth()/2, sourc);
+        }
         super.die(killer);
     }
     public GridObject getSource(){

@@ -1,0 +1,23 @@
+{
+    "title": "Survie de Karel",
+    "buttons.play": "Jouer",
+    "buttons.edit": "Éditer",
+    "buttons.settings": "Paramètres",
+    "buttons.quit": "Quitter",
+    "buttons.restart": "Redémarrer",
+    "buttons.save": "Sauvegarder",
+    "buttons.load": "Charger",
+    "buttons.new": "Nouveau",
+    "buttons.back": "Retour",
+    "buttons.confirm": "Confirmer",
+    "buttons.cancel": "Annuler",
+    "buttons.next": "Suivant",
+    "buttons.previous": "Précédent",
+    "buttons.start": "Démarrer",
+    "buttons.stop": "Arrêter",
+    "buttons.resume": "Reprendre",
+    "buttons.pause": "Pause",
+    "buttons.help": "Aide",
+    "weapons.fastfood": "Hamburgerer",
+    "weapons.fastfood.description": "Une arme de restauration rapide qui tire des frites sur les ennemis. L'ultime vous permet de manger un burger pour guérir et obtenir un bonus de vitesse"
+}

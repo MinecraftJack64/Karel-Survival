@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 /**
  * A bullet that can hit asteroids.

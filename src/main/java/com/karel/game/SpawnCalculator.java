@@ -8,8 +8,10 @@ import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
+import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
+import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
@@ -17,7 +19,7 @@ import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZomb
 
 class SpawnData{
     public ArrayList<Class> spawnTypes;
-    public ArrayList<GridEntity> spawn;
+    public ArrayList<GridEntity> spawn;// do not use
     public ArrayList<Integer> spawnCount;
     public SpawnData(ArrayList<Class> types, ArrayList<Integer> count){
         spawnTypes = types;
@@ -26,8 +28,14 @@ class SpawnData{
     }
     public void initializeSpawn(){
         spawn = new ArrayList<GridEntity>();
-        for(Class cls: spawnTypes){
-            try{spawn.add((GridEntity)cls.newInstance());}catch(Exception e){e.printStackTrace();spawn.add(new Zombie());}
+        for(int i = 0; i < spawnTypes.size(); i++){
+            Class cls = spawnTypes.get(i);
+            int amt = spawnCount.get(i);
+            try{
+                for(int j = 0; j < amt; j++){
+                    spawn.add((GridEntity)cls.newInstance());
+                }
+            }catch(Exception e){e.printStackTrace();spawn.add(new Zombie());}
         }
     }
     public boolean isClear(){
@@ -59,7 +67,21 @@ class SpawnData{
     public GridEntity pop(int id){
         int val = spawnCount.get(id);
         if(val>0)spawnCount.set(id, val-1);
-        return spawn.get(id);
+        Class cls = spawnTypes.get(id);
+        if(val==1){spawnCount.remove(id);spawnTypes.remove(id);}
+        try{
+            return (GridEntity)cls.newInstance();
+        }catch(Exception e){
+            e.printStackTrace();
+            return new Zombie();
+        }
+    }
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < spawnTypes.size(); i++){
+            sb.append(spawnTypes.get(i).getSimpleName()).append(" x").append(spawnCount.get(i)).append(", ");
+        }
+        return sb.toString();
     }
 }
 /**
@@ -83,6 +105,7 @@ public class SpawnCalculator
     public ArrayList<Integer> spawnTypes = new ArrayList<Integer>(), spawnCount = new ArrayList<Integer>();
     public SpawnData calculateSpawn(int count, int wave)
     {
+        System.out.println(count+" "+wave);
         resetSpawnableZombies(wave);
         int nc = selectSpawnableZombies(count);
         calculateSpawnCounts(nc, wave);
@@ -152,6 +175,7 @@ public class SpawnCalculator
     }
     // for some reason, returns a random number from 1-max
     public static int randomDescend(int max){
+        if(max== 1)return 1;
         int c = max-1;
         while(c>=1&&Greenfoot.getRandomNumber(c)<c-1){
             c--;

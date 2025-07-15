@@ -289,20 +289,22 @@ public abstract class GridEntity extends GridObject
     public void startHealth(int amt){
         startHealth(amt, true);
     }
-    public void startHealth(int amt, boolean showbar){
-        if(healthBar!=null&&healthBar.isInWorld()){
-            getWorld().removeObject(healthBar);
+    public void attemptClearHealthBar(){
+        if(healthBar!=null){
+            if(healthBar.isInWorld())getWorld().removeObject(healthBar);
+            healthBar = null;
         }
+    }
+    public void startHealth(int amt, boolean showbar){
+        attemptClearHealthBar();
         health = maxHealth = amt;
         if(showbar){
             healthBar = new LifeBar(amt,40,5,this);
         }
     }
     public void startHealthAsBoss(int amt, int numphases){
+        attemptClearHealthBar();
         health = maxHealth = amt;
-        if(healthBar!=null&&healthBar.isInWorld()){
-            getWorld().removeObject(healthBar);
-        }
         healthBar = new BossBar(amt,500,10,this);
         healthBar.divideIntoPhases(numphases);
         isBoss = true;
@@ -348,9 +350,7 @@ public abstract class GridEntity extends GridObject
         startHealthShield(amt, true);
     }
     public void startHealthShield(Shield thing, boolean showbar){
-        if(healthBar!=null&&healthBar.isInWorld()){
-            getWorld().removeObject(healthBar);
-        }
+        attemptClearHealthBar();
         healthShield = thing;
         thing.applyTo(this);
         health = maxHealth = 1;
@@ -473,7 +473,7 @@ public abstract class GridEntity extends GridObject
         }
         damage(dmg);
         if(!source.covertDamage()&&willNotify(source))source.notifyDamage(this, (int)(dmg*damageExposure()*exposure*source.damageSecrecy()));
-        if(getHealth()<=0)die(source);
+        if(getHealth()<=0&&!isDead())die(source);
     }
     public void hitIgnoreShield(int dmg, GridObject source){
         hitIgnoreShield(dmg, 1, source);
@@ -530,17 +530,20 @@ public abstract class GridEntity extends GridObject
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().removeObject(s);});
     }
     public boolean trap(){
-        removeGraphics();
+        //removeGraphics();
         return true;
     }
     public void untrap(){
-        addGraphics();
+        //addGraphics();
     }
     public boolean canDetect(){//can be detected
         return detectable&&!hasMounter();
     }
     public void setDetectable(boolean b){
         detectable = b;
+    }
+    public boolean hasHitbox(){
+        return true;
     }
     public void update()
     {
