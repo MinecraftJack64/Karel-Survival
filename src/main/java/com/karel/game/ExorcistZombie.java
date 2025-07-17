@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
@@ -100,6 +99,10 @@ public class ExorcistZombie extends Zombie
     //ovveride this
     public int getXP(){
         return 500;
+    }
+    @Override
+    public void feast(){
+        behave();
     }
     
     public GridEntity getTarget(){

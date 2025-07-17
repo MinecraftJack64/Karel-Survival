@@ -124,6 +124,10 @@ public class SteakZombie extends ShooterZombie
         this.mustbehurt = mustbehurt;
         return getNearestTarget();
     }
+    @Override
+    public void feast(){
+        behave();
+    }
     public ZombieClass[] getZombieClasses(){
         return classes;
     }
