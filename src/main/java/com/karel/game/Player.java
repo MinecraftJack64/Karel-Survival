@@ -12,6 +12,7 @@ import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
+import com.karel.game.weapons.pointpinner.Pointpinner;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;

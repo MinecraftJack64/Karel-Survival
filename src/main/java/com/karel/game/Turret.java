@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
+import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 
 /**

@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.pointpinner;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.
@@ -21,10 +25,18 @@ public class Pin extends Bullet
         setDamage(40);
         me = p;
     }
+    public Pin(double rotation, GridObject source, double startingSpeed)
+    {
+        this(rotation, source, null);
+        setSpeed(startingSpeed);
+        setLife(getLife()- (int)startingSpeed);
+    }
     public void applyPhysics(){
         super.applyPhysics();
         setDamage(getDamage()+(int)getSpeed());
-        setSpeed(getSpeed()+1);
+        if(getSpeed()<=31){
+            setSpeed(getSpeed()+1);
+        }
     }
     public void die(){
         super.die();
@@ -32,6 +44,6 @@ public class Pin extends Bullet
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        me.notifyHit();
+        if(me!=null)me.notifyHit();
     }
 }

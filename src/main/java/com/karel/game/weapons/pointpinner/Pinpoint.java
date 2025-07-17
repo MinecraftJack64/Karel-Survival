@@ -1,8 +1,8 @@
-package com.karel.game;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+package com.karel.game.weapons.pointpinner;
 
+import com.karel.game.FlyingRock;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.weapons.EffectID;
 
 /**
@@ -14,14 +14,18 @@ public class Pinpoint extends FlyingRock
 {
     GridEntity target;
     double tx, ty;
-    EffectID immobilize;
+    EffectID immobilize, weaken;
     public Pinpoint(boolean issuper, GridObject source)
     {
         super(0, 0, 80, source);
         setRange(35);
         setNumTargets(1);
         setDieOnHit(false);
+        setImage("anchor.png");
         immobilize = new EffectID(this);
+        if(issuper){
+            weaken = new EffectID(this);
+        }
         //if(load instanceof GridEntity)getWorld().allEntities.add((GridEntity)load);
     }
     public double getGravity(){
@@ -31,6 +35,9 @@ public class Pinpoint extends FlyingRock
         damage(g, 150);
         g.ground();
         g.setSpeedMultiplier(0, immobilize);
+        if(weaken!=null){
+            g.setPower(0.5, weaken);
+        }
         target = g;
         tx = target.getX();
         ty = target.getY();

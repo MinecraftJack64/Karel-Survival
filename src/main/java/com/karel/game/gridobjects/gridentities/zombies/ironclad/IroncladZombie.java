@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.ironclad;
 
+import com.karel.game.ArmorShield;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.weapons.ShieldID;
@@ -12,9 +16,10 @@ import com.karel.game.weapons.ShieldID;
  */
 public class IroncladZombie extends Zombie
 {
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.tank, ZombieClass.ranger};
     private static final int gunReloadTime = 160;         // The minimum delay between firing the gun.
     private boolean canRetaliate = true;
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "tankzareln.png";}
     private static double attackrange = 900;
@@ -28,9 +33,8 @@ public class IroncladZombie extends Zombie
     public void behave()
     {
         canRetaliate = true;
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
         else if(distanceTo(getTarget())>30){
             walk(monangle, 0.4);
@@ -70,6 +74,10 @@ public class IroncladZombie extends Zombie
     @Override
     public int getXP(){
         return 1000;
+    }
+
+    public ZombieClass[] getZombieClasses(){
+        return classes;
     }
     
     public String getName(){
