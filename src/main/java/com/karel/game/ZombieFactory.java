@@ -12,6 +12,7 @@ import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
+import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;

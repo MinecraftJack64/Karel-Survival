@@ -471,15 +471,17 @@ public abstract class GridObject extends KActor
     public boolean mount(KActor other, double deg, double dist){
         if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<KActor, Vector>();
+        boolean isNewMount = mounts.get(other)==null;
         mounts.put(other, new Vector(deg, dist));
-        other.notifyMount(this);
+        if(isNewMount)other.notifyMount(this);
         return true;
     }
     public boolean mount(KActor other, double x, double y, double height){
         if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<KActor, Vector>();
+        boolean isNewMount = mounts.get(other)==null;
         mounts.put(other, new Vector(x, y, height));
-        other.notifyMount(this);
+        if(isNewMount)other.notifyMount(this);
         return true;
     }
     public boolean unmount(KActor other){

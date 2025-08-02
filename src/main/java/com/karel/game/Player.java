@@ -5,6 +5,7 @@ import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.blade.Blade;
 import com.karel.game.weapons.blowgun.Blowgun;
 import com.karel.game.weapons.captorch.CapsaicinTorch;
+import com.karel.game.weapons.catclaw.CatClaw;
 import com.karel.game.weapons.critters.LilCritters;
 import com.karel.game.weapons.crossbow.Crossbow;
 import com.karel.game.weapons.crystalgun.CrystalGun;

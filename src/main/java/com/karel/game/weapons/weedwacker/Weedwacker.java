@@ -14,6 +14,10 @@ public class Weedwacker extends Weapon
     private static final int ult = 1500;
     private WeedwackerBlade drone;
     private double resurrect = 120;
+    private int droneDistance = 125; // Distance from the player to the drone when mounted
+    private int droneExtension = 0;
+    private int gadgetExtensionCooldown = 0;
+    private int gadgetAction = 0; // 0 = Extension, 1 = Stay, 2 = Retract
     public void fire(){
         if(drone!=null){
             //drone.spin();
@@ -41,6 +45,50 @@ public class Weedwacker extends Weapon
     public int getUlt(){
         return ult;
     }
+    public int defaultGadgets(){
+        return 1;
+    }
+    public void onGadgetActivate(){
+        gadgetExtensionCooldown = 35;
+        gadgetAction = 0; // Extension
+        setContinueGadget(true);
+    }
+    // Cannot activate if blade is not in the world
+    public boolean canActivateGadget(){
+        return super.canActivateGadget() && drone!=null && drone.isInWorld();
+    }
+    public void onGadgetContinue(){
+        if(drone==null||!drone.isInWorld()){
+            setContinueGadget(false);
+            return;
+        }
+        if(gadgetExtensionCooldown>0){
+            gadgetExtensionCooldown--;
+            if(gadgetAction==0){
+                droneExtension += 10; // Extend the drone
+                getHolder().mount(drone, -90, droneDistance+droneExtension);
+            }else if(gadgetAction==2){
+                if(droneExtension>0){
+                    droneExtension -= 15; // Retract the drone
+                    if(droneExtension < 0) droneExtension = 0; // Prevent negative extension
+                    getHolder().mount(drone, -90, droneDistance+droneExtension);
+                }else{
+                    setContinueGadget(false); // Stop if fully retracted
+                }
+            }
+        }else if(gadgetAction==2){
+            setContinueGadget(false);
+        }else{
+            gadgetAction = 2; // Switch to retracting
+            gadgetExtensionCooldown = 24; // Reset cooldown for retraction
+        }
+    }
+    public void notifyHit(){
+        if(continueGadget()){
+            gadgetAction = 1; // Stay in current state
+            gadgetExtensionCooldown = 200; // Reset cooldown for staying
+        }
+    }
     public void reload(double speed){
         if(drone!=null){
             if(drone.isDead())drone = null;
@@ -61,7 +109,7 @@ public class Weedwacker extends Weapon
     public void equip(){
         super.equip();
         getHolder().addObjectHere(drone);
-        getHolder().mount(drone, -90, 125);
+        getHolder().mount(drone, -90, droneDistance);
         System.out.println(drone.getWorld());
     }
     public void unequip(){
@@ -71,13 +119,13 @@ public class Weedwacker extends Weapon
     }
     public Weedwacker(ItemHolder actor){
         super(actor);
-        drone = new WeedwackerBlade(getHolder());
+        drone = new WeedwackerBlade(getHolder(), this);
     }
     public String getName(){
         return "Weedwacker";
     }
     public int getRarity(){
-        return 4;
+        return 5;
     }
 }
 

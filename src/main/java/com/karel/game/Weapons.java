@@ -1,6 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.weapons.catclaw.CatClaw;
 import com.karel.game.weapons.crossbow.Crossbow;
 import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.easterbasket.EasterBasket;

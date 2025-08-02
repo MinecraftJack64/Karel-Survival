@@ -3,6 +3,7 @@ package com.karel.game;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.gridobjects.gridentities.zombies.boid.BoidSpawner;
 
 /**
  * Write a description of class NailGun here.
@@ -73,7 +74,7 @@ public class NailGun extends Weapon
         double x = getHand().getTargetX();
         double y = getHand().getTargetY();
         double d = Math.min(600, getHolder().distanceTo(x, y));
-        JailBreakZombie wz = new JailBreakZombie();
+        /*JailBreakZombie wz = new JailBreakZombie();
         wz.setTeam(getHolder().getTeam());
         wz.startHealthShield(new StrikeSurvivalShield(new ShieldID(this), 100000));
         LaserZombie dz = new LaserZombie();
@@ -82,10 +83,12 @@ public class NailGun extends Weapon
         ZombieDropper bullet = new ZombieDropper(getHand().getTargetRotation()+180, d, 200, wz, getHolder());
         getHolder().addObjectHere(bullet);
         ZombieDropper bullet2 = new ZombieDropper(getHand().getTargetRotation(), d, 200, dz, getHolder());
-        getHolder().addObjectHere(bullet2);
-        //Explosion exp = new Explosion(3);
-        //getHolder().addObjectHere(exp);
-        //Sounds.play("explode");
+        getHolder().addObjectHere(bullet2);*/
+        //Spawn a BoidSpawner instead
+        BoidSpawner spawner = new BoidSpawner(10, getHolder());
+        spawner.setTeam(getHolder().getTeam());
+        Dropper dropper = new Dropper(getHand().getTargetRotation(), d, 200, spawner, getHolder());
+        getHolder().addObjectHere(dropper);
     }
     public int getUlt(){
         return ult;

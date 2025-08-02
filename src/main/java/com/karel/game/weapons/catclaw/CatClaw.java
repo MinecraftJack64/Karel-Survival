@@ -1,5 +1,12 @@
-package com.karel.game;
+package com.karel.game.weapons.catclaw;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.LandingHandler;
+import com.karel.game.Mousetrap;
+import com.karel.game.PowerPercentageEffect;
+import com.karel.game.SimpleAmmoManager;
+import com.karel.game.Sounds;
+import com.karel.game.SpeedPercentageEffect;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.Weapon;
 
@@ -11,9 +18,7 @@ import com.karel.game.weapons.Weapon;
  */
 public class CatClaw extends Weapon implements LandingHandler
 {
-    private static final int gunReloadTime = 20;
     private int nextclawcooldown = 0;
-    private int reloadDelayCount;
     private static final int ult = 700;
     private boolean toland;
     private int clawtofire = 0;
@@ -33,14 +38,14 @@ public class CatClaw extends Weapon implements LandingHandler
             }else{
                 nextclawcooldown--;
             }
-        }else if (reloadDelayCount >= gunReloadTime&&canFire()) 
+        }else if (getAmmo().hasAmmo()&&canFire()) 
         {
             fireClaw(clawtofire);
             setContinueUse(true);
             setPlayerLockRotation(true);
             clawtofire++;
             Sounds.play("clawunsheath");
-            reloadDelayCount = 0;
+            getAmmo().useAmmo();
             nextclawcooldown = 1;
         }
     }
@@ -75,23 +80,14 @@ public class CatClaw extends Weapon implements LandingHandler
         }
         return true;
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
-    }
     public int getUlt(){
         return ult;
     }
     public CatClaw(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;
+        setAmmo(new SimpleAmmoManager(30, 1));
         chargeUlt(700);
-        toland = false;//
-        //getHolder().getWorld().gameUI().newAmmo(gunReloadTime, reloadDelayCount);
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        toland = false;
     }
     public void doLanding(){
         if(toland){

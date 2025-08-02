@@ -1,8 +1,5 @@
 package com.karel.game;
 
-import com.karel.game.ItemHolder;
-import com.karel.game.ZombieClass;
-import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.fastfood.FastFood;
 import com.karel.game.weapons.Weapon;
 
@@ -14,7 +11,6 @@ import com.karel.game.weapons.Weapon;
  */
 public class Bot extends Pet
 {
-    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.melee, ZombieClass.controller};
 
     public BotHand hand = new BotHand();
     private Weapon weapon = new FastFood(hand);
@@ -54,10 +50,6 @@ public class Bot extends Pet
     //ovveride this
     public int getXP(){
         return 400;
-    }
-
-    public ZombieClass[] getZombieClasses(){
-        return classes;
     }
     public BotHand getHand(){
         return hand;

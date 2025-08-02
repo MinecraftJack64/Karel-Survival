@@ -2,8 +2,8 @@ package com.karel.game.gridobjects.gridentities.zombies.ninja;
 
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.Game;
 
 /**
  * Write a description of class NinjaZombie here.
@@ -13,6 +13,7 @@ import com.karel.game.Game;
  */
 public class NinjaZombie extends Zombie
 {
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.assault};
     public String getStaticTextureURL(){return "ninjazareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int phase = 0;//0 - waiting, 1 - charging, 2 - attacking, 3 - retreating
@@ -126,7 +127,10 @@ public class NinjaZombie extends Zombie
         getWorld().addObject (bullet, getX(), getY());
         //bullet.move ();
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 600;
     }

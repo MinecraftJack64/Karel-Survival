@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.catclaw;
+
+import com.karel.game.Boomerang;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.

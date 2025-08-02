@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.catclaw;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SoftPullEffect;
 import com.karel.game.weapons.EffectID;
 
 /**

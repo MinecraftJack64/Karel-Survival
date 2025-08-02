@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.portal;
 
+import com.karel.game.EntrancePortal;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /*
@@ -28,7 +29,7 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class PortalZombie extends Zombie
 {
-    private int counterct;
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.meatshield};
     private int portals;
     public String getStaticTextureURL(){return "zareln.png";}
     /**
@@ -51,7 +52,10 @@ public class PortalZombie extends Zombie
     public boolean prioritizeTarget(){
         return portals>0;
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 500;
     }

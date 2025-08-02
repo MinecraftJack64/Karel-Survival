@@ -5,6 +5,7 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.MetalShield;
 import com.karel.game.PoisonEffect;
+import com.karel.game.BurnEffect;
 import com.karel.game.ProjectileReflectShield;
 import com.karel.game.ProjectileParryShield;
 import com.karel.game.SubAffecter;
@@ -22,7 +23,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
 {
     private GridEntity source;
     private double ammo = 0;//5
-    //private double distance, angle;
+    private Weedwacker weapon;
     private int strength;
     private final ShieldID ultshieldid = new ShieldID(this, "ult"), healthshieldid = new ShieldID(this, "health");
     public WeedwackerBlade(double d, double a, GridEntity source){
@@ -34,13 +35,17 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         setDetectable(false);
         setImage("Weapons/weedwacker/proj.png");
         scaleTexture(40);
-        addEffectImmunities(PoisonEffect.class);
+        addEffectImmunities(PoisonEffect.class, BurnEffect.class);
     }
-    public boolean acceptExternalShields(){
-        return false;
+    public WeedwackerBlade(GridEntity source, Weedwacker myWeapon){
+        this(source);
+        weapon = myWeapon;
     }
     public WeedwackerBlade(GridEntity source){
         this(125, -90, source);
+    }
+    public boolean acceptExternalShields(){
+        return false;
     }
     public GridObject getSource(){
         return source;
@@ -68,7 +73,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
             return;
         }
         if(!hasShield(ultshieldid)){
+            setImage("Weapons/weedwacker/proj.png");
             setOpacityPercent(1);
+            scaleTexture(40);
         }
     }
     public void spin(double speed){
@@ -87,7 +94,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public void ult(boolean upgraded){
         applyShield(upgraded?new ProjectileParryShield(ultshieldid, 400):new ProjectileReflectShield(ultshieldid, 400));
         startHealthShield(new MetalShield(healthshieldid, 6));
-        setOpacityPercent(0.5);
+        setImage("Weapons/weedwacker/projUlt.png");
+        scaleTexture(48);
+        setOpacityPercent(0.7);
     }
     public boolean hasUlt(){
         return hasShield(ultshieldid);
@@ -107,6 +116,9 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         for(GridEntity e: g){
             if(isAggroTowards(e)){
                 damage(e, 50+strength*10);
+                if(weapon != null){
+                    weapon.notifyHit();
+                }
             }
         }
     }
