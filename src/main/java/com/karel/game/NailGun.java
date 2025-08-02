@@ -85,7 +85,7 @@ public class NailGun extends Weapon
         ZombieDropper bullet2 = new ZombieDropper(getHand().getTargetRotation(), d, 200, dz, getHolder());
         getHolder().addObjectHere(bullet2);*/
         //Spawn a BoidSpawner instead
-        BoidSpawner spawner = new BoidSpawner(10, getHolder());
+        BoidSpawner spawner = new BoidSpawner(1, getHolder());
         spawner.setTeam(getHolder().getTeam());
         Dropper dropper = new Dropper(getHand().getTargetRotation(), d, 200, spawner, getHolder());
         getHolder().addObjectHere(dropper);
