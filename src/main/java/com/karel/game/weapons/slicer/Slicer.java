@@ -13,7 +13,7 @@ import com.karel.game.Bullet;;
  */
 public class Slicer extends Weapon
 {
-    private static final int ult = 2100, reloadtime = 15;
+    private static final int ult = 1900, reloadtime = 15;
     private CircSaw lasso;
     private double attackcooldown = 0;
     public void fire(){//one full ammo deals 350 damage

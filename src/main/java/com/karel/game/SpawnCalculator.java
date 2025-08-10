@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
+import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
@@ -11,6 +12,7 @@ import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ironclad.IroncladZombie;
+import com.karel.game.gridobjects.gridentities.zombies.jailbreak.JailBreakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
@@ -101,9 +103,9 @@ public class SpawnCalculator
         LaserZombie.class, EasterZombie.class, RussianDollZombie.class, WeedwackerZombie.class, SplitterZombie.class, /*Shaman*/Zombie.class,
         TractorBeamZombie.class, WarriorZombie.class, FirebreatherZombie.class, PresidentZombie.class, JokerZombie.class, JackITBZombie.class, CannonZombie.class, StuntZombie.class, JailBreakZombie.class,
         PortalZombie.class, WatermelonZombie.class, ArsonZombie.class, AssassinZombie.class, IroncladZombie.class, SteakZombie.class, ExorcistZombie.class, GuardianAngelZombie.class,
-        TorpedoZombie.class};
-    public int[] minlevels = new int[]{1, 3, 5, 7, 8, 9, 10, 13, 15, 17, 18, 19, 21, 23, 25, 27, 32, 33, 35, 39, 45, 47, 49, 49, 51, 53, 54, 55, 56, 58, 61, 63, 65, 67, 68, 69};//18 is doctor, 49 is JITB
-    public int[] maxnums = new int[]{8, 5, 3, 4, 2, 3, 2, 3, 2, 2, 4, 1, 1, 2, 2, 2, 3, 1, 3, 2, 1, 3, 3, 1, 4, 4, 2, 2, 2, 1, 2, 2, 5, 3, 3, 2};
+        TorpedoZombie.class, BoidZombie.class};
+    public int[] minlevels = new int[]{1, 3, 5, 7, 8, 9, 10, 13, 15, 17, 18, 19, 21, 23, 25, 27, 32, 33, 35, 39, 45, 47, 49, 49, 51, 53, 54, 55, 56, 58, 61, 63, 65, 67, 68, 69, 71};//18 is doctor, 49 is JITB, 71 - boid zombie
+    public int[] maxnums = new int[]{8, 5, 3, 4, 2, 3, 2, 3, 2, 2, 4, 1, 1, 2, 2, 2, 3, 1, 3, 2, 1, 3, 3, 1, 4, 4, 2, 2, 2, 1, 2, 2, 5, 3, 3, 2, 2};
     public ArrayList<Integer> canSpawn = new ArrayList<Integer>(), forceSpawn = new ArrayList<Integer>();
     public ArrayList<Integer> spawnTypes = new ArrayList<Integer>(), spawnCount = new ArrayList<Integer>();
     public SpawnData calculateSpawn(int count, int wave)

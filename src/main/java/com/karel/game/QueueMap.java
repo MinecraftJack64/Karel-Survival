@@ -21,10 +21,12 @@ public class QueueMap<T extends Comparable, E>
         values.add(e);
     }
     public Entry peek(){
+        if(keys.isEmpty() || values.isEmpty()) return null;
         return new Entry(keys.get(0), values.get(0));
     }
     public Entry remove(){
         Entry res = peek();
+        if(res == null) return null;
         keys.remove(0);
         values.remove(0);
         return res;

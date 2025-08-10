@@ -1,6 +1,11 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.jailbreak;
 
+import com.karel.game.BombDropper;
+import com.karel.game.CannonZombie;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.TickingTimeBomb;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 import java.util.HashSet;
@@ -13,9 +18,10 @@ import java.util.HashSet;
  */
 public class JailBreakZombie extends Zombie
 {
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer, ZombieClass.penetrator};
     private static final int gunReloadTime = 150;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "jailbreakzareln.png";}
     private static double attackrange = 280, retreatrange = 300, bombrange = 40;
@@ -47,10 +53,6 @@ public class JailBreakZombie extends Zombie
             }
         }
     }
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
         if(calccannoncooldown<=0||(nearestCannon!=null&&nearestCannon.isDead())){
@@ -59,7 +61,7 @@ public class JailBreakZombie extends Zombie
         }else{
             calccannoncooldown--;
         }
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
         if(distanceTo(getTarget())<retreatrange&&canBomb()){
             if(distanceTo(getTarget())<bombrange){
@@ -99,9 +101,6 @@ public class JailBreakZombie extends Zombie
     public boolean canBomb(){
         return reloadDelayCount>=gunReloadTime&&canAttack();
     }
-    /**
-     * Check whether there are any key pressed and react to them.
-     */
     private void fire() 
     {
         if (canBomb()){
@@ -112,7 +111,11 @@ public class JailBreakZombie extends Zombie
             reloadDelayCount = 0;
         }
     }
-    //ovveride this
+    @Override
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 400;
     }

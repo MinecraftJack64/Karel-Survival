@@ -1,6 +1,7 @@
 package com.karel.game;
 
 import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.teslacoil.ChargeBomb;
 
 /**
  * Write a description of class Sudo here.
@@ -28,6 +29,7 @@ public class Sudo extends Weapon
     public void fireUlt(){
         Nuke bullet = new Nuke(getHolder());
         getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
+        bullet.setPower(10000);
         Sounds.play("protonwave");
         reloadDelayCount = 0;
     }

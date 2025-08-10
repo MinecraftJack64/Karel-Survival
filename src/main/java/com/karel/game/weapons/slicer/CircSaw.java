@@ -13,6 +13,7 @@ public class CircSaw extends Boomerang
 {
     private int phase;
     private boolean hasreturned;
+    private int enemiesToHit;
     
     public CircSaw(double rotation, GridObject source)
     {
@@ -39,6 +40,7 @@ public class CircSaw extends Boomerang
                 setSpeed(getSpeed()+6);
             }
             doReturn();
+            enemiesToHit = 3;
         }else{
             setLife(1);
             setSpeed(getSpeed()-6);
@@ -87,5 +89,9 @@ public class CircSaw extends Boomerang
             }
         }
         super.doHit(targ);
+        enemiesToHit--;
+    }
+    public boolean covertDamage(){
+        return enemiesToHit>0;
     }
 }

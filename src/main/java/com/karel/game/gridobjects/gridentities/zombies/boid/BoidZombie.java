@@ -17,7 +17,8 @@ public class BoidZombie extends Zombie
     private int babies = 0; // how many babies this boid can spawn
     private int ammo = 0;
     private int motherCooldown = 100; // how long until this boid becomes a mother
-    private int kamikazeCooldown = Greenfoot.getRandomNumber(500); // how long until this boid will attack the target
+    private int kamikazeCooldown = Greenfoot.getRandomNumber(200)+200; // how long until this boid will attack the target
+    private int nonMotherCooldown = 100; // how long until this boid becomes a non-mother if it no longer encounters other non-mother boids
     private int detectionRange = 300;
     private double cohesion = 0.05; //0 to 1, how much the boid will try to stay close to other boids
     private double separation = 0.8; //0 to 1, how much the boid will try to stay away from other boids
@@ -49,7 +50,7 @@ public class BoidZombie extends Zombie
         this(true);
     }
     public BoidZombie(boolean isMother){
-        this(isMother, Greenfoot.getRandomNumber(5)+5);
+        this(isMother, Greenfoot.getRandomNumber(5)+10);
     }
     public void behave(){
         if(babies>0&&canAttack()&&ammo>5){
@@ -68,10 +69,13 @@ public class BoidZombie extends Zombie
         //nearbyEntities.clear();
         double sumX = 0, sumY = 0, sumSpeedX = 0, sumSpeedY = 0;
         int count = 0;
-        boolean encounteredMother = false;
+        boolean encounteredMother = false, encounteredNonMother = false;
         for (GridEntity entity : nearbyEntities) {
-            if (entity instanceof BoidZombie boid) {
-                if(isMother&&!boid.isMother()) continue; //don't interact with other non-mothers
+            if (entity instanceof BoidZombie boid&&isAlliedWith(boid)) {
+                if(isMother&&!boid.isMother()){
+                    encounteredNonMother = true;
+                    continue; //don't interact with other non-mothers
+                }
                 double dX = boid.getX() - getX();
                 double dY = boid.getY() - getY();
                 sumX += dX;
@@ -84,12 +88,17 @@ public class BoidZombie extends Zombie
                     sumSpeedX += boid.getSpeedX()-speedX;
                     sumSpeedY += boid.getSpeedY()-speedY;
                 }
-                speedX += dX/distanceTo(boid)*(0-separation);
-                speedY += dY/distanceTo(boid)*(0-separation);
-                count++;
+                if(boid.isKamikaze()&&!isKamikaze()){
+                    kamikazeCooldown = Greenfoot.getRandomNumber(200)+200; //if we encounter a kamikaze boid, we wait longer
+                }
+                if(!isKamikaze()){
+                    speedX += dX/distanceTo(boid)*(0-separation);
+                    speedY += dY/distanceTo(boid)*(0-separation);
+                    count++;
+                }
             }
         }
-        if(count>0){
+        if(count>0&&!isKamikaze()){
             speedX += sumX * cohesion / count;
             speedY += sumY * cohesion / count;
             speedX += sumSpeedX * alignment / count;
@@ -98,19 +107,36 @@ public class BoidZombie extends Zombie
         //trueTargetResolve transitions from positive to negative as the boid gets closer to the target from 150 distance to 100 distance
         if(isMother||encounteredMother){
             double trueTargetResolve = targetResolve*Math.max(-1, Math.min(1, (distanceTo(getTarget())-125)/25.0));
-            if(kamikazeCooldown <= 0){
-                trueTargetResolve = 1; //attack if kamikaze
+            if(!isMother){
+                trueTargetResolve*=0.75; //non-mothers are less aggressive
+                if(isKamikaze()){
+                    trueTargetResolve = 1; //attack if kamikaze
+                }
             }
             double targetX = getTarget().getX() - getX();
             double targetY = getTarget().getY() - getY();
             speedX += targetX * trueTargetResolve / distanceTo(getTarget());
             speedY += targetY * trueTargetResolve / distanceTo(getTarget());
-            if(!isMother){
-                motherCooldown--;
-                if(motherCooldown <= 0){
-                    isMother = true;
-                    setSpeed(3.5);
-                    setImage("heraldzareln.png");
+        }
+        if(!isMother){
+            motherCooldown--;
+            if(motherCooldown <= 0){
+                kamikazeCooldown +=1; //don't want mother to kamikaze
+                nonMotherCooldown = Greenfoot.getRandomNumber(100)+100;
+                isMother = true;
+                setSpeed(3.5);
+                setImage("heraldzareln.png");
+            }
+        }else{
+            if(encounteredNonMother){
+                nonMotherCooldown = Greenfoot.getRandomNumber(10)+90; //reset cooldown if we encountered a non-mother
+            }else{
+                nonMotherCooldown--;
+                if(nonMotherCooldown <= 0&&!isKamikaze()){
+                    isMother = false;
+                    motherCooldown = Greenfoot.getRandomNumber(100)+100;
+                    setSpeed(3);
+                    setImage("zareln.png");
                 }
             }
         }
@@ -132,9 +158,12 @@ public class BoidZombie extends Zombie
     }
     public void spawnBaby() {
         if (babies <= 0) return;
-        BoidZombie baby = new BoidZombie(Greenfoot.getRandomNumber(5) == 0, babies);
+        BoidZombie baby = new BoidZombie(Greenfoot.getRandomNumber(5) == 0, babies-Greenfoot.getRandomNumber(3));
         getWorld().addObject(baby, getX()+Greenfoot.getRandomNumber(50)-25, getY()+Greenfoot.getRandomNumber(50)-25);
         babies--;
+    }
+    public boolean isKamikaze() {
+        return kamikazeCooldown <= 0;
     }
     public boolean isMother() {
         return isMother;
@@ -153,6 +182,6 @@ public class BoidZombie extends Zombie
         return 500;
     }
     public String getName(){
-        return "Boid Zombie";
+        return isMother()?"Mother Boid Zombie":"Boid Zombie";
     }
 }

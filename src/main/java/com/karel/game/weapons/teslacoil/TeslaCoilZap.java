@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.teslacoil;
 import java.util.List;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Hitter;
 
 /**
  * Write a description of class TeslaCoilZap here.

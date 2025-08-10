@@ -40,7 +40,8 @@ public class ZombieSpawner implements Spawner
         bosses = new QueueMap<Integer, Boss>();
         bosses.add(31, new Wizard());
         bosses.add(45, new CloudServer());
-        nextBossWave = bosses.peek().getKey();
+        try{nextBossWave = bosses.peek().getKey();}
+        catch(Exception e){nextBossWave = Integer.MAX_VALUE;}
     }
     public boolean isBossWave(){
         return wavelevel==nextBossWave||wavelevel==nextBossWave-1;
@@ -79,7 +80,7 @@ public class ZombieSpawner implements Spawner
                     remainingSections--;
                     spawnZombies(toSpawn, remainingSections);
                 }
-                // forceNextSpawn--;
+                forceNextSpawn--;
                 if(toSpawn.isClear()){
                     toSpawn = null;
                 }
@@ -98,7 +99,8 @@ public class ZombieSpawner implements Spawner
                 }else{
                     if(wavelevel==nextBossWave){
                         startBossFight(bosses.remove().getValue());
-                        nextBossWave = bosses.peek().getKey();
+                        try{nextBossWave = bosses.peek().getKey();}
+                        catch(Exception e){nextBossWave = Integer.MAX_VALUE;}
                     }
                     else heraldBossFight();
                 }

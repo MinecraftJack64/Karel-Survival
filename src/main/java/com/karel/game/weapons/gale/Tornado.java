@@ -1,12 +1,15 @@
-package com.karel.game;
+package com.karel.game.weapons.gale;
 import java.util.List;
 
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.weapons.EffectID;
 
 import java.util.ArrayList;
 
 /**
- * A bullet that can hit asteroids.
+ * A spinning tornado shot from the Gale weapon ult. It pulls enemies towards itself and deals no damage, but stuns them for a while.
  * 
  * @author Poul Henriksen
  */
@@ -19,27 +22,28 @@ public class Tornado extends Bullet
     //private int life = 10;
     ArrayList<GridEntity> suckedenemies = new ArrayList<GridEntity>();
     EffectID stun;
+    private int startSlowing = 25; // How long it takes before the tornado starts slowing down.
     public Tornado(double rotation, GridObject source)
     {
         super(rotation, source);
         setSpeed(18);
-        setLife(105);
+        setLife(200);
         setDamage(0);
         setNumTargets(-1);
         setMultiHit(false);
         stun = new EffectID(this);
     }
     public void applyPhysics(){
-        if(getLife()<90){
-            if(getSpeed()>0){
-                setSpeed(getSpeed()-3);
-            }
+        if(startSlowing>0)startSlowing--;
+        else if(getSpeed()>0){
+            setSpeed(getSpeed()-3);
         }
         setRotation(getRotation()+30);
         List<GridEntity> d = getGEsInRange(55);
         for(GridEntity g:d){
             if(isAggroTowards(g)&&!suckedenemies.contains(g)&&g.canBePulled()){
                 suckedenemies.add(g);
+                if(getLife()>50)setLife(Math.max(50, getLife()-20));
             }
         }
         for(int i = suckedenemies.size()-1; i>=0; i--){

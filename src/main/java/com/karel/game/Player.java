@@ -18,10 +18,12 @@ import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
+import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.weedwacker.Weedwacker;
 import com.karel.game.weapons.doublegun.DoubleGun;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.fastfood.FastFood;
+import com.karel.game.weapons.gale.Gale;
 import com.raylib.Texture;
 
 public class Player extends GridEntity {
@@ -62,7 +64,7 @@ public class Player extends GridEntity {
         Game.gameUI().newSprint(maxsprint);
         this.setTeam("player");
         this.inventory = new Item[50];
-        this.inventory[0] = new SpearWeapon(getHand());
+        this.inventory[0] = new Gale(getHand());
         this.inventory[1] = new NailGun(getHand());
         this.inventory[2] = new Crossbow(getHand());
         this.inventory[4] = new RockCatapult(getHand());

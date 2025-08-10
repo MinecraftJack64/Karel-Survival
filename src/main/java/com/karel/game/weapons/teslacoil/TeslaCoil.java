@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.teslacoil;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -25,8 +26,6 @@ public class TeslaCoil extends Weapon
             }
             zap2.attackAt(getHolder().getRotation()+90, d);
         }
-        //show the lightning
-        //Sounds.play("electicity");
     }
     public void fireUlt(){
         ChargeBomb bullet = new ChargeBomb(getHand().getTargetRotation(), getUltUpgrade()==1, useGadget(), getHolder());

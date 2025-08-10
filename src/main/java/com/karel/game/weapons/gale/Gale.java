@@ -1,9 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.gale;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
- * Write a description of class Gale here.
+ * The Gale weapon, which fires a series of Draft projectiles that pierce enemies and slow them down. Its ult is a tornado that pulls enemies in
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -26,6 +28,12 @@ public class Gale extends Weapon
     public void fireUlt(){
         Tornado bullet = new Tornado(getHand().getTargetRotation(), getHolder());
         getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
+        if(getUltUpgrade()==1){
+            for(int i = 0; i < 4; i++){
+                TornadoDebris debris = new TornadoDebris(bullet.getDirection()+i*90, bullet);
+                getHolder().addObjectHere(debris);
+            }
+        }
         Sounds.play("protonwave");
     }
     public int getUlt(){

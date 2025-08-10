@@ -9,6 +9,7 @@ import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
+import com.karel.game.weapons.teslacoil.TeslaCoil;
 /**
  * Write a description of class Weapons here.
  * 
