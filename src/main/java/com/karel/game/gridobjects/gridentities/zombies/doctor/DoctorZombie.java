@@ -86,7 +86,9 @@ public class DoctorZombie extends Zombie
     public int getXP(){
         return 500;
     }
-    
+    public boolean isActive(){
+        return super.isActive()&&!hastarget&&attackcooldown>0;
+    }
     public GridEntity getTarget(){
         hastarget = true;
         shouldheal = true;

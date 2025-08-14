@@ -56,10 +56,10 @@ public class ZombieSpawner implements Spawner
         return true;
     }
 
-    public int getNumLiving(){
+    public int getNumLivingAndActive(){
         int c = 0;
         for(GridEntity g:currentlySpawned){
-            if(!g.isDead()){
+            if(!g.isDead()&&g.isActive()){
                 c++;
             }
         }
@@ -76,7 +76,7 @@ public class ZombieSpawner implements Spawner
     public void checkSpawn(){
         if(!bossfight){
             if(toSpawn!=null){
-                if(getNumLiving()<=nextSpawn||forceNextSpawn<=0){
+                if(getNumLivingAndActive()<=nextSpawn||forceNextSpawn<=0){
                     remainingSections--;
                     spawnZombies(toSpawn, remainingSections);
                 }

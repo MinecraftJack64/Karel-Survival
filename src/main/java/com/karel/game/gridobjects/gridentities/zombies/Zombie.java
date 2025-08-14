@@ -7,6 +7,7 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.ZFleshConfetti;
 import com.karel.game.ZombieClass;
+import com.karel.game.TeamSwitchEffect;
 
 /*
  * classes
@@ -173,6 +174,9 @@ public class Zombie extends GridEntity
     }
     public void walk(double ang, double multiplier){
         super.walk(ang, multiplier*dsmult[Game.currentDiff()]);
+    }
+    public boolean isActive(){
+        return super.isActive()&&hasEffect(TeamSwitchEffect.class);
     }
     public String spriteOrigin(){
         return "GridEntities/Zombies/";

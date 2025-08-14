@@ -536,6 +536,10 @@ public abstract class GridEntity extends GridObject
     public void untrap(){
         //addGraphics();
     }
+    //If this grid entity is still in normal function(only for some zombies that run out of ammo)
+    public boolean isActive(){
+        return true;
+    }
     public boolean canDetect(){//can be detected
         return detectable&&!hasMounter();
     }
