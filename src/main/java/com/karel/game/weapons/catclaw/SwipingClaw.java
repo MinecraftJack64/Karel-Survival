@@ -37,6 +37,7 @@ public class SwipingClaw extends Bullet
         } 
         else {
             life--;
+            setDamage(40+(int)(0.5*distanceTo(getSource())));
             double centerx = offsetx+getSource().getX(), centery = offsety+getSource().getY();
             setLocation(centerx-radius*Math.cos(degtotarg*Math.PI/180), centery-radius*Math.sin(degtotarg*Math.PI/180));
             setRotation(degtotarg+90);
@@ -44,7 +45,7 @@ public class SwipingClaw extends Bullet
             checkHit();
         }
     }
-    public boolean covertDamage(){
-        return life>18;
+    public double damageSecrecy(){
+        return super.damageSecrecy()*0.2;
     }
 }

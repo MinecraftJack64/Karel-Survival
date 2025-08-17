@@ -3,7 +3,10 @@ package com.karel.game;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.gun.Gun;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidSpawner;
+import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.ShapeshifterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
 
 /**
  * Write a description of class NailGun here.
@@ -85,7 +88,9 @@ public class NailGun extends Weapon
         ZombieDropper bullet2 = new ZombieDropper(getHand().getTargetRotation(), d, 200, dz, getHolder());
         getHolder().addObjectHere(bullet2);*/
         //Spawn a BoidSpawner instead
-        BoidSpawner spawner = new BoidSpawner(1, getHolder());
+        //ShapeshifterZombie spawner = new ShapeshifterZombie();
+        Bot spawner = new Bot(getHolder());
+        spawner.setWeapon(new Gun(spawner.getHand()));
         spawner.setTeam(getHolder().getTeam());
         Dropper dropper = new Dropper(getHand().getTargetRotation(), d, 200, spawner, getHolder());
         getHolder().addObjectHere(dropper);

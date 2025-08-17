@@ -5,7 +5,7 @@ package com.karel.game;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public interface Item  
+public interface Item extends Cloneable
 {
     public void use();
     public void equip();

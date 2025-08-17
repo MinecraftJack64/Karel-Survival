@@ -41,6 +41,7 @@ public abstract class GridEntity extends GridObject
     private boolean isBoss;
     private ArrayList<ShieldBar> shieldBars = new ArrayList<ShieldBar>();
     private HashSet<Class> effectImmunities = new HashSet<Class>();
+    private ArrayList<Possessor> possessors = new ArrayList<Possessor>();
     public boolean isDead(){
         return isdead;
     }
@@ -62,6 +63,9 @@ public abstract class GridEntity extends GridObject
         if(source!=null)killer = source.getParentAffecter();
         setHealth(0);
         super.die();
+        for(int i = possessors.size()-1; i >= 0; i--){
+            possessors.get(i).onDeath();
+        }
         if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){System.out.println("FAILED TO REMOVE"+e);}//remove from world if set to true
     }
     
@@ -536,6 +540,19 @@ public abstract class GridEntity extends GridObject
     public void untrap(){
         //addGraphics();
     }
+    public boolean possess(Possessor p){
+        possessors.add(p);
+        return true;
+    }
+    public boolean unpossess(Possessor p){
+        possessors.remove(p);
+        return true;
+    }
+    public void updatePossessors(){
+        for(int i = possessors.size()-1; i>= 0; i--){
+            possessors.get(i).tick();
+        }
+    }
     //If this grid entity is still in normal function(only for some zombies that run out of ammo)
     public boolean isActive(){
         return true;
@@ -555,6 +572,7 @@ public abstract class GridEntity extends GridObject
         tickShields();
         applyEffects();
         applyPhysics();
+        updatePossessors();
         if(!isDead())behave();
     }
     public void behave(){}

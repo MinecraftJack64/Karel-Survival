@@ -407,7 +407,6 @@ public class Player extends GridEntity {
         if (this.getHeldItem() instanceof Weapon) {
             ((Weapon)this.getHeldItem()).chargeUlt(amt);
         }
-
     }
     public void doLanding(){
         if(getHeldItem() instanceof LandingHandler){

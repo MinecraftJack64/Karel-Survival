@@ -344,28 +344,38 @@ public abstract class Weapon implements Item, Tickable
         }
         return i;
     }
+    public Weapon clone(){
+        return null;
+    }
     public BotGuide getBotGuide(){
         return new BotGuide();
     }
     public class BotGuide{
-        public static int getEffectiveRange(){
+        public int getEffectiveRange(){
             return 100;
         }
-        public static int getIdealRange(){
+        public int getIdealRange(){
             return getEffectiveRange();
         }
-        public static int getUltEffectiveRange(){
-            return 100;
+        //How many enemies should be considered
+        public int getNumTargets(){
+            return 1;
         }
-        public static int getUltIdealRange(){
+        public int getUltEffectiveRange(){
+            return 300;
+        }
+        public int getUltIdealRange(){
             return getUltEffectiveRange();
         }
+        public int getUltNumTargets(){
+            return 1;
+        }
         //how many degrees to turn from a target to lead shots based on distance
-        public static double getLead(double d){
+        public double getLead(double d){
             return 0;
         }
-        public static double getUltLead(double d){
-            return 100;
+        public double getUltLead(double d){
+            return 0;
         }
         //if weapon should use ult/attack if available
         public boolean shouldUse(){

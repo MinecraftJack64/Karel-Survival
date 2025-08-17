@@ -19,7 +19,7 @@ import com.karel.game.weapons.Weapon;
 public class CatClaw extends Weapon implements LandingHandler
 {
     private int nextclawcooldown = 0;
-    private static final int ult = 700;
+    private static final int ult = 900;
     private boolean toland;
     private int clawtofire = 0;
     private Claw claws[] = new Claw[4];
@@ -86,7 +86,7 @@ public class CatClaw extends Weapon implements LandingHandler
     public CatClaw(ItemHolder actor){
         super(actor);
         setAmmo(new SimpleAmmoManager(30, 1));
-        chargeUlt(700);
+        chargeUltFull();
         toland = false;
     }
     public void doLanding(){

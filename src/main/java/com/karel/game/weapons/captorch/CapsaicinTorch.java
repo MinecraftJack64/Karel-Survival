@@ -75,6 +75,30 @@ public class CapsaicinTorch extends Weapon
     public int getRarity(){
         return 0;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return range;
+        }
+        public int getNumTargets(){
+            return -1;
+        }
+        public int getUltEffectiveRange(){
+            return 600;
+        }
+        public int getUltNumTargets(){
+            return -1;
+        }
+        //AVERAGE SPEED OF PROJECTILE
+        public double getLead(double d){
+            return 18;
+        }
+        public double getUltLead(){
+            return 15;
+        }
+    }
 }
 
 

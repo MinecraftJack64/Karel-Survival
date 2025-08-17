@@ -77,6 +77,24 @@ public class Blowgun extends Weapon
     public int getRarity(){
         return 2;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 340;
+        }
+        public int getUltEffectiveRange(){
+            return 120;
+        }
+        public double getLead(){
+            return 17;
+        }
+        //AVERAGE SPEED OF PROJECTILE
+        public double getLead(double d){
+            return 15;
+        }
+    }
 }
 
 

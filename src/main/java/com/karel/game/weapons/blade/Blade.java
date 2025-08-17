@@ -101,6 +101,27 @@ public class Blade extends Weapon
     public int getRarity(){
         return 0;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 110;
+        }
+        public int getNumTargets(){
+            return -1;
+        }
+        public int getUltEffectiveRange(){
+            return 500;
+        }
+        public int getUltIdealRange(){
+            return 110;
+        }
+        //TODO: requires number of nearby enemies, more when farther, just one when close
+        public boolean shouldUseUlt(){
+            return true;
+        }
+    }
 }
 
 

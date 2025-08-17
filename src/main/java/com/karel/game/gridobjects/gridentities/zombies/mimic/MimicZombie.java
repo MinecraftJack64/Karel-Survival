@@ -1,41 +1,41 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.mimic;
+
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
+import com.karel.game.LandingHandler;
+import com.karel.game.ZombieClass;
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.Weapon.BotGuide;
 
-/**
- * Write a description of class ShooterZombie here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Bot extends Pet
-{
+public class MimicZombie extends Zombie {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer};
+
     private boolean movementLock;
     private boolean rotationLock;
 
-    public BotHand hand = new BotHand();
+    public MimicZombieHand hand = new MimicZombieHand();
     private Weapon weapon;
-    private boolean needToEquip;
 
-    public String getStaticTextureURL(){return "chick.png";}
+    private Mimicker lasso;
+
+    public String getStaticTextureURL(){return "gunzareln.png";}
+    private static double mimicRange = 600;
     /**
      * Initilise this rocket.
      */
-    public Bot(GridEntity source)
+    public MimicZombie()
     {
-        super(source);
-        setSpeed(6);
-        startHealth(2000);
-        scaleTexture(55);
+        setSpeed(4);
+        startHealth(600);
     }
     @SuppressWarnings("static-access")
     public void behave()
     {
         double monangle = rotationLock?getRotation():face(getTarget(), canMove());
-        System.out.println(rotationLock);
         if(weapon!=null){
             BotGuide bg = weapon.getBotGuide();
-            if(!weapon.continueUse()&&(bg.shouldUseUlt()&&weapon.ultReady()||weapon.continueUlt())){
+            if(bg.shouldUseUlt()&&weapon.ultReady()||weapon.continueUlt()){
                 int ideal = bg.getUltIdealRange();
                 if(weapon.continueUlt()){
                     weapon.ult();
@@ -67,9 +67,10 @@ public class Bot extends Pet
             weapon.tick();
             return;
         }
-        if(distanceTo(getTarget())>300)walk(monangle, 1);
+        if(distanceTo(getTarget())>mimicRange)walk(monangle, 1);
         else{
-            //
+            if(lasso==null)fireMimicker();
+            if(!lasso.isInWorld())lasso = null;
         }
     }
     public boolean canMove(){
@@ -87,22 +88,14 @@ public class Bot extends Pet
             weapon.use();
         }
     }
-    public void setWeapon(Weapon w){
-        if(w!=weapon&&weapon!=null){
-            weapon.unequip();
-        }
-        weapon = w;
-        if(isInWorld()){
-            weapon.equip();
-        }else{
-            needToEquip = true;
-        }
+    public void fireMimicker(){
+        lasso = new Mimicker(getTarget(), this);
+        getTarget().addObjectHere(lasso);
     }
-    public void notifyWorldAdd(){
-        super.notifyWorldAdd();
-        if(needToEquip){
-            needToEquip = false;
-            weapon.equip();
+    public void notifyHit(Weapon w){
+        if(w!=null){
+            weapon = w;
+            w.equip();
         }
     }
     public void notifyDamage(GridEntity target, int amt) {
@@ -118,13 +111,16 @@ public class Bot extends Pet
     public boolean prioritizeTarget(){
         return true;
     }
-    public BotHand getHand(){
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    public MimicZombieHand getHand(){
         return hand;
     }
     public String getName(){
-        return "Bot Zombie";
+        return "Mimic Zombie";
     }
-    public class BotHand implements ItemHolder{
+    public class MimicZombieHand implements ItemHolder{
         //TODO
         private boolean targetLocked;
         private double prevX, prevY;
@@ -152,10 +148,10 @@ public class Bot extends Pet
             movementLock = t;
         }
         public boolean isAttacking(){
-            return true;//TODO
+            return distanceTo(getTarget())<=mimicRange;
         }
         public boolean isMoving(){
-            return true;//TODO
+            return distanceTo(getTarget())>30;
         }
         public double getReloadSpeed(){
             return getHolder().getReloadMultiplier();
@@ -163,8 +159,8 @@ public class Bot extends Pet
         public boolean isMainWeapon(){
             return false;
         }
-        public Bot getHolder(){
-            return Bot.this;
+        public MimicZombie getHolder(){
+            return MimicZombie.this;
         }
     }
 }
