@@ -18,6 +18,7 @@ public abstract class KActor
     World world;
     Texture image;
     boolean shouldRemove;
+    String lastTexturePath = "";
     private GridObject mounter;
     private String drawCenter = "center"; // "top" or "center"
     private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
@@ -95,6 +96,9 @@ public abstract class KActor
     public String spriteOrigin(){
         return "";
     }
+    public String getImageURL(){
+        return spriteOrigin()+lastTexturePath;
+    }
     public void processImage(){
         //image
     }
@@ -106,6 +110,7 @@ public abstract class KActor
         processImage();
     }
     public void setImage(String path){
+        lastTexturePath = path;
         setImage(Greenfoot.loadTexture(spriteOrigin()+path));
     }
     public Texture getImage(){

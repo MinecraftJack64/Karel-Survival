@@ -1,7 +1,17 @@
-package com.karel.game;
+package com.karel.game.gamemodes.adventure;
 import java.util.ArrayList;
 
-import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.Game;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Levels;
+import com.karel.game.Levels.LevelRunner;
+import com.karel.game.gamemodes.SpawnData;
+import com.karel.game.Spawner;
+import com.karel.game.Wizard;
+import com.karel.game.World;
+import com.karel.game.ZombieHerald;
 
 /**
  * Write a description of class AdventureSpawner here.
@@ -9,21 +19,22 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SandboxSpawner implements Spawner
+public class AdventureSpawner implements Spawner
 {
-    private int bossphase = 0;
-    private boolean bossfight;
+    //private int bossphase = 0;
+    //private boolean bossfight;
     public int cwavecooldown = 200;
     public GridEntity boss;
-    public World myWorld = Game.world;
     public LevelRunner runner;
+    private World myWorld = Game.world;
     public ArrayList<Class> spawnTypes;
     public ArrayList<Integer> spawnCount;
     public ArrayList<GridEntity> currentlySpawned = new ArrayList<GridEntity>();
     public int level;
     private boolean complete = false;
-    Zombie myz;
-    public SandboxSpawner(){
+    public AdventureSpawner(int startinglevel){
+        runner = Levels.getLevelRunner(startinglevel);
+        level = startinglevel;
     }
     public boolean isBossWave(){
         return false;
@@ -38,9 +49,11 @@ public class SandboxSpawner implements Spawner
         return t;
     }
     public void checkSpawn(){
-        if(myz==null||myz.isDead()){
-            myz = new Zombie();
-            spawnZombie(myz);
+        if(runner.getNumRemainingWaves()<=0){
+            if(remaining()==0)complete = true;
+        }else
+        if(runner.canSpawnNextWave(remaining(), currentlySpawned.size())){
+            spawnZombies(runner.nextWave());
         }
     }
     public void spawnZombies(SpawnData dat)
@@ -50,7 +63,7 @@ public class SandboxSpawner implements Spawner
         currentlySpawned = new ArrayList<GridEntity>();
         for(int i = 0; i < spawnTypes.size(); i++){
             for(int f = 0; f < spawnCount.get(i); f++){
-                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).newInstance());
+                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).getDeclaredConstructor().newInstance());
                 spawnZombie(toSpawn);currentlySpawned.add(toSpawn);}catch(Exception e){e.printStackTrace();}
             }
         }
@@ -90,19 +103,19 @@ public class SandboxSpawner implements Spawner
     public void startBossFight(){
         Wizard wizzie = new Wizard();
         spawnZombie(wizzie, myWorld.gridwidth/2, myWorld.gridheight/2);
-        bossphase = 1;
+        //bossphase = 1;
         boss = wizzie;
-        bossfight = true;
+        //bossfight = true;
         myWorld.bossBG();
     }
     public void stopBossFight(){
-        bossfight = false;
-        bossphase = 0;
+        //bossfight = false;
+        //bossphase = 0;
         myWorld.resetBG();
         boss = null;
     }
     public void setBossPhase(int p){
-        bossphase = p;
+        //bossphase = p;
     }
     public boolean levelComplete(){
         return complete;

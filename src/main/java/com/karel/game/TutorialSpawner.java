@@ -1,6 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 
@@ -16,7 +17,6 @@ public class TutorialSpawner implements Spawner
     public int cwavecooldown = 200;
     public GridEntity boss;
     public World myWorld = Game.world;
-    public LevelRunner runner;
     public ArrayList<Class> spawnTypes;
     public ArrayList<Integer> spawnCount;
     public ArrayList<GridEntity> currentlySpawned = new ArrayList<GridEntity>();

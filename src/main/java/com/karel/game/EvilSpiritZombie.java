@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 /**
  * Write a description of class DemonZombie here.
@@ -17,13 +16,16 @@ public class EvilSpiritZombie extends SpawnableZombie
     /**
      * Initilise this rocket.
      */
-    public EvilSpiritZombie(GridEntity hive)
+    public EvilSpiritZombie()
     {
         scaleTexture(15, 15);
         setSpeed(4);
         startHealth(30);
-        setTeam(hive.getTeam());
+    }
+    public EvilSpiritZombie(GridEntity hive){
+        this();
         myhive = hive;
+        setTeam(hive.getTeam());
     }
 
     /**
@@ -42,7 +44,7 @@ public class EvilSpiritZombie extends SpawnableZombie
                 hit(damage, this);//intended
             }
         }
-        if(myhive.isDead()){
+        if(myhive!=null&&myhive.isDead()){
             hit(1, this);
         }
     }

@@ -1,27 +1,34 @@
-package com.karel.game;
+package com.karel.game.gamemodes.survival;
+import com.karel.game.Game;
+import com.karel.game.GameMode;
+import com.karel.game.Player;
+import com.karel.game.Spawner;
+import com.karel.game.Teams;
+import com.karel.game.ZombieSpawner;
+
 /**
- * Write a description of class Adventure here.
+ * Write a description of class Survival here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Adventure extends GameMode
+public class Survival extends GameMode
 {
     private Player player;
     private Teams teams;
-    public AdventureSpawner spawner;
+    public ZombieSpawner spawner;
     private String status;
     private static int highscore;
-    private static int level = 0;
     /**
-     * Constructor for objects of class Adventure
+     * Constructor for objects of class Survival
      */
-    public Adventure()
+    public Survival()
     {
     }
     public void tick(){
         spawner.checkSpawn();
-        if(player.isDead()||spawner.levelComplete()){
+        Game.gameUI().waveCounter.setValue(spawner.wavelevel);
+        if(player.isDead()){
             gameOver();
         }
     }
@@ -34,12 +41,15 @@ public class Adventure extends GameMode
         teams.setAggro("player", "lootbox", false);
         teams.setAlly("zombie", "zombie", false);
         teams.setAlly("player", "player", false);
+        teams.addTeam("god");
+        teams.setAggro("god", "zombie", false);
+        teams.setAggro("god", "player", false);
+        teams.setAggro("god", "lootbox", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
         player = rocket;
-        spawner = new AdventureSpawner(level);
-        SupplyCrate test = new SupplyCrate();
-        getWorld().addObject(test, 500.0, 500.0);
+        spawner = new ZombieSpawner();
+        spawner.spawnZombies(1, 1);
         status = "running";
         resetScore();
         System.out.println(teams);
@@ -57,20 +67,15 @@ public class Adventure extends GameMode
         return status;
     }
     public int getHighScore(){
-        return 0;
+        return highscore;
     }
     public void gameOver() 
     {
-        if(spawner.levelComplete()){
-            status = "win";
-            gameUI().gameOver(level+1, true);
-            level++;
-            if(level>=Levels.getNumLevels()){
-                level = 0;
-            }
-        }else{
-            gameUI().gameOver(level+1, false);
-            status = "lose";
+        boolean beaths = getScore()>highscore;
+        if(beaths){
+            highscore = getScore();
         }
+        gameUI().gameOver(beaths);
+        status = "lose";
     }
 }

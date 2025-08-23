@@ -1,24 +1,35 @@
-package com.karel.game;
+package com.karel.game.gamemodes.sandbox;
+
+import com.karel.game.Game;
+import com.karel.game.GameMode;
+import com.karel.game.Player;
+import com.karel.game.Spawner;
+import com.karel.game.Teams;
+import com.karel.game.ZombieSpawner;
+import com.karel.game.ui.SandboxUI;
 /**
  * Write a description of class Protect here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Protect extends GameMode
+public class Sandbox extends GameMode
 {
     private Player player;
-    private Baby baby;
     private Teams teams;
     public ZombieSpawner spawner;
     private String status;
     private static int highscore;
     private int respawncooldown;
+    private SandboxUI ui;
+    private String selectedZombieID;
+    private int selectedZombie;
     /**
-     * Constructor for objects of class Protect
+     * Constructor for objects of class Sandbox
      */
-    public Protect()
+    public Sandbox()
     {
+        ui = new SandboxUI();
     }
     public void tick(){
         getSpawner().checkSpawn();
@@ -33,10 +44,9 @@ public class Protect extends GameMode
                 respawncooldown = 60;
             }
         }
-        if(baby.isDead()){
-            player.die(null);
-            gameOver();
-        }
+        Game.setUIScreenScaleAndOffset(ui);
+        ui.update();
+        ui.render();
     }
     public void startGame(){
         teams = new Teams();
@@ -49,16 +59,24 @@ public class Protect extends GameMode
         teams.setAlly("player", "player", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
-        Baby obj = new Baby();
-        getWorld().addToGrid(obj, 12, 8);
-        baby = obj;
         player = rocket;
         spawner = new ZombieSpawner();
         spawner.spawnZombies(1, 1);
         status = "running";
         resetScore();
+        ui.create();
         System.out.println(teams);
         respawncooldown = 60;
+    }
+    public int getSelectedZombie(){
+        return selectedZombie;
+    }
+    public String getSelectedZombieID(){
+        return selectedZombieID;
+    }
+    public void setSelectedZombie(int selectedZombie, String id){
+        this.selectedZombie = selectedZombie;
+        this.selectedZombieID = id;
     }
     public Teams getTeams(){
         return teams;
@@ -69,22 +87,10 @@ public class Protect extends GameMode
     public Player getPlayer(){
         return player;
     }
-    public Baby getBaby(){
-        return baby;
-    }
     public String getStatus(){
         return status;
     }
     public int getHighScore(){
         return highscore;
-    }
-    public void gameOver() 
-    {
-        boolean beaths = getScore()>highscore;
-        if(beaths){
-            highscore = getScore();
-        }
-        gameUI().gameOver(beaths);
-        status = "lose";
     }
 }

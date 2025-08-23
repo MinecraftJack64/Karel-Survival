@@ -98,4 +98,7 @@ public class ShapeshifterZombie extends Zombie implements Possessor{
         if(options.size()==0)return null;
         return options.get(Greenfoot.getRandomNumber(options.size()));
     }
+    public String getName(){
+        return "Shapeshifter Zombie";
+    }
 }

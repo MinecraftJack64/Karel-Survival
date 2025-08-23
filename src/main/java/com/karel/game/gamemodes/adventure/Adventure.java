@@ -1,30 +1,34 @@
-package com.karel.game;
+package com.karel.game.gamemodes.adventure;
+
+import com.karel.game.GameMode;
+import com.karel.game.Levels;
+import com.karel.game.Player;
+import com.karel.game.Spawner;
+import com.karel.game.SupplyCrate;
+import com.karel.game.Teams;
+
 /**
  * Write a description of class Adventure here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Sandbox extends GameMode
+public class Adventure extends GameMode
 {
     private Player player;
     private Teams teams;
-    public TutorialSpawner spawner;
+    public AdventureSpawner spawner;
     private String status;
-    private static int highscore;
     private static int level = 0;
-    private boolean tutorialcomplete = false;
-    private int tutorialphase = 0;
-    private double playerogx, playerogy;
     /**
      * Constructor for objects of class Adventure
      */
-    public Sandbox()
+    public Adventure()
     {
     }
     public void tick(){
-        //
-        if(player.isDead()||tutorialcomplete){
+        spawner.checkSpawn();
+        if(player.isDead()||spawner.levelComplete()){
             gameOver();
         }
     }
@@ -39,10 +43,10 @@ public class Sandbox extends GameMode
         teams.setAlly("player", "player", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
-        playerogx = rocket.getX();
-        playerogy = rocket.getY();
         player = rocket;
-        spawner = new TutorialSpawner();
+        spawner = new AdventureSpawner(level);
+        SupplyCrate test = new SupplyCrate();
+        getWorld().addObject(test, 500.0, 500.0);
         status = "running";
         resetScore();
         System.out.println(teams);
@@ -64,12 +68,15 @@ public class Sandbox extends GameMode
     }
     public void gameOver() 
     {
-        if(tutorialcomplete){
+        if(spawner.levelComplete()){
             status = "win";
-            gameUI().gameOver("tutorial", true);
+            gameUI().gameOver(level+1, true);
             level++;
+            if(level>=Levels.getNumLevels()){
+                level = 0;
+            }
         }else{
-            gameUI().gameOver("tutorial", false);
+            gameUI().gameOver(level+1, false);
             status = "lose";
         }
     }

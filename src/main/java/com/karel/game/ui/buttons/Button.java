@@ -17,6 +17,8 @@ public class Button extends Overlay
     private Color barColor = Raylib.GRAY, barDisabledColor = Raylib.LIGHTGRAY, barHoverColor = Raylib.DARKGRAY;
     private int width, height;
     private String text = "";
+    private int textOffsetY = 0;
+    private boolean showText = true;
     private Color textColor = Raylib.GREEN;
     private int state = 0;//-1 - inactive, 0 - normal, 1 - mouse over, 2 - mouse clicked
     private boolean active = true;
@@ -44,7 +46,19 @@ public class Button extends Overlay
     public void setText(String s){
         text = s;
     }
-    
+    public String getText(){
+        return text;
+    }
+    public void setTextOffsetY(int offsetY){
+        textOffsetY = offsetY;
+    }
+    public void setShowText(boolean showText){
+        this.showText = showText;
+    }
+    public int getState(){
+        return state;
+    }
+
     public void update() {
         //test if mouse over
         int nstate = state;
@@ -96,12 +110,20 @@ public class Button extends Overlay
         int size = width/5;
         Raylib.drawRectangle(renderTransformX((int)(getX()-width/2)), renderTransformY((int)(getY()-height/2)), renderOriginX(width), renderTransformY(height), c);
         int x = renderTransformX((int)getX()-Raylib.measureText(text, size)/2);
-        int y = renderTransformY((int)getY()-Raylib.getFontDefault().getBaseSize()*(size/10)/2);
-        Raylib.drawText(text, x, y, (int)(size*getWorld().getScreenScale()), textColor);
+        int y = renderTransformY((int)getY()-Raylib.getFontDefault().getBaseSize()*(size/10)/2-textOffsetY);
+        if(showText) Raylib.drawText(text, x, y, (int)(size*getWorld().getScreenScale()), textColor);
     }
     public double getBottom(){
         return height+getY();
     }
+    public int getSizeWidth(){
+        return width;
+    }
+
+    public int getSizeHeight(){
+        return height;
+    }
+
     public void setActive(boolean s){
         active = s;
     }

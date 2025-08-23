@@ -1,27 +1,48 @@
-package com.karel.game;
+package com.karel.game.gamemodes.protect;
+
+import com.karel.game.Baby;
+import com.karel.game.GameMode;
+import com.karel.game.Player;
+import com.karel.game.Spawner;
+import com.karel.game.Teams;
+import com.karel.game.ZombieSpawner;
+
 /**
- * Write a description of class Survival here.
+ * Write a description of class Protect here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Survival extends GameMode
+public class Protect extends GameMode
 {
     private Player player;
+    private Baby baby;
     private Teams teams;
     public ZombieSpawner spawner;
     private String status;
     private static int highscore;
+    private int respawncooldown;
     /**
-     * Constructor for objects of class Survival
+     * Constructor for objects of class Protect
      */
-    public Survival()
+    public Protect()
     {
     }
     public void tick(){
-        spawner.checkSpawn();
-        Game.gameUI().waveCounter.setValue(spawner.wavelevel);
+        getSpawner().checkSpawn();
         if(player.isDead()){
+            respawncooldown--;
+            if(respawncooldown<=0){
+                Player np = new Player();
+                getWorld().addObject(np, player.getX(), player.getY());
+                np.setRotation(player.getRotation());
+                getWorld().removeObject(player);
+                player = np;
+                respawncooldown = 60;
+            }
+        }
+        if(baby.isDead()){
+            player.die(null);
             gameOver();
         }
     }
@@ -34,20 +55,18 @@ public class Survival extends GameMode
         teams.setAggro("player", "lootbox", false);
         teams.setAlly("zombie", "zombie", false);
         teams.setAlly("player", "player", false);
-        teams.addTeam("god");
-        teams.setAggro("god", "zombie", false);
-        teams.setAggro("god", "player", false);
-        teams.setAggro("god", "lootbox", false);
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
-        GOD god = new GOD();
-        //getWorld().addToGrid(god, 0, 0);
+        Baby obj = new Baby();
+        getWorld().addToGrid(obj, 12, 8);
+        baby = obj;
         player = rocket;
         spawner = new ZombieSpawner();
         spawner.spawnZombies(1, 1);
         status = "running";
         resetScore();
         System.out.println(teams);
+        respawncooldown = 60;
     }
     public Teams getTeams(){
         return teams;
@@ -57,6 +76,9 @@ public class Survival extends GameMode
     }
     public Player getPlayer(){
         return player;
+    }
+    public Baby getBaby(){
+        return baby;
     }
     public String getStatus(){
         return status;

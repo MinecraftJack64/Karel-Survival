@@ -1,71 +1,11 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
+import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
-
-final class ZombieGroup{
-    private final Class type;
-    private final int count;
-    public ZombieGroup(Class type, int cnt){
-        this.type = type;
-        this.count = cnt;
-    }
-    public Class getType(){
-        return type;
-    }
-    public int getCount(){
-        return count;
-    }
-}
-final class Wave{
-    private final double threshold;
-    private final ZombieGroup[] groups;
-    public Wave(double threshold, ZombieGroup... groups){
-        this.threshold = threshold;
-        this.groups = groups;
-    }
-    public double getThreshold(){
-        return threshold;
-    }
-    public SpawnData getSpawnData(){
-        ArrayList<Class> st = new ArrayList<Class>();
-        ArrayList<Integer> sc = new ArrayList<Integer>();
-        for(ZombieGroup g: groups){
-            st.add(g.getType());
-            sc.add(g.getCount());
-        }
-        return new SpawnData(st, sc);
-    }
-}
-final class Level{
-    Wave waves[];
-    public Level(Wave... waves){
-        this.waves = waves;
-    }
-    public LevelRunner getRunner(){
-        return new LevelRunner(waves);
-    }
-}
-final class LevelRunner{
-    Wave waves[];
-    int loc;
-    public LevelRunner(Wave... waves){
-        this.waves = waves;
-        this.loc = 0;
-    }
-    public int getNumRemainingWaves(){
-        return waves.length-loc;
-    }
-    public boolean canSpawnNextWave(int numliving, int max){
-        if(max==0)return true;
-        return numliving*1.0/max<=waves[loc].getThreshold();
-    }
-    public SpawnData nextWave(){
-        return waves[loc++].getSpawnData();
-    }
-}
 /**
  * Write a description of class Levels here.
  * 
@@ -114,5 +54,66 @@ public class Levels
     }
     public static int getNumLevels(){
         return lvls.length;
+    }
+    public static final class ZombieGroup{
+        private final Class type;
+        private final int count;
+        public ZombieGroup(Class type, int cnt){
+            this.type = type;
+            this.count = cnt;
+        }
+        public Class getType(){
+            return type;
+        }
+        public int getCount(){
+            return count;
+        }
+    }
+    public static final class Wave{
+        private final double threshold;
+        private final ZombieGroup[] groups;
+        public Wave(double threshold, ZombieGroup... groups){
+            this.threshold = threshold;
+            this.groups = groups;
+        }
+        public double getThreshold(){
+            return threshold;
+        }
+        public SpawnData getSpawnData(){
+            ArrayList<Class> st = new ArrayList<Class>();
+            ArrayList<Integer> sc = new ArrayList<Integer>();
+            for(ZombieGroup g: groups){
+                st.add(g.getType());
+                sc.add(g.getCount());
+            }
+            return new SpawnData(st, sc);
+        }
+    }
+    public static final class Level{
+        Wave waves[];
+        public Level(Wave... waves){
+            this.waves = waves;
+        }
+        public LevelRunner getRunner(){
+            return new LevelRunner(waves);
+        }
+    }
+    public static final class LevelRunner{
+        Wave waves[];
+        int loc;
+        public LevelRunner(Wave... waves){
+            this.waves = waves;
+            this.loc = 0;
+        }
+        public int getNumRemainingWaves(){
+            return waves.length-loc;
+        }
+        public boolean canSpawnNextWave(int numliving, int max){
+            if(max==0)return true;
+            return numliving*1.0/max<=waves[loc].getThreshold();
+        }
+        public SpawnData nextWave(){
+            return waves[loc++].getSpawnData();
+        }
     }
 }

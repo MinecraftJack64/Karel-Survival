@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.sudo;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Nuke;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.teslacoil.ChargeBomb;
 

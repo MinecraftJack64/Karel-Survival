@@ -2,6 +2,7 @@ package com.karel.game;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;

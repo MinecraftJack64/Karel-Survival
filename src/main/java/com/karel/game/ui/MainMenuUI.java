@@ -71,7 +71,7 @@ public class MainMenuUI extends UI
         getWorld().addToGrid(tinker, 10, 1);
         Button edit = new Button(100, 50, "Edit", Raylib.GREEN){
             public void click(){
-                //Game.openPlayerEdit();
+                //Game.openEdit();
             }
         };
         getWorld().addToGrid(edit, 12, 0);

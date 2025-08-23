@@ -1,9 +1,14 @@
 package com.karel.game;
 
+import com.karel.game.gamemodes.adventure.Adventure;
+import com.karel.game.gamemodes.protect.Protect;
+import com.karel.game.gamemodes.sandbox.Sandbox;
+import com.karel.game.gamemodes.survival.Survival;
 import com.karel.game.ui.GameUI;
 import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.JournalSelectUI;
+import com.karel.game.ui.SandboxUI;
 import com.karel.game.ui.UI;
 
 import static com.raylib.Raylib.getFrameTime;
@@ -101,7 +106,7 @@ public class Game
         }else if(mode.equals("tutorial")){
             game = new Tutorial();
         }else if(mode.equals("sandbox")){
-            //
+            game = new Sandbox();
         }else if(mode.equals("journal")){
             //
         }
@@ -150,12 +155,12 @@ public class Game
         return "Tip: "+tips[Greenfoot.getRandomNumber(tips.length)]+"!";
     }
     public static void setOptions(){
-        modenames = new String[]{"Adventure", "Survival", "Protect"};
-        modeids = new String[]{"adventure", "survival", "protect"};
-        //TODO: modehs = new int[]{0, 0, 0};
+        modenames = new String[]{"Adventure", "Survival", "Protect", "Sandbox"};
+        modeids = new String[]{"adventure", "survival", "protect", "sandbox"};
+        //TODO: modehs = new int[]{0, 0, 0, 0};
         diffnames = new String[]{"Peaceful", "Easy", "Normal", "Hard", "Impossible"};
         difficultyDescriptions = new String[]{"Do not worry about dying, just kill zombies!", "Weaker zombies and more health", "Nice and basic", "Tougher zombies and lower health", "One hit and you die!"};
-        modeDescriptions = new String[]{"Progress through challenging worlds and discover the story!", "Endless waves of zombies! Survive as long as you can!", "Protecting your turret is your only goal!"};
+        modeDescriptions = new String[]{"Progress through challenging worlds and discover the story!", "Endless waves of zombies! Survive as long as you can!", "Protecting your turret is your only goal!", "A freeform mode to test out different zombies and weapons!"};
         tips = new String[]{"Allow your Blade wielding teammates the kill", "Try Impossible difficulty >:)", "Stay away from Fungal Zombies, they do a ton of damage", "Press the alt key to sprint"};
         //difficulties: peaceful: immunity shield, easy: 5000, normal: 2500, hard: 750, impossible: 1
     }
@@ -242,19 +247,19 @@ public class Game
             /*if(gameStatus().equals("running"))*/world.update();
             ui.update();
             if(isPaused())ui2.update();
-            world.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
+            setUIScreenScaleAndOffset(world);
             world.render();
             //if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
-            ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
+            setUIScreenScaleAndOffset(ui);
             ui.render();
-            ui2.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
+            setUIScreenScaleAndOffset(ui2);
             if(isPaused())ui2.render();
         }else if(currentMenu.equals("mainmenu")){
-            ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
+            setUIScreenScaleAndOffset(ui);
             ui.update();
             ui.render();
         }else if(currentMenu.equals("journalhome")){
-            ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
+            setUIScreenScaleAndOffset(ui);
             ui.update();
             ui.render();
         }
@@ -262,6 +267,9 @@ public class Game
             currentMenu = nextMenu;
             nextMenu = "";
         }
+    }
+    public static void setUIScreenScaleAndOffset(World ui){
+        if(ui!=null)ui.setScreenScaleAndOffset(getScreenWidth(), getScreenHeight());
     }
     public static int getMouseX(){
         return lastX;

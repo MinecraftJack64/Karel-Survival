@@ -2,8 +2,6 @@ package com.karel.game.weapons.fastfood;
 
 import com.karel.game.Bullet;
 import com.karel.game.GridObject;
-import com.karel.game.Shield;
-import com.karel.game.weapons.ShieldID;
 
 public class Fry extends Bullet
 {
