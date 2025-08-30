@@ -17,7 +17,7 @@ import com.karel.game.weapons.pointpinner.Pointpinner;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
-import com.karel.game.weapons.spear.SpearWeapon;
+//import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.sudo.Sudo;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.weedwacker.Weedwacker;
@@ -49,6 +49,8 @@ public class Player extends GridEntity {
     private int sprintrecoverrate;
     private int sprint;
     private double sprintamt = 1;
+    private Weapon sudo;
+    private boolean sudoActive;
     public Player() {
         hand = new PlayerHand();
         scaleTexture(45, 45);
@@ -167,12 +169,12 @@ public class Player extends GridEntity {
         if(getHeldItem()!=null&&getHeldItem().isLocked()){
             return getHeldItem();
         }
-        if (this.getHeldItem() != null) {
+        if (this.getHeldItem() != null&&!sudoActive()) {
             this.getHeldItem().unequip();
         }
 
         this.setHeldSlot(slot);
-        if (this.getHeldItem() != null) {
+        if (this.getHeldItem() != null&&!sudoActive()) {
             this.getHeldItem().equip();
             Game.changeHeldItem(this.getHeldItem().getName());
         } else {
@@ -214,6 +216,9 @@ public class Player extends GridEntity {
     public void behave() {
         if (this.getHeldItem() instanceof Tickable) {
             ((Tickable)this.getHeldItem()).tick();
+        }
+        if(sudoActive()){
+            sudo.tick();
         }
         autoaim = Game.isShiftDown();
         autoult = Game.autoUlt();
@@ -337,21 +342,28 @@ public class Player extends GridEntity {
 
         //handle item switching
         if (Greenfoot.isActive("inventoryLeft")) {
-            if (!this.currentlyscrolling) {
+            if (!this.currentlyscrolling&&!sudoActive()) {
                 this.prevSlot();
                 this.currentlyscrolling = true;
             }
         } else if (Greenfoot.isActive("inventoryRight")) {
-            if (!this.currentlyscrolling) {
+            if (!this.currentlyscrolling&&!sudoActive()) {
                 this.nextSlot();
                 this.currentlyscrolling = true;
             }
         } else {
             this.currentlyscrolling = false;
         }
-        
+        if(sudoActive()){
+            if(Greenfoot.isActive("ult")){
+                sudo.ult();
+            }
+            else if(Game.isAttackDown()){
+                sudo.use();
+            }
+        }
         //handle item using
-        if(canAttack()){
+        else if(canAttack()){
             Item i = getHeldItem();
             boolean didspecial = false;
             if(i instanceof Weapon){
@@ -420,6 +432,28 @@ public class Player extends GridEntity {
     public void giveItem(Item i){
         nextEmptySlot();
         equipAtSlot(i);
+    }
+    public void giveSudo(Weapon w){
+        this.sudo = w;
+    }
+    public boolean sudoActive(){
+        return sudoActive;
+    }
+    public void setSudoActive(boolean sudoActive){
+        this.sudoActive = sudoActive;
+        if(sudoActive){
+            if (this.getHeldItem() != null) {
+                this.getHeldItem().unequip();
+            }
+            sudo.equip();
+            Game.changeHeldItem(sudo.getName());
+        }else{
+            sudo.unequip();
+            if(this.getHeldItem()!=null){
+                this.getHeldItem().equip();
+                Game.changeHeldItem(this.getHeldItem().getName());
+            }
+        }
     }
     @Override
     public boolean removeOnDeath(){

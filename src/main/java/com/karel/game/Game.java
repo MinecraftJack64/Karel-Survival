@@ -8,7 +8,6 @@ import com.karel.game.ui.GameUI;
 import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.JournalSelectUI;
-import com.karel.game.ui.SandboxUI;
 import com.karel.game.ui.UI;
 
 import static com.raylib.Raylib.getFrameTime;
@@ -67,6 +66,7 @@ public class Game
     //TODO: private static int modehs[]; // high scores of each mode
 
     public static boolean shiftkey;
+    public static boolean disableGameInputFlag = false;
     
     static String gameMode; // current game mode
     static int gameDiff; // current game difficulty
@@ -225,7 +225,7 @@ public class Game
         timeScale = getFrameTime()/((float)FPS);
         lastX = Greenfoot.getMouseX();
         lastY = Greenfoot.getMouseY();
-        lastClicked = Greenfoot.isActive("attack");
+        lastClicked = Greenfoot.isActive("attack")&&!disableGameInputFlag;
         shiftkey = Greenfoot.isActive("autoaim");
         boolean ocp = currentlypausing;
         currentlypausing = Greenfoot.isActive("pause");
@@ -243,6 +243,7 @@ public class Game
             toggleAutoult();
         }
         if(currentMenu.equals("game")){
+            disableGameInputFlag = false;
             if(gameStatus().equals("running"))game.tick();
             /*if(gameStatus().equals("running"))*/world.update();
             ui.update();

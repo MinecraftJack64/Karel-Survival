@@ -5,6 +5,7 @@ import com.karel.game.GameMode;
 import com.karel.game.Player;
 import com.karel.game.Spawner;
 import com.karel.game.Teams;
+import com.karel.game.weapons.sudo.Sudo;
 import com.karel.game.ZombieSpawner;
 import com.karel.game.ui.SandboxUI;
 /**
@@ -16,6 +17,7 @@ import com.karel.game.ui.SandboxUI;
 public class Sandbox extends GameMode
 {
     private Player player;
+    private Sudo sudo;
     private Teams teams;
     public ZombieSpawner spawner;
     private String status;
@@ -23,7 +25,10 @@ public class Sandbox extends GameMode
     private int respawncooldown;
     private SandboxUI ui;
     private String selectedZombieID;
+    private String selectedTeamID;
     private int selectedZombie;
+    private int selectedTeam;
+    private int selectedMode;
     /**
      * Constructor for objects of class Sandbox
      */
@@ -60,6 +65,8 @@ public class Sandbox extends GameMode
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
         player = rocket;
+        sudo = new Sudo(player.getHand());
+        player.giveSudo(sudo);
         spawner = new ZombieSpawner();
         spawner.spawnZombies(1, 1);
         status = "running";
@@ -77,6 +84,30 @@ public class Sandbox extends GameMode
     public void setSelectedZombie(int selectedZombie, String id){
         this.selectedZombie = selectedZombie;
         this.selectedZombieID = id;
+        sudo.setZombie(id);
+    }
+    public void setSelectedTeam(int selectedTeam, String id){
+        this.selectedTeam = selectedTeam;
+        this.selectedTeamID = id;
+    }
+    public int getSelectedTeam(){
+        return selectedTeam;
+    }
+    public String getSelectedTeamID(){
+        return selectedTeamID;
+    }
+    public int getSelectedMode(){
+        return selectedMode;
+    }
+    public void setSelectedMode(int selectedMode){
+        this.selectedMode = selectedMode;
+        if(selectedMode>0){
+            sudo.setMode(selectedMode);
+            player.setSudoActive(true);
+        }else{
+            sudo.setMode(0);
+            player.setSudoActive(false);
+        }
     }
     public Teams getTeams(){
         return teams;

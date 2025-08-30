@@ -3,6 +3,7 @@ package com.karel.game;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
+import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
@@ -22,6 +23,7 @@ import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.Shapeshifter
 import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
+import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cowboy.CowboyZombie;
 
@@ -81,9 +83,10 @@ public class ZombieFactory {
             "ironclad",
             "torpedo",
             "cowboy",
-            "boid" };
+            "boid",
+            "bot" };
 
-    public static Zombie createZombie(String type) {
+    public static GridEntity createZombie(String type) {
         switch (type) {
             case "zombie":
                 return new Zombie();
@@ -247,6 +250,8 @@ public class ZombieFactory {
             // spy
             case "boid":
                 return new BoidZombie(true);
+            case "bot":
+                return new Bot(null);
         }
         return new Zombie();
     }

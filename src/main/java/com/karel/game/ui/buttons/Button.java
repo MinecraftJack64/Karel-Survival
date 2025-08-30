@@ -82,6 +82,9 @@ public class Button extends Overlay
         if(nstate!=state){
             state = nstate;
         }
+        if(state>0){
+            Game.disableGameInputFlag = true;
+        }
     }
     public boolean isMouseOver(){
         double mxx = getWorld().getMouseX()-getX()+width/2, myy = getWorld().getMouseY()-getY()+height/2;

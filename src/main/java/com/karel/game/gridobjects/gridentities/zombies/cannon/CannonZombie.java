@@ -1,6 +1,12 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.cannon;
 import java.util.List;
 
+import com.karel.game.BombDropper;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
+import com.karel.game.Target;
+import com.karel.game.TickingTimeBomb;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 import java.util.HashSet;
@@ -55,6 +61,7 @@ public class CannonZombie extends Zombie
             }
         }
         if(hold==null&&!bombing){
+            //Pull nearest zombie in and hold = that zombie
             if(canMove()){
                 if(getnearbycooldown<=0||(scammed!=null&&scammed.isDead())){
                     getNearbyZombie();
@@ -80,14 +87,17 @@ public class CannonZombie extends Zombie
                 }
             }
         }else{
+            //Light fuse if enough ammo
             if(!fuseLit&&ammo<=0&&canAttack()&&isgrounded){
                 fuseLit = true;
                 fuse = 30;
                 setAim();
             }
+            //Adjust aim while fuse lit
             if(fuseLit){
                 adjustAim();
             }
+            //Shoot
             if(fuseLit&&fuse<=0){
                 shoot();
                 fuseLit = false;
@@ -95,7 +105,6 @@ public class CannonZombie extends Zombie
             }
         }
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
         if(ammo>0)ammo--;
         if(fuse>0)fuse--;
         if(scammed==null&&hold==null){

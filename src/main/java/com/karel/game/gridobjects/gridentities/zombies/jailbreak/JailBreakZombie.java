@@ -1,12 +1,12 @@
 package com.karel.game.gridobjects.gridentities.zombies.jailbreak;
 
 import com.karel.game.BombDropper;
-import com.karel.game.CannonZombie;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.TickingTimeBomb;
 import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 
 import java.util.HashSet;
 

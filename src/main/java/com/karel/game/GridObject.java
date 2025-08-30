@@ -492,6 +492,14 @@ public abstract class GridObject extends KActor
         }
         return false;
     }
+    public void unmountAll(){
+        if(mounts!=null){
+            for(var g: mounts.entrySet()){
+                g.getKey().notifyUnmount(this);
+            }
+            mounts = null;
+        }
+    }
     
     public void clearMounting(){
         super.clearMounting();

@@ -93,6 +93,9 @@ public class Teams
     public void addTeam(String id){
         teams.put(id, new Team(id));
     }
+    public ArrayList<String> getAllTeams(){
+        return new ArrayList<String>(teams.keySet());
+    }
     public void joinTeam(GridObject g, String team){
         if(!teams.containsKey(team)){
             addTeam(team);

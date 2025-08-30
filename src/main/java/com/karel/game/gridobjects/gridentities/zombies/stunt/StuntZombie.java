@@ -1,7 +1,13 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.stunt;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.LandingHandler;
+import com.karel.game.MetalShield;
+import com.karel.game.SpeedPercentageEffect;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.weapons.ShieldID;
 
 import java.util.HashSet;
@@ -14,13 +20,12 @@ import java.util.HashSet;
  */
 public class StuntZombie extends Zombie implements LandingHandler
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.melee};
     private static final int gunReloadTime = 85;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    public String getStaticTextureURL(){return "cannonzareln.png";}  
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
+    public String getStaticTextureURL(){return "cannonzareln.png";}
     private static double attackrange = 55, retreatrange = 65, bombrange = 20;
     private int calccannoncooldown = 0;
     private int strafecooldown = 0;
@@ -62,10 +67,8 @@ public class StuntZombie extends Zombie implements LandingHandler
         }else{
             calccannoncooldown--;
         }
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         if(distanceTo(getTarget())<retreatrange&&canBomb()){
             if(distanceTo(getTarget())<bombrange){
                 fire();
@@ -110,7 +113,7 @@ public class StuntZombie extends Zombie implements LandingHandler
     private void fire() 
     {
         if (canBomb()){
-            ZSpear bullet = new ZSpear (getRotation(), this);
+            ZStickyBomb bullet = new ZStickyBomb (getRotation(), this);
             getWorld().addObject (bullet, getX(), getY());
             //bullet.move ();
             reloadDelayCount = 0;
@@ -121,7 +124,10 @@ public class StuntZombie extends Zombie implements LandingHandler
         applyEffect(new SpeedPercentageEffect(1.5, 60, this));
         if(!hasShield(new ShieldID(this)))applyShield(new MetalShield(new ShieldID(this), 3));
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 400;
     }
