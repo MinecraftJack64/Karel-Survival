@@ -350,6 +350,25 @@ public abstract class GridObject extends KActor
     
         return nearestTarget;
     }
+    //Ignores whether potential target
+    public GridEntity getNearestOtherGE() {
+        GridEntity nearestTarget = null;
+        double closestDistance = 0;
+    
+        for (GridEntity entity : this.getWorld().allEntities) {
+            if (entity!=this) {
+                double currentDistance = this.distanceTo(entity);
+                
+                if (nearestTarget == null || currentDistance < closestDistance) {
+                    nearestTarget = entity;
+                    closestDistance = currentDistance;
+                }
+            }
+        }
+    
+        return nearestTarget;
+    }
+
     public boolean isPotentialTarget(GridEntity entity){
         return isAggroTowards(entity)&&entity.canDetect();
     }

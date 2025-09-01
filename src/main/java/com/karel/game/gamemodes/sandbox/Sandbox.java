@@ -82,6 +82,7 @@ public class Sandbox extends GameMode
     public void setSelectedTeam(int selectedTeam, String id){
         this.selectedTeam = selectedTeam;
         this.selectedTeamID = id;
+        sudo.setTeam(id);
     }
     public int getSelectedTeam(){
         return selectedTeam;
@@ -111,7 +112,7 @@ public class Sandbox extends GameMode
     public void setSelectedWeapon(int selectedWeapon, String id){
         this.selectedWeapon = selectedWeapon;
         this.selectedWeaponID = id;
-        //TODO: sudo.setWeapon(id);
+        sudo.setWeapon(id);
     }
     public Teams getTeams(){
         return teams;

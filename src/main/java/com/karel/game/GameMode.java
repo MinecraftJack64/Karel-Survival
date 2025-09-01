@@ -60,7 +60,7 @@ public abstract class GameMode implements Tickable
     public Weapon getCraft(){
         Class cls = Weapons.attemptWeaponCrafting(weaponfrags, getPlayer().getInventory());
         if(cls!=null){
-            try{return (Weapon)(cls.getConstructors()[0].newInstance(getPlayer()));}catch(Exception e){e.printStackTrace();return null;}
+            try{return (Weapon)(cls.getConstructors()[0].newInstance(getPlayer().getHand()));}catch(Exception e){e.printStackTrace();return null;}
         }else{
             return null;
         }

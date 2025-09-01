@@ -38,7 +38,6 @@ public class Asteroid extends Bullet
             GridEntity target = getNearestTarget();
             if(target != null){
                 double dirToTarget = face(target, false)-getDirection();
-                System.out.println(dirToTarget);
                 if(Math.abs(dirToTarget)<70&&distanceTo(target)<600){
                     double amt = dirToTarget*((600-distanceTo(target))/2000);
                     setDirection(getDirection()+Math.min(amt, 1.5));

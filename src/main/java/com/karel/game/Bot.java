@@ -8,7 +8,7 @@ import com.karel.game.weapons.Weapon.BotGuide;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bot extends Pet
+public class Bot extends Pet implements ItemAccepter
 {
     private boolean movementLock;
     private boolean rotationLock;
@@ -31,6 +31,10 @@ public class Bot extends Pet
     @SuppressWarnings("static-access")
     public void behave()
     {
+        if(getTarget()==null){
+            if(weapon!=null)weapon.tick();
+            return;
+        }
         double monangle = rotationLock?getRotation():face(getTarget(), canMove());
         System.out.println(rotationLock);
         if(weapon!=null){
@@ -120,6 +124,10 @@ public class Bot extends Pet
     }
     public BotHand getHand(){
         return hand;
+    }
+    @Override
+    public void acceptItem(Item item) {
+        weapon = (Weapon)item;
     }
     public String getName(){
         return "Bot Zombie";

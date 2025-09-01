@@ -4,6 +4,8 @@ import java.util.List;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Hitter;
+import com.karel.game.ItemAccepter;
+import com.karel.game.ItemFactory;
 import com.karel.game.ZombieFactory;
 
 /**
@@ -35,7 +37,7 @@ public class SudoGauntlet extends Hitter
                 }
             }
         }else{
-            if(isAggroTowards(getNearestTarget())){
+            if(getNearestTarget()!=null&&isAggroTowards(getNearestTarget())){
                 damage(getNearestTarget(), scaled?(int)(dmg*getNearestTarget().getMaxHealth()/200.0):dmg);
             }
         }
@@ -52,7 +54,7 @@ public class SudoGauntlet extends Hitter
                 }
             }
         }else{
-            if(isAggroTowards(getNearestTarget())){
+            if(getNearestTarget()!=null&&isAggroTowards(getNearestTarget())){
                 heal(getNearestTarget(), scaled?(int)(dmg*getNearestTarget().getMaxHealth()/200.0):dmg);
             }
         }
@@ -70,7 +72,7 @@ public class SudoGauntlet extends Hitter
                     }
                 }
             }else{
-                if(isAggroTowards(getNearestTarget())){
+                if(getNearestTarget()!=null&&isAggroTowards(getNearestTarget())){
                     mount(getNearestTarget(), face(getNearestTarget(), false)-90, distanceTo(getNearestTarget()));
                 }
             }
@@ -86,12 +88,30 @@ public class SudoGauntlet extends Hitter
             List<GridEntity> l = getGEsInRange(range);
             if(l.size()>0){
                 for(GridEntity g:l){
-                    if(isAggroTowards(g))g.setTeam(team);
+                    g.setTeam(team);
                 }
             }
         }else{
-            if(isAggroTowards(getNearestTarget())){
-                getNearestTarget().setTeam(team);
+            if(getNearestOtherGE()!=null){
+                getNearestOtherGE().setTeam(team);
+            }
+        }
+    }
+    public void applyWeapon(double deg, double dist, int range, boolean ult, String weaponID){
+        attacked = 1;
+        branchOut(getSource(), deg, dist);
+        setVisible(true);
+        if(ult){
+            List<GridEntity> l = getGEsInRange(range);
+            if(l.size()>0){
+                for(GridEntity g:l){
+                    if(g instanceof ItemAccepter a)a.acceptItem(ItemFactory.createItem(weaponID, a.getHand()));
+                }
+            }
+        }else{
+            GridEntity g = getNearestOtherGE();
+            if(g instanceof ItemAccepter a){
+                a.acceptItem(ItemFactory.createItem(weaponID, a.getHand()));
             }
         }
     }

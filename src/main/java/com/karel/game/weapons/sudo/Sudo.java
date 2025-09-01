@@ -19,13 +19,13 @@ public class Sudo extends Weapon
     private static final int ult = 1;
     private SudoGauntlet zap;
     private String zombie;
+    private String weapon;
+    private String team;
     private int mode = 3; // 0 - current, 1 - damage, 2 - heal, 3 - move, 4 - teleport, 5 - give weapon, 6 - give effect 7 - apply team, 8 - summon, 9 - TODO: configure grid entities
     public void fire(){
         int range = 100;
         boolean scaled = false;
         int damage = 20;
-        String team = "player";
-        String zombie = this.zombie;
         if(mode>0){
             if(zap==null){
                 zap = new SudoGauntlet(getHolder());
@@ -57,7 +57,12 @@ public class Sudo extends Weapon
             case 4:
                 getHolder().pullTo(getHand().getTargetX(), getHand().getTargetY());
                 break;
-            case 5: break;
+            case 5:
+                if(reloadDelayCount >= gunReloadTime) {
+                    zap.applyWeapon(getHand().getTargetRotation()-90, getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), range, false, weapon);
+                    reloadDelayCount = 0;
+                }
+                break;
             case 6: break;
             case 7:
                 double d7 = getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY());
@@ -74,7 +79,7 @@ public class Sudo extends Weapon
         int range = 100;
         boolean scaled = false;
         int damage = 20;
-        String team = "player";
+        String weapon = "blade";
         switch(mode){
             case 0:
                 Nuke bullet = new Nuke(getHolder());
@@ -98,7 +103,12 @@ public class Sudo extends Weapon
             case 4:
                 getHolder().pullTo(getHand().getTargetX(), getHand().getTargetY());
                 break;
-            case 5: break;
+            case 5:
+                if(reloadDelayCount >= gunReloadTime) {
+                    zap.applyWeapon(getHand().getTargetRotation()-90, getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), range, true, weapon);
+                    reloadDelayCount = 0;
+                }
+                break;
             case 6: break;
             case 7:
                 double d7 = getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY());
@@ -114,6 +124,12 @@ public class Sudo extends Weapon
     }
     public void setZombie(String z){
         zombie = z;
+    }
+    public void setWeapon(String w){
+        weapon = w;
+    }
+    public void setTeam(String t){
+        team = t;
     }
     public int getUlt(){
         return ult;

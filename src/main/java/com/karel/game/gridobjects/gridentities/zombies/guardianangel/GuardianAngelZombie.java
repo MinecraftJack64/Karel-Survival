@@ -1,6 +1,9 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.guardianangel;
 
+import com.karel.game.ExternalImmunityShield;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Shield;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.ShieldID;
 
@@ -78,12 +81,6 @@ public class GuardianAngelZombie extends Zombie
     public String getName(){
         return "Guardian Angel Zombie";
     }
-    /**
-     * Write a description of class ImmunityShield here.
-     * 
-     * @author (your name) 
-     * @version (a version number or a date)
-     */
     public static class GuardianShield extends Shield
     {
         GridEntity guardian;
@@ -92,7 +89,7 @@ public class GuardianAngelZombie extends Zombie
             this.guardian = guardian;
         }
         public int processDamage(int dmg, GridObject source){
-            guardian.hit(dmg, source);
+            guardian.hit(dmg, guardian);
             return source==getHolder()?dmg:0;//does not stop damage if source is self
         }
         public boolean damage(int amt, GridObject source){
@@ -102,7 +99,4 @@ public class GuardianAngelZombie extends Zombie
             return false;
         }
     }
-
-
-
 }

@@ -304,7 +304,6 @@ public abstract class GridEntity extends GridObject
         attemptClearHealthBar();
         health = maxHealth = amt;
         if(showbar){
-            if(this instanceof Player)System.out.println("HELLO"+amt+" "+showbar);
             healthBar = new LifeBar(amt,40,5,this);
             if(isInWorld())addGraphics();
         }
