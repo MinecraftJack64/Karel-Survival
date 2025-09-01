@@ -1,10 +1,10 @@
 package com.karel.game.gridobjects.gridentities.zombies.arson;
 
-import com.karel.game.FlyingRock;
+import com.karel.game.FlyingProjectile;
 import com.karel.game.GridObject;
 import com.karel.game.particles.FlameTrail;
 
-public class MolotovCocktail extends FlyingRock
+public class MolotovCocktail extends FlyingProjectile
 {
     public MolotovCocktail(double rotation, double targetdistance, double height, GridObject source)
     {

@@ -7,10 +7,12 @@ import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.necromancer.Necromancer;
+import com.karel.game.weapons.rock.RockCatapult;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.sudo.Sudo;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
+import com.karel.game.weapons.traps.TrapSetter;
 /**
  * Write a description of class Weapons here.
  * 

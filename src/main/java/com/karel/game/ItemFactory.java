@@ -1,5 +1,96 @@
+package com.karel.game;
+
+import com.karel.game.weapons.blade.Blade;
+import com.karel.game.weapons.blowgun.Blowgun;
+import com.karel.game.weapons.captorch.CapsaicinTorch;
+import com.karel.game.weapons.catclaw.CatClaw;
+import com.karel.game.weapons.critters.LilCritters;
+import com.karel.game.weapons.crossbow.Crossbow;
+import com.karel.game.weapons.crystalgun.CrystalGun;
+import com.karel.game.weapons.doublegun.DoubleGun;
+import com.karel.game.weapons.easterbasket.EasterBasket;
+import com.karel.game.weapons.fastfood.FastFood;
+import com.karel.game.weapons.gale.Gale;
+import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.necromancer.Necromancer;
+import com.karel.game.weapons.pointpinner.Pointpinner;
+import com.karel.game.weapons.rock.RockCatapult;
+import com.karel.game.weapons.scream.Scream;
+import com.karel.game.weapons.shotgun.Shotgun;
+import com.karel.game.weapons.slicer.Slicer;
+import com.karel.game.weapons.spear.SpearWeapon;
+import com.karel.game.weapons.teslacoil.TeslaCoil;
+import com.karel.game.weapons.traps.TrapSetter;
+import com.karel.game.weapons.weedwacker.Weedwacker;
+
 public class ItemFactory
 {
+    private static String[] weapons = {"gun",
+                                    "rock",
+                                    "gale",
+                                    "blade",
+                                    "slicer",
+                                    "crossbow",
+                                    "shotgun",
+                                    "traps",
+                                    "spear",
+                                    "weedwacker",
+                                    "necromancer",
+                                    "easterbasket",
+                                    "catclaw",
+                                    "mole",
+                                    "fireworks",
+                                    "teslacoil",
+                                    "soup",
+                                    "lovestrike",
+                                    "drone",
+                                    "farmer",
+                                    "crystalgun",
+                                    "grenade",
+                                    //"snakecharmer",
+                                    "blowgun",
+                                    "hearth",
+                                    //"mountaineer",
+                                    "airpump",
+                                    //"maelstrom",
+                                    "scream",
+                                    "nailgun",
+                                    "lymphcannon",
+                                    "gluegun",
+                                    //"lanternlobber",
+                                    //"whip",
+                                    "jadecutter",
+                                    "pointpinner",
+                                    "waterballoons",
+                                    "chameleon",
+                                    //"hellphand",
+                                    //"monkeystaff",
+                                    //"pinball",
+                                    //"antimattergun",
+                                    "captorch",
+                                    //"electricfists",
+                                    "reaper",
+                                    "critters",
+                                    //"frostspirit",
+                                    //"fairyring",
+                                    //"taxcollector",
+                                    //"realsim",
+                                    //"capacitor",
+                                    //"flyswatter",
+                                    //"sodahat",
+                                    //"coco",
+                                    "flail",
+                                    //"rifle",
+                                    //"traffix",
+                                    //"spellbook",
+                                    //"deathsicle",
+                                    //"hyperdrive",
+                                    //"gum",
+                                    //"tumbleweed",
+                                    "paintgun",
+                                    "flashdrive",
+                                    "doublegun",
+                                    "fastfood"};
     public static Item createItem(String type, ItemHolder holder)
     {
         switch(type)
@@ -21,7 +112,7 @@ public class ItemFactory
             case "shotgun":
                 return new Shotgun(holder);
             case "traps":
-                return new TrapSetter(holder);
+                return new TrapSetter(holder);//
             case "spear":
                 return new SpearWeapon(holder);
             case "weedwacker":
@@ -33,33 +124,117 @@ public class ItemFactory
             case "catclaw":
                 return new CatClaw(holder);
             case "mole":
-                return new PetMole(holder);
+                return new PetMole(holder);//
             case "fireworks":
-                return new Fireworks(holder);
+                return new Fireworks(holder);//
             case "teslacoil":
                 return new TeslaCoil(holder);
             case "soup":
-                return new Soup(holder);
+                return new Soup(holder);//
             case "lovestrike":
-                return new Lovestrike(holder);
+                return new Lovestrike(holder);//
             case "drone":
-                return new DroneRemote(holder);
+                return new DroneRemote(holder);//
             case "farmer":
-                return new Farmer(holder);
+                return new Farmer(holder);//
             case "crystalgun":
                 return new CrystalGun(holder);
             case "grenade":
-                return new GrenadeLauncher(holder);
+                return new GrenadeLauncher(holder);//
             case "snakecharmer":
                 //return new SnakeCharmer(holder);
             case "blowgun":
                 return new Blowgun(holder);
             case "hearth":
-                return new Hearth(holder);
-            case "mountainclimber":
+                return new Hearth(holder);//
+            case "mountaineer":
                 //return new MountainClimber(holder);
+            case "airpump":
+                return new AirPump(holder);
+            case "maelstrom":
+                //return new Maelstrom(holder);
+            case "scream":
+                return new Scream(holder);
+            case "nailgun":
+                return new NailGun(holder);//
+            case "lymphcannon":
+                return new LymphCannon(holder);//
+            case "gluegun":
+                return new GlueGun(holder);//
+            case "lanternlobber":
+                //return new LanternLobber(holder);
+            case "whip":
+                //return new Whip(holder);
+            case "jadecutter":
+                return new JadeCutter(holder);//
+            case "pointpinner":
+                return new Pointpinner(holder);
+            case "waterballoons":
+                return new WaterBalloons(holder);//
+            case "chameleon":
+                return new Chameleon(holder);//
+            case "hellphand":
+                //return new Hellphand(holder);
+            case "monkeystaff":
+                //return new MonkeyStaff(holder);
+            case "pinball":
+                //return new Pinball(holder);
+            case "antimattergun":
+                //return new AntimatterGun(holder);
+            case "captorch":
+                return new CapsaicinTorch(holder);
+            case "electricfists":
+                //return new ElectricFists(holder);
+            case "reaper":
+                return new Reaper(holder);//
+            case "critters":
+                return new LilCritters(holder);
+            case "frostspirit":
+                //return new FrostSpirit(holder);
+            case "fairyring":
+                //return new FairyRing(holder);
+            case "taxcollector":
+                //return new TaxCollector(holder);
+            case "realsim":
+                //return new RealitySimulator(holder);
+            case "capacitor":
+                //return new PolarCapacitor(holder);
+            case "flyswatter":
+                //return new PneumaticFlyswatter(holder);
+            case "sodahat":
+                //return new SodaHat(holder);
+            case "coco":
+                //return new Coco(holder);
+            case "flail":
+                return new Flail(holder);//
+            case "rifle":
+                //return new Rifle(holder);
+            case "traffix":
+                //return new Traffix(holder);
+            case "spellbook":
+                //return new Spellbook(holder);
+            case "deathsicle":
+                //return new Deathsicle(holder);
+            case "hyperdrive":
+                //return new Hyperdrive(holder);
+            case "gum":
+                //return new Gum(holder);
+            case "tumbleweed":
+                //return new TumbleweedLauncher(holder);
+            case "paintgun":
+                //return new PaintSprayer(holder);
+            //MISSING A LOT
+            case "flashdrive":
+                return new FlashDrive(holder);//
+            case "doublegun":
+                return new DoubleGun(holder);
+            case "fastfood":
+                return new FastFood(holder);
             default:
                 return new Gun(holder);
         }
+    }
+    public static String[] getItemTypes() {
+        return weapons;
     }
 }

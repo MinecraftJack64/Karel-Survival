@@ -74,7 +74,7 @@ public abstract class GameMode implements Tickable
         Weapon w = getCraft();
         weaponfrags = 0;
         if(w!=null){
-            getPlayer().giveItem(w);
+            getPlayer().acceptItem(w);
             Sounds.play("craft");
         }else{
             Sounds.play("craftfailed");

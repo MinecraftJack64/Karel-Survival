@@ -6,7 +6,7 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class MoleUppercut extends FlyingRock
+public class MoleUppercut extends FlyingProjectile
 {
     private boolean firstact, issuper;
     private Mole mole;

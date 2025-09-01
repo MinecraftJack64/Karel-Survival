@@ -177,6 +177,9 @@ public class Hitter extends GridObject implements SubAffecter
     public boolean willHit(GridEntity thing){
         return thing==getSource()&&willSelfHarm() || isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing);
     }
+    public boolean isPotentialTarget(GridEntity thing){
+        return super.isPotentialTarget(thing)&&willHit(thing)&&!hitstory.contains(thing);
+    }
     public void doHit(GridEntity asteroid){
         if(!hitSound().equals("")){
             playSound(hitSound());

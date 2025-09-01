@@ -63,6 +63,7 @@ public abstract class Weapon implements Item, Tickable
         holdWith(hand);
     }
     public boolean isMainWeapon(){
+        if(getHand()==null)return false;
         return getHand().isMainWeapon();
     }
     public void setUltUpgrade(int id){

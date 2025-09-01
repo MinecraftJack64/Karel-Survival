@@ -6,7 +6,7 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class Dropper extends FlyingRock
+public class Dropper extends FlyingProjectile
 {
     private GridObject load;
     public Dropper(double rotation, double targetdistance, double height, GridObject toSpawn, GridObject source)

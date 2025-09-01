@@ -1,11 +1,16 @@
-package com.karel.game;
+package com.karel.game.weapons.traps;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
+import com.karel.game.StunEffect;
 
 /**
  * A bullet that can hit asteroids.
  * 
  * @author Poul Henriksen
  */
-public class Mousetrap extends Trap
+public class Mousetrap extends Trap implements ITrap
 {
     /** The damage this bullet will deal */
     private int damage = 100;
@@ -17,6 +22,8 @@ public class Mousetrap extends Trap
     private int hitcooldown, hitrate = 30, hitcount = 4;
     private int speed;
     private double dir;
+
+    private int resnapCooldown;
     public Mousetrap(GridObject source)
     {
         super(source);
@@ -47,6 +54,11 @@ public class Mousetrap extends Trap
                     speed*=0.9;
                 }
                 checkAsteroidHit();life--;
+            }else if(resnapCooldown>0){
+                resnapCooldown--;
+                if(resnapCooldown==25){
+                    explodeOn(75, damage*2);
+                }else if(resnapCooldown==0){isset = true;}
             }
             else attack();
         }
@@ -85,6 +97,11 @@ public class Mousetrap extends Trap
         if(hitcount<=0){
             die();
         }
+    }
+    public void resnap(){
+        isset = false;
+        target = null;
+        resnapCooldown = 50;
     }
     public void die(){
         super.die();

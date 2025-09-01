@@ -6,7 +6,6 @@ import com.karel.game.Player;
 import com.karel.game.Spawner;
 import com.karel.game.Teams;
 import com.karel.game.weapons.sudo.Sudo;
-import com.karel.game.ZombieSpawner;
 import com.karel.game.ui.SandboxUI;
 /**
  * Write a description of class Protect here.
@@ -19,16 +18,17 @@ public class Sandbox extends GameMode
     private Player player;
     private Sudo sudo;
     private Teams teams;
-    public ZombieSpawner spawner;
     private String status;
     private static int highscore;
     private int respawncooldown;
     private SandboxUI ui;
     private String selectedZombieID;
     private String selectedTeamID;
+    private String selectedWeaponID;
     private int selectedZombie;
     private int selectedTeam;
     private int selectedMode;
+    private int selectedWeapon;
     /**
      * Constructor for objects of class Sandbox
      */
@@ -37,15 +37,10 @@ public class Sandbox extends GameMode
         ui = new SandboxUI();
     }
     public void tick(){
-        getSpawner().checkSpawn();
         if(player.isDead()){
             respawncooldown--;
             if(respawncooldown<=0){
-                Player np = new Player();
-                getWorld().addObject(np, player.getX(), player.getY());
-                np.setRotation(player.getRotation());
-                getWorld().removeObject(player);
-                player = np;
+                player.reviveWithHealth();
                 respawncooldown = 60;
             }
         }
@@ -67,8 +62,6 @@ public class Sandbox extends GameMode
         player = rocket;
         sudo = new Sudo(player.getHand());
         player.giveSudo(sudo);
-        spawner = new ZombieSpawner();
-        spawner.spawnZombies(1, 1);
         status = "running";
         resetScore();
         ui.create();
@@ -109,11 +102,22 @@ public class Sandbox extends GameMode
             player.setSudoActive(false);
         }
     }
+    public int getSelectedWeapon(){
+        return selectedWeapon;
+    }
+    public String getSelectedWeaponID(){
+        return selectedWeaponID;
+    }
+    public void setSelectedWeapon(int selectedWeapon, String id){
+        this.selectedWeapon = selectedWeapon;
+        this.selectedWeaponID = id;
+        //TODO: sudo.setWeapon(id);
+    }
     public Teams getTeams(){
         return teams;
     }
     public Spawner getSpawner(){
-        return spawner;
+        return null;
     }
     public Player getPlayer(){
         return player;

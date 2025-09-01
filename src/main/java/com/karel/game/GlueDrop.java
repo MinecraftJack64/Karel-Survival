@@ -8,7 +8,7 @@ import com.karel.game.weapons.EffectID;
  * 
  * @author Poul Henriksen
  */
-public class GlueDrop extends FlyingRock
+public class GlueDrop extends FlyingProjectile
 {
     private double focus;
     public GlueDrop(double rotation, double targetdistance, double focus, GridObject source)

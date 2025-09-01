@@ -7,29 +7,24 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class FlyingRock extends Projectile
+public class FlyingProjectile extends Projectile
 {
     /** The damage this bullet will deal */
     private static final int damage = 200;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 150;
-    private int speed;
     private Arc path;
     private double rot;
     protected int frame;
-    private int range;
     private boolean dieonhit = true;
     private int checkHitMode = 0; // 0 - default check when hit ground, 1 - check when hit ground and on death, 2 - only checkHit on death
     private HashSet<GridEntity> hitstory;
-    public FlyingRock()
+    public FlyingProjectile()
     {
         super(null);
     }
     public double getGravity(){
         return 2;
     }
-    public FlyingRock(double rotation, double targetdistance, double height, GridObject source)
+    public FlyingProjectile(double rotation, double targetdistance, double height, GridObject source)
     {
         super(source);
         rot = rotation;

@@ -5,7 +5,7 @@ package com.karel.game;
  * 
  * @author Poul Henriksen
  */
-public class HijackHealer extends FlyingRock
+public class HijackHealer extends FlyingProjectile
 {
     GridEntity h;
     public HijackHealer(double rotation, double targetdistance, double height, GridObject source, GridEntity myMount)

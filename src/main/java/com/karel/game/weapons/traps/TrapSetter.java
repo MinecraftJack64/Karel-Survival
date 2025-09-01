@@ -1,5 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.traps;
 
+import java.util.ArrayList;
+
+import com.karel.game.Dasher;
+import com.karel.game.ItemHolder;
+import com.karel.game.KActor;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.Weapon;
 
@@ -11,6 +17,7 @@ import com.karel.game.weapons.Weapon;
  */
 public class TrapSetter extends Weapon
 {
+    private ArrayList<ITrap> traps = new ArrayList<ITrap>();
     private Dasher dash;
     private static final int gunReloadTime = 65;
     private static final int dashWaitTime = 12;
@@ -27,7 +34,7 @@ public class TrapSetter extends Weapon
                 dash = null;
                 jumpDelayCount = dashWaitTime;
                 Mousetrap bullet = getAttackUpgrade()==1?new Mousetrap(getHand().getTargetRotation(), getHolder()):new Mousetrap(getHolder());
-                //WeaponFrag bullet = new WeaponFrag();
+                traps.add(bullet);
                 getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
             jumpDelayCount--;
@@ -69,12 +76,25 @@ public class TrapSetter extends Weapon
     }
     public void setTrap(double rot){
         BearTrap bullet = getUltUpgrade()==1?new UpgradedBearTrap(rot, getHolder()):new BearTrap(rot, getHolder());
-        //WeaponFrag bullet = new WeaponFrag();
+        traps.add(bullet);
         getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("setuptrap");
     }
-    public void reload(){
-        reloadDelayCount++;
+    public void onGadgetActivate(){
+        for(int i = traps.size()-1; i >= 0; i--){
+            ITrap t = traps.get(i);
+            if(!((KActor)t).isInWorld()){
+                traps.remove(t);
+            }
+            else t.resnap();
+        }
+        setGadgetTimer(50);
+    }
+    public int defaultGadgets(){
+        return 3;
+    }
+    public void reload(double s){
+        reloadDelayCount+=s;
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
     public int getUlt(){

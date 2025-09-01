@@ -1,12 +1,11 @@
 package com.karel.game;
-import java.util.List;
 
 /**
  * A bullet that can hit asteroids.
  * 
  * @author Poul Henriksen
  */
-public class BigWaterBalloon extends FlyingRock
+public class BigWaterBalloon extends FlyingProjectile
 {
     public BigWaterBalloon(double rotation, double targetdistance, double height, GridObject source)
     {

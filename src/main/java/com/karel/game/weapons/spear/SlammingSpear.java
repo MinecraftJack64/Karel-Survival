@@ -1,7 +1,7 @@
 package com.karel.game.weapons.spear;
 import java.util.HashMap;
 
-import com.karel.game.FlyingRock;
+import com.karel.game.FlyingProjectile;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.StunEffect;
@@ -11,7 +11,7 @@ import com.karel.game.StunEffect;
  * 
  * @author Poul Henriksen
  */
-public class SlammingSpear extends FlyingRock
+public class SlammingSpear extends FlyingProjectile
 {
     HashMap<GridEntity, Integer> scores;
     SpearWeapon myspear;

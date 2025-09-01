@@ -6,7 +6,7 @@ import java.util.List;
  * 
  * @author Jack
  */
-public class Reelin extends FlyingRock implements IBoomerang
+public class Reelin extends FlyingProjectile implements IBoomerang
 {
     private int phase;//0 - lobbing, 1 - returning, 2 - returned
     private double speed;

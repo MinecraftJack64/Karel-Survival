@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.traps;
 
+import com.karel.game.GridEntity;
+import com.karel.game.Pet;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.EffectID;
 
 /**
@@ -7,14 +10,12 @@ import com.karel.game.weapons.EffectID;
  * 
  * @author Poul Henriksen
  */
-public class BearTrap extends Pet
+public class BearTrap extends Pet implements ITrap
 {
     /** The damage this bullet will deal */
     private static final int damage = 75;
     private static final int range = 50;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    private int life = 0;
+    private int resnapCooldown;
     private boolean isset;
     private GridEntity target;
     private int hitcooldown, hitrate = 20, hitcount = 4;
@@ -43,6 +44,14 @@ public class BearTrap extends Pet
             if(speed == 0){
                 isset = true;
             }
+        }
+        if(resnapCooldown>0){
+            resnapCooldown--;
+            if(resnapCooldown==25){
+                Sounds.play("beartrapresnap");
+                explodeOn((int)(range*1.5), damage*4);
+            }
+            if(resnapCooldown==0){isset = true;}
         }
         if(isset){checkAsteroidHit();hit(1, this);}
         else if(target!=null) attack();
@@ -78,6 +87,14 @@ public class BearTrap extends Pet
             damage(target, damage);
         }
         hitcooldown--;
+    }
+    public void resnap(){
+        isset = false;
+        if(target!=null){
+            target.mobilize(new EffectID(this));
+            target = null;
+        }
+        resnapCooldown = 50;
     }
     public int spawnImmunityLength(){
         return 15;

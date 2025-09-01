@@ -109,12 +109,12 @@ public class ZombieSpawner implements Spawner
             if(!Game.isPaused()){
                 for(GridEntity ge: currentlySpawned){
                     if(ge instanceof Zombie){
-                        System.out.println(ge.getName()+" health: "+ge.getHealth()+" isDead? "+ge.isDead());
+                        //System.out.println(ge.getName()+" health: "+ge.getHealth()+" isDead? "+ge.isDead());
                     }
                 }
-                System.out.println(toSpawn);
-                System.out.println("Max health: "+lastMaxHealth);
-                System.out.println("total health: "+totalHealth()+" time until next spawn: "+forceNextSpawn+"\n");
+                //System.out.println(toSpawn);
+                //System.out.println("Max health: "+lastMaxHealth);
+                //System.out.println("total health: "+totalHealth()+" time until next spawn: "+forceNextSpawn+"\n");
             }
             Game.gameUI().updateWaveHealth(totalHealth());
         }
@@ -135,7 +135,7 @@ public class ZombieSpawner implements Spawner
                 if(boss.isDead()){
                     stopBossFight();
                     wavelevel++;
-                    System.out.println("Boss defeated, wave level now: "+wavelevel);
+                    //System.out.println("Boss defeated, wave level now: "+wavelevel);
                 }
             }
         }
@@ -146,7 +146,7 @@ public class ZombieSpawner implements Spawner
         toSpawn = calculator.calculateSpawn(count, wavelevel);
         lastMaxHealth = toSpawn.totalHealth();
         Game.gameUI().newWave(toSpawn.totalHealth());
-        System.out.println("first Spawn");
+        //System.out.println("first Spawn");
         spawnZombies(toSpawn, sections);
         if(toSpawn.isClear()){
             toSpawn = null;
@@ -171,8 +171,8 @@ public class ZombieSpawner implements Spawner
             }
         }
         if(total==0){
-            System.out.println("No zombies spawned, spawning random zombie");
-            System.out.println(dat+" "+dat.size()+" "+dat.isClear());
+            //System.out.println("No zombies spawned, spawning random zombie");
+            //System.out.println(dat+" "+dat.size()+" "+dat.isClear());
             //try{
                 GridEntity toSpawn = dat.pop(Greenfoot.getRandomNumber(dat.size()));
                 spawnZombie(toSpawn);
@@ -181,7 +181,7 @@ public class ZombieSpawner implements Spawner
         }
         nextSpawn = currentlySpawned.size()/2;
         forceNextSpawn = 450;
-        System.out.println("Spawning "+currentlySpawned.size()+" zombies");
+        //System.out.println("Spawning "+currentlySpawned.size()+" zombies");
     }
 
     public void spawnZombie(GridObject toSpawn){

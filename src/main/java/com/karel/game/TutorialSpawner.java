@@ -5,6 +5,7 @@ import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
+import com.karel.game.gridobjects.gridentities.zombies.ironclad.IroncladZombie;
 
 /**
  * Write a description of class AdventureSpawner here.
@@ -43,7 +44,7 @@ public class TutorialSpawner implements Spawner
             if(myz!=null&&myz.isDead()){
                 firstKill = true;
             }
-            myz = new StuntZombie();
+            myz = new IroncladZombie();
             spawnZombie(myz);
         }
     }

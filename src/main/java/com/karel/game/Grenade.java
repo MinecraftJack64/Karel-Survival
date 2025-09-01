@@ -8,7 +8,7 @@ import com.karel.game.particles.Explosion;
  * 
  * @author Poul Henriksen
  */
-public class Grenade extends FlyingRock
+public class Grenade extends FlyingProjectile
 {
     private int life = 45;
     public Grenade(double rotation, double targetdistance, double height, GridObject source)

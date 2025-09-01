@@ -72,11 +72,12 @@ public abstract class GridEntity extends GridObject
     public GridObject getKiller(){
         return killer;
     }
-    
+    //Revive this grid entity(Needs to manually reset health). Restores old team
     public void revive(){
         isdead = false;
         super.revive();
     }
+    //Revive this grid entity with previous health
     public void reviveWithHealth(){
         revive();
         startHealth(getMaxHealth());
@@ -303,7 +304,9 @@ public abstract class GridEntity extends GridObject
         attemptClearHealthBar();
         health = maxHealth = amt;
         if(showbar){
+            if(this instanceof Player)System.out.println("HELLO"+amt+" "+showbar);
             healthBar = new LifeBar(amt,40,5,this);
+            if(isInWorld())addGraphics();
         }
     }
     public void startHealthAsBoss(int amt, int numphases){

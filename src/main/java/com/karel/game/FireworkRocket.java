@@ -6,7 +6,7 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class FireworkRocket extends FlyingRock
+public class FireworkRocket extends FlyingProjectile
 {
     private boolean exploded;
     public FireworkRocket(double rotation, double targetdistance, double height, GridObject source)

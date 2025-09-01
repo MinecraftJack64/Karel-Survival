@@ -1,6 +1,6 @@
 package com.karel.game.weapons.crossbow;
 
-import com.karel.game.FlyingRock;
+import com.karel.game.FlyingProjectile;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.PoisonEffect;
@@ -11,7 +11,7 @@ import com.karel.game.SpeedPercentageEffect;
  * 
  * @author Poul Henriksen
  */
-public class RainingPoisonArrow extends FlyingRock
+public class RainingPoisonArrow extends FlyingProjectile
 {
     private double lastX, lastY;
     private double focus;

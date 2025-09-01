@@ -2,19 +2,23 @@ package com.karel.game.ui;
 
 import java.util.ArrayList;
 import com.karel.game.Game;
+import com.karel.game.Greenfoot;
 import com.karel.game.ZombieFactory;
 import com.karel.game.gamemodes.sandbox.Sandbox;
 import com.karel.game.GridEntity;
+import com.karel.game.ItemFactory;
 import com.karel.game.ui.buttons.Button;
 import com.karel.game.ui.buttons.ImageButton;
 import com.karel.game.ui.text.TextDisplay;
 import com.raylib.Raylib;
+import com.raylib.Texture;
 
 public class SandboxUI extends UI {
     Button backButton;
     TextDisplay teamLabel;
     ArrayList<Button> modeButtons;
     ArrayList<ImageButton> zombieButtons;
+    ArrayList<ImageButton> weaponButtons;
     ArrayList<Button> teamButtons;
     Sandbox mode;
     public SandboxUI() {
@@ -38,6 +42,27 @@ public class SandboxUI extends UI {
                 }
             };
             zombieButtons.add(zombieButton);
+        }
+        String[] weaponIDs = ItemFactory.getItemTypes();
+        weaponButtons = new ArrayList<ImageButton>();
+        for(int i = 0; i < weaponIDs.length; i++){
+            String textureURL = "Weapons/blade/icon.png";
+            try{
+                Texture texture = Greenfoot.loadTexture("Weapons/"+weaponIDs[i]+"/icon.png");
+                texture.getClass();
+                textureURL = "Weapons/"+weaponIDs[i]+"/icon.png";
+            }catch(Exception e){
+                System.out.println("Failed to load weapon texture: " + weaponIDs[i]);
+            }
+            int id = i;
+            ImageButton weaponButton = new ImageButton(50, 50, textureURL, weaponIDs[i]/*TODO w.getName()*/){
+                public void click() {
+                    weaponButtons.get(mode.getSelectedWeapon()).setActive(true);
+                    setActive(false);
+                    mode.setSelectedWeapon(id, weaponIDs[id]);
+                }
+            };
+            weaponButtons.add(weaponButton);
         }
         modeButtons = new ArrayList<Button>();
         String[] modeNames = {"None", "Damage", "Heal", "Move", "Teleport", "Give Weapon", "Give Effect", "Apply Team", "Summon"};
@@ -91,11 +116,15 @@ public class SandboxUI extends UI {
     public void exitMode(int mode){
         if(mode==8){
             removeSummonOptions();
+        }else if(mode==5){
+            removeWeaponOptions();
         }
     }
     public void enterMode(int mode){
         if(mode==8){
             addSummonOptions();
+        }else if(mode==5){
+            addWeaponOptions();
         }
     }
     public void addSummonOptions(){
@@ -111,6 +140,20 @@ public class SandboxUI extends UI {
     public void removeSummonOptions(){
         for(int i = 0; i < zombieButtons.size(); i++){
             getWorld().removeObject(zombieButtons.get(i));
+        }
+    }
+    public void addWeaponOptions(){
+        int row = 0;
+        for(int i = 0; i < weaponButtons.size(); i++){
+            getWorld().addToGrid(weaponButtons.get(i), 1+i%(getWorld().gridwidth-2), 14-row);
+            if((getWorld().gridwidth-2)==(1+i%(getWorld().gridwidth-2))){
+                row++;
+            }
+        }
+    }
+    public void removeWeaponOptions(){
+        for(int i = 0; i < weaponButtons.size(); i++){
+            getWorld().removeObject(weaponButtons.get(i));
         }
     }
 }

@@ -8,7 +8,7 @@ import com.karel.game.particles.Explosion;
  * 
  * @author Poul Henriksen
  */
-public class Flashbang extends FlyingRock
+public class Flashbang extends FlyingProjectile
 {
     public Flashbang(double rotation, double targetdistance, double height, GridObject source)
     {

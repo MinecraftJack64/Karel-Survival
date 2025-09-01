@@ -1,6 +1,6 @@
 package com.karel.game.weapons.pointpinner;
 
-import com.karel.game.FlyingRock;
+import com.karel.game.FlyingProjectile;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.weapons.EffectID;
@@ -10,7 +10,7 @@ import com.karel.game.weapons.EffectID;
  * 
  * @author Poul Henriksen
  */
-public class Pinpoint extends FlyingRock
+public class Pinpoint extends FlyingProjectile
 {
     GridEntity target;
     double tx, ty;

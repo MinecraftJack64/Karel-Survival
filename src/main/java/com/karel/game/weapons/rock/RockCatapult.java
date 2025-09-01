@@ -1,5 +1,6 @@
-package com.karel.game;
-
+package com.karel.game.weapons.rock;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -11,13 +12,13 @@ import com.karel.game.weapons.Weapon;
 public class RockCatapult extends Weapon
 {
     private static final int gunReloadTime = 70;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 800;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime) 
         {
             double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
-            FlyingRock bullet = new FlyingRock (getHand().getTargetRotation(), d, d/2, getHolder());
+            FlyingRock bullet = new FlyingRock (getHand().getTargetRotation(), d, d/2, getHolder(), useGadget());
             getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             Sounds.play("airtoss");
             //d400=reload70, d0=reload20
@@ -25,12 +26,15 @@ public class RockCatapult extends Weapon
         }
     }
     public void fireUlt(){
-        Asteroid bullet = new Asteroid(getHand().getTargetRotation(), getHolder());
+        Asteroid bullet = new Asteroid(getHand().getTargetRotation(), getHolder(), getUltUpgrade()==1);
         getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+    public void onGadgetActivate(){
+        setGadgetCount(5);
+    }
+    public void reload(double s){
+        reloadDelayCount+=s;
+        updateAmmo(Math.min((int)reloadDelayCount, gunReloadTime));
     }
     public int getUlt(){
         return ult;
@@ -41,7 +45,10 @@ public class RockCatapult extends Weapon
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, (int)reloadDelayCount);
+    }
+    public int defaultGadgets(){
+        return 1;
     }
     public String getName(){
         return "Rock Launcher";

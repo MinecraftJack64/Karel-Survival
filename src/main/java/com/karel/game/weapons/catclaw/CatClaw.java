@@ -2,13 +2,13 @@ package com.karel.game.weapons.catclaw;
 
 import com.karel.game.ItemHolder;
 import com.karel.game.LandingHandler;
-import com.karel.game.Mousetrap;
 import com.karel.game.PowerPercentageEffect;
 import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.SpeedPercentageEffect;
 import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.traps.Mousetrap;
 
 /**
  * Write a description of class CatClaw here.

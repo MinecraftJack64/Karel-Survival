@@ -33,11 +33,7 @@ public class Protect extends GameMode
         if(player.isDead()){
             respawncooldown--;
             if(respawncooldown<=0){
-                Player np = new Player();
-                getWorld().addObject(np, player.getX(), player.getY());
-                np.setRotation(player.getRotation());
-                getWorld().removeObject(player);
-                player = np;
+                player.reviveWithHealth();
                 respawncooldown = 60;
             }
         }

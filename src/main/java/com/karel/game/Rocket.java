@@ -7,7 +7,7 @@ import com.karel.game.weapons.EffectID;
  * 
  * @author MinecraftJack64
  */
-public class Rocket extends FlyingRock
+public class Rocket extends FlyingProjectile
 {
     private GridEntity load;
     private boolean hasLanded;

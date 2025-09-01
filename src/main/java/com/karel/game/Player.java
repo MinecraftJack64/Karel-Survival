@@ -2,32 +2,9 @@ package com.karel.game;
 
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
-import com.karel.game.weapons.blade.Blade;
-import com.karel.game.weapons.blowgun.Blowgun;
-import com.karel.game.weapons.captorch.CapsaicinTorch;
-import com.karel.game.weapons.catclaw.CatClaw;
-import com.karel.game.weapons.critters.LilCritters;
-import com.karel.game.weapons.crossbow.Crossbow;
-import com.karel.game.weapons.crystalgun.CrystalGun;
-import com.karel.game.weapons.gun.Gun;
-import com.karel.game.weapons.inferno.Inferno;
-import com.karel.game.weapons.necromancer.Necromancer;
-import com.karel.game.weapons.paintgun.PaintGun;
-import com.karel.game.weapons.pointpinner.Pointpinner;
-import com.karel.game.weapons.scream.Scream;
-import com.karel.game.weapons.shotgun.Shotgun;
-import com.karel.game.weapons.slicer.Slicer;
-//import com.karel.game.weapons.spear.SpearWeapon;
-import com.karel.game.weapons.sudo.Sudo;
-import com.karel.game.weapons.teslacoil.TeslaCoil;
-import com.karel.game.weapons.weedwacker.Weedwacker;
-import com.karel.game.weapons.doublegun.DoubleGun;
-import com.karel.game.weapons.easterbasket.EasterBasket;
-import com.karel.game.weapons.fastfood.FastFood;
-import com.karel.game.weapons.gale.Gale;
 import com.raylib.Texture;
 
-public class Player extends GridEntity {
+public class Player extends GridEntity implements ItemAccepter {
     boolean autoaim = false, autoattack = false, autoult = false, isattacking = false, ismoving = false;
     private Vector lastMoveDirection = new Vector(0, 0);
     private PlayerHand hand;
@@ -66,8 +43,11 @@ public class Player extends GridEntity {
         sprint = maxsprint;
         Game.gameUI().newSprint(maxsprint);
         this.setTeam("player");
-        this.inventory = new Item[50];
-        this.inventory[0] = new Gale(getHand());
+        this.inventory = new Item[ItemFactory.getItemTypes().length];
+        for(int i=0; i<inventory.length; i++){
+            inventory[i] = ItemFactory.createItem(ItemFactory.getItemTypes()[i], getHand());
+        }
+        /*this.inventory[0] = new Gale(getHand());
         this.inventory[1] = new NailGun(getHand());
         this.inventory[2] = new Crossbow(getHand());
         this.inventory[4] = new RockCatapult(getHand());
@@ -110,7 +90,7 @@ public class Player extends GridEntity {
         this.inventory[41] = new GrenadeLauncher(getHand());
         this.inventory[42] = new Farmer(getHand());
         this.inventory[43] = new Gun(getHand());
-        this.inventory[44] = new FastFood(getHand());
+        this.inventory[44] = new FastFood(getHand());*/
         for(Item i: inventory){
             if(i!=null){
                 ((Weapon)i).setAttackUpgrade(1);
@@ -399,10 +379,9 @@ public class Player extends GridEntity {
 
     public void die(GridObject killer) {
         super.die(killer);
-        //this.getWorld().gameOver();
         this.setImage(this.off);
     }
-    public void revive(){
+    public void reviveWithHealth(){
         super.reviveWithHealth();
         this.setImage(rocket);
     }
@@ -429,7 +408,7 @@ public class Player extends GridEntity {
     public Item[] getInventory(){
         return inventory;
     }
-    public void giveItem(Item i){
+    public void acceptItem(Item i){
         nextEmptySlot();
         equipAtSlot(i);
     }

@@ -6,7 +6,7 @@ import java.util.List;
  * 
  * @author Poul Henriksen
  */
-public class FlyingSoup extends FlyingRock
+public class FlyingSoup extends FlyingProjectile
 {
     private double focus;
     public FlyingSoup(double rotation, double targetdistance, double height, double fc, GridObject source)
