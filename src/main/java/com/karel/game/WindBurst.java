@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.effects.StunEffect;
 import com.karel.game.particles.Explosion;
 
 /**

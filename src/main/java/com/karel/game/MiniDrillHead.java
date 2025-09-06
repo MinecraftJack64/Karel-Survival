@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.effects.SpeedPercentageEffect;
+
 /**
  * A bullet that can hit asteroids.
  * 

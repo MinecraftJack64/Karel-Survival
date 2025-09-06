@@ -1,10 +1,10 @@
 package com.karel.game.weapons.inferno;
 
-import com.karel.game.weapons.EffectID;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.BurnEffect;
 import com.karel.game.HealCharge;
+import com.karel.game.effects.BurnEffect;
+import com.karel.game.effects.EffectID;
 
 /**
  * Deal damage over time

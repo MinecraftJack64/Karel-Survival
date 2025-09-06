@@ -1,7 +1,8 @@
 package com.karel.game;
 import java.util.HashMap;
 
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.StunEffect;
 /**
  * Write a description of class WaterPuddle here.
  * 

@@ -1,7 +1,7 @@
 package com.karel.game;
 import java.util.HashSet;
 
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
 /**
  * Write a description of class SoupPuddle here.
  * 

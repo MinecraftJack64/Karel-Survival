@@ -2,8 +2,8 @@ package com.karel.game.weapons.scream;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.SilenceEffect;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SilenceEffect;
 
 public class DeafeningScreamWave extends ScreamWave {
     public DeafeningScreamWave(double rotation, int life, int damage, GridObject source)

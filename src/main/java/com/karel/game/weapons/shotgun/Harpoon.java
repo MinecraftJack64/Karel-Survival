@@ -3,8 +3,8 @@ package com.karel.game.weapons.shotgun;
 import com.karel.game.Boomerang;
 import com.karel.game.GridEntity;
 import com.karel.game.Sounds;
-import com.karel.game.StunEffect;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.StunEffect;
 import com.raylib.Raylib;
 import com.raylib.Vector2;
 

@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.effects.StunEffect;
+import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 

@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.effects.SpeedPercentageEffect;
 
 public class SodaPuddle extends Puddle {
     public SodaPuddle(GridObject source){

@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.effects.PoisonEffect;
+
 /**
  * Write a description of class DemonZombie here.
  * 

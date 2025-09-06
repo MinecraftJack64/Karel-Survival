@@ -4,7 +4,7 @@ import java.util.HashMap;
 import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.PoisonEffect;
+import com.karel.game.effects.PoisonEffect;
 
 /**
  * A bullet that can hit asteroids.

@@ -1,7 +1,7 @@
 package com.karel.game.weapons.doublegun;
 
-import com.karel.game.SpeedPercentageEffect;
-import com.karel.game.ReloadPercentageEffect;
+import com.karel.game.effects.ReloadPercentageEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.particles.WaveAttack;

@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.gamemodes.GameMode;
 import com.karel.game.gamemodes.adventure.Adventure;
 import com.karel.game.gamemodes.protect.Protect;
 import com.karel.game.gamemodes.sandbox.Sandbox;
@@ -244,25 +245,23 @@ public class Game
         }
         if(currentMenu.equals("game")){
             disableGameInputFlag = false;
-            if(gameStatus().equals("running"))game.tick();
-            /*if(gameStatus().equals("running"))*/world.update();
+            if(gameStatus().equals("running")||game.usesCustomPause())game.tick();
+            world.update();
             ui.update();
-            if(isPaused())ui2.update();
+            if(isPaused()&&!game.usesCustomPause()||game.showPauseMenu())ui2.update();
             setUIScreenScaleAndOffset(world);
             world.render();
             //if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
             setUIScreenScaleAndOffset(ui);
             ui.render();
             setUIScreenScaleAndOffset(ui2);
-            if(isPaused())ui2.render();
-        }else if(currentMenu.equals("mainmenu")){
-            setUIScreenScaleAndOffset(ui);
-            ui.update();
-            ui.render();
-        }else if(currentMenu.equals("journalhome")){
-            setUIScreenScaleAndOffset(ui);
-            ui.update();
-            ui.render();
+            if(isPaused()&&(game!=null&&!game.usesCustomPause()||game==null)||game.showPauseMenu())ui2.render();
+        }else{
+            if(ui!=null){
+                setUIScreenScaleAndOffset(ui);
+                ui.update();
+                ui.render();
+            }
         }
         if(!nextMenu.equals("")&&!nextMenu.equals(currentMenu)){
             currentMenu = nextMenu;
@@ -305,12 +304,15 @@ public class Game
         nextMenu = "journalhome";
     }
     public static void togglePause(){
-        if(isPaused()){
-            pauseUI().hidePauseMenu();
-        }else{
-            pauseUI().showPauseMenu();
+        if(game.usesCustomPause())game.togglePause();
+        else{
+            if(isPaused()){
+                pauseUI().hidePauseMenu();
+            }else{
+                pauseUI().showPauseMenu();
+            }
+            world.togglePause();
         }
-        world.togglePause();
     }
     public static void toggleAutoattack(){
         autoattack = !autoattack;

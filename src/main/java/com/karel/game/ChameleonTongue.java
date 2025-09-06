@@ -1,6 +1,8 @@
 package com.karel.game;
 
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.effects.StunEffect;
 
 /**
  * A bullet that can hit asteroids.

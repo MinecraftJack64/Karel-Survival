@@ -10,6 +10,7 @@ public class KetchupFry extends Fry
     public KetchupFry(double rotation, GridObject source, boolean isSuper)
     {
         super(rotation, source, isSuper);
+        setImage("Weapons/fastfood/projUpgrade.png");
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

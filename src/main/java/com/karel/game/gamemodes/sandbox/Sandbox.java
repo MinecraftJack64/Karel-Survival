@@ -1,11 +1,13 @@
 package com.karel.game.gamemodes.sandbox;
 
 import com.karel.game.Game;
-import com.karel.game.GameMode;
+import com.karel.game.KActor;
 import com.karel.game.Player;
 import com.karel.game.Spawner;
 import com.karel.game.Teams;
+import com.karel.game.gamemodes.GameMode;
 import com.karel.game.weapons.sudo.Sudo;
+import com.karel.game.ui.Overlay;
 import com.karel.game.ui.SandboxUI;
 /**
  * Write a description of class Protect here.
@@ -44,9 +46,17 @@ public class Sandbox extends GameMode
                 respawncooldown = 60;
             }
         }
-        Game.setUIScreenScaleAndOffset(ui);
+        /*Game.setUIScreenScaleAndOffset(ui);
         ui.update();
-        ui.render();
+        ui.render();*/
+        if(getWorld().isPaused()){
+            player.update();
+            for(KActor k: getWorld().allKActors()){
+                if(k instanceof Overlay){
+                    k.update();
+                }
+            }
+        }
     }
     public void startGame(){
         teams = new Teams();
@@ -65,6 +75,7 @@ public class Sandbox extends GameMode
         status = "running";
         resetScore();
         ui.create();
+        Game.ui2 = ui;
         System.out.println(teams);
         respawncooldown = 60;
     }
@@ -128,5 +139,20 @@ public class Sandbox extends GameMode
     }
     public int getHighScore(){
         return highscore;
+    }
+    @Override
+    public boolean usesCustomPause(){
+        return true;
+    }
+    public void togglePause(){
+        getWorld().togglePause();
+        if(getWorld().isPaused()){
+            ui.setBackButtonActive(true);
+        }else{
+            ui.setBackButtonActive(false);
+        }
+    }
+    public boolean showPauseMenu(){
+        return true;
     }
 }

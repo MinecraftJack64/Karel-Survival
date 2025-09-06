@@ -7,8 +7,8 @@ import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.HealCharge;
 import com.karel.game.Pet;
-import com.karel.game.PowerPercentageEffect;
-import com.karel.game.StunEffect;
+import com.karel.game.effects.PowerPercentageEffect;
+import com.karel.game.effects.StunEffect;
 import com.karel.game.weapons.ShieldID;
 import com.raylib.Texture;
 

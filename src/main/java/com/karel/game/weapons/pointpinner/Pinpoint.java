@@ -3,7 +3,7 @@ package com.karel.game.weapons.pointpinner;
 import com.karel.game.FlyingProjectile;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
 
 /**
  * A bullet that can hit asteroids.

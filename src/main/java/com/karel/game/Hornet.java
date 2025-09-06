@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.effects.PoisonEffect;
+
 /**
  * Write a description of class Hornet here.
  * 

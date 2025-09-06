@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.effects.StunEffect;
+
 /**
  * A bullet that can hit asteroids.
  * 

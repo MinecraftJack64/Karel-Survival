@@ -3,6 +3,7 @@ package com.karel.game;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
+import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;

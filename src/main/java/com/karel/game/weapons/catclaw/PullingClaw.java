@@ -2,8 +2,8 @@ package com.karel.game.weapons.catclaw;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.SoftPullEffect;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SoftPullEffect;
 
 /**
  * A bullet that can hit asteroids.

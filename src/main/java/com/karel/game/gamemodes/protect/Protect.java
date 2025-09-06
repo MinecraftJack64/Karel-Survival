@@ -1,11 +1,11 @@
 package com.karel.game.gamemodes.protect;
 
 import com.karel.game.Baby;
-import com.karel.game.GameMode;
 import com.karel.game.Player;
 import com.karel.game.Spawner;
 import com.karel.game.Teams;
 import com.karel.game.ZombieSpawner;
+import com.karel.game.gamemodes.GameMode;
 
 /**
  * Write a description of class Protect here.

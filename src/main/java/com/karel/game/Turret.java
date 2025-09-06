@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.effects.ImmobilizeEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;

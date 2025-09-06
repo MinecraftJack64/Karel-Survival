@@ -1,6 +1,7 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.ShieldID;
 
 /**

@@ -3,7 +3,7 @@ package com.karel.game.weapons.scream;
 import com.karel.game.ItemHolder;
 import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
 import com.karel.game.weapons.Weapon;
 
 /**

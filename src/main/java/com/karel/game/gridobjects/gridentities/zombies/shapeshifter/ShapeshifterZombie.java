@@ -66,6 +66,12 @@ public class ShapeshifterZombie extends Zombie implements Possessor{
     }
     public void tick(){
         if(model!=null&&model.isDead()){
+            if(possessed==null){
+                addObjectHere(this);
+                untrap();
+                model = null;
+                return;
+            }
             possessed.addObjectHere(this);
             possessed.unpossess(this);
             possessed.kill(this);

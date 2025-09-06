@@ -1,7 +1,9 @@
 package com.karel.game;
 import java.util.List;
 
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.PowerPercentageEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 
 /**
  * A bullet that can hit asteroids.

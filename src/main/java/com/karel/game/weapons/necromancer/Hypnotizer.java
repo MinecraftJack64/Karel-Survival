@@ -3,7 +3,7 @@ package com.karel.game.weapons.necromancer;
 import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.TeamSwitchEffect;
+import com.karel.game.effects.TeamSwitchEffect;
 
 /**
  * A bullet that can hit asteroids.

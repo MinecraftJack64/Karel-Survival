@@ -3,9 +3,9 @@ package com.karel.game.gridobjects.gridentities.zombies.steak;
 import com.karel.game.Collectible;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.PoisonEffect;
-import com.karel.game.PowerPercentageEffect;
 import com.karel.game.Sounds;
+import com.karel.game.effects.PoisonEffect;
+import com.karel.game.effects.PowerPercentageEffect;
 
 /**
  * a collectible usually dropped from zombies when killed that can be collected by the player, healing them

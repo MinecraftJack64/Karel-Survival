@@ -1,7 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SizePercentageEffect;
 
 /**
  * Write a description of class StaticJadeBlade here.

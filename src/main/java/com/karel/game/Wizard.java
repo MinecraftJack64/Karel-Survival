@@ -1,12 +1,18 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.FatalPoisonEffect;
+import com.karel.game.effects.LifestealEffect;
+import com.karel.game.effects.PowerPercentageEffect;
+import com.karel.game.effects.ReloadPercentageEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
-import com.karel.game.weapons.EffectID;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.particles.Explosion;
 

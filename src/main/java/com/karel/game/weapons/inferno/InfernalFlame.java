@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.BurnEffect;
-import com.karel.game.Effect;
+import com.karel.game.effects.BurnEffect;
+import com.karel.game.effects.Effect;
 
 /**
  * A single projectile from the Inferno weapon attack. Pierces infinitely but range is reduced after hitting first enemy. Damages and slows on hit, but only if it's the first of its wave of attacks to hit the enemy.

@@ -1,11 +1,11 @@
 package com.karel.game.gamemodes.adventure;
 
-import com.karel.game.GameMode;
 import com.karel.game.Levels;
 import com.karel.game.Player;
 import com.karel.game.Spawner;
 import com.karel.game.SupplyCrate;
 import com.karel.game.Teams;
+import com.karel.game.gamemodes.GameMode;
 
 /**
  * Write a description of class Adventure here.

@@ -2,8 +2,8 @@ package com.karel.game.gridobjects.gridentities.zombies.firebreather;
 
 import com.karel.game.Bullet;
 import com.karel.game.GridObject;
+import com.karel.game.effects.BurnEffect;
 import com.karel.game.GridEntity;
-import com.karel.game.BurnEffect;
 
 public class Flame extends Bullet
 {

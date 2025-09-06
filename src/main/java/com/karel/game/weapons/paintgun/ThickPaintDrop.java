@@ -1,7 +1,7 @@
 package com.karel.game.weapons.paintgun;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.SpeedPercentageEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 
 /**
  * A bullet that can hit asteroids.

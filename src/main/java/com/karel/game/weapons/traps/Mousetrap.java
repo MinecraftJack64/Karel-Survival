@@ -3,7 +3,7 @@ package com.karel.game.weapons.traps;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
-import com.karel.game.StunEffect;
+import com.karel.game.effects.StunEffect;
 
 /**
  * A bullet that can hit asteroids.

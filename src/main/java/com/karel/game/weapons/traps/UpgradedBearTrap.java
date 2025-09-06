@@ -1,7 +1,7 @@
 package com.karel.game.weapons.traps;
 
 import com.karel.game.GridEntity;
-import com.karel.game.KnockbackEffect;
+import com.karel.game.effects.KnockbackEffect;
 
 /**
  * A bullet that can hit asteroids.

@@ -5,8 +5,8 @@ import com.karel.game.Game;
 import com.karel.game.ItemHolder;
 import com.karel.game.PercentageShield;
 import com.karel.game.Sounds;
-import com.karel.game.SpeedPercentageEffect;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 

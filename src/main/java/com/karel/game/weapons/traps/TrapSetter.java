@@ -6,7 +6,7 @@ import com.karel.game.Dasher;
 import com.karel.game.ItemHolder;
 import com.karel.game.KActor;
 import com.karel.game.Sounds;
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
 import com.karel.game.weapons.Weapon;
 
 /**

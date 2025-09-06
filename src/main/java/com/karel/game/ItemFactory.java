@@ -13,6 +13,7 @@ import com.karel.game.weapons.fastfood.FastFood;
 import com.karel.game.weapons.gale.Gale;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.necromancer.Necromancer;
+import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;
 import com.karel.game.weapons.rock.RockCatapult;
 import com.karel.game.weapons.scream.Scream;
@@ -222,7 +223,7 @@ public class ItemFactory
             case "tumbleweed":
                 //return new TumbleweedLauncher(holder);
             case "paintgun":
-                //return new PaintSprayer(holder);
+                return new PaintGun(holder);
             //MISSING A LOT
             case "flashdrive":
                 return new FlashDrive(holder);//

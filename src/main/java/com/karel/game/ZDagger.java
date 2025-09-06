@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 
 /**

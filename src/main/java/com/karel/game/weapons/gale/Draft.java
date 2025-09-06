@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.SpeedPercentageEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 
 /**
  * A single projectile from the Gale weapon attack. Pierces infinitely but range is reduced after hitting first enemy. Damages and slows on hit, but only if it's the first of its wave of attacks to hit the enemy.

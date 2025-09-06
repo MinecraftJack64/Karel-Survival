@@ -3,7 +3,7 @@ package com.karel.game.weapons.captorch;
 import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.BurnEffect;
+import com.karel.game.effects.BurnEffect;
 
 public class PepperFlame extends Bullet
 {

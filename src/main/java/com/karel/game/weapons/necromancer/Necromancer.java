@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
+import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.weapons.Weapon;
-import com.karel.game.TeamSwitchEffect;
 
 /**
  * Write a description of class Necromancer here.

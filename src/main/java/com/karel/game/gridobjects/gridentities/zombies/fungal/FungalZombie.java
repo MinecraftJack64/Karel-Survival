@@ -1,12 +1,12 @@
 package com.karel.game.gridobjects.gridentities.zombies.fungal;
 
 import com.karel.game.GridEntity;
-import com.karel.game.PoisonEffect;
 import com.karel.game.Sounds;
-import com.karel.game.SpeedPercentageEffect;
 import com.karel.game.ZombieClass;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.PoisonEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.weapons.EffectID;
 
 /**
  * A zombie that slows you when you are nearby. Occasionally sprays to poison you and boost other zombies.

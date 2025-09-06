@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.effects.PowerPercentageEffect;
+
 /**
  * A short range projectile that teleports the shooter to the back of the enemy hit. Used by AssassinZombie
  * 

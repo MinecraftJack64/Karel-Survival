@@ -81,7 +81,6 @@ public class SandboxUI extends UI {
         }
         modeButtons.get(0).setActive(false);
         teamLabel = new TextDisplay("Teams", 10);
-        resetBG();
     }
     public void create(){
         mode = (Sandbox)Game.getGame();
@@ -102,7 +101,7 @@ public class SandboxUI extends UI {
 
         getWorld().addToGrid(backButton, 1, 1);
         //Create team options
-        getWorld().addToGrid(teamLabel, 1, 1);
+        getWorld().addToGrid(teamLabel, getWorld().gridwidth-1, 2);
         for(int i = 0; i < teamButtons.size(); i++){
             getWorld().addToGrid(teamButtons.get(i), getWorld().gridwidth-1, 3+i);
         }
@@ -155,5 +154,8 @@ public class SandboxUI extends UI {
         for(int i = 0; i < weaponButtons.size(); i++){
             getWorld().removeObject(weaponButtons.get(i));
         }
+    }
+    public void setBackButtonActive(boolean active){
+        backButton.setActive(active);
     }
 }

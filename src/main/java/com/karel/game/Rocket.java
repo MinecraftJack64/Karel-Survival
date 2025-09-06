@@ -1,6 +1,6 @@
 package com.karel.game;
 
-import com.karel.game.weapons.EffectID;
+import com.karel.game.effects.EffectID;
 
 /**
  * A rocket that flies an entity
