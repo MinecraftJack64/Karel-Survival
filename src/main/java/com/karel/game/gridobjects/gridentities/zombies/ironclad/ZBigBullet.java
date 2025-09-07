@@ -14,7 +14,7 @@ public class ZBigBullet extends ZBullet
     public ZBigBullet(double rotation, GridObject source)
     {
         super(rotation, source);
-        setSpeed(25);
+        setSpeed(20);
         setLife(100);
         setDamage(500);
     }

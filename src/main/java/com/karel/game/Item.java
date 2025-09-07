@@ -10,6 +10,7 @@ public interface Item extends Cloneable
     public void use();
     public void equip();
     public void unequip();
+    public void render();
     public boolean isLocked();
     public boolean continueUse();
     public void setContinueUse(boolean s);

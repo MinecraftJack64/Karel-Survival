@@ -1,6 +1,7 @@
 package com.karel.game.weapons.traps;
 
 import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.Pet;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
@@ -24,6 +25,8 @@ public class BearTrap extends Pet implements ITrap
     public BearTrap(double rot, GridEntity source)
     {
         super(source);
+        setImage("Weapons/traps/projUlt.png");
+        scaleTexture(50);
         isset = false;
         startHealth(400);
         hitcooldown = 0;
@@ -65,6 +68,7 @@ public class BearTrap extends Pet implements ITrap
         GridEntity asteroid = getNearestTarget();
         if (asteroid != null&&distanceTo(asteroid)<range&&isAggroTowards(asteroid)&&asteroid.isOnGround()&&asteroid.canMove()){
             snap(asteroid);
+            setImage("Weapons/traps/projUlt2.png");
         }
     }
     
@@ -95,18 +99,22 @@ public class BearTrap extends Pet implements ITrap
             target = null;
         }
         resnapCooldown = 50;
+        setImage("Weapons/traps/projUlt.png");
     }
     public int spawnImmunityLength(){
         return 15;
     }
-    public void die(){
-        if(!isset&&target!=null){
+    public void die(GridObject source){
+        if(target!=null){
             target.mobilize(new EffectID(this));
+            System.out.println(target+" "+this);
         }
-        super.die();
-        getWorld().removeObject(this);
+        super.die(source);
     }
     public boolean covertDamage(){
         return hitcount>0;
+    }
+    public String spriteOrigin(){
+        return "";
     }
 }

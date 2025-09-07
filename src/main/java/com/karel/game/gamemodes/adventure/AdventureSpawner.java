@@ -8,10 +8,10 @@ import com.karel.game.GridObject;
 import com.karel.game.Levels;
 import com.karel.game.Levels.LevelRunner;
 import com.karel.game.gamemodes.SpawnData;
+import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
 import com.karel.game.Spawner;
 import com.karel.game.Wizard;
 import com.karel.game.World;
-import com.karel.game.ZombieHerald;
 
 /**
  * Write a description of class AdventureSpawner here.

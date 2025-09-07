@@ -10,8 +10,10 @@ import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.doublegun.DoubleGun;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.fastfood.FastFood;
+import com.karel.game.weapons.flail.Flail;
 import com.karel.game.weapons.gale.Gale;
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.hearth.Hearth;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;
@@ -113,7 +115,7 @@ public class ItemFactory
             case "shotgun":
                 return new Shotgun(holder);
             case "traps":
-                return new TrapSetter(holder);//
+                return new TrapSetter(holder);
             case "spear":
                 return new SpearWeapon(holder);
             case "weedwacker":
@@ -147,7 +149,7 @@ public class ItemFactory
             case "blowgun":
                 return new Blowgun(holder);
             case "hearth":
-                return new Hearth(holder);//
+                return new Hearth(holder);
             case "mountaineer":
                 //return new MountainClimber(holder);
             case "airpump":
@@ -207,7 +209,7 @@ public class ItemFactory
             case "coco":
                 //return new Coco(holder);
             case "flail":
-                return new Flail(holder);//
+                return new Flail(holder);
             case "rifle":
                 //return new Rifle(holder);
             case "traffix":

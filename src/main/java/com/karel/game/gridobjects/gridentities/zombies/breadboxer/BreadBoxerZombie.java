@@ -2,6 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies.breadboxer;
 
 import com.karel.game.PercentageShield;
 import com.karel.game.Projectile;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.ShieldID;
 
@@ -13,6 +14,7 @@ import com.karel.game.weapons.ShieldID;
  */
 public class BreadBoxerZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer, ZombieClass.melee};
     private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
     private static final int punchReloadTime = 5;
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
@@ -96,7 +98,10 @@ public class BreadBoxerZombie extends Zombie
             }
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 600;
     }

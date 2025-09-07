@@ -94,8 +94,8 @@ public class Harpoon extends Boomerang
         super.render();
         //draw line between source and me
         Raylib.drawLineEx(
-            new Vector2(renderTransformX((int)getX()), renderTransformY((int)getY())),
-            new Vector2(renderTransformX((int)getSource().getX()), renderTransformY((int)getSource().getY())),
+            new Vector2(renderTransformX((int)getX()), renderTransformY((int)(getY()-getHeight()))),
+            new Vector2(renderTransformX((int)getSource().getX()), renderTransformY((int)(getSource().getY()-getSource().getHeight()))),
             7,
             Raylib.DARKBROWN
         );

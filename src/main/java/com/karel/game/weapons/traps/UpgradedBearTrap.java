@@ -13,6 +13,7 @@ public class UpgradedBearTrap extends BearTrap
     public UpgradedBearTrap(double rot, GridEntity source)
     {
         super(rot, source);
+        setImage("Weapons/traps/projUltUpgrade.png");
     }
     
     public void snap(GridEntity asteroid){

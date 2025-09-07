@@ -1,4 +1,4 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.herald;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 

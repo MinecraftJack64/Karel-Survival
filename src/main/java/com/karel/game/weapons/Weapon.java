@@ -94,6 +94,7 @@ public abstract class Weapon implements Item, Tickable
         if(currentgadgettimer>0)currentgadgettimer--;
         if(gadgetscooldown>0)currentgadgettimer--;
     }
+    public void render(){}//TODO: MAKE ABSTRACT LATER
     public abstract void fire();
     public abstract void fireUlt();
     public void reload(){

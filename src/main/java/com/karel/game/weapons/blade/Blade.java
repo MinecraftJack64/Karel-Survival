@@ -75,6 +75,12 @@ public class Blade extends Weapon
             }
         });
     }
+    public void onGadgetActivate(){
+        setContinueGadget(true);
+    }
+    public int defaultGadgets(){
+        return 1;
+    }
     public int getUlt(){
         return ult;
     }

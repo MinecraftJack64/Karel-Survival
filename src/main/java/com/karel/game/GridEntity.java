@@ -286,7 +286,7 @@ public abstract class GridEntity extends GridObject
     }
 
     public void applyEffects(){ 
-        for (int i = effects.size()-1; i>= 0; i--) {
+        if(!isDead()) for(int i = effects.size()-1; i>= 0; i--) {
             effects.get(i).affect();
             if(isDead()){
                 break;

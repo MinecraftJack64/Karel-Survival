@@ -7,6 +7,7 @@ import com.karel.game.GridObject;
 import com.karel.game.Sounds;
 import com.karel.game.Target;
 import com.karel.game.TickingTimeBomb;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 import java.util.HashSet;
@@ -19,10 +20,10 @@ import java.util.HashSet;
  */
 public class CannonZombie extends Zombie
 {
-
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.penetrator};
     public String getStaticTextureURL(){return "cannonzareln.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
+    private double ammo = 0;
     private int damage = 400;
     private GridEntity scammed;
     private GridEntity hold;
@@ -105,7 +106,7 @@ public class CannonZombie extends Zombie
             }
         }
         double monangle = face(getTarget(), canMove());
-        if(ammo>0)ammo--;
+        if(ammo>0)ammo-=getReloadMultiplier();
         if(fuse>0)fuse--;
         if(scammed==null&&hold==null){
             bombcooldown--;
@@ -188,7 +189,10 @@ public class CannonZombie extends Zombie
         Sounds.play("explode");
     }
     
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 800;
     }

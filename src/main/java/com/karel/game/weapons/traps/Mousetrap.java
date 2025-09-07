@@ -27,6 +27,7 @@ public class Mousetrap extends Trap implements ITrap
     public Mousetrap(GridObject source)
     {
         super(source);
+        setImage("Weapons/traps/proj.png");
         isset = true;
         hitcooldown = 0;
         setTeam(source.getTeam());
@@ -77,6 +78,7 @@ public class Mousetrap extends Trap implements ITrap
             Sounds.play("mousetrapsnap");
             //asteroid.hit(damage, this);
             target.applyEffect(new StunEffect(150, this));
+            setImage("Weapons/traps/proj2.png");
             //target.applyeffect(new SpeedPercentageEffect(5, 300));
             attack();
         }
@@ -102,6 +104,7 @@ public class Mousetrap extends Trap implements ITrap
         isset = false;
         target = null;
         resnapCooldown = 50;
+        setImage("Weapons/traps/proj.png");
     }
     public void die(){
         super.die();

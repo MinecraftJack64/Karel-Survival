@@ -220,6 +220,12 @@ public class Player extends GridEntity implements ItemAccepter {
         }*/
 
     }
+    public void render(){
+        super.render();
+        if(getHeldItem()!=null){
+            getHeldItem().render();
+        }
+    }
     public boolean acceptingFrags(){
         return !Game.getGame().beeperbagfull();
     }
