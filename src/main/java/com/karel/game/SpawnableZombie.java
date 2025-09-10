@@ -10,9 +10,6 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class SpawnableZombie extends Zombie  
 {
-    public boolean wasInOriginalWave(){
-        return false;
-    }
     public boolean willNotify(){
         return false;
     }

@@ -1,7 +1,10 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.exorcist;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SpawnableZombie;
 import com.karel.game.effects.PoisonEffect;
+import com.karel.game.gridobjects.gridentities.zombies.guardianangel.GuardianAngelZombie;
 
 /**
  * Write a description of class DemonZombie here.
@@ -13,32 +16,26 @@ public class DemonZombie extends SpawnableZombie
 {
 
     public String getStaticTextureURL(){return "demonzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private GridEntity myhive;
-    /**
-     * Initilise this rocket.
-     */
     public DemonZombie(GridEntity hive)
     {
+        this();
+        myhive = hive;
+        inherit(hive);
+    }
+    public DemonZombie(){
         scaleTexture(20, 20);
         setSpeed(4.5);
         startHealth(25);
-        myhive = hive;
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
         if(getHeight()==0){
             setHeight(1);
         }
-        //setRotation(getRotation()-1);
         super.behave();
-        if(myhive.isDead()){
-            heal(100, this);
+        if(myhive!=null&&myhive.isDead()){
+            heal(1, this);
         }
     }
     public void attack(){
@@ -50,7 +47,7 @@ public class DemonZombie extends SpawnableZombie
     }
     
     public int defaultDamage(){
-        return (int)Math.min(0, 20+(40-distanceTo(getTarget()))/2);
+        return (int)(20+(40-distanceTo(getTarget()))/2);
     }
     public int defaultReloadTime(){
         return (int)(distanceTo(getTarget())/2+10);
@@ -73,6 +70,10 @@ public class DemonZombie extends SpawnableZombie
     
     public boolean canFly(){
         return true;
+    }
+
+    public boolean isPotentialTarget(GridEntity e){
+        return super.isPotentialTarget(e)||e instanceof GuardianAngelZombie;
     }
     
     public String getName(){

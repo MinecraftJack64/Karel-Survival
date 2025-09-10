@@ -158,11 +158,12 @@ public class World
             Raylib.drawRectangle(0, 0, Raylib.getScreenWidth(), Raylib.getScreenHeight(), new Color((byte)0, (byte)0, (byte)0, (byte)128)); // semi-transparent black
         }
     }
-
     public void update(){
-        if(paused){
-            return; // do not update if paused
+        if(!paused){
+            doUpdate();
         }
+    }
+    public void doUpdate(){
         for(int i = 0; i < allKActors().size(); i++){
             KActor g = allKActors().get(i);
             if(!g.hasMounter())

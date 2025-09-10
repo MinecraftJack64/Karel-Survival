@@ -128,7 +128,7 @@ public class DoctorZombie extends Zombie
         return getNearestTarget();
     }
     public boolean isPotentialTarget(GridEntity e){
-        return !(e instanceof DoctorZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
+        return !(e instanceof DoctorZombie||e==this||!e.canDetect()||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
     }
     public String getName(){
         return "Doctor Zombie";

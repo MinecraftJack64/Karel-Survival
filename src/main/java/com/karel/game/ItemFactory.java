@@ -14,6 +14,7 @@ import com.karel.game.weapons.flail.Flail;
 import com.karel.game.weapons.gale.Gale;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;
+import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;

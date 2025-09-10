@@ -131,9 +131,6 @@ public class Zombie extends GridEntity
     public int getXP(){
         return 100;
     }
-    public boolean wasInOriginalWave(){
-        return true;
-    }
     public void die(GridObject killer){
         if(isAggroTowards(killer)){
             Beeper bullet = new Beeper(getXP());

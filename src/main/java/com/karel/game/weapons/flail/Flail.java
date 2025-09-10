@@ -99,6 +99,26 @@ public class Flail extends Weapon
     public int getRarity(){
         return 3;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 250;
+        }
+        public int getIdealRange(){
+            return 150;
+        }
+        public int getNumTargets(){
+            return -1;
+        }
+        public int getUltEffectiveRange(){
+            return 500;
+        }
+        public int getUltNumTargets(){
+            return -1;
+        }
+    }
 }
 
 

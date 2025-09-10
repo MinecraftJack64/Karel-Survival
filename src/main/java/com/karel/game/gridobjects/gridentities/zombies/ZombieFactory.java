@@ -5,16 +5,12 @@ import com.karel.game.BodyguardZombie;
 import com.karel.game.Bot;
 import com.karel.game.CloudServer;
 import com.karel.game.EvilSpiritZombie;
-import com.karel.game.ExorcistZombie;
 import com.karel.game.GridEntity;
 import com.karel.game.HeavyZombie;
-import com.karel.game.Hornet;
-import com.karel.game.HornetNeckZombie;
 import com.karel.game.JackITBZombie;
 import com.karel.game.JokerZombie;
 import com.karel.game.LightZombie;
 import com.karel.game.PresidentZombie;
-import com.karel.game.RussianDollZombie;
 import com.karel.game.SplitterZombie;
 import com.karel.game.TorpedoZombie;
 import com.karel.game.TractorBeamZombie;
@@ -27,12 +23,17 @@ import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZomb
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.exorcist.DemonZombie;
+import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.guardianangel.GuardianAngelZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
+import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.*;
+import com.karel.game.gridobjects.gridentities.zombies.hornetneck.Hornet;
+import com.karel.game.gridobjects.gridentities.zombies.hornetneck.HornetNeckZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ironclad.IroncladZombie;
 import com.karel.game.gridobjects.gridentities.zombies.jailbreak.JailBreakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
@@ -41,6 +42,7 @@ import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
+import com.karel.game.gridobjects.gridentities.zombies.russiandoll.RussianDollZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.ShapeshifterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
@@ -77,33 +79,35 @@ public class ZombieFactory {
             "russiandoll",
             "firebreather",
             "weedwacker",
-            "wizard",
+            "herald",
+            "wizard",//
             "portal",
-            "warrior",
-            "splitter",
+            "warrior",//
+            "splitter",//
             "light",
             "heavy",
             "exorcist",
+            "demon",
             "evilspirit",
-            "cloudserver",
+            "cloudserver",//
             "shapeshifter",
-            "tractorbeam",
-            "president",
+            "tractorbeam",//
+            "president",//
             "bodyguard",
-            "joker",
-            "jackinthebox",
+            "joker",//
+            "jackinthebox",//
             "cannon",
             "stunt",
-            "watermelon",
-            "prisonbreak",
+            "watermelon",//
+            "jailbreak",
             "breadboxer",
             "guardianangel",
-            "assassin",
+            "assassin",//
             "steak",
             "arson",
             "mimic",
             "ironclad",
-            "torpedo",
+            "torpedo",//
             "cowboy",
             "boid",
             "bot" };
@@ -148,6 +152,8 @@ public class ZombieFactory {
                 return new FirebreatherZombie();
             case "weedwacker":
                 return new WeedwackerZombie();
+            case "herald":
+                return new ZombieHerald();
             case "wizard":
                 return new Wizard();
             case "portal":
@@ -162,6 +168,8 @@ public class ZombieFactory {
                 return new HeavyZombie();
             // cop
             // shaman
+            case "demon":
+                return new DemonZombie();
             case "exorcist":
                 return new ExorcistZombie();
             case "evilspirit":
@@ -195,7 +203,7 @@ public class ZombieFactory {
                 return new StuntZombie();
             case "watermelon":
                 return new WatermelonZombie();
-            case "prisonbreak":
+            case "jailbreak":
                 return new JailBreakZombie();
             // tornado
             // chocolate

@@ -103,6 +103,23 @@ public class FastFood extends Weapon implements AmmoHolder
     public int getRarity(){
         return 3;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 221;
+        }
+        public int getIdealRange(){
+            return 10;
+        }
+        public int getUltEffectiveRange(){
+            return 1000;
+        }
+        public boolean shouldUseUlt(){
+            return ammo.getAmmo()<=3||getHolder().getHealth()<getHolder().getMaxHealth()*0.8;
+        }
+    }
 }
 
 

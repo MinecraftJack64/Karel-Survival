@@ -16,6 +16,7 @@ public class Bot extends Pet implements ItemAccepter
     public BotHand hand = new BotHand();
     private Weapon weapon;
     private boolean needToEquip;
+    GridEntity target;
 
     public String getStaticTextureURL(){return "chick.png";}
     /**
@@ -28,14 +29,14 @@ public class Bot extends Pet implements ItemAccepter
         startHealth(2000);
         scaleTexture(55);
     }
-    @SuppressWarnings("static-access")
     public void behave()
     {
-        if(getTarget()==null){
+        target = getTarget();
+        if(target==null){
             if(weapon!=null)weapon.tick();
             return;
         }
-        double monangle = rotationLock?getRotation():face(getTarget(), canMove());
+        double monangle = rotationLock?getRotation():face(target, canMove());
         System.out.println(rotationLock);
         if(weapon!=null){
             BotGuide bg = weapon.getBotGuide();
@@ -44,13 +45,13 @@ public class Bot extends Pet implements ItemAccepter
                 if(weapon.continueUlt()){
                     weapon.ult();
                 }
-                if(bg.getUltEffectiveRange()<distanceTo(getTarget())){
+                if(bg.getUltEffectiveRange()<distanceTo(target)){
                     walk(monangle, 1);
                 }else{
                     if(canAttack()&&!weapon.continueUlt())weapon.ult();
-                    if(ideal+10<distanceTo(getTarget())){
+                    if(ideal+10<distanceTo(target)){
                         walk(monangle, 0.8);
-                    }else if(ideal-10>distanceTo(getTarget())){
+                    }else if(ideal-10>distanceTo(target)){
                         walk(monangle+180, 0.8);
                     }
                 }
@@ -58,20 +59,20 @@ public class Bot extends Pet implements ItemAccepter
             }
             int ideal = bg.getIdealRange();
             if(weapon.continueUse())weapon.use();
-            if(bg.getEffectiveRange()<distanceTo(getTarget())){
+            if(bg.getEffectiveRange()<distanceTo(target)){
                 walk(monangle, 1);
             }else{
-                if(canAttack()&&!weapon.continueUse())weapon.use();
-                if(ideal+10<distanceTo(getTarget())){
+                if(canAttack()&&!weapon.continueUse()&&bg.shouldUse())weapon.use();
+                if(ideal+10<distanceTo(target)){
                     walk(monangle, 0.8);
-                }else if(ideal-10>distanceTo(getTarget())){
+                }else if(ideal-10>distanceTo(target)){
                     walk(monangle+180, 0.8);
                 }
             }
             weapon.tick();
             return;
         }
-        if(distanceTo(getTarget())>300)walk(monangle, 1);
+        if(distanceTo(target)>300)walk(monangle, 1);
         else{
             //
         }
@@ -141,10 +142,10 @@ public class Bot extends Pet implements ItemAccepter
             return getHolder().getRotation();
         }
         public double getTargetX(){
-            return targetLocked?prevX:getHolder().getTarget().getX();
+            return targetLocked?prevX:getHolder().target.getX();
         }
         public double getTargetY(){
-            return targetLocked?prevY:getHolder().getTarget().getY();
+            return targetLocked?prevY:getHolder().target.getY();
         }
         public void setTargetLock(boolean t){
             if(t){

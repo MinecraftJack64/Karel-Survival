@@ -80,7 +80,7 @@ public class CapsaicinTorch extends Weapon
     }
     public class BotGuide extends Weapon.BotGuide{
         public int getEffectiveRange(){
-            return range;
+            return (int)(126+4.5*range);
         }
         public int getNumTargets(){
             return -1;

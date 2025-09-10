@@ -4,7 +4,9 @@ import com.karel.game.ExternalImmunityShield;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Shield;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.exorcist.DemonZombie;
 import com.karel.game.weapons.ShieldID;
 
 /**
@@ -15,12 +17,9 @@ import com.karel.game.weapons.ShieldID;
  */
 public class GuardianAngelZombie extends Zombie
 {
+    public static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.pressurer};
     private ShieldID myShield, immuneShield;
     public String getStaticTextureURL(){return "angelzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    /**
-     * Initilise this rocket.
-     */
     public GuardianAngelZombie()
     {
         scaleTexture(20, 20);
@@ -36,10 +35,6 @@ public class GuardianAngelZombie extends Zombie
         }
         super.die(killer);
     }
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
         if(hasMounter()){
@@ -50,14 +45,16 @@ public class GuardianAngelZombie extends Zombie
         }
         if(!hasShield(myShield)){
             applyShield(new ExternalImmunityShield(myShield, -1));
+            setDetectable(true);
         }
         super.behave();
         damage(this, 1);
     }
     public void attack(){
-        if(isAggroTowards(getTarget()))super.attack();
+        if(isAggroTowards(getTarget())||getTarget() instanceof DemonZombie)super.attack();
         else if(isAlliedWith(getTarget())){
             getTarget().mount(this, 90, 60);
+            setDetectable(false);
             //removeShield(myShield);
             heal(this, getMaxHealth());
             getTarget().applyShield(new GuardianShield(immuneShield, this));
@@ -66,10 +63,13 @@ public class GuardianAngelZombie extends Zombie
     
     @Override
     public boolean isPotentialTarget(GridEntity entity){
-        return isAlliedWith(entity)&&entity.canDetect()&&!(entity instanceof GuardianAngelZombie);
+        return isAlliedWith(entity)&&entity.canDetect()&&!(entity instanceof GuardianAngelZombie)||(entity instanceof DemonZombie);
     }
     
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 777;
     }

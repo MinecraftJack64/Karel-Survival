@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.lymphcannon;
+
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.

@@ -227,6 +227,23 @@ public class LilCritters extends Weapon
             changeHealth(10);
         }
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return /*false?500:*/300;
+        }
+        public int getNumTargets(){
+            return /*false?2:*/1;
+        }
+        public int getUltEffectiveRange(){
+            return 1000;
+        }
+        public boolean shouldUseUlt(){
+            return regencritter<2;
+        }
+    }
 }
 
 

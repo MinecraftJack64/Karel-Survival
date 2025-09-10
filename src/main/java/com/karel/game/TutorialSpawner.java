@@ -1,11 +1,6 @@
 package com.karel.game;
 import java.util.ArrayList;
-
-import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
-import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
-import com.karel.game.gridobjects.gridentities.zombies.ironclad.IroncladZombie;
 
 /**
  * Write a description of class AdventureSpawner here.
@@ -19,7 +14,6 @@ public class TutorialSpawner implements Spawner
     public int cwavecooldown = 200;
     public GridEntity boss;
     public World myWorld = Game.world;
-    public ArrayList<Class> spawnTypes;
     public ArrayList<Integer> spawnCount;
     public ArrayList<GridEntity> currentlySpawned = new ArrayList<GridEntity>();
     public int level;
@@ -44,22 +38,13 @@ public class TutorialSpawner implements Spawner
             if(myz!=null&&myz.isDead()){
                 firstKill = true;
             }
-            myz = new IroncladZombie();
+            myz = new Zombie(){
+                public double damageExposure(){
+                    return 4;
+                }
+            };
             spawnZombie(myz);
         }
-    }
-    public void spawnZombies(SpawnData dat)
-    {
-        spawnTypes = dat.spawnTypes;
-        spawnCount = dat.spawnCount;//graphics, sound, spawner, tutorial
-        currentlySpawned = new ArrayList<GridEntity>();
-        for(int i = 0; i < spawnTypes.size(); i++){
-            for(int f = 0; f < spawnCount.get(i); f++){
-                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).getDeclaredConstructor().newInstance());
-                spawnZombie(toSpawn);currentlySpawned.add(toSpawn);}catch(Exception e){e.printStackTrace();}
-            }
-        }
-        System.out.println("Spawning "+currentlySpawned.size()+" zombies");
     }
 
     public void spawnZombie(GridObject toSpawn){

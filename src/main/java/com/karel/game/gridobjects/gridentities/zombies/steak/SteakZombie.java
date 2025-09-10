@@ -132,7 +132,7 @@ public class SteakZombie extends ShooterZombie
         return classes;
     }
     public boolean isPotentialTarget(GridEntity e){
-        return !(e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
+        return !(e==this||!e.canDetect()||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
     }
     public String getName(){
         return "Steak Zombie";

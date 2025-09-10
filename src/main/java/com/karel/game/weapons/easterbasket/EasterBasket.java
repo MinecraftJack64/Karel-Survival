@@ -86,6 +86,24 @@ public class EasterBasket extends Weapon implements LandingHandler
     public int getRarity(){
         return 7;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 325;
+        }
+        public int getUltEffectiveRange(){
+            return 350;
+        }
+        public int getUltIdealRange(){
+            return 275;
+        }
+        //AVERAGE SPEED OF PROJECTILE
+        public double getLead(double d){
+            return 13;
+        }
+    }
 }
 
 

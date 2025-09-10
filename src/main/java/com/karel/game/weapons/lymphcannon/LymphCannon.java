@@ -1,6 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.lymphcannon;
 import java.util.ArrayList;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**

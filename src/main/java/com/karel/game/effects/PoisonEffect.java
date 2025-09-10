@@ -1,5 +1,7 @@
 package com.karel.game.effects;
 
+import java.util.ArrayList;
+
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 
@@ -12,6 +14,7 @@ import com.karel.game.GridObject;
  */
 public class PoisonEffect extends TickingEffect
 {
+    ArrayList<String> log = new ArrayList<String>();
     private int damage;
     public PoisonEffect(int damage, int interval, int times, GridObject source){
         this(damage, interval, times, source, new EffectID(source));
@@ -23,8 +26,24 @@ public class PoisonEffect extends TickingEffect
     public boolean isMalicious(){
         return true;
     }
+    public void setTarget(GridEntity ge){
+        super.setTarget(ge);
+        log.add("targ "+ge);
+    }
     public void tick(){
-        damage(getTarget());
+        //try{
+            damage(getTarget());
+        /*}catch(Exception e){
+            e.printStackTrace();
+            for(String s: log){
+                System.out.println(s);
+            }
+        }*/
+        log.add("DAMAGE "+getDuration());
+    }
+    public void clear(){
+        super.clear();
+        log.add("cleared");
     }
     public void damage(GridEntity e){
         e.hitIgnoreShield(damage, getSource());

@@ -19,7 +19,8 @@ import com.karel.game.weapons.traps.Mousetrap;
 public class CatClaw extends Weapon implements LandingHandler
 {
     private int nextclawcooldown = 0;
-    private static final int ult = 900;
+    private int afterUltCooldown = 0; //20
+    private static final int ult = 1700;
     private boolean toland;
     private int clawtofire = 0;
     private Claw claws[] = new Claw[4];
@@ -70,7 +71,7 @@ public class CatClaw extends Weapon implements LandingHandler
         setLocked(true);
     }
     public boolean canFire(){
-        if(toland){
+        if(toland||afterUltCooldown>0){
             return false;
         }
         for(Claw c: claws){
@@ -92,6 +93,7 @@ public class CatClaw extends Weapon implements LandingHandler
     public void doLanding(){
         if(toland){
             toland = false;
+            afterUltCooldown = 20;
             getHolder().applyEffect(new PowerPercentageEffect(2, 60, getHolder(), new EffectID(getHolder(), "strengthen")));
             for(int i = 0; i < 8; i++){
                 SwipingClaw bullet = new SwipingClaw(getHolder().getRotation()+i*45, 70, getHolder());
@@ -101,11 +103,39 @@ public class CatClaw extends Weapon implements LandingHandler
             getHolder().applyEffect(new SpeedPercentageEffect(1.5, 60, getHolder(), new EffectID(getHolder(), "speedup")));
         }
     }
+    public void update(){
+        if(afterUltCooldown>0)afterUltCooldown--;
+        chargeUlt(1);
+        super.update();
+    }
     public String getName(){
         return "Cat Claw";
     }
     public int getRarity(){
         return 4;
+    }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 225;
+        }
+        public int getIdealRange(){
+            return 0;
+        }
+        public int getNumTargets(){
+            return -1;
+        }
+        public int getUltEffectiveRange(){
+            return 300;
+        }
+        public int getUltNumTargets(){
+            return -1;
+        }
+        public boolean shouldUseUlt(){
+            return true;
+        }
     }
 }
 

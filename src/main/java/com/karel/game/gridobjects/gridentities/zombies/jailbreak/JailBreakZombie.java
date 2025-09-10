@@ -24,7 +24,7 @@ public class JailBreakZombie extends Zombie
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "jailbreakzareln.png";}
-    private static double attackrange = 280, retreatrange = 300, bombrange = 40;
+    private static double attackrange = 280, retreatrange = 300, bombrange = 40, crowbarrange = 110;
     private int calccannoncooldown = 0;
     private int strafecooldown = 0;
     private boolean cstrafedir = true;

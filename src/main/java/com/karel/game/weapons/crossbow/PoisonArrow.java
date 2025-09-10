@@ -15,13 +15,6 @@ import com.karel.game.effects.SpeedPercentageEffect;
  */
 public class PoisonArrow extends Bullet
 {
-    /** The damage this bullet will deal */
-    //focus is from 0 to 1
-    //private double focus;
-    //private static final int damage = 40;//50*focus
-    //a 0.5 focus shot deals 20+30 damage while a 1.5 focus shot deals 60+90 damage
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 20;//actual distance is based on life
     private boolean isupgraded;
     public PoisonArrow(double rotation, double focus, boolean isupgraded, GridObject source)
     {

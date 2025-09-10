@@ -96,6 +96,29 @@ public class Crossbow extends Weapon
     public int getRarity(){
         return 2;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 400;
+        }
+        public boolean shouldUse(){
+            return getHolder().distanceTo(getHolder().getTarget())<=20*(5+focus*10);
+        }
+        public int getNumTargets(){
+            return (int)((focus-0.5)*4)+1;
+        }
+        public int getUltEffectiveRange(){
+            return 1000;
+        }
+        public int getUltNumTargets(){
+            return -1;
+        }
+        public boolean shouldUseUlt(){
+            return true;
+        }
+    }
 }
 
 

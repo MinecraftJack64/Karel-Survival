@@ -15,6 +15,7 @@ import com.raylib.Texture;
 
 public class SandboxUI extends UI {
     Button backButton;
+    Button stepWorldButton;
     TextDisplay teamLabel;
     ArrayList<Button> modeButtons;
     ArrayList<ImageButton> zombieButtons;
@@ -28,6 +29,12 @@ public class SandboxUI extends UI {
             }
         };
         backButton.setActive(false);
+        stepWorldButton = new Button(50, 50, "Step", Raylib.ORANGE){
+            public void click(){
+                Game.getGame().getWorld().doUpdate();
+            }
+        };
+        stepWorldButton.setActive(false);
         String[] zombieIDs = ZombieFactory.getZombieTypes();
         zombieButtons = new ArrayList<ImageButton>();
         for(int i = 0; i < zombieIDs.length; i++){
@@ -100,6 +107,8 @@ public class SandboxUI extends UI {
         }
 
         getWorld().addToGrid(backButton, 1, 1);
+
+        getWorld().addToGrid(stepWorldButton, 3, 1);
         //Create team options
         getWorld().addToGrid(teamLabel, getWorld().gridwidth-1, 2);
         for(int i = 0; i < teamButtons.size(); i++){
@@ -129,8 +138,9 @@ public class SandboxUI extends UI {
     public void addSummonOptions(){
         //Create zombie options
         int row = 0;
+        int baserow = zombieButtons.size()/(getWorld().gridwidth-2);
         for(int i = 0; i < zombieButtons.size(); i++){
-            getWorld().addToGrid(zombieButtons.get(i), 1+i%(getWorld().gridwidth-2), 14-row);
+            getWorld().addToGrid(zombieButtons.get(i), 1+i%(getWorld().gridwidth-2), 14-baserow+row);
             if((getWorld().gridwidth-2)==(1+i%(getWorld().gridwidth-2))){
                 row++;
             }
@@ -143,8 +153,9 @@ public class SandboxUI extends UI {
     }
     public void addWeaponOptions(){
         int row = 0;
+        int baserow = weaponButtons.size()/(getWorld().gridwidth-2);
         for(int i = 0; i < weaponButtons.size(); i++){
-            getWorld().addToGrid(weaponButtons.get(i), 1+i%(getWorld().gridwidth-2), 14-row);
+            getWorld().addToGrid(weaponButtons.get(i), 1+i%(getWorld().gridwidth-2), 14-baserow+row);
             if((getWorld().gridwidth-2)==(1+i%(getWorld().gridwidth-2))){
                 row++;
             }
@@ -157,5 +168,6 @@ public class SandboxUI extends UI {
     }
     public void setBackButtonActive(boolean active){
         backButton.setActive(active);
+        stepWorldButton.setActive(active);
     }
 }

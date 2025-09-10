@@ -66,6 +66,33 @@ public class CrystalGun extends Weapon
     public int getRarity(){
         return 4;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 390;
+        }
+        public int getIdealRange(){
+            return 0;
+        }
+        public int getUltEffectiveRange(){
+            return 350;
+        }
+        public int getUltIdealRange(){
+            return 0;
+        }
+        public int getUltNumTargets(){
+            return -1;
+        }
+        public boolean shouldUse(){
+            return Math.abs((getHolder().face(getHolder().getTarget(), false)+45)%90)<=4||shouldUseUlt()&&getAttackUpgrade()==1;
+        }
+        //Cross pattern
+        public boolean shouldUseUlt(){
+            return Math.abs(getHolder().face(getHolder().getTarget(), false)%90)<=4;
+        }
+    }
 }
 
 

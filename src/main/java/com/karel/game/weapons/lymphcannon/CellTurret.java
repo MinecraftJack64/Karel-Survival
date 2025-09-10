@@ -1,6 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.lymphcannon;
 import java.util.List;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Pet;
 import com.karel.game.effects.PowerPercentageEffect;
 
 /**

@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.exorcist;
 
+import com.karel.game.GridEntity;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -10,14 +12,15 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class ExorcistZombie extends Zombie
 {
+    public static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.spawner};
     private static final int gunReloadTime = 60;         // The minimum delay between firing the gun.
 
-    private int ammocooldown;               // How long ago we fired the gun the last time.
+    private int ammocooldown; // Time between each individual shot
     private int attackcooldown = 100;
     public String getStaticTextureURL(){return "exorcistzareln.png";} 
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
-    private int ammoreload = 0;
+    private double ammoreload = 0;
     private boolean hastarget = false;
     private boolean shouldheal = false;
     private boolean healself = false;
@@ -46,7 +49,7 @@ public class ExorcistZombie extends Zombie
     {
         double monangle = face(getTarget(), canMove()&&ammo==0);
         //setRotation(getRotation()-1);
-        ammoreload++;
+        ammoreload+=getReloadMultiplier();
         if(!hastarget){
             if(attackcooldown>0){
                 //die if survival mode
@@ -99,7 +102,10 @@ public class ExorcistZombie extends Zombie
             ammocooldown--;
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 500;
     }
@@ -146,7 +152,7 @@ public class ExorcistZombie extends Zombie
         return getNearestTarget();
     }
     public boolean isPotentialTarget(GridEntity e){
-        return !(e instanceof ExorcistZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
+        return !(e instanceof ExorcistZombie||!e.canDetect()||e instanceof DemonZombie||e==this||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
     }
     public String getName(){
         return "Exorcist Zombie";

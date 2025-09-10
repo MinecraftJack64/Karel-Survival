@@ -1,26 +1,10 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.russiandoll;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.ZombieClass;
 import com.karel.game.effects.EffectID;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-
-/*
- * classes
- * fila-mint
- * reinforce-mint: shieldzombie
- * bombard-mint: explodingzombie
- * arma-mint: zombie that controls bombs that drop down
- * contain-mint
- * spear-mint
- * pepper-mint
- * enchant-mint
- * winter-mint
- * appease-mint: shooterzombie stays at a distance and shoots small low damage bullets at you, slower than normal
- * ail-mint: poisonzombie that occasionally lets out a cloud that poisons you and boosts nearby zombies and leaves behind a poison area on death. Will slow you if you are too close to it. Very slow and tanky
- * conceal-mint: ninjazombies remain invisible and wait for the perfect opportunity to strike. They run towards you and when they're next to you, they throw 9 ninja stars while quickly circling you 3 times. They then run away and wait again. They occasionally reveal their location for short intervals of time
- * enlighten-mint
- * enforce-mint: zombie
- */
 /**
  * Write a description of class RussianDollZombie here.
  * 
@@ -29,20 +13,14 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class RussianDollZombie extends Zombie
 {
-    private int jumpcooldown;
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.tank};
+    private double jumpcooldown;
     //Big: cooldown: 90, height: 150, distance: 350
     //Medium: cooldown: 60, height: 75, distance: 150
     //Small: cooldown: 30, height 25, distance: 50
     private GridEntity inside;
-    private boolean wasBaby;
     public String getStaticTextureURL(){return "russianzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    //private int shieldhealth = 300;
-    private int damage = 10;
     private int size;
-    /**
-     * Initilise this rocket.
-     */
     public RussianDollZombie()
     {
         this(3, false);
@@ -53,12 +31,14 @@ public class RussianDollZombie extends Zombie
         setSpeed(1);
         startHealth(size*500-250);
         this.size = size;
-        wasBaby = isBaby;
         if(size>1){
             inside = new RussianDollZombie(size-1, true);
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 800;
     }
@@ -68,13 +48,13 @@ public class RussianDollZombie extends Zombie
                 getWorld().addObject(inside, getX(), getY());
                 inside = null;
                 jumpcooldown = getJumpCooldown();
-            }else if(canMove()){
+            }else if(canMove()&&isOnGround()){
                 double d = Math.min(distanceTo(getTarget().getX(), getTarget().getY()), getJumpDistance()*getMultipliedSpeed());
                 initiateJump(face(getTarget(), false), d, getJumpHeight());
                 jumpcooldown = getJumpCooldown();
             }
         }
-        jumpcooldown--;
+        jumpcooldown-=getReloadMultiplier();
     }
     public void doLanding(){
         if(!canAttack()){
@@ -117,9 +97,6 @@ public class RussianDollZombie extends Zombie
     }
     public int getExplosionRange(){
         return 40*size;
-    }
-    public boolean wasInOriginalWave(){
-        return !wasBaby;
     }
     public void die(GridObject killer){
         if(inside!=null){

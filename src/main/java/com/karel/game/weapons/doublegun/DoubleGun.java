@@ -76,6 +76,27 @@ public class DoubleGun extends Weapon
     public int getRarity(){
         return 0;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 600;
+        }
+        public int getUltEffectiveRange(){
+            return 125;
+        }
+        public int getUltIdealRange(){
+            return 0;
+        }
+        //AVERAGE SPEED OF PROJECTILE
+        public double getLead(double d){
+            return 15;
+        }
+        public boolean shouldUseUlt(){
+            return true;
+        }
+    }
 }
 
 

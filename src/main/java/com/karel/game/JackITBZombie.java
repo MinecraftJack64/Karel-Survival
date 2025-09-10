@@ -17,7 +17,7 @@ public class JackITBZombie extends Zombie
         setRotation(0);
         setSpeed(1);
         startHealthShield(new ArmorShield(new ShieldID(this), 800));
-        inside = !spawnJoker?new Zombie(){public boolean wasInOriginalWave(){return false;}}:new JokerZombie(){public boolean wasInOriginalWave(){return false;}};
+        inside = !spawnJoker?new Zombie():new JokerZombie();
     }
     //ovveride this
     public int getXP(){
