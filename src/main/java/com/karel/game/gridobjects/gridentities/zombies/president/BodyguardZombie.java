@@ -1,6 +1,10 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.president;
 
+import com.karel.game.GridEntity;
+import com.karel.game.PercentageShield;
+import com.karel.game.Sounds;
+import com.karel.game.SpawnableZombie;
+import com.karel.game.ZombieClass;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.ShieldID;
 
@@ -12,27 +16,23 @@ import com.karel.game.weapons.ShieldID;
  */
 public class BodyguardZombie extends SpawnableZombie
 {
-    private static final int gunReloadTime = 50;         // The minimum delay between firing the gun.
+    private ZombieClass[] classes = new ZombieClass[]{ZombieClass.tank};
+    private static final int gunReloadTime = 50;
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private int reloadDelayCount;
 
     public String getStaticTextureURL(){return "bodyguardzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
-    private static double shootrange = 400, attackrange = 30, retreatrange = 100, idlerange = 20;
-    private int enraged = 0;
+    private static double shootrange = 400, attackrange = 30, idlerange = 20;
+    private double zoneX, zoneY;
     public int action = 1;//0 - idle next to owner, 1 - attack, 2 - assist
     PresidentZombie owner;
     public int id;
     private boolean hasowner;
     private boolean isfeasting;
-    /**
-     * Initilise this rocket.
-     */
     public BodyguardZombie()
     {
         reloadDelayCount = 5;
-        setSpeed(4);
+        setSpeed(3);
         startHealth(450);
     }
     public BodyguardZombie(PresidentZombie owner, int bgid)
@@ -43,11 +43,6 @@ public class BodyguardZombie extends SpawnableZombie
         this.id = bgid;
         hasowner = true;
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
         isfeasting = false;
@@ -63,10 +58,14 @@ public class BodyguardZombie extends SpawnableZombie
             action = 1;
         }
         double monangle;
-        if(action==0&&distanceTo(owner)<=idlerange)monangle = owner.getRotation();
-        else if(action!=0)monangle = face(getTarget(), canMove());//temp
+        if(action==0){
+            monangle = owner.getRotation();
+            if(distanceTo(zoneX, zoneY)>=idlerange){
+                walk(face(zoneX, zoneY, false), 1);
+            }
+        }
+        else if(action!=0)monangle = face(getTarget(), canMove());
         else monangle = 0;
-        //setRotation(getRotation()-1);
         reloadDelayCount++;
         if(action==1){
             if(hasowner){
@@ -90,11 +89,6 @@ public class BodyguardZombie extends SpawnableZombie
             else{
                 heal(getTarget(), 5);
             }
-        }else{
-            /*if(distanceTo(getTarget())>idlerange)walk(monangle, 1);
-            else{
-                //stay near owner
-            }*/
         }
     }
     public void feast(){
@@ -104,8 +98,11 @@ public class BodyguardZombie extends SpawnableZombie
     public void enrage(){
         this.applyShield(new PercentageShield(new ShieldID(this), 0.15, -1));
         this.applyEffect(new SpeedPercentageEffect(1.2, 1000, this));
-        this.setPower(1.5);
-        enraged = 1;
+        this.setPower(1.2);
+    }
+    public void setPatrolZone(double x, double y){
+        zoneX = x;
+        zoneY = y;
     }
     public void attack(){
         damage(getTarget(), 20);
@@ -130,7 +127,10 @@ public class BodyguardZombie extends SpawnableZombie
             reloadDelayCount = 0;
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 0;
     }

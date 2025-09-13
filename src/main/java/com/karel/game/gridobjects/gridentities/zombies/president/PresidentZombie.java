@@ -1,6 +1,11 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.president;
 
+import com.karel.game.ArmorShield;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Nuke;
+import com.karel.game.Projectile;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.weapons.ShieldID;
 
@@ -14,25 +19,18 @@ import java.util.ArrayList;
  */
 public class PresidentZombie extends Zombie
 {
-    private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-
-    public String getStaticTextureURL(){return "presidentzareln.png";} 
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
-    private int damage = 400;
-    private int nbg = 4;//number of bodyguards
+    private ZombieClass[] classes = new ZombieClass[]{ZombieClass.spawner, ZombieClass.leader};
+    public String getStaticTextureURL(){return "presidentzareln.png";}
+    private int nbg = 6;//number of bodyguards
+    private int extraGuards = 12;
     BodyguardZombie guards[] = new BodyguardZombie[nbg];
     GridEntity gtargets[] = new GridEntity[nbg];
-    private int healerid;
     ArrayList<GridEntity> targets = new ArrayList<GridEntity>();
     /**
      * Initilise this rocket.
      */
     public PresidentZombie()
     {
-        reloadDelayCount = 5;
         setSpeed(2);
         startHealth(300);
         applyShield(new ArmorShield(new ShieldID(this), 300));
@@ -44,19 +42,21 @@ public class PresidentZombie extends Zombie
      */
     public void behave()
     {
-        reloadDelayCount++;
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
         if(!canAttack()){
             return;
         }
         for(int i = 0; i < guards.length; i++){
-            if(guards[i]==null||guards[i].isDead()){
-                guards[i] = new BodyguardZombie(this, i);//replace dead bodyguards
+            if(guards[i]==null||guards[i].isDead()&&extraGuards>0){
+                guards[i] = new BodyguardZombie(this, i);//create body guards
                 getWorld().addObject(guards[i], getX(), getY());
+                extraGuards--;
             }
         }
-        if(distanceTo(getTarget())>140)walk(monangle, 1);
+        if(distanceTo(getTarget())>140){
+            walk(monangle, 1);
+            updateZones();
+        }
         else{
             explodeOn(150, "enemy", (g)->{
                 if(!targets.contains(g)){
@@ -72,7 +72,12 @@ public class PresidentZombie extends Zombie
         int ng;
         if(getHealth()*1.0/getMaxHealth()<0.6){
             ng = nbg-1;
-            gtargets[0] = this;//make a bg heal me
+            for(int i = 0; i < gtargets.length; i++){
+                if(!guards[i].isDead()){
+                    gtargets[i] = this; // designate healer
+                    break;
+                }
+            }
         }else{
             ng = nbg;
         }
@@ -98,8 +103,8 @@ public class PresidentZombie extends Zombie
         return gtargets[id];
     }
     
-    public void hit(int amt, GridObject source){
-        super.hit(amt, source);
+    public void hitIgnoreShield(int amt, double exp, GridObject source){
+        super.hitIgnoreShield(amt, exp, source);
         GridEntity sourc;
         if(source instanceof Projectile){
             sourc = (GridEntity)((Projectile)source).getSource();
@@ -112,21 +117,35 @@ public class PresidentZombie extends Zombie
             targets.add(sourc);
         }
     }
+    public void updateZones(){
+        if(guards!=null)
+        {
+            int id = 0;
+            for(BodyguardZombie z: guards){
+                if(!z.isDead())z.setPatrolZone(calculateZoneX(id), calculateZoneY(id));
+                id++;
+            }
+        }
+    }
+    public double calculateZoneX(int id){
+        return getBranchX(getRotation()+id*60, 60)+getX();
+    }
+    public double calculateZoneY(int id){
+        return getBranchY(getRotation()+id*60, 60)+getY();
+    }
     
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 1000;
     }
 
     public void die(GridObject source){
-        try{
-            //explode if not stunned
-            Nuke bomb = new Nuke(this);
-            getWorld().addObject(bomb, getTarget().getX(), getTarget().getX());
-            super.die(source);
-        }catch(IllegalStateException e){
-            //
-        }
+        Nuke bomb = new Nuke(this);
+        getWorld().addObject(bomb, getTarget().getX(), getTarget().getY());
+        super.die(source);
     }
     public String getName(){
         return "President Zombie";

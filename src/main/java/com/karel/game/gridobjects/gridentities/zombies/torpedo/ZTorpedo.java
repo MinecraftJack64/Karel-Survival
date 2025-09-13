@@ -1,21 +1,14 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.torpedo;
 
-/**
- * A bullet that can hit asteroids.
- * 
- * @author Poul Henriksen
- */
+import com.karel.game.Bullet;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 public class ZTorpedo extends Bullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 50;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 10;
     double vx, vy;
     double tvx, tvy;
-    double cdirspeed = 0.2;
-    double pspeed = 15;
+    double cdirspeed = 0.18; // how fast it can change speed
+    double pspeed = 13; // target speed
     public ZTorpedo(double rotation, GridObject source)
     {
         super(rotation, source);

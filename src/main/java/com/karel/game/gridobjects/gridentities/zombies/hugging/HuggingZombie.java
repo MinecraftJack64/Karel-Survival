@@ -1,19 +1,21 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.hugging;
+
+import com.karel.game.Greenfoot;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.raylib.Texture;
 public class HuggingZombie extends Zombie
 {
-    private Texture rocket = Greenfoot.loadTexture("sadhuggingzareln.png");
-    private Texture rocket2 = Greenfoot.loadTexture("huggingzareln.png");
+    public String getStaticTextureURL(){return "huggingzareln.png";}
+    private ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
+    private Texture rocket = Greenfoot.loadTexture(spriteOrigin()+"sadhuggingzareln.png");
+    private Texture rocket2 = Greenfoot.loadTexture(spriteOrigin()+"huggingzareln.png");
     private boolean attack = true;
-    /**
-     * Initilise this rocket.
-     */
     public HuggingZombie()
     {
         scaleTexture(55, 55);
         setSpeed(10);
-        startHealth(1000);
+        startHealth(500);
     }
     public void attack(){
         if(attack){
@@ -30,22 +32,14 @@ public class HuggingZombie extends Zombie
     public boolean canBePulled(){
         return false;
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
-        return 500;
+        return 90;
     }
     public String getName(){
         return "Hugging Zombie";
     }
-    /*public void damage(int amt){
-        if(shieldhealth>0&&amt>0){
-            shieldhealth-=amt;
-            shieldBar.setValue(shieldhealth);
-            if(shieldhealth<=0){
-                shieldhealth = 0;
-                setImage(rocket2);
-            }
-        }else
-            super.damage(amt);
-    }*/
 }

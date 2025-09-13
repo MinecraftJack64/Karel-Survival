@@ -19,7 +19,8 @@ import java.util.HashSet;
 public class JailBreakZombie extends Zombie
 {
     private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer, ZombieClass.penetrator};
-    private static final int gunReloadTime = 150;         // The minimum delay between firing the gun.
+    private static final int gunReloadTime = 150;
+    private static final int crowbarReloadTime = 60;
 
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
@@ -82,6 +83,12 @@ public class JailBreakZombie extends Zombie
                 walk(monangle, -1);
             }else{
                 if(distanceTo(nearestCannon)>bombrange+10)walk(monangle, 1);
+            }
+        }
+        if(distanceTo(getTarget())<crowbarrange){
+            if(reloadDelayCount>=crowbarReloadTime){
+                addObjectHere(new Crowbar(getRotation(), this));
+                reloadDelayCount = 0;
             }
         }
         strafecooldown--;

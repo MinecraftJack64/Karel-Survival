@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.warrior;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -11,13 +12,12 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class WarriorZombie extends Zombie
 {
-    private static final int gunReloadTime = 85;         // The minimum delay between firing the gun.
+    private ZombieClass[] classes = new ZombieClass[]{ZombieClass.assault, ZombieClass.midranger};
+    private static final int gunReloadTime = 85;
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;
 
-    public String getStaticTextureURL(){return "warriorzareln.png";} 
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private int ammo = 0;
+    public String getStaticTextureURL(){return "warriorzareln.png";}
     private static double attackrange = 310, retreatrange = 300;
     private int chargewaitrange = 600;
     private int chargecooldown = 0;
@@ -33,17 +33,10 @@ public class WarriorZombie extends Zombie
         setSpeed(4);
         startHealth(400);
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behaveAsRanger()
     {
-        reloadDelayCount++;
+        reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
-        ammo++;
         strafecooldown--;
         if(strafecooldown<=0){
             cstrafedir = !cstrafedir;
@@ -96,10 +89,6 @@ public class WarriorZombie extends Zombie
     public void attack(){
         damage(getTarget(), 30);
     }
-
-    /**
-     * Check whether there are any key pressed and react to them.
-     */
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
@@ -109,7 +98,10 @@ public class WarriorZombie extends Zombie
             reloadDelayCount = 0;
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 400;
     }

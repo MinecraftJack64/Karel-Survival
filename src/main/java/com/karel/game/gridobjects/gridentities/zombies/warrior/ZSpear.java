@@ -1,5 +1,6 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.warrior;
 
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 
 /**
@@ -21,6 +22,9 @@ public class ZSpear extends ZBullet
         setSpeed(18);
         setLife(35);
         setDamage(300);
+        setImage("Projectiles/Bullets/spear.png");
+        scaleTexture(60);
+        setRotation(getRotation()-180);
     }
     
     /**

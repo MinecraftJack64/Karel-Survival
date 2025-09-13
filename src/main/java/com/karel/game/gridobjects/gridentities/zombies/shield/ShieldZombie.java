@@ -14,9 +14,10 @@ import com.raylib.Texture;
  */
 public class ShieldZombie extends Zombie
 {
+    public String getStaticTextureURL(){return "shieldzareln.png";}
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.meatshield};
-    private Texture rocket = Greenfoot.loadTexture("GridEntities/Zombies/shieldzareln.png");
-    private Texture rocket2 = Greenfoot.loadTexture("GridEntities/Zombies/zareln.png");
+    private Texture rocket = Greenfoot.loadTexture(spriteOrigin()+"shieldzareln.png");
+    private Texture rocket2 = Greenfoot.loadTexture(spriteOrigin()+"zareln.png");
     private static double speed = 2;
     //ShieldBar shieldBar;
     private boolean inShieldPhase = true;

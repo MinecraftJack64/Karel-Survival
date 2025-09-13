@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.gridobjects.gridentities.zombies.torpedo;
 
+import com.karel.game.Sounds;
+import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**
@@ -11,31 +12,23 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
  */
 public class TorpedoZombie extends Zombie
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.ranger, ZombieClass.whittler, ZombieClass.pressurer};
     private static final int gunReloadTime = 30;         // The minimum delay between firing the gun.
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
+    private double reloadDelayCount;               // How long ago we fired the gun the last time.
 
     public String getStaticTextureURL(){return "gunzareln.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private static double attackrange = 700;
     private ZTorpedo myTorpedo;
-    /**
-     * Initilise this rocket.
-     */
     public TorpedoZombie()
     {
         reloadDelayCount = 0;
         setSpeed(1);
         startHealth(100);
     }
-
-    /**
-     * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,
-     * accelerating and shooting when the right keys are pressed.)
-     */
     public void behave()
     {
-        if(myTorpedo==null||myTorpedo.isDone())reloadDelayCount++;
+        if(myTorpedo==null||myTorpedo.isDone())reloadDelayCount+=getReloadMultiplier();
         double monangle = face(getTarget(), canMove());
         //setRotation(getRotation()-1);
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
@@ -43,10 +36,6 @@ public class TorpedoZombie extends Zombie
             fire();
         }
     }
-
-    /**
-     * Check whether there are any key pressed and react to them.
-     */
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
@@ -57,7 +46,10 @@ public class TorpedoZombie extends Zombie
             myTorpedo = bullet;
         }
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 1000;
     }

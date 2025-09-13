@@ -1,0 +1,244 @@
+9/12
+Balancing
+ - Firing Squad Zombie
+    - (+)Spawn squad cooldown(500->200)
+    - (-)First shot cooldown(100->250)
+ - Splitter, light, and heavy zombie classes updated
+ - Added crowbar attack to Jail break zombie
+ - Warrior Zombie affected by reload speed and classes updated
+ - Bodyguard Zombie
+    - (-)Enrage power(1.5->1.2)
+    - (-)Base speed(4->3)
+    - Move to a zone designated by the president zombie
+    - Classes updated
+ - President Zombie can only replace up to 6 bodyguards
+Fixes
+ - President zombie responds to shield piercing hits
+ - Fixed President zombie spawning nuke at (x, x) of target instead of (x, y)
+Other
+ - Hugging Zombie "hugging" is now spawnable
+Graphics
+ - Shield Zombie shows its correct graphics as a sandbox option
+ - Warrior Zombie spear has correct graphics
+ - Added tractor beam zombie appearance(TODO: beam)
+
+9/11
+Content
+ - Added the firing squad zombie
+Balancing
+ - Torpedo Zombie classes updated and affected by reload speed
+ - Torpedo Zombie bullet correction(0.2, 15->0.18, 13)
+ - Exploding Zombie leaves behind a burning puddle if killed while burning
+NOTE: Trollbat is Troll Test
+
+9/9
+Balancing
+ - Demon Zombies spawned by the exorcist zombie take on the team of the zombie healed
+ - (+)Exorcist Zombie damage/heal(25->35)
+ - Exorcist Zombie classes updated and affected by reload speed
+ - Demon and Guardian Angel zombies will now attack each other
+ - The primary healers(Doctor, Exorcist, and Steak) can no longer see undectable allies
+ - Cat Claw
+    - (-)Ult charge(900->1700)
+    - (-)Has to wait until ult completely finishes before attacking
+    - (+)Has a slow passive ult charge
+Fixes
+ - Demon Zombies no longer die instantly from getting healed by their exorcist
+ - Demon zombie is now listed as spawnable
+ - Fixed Demon Zombie crash when no spawner is specified
+ - Fixed Demon Zombie not doing any damage
+ - Fixed Bot crashing if ult/attack instantly kills last target
+Technical
+ - ZExorcistShot moved to correct package
+ - Removed unnessecary methods and fields from TutorialSpawner(reverted to spawning zombie)
+Other
+ - The zombies spawned in tutorial mode charge ult 4 times as fast
+Mechanics
+ - Implemented bot guides for Cat Claw, Critters, Crossbow, Crystal Gun, Double Gun, Easter basket, Hamburgerer, Flail
+ - Fixed capsaicin torch bot guide range not working
+TODO: Make all gridobjects cache a target per update cycle
+TODO: Fix poison crash and tutorial menu crash and crash when updating weapon needs hand on bot with no target
+
+9/7
+Balancing
+ - Hornet Neck Zombie class updated
+ - Russian Doll Zombie class updated and affected by reload speed
+Technical
+ - removed Zombie.wasInOriginalWave()
+Other
+ - "prisonbreak" renamed to "jailbreak"
+ - Demon Zombie "demon" is now spawnable
+
+9/6
+Content
+ - Added flail gadget, ult and attack upgrades
+ - Added hearth ult and attack upgrades
+ - "Added blade gadget"
+ - Zombie herald is spawnable in sandbox mode
+Balancing
+ - Cannon Zombie affected by reload speed
+ - Flail weapon affected by reload speed
+ - Removed old flail attack upgrade, fixing the bot bug
+ - (-)Ironclad Zombie projectile speed(25->20)
+ - Hearth
+    - (+)Campfires can heal themselves again
+    - (+)Campfire base damage(4, 8->5, 10)
+    - (-)Ult charge(1500->1700)
+    - (-)Maximum active campfires(INF->5); Extra campfires will lose health and die
+    - (+)Hearth can gain up to 50 extra range at maximum focus
+ - Updated Zombie Herald classes
+Fixes
+ - Mousetraps beartrap dies correctly using die(GridObject) instead of die()
+    - Targets caught by the beartrap are no longer stunned forever even when the trap is removed]
+ - Maybe fixed poison crashes?
+ - Fixed ironclad zombie retaliation crash?
+ - Fixed hearth focus being rounded off incorrectly
+ - Fixed blade gadget failing to activate(activation method missing)
+Graphics
+ - Added flail, hearth, and mousetraps graphics
+ - Shotgun harpoon and Weedwacker blade connectors now appear at correct heights
+ - Sandbox options are flipped, allowing text to be visible for lower rows
+Technical
+ - Weapons can render themselves now
+Note
+ - What is an ammo holder?
+TODO: In game timing and serialization
+
+9/5
+Balancing
+ - Bread Boxer Zombie
+    - No longer attacks while in the air
+    - Affected by reload speed(both dodging and attacking)
+    - Classes updated
+ - Cannon Zombie classes updated
+Technical
+ - Effects are in their own directory
+ - InfectionEffect can take a lambda expression
+Graphics
+ - Added Breadboxer graphics
+ - Added hamburgerer graphics
+TODO: Add effect and zombie class icons
+
+9/1
+Mechanics
+ - Finished pausing in sandbox mode
+Fixes
+ - Fixed shapeshifter zombie crashing due to possessed being null while unshapeshifting(unknown cause)
+TODO: add effect factory, and fix pipeline
+
+8/31
+Technical
+ - Changed player revive to always reset health by default
+ - Protect and Sandbox modes revive the player instead of creating a new one
+ - Revived entities now show health correctly
+ - Added GridObject.getNearestOtherGE which ignores potential target
+Fixes
+ - Fixed item crafting crashing the game(very old bug)
+ - Bot no longer crashes without targets
+ - Guardian angel zombies no longer remain immune when attached
+ - Fixed paint gun not being available
+
+8/30
+Content
+ - Added rock launcher gadget and ult upgrade
+ - Added mousetraps gadget
+Balancing
+ - Rock launcher affected by reload speed
+ - Rock launcher ult charge from ult halved
+ - Mousetraps affected by reload speed
+Technical
+ - All weapons can be instantiated with ItemFactory
+ - FlyingRock is now seperate from the superclass FlyingProjectile
+ - Player uses item factory to get items
+
+8/29
+Mechanics
+ - Completed basic sandbox mode, TODO graphics changes and new modes
+
+8/27
+Mechanics
+ - Added mode selection for Sandbox Mode(WIP)
+Balancing
+ - Stunt Zombie affected by reload speed and classes updated
+    - TODO: Give stunt zombie sticky bomb
+ - TODO: do warrior tomorrow
+ - TODO: Cannon Zombie affected by reload speed
+
+8/23
+Mechanics
+ - WIP: Added the sandbox mode UI
+Balancing
+ - Updated Shield Zombie classes
+Other
+ - Updated Shapeshifter Zombie name
+Technical
+ - All Gamemodes are in a folder
+
+NEW SUDO IDEAS
+ - Attack spawns a selected zombie(lob it)/bot with desired effects
+ - Attack carries nearby gridentities(maybe with a filter(zombie or bot))
+ - Attack does damage to closest or in an area
+ - Attack heals closest or in an area
+ - Attack inflicts effect on closest or in an area
+ - Attack applies team to grid entity
+ - Attack gives a weapon to bot
+ - teleports
+OTHER
+ - Team edit
+ - Pause All
+
+8/18
+Other
+ - Updated all zombie factory entries
+
+8/16
+Fixes
+ - Mimic zombies do landing and continue use and ult
+Balancing
+ - Shapeshifter Zombie class updated
+ - Mimic Zombie constantly retries until it gets a useable weapon
+ - Cat Claw
+    - (-)Ult claw does less damage the closer to the center they are(75->75, 40)
+    - (-)Ult claw ult charge(1->0.2)
+    - (+)Removed Non charging
+    - (-)Ult charge(700->900)
+Content
+ - Implemented Bots (NPCS)
+Technical
+ - Cat Claw charges ult fully instead of a hard amount
+Mechanics
+ - Implemented bot guides for minigun, blade, blowgun, capsaicin torch
+
+ZOMBIE IDEA
+Kaiju Zombie(Mini-boss/Tank/Tactician)
+Has a variety of powers and stats to choose from, all totaling to a gradually increasing power cap. Every minute, it goes inactive and resumes with unique abilities.
+Powers:
+ - Atomic Breath(range, DPS, duration)
+ - ?
+
+8/15
+Balancing
+ - Shapeshifter Zombie
+    - Health(200->400)
+    - Heals fully when its target dies
+    - Takes 50 damage when it is killed while shapeshifting
+    - Takes 20% more damage and does 20% less damage while shapeshifting
+    - Has a short 0.25s cooldown before being able to shapeshift(only if its shapeshift form dies) and stops for 0.25 seconds to change
+Graphics
+ - Added shapeshifter graphics
+Content
+ - Added Mimic Zombie
+NOTE
+ - BOTS AND ZOMBIES NEED TO LINK ULT CHARGING TO NOTIFY DAMAGE AND LINK LANDING HANDLER AND CALL CONTINUES
+
+8/14
+Balancing
+ - Exorcist zombie start attack cooldown(400->100)
+ - Doctors and exorcists will now allow the next wave to trigger if they are out of targets
+ - Hypnotized zombies allow the next wave to trigger
+Technical
+ - grid entites have an isActive boolean to return if the entity is stuck
+ - grid entities have an possess method to store possessors(tickable variant) and process them on death and tick
+ - TODO: Virus and Demon uses possess()
+Content
+ - Added shapeshifter zombie(WIP)
