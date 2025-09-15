@@ -18,6 +18,9 @@ public class SilenceEffect extends MaliciousEffect
     public SilenceEffect(int duration, EffectID id){
         super(duration, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/silence.png";
+    }
     public void onClear(){
         getTarget().unmute(getID());
     }

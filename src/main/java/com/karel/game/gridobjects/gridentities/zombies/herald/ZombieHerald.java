@@ -1,7 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.herald;
 
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * Does not move, indicates that killing it will result in the boss spawning. Takes on the appearance of the boss

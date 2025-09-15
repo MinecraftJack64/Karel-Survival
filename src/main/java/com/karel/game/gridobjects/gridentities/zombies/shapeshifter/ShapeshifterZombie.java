@@ -1,10 +1,10 @@
 package com.karel.game.gridobjects.gridentities.zombies.shapeshifter;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.GridEntity;
 import com.karel.game.Greenfoot;
 import com.karel.game.Possessor;
-import com.karel.game.ZombieClass;
 
 import java.util.ArrayList;
 import java.util.HashSet;

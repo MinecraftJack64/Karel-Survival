@@ -20,6 +20,9 @@ public class KnockbackEffect extends StunEffect
         d = dist;
         this.h = h;
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/knockback.png";
+    }
     public void onApply(){
         GridEntity source = getTarget();
         if(source.canBePulled()){

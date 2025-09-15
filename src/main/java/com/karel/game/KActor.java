@@ -135,6 +135,15 @@ public abstract class KActor
     public void setDrawCenter(String center){
         drawCenter = center;
     }
+    public void setTint(Color c){
+        transColor = c;
+    }
+    public void setTint(int r, int g, int b){
+        setTint(new Color((byte)r, (byte)g, (byte)b, (byte)getOpacity()));
+    }
+    public void resetTint(){
+        transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
+    }
     public void render(){//TODO: add params like x and y offset and scale
         if(getImage()!=null){
             int w = getImage().getWidth(), h = getImage().getHeight();

@@ -7,6 +7,7 @@ import com.karel.game.effects.LifestealEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;

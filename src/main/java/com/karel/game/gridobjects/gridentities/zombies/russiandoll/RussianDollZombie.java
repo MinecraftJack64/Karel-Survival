@@ -2,9 +2,9 @@ package com.karel.game.gridobjects.gridentities.zombies.russiandoll;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.ZombieClass;
 import com.karel.game.effects.EffectID;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 /**
  * Write a description of class RussianDollZombie here.
  * 
@@ -117,6 +117,6 @@ public class RussianDollZombie extends Zombie
     }
     
     public String getName(){
-        return "Russian Doll Zombie";
+        return "Space Matryoshka Zombie";
     }
 }

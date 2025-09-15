@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.splitter;
 
 import com.karel.game.GridObject;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * A normal zombie that spawns a light zombie and heavy zombie on death.

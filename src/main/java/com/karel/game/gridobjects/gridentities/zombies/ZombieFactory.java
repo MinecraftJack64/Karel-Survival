@@ -1,15 +1,11 @@
 package com.karel.game.gridobjects.gridentities.zombies;
 
-import com.karel.game.AssassinZombie;
 import com.karel.game.Bot;
 import com.karel.game.CloudServer;
-import com.karel.game.EvilSpiritZombie;
 import com.karel.game.GridEntity;
-import com.karel.game.JackITBZombie;
-import com.karel.game.JokerZombie;
 import com.karel.game.WatermelonZombie;
-import com.karel.game.Wizard;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
+import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
@@ -29,7 +25,9 @@ import com.karel.game.gridobjects.gridentities.zombies.hornetneck.Hornet;
 import com.karel.game.gridobjects.gridentities.zombies.hornetneck.HornetNeckZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hugging.HuggingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ironclad.IroncladZombie;
+import com.karel.game.gridobjects.gridentities.zombies.jackinthebox.JackITBZombie;
 import com.karel.game.gridobjects.gridentities.zombies.jailbreak.JailBreakZombie;
+import com.karel.game.gridobjects.gridentities.zombies.joker.JokerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
@@ -39,6 +37,7 @@ import com.karel.game.gridobjects.gridentities.zombies.president.BodyguardZombie
 import com.karel.game.gridobjects.gridentities.zombies.president.PresidentZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.russiandoll.RussianDollZombie;
+import com.karel.game.gridobjects.gridentities.zombies.shaman.EvilSpiritZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.ShapeshifterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
@@ -51,6 +50,7 @@ import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
+import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
 import com.karel.game.gridobjects.gridentities.zombies.cowboy.CowboyZombie;
 
 /**
@@ -95,11 +95,11 @@ public class ZombieFactory {
             "shapeshifter",
             "hugging",
             "tractorbeam",
-            "president",//
+            "president",
             "bodyguard",
-            "joker",//
+            "joker",
             "firingsquad",
-            "jackinthebox",//
+            "jackinthebox",
             "cannon",
             "stunt",
             "watermelon",//

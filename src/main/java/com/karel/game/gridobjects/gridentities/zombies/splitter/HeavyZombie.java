@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.splitter;
 
 import com.karel.game.GridObject;
-import com.karel.game.SpawnableZombie;
-import com.karel.game.ZombieClass;
+import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 /**
  * An extremely tanky and slow zombie spawned when a splitter zombie dies.
  * 

@@ -25,6 +25,9 @@ public class DurationEffect extends Effect
         this.duration = duration;
         setCollisionProtocol(1);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/duration.png";
+    }
     public int getDuration(){
         return duration;
     }

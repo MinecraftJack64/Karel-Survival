@@ -3,7 +3,7 @@ package com.karel.game.gridobjects.gridentities.zombies.shield;
 import com.karel.game.ArmorShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.ZombieClass;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.weapons.ShieldID;
 import com.raylib.Texture;
 /**

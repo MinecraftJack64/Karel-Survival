@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies.boid;
 
-import com.karel.game.ZombiePackage;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.ZombieDropper;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
+import com.karel.game.gridobjects.gridentities.zombies.ZombiePackage;
 import com.karel.game.Greenfoot;
 
 //

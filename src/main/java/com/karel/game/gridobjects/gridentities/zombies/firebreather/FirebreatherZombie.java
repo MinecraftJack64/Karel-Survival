@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.firebreather;
 
 import com.karel.game.Sounds;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * Write a description of class FlamethrowerZombie here.
@@ -19,7 +19,7 @@ public class FirebreatherZombie extends Zombie
 
     private int nextNapalm = 30; // 25-35
 
-    public String getStaticTextureURL(){return "zareln.png";}
+    public String getStaticTextureURL(){return "flamezareln.png";}
     private static double attackrange = 150, retreatrange = 50;
     public FirebreatherZombie()
     {

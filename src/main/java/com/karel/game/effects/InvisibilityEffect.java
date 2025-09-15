@@ -18,6 +18,9 @@ public class InvisibilityEffect extends DurationEffect
     public InvisibilityEffect(int duration, EffectID id){
         super(duration, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/invisibility.png";
+    }
     public void onClear(){
         getTarget().setDetectable(true);// TODO: accountability
         getTarget().setOpacityPercent(1);

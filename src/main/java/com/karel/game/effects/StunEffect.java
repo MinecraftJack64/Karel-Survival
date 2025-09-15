@@ -18,6 +18,9 @@ public class StunEffect extends MaliciousEffect
     public StunEffect(int duration, EffectID id){
         super(duration, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/stun.png";
+    }
     public void onClear(){
         getTarget().unstun(getID());
     }

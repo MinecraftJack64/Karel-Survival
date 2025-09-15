@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies.rocket;
 import com.karel.game.Greenfoot;
 import com.karel.game.Rocket;
-import com.karel.game.ZombieClass;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 /**
  * Write a description of class RocketZombie here.
  * 

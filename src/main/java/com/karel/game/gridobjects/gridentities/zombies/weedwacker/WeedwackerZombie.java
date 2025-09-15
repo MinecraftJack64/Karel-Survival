@@ -1,7 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.weedwacker;
 
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.weapons.weedwacker.WeedwackerBlade;
 
 /**

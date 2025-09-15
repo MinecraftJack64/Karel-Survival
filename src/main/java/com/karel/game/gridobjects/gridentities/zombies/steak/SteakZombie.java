@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.steak;
 
-import com.karel.game.ZombieClass;
 import com.karel.game.AmmoManager;
 import com.karel.game.GridEntity;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 
 /**

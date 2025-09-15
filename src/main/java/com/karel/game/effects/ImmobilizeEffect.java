@@ -18,6 +18,9 @@ public class ImmobilizeEffect extends MaliciousEffect
     public ImmobilizeEffect(int duration, EffectID id){
         super(duration, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/immobilize.png";
+    }
     public void onClear(){
         getTarget().mobilize(getID());
     }

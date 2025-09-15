@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
+import com.karel.game.gridobjects.gridentities.zombies.ZombiePackage;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 
 /**

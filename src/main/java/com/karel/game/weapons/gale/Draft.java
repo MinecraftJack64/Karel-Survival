@@ -29,7 +29,7 @@ public class Draft extends Bullet
         this(rotation, source);
     }
     public void doHit(GridEntity g){
-        g.applyEffect(new SpeedPercentageEffect(0.75, 2, this));
+        g.applyEffect(new SpeedPercentageEffect(0.75, 2, getSource()));
         super.doHit(g);
     }
     public void onHit(GridEntity g){

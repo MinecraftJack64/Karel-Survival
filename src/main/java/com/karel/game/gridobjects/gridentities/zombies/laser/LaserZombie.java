@@ -1,6 +1,6 @@
 package com.karel.game.gridobjects.gridentities.zombies.laser;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.ZombieClass;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * Write a description of class LaserZombie here.
@@ -10,7 +10,7 @@ import com.karel.game.ZombieClass;
  */
 public class LaserZombie extends Zombie
 {
-    private static final ZombieClass[] classes = new ZombieClass[]{com.karel.game.ZombieClass.midranger};
+    private static final ZombieClass[] classes = new ZombieClass[]{com.karel.game.gridobjects.gridentities.zombies.ZombieClass.midranger};
     private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
 
     private double reloadDelayCount;               // How long ago we fired the gun the last time.

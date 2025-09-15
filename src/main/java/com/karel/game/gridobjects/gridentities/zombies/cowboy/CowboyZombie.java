@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.cowboy;
 
 import com.karel.game.ItemHolder;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.weapons.shotgun.Shotgun;
 
 /**

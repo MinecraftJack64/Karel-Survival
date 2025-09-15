@@ -23,6 +23,9 @@ public class FatalPoisonEffect extends Effect
         setCollisionProtocol(3);
         cooldown = this.interval = interval;
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/fatal_poison.png";
+    }
     public void affect(){
         cooldown--;
         if(cooldown<=0){

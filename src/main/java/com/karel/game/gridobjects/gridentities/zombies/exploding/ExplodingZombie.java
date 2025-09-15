@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies.exploding;
 
 import com.karel.game.GridObject;
-import com.karel.game.ZombieClass;
 import com.karel.game.effects.BurnEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.arson.FirePuddle;
 import com.karel.game.particles.Explosion;
 

@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 import com.karel.game.effects.ImmobilizeEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
+import com.karel.game.gridobjects.gridentities.zombies.ZombiePackage;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;

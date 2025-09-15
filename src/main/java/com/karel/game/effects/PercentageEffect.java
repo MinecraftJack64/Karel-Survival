@@ -15,11 +15,13 @@ public abstract class PercentageEffect extends DurationEffect
     {
         super(duration, source);
         this.percentage = percentage;
+        setImage();
     }
     public PercentageEffect(double percentage, int duration, GridObject source, EffectID id)
     {
         super(duration, source, id);
         this.percentage = percentage;
+        setImage();
     }
     public double getPercentage(){
         return percentage;

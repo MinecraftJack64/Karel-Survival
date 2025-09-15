@@ -7,6 +7,7 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
+import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
 
 
 /**

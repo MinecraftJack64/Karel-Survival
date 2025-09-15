@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.hornetneck;
 
 import com.karel.game.Greenfoot;
-import com.karel.game.SpawnableZombie;
 import com.karel.game.effects.PoisonEffect;
+import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 
 /**
  * Write a description of class Hornet here.

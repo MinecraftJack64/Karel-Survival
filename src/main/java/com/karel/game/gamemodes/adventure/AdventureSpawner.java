@@ -9,8 +9,8 @@ import com.karel.game.Levels;
 import com.karel.game.Levels.LevelRunner;
 import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
+import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
 import com.karel.game.Spawner;
-import com.karel.game.Wizard;
 import com.karel.game.World;
 
 /**

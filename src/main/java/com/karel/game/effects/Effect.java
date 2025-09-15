@@ -1,7 +1,9 @@
 package com.karel.game.effects;
 
+import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.raylib.Texture;
 
 /* all compound/mask effects
  * poison - ticking(damage)+healpercentage(<1)
@@ -29,12 +31,17 @@ import com.karel.game.GridObject;
  */
 public abstract class Effect  
 {
+    private Texture texture;
     private GridEntity target;// the GE this effect is attached to, it should call affect when it updates. cannot be null
     private GridObject source;// the GO that created this effect. can be null
     private EffectID id;// associated effect id. nullability unknown
     private int collisionProtocol = 0;
     public Effect(EffectID id){
         setID(id);
+        setImage(getStaticTextureURL());
+    }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/duration.png";
     }
     //tick this effect, usually affecting the attached gridentity
     public abstract void affect();
@@ -88,4 +95,15 @@ public abstract class Effect
         return getID().equals(((Effect)o).getID());
     }
     public void stack(Effect other){}
+    public void setImage(String url){
+        texture = Greenfoot.loadTexture(url);
+    }
+    public void setImage(){
+        setImage(getStaticTextureURL());
+    }
+    public void render(double x){
+        if(texture==null)return;
+        int size = 14;
+        getTarget().renderTexture(texture, getTarget().getX()+x-size/2, getTarget().getY()+40-size/2, size, size, 0, 255);
+    }
 }

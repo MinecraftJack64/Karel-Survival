@@ -3,8 +3,8 @@ package com.karel.game.gridobjects.gridentities.zombies.ironclad;
 import com.karel.game.ArmorShield;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.weapons.ShieldID;
 

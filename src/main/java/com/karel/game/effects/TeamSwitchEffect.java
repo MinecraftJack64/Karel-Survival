@@ -15,6 +15,9 @@ public class TeamSwitchEffect extends MaliciousEffect
         super(duration, source);
         this.team = team;
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/team_switch.png";
+    }
     public void onApply(){
         getTarget().setFakeTeam(team);
         Sounds.play("hypnotize");

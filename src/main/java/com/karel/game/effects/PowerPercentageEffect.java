@@ -18,6 +18,9 @@ public class PowerPercentageEffect extends PercentageEffect
     public PowerPercentageEffect(double percentage, int duration, GridObject source, EffectID id){
         super(percentage, duration, source, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/power"+(isMalicious()?"Mal":"")+".png";
+    }
     public void onApply(){
         getTarget().setPower(getPercentage(), getID());
     }

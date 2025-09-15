@@ -19,6 +19,9 @@ public class HealEffect extends TickingEffect
         super(interval, times, source, id);
         this.damage = (int)(damage*getSource().getPower());
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/heal.png";
+    }
     public void tick(){
         heal(getTarget());
     }

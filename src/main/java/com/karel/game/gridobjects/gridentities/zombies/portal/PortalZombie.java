@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.portal;
 
 import com.karel.game.EntrancePortal;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /*
  * classes
@@ -31,7 +31,7 @@ public class PortalZombie extends Zombie
 {
     private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.meatshield};
     private int portals;
-    public String getStaticTextureURL(){return "zareln.png";}
+    public String getStaticTextureURL(){return "portalzareln.png";}
     /**
      * Initilise this rocket.
      */

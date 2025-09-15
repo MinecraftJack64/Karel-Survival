@@ -17,6 +17,9 @@ public class ReloadPercentageEffect extends PercentageEffect
     public ReloadPercentageEffect(double percentage, int duration, GridObject source, EffectID id){
         super(percentage, duration, source, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/reload"+(isMalicious()?"Mal":"")+".png";
+    }
     public void onApply(){
         getTarget().setReloadMultiplier(getPercentage(), getID());
     }

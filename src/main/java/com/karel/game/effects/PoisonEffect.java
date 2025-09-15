@@ -23,6 +23,9 @@ public class PoisonEffect extends TickingEffect
         super(interval, times, source, id);
         this.damage = (int)(damage*getSource().getPower());
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/poison.png";
+    }
     public boolean isMalicious(){
         return true;
     }

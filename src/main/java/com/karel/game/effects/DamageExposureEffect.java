@@ -18,6 +18,9 @@ public class DamageExposureEffect extends PercentageEffect
     public DamageExposureEffect(double percentage, int duration, GridObject source, EffectID id){
         super(percentage, duration, source, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/exposure"+(isMalicious()?"Mal":"")+".png";
+    }
     public void onApply(){
         getTarget().setExposure(getPercentage(), getID());
     }

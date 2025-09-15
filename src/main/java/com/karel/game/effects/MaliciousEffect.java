@@ -18,6 +18,9 @@ public class MaliciousEffect extends DurationEffect
     public MaliciousEffect(int duration, EffectID id){
         super(duration, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/malicious.png";
+    }
     public boolean isMalicious(){
         return true;
     }

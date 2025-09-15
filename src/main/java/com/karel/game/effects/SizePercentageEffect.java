@@ -18,6 +18,9 @@ public class SizePercentageEffect extends PercentageEffect
     public SizePercentageEffect(double percentage, int duration, GridObject source, EffectID id){
         super(percentage, duration, source, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/size"+(isMalicious()?"Mal":"")+".png";
+    }
     public void onApply(){
         getTarget().scaleSize(getPercentage(), getID());
     }

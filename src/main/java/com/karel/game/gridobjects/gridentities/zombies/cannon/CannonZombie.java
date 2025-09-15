@@ -7,8 +7,8 @@ import com.karel.game.GridObject;
 import com.karel.game.Sounds;
 import com.karel.game.Target;
 import com.karel.game.TickingTimeBomb;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 import java.util.HashSet;
 

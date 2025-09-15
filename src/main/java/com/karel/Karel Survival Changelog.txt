@@ -1,3 +1,24 @@
+9/14
+Graphics
+ - Finished adding graphics for effects(basic)
+ - Added Joker Zombie graphics
+ - Added Jack-in-the-box graphics(crank todo)
+ - Added Assassin Zombie graphics
+ - Added Portal Zombie graphics
+ - Added Firebreather Zombie graphics
+ - Fixed assassin zombie not showing graphics
+ - Fixed light zombie not showing graphics, broke last time splitter was updated
+Balancing
+ - Joker Zombie classes updated
+ - Jack-in-the-box zombies can spawn in the air and shift towards you while falling
+ - Jack-in-the-box zombie class updated
+ - Assassin Zombie classes updated and affected by reload speed
+ - Evil Spirit Zombie classes updated
+Technical
+ - KActors can set tint
+Other
+ - Renamed Russian Doll Zombie to Space Matryoshka Zombie
+
 9/12
 Balancing
  - Firing Squad Zombie
@@ -21,6 +42,8 @@ Graphics
  - Shield Zombie shows its correct graphics as a sandbox option
  - Warrior Zombie spear has correct graphics
  - Added tractor beam zombie appearance(TODO: beam)
+Mechanics
+ - Started adding graphics for effects and classes. Note immunities shoul show as effects getting blocked
 
 9/11
 Content

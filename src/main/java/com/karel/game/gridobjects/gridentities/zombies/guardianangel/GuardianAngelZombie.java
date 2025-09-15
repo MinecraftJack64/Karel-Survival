@@ -4,8 +4,8 @@ import com.karel.game.ExternalImmunityShield;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Shield;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.exorcist.DemonZombie;
 import com.karel.game.weapons.ShieldID;
 

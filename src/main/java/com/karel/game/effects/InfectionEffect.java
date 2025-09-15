@@ -21,6 +21,9 @@ public class InfectionEffect extends PoisonEffect
     public InfectionEffect(int damage, int interval, GridObject source){
         super(damage, interval, 1, source);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/infection.png";
+    }
     public void damage(GridEntity e){
         super.damage(e);
         if(onInfect != null) onInfect.accept(e);

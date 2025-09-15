@@ -2,8 +2,8 @@ package com.karel.game.gridobjects.gridentities.zombies.ninja;
 
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * Write a description of class NinjaZombie here.

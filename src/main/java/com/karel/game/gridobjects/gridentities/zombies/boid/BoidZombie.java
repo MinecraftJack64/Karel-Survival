@@ -1,10 +1,10 @@
 package com.karel.game.gridobjects.gridentities.zombies.boid;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import java.util.List;
-import com.karel.game.ZombieClass;
 /**
  * Write a description of class BoidZombie here.
  * 

@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.hugging;
 
 import com.karel.game.Greenfoot;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.raylib.Texture;
 public class HuggingZombie extends Zombie
 {

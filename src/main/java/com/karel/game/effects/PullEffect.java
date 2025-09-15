@@ -25,6 +25,9 @@ public class PullEffect extends DurationEffect
         this.direction = direction;
         this.speed = speed;
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/pull.png";
+    }
     public void affect(){
         getTarget().pull(direction, speed);
         super.affect();

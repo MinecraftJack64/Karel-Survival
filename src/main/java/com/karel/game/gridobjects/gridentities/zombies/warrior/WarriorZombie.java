@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.warrior;
 
 import com.karel.game.Greenfoot;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * Write a description of class WarriorZombie here.

@@ -285,12 +285,19 @@ public abstract class GridEntity extends GridObject
         return true;
     }
 
-    public void applyEffects(){ 
+    public void applyEffects(){
         if(!isDead()) for(int i = effects.size()-1; i>= 0; i--) {
             effects.get(i).affect();
             if(isDead()){
                 break;
             }
+        }
+    }
+    public void renderEffectIcons(){
+        int x = -(effects.size()-1)*7;
+        for(int i = 0; i < effects.size(); i++) {
+            effects.get(i).render(x);
+            x+=14;
         }
     }
     public void startHealth(int amt){
@@ -536,6 +543,10 @@ public abstract class GridEntity extends GridObject
             else Game.gameUI().removeBossBar();
         }
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().removeObject(s);});
+    }
+    public void render(){
+        super.render();
+        renderEffectIcons();
     }
     public boolean trap(){
         //removeGraphics();

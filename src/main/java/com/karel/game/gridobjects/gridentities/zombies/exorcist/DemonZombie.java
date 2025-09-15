@@ -2,8 +2,8 @@ package com.karel.game.gridobjects.gridentities.zombies.exorcist;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.SpawnableZombie;
 import com.karel.game.effects.PoisonEffect;
+import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 import com.karel.game.gridobjects.gridentities.zombies.guardianangel.GuardianAngelZombie;
 
 /**

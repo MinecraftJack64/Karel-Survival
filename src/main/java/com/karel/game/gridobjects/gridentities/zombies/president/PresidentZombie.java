@@ -5,8 +5,8 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Nuke;
 import com.karel.game.Projectile;
-import com.karel.game.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.weapons.ShieldID;
 
 import java.util.ArrayList;

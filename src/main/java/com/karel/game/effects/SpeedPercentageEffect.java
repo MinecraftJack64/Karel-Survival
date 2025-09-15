@@ -18,6 +18,9 @@ public class SpeedPercentageEffect extends PercentageEffect
     public SpeedPercentageEffect(double percentage, int duration, GridObject source, EffectID id){
         super(percentage, duration, source, id);
     }
+    public String getStaticTextureURL(){
+        return "Symbols/Effects/speed"+(isMalicious()?"Mal":"")+".png";
+    }
     public void onApply(){
         getTarget().setSpeedMultiplier(getPercentage(), getID());
     }

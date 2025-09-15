@@ -2,7 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies.easter;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.SpawnableZombie;
+import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 
 /**
  * Write a description of class ZombieChick here.
