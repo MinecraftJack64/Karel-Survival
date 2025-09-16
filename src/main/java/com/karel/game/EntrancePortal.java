@@ -112,6 +112,10 @@ public class EntrancePortal extends GridObject
             this.kill();
         }
     }
+    public void notifyWorldRemove(){
+        deregisterColor(colorCode);
+        super.notifyWorldRemove();
+    }
     public void kill(){
         //placeholder
         super.die();

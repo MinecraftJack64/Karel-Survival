@@ -28,4 +28,5 @@ public class HealEffect extends TickingEffect
     public void heal(GridEntity e){
         e.heal(damage, getSource());
     }
+    public String getStringID(){return "heal";}
 }

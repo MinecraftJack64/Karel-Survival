@@ -26,4 +26,5 @@ public class ReloadPercentageEffect extends PercentageEffect
     public void onClear(){
         getTarget().setReloadMultiplier(1, getID());
     }
+    public String getStringID(){return "reload"+(isMalicious()?"Mal":"");}
 }

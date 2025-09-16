@@ -27,4 +27,5 @@ public class StunEffect extends MaliciousEffect
     public void onApply(){
         getTarget().stun(getID());
     }
+    public String getStringID(){return "stun";}
 }

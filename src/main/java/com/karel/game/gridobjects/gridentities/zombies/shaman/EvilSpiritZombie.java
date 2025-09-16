@@ -2,6 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies.shaman;
 
 import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
 /**
  * Write a description of class DemonZombie here.
@@ -11,9 +12,8 @@ import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
  */
 public class EvilSpiritZombie extends SpawnableZombie
 {
-
-    public String getStaticTextureURL(){return "spiritzareln.png";}  
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer};
+    public String getStaticTextureURL(){return "spiritzareln.png";}
     private int damage = 50;
     private GridEntity myhive;
     /**
@@ -52,7 +52,10 @@ public class EvilSpiritZombie extends SpawnableZombie
         }
     }
     
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 0;
     }

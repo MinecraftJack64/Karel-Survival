@@ -28,6 +28,7 @@ public abstract class GridObject extends KActor
     private double powermultiplier = 1;
     private int arcframe = 0;
     private boolean grounded;
+    private GridEntity cachedTarget;
     public String getTeam(){
         if(faketeam!=null){
             return faketeam;
@@ -258,9 +259,11 @@ public abstract class GridObject extends KActor
     }
     public void notifyDamage(GridEntity target, int amt){}
     public boolean isAggroTowards(GridObject other){
+        if(other.getTeam()==null||getTeam()==null||!isInWorld())return false;
         return getWorld().getTeams().getAggressions(getTeam()).contains(other.getTeam());
     }
     public boolean isAlliedWith(GridObject other){
+        if(other.getTeam()==null||getTeam()==null||!isInWorld())return false;
         return getWorld().getTeams().getAllies(getTeam()).contains(other.getTeam());
     }
     public void die(){
@@ -334,9 +337,12 @@ public abstract class GridObject extends KActor
         }, null);
     }
     public GridEntity getNearestTarget() {
+        if(useTargetCache()&&cachedTarget!=null&&!cachedTarget.isDead()&&isPotentialTarget(cachedTarget)){
+            return cachedTarget;
+        }
         GridEntity nearestTarget = null;
         double closestDistance = 0;
-    
+        if(!isInWorld())return null;
         for (GridEntity entity : this.getWorld().allEntities) {
             if (isPotentialTarget(entity)) {
                 double currentDistance = this.distanceTo(entity);
@@ -347,8 +353,11 @@ public abstract class GridObject extends KActor
                 }
             }
         }
-    
+        cachedTarget = nearestTarget;
         return nearestTarget;
+    }
+    public void clearTargetCache(){
+        cachedTarget = null;
     }
     //Ignores whether potential target
     public GridEntity getNearestOtherGE() {
@@ -546,6 +555,11 @@ public abstract class GridObject extends KActor
     public void update(){
         super.update();
         updateMounts();
+        clearTargetCache();
+    }
+    // cache target for the current update cycle
+    public boolean useTargetCache(){
+        return true;
     }
     public void notifyWorldRemove(){
         leaveTeam();

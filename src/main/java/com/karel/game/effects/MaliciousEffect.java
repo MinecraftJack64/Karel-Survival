@@ -24,4 +24,5 @@ public class MaliciousEffect extends DurationEffect
     public boolean isMalicious(){
         return true;
     }
+    public String getStringID(){return "malicious";}
 }

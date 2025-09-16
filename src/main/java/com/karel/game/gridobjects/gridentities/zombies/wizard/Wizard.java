@@ -19,6 +19,7 @@ import com.karel.game.effects.ReloadPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
@@ -54,6 +55,7 @@ import com.karel.game.particles.Explosion;
  */
 public class Wizard extends Boss
 {
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.boss};
     private static final int sporereload = 700;         // The minimum delay between firing the gun.
     private ArrayList<FungalZombie> spores;
     private ArrayList<GridEntity> turrets;
@@ -96,7 +98,10 @@ public class Wizard extends Boss
         wizardStun = new EffectID(this);
         addEffectImmunities(TeamSwitchEffect.class);
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 10000;
     }

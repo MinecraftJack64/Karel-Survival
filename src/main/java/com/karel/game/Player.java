@@ -200,7 +200,19 @@ public class Player extends GridEntity implements ItemAccepter {
         if(sudoActive()){
             sudo.tick();
         }
-        autoaim = Game.isShiftDown();
+        if(Game.isShiftDown()){
+            if(Game.isAutoAimAllowed()){
+                autoaim = true;
+                if(getNearestTarget()!=null)Game.gameUI().startAutoAim();
+                else Game.gameUI().loadingAutoAim();
+            }else{
+                autoaim = false;
+                Game.gameUI().failAutoAim();
+            }
+        }else{
+            autoaim = false;
+            Game.gameUI().stopAutoAim();
+        }
         autoult = Game.autoUlt();
         autoattack = Game.autoAttack();
         this.checkKeys();
@@ -283,7 +295,7 @@ public class Player extends GridEntity implements ItemAccepter {
             sprint-=2;
             Game.gameUI().setSprint(sprint);
         }else{
-            if(sprint<maxsprint){
+            if(sprint<maxsprint&&!isMoving()){
                 sprint+=sprintrecoverrate;
                 if(sprint>=maxsprint){
                     sprint = maxsprint;
@@ -327,7 +339,10 @@ public class Player extends GridEntity implements ItemAccepter {
         walk(v.getDirection()+90, (int)(sprintamt*v.getLength()));
 
         //handle item switching
-        if (Greenfoot.isActive("inventoryLeft")) {
+        if(!canAttack()){
+            Sounds.play("empty");
+        }
+        else if (Greenfoot.isActive("inventoryLeft")) {
             if (!this.currentlyscrolling&&!sudoActive()) {
                 this.prevSlot();
                 this.currentlyscrolling = true;

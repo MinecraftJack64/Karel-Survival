@@ -34,7 +34,7 @@ public class GameUI extends UI
     private UltBar ultCharge;
     private AmmoBar ammo;
     private StatusBar sprint;
-    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, tut1, tut2, bossName;
+    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2, bossName;
     private Button goToMenuBtn, nextLvlBtn;
     private BossBar boss;
     public void create(){
@@ -54,9 +54,17 @@ public class GameUI extends UI
         sprint.setVisible(false);
         getWorld().addObject(sprint, getWorld().gridXToRealX(getWorld().gridwidth)*0.8, ammo.getY());
         
-        sprintText = new TextDisplay("Sprint!", 20, Raylib.MAGENTA);
+        sprintText = new TextDisplay("SPRINT!", 20, Raylib.MAGENTA);
         sprintText.setVisible(false);
         getWorld().addObject(sprintText, sprint.getX(), sprint.getY()+30);
+
+        autoaimText = new TextDisplay("AUTOAIM", 20, Raylib.ORANGE);
+        autoaimText.setVisible(false);
+        getWorld().addObject(autoaimText, getWorld().gridXToRealX(getWorld().gridwidth)*0.7, ammo.getY());
+
+        autoaimStatusText = new TextDisplay("ON", 20, Raylib. ORANGE);
+        autoaimStatusText.setVisible(false);
+        getWorld().addObject(autoaimStatusText, autoaimText.getX(), ammo.getY()+30);
         
         
         ultCharge = new UltBar(100, 350, 30);
@@ -293,6 +301,25 @@ public class GameUI extends UI
     public void stopSprint(){
         sprint.setVisible(false);
         sprintText.setVisible(false);
+    }
+    public void startAutoAim(){
+        autoaimText.setVisible(true);
+        autoaimStatusText.setVisible(true);
+        autoaimStatusText.setText("ON");
+    }
+    public void failAutoAim(){
+        autoaimText.setVisible(true);
+        autoaimStatusText.setVisible(true);
+        autoaimStatusText.setText("DISABLED");
+    }
+    public void loadingAutoAim(){
+        autoaimText.setVisible(true);
+        autoaimStatusText.setVisible(true);
+        autoaimStatusText.setText("FINDING...");
+    }
+    public void stopAutoAim(){
+        autoaimText.setVisible(false);
+        autoaimStatusText.setVisible(false);
     }
     public void setSprint(int val){
         sprint.setValue(val);

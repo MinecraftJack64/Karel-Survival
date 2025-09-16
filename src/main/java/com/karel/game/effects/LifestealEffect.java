@@ -49,4 +49,5 @@ public class LifestealEffect extends TickingEffect
             healtarget.heal(healtarget, damage);
         }
     }
+    public String getStringID(){return "lifesteal";}
 }

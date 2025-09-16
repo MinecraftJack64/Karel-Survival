@@ -51,4 +51,5 @@ public class PoisonEffect extends TickingEffect
     public void damage(GridEntity e){
         e.hitIgnoreShield(damage, getSource());
     }
+    public String getStringID(){return "poison";}
 }

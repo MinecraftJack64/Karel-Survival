@@ -293,11 +293,25 @@ public abstract class GridEntity extends GridObject
             }
         }
     }
+    //TODO: Make better
     public void renderEffectIcons(){
-        int x = -(effects.size()-1)*7;
+        if(!canDetect())return;
+        HashSet<String> renderedEffects = new HashSet<String>();
+        int finalTotal = 0;
         for(int i = 0; i < effects.size(); i++) {
-            effects.get(i).render(x);
-            x+=14;
+            if(!renderedEffects.contains(effects.get(i).getStringID())){
+                finalTotal++;
+                renderedEffects.add(effects.get(i).getStringID());
+            }
+        }
+        renderedEffects.clear();
+        int x = -(finalTotal-1)*7;
+        for(int i = 0; i < effects.size(); i++) {
+            if(!renderedEffects.contains(effects.get(i).getStringID())){
+                effects.get(i).render(x);
+                x+=14;
+                renderedEffects.add(effects.get(i).getStringID());
+            }
         }
     }
     public void startHealth(int amt){

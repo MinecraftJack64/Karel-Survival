@@ -28,4 +28,5 @@ public class InfectionEffect extends PoisonEffect
         super.damage(e);
         if(onInfect != null) onInfect.accept(e);
     }
+    public String getStringID(){return "infection";}
 }

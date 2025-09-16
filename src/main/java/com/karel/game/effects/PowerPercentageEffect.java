@@ -27,4 +27,5 @@ public class PowerPercentageEffect extends PercentageEffect
     public void onClear(){
         getTarget().setPower(1, getID());
     }
+    public String getStringID(){return "power"+(isMalicious()?"Mal":"");}
 }

@@ -27,4 +27,5 @@ public class SizePercentageEffect extends PercentageEffect
     public void onClear(){
         getTarget().scaleSize(1.0/getPercentage(), getID());
     }
+    public String getStringID(){return "size"+(isMalicious()?"Mal":"");}
 }

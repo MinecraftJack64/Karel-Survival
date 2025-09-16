@@ -1,3 +1,30 @@
+9/15
+Technical
+ - Portals correctly deregister color
+ - Zombie target cache now global to all gridojects
+ - isAggroTowards() and isAlliedWith() now return false if other object has no team
+ - Crossbow and Firebreather zombie use Greenfoot.getRandomNumber() instead of Math.random(), use this for more consistent seeds when save files are added
+Fixes
+ - Fixed mimic zombie crash due to notifyDamage call after death
+ - Fixed mimic zombie target instakill crash, same as bot previously
+ - Player can no longer switch weapons while stunned or silenced
+ - Fixed zombee crash when hivemind is dead, might be related to the target caching system changes.
+Balancing
+ - Crossbow
+    - Cannot focus while firing ult
+    - Ult range(Infinite->1000)
+    - Ult spreads more when unfocused
+ - Assassin Zombie can turn invisible like ninja, revealing itself when it attacks
+Mechanics
+ - Autoaim is no longer on hard, normal, and impossible difficulty
+Graphics
+ - Effects of one type are only rendered once
+ - Effect icons are rendered at the correct height and hidden when entity not detectable
+ - Autoaim status is indicated(next to sprint bar)
+ - Fixed firebreather zombies being invisible due to typo("flamezrel" instead of "flamezarel")
+ - Mimic Zombie graphics updated to look more torn
+VOTE: Should autoaim be in normal mode? Should seeds be saved in save file?
+
 9/14
 Graphics
  - Finished adding graphics for effects(basic)
@@ -14,10 +41,14 @@ Balancing
  - Jack-in-the-box zombie class updated
  - Assassin Zombie classes updated and affected by reload speed
  - Evil Spirit Zombie classes updated
+ - Setup Wizard classes updated
 Technical
  - KActors can set tint
 Other
  - Renamed Russian Doll Zombie to Space Matryoshka Zombie
+TODO: Add character customization, level editor
+TODO: Crossbow is too strong, nerf poison stacking, also poison instantly skips wizard death animation
+TODO: Add particles when effects apply and when wizard casts a spell
 
 9/12
 Balancing

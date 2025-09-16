@@ -53,4 +53,5 @@ public class DurationEffect extends Effect
     public void stack(Effect other){
         duration+=((DurationEffect)other).getDuration();
     }
+    public String getStringID(){return "duration";}
 }

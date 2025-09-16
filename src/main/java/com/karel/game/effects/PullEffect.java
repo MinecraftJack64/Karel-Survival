@@ -41,4 +41,5 @@ public class PullEffect extends DurationEffect
     public int getCollisionProtocol(){
         return 2;
     }
+    public String getStringID(){return "pull";}
 }

@@ -13,13 +13,14 @@ public class MimicZombie extends Zombie {
 
     private boolean movementLock;
     private boolean rotationLock;
+    private GridEntity target;
 
     public MimicZombieHand hand = new MimicZombieHand();
     private Weapon weapon;
 
     private Mimicker lasso;
 
-    public String getStaticTextureURL(){return "gunzareln.png";}
+    public String getStaticTextureURL(){return "mimiczareln.png";}
     private static double mimicRange = 600;
     /**
      * Initilise this rocket.
@@ -32,7 +33,11 @@ public class MimicZombie extends Zombie {
     @SuppressWarnings("static-access")
     public void behave()
     {
-        double monangle = rotationLock?getRotation():face(getTarget(), canMove());
+        target = getTarget();
+        if(target==null){
+            return;
+        }
+        double monangle = rotationLock?getRotation():face(target, canMove());
         if(weapon!=null){
             BotGuide bg = weapon.getBotGuide();
             if(bg.shouldUseUlt()&&weapon.ultReady()||weapon.continueUlt()){
@@ -40,13 +45,13 @@ public class MimicZombie extends Zombie {
                 if(weapon.continueUlt()){
                     weapon.ult();
                 }
-                if(bg.getUltEffectiveRange()<distanceTo(getTarget())){
+                if(bg.getUltEffectiveRange()<distanceTo(target)){
                     walk(monangle, 1);
                 }else{
                     if(canAttack()&&!weapon.continueUlt())weapon.ult();
-                    if(ideal+10<distanceTo(getTarget())){
+                    if(ideal+10<distanceTo(target)){
                         walk(monangle, 0.8);
-                    }else if(ideal-10>distanceTo(getTarget())){
+                    }else if(ideal-10>distanceTo(target)){
                         walk(monangle+180, 0.8);
                     }
                 }
@@ -54,20 +59,20 @@ public class MimicZombie extends Zombie {
             }
             int ideal = bg.getIdealRange();
             if(weapon.continueUse())weapon.use();
-            if(bg.getEffectiveRange()<distanceTo(getTarget())){
+            if(bg.getEffectiveRange()<distanceTo(target)){
                 walk(monangle, 1);
             }else{
                 if(canAttack()&&!weapon.continueUse())weapon.use();
-                if(ideal+10<distanceTo(getTarget())){
+                if(ideal+10<distanceTo(target)){
                     walk(monangle, 0.8);
-                }else if(ideal-10>distanceTo(getTarget())){
+                }else if(ideal-10>distanceTo(target)){
                     walk(monangle+180, 0.8);
                 }
             }
             weapon.tick();
             return;
         }
-        if(distanceTo(getTarget())>mimicRange)walk(monangle, 1);
+        if(distanceTo(target)>mimicRange)walk(monangle, 1);
         else{
             if(lasso==null)fireMimicker();
             if(!lasso.isInWorld())lasso = null;
@@ -89,8 +94,8 @@ public class MimicZombie extends Zombie {
         }
     }
     public void fireMimicker(){
-        lasso = new Mimicker(getTarget(), this);
-        getTarget().addObjectHere(lasso);
+        lasso = new Mimicker(target, this);
+        target.addObjectHere(lasso);
     }
     public void notifyHit(Weapon w){
         if(w!=null){
@@ -99,6 +104,7 @@ public class MimicZombie extends Zombie {
         }
     }
     public void notifyDamage(GridEntity target, int amt) {
+        if(isDead())return;
         if(target!=null&&isAlliedWith(target))return;
         if (weapon!=null) {
             weapon.chargeUlt(amt);
@@ -129,10 +135,10 @@ public class MimicZombie extends Zombie {
             return getHolder().getRotation();
         }
         public double getTargetX(){
-            return targetLocked?prevX:getHolder().getTarget().getX();
+            return targetLocked?prevX:getHolder().target.getX();
         }
         public double getTargetY(){
-            return targetLocked?prevY:getHolder().getTarget().getY();
+            return targetLocked?prevY:getHolder().target.getY();
         }
         public void setTargetLock(boolean t){
             if(t){
@@ -148,10 +154,10 @@ public class MimicZombie extends Zombie {
             movementLock = t;
         }
         public boolean isAttacking(){
-            return distanceTo(getTarget())<=mimicRange;
+            return distanceTo(target)<=mimicRange;
         }
         public boolean isMoving(){
-            return distanceTo(getTarget())>30;
+            return distanceTo(target)>30;
         }
         public double getReloadSpeed(){
             return getHolder().getReloadMultiplier();

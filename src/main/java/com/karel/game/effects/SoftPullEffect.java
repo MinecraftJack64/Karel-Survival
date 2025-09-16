@@ -35,4 +35,5 @@ public class SoftPullEffect extends DurationEffect
     public int getCollisionProtocol(){
         return 2;
     }
+    public String getStringID(){return "soft_pull";}
 }

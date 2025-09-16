@@ -36,4 +36,5 @@ public class KnockbackEffect extends StunEffect
     public boolean isMalicious(){
         return false;
     }
+    public String getStringID(){return "knockback";}
 }

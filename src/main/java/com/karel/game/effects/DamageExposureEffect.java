@@ -30,4 +30,5 @@ public class DamageExposureEffect extends PercentageEffect
     public boolean isMalicious(){
         return getPercentage()>1;
     }
+    public String getStringID(){return "exposure"+(isMalicious()?"Mal":"");}
 }

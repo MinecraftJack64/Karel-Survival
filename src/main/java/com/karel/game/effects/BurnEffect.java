@@ -35,4 +35,5 @@ public class BurnEffect extends TickingEffect
     public void damage(GridEntity e){
         e.hit(damage, getSource());
     }
+    public String getStringID(){return "burn";}
 }

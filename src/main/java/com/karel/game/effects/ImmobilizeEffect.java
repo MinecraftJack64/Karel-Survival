@@ -27,4 +27,5 @@ public class ImmobilizeEffect extends MaliciousEffect
     public void onApply(){
         getTarget().immobilize(getID());
     }
+    public String getStringID(){return "immobilize";}
 }

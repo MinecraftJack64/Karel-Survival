@@ -10,6 +10,9 @@ public class Greenfoot {
     public static int getRandomNumber(int lim){
         return (int)(Math.random()*lim);
     }
+    public static double getRandomNumber(){
+        return Math.random();
+    }
     public static boolean isActive(String k){
         return IO.isActive(k);
     }

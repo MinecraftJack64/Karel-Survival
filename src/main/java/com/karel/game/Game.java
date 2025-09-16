@@ -326,6 +326,9 @@ public class Game
     public static boolean autoUlt(){
         return autoult;
     }
+    public static boolean isAutoAimAllowed(){
+        return cdiff<=1||game instanceof Sandbox;
+    }
     public static boolean isPaused(){
         return world.isPaused();
     }

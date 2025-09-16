@@ -27,4 +27,5 @@ public class SilenceEffect extends MaliciousEffect
     public void onApply(){
         getTarget().mute(getID());
     }
+    public String getStringID(){return "silence";}
 }

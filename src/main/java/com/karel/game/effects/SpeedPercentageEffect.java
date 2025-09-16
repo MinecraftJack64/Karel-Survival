@@ -27,4 +27,5 @@ public class SpeedPercentageEffect extends PercentageEffect
     public void onClear(){
         getTarget().setSpeedMultiplier(1, getID());
     }
+    public String getStringID(){return "speed"+(isMalicious()?"Mal":"");}
 }

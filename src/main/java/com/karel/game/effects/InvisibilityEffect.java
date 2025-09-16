@@ -29,4 +29,5 @@ public class InvisibilityEffect extends DurationEffect
         getTarget().setDetectable(false);
         getTarget().setOpacityPercent(0.5);
     }
+    public String getStringID(){return "invisibility";}
 }

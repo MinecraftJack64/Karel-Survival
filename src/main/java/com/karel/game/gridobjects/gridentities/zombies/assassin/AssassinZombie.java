@@ -1,5 +1,6 @@
 package com.karel.game.gridobjects.gridentities.zombies.assassin;
 
+import com.karel.game.Greenfoot;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
@@ -16,6 +17,8 @@ public class AssassinZombie extends Zombie
     private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
     private static final int stabReloadTime = 55;
     private double failcooldown = 0;//150
+    private int inviscooldown = 40;//10 or 50-100 invisible, 20-40 visible
+    private boolean isinvis = false;
 
     public String getStaticTextureURL(){return "assassinzareln.png";}
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
@@ -63,6 +66,27 @@ public class AssassinZombie extends Zombie
         }else{
             behaveAsStealth();
         }
+        if(inviscooldown<=0){
+            isinvis = !isinvis;
+            if(isinvis){
+                inviscooldown = Greenfoot.getRandomNumber(50)+50;
+            }else{
+                inviscooldown = 40+Greenfoot.getRandomNumber(40);
+            }
+        }
+        if(distanceTo(getTarget())<90){
+            isinvis = false;
+        }
+        if(!isinvis&&getOpacity()<255){
+            setOpacity(getOpacity()+51);
+        }else if(isinvis&&getOpacity()>0){
+            setOpacity(getOpacity()-51);
+        }
+        inviscooldown--;
+    }
+    @Override
+    public boolean canDetect(){
+        return getOpacity()>0;
     }
 
     /**
@@ -71,14 +95,19 @@ public class AssassinZombie extends Zombie
     private void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()&&failcooldown<=0){
+            isinvis = false;
             ZDagger bullet = new ZDagger (getRotation(), this);
             addObjectHere(bullet);
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
         }
     }
+    public boolean prioritizeTarget(){
+        return true;
+    }
     public void stab(){
         if(reloadDelayCount>=stabReloadTime&&canAttack()){
+            isinvis = false;
             failcooldown = 150;
             ZMeleeDagger z = new ZMeleeDagger(getRotation(), this);
             addObjectHere(z);

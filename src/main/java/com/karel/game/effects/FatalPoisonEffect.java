@@ -36,4 +36,5 @@ public class FatalPoisonEffect extends Effect
     public void damage(GridEntity e){
         e.hitIgnoreShield(damage, getSource());
     }
+    public String getStringID(){return "fatal_poison";}
 }

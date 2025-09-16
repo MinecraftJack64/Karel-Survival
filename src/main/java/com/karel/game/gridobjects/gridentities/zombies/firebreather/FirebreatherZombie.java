@@ -3,6 +3,7 @@ package com.karel.game.gridobjects.gridentities.zombies.firebreather;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.Greenfoot;
 
 /**
  * Write a description of class FlamethrowerZombie here.
@@ -50,7 +51,7 @@ public class FirebreatherZombie extends Zombie
                 nextNapalm--;
                 Flame mbullet = new Flame(getRotation()+deg, this);
                 if(nextNapalm<=0){
-                    nextNapalm = 25 + (int)(Math.random()*11);
+                    nextNapalm = 25 + (int)(Greenfoot.getRandomNumber()*11);
                     mbullet = new NapalmFlame(getRotation()+deg, this);
                 }
                 addObjectHere(mbullet);

@@ -66,7 +66,7 @@ public class Zombee extends SpawnableZombie
     }
     @Override
     public GridEntity getTarget(){
-        return myhive!=null?myhive.getTarget():getTarget();
+        return myhive!=null&&!myhive.isDead()?myhive.getTarget():super.getTarget();
     }
     
     public boolean canFly(){

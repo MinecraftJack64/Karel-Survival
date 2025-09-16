@@ -3,6 +3,7 @@ package com.karel.game.weapons.crossbow;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.Greenfoot;
 
 /**
  * Write a description of class Crossbow here.
@@ -56,11 +57,12 @@ public class Crossbow extends Weapon
         }
         Sounds.play("crossbowshoot");
     }
+    //constant - if height is same, they will land at same time.
     public void fireRainingArrows(boolean constant){
         for(int i = 1000; i <= 1700; i+=100){
-            double x = getHand().getTargetX()+(int)(Math.random()*41)-20;
-            double y = getHand().getTargetY()+(int)(Math.random()*41)-20;
-            RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, getHolder().distanceTo(x, y), constant?1000:i, focus, getHolder());
+            double x = getHand().getTargetX()+(int)(Greenfoot.getRandomNumber()*80*(2-focus))-20;
+            double y = getHand().getTargetY()+(int)(Greenfoot.getRandomNumber()*80*(2-focus))-20;
+            RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, Math.min(getHolder().distanceTo(x, y), 1000), constant?1000:i, focus, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         }
         if(!useGadget())focus = 0.5;
@@ -77,7 +79,7 @@ public class Crossbow extends Weapon
     }
     public void reload(double speed){
         reloadDelayCount+=speed;
-        if(reloadDelayCount>gunReloadTime&&focus<1.5){
+        if(reloadDelayCount>gunReloadTime&&focus<1.5&&!continueUlt()){
             focus+=0.025;
             updateAmmo((int)(focus*40));
         }

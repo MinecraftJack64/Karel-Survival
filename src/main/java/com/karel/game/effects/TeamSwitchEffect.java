@@ -25,4 +25,5 @@ public class TeamSwitchEffect extends MaliciousEffect
     public void onClear(){
         getTarget().clearFakeTeam();
     }
+    public String getStringID(){return "team_switch";}
 }

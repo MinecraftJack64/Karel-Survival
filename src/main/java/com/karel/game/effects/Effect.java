@@ -104,6 +104,7 @@ public abstract class Effect
     public void render(double x){
         if(texture==null)return;
         int size = 14;
-        getTarget().renderTexture(texture, getTarget().getX()+x-size/2, getTarget().getY()+40-size/2, size, size, 0, 255);
+        getTarget().renderTexture(texture, getTarget().getX()+x-size/2, getTarget().getY()-getTarget().getHeight()+40-size/2, size, size, 0, 255);
     }
+    public abstract String getStringID();
 }
