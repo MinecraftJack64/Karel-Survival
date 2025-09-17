@@ -248,14 +248,14 @@ public class Game
             if(gameStatus().equals("running")||game.usesCustomPause())game.tick();
             world.update();
             ui.update();
-            if(isPaused()&&!game.usesCustomPause()||game.showPauseMenu())ui2.update();
+            if(isPaused()||game!=null&&(isPaused()&&!game.usesCustomPause()||game.showPauseMenu()))ui2.update();
             setUIScreenScaleAndOffset(world);
             world.render();
             //if(!gameStatus().equals("running"))com.raylib.Raylib.drawRectangle(0, 0, com.raylib.Raylib.getScreenWidth(), com.raylib.Raylib.getScreenHeight(), new com.raylib.Color((byte)-1, (byte)-1, (byte)-1, (byte)100));
             setUIScreenScaleAndOffset(ui);
             ui.render();
             setUIScreenScaleAndOffset(ui2);
-            if(isPaused()&&(game!=null&&!game.usesCustomPause()||game==null)||game.showPauseMenu())ui2.render();
+            if(isPaused()||game!=null&&(isPaused()&&!game.usesCustomPause()||game.showPauseMenu()))ui2.render();
         }else{
             if(ui!=null){
                 setUIScreenScaleAndOffset(ui);

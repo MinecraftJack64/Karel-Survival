@@ -41,7 +41,6 @@ public class HealCharge extends Bullet
     @Override
     public void applyPhysics()
     {
-        System.out.println(health);
         if(notifier!=null){
             setDirection(face(notifier, false));
             if(notifier.isDead()){expire();return;}

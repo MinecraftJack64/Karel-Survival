@@ -96,7 +96,6 @@ public class Button extends Overlay
     }
     public void click(){
         //notify observer
-        System.out.println("Button clicked");
     }
 
     /**

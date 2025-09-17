@@ -107,7 +107,6 @@ public class BearTrap extends Pet implements ITrap
     public void die(GridObject source){
         if(target!=null){
             target.mobilize(new EffectID(this));
-            System.out.println(target+" "+this);
         }
         super.die(source);
     }

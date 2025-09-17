@@ -25,7 +25,6 @@ public class SoupPuddle extends Puddle
         /*if(!getHitStory().contains(t))*/t.setSpeedMultiplier(0.5+(focus-0.5)/3, slow);
     }
     public void afterHit(GridEntity t){
-        System.out.println("d");
         t.setSpeedMultiplier(1, slow);
     }
 }

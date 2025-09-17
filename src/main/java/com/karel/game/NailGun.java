@@ -4,6 +4,7 @@ import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.gridobjects.gridentities.Bot;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidSpawner;
 import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.ShapeshifterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;

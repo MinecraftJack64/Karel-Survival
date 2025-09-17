@@ -138,7 +138,6 @@ public class Hitter extends GridObject implements SubAffecter
             HashSet<GridEntity> g = new HashSet<GridEntity>();
             g.addAll(getHitStory());
             g.removeAll(asteroid);
-            System.out.println((getHitStory().size()>=1)+" "+(asteroid.size()>=1));
             for(GridEntity e: g){
                 if(willHit(e))afterHit(e);
             }

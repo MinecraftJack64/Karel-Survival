@@ -25,7 +25,6 @@ public class Mimicker extends Bullet {
         super.applyPhysics();
     }
     public void doHit(GridEntity targ){
-        System.out.println(targ);
         if(targ==getSource()){
             if(targ instanceof MimicZombie mz){
                 try{

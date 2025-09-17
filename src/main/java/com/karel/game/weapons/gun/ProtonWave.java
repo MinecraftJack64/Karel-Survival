@@ -34,7 +34,6 @@ public class ProtonWave extends WaveAttack
     {
         setDamage(getDamage() - 10);
         super.applyPhysics();
-        System.out.println("ProtonWave range"+getRange());
     }
     
     public void doHit(GridEntity g){

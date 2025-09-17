@@ -32,7 +32,7 @@ public class AssassinZombie extends Zombie
         reloadDelayCount = 5;
         setRotation(180);
         setSpeed(4);
-        startHealth(200);
+        startHealth(200, false);
     }
 
     /**

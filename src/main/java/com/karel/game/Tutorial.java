@@ -1,6 +1,7 @@
 package com.karel.game;
 
 import com.karel.game.gamemodes.GameMode;
+import com.karel.game.gridobjects.collectibles.WeaponFrag;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.gun.Gun;
 

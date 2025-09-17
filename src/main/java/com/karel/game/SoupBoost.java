@@ -3,6 +3,7 @@ package com.karel.game;
 import com.karel.game.effects.HealEffect;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.gridobjects.collectibles.Collectible;
 
 /**
  * a collectible usually dropped from zombies when killed that can be collected by the player, healing them

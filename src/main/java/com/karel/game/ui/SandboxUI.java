@@ -39,7 +39,6 @@ public class SandboxUI extends UI {
         zombieButtons = new ArrayList<ImageButton>();
         for(int i = 0; i < zombieIDs.length; i++){
             GridEntity z = ZombieFactory.createZombie(zombieIDs[i]);
-            System.out.println(z.getImageURL());
             int id = i;
             ImageButton zombieButton = new ImageButton(50, 50, z.getImageURL(), z.getName()){
                 public void click() {

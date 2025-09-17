@@ -1,3 +1,18 @@
+9/16
+Fixes
+ - Fixed crash when exiting from tutorial completion screen
+Graphics
+ - Readded beeper and weapon fragment graphics(which were removed during rewrite)
+ - Beepers blink occasionally
+ - More weapon fragment varieties added
+ - Weapon fragments are made up of smaller scrp parts that collect independently
+Balancing
+ - Weapon Fragment detection range(40->50)
+Technical
+ - Collectibles track collector
+TODO: Some weapons fail to stop if you die, like shotgun and easter basket
+TODO: Beepers make a beeping sound when you are nearby
+
 9/15
 Technical
  - Portals correctly deregister color
@@ -14,7 +29,8 @@ Balancing
     - Cannot focus while firing ult
     - Ult range(Infinite->1000)
     - Ult spreads more when unfocused
- - Assassin Zombie can turn invisible like ninja, revealing itself when it attacks
+    - Each ult arrow only charges ult the first time a zombie is hit(not counting poison)
+ - Assassin Zombie can turn invisible like ninja(having an invisible health bar), revealing itself when it attacks
 Mechanics
  - Autoaim is no longer on hard, normal, and impossible difficulty
 Graphics
@@ -24,6 +40,7 @@ Graphics
  - Fixed firebreather zombies being invisible due to typo("flamezrel" instead of "flamezarel")
  - Mimic Zombie graphics updated to look more torn
 VOTE: Should autoaim be in normal mode? Should seeds be saved in save file?
+TODO: Fix crash with effect losing target
 
 9/14
 Graphics
@@ -47,7 +64,7 @@ Technical
 Other
  - Renamed Russian Doll Zombie to Space Matryoshka Zombie
 TODO: Add character customization, level editor
-TODO: Crossbow is too strong, nerf poison stacking, also poison instantly skips wizard death animation
+TODO: Crossbow poison instantly skips wizard death animation
 TODO: Add particles when effects apply and when wizard casts a spell
 
 9/12
@@ -110,7 +127,6 @@ Other
 Mechanics
  - Implemented bot guides for Cat Claw, Critters, Crossbow, Crystal Gun, Double Gun, Easter basket, Hamburgerer, Flail
  - Fixed capsaicin torch bot guide range not working
-TODO: Make all gridobjects cache a target per update cycle
 TODO: Fix poison crash and tutorial menu crash and crash when updating weapon needs hand on bot with no target
 
 9/7
@@ -215,8 +231,6 @@ Mechanics
 Balancing
  - Stunt Zombie affected by reload speed and classes updated
     - TODO: Give stunt zombie sticky bomb
- - TODO: do warrior tomorrow
- - TODO: Cannon Zombie affected by reload speed
 
 8/23
 Mechanics

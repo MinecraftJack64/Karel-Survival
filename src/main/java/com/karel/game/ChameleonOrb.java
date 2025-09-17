@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.gridobjects.collectibles.Collectible;
+
 /**
  * a collectible dropped by the Chameleon weapon when the player kills a zombie by pulling them, changes the Chameleon's color when collected by the player
  * 

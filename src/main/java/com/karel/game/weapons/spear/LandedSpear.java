@@ -1,11 +1,11 @@
 package com.karel.game.weapons.spear;
 import java.util.HashMap;
 
-import com.karel.game.Collectible;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
+import com.karel.game.gridobjects.collectibles.Collectible;
 import com.raylib.Texture;
 
 /**

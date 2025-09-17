@@ -40,7 +40,6 @@ public class Pin extends Bullet
     }
     public void die(){
         super.die();
-        System.out.println(getDamage());
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);

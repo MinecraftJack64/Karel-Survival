@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies;
 
-import com.karel.game.Bot;
 import com.karel.game.CloudServer;
 import com.karel.game.GridEntity;
 import com.karel.game.WatermelonZombie;
+import com.karel.game.gridobjects.gridentities.Bot;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;

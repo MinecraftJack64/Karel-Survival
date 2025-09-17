@@ -31,10 +31,6 @@ public class ImageButton extends Button
         text = s;
         image = Greenfoot.loadTexture(text);
     }
-    public void click(){
-        //notify observer
-        System.out.println("Button clicked");
-    }
 
     /**
      * Make the image

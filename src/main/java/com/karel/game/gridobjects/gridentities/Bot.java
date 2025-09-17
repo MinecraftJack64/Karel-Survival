@@ -1,4 +1,10 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities;
+import com.karel.game.GridEntity;
+import com.karel.game.Item;
+import com.karel.game.ItemAccepter;
+import com.karel.game.ItemHolder;
+import com.karel.game.LandingHandler;
+import com.karel.game.Pet;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.Weapon.BotGuide;
 
@@ -37,7 +43,6 @@ public class Bot extends Pet implements ItemAccepter
             return;
         }
         double monangle = rotationLock?getRotation():face(target, canMove());
-        System.out.println(rotationLock);
         if(weapon!=null){
             BotGuide bg = weapon.getBotGuide();
             if(!weapon.continueUse()&&(bg.shouldUseUlt()&&weapon.ultReady()||weapon.continueUlt())){

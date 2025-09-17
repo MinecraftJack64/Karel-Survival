@@ -1,11 +1,11 @@
 package com.karel.game.gridobjects.gridentities.zombies;
 
-import com.karel.game.Beeper;
 import com.karel.game.Game;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.TeamSwitchEffect;
+import com.karel.game.gridobjects.collectibles.Beeper;
 import com.karel.game.gridobjects.gridentities.zombies.wizard.ZFleshConfetti;
 
 /*

@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.gridobjects.collectibles;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+
 /**
  * a object that moves towards a certain other object to be collected by them
  * 
@@ -11,6 +15,10 @@ public class Collectible extends GridObject
     private double speed = 9;//how fast this collectible will move towards its collector
     private int cooldown; //wait a certain amount of time before being able to be picked up
     private boolean active = true, collected = false;
+    private GridObject collector;
+    public Collectible(){
+        setImage("Objects/beeper0.png");
+    }
     public void setRange(double r){
         range = r;
     }
@@ -46,15 +54,25 @@ public class Collectible extends GridObject
         double targang = face(getTarget(), false);
         double monangle = targang;
         if(cooldown>0)cooldown--;
-        if(distanceTo(getTarget())<getRange()&&isActive())move(monangle, getSpeed());
+        if(distanceTo(getTarget())<getRange()&&isActive()){
+            move(monangle, getSpeed());
+            onCollecting();
+        }
         if(distanceTo(getTarget())<getSpeed()/2+1&&isActive())collect(getTarget());
     }
     public void collect(GridObject t){
         collected = true;
+        collector = t;
         die();
+    }
+    public void onCollecting(){
+        //
     }
     public boolean collected(){
         return collected;
+    }
+    public GridObject getCollector(){
+        return collector;
     }
     public void die(){
         getWorld().removeObject(this);
