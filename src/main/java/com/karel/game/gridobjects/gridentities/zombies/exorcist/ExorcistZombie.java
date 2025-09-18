@@ -157,4 +157,8 @@ public class ExorcistZombie extends Zombie
     public String getName(){
         return "Exorcist Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "exorcist";
+    }
 }

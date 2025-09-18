@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.gridobjects.hitters;
 import java.util.HashSet;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.

@@ -107,4 +107,8 @@ public class ShapeshifterZombie extends Zombie implements Possessor{
     public String getName(){
         return "Shapeshifter Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "shapeshifter";
+    }
 }

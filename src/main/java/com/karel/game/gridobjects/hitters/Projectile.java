@@ -1,4 +1,6 @@
-package com.karel.game;
+package com.karel.game.gridobjects.hitters;
+
+import com.karel.game.GridObject;
 
 /**
  * Write a description of class Projectile here.

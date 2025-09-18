@@ -131,4 +131,8 @@ public class JackITBZombie extends Zombie
     public String getName(){
         return "Jack-in-the-box Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "jackinthebox";
+    }
 }

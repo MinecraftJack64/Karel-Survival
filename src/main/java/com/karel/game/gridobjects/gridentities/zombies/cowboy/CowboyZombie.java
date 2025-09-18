@@ -68,6 +68,10 @@ public class CowboyZombie extends Zombie
     public String getName(){
         return "Cowboy Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "cowboy";
+    }
     public class CowboyZombieHand implements ItemHolder{
         //TODO
         @Override

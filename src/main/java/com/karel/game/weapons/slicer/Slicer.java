@@ -2,8 +2,8 @@ package com.karel.game.weapons.slicer;
 
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
-import com.karel.game.weapons.Weapon;
-import com.karel.game.Bullet;;
+import com.karel.game.gridobjects.hitters.Bullet;
+import com.karel.game.weapons.Weapon;;
 
 /**
  * Write a description of class Slicer here.

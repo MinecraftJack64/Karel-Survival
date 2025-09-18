@@ -119,4 +119,8 @@ public class RussianDollZombie extends Zombie
     public String getName(){
         return "Space Matryoshka Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "russiandoll";
+    }
 }

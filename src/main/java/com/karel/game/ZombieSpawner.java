@@ -4,7 +4,9 @@ import java.util.Random;
 
 import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.collectibles.WeaponFrag;
+import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServerOld;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
@@ -43,7 +45,7 @@ public class ZombieSpawner implements Spawner
     public ZombieSpawner(){
         bosses = new QueueMap<Integer, Boss>();
         bosses.add(31, new Wizard());
-        bosses.add(45, new CloudServer());
+        bosses.add(45, new CloudServerOld());
         try{nextBossWave = bosses.peek().getKey();}
         catch(Exception e){nextBossWave = Integer.MAX_VALUE;}
     }

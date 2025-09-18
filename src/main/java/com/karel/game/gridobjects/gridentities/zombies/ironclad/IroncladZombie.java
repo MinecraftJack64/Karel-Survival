@@ -83,4 +83,8 @@ public class IroncladZombie extends Zombie
     public String getName(){
         return "Ironclad Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "ironclad";
+    }
 }

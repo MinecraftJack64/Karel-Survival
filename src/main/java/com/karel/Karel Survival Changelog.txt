@@ -1,17 +1,51 @@
+9/17
+Other
+ - Easter Zombie chicks are now spawnable in the sandbox menu
+ - Prison Break Zombie renamed Jailbreak Zombie
+Technical
+ - All zombies can return their zombie id, which is the id used to create them in the zombie factory
+ - TODO: Grid Entities should be able to return their grid entity id, zombie ids have the format "zombie-tractorbeam"
+ - Lymph Cannon uses grid entity id instead of class
+ - Projectiles can be without a source
+ - Added StickyBullet, which is a bullet that sticks to the hit entity for a short while
+    - Stunt zombie sticky bomb and lymph cannon antibody use this
+Balancing
+ - Cloud Server class updated
+ - Lymph Cannon
+    - Affected by reload speed
+    - Cell turrets apply spawn immunity after reaching position
+    - Cell turret attack range(300->400)
+Content
+ - Added lymph cannon gadget
+Graphics
+ - Lymph Cannon graphics added(TODO: sticking and blinking of attack projectile)
+Fixes
+ - Fixed mount crash when self removing
+ - Fixed mount render crash when not in world
+
 9/16
 Fixes
  - Fixed crash when exiting from tutorial completion screen
+ - FIXED WAVES HAVING LESS RANGE THAN INTENDED(collision mode was not set to radius)
+ - Fixed all ignore shield damage circumventing heal cooldown on player
 Graphics
  - Readded beeper and weapon fragment graphics(which were removed during rewrite)
  - Beepers blink occasionally
  - More weapon fragment varieties added
  - Weapon fragments are made up of smaller scrp parts that collect independently
+ - Added watermelon zombie graphics
 Balancing
  - Weapon Fragment detection range(40->50)
+ - Fungal Zombie standing range(150->120)
+ - Watermelon Zombie affected by reload speed and classes updated
 Technical
  - Collectibles track collector
+Other
+ - Super charging key only works in sandbox mode
 TODO: Some weapons fail to stop if you die, like shotgun and easter basket
-TODO: Beepers make a beeping sound when you are nearby
+TODO: Add gadget count in gui
+TODO: Remaining zombie graphics: torpedo cowboy mimic* wizard(herald too) cloud
+* halfway
 
 9/15
 Technical

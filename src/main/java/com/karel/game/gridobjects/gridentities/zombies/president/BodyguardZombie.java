@@ -138,4 +138,8 @@ public class BodyguardZombie extends SpawnableZombie
     public String getName(){
         return "Bodyguard Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "bodyguard";
+    }
 }

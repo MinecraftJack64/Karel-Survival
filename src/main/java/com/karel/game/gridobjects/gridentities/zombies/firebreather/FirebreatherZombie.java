@@ -70,4 +70,8 @@ public class FirebreatherZombie extends Zombie
     public String getName(){
         return "Firebreather Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "firebreather";
+    }
 }

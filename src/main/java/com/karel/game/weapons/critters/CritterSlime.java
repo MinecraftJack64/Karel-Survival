@@ -1,7 +1,7 @@
 package com.karel.game.weapons.critters;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
  * A bullet that can hit asteroids.

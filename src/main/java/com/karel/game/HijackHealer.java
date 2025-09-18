@@ -1,5 +1,7 @@
 package com.karel.game;
 
+import com.karel.game.gridobjects.hitters.FlyingProjectile;
+
 /**
  * A bullet that can hit asteroids.
  * 

@@ -35,4 +35,8 @@ public class SplitterZombie extends Zombie
     public String getName(){
         return "Splitter Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "splitter";
+    }
 }

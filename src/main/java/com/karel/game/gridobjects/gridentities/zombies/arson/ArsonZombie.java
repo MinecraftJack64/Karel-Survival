@@ -101,4 +101,7 @@ public class ArsonZombie extends Zombie
     public String getName(){
         return "Arson Zombie";
     }
+    public String getZombieID(){
+        return "arson";
+    }
 }

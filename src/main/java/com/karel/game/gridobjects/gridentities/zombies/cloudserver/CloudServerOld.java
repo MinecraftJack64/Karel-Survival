@@ -1,11 +1,20 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.cloudserver;
 import java.util.ArrayList;
 
+import com.karel.game.ArmorShield;
+import com.karel.game.ExternalImmunityShield;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.LaserSquad;
+import com.karel.game.Sounds;
+import com.karel.game.Turret;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.FatalPoisonEffect;
 import com.karel.game.effects.LifestealEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.effects.TeamSwitchEffect;
+import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
@@ -39,7 +48,7 @@ import com.karel.game.weapons.ShieldID;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class CloudServer extends Boss
+public class CloudServerOld extends Boss
 {
     private static final int sporereload = 700;         // The minimum delay between firing the gun.
     private ArrayList<FungalZombie> spores;
@@ -64,13 +73,14 @@ public class CloudServer extends Boss
     /**
      * Initilise this rocket.
      */
-    public CloudServer()
+    public CloudServerOld()
     {
         sporeammo = 400;
         meleeammo = 15;
         hiveammo = 400;
         turretammo = -300;
         rocketammo = 200;
+        scaleTexture(90, 90);
         setRotation(0);
         setSpeed(0);
         startHealthAsBoss(9000, 3);

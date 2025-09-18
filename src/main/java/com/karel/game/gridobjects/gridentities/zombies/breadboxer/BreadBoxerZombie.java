@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies.breadboxer;
 
 import com.karel.game.PercentageShield;
-import com.karel.game.Projectile;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.gridobjects.hitters.Projectile;
 import com.karel.game.weapons.ShieldID;
 
 /**
@@ -108,5 +108,9 @@ public class BreadBoxerZombie extends Zombie
     
     public String getName(){
         return "Bread Boxer Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "breadboxer";
     }
 }

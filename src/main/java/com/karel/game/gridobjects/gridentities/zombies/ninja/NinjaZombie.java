@@ -147,4 +147,8 @@ public class NinjaZombie extends Zombie
     public String getName(){
         return "Ninja Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "ninja";
+    }
 }

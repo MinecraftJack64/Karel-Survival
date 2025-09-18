@@ -74,4 +74,8 @@ public class HivemindZombie extends Zombie
     public String getName(){
         return "Hivemind Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "hivemind";
+    }
 }

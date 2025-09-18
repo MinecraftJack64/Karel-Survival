@@ -79,4 +79,8 @@ public class DemonZombie extends SpawnableZombie
     public String getName(){
         return "Demon Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "demon";
+    }
 }

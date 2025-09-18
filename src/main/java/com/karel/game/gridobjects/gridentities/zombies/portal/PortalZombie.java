@@ -75,4 +75,8 @@ public class PortalZombie extends Zombie
     public String getName(){
         return "Portal Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "portal";
+    }
 }

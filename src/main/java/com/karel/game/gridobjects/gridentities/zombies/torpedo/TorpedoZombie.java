@@ -57,4 +57,8 @@ public class TorpedoZombie extends Zombie
     public String getName(){
         return "Torpedo Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "torpedo";
+    }
 }

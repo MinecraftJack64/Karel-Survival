@@ -76,4 +76,8 @@ public class Zombee extends SpawnableZombie
     public String getName(){
         return "Zombee";
     }
+    @Override
+    public String getZombieID(){
+        return "zombee";
+    }
 }

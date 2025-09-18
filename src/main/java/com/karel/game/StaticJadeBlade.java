@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SizePercentageEffect;
+import com.karel.game.gridobjects.hitters.Hitter;
 
 /**
  * Write a description of class StaticJadeBlade here.

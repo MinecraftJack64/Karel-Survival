@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies.mimic;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.Player;
+import com.karel.game.gridobjects.hitters.Bullet;
 import com.karel.game.ItemHolder;
 
 public class Mimicker extends Bullet {

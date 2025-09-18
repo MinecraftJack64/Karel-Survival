@@ -133,4 +133,8 @@ public class DoctorZombie extends Zombie
     public String getName(){
         return "Doctor Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "doctor";
+    }
 }

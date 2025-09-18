@@ -61,4 +61,8 @@ public class ExplodingZombie extends Zombie
     public String getName(){
         return "Exploding Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "exploding";
+    }
 }

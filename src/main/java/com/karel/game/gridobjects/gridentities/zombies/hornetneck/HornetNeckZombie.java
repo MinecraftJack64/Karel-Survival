@@ -70,4 +70,8 @@ public class HornetNeckZombie extends Zombie
     public String getName(){
         return "Hornet-Neck Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "hornetneck";
+    }
 }

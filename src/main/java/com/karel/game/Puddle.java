@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.gridobjects.hitters.Hitter;
+
 /**
  * Write a description of class Puddle here.
  * 

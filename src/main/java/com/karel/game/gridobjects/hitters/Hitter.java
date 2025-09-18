@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.gridobjects.hitters;
 import java.util.*;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SubAffecter;
 
 /**
  * Write a description of class Hitter here.
@@ -26,7 +30,7 @@ public class Hitter extends GridObject implements SubAffecter
     HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
     public Hitter(GridObject source){
         this.source = source;
-        inherit(source);
+        if(source!=null)inherit(source);
     }
     public GridObject getSource(){
         return source;

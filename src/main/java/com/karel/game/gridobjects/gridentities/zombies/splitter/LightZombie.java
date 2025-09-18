@@ -39,4 +39,8 @@ public class LightZombie extends SpawnableZombie
     public String getName(){
         return "Light Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "light";
+    }
 }

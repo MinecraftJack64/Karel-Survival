@@ -1,16 +1,16 @@
 package com.karel.game.gridobjects.gridentities.zombies;
 
-import com.karel.game.CloudServer;
 import com.karel.game.GridEntity;
-import com.karel.game.WatermelonZombie;
 import com.karel.game.gridobjects.gridentities.Bot;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
+import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServerOld;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
+import com.karel.game.gridobjects.gridentities.zombies.easter.ZombieChick;
 import com.karel.game.gridobjects.gridentities.zombies.exorcist.DemonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
@@ -49,6 +49,7 @@ import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
+import com.karel.game.gridobjects.gridentities.zombies.watermelon.WatermelonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
 import com.karel.game.gridobjects.gridentities.zombies.cowboy.CowboyZombie;
@@ -78,6 +79,7 @@ public class ZombieFactory {
             "hornet",
             "laser",
             "easter",
+            "chick",
             "russiandoll",
             "firebreather",
             "weedwacker",
@@ -102,11 +104,11 @@ public class ZombieFactory {
             "jackinthebox",
             "cannon",
             "stunt",
-            "watermelon",//
+            "watermelon",
             "jailbreak",
             "breadboxer",
             "guardianangel",
-            "assassin",//
+            "assassin",
             "steak",
             "arson",
             "mimic",
@@ -150,6 +152,8 @@ public class ZombieFactory {
                 return new LaserZombie();
             case "easter":
                 return new EasterZombie();
+            case "chick":
+                return new ZombieChick();
             case "russiandoll":
                 return new RussianDollZombie();
             case "firebreather":
@@ -179,7 +183,7 @@ public class ZombieFactory {
             case "evilspirit":
                 return new EvilSpiritZombie();
             case "cloudserver":
-                return new CloudServer();
+                return new CloudServerOld();
             case "shapeshifter":
                 return new ShapeshifterZombie();
             // chief

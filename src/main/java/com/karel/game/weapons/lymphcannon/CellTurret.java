@@ -1,9 +1,9 @@
 package com.karel.game.weapons.lymphcannon;
-import java.util.List;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Pet;
+import com.karel.game.effects.EffectID;
 import com.karel.game.effects.PowerPercentageEffect;
 
 /**
@@ -14,30 +14,29 @@ import com.karel.game.effects.PowerPercentageEffect;
  */
 public class CellTurret extends Pet
 {
-    public String getStaticTextureURL(){return "chickzareln.png";}
+    public String getStaticTextureURL(){return "lymphcannon/pet.png";}
     private int ammo = 0;
-    private Class target;
-    private int damage = 10;
+    private String target;
     private boolean isattacking;
     public boolean inposition;
-    private static double speed = 5;
-    private static double attackrange = 300;
+    private static double attackrange = 400;
     private static final int reloadtime = 5;
     private boolean cantransform;
     private double tx, ty;
+    private int stormCooldown;
     /**
      * Initilise this rocket.
      */
-    public CellTurret(double x, double y, Class targ, GridEntity hive)
+    public CellTurret(double x, double y, String targ, GridEntity hive)
     {
         super(hive);
-        int scale = 30;
         setSpeed(4);
         startHealth(400);
         inherit(hive);
         target = targ;
         tx = x;
         ty = y;
+        setImage("lymphcannon/petMini.png");
     }
 
     /**
@@ -46,16 +45,30 @@ public class CellTurret extends Pet
      */
     public void behave()
     {
-        double monangle = face(getTarget(), canMove());
+        face(getTarget(), canMove());
         if(!inposition){
             setHeight(-5);
             walk(face(tx, ty, canMove()), 1);
             if(distanceTo(tx, ty)<2){
                 inposition = true;
                 setLocation(tx, ty);
+                applySpawnImmunity();
             }
         }else{
-            ammo++;
+            setImage("lymphcannon/petTarg.png");
+            if(stormCooldown>60){
+                setReloadMultiplier(3);
+            }
+            else if(stormCooldown==60){
+                mute(new EffectID("storm"));
+                setReloadMultiplier(1);
+            }else{
+                if(stormCooldown==1){
+                    unmute(new EffectID("storm"));
+                }
+            }
+            if(stormCooldown>0)stormCooldown--;
+            ammo+=getReloadMultiplier();
             if(isattacking&&distanceTo(getTarget())>attackrange){
                 isattacking = false;
                 setHeight(-7);
@@ -73,12 +86,13 @@ public class CellTurret extends Pet
     }
     public void animate(){
         if(cantransform){
-            scaleTexture(40, 40);
+            scaleTexture(40);
         }else{
-            scaleTexture(30, 30);
+            scaleTexture(30);
         }
+        super.animate();
     }
-    public void setNewTarget(Class targ){
+    public void setNewTarget(String targ){
         target = targ;
     }
     public void knockEnemiesBack(){
@@ -88,8 +102,8 @@ public class CellTurret extends Pet
             g.applyEffect(new PowerPercentageEffect(0.2, 90, this));
         }, null);
     }
-    public boolean readyToTransform(Class pot){
-        cantransform = getSpawner()!=null&&!getSpawner().isDead()&&distanceTo(getSpawner())<35&&target!=pot&&pot!=null;
+    public boolean readyToTransform(String pot){
+        cantransform = getSpawner()!=null&&!getSpawner().isDead()&&distanceTo(getSpawner())<35&&pot!=null&&!pot.equals(target);
         return cantransform;
     }
     public void attack(){
@@ -104,13 +118,19 @@ public class CellTurret extends Pet
         super.die(killer);
         try{getWorld().removeObject(this);}catch(Exception e){}
     }
+    public void gadget(String target){
+        this.target = target;
+        heal(this, getMaxHealth());
+        applySpawnImmunity();
+        stormCooldown = 180;
+    }
     public GridEntity getNearestTarget() {
         if(target==null)return super.getNearestTarget();
         GridEntity nearestTarget = null;
         double closestDistance = 0;
     
         for (GridEntity entity : this.getWorld().allEntities) {
-            if (isAggroTowards(entity)&&entity.canDetect()&&target.isInstance(entity)&&distanceTo(entity)<attackrange) {
+            if (isAggroTowards(entity)&&entity.canDetect()&&target.equals(entity.getEntityID())&&distanceTo(entity)<attackrange) {
                 double currentDistance = this.distanceTo(entity);
                 
                 if (nearestTarget == null || currentDistance < closestDistance) {
@@ -124,14 +144,14 @@ public class CellTurret extends Pet
         }
         return nearestTarget;
     }
-    public void hit(int amt, GridObject source){
-        super.hit((target!=null&&target.isInstance(source))?amt/10:amt, source);
+    public void hit(int amt, double exp, GridEntity source){
+        super.hit((target!=null&&target.equals(source.getEntityID()))?amt/10:amt, exp, source);
     }
     public boolean canDetect(){
         return getHeight()>=0;
     }
     public void notifyDamage(GridEntity source, int amt){
-        if(target!=null&&target.isInstance(source)){
+        if(target!=null&&target.equals(source.getEntityID())){
             super.notifyDamage(source, amt);
         }
     }

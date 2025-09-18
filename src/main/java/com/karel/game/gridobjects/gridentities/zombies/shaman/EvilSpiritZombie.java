@@ -64,4 +64,8 @@ public class EvilSpiritZombie extends SpawnableZombie
     public String getName(){
         return "Evil Spirit Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "evilspirit";
+    }
 }

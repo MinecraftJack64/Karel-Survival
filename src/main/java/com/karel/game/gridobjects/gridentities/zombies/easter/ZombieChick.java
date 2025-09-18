@@ -23,20 +23,21 @@ public class ZombieChick extends SpawnableZombie
      */
     public ZombieChick(GridObject source, GridEntity hive)
     {
-        scaleTexture(30, 30);
-        setSpeed(3);
-        startHealth(100);
+        this();
         myhive = hive;
         inherit(source);
     }
     
     public ZombieChick(GridEntity hive)
     {
-        scaleTexture(30, 30);
-        setSpeed(3);
-        startHealth(100);
+        this();
         myhive = hive;
         inherit(hive);
+    }
+    public ZombieChick(){
+        scaleTexture(30);
+        setSpeed(3);
+        startHealth(100);
     }
 
     /**
@@ -47,17 +48,21 @@ public class ZombieChick extends SpawnableZombie
     {
         //setRotation(getRotation()-1);
         super.behave();
-        if(myhive.isDead()){
+        if(myhive!=null&&myhive.isDead()){
             hit(1, this);
         }
     }
     
-    //ovveride this
+    @Override
     public int getXP(){
         return 10;
     }
     
     public String getName(){
         return "Zombie Chick";
+    }
+    @Override
+    public String getZombieID(){
+        return "chick";
     }
 }

@@ -1,5 +1,6 @@
 package com.karel.game;
-import java.util.List;
+
+import com.karel.game.gridobjects.hitters.Projectile;
 
 /**
  * A bullet that can hit asteroids.

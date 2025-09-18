@@ -125,4 +125,7 @@ public class AssassinZombie extends Zombie
     public String getName(){
         return "Assassin Zombie";
     }
+    public String getZombieID(){
+        return "assassin";
+    }
 }

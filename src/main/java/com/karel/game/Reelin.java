@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.gridobjects.hitters.FlyingProjectile;
+
 /**
  * A Boomerang that is lobbed first, then returns to its shooter
  * 

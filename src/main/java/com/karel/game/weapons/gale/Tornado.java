@@ -1,10 +1,10 @@
 package com.karel.game.weapons.gale;
 import java.util.List;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.EffectID;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 import java.util.ArrayList;
 

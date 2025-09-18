@@ -170,4 +170,11 @@ public class Zombie extends GridEntity
     public String getName(){
         return "Zombie";
     }
+    public String getZombieID(){
+        return "zombie";
+    }
+    @Override
+    public String getEntityID(){
+        return "zombie-"+getZombieID();
+    }
 }

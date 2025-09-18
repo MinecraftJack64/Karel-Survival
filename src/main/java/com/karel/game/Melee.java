@@ -1,4 +1,7 @@
 package com.karel.game;
+
+import com.karel.game.gridobjects.hitters.Bullet;
+
 /**
  * Write a description of class Melee here.
  * 

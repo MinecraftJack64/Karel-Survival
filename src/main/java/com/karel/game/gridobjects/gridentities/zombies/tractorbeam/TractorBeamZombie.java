@@ -54,4 +54,8 @@ public class TractorBeamZombie extends Zombie
     public String getName(){
         return "Tractor Beam Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "tractorbeam";
+    }
 }

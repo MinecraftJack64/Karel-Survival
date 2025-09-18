@@ -5,8 +5,8 @@ import com.karel.game.AmmoManager;
 import com.karel.game.GridObject;
 import com.karel.game.IBoomerang;
 import com.karel.game.ItemHolder;
-import com.karel.game.Projectile;
 import com.karel.game.Sounds;
+import com.karel.game.gridobjects.hitters.Projectile;
 import com.karel.game.weapons.Weapon;
 
 /**

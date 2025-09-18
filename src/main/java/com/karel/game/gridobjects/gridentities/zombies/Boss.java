@@ -1,6 +1,4 @@
-package com.karel.game;
-
-import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+package com.karel.game.gridobjects.gridentities.zombies;
 
 public class Boss extends Zombie{
     public Boss(){

@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.Hitter;
+import com.karel.game.gridobjects.hitters.Hitter;
 
 /**
  * Write a description of class TeslaCoilZap here.

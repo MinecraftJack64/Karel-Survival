@@ -51,4 +51,8 @@ public class WeedwackerZombie extends Zombie
     public String getName(){
         return "Weedwacker Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "weedwacker";
+    }
 }

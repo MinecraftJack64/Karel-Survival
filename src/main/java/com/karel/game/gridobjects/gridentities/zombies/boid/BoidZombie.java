@@ -184,4 +184,8 @@ public class BoidZombie extends Zombie
     public String getName(){
         return isMother()?"Mother Boid Zombie":"Boid Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "boid";
+    }
 }

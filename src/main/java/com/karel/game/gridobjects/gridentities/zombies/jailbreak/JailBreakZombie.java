@@ -128,6 +128,10 @@ public class JailBreakZombie extends Zombie
     }
     
     public String getName(){
-        return "Prison Break Zombie";
+        return "Jailbreak Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "jailbreak";
     }
 }

@@ -1,6 +1,8 @@
 package com.karel.game;
 import java.util.List;
 
+import com.karel.game.gridobjects.hitters.Hitter;
+
 /**
  * Write a description of class Mole here.
  * 

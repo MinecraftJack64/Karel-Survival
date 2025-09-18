@@ -1,8 +1,8 @@
 package com.karel.game.gridobjects.gridentities.zombies.torpedo;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 public class ZTorpedo extends Bullet
 {
     double vx, vy;

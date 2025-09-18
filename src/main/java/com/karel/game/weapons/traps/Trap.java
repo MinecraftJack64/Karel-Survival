@@ -1,7 +1,7 @@
 package com.karel.game.weapons.traps;
 
 import com.karel.game.GridObject;
-import com.karel.game.Projectile;
+import com.karel.game.gridobjects.hitters.Projectile;
 
 /**
  * Write a description of class Trap here.

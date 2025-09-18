@@ -71,4 +71,8 @@ public class RocketZombie extends Zombie
     public String getName(){
         return "Rocket Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "rocket";
+    }
 }

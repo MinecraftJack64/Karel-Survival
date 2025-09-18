@@ -54,4 +54,8 @@ public class Hornet extends SpawnableZombie
     public String getName(){
         return "Zombie Hornet";
     }
+    @Override
+    public String getZombieID(){
+        return "hornet";
+    }
 }

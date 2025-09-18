@@ -82,7 +82,7 @@ public class SteakZombie extends ShooterZombie
             ammo.useAmmo();
         }
     }
-    //ovveride this
+    @Override
     public int getXP(){
         return 500;
     }
@@ -136,5 +136,9 @@ public class SteakZombie extends ShooterZombie
     }
     public String getName(){
         return "Steak Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "steak";
     }
 }

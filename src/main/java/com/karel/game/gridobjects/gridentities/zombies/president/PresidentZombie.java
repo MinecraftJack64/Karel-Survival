@@ -4,9 +4,9 @@ import com.karel.game.ArmorShield;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Nuke;
-import com.karel.game.Projectile;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.gridobjects.hitters.Projectile;
 import com.karel.game.weapons.ShieldID;
 
 import java.util.ArrayList;
@@ -149,5 +149,9 @@ public class PresidentZombie extends Zombie
     }
     public String getName(){
         return "President Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "president";
     }
 }

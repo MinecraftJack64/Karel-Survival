@@ -1,5 +1,6 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.watermelon;
 
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 
 /**
@@ -9,21 +10,14 @@ import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
  */
 public class ZWatermelonSeed extends ZBullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 300;
-    
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 150;
-    
     public ZWatermelonSeed(double rotation, GridObject source)
     {
         super(rotation, source);
         setSpeed(17);
         setLife(15);
         setDamage(10);
+        setImage("Projectiles/Bullets/melonseed.png");
+        scaleTexture(20);
+        setRotation(getRotation()-180);
     }
-    
-    /**
-     * The bullet will damage asteroids if it hits them.
-     */
 }

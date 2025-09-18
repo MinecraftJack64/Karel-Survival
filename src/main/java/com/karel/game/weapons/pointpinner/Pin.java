@@ -1,8 +1,8 @@
 package com.karel.game.weapons.pointpinner;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
  * A bullet that can hit asteroids.

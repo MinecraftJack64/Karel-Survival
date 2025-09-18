@@ -1,9 +1,9 @@
 package com.karel.game.gridobjects.gridentities.zombies.assassin;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.PowerPercentageEffect;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
  * A short range projectile that teleports the shooter to the back of the enemy hit. Used by AssassinZombie

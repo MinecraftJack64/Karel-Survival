@@ -59,4 +59,8 @@ public class LaserZombie extends Zombie
     public String getName(){
         return "Laser Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "laser";
+    }
 }

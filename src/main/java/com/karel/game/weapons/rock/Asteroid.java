@@ -1,9 +1,9 @@
 package com.karel.game.weapons.rock;
 import java.util.HashSet;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
  * An straight projectile long range asteroid that splits into smaller asteroids upon impact.

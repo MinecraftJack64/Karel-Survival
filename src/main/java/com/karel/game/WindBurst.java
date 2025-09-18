@@ -1,6 +1,7 @@
 package com.karel.game;
 
 import com.karel.game.effects.StunEffect;
+import com.karel.game.gridobjects.hitters.Bullet;
 import com.karel.game.particles.Explosion;
 
 /**

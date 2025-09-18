@@ -67,4 +67,8 @@ public class HardHatZombie extends Zombie
     public String getName(){
         return "Hard Hat Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "hardhat";
+    }
 }

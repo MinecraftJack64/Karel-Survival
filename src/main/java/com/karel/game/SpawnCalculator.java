@@ -36,6 +36,7 @@ import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
+import com.karel.game.gridobjects.gridentities.zombies.watermelon.WatermelonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
 /**
  * Write a description of class ZombieSpawner here.

@@ -135,4 +135,8 @@ public class StuntZombie extends Zombie implements LandingHandler
     public String getName(){
         return "Stunt Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "stunt";
+    }
 }

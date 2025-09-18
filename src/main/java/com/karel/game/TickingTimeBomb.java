@@ -1,6 +1,4 @@
 package com.karel.game;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Write a description of class TickingfTimeBomb here.

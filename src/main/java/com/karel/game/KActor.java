@@ -22,6 +22,7 @@ public abstract class KActor
     private GridObject mounter;
     private String drawCenter = "center"; // "top" or "center"
     private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
+    private boolean shouldUnmount;
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
     }
@@ -30,7 +31,6 @@ public abstract class KActor
     }
     public World getWorld(){
         return world;
-        
     }
     public void setRotation(double rot){
         rrot = rot;
@@ -179,11 +179,14 @@ public abstract class KActor
     }
     public void notifyUnmount(GridObject other){
         mounter = null;
+        shouldUnmount = false;
     }
     public GridObject getMounter(){
         return mounter;
     }
-    
+    /*
+     * If is being mounted
+     */
     public boolean hasMounter(){
         return mounter!=null;
     }
@@ -193,11 +196,17 @@ public abstract class KActor
     public void remove(){
         shouldRemove = true;
     }
+    public void markUnmount(){
+        shouldUnmount = true;
+    }
     public void setWorld(World w){
         world = w;
     }
     public boolean shouldRemove(){
         return shouldRemove;
+    }
+    public boolean shouldUnmount(){
+        return shouldUnmount;
     }
     public void notifyWorldRemove(){world = null;clearMounting();}
     public void notifyWorldAdd(){setWorld(Game.world);shouldRemove = false;}

@@ -1,6 +1,6 @@
 package com.karel.game.weapons.rock;
 
-public class FlyingRock extends com.karel.game.FlyingProjectile{
+public class FlyingRock extends com.karel.game.gridobjects.hitters.FlyingProjectile{
     private boolean gadget;
     private double height;
     public FlyingRock(double rotation, double targetdistance, double height, com.karel.game.GridObject source, boolean gadget){

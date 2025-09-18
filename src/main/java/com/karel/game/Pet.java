@@ -13,6 +13,9 @@ public class Pet extends GridEntity
     GridEntity spawner;
     public Pet(GridEntity spawner){
         this.spawner = spawner;
+        applySpawnImmunity();
+    }
+    public void applySpawnImmunity(){
         if(spawnImmunityLength()>0)applyShield(new ExternalImmunityShield(new ShieldID(this, "spawn immunity"), spawnImmunityLength()));
     }
     public GridEntity getSpawner(){

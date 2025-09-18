@@ -99,4 +99,8 @@ public class GuardianAngelZombie extends Zombie
             return false;
         }
     }
+    @Override
+    public String getZombieID(){
+        return "guardianangel";
+    }
 }

@@ -30,4 +30,8 @@ public class ZombieHerald extends Zombie
     public String getName(){
         return "Zombie Herald";
     }
+    @Override
+    public String getZombieID(){
+        return "herald";
+    }
 }

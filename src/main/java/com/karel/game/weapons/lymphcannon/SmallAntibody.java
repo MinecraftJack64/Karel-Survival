@@ -1,8 +1,8 @@
 package com.karel.game.weapons.lymphcannon;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
  * A bullet that can hit asteroids.
@@ -16,8 +16,8 @@ public class SmallAntibody extends Bullet
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
-    private Class target;
-    public SmallAntibody(double rotation, Class targ, GridObject source)
+    private String target;
+    public SmallAntibody(double rotation, String targ, GridObject source)
     {
         super(rotation, source);
         setSpeed(17);
@@ -25,9 +25,12 @@ public class SmallAntibody extends Bullet
         setDamage(4);
         setNumTargets(-1);
         target = targ;
+        if(targ==null)setImage("Weapons/lymphcannon/proj.png");
+        else setImage("Weapons/lymphcannon/projTarg.png");
+        setRotation(getRotation()+90);
     }
     public void doHit(GridEntity targ){
-        if(target!=null&&target.isInstance(targ)){
+        if(target!=null&&target.equals(targ.getEntityID())){
             damage(targ, getDamage()*4);
         }
         super.doHit(targ);

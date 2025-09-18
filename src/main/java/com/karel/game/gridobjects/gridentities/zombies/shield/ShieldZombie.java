@@ -52,4 +52,8 @@ public class ShieldZombie extends Zombie
     public String getName(){
         return "Shield Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "shield";
+    }
 }

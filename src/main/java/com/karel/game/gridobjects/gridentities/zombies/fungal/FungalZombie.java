@@ -46,7 +46,7 @@ public class FungalZombie extends Zombie
             passiveattack();
             passivereloadDelayCount = 0;
         }
-        if(distanceTo(getTarget())>150)
+        if(distanceTo(getTarget())>120)
             walk(monangle, 1);
     }
     public ZombieClass[] getZombieClasses(){
@@ -76,5 +76,9 @@ public class FungalZombie extends Zombie
     }
     public String getName(){
         return "Fungal Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "fungal";
     }
 }

@@ -2,10 +2,9 @@ package com.karel.game.weapons.slicer;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 
 import java.util.HashSet;
-
-import com.karel.game.Bullet;
 
 /**
  * A bullet that can hit asteroids.

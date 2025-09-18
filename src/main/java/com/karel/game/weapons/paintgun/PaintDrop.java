@@ -1,10 +1,10 @@
 package com.karel.game.weapons.paintgun;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.PercentageShield;
 import com.karel.game.Shield;
+import com.karel.game.gridobjects.hitters.Bullet;
 import com.karel.game.weapons.ShieldID;
 
 /**

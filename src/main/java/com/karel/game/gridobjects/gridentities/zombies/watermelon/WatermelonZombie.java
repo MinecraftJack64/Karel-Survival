@@ -1,6 +1,11 @@
-package com.karel.game;
+package com.karel.game.gridobjects.gridentities.zombies.watermelon;
 
+import com.karel.game.ArmorShield;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.particles.MelonExplosion;
 import com.karel.game.weapons.ShieldID;
 import com.raylib.Texture;
 
@@ -29,37 +34,31 @@ import com.raylib.Texture;
  */
 public class WatermelonZombie extends Zombie
 {
-    private static final int gunReloadTime = 2;         // The minimum delay between firing the gun.
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.assault, ZombieClass.tank};
+    private static final int gunReloadTime = 2;
+    public String getStaticTextureURL(){return "melonzareln.png";}
 
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-
-    private Texture rocket = Greenfoot.loadTexture("shieldzareln.png");
-    private Texture rocket2 = Greenfoot.loadTexture("zareln.png");
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    //private int shieldhealth = 300;
-    private int ammo = 0;
+    private Texture rocket = Greenfoot.loadTexture(spriteOrigin()+"WatermelonZombie/0.png");
+    private Texture rocket2 = Greenfoot.loadTexture(spriteOrigin()+"melonzareln.png");
+    private double ammo = 0;
     private static double speed = 2;
-    private static double attackrange = 30;
-    private int damage = 10;
     private static final int ult = 750;
     private int ultcharge = 750;
     private int wave = 0;
-    //ShieldBar shieldBar;
     private boolean inShieldPhase = true;
     private ShieldID wmshield = new ShieldID(this);
-    /**
-     * Initilise this rocket.
-     */
+
+    private int animFrame;
     public WatermelonZombie()
     {
-        reloadDelayCount = 5;
-        setImage(rocket);
+        setImage(rocket2);
         setSpeed(speed);
         startHealth(300);
-        /*shieldBar = new ShieldBar(shieldhealth, 40, 5, this);
-        KWorld.me.addObject(shieldBar, getX()*1.0, getY()-50);*/
     }
-    //ovveride this
+    public ZombieClass[] getZombieClasses(){
+        return classes;
+    }
+    @Override
     public int getXP(){
         return 450;
     }
@@ -85,14 +84,28 @@ public class WatermelonZombie extends Zombie
                 ammo = 0;
                 fire();
             }else{
-                ammo++;
+                ammo+=getReloadMultiplier();
             }
         }
         if(inShieldPhase&&!hasShield(wmshield)){
             inShieldPhase = false;
             setSpeed(2);
             setImage(rocket2);
+            for(int i = 0; i < 360; i+=60){
+                MelonExplosion me = new MelonExplosion(i+getRotation()+Greenfoot.getRandomNumber(80)-40);
+                addObjectHere(me);
+            }
         }
+    }
+    public void animate(){
+        if(inShieldPhase){
+            setImage("WatermelonZombie/"+(animFrame/3)+".png");
+            animFrame++;
+            if(animFrame>8){
+                animFrame = 0;
+            }
+        }
+        super.animate();
     }
     @Override
     public boolean prioritizeTarget(){
@@ -117,5 +130,9 @@ public class WatermelonZombie extends Zombie
     
     public String getName(){
         return "Watermelon Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "watermelon";
     }
 }

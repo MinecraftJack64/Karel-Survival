@@ -14,9 +14,9 @@ import com.karel.game.weapons.Weapon;
 public class LymphCannon extends Weapon
 {
     private static final int gunReloadTime = 20;//100 damage default, 75 damage weak, 150 damage strong
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 550;//7 shots including default
-    private Class target;
+    private String target;
     ArrayList<CellTurret> mycells = new ArrayList<CellTurret>();
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime) 
@@ -28,7 +28,7 @@ public class LymphCannon extends Weapon
             reloadDelayCount = 0;
         }
     }
-    public void notifyHit(Class targ){
+    public void notifyHit(String targ){
         target = targ;
     }
     public void fireUlt(){
@@ -38,12 +38,25 @@ public class LymphCannon extends Weapon
         target = null;
         Sounds.play("lassoshoot");
     }
+    public void onGadgetActivate(){
+        for(CellTurret c: mycells){
+            getHolder().addObjectHere(new Cytokine(c, target));
+        }
+        setGadgetTimer(180);
+    }
+    public int defaultGadgets(){
+        return 1;
+    }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(gunReloadTime, reloadDelayCount));
+    public void reload(double r){
+        reloadDelayCount+=r;
+        updateAmmo(Math.min(gunReloadTime, (int)reloadDelayCount));
+        super.reload(r);
+    }
+    public void update(){
+        super.update();
         for(int i = mycells.size()-1; i >= 0; i--){
             if(!mycells.get(i).isDead()){
                 if(mycells.get(i).readyToTransform(target)){
@@ -62,7 +75,7 @@ public class LymphCannon extends Weapon
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, (int)reloadDelayCount);
     }
     public String getName(){
         return "Lymph Cannon";

@@ -7,8 +7,10 @@ import com.karel.game.effects.EffectID;
 import com.karel.game.particles.Explosion;
 
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Represents an object inside the game world
@@ -29,6 +31,7 @@ public abstract class GridObject extends KActor
     private int arcframe = 0;
     private boolean grounded;
     private GridEntity cachedTarget;
+    private boolean updatingMounts;
     public String getTeam(){
         if(faketeam!=null){
             return faketeam;
@@ -94,16 +97,23 @@ public abstract class GridObject extends KActor
     }
     public void updateMounts(){
         if(mounts!=null){
-            for(var g: mounts.entrySet()){
+            Iterator<Map.Entry<KActor, Vector>> i = mounts.entrySet().iterator();
+            updatingMounts = true;
+            while(i.hasNext()){
+                var g = i.next();
                 g.getKey().branchOut(this, g.getValue().getDirection()+getRotation(), g.getValue().getLength(), g.getValue().getHeight());
                 g.getKey().update();
+                if(g.getKey().shouldUnmount()){
+                    i.remove();
+                }
             }
+            updatingMounts = false;
         }
     }
     public void renderMounts(){
         if(mounts!=null){
             for(var g: mounts.entrySet()){
-                g.getKey().render();
+                if(g.getKey().isInWorld())g.getKey().render();
             }
         }
     }
@@ -514,6 +524,14 @@ public abstract class GridObject extends KActor
     }
     public boolean unmount(KActor other){
         if(mounts!=null){
+            if(updatingMounts){
+                if(mounts.containsKey(other)){
+                    other.markUnmount();
+                    other.notifyUnmount(this);
+                    return true;
+                }
+                return false;
+            }
             boolean removed = mounts.remove(other)!=null;
             if(removed)other.notifyUnmount(this);
             return removed;

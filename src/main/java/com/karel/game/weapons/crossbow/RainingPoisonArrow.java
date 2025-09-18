@@ -1,10 +1,10 @@
 package com.karel.game.weapons.crossbow;
 
-import com.karel.game.FlyingProjectile;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.PoisonEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.gridobjects.hitters.FlyingProjectile;
 
 /**
  * A bullet that can hit asteroids.

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 import com.karel.game.ArmorShield;
 import com.karel.game.BombTurret;
-import com.karel.game.Boss;
 import com.karel.game.ExternalImmunityShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
@@ -18,6 +17,7 @@ import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.ReloadPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.effects.TeamSwitchEffect;
+import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
@@ -377,5 +377,9 @@ public class Wizard extends Boss
     }
     public String getName(){
         return "Setup Wizard";
+    }
+    @Override
+    public String getZombieID(){
+        return "wizard";
     }
 }

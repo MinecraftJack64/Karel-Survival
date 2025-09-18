@@ -223,4 +223,8 @@ public class CannonZombie extends Zombie
     public String getName(){
         return "Cannon Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "cannon";
+    }
 }

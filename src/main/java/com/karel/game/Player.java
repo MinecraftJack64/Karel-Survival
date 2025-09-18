@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.gamemodes.sandbox.Sandbox;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 import com.raylib.Texture;
@@ -369,7 +370,7 @@ public class Player extends GridEntity implements ItemAccepter {
             boolean didspecial = false;
             if(i instanceof Weapon){
                 Weapon w = (Weapon)i;
-                if(Greenfoot.isActive("inventory")){// TODO remove debug code
+                if(Greenfoot.isActive("inventory")&&Game.getGame() instanceof Sandbox){// TODO remove debug code
                     w.chargeUlt(100);
                 }
                 didspecial = true;
@@ -407,9 +408,9 @@ public class Player extends GridEntity implements ItemAccepter {
         this.setImage(rocket);
     }
 
-    public void hit(int dmg, GridObject source) {
+    public void hitIgnoreShield(int dmg, double exp, GridObject source) {
         if (!this.isDead()) {
-            super.hit(dmg, source);
+            super.hitIgnoreShield(dmg, exp, source);
         }
 
         this.hacooldown = 0;

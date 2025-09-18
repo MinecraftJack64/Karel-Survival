@@ -1,12 +1,12 @@
 package com.karel.game.weapons.teslacoil;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.HealCharge;
 import com.karel.game.LightningStrike;
 import com.karel.game.Sounds;
 import com.karel.game.effects.StunEffect;
+import com.karel.game.gridobjects.hitters.Bullet;
 import com.karel.game.particles.Explosion;
 
 /**

@@ -42,4 +42,8 @@ public class HuggingZombie extends Zombie
     public String getName(){
         return "Hugging Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "hugging";
+    }
 }

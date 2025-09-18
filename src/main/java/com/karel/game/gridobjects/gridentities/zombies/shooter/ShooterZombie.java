@@ -60,4 +60,8 @@ public class ShooterZombie extends Zombie
     public String getName(){
         return "Shooter Zombie";
     }
+    @Override
+    public String getZombieID(){
+        return "shooter";
+    }
 }

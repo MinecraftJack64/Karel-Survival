@@ -1,7 +1,7 @@
 package com.karel.game.weapons.scream;
 
-import com.karel.game.Bullet;
 import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.Bullet;
 public class ScreamEcho extends Bullet
 {
     public ScreamEcho(double rotation, GridObject source)

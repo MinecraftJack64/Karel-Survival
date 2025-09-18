@@ -110,7 +110,7 @@ public class MimicZombie extends Zombie {
             weapon.chargeUlt(amt);
         }
     }
-    //ovveride this
+    @Override
     public int getXP(){
         return 800;
     }
@@ -125,6 +125,10 @@ public class MimicZombie extends Zombie {
     }
     public String getName(){
         return "Mimic Zombie";
+    }
+    @Override
+    public String getZombieID(){
+        return "mimic";
     }
     public class MimicZombieHand implements ItemHolder{
         //TODO
