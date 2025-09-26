@@ -7,11 +7,12 @@ import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
-import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServerOld;
+import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServer;
 import com.karel.game.gridobjects.gridentities.zombies.cop.CopZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.ZombieChick;
+import com.karel.game.gridobjects.gridentities.zombies.emotionalsupport.EmotionalSupportZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exorcist.DemonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
@@ -115,6 +116,7 @@ public class ZombieFactory {
             "assassin",
             "steak",
             "arson",
+            "emotionalsupport",
             "mimic",
             "ironclad",
             "torpedo",
@@ -189,7 +191,7 @@ public class ZombieFactory {
             case "evilspirit":
                 return new EvilSpiritZombie();
             case "cloudserver":
-                return new CloudServerOld();
+                return new CloudServer();
             case "shapeshifter":
                 return new ShapeshifterZombie();
             // chief
@@ -250,7 +252,8 @@ public class ZombieFactory {
             // factory
             // frisbee
             // buildingblock
-            // emotionalsupport
+            case "emotionalsupport":
+                return new EmotionalSupportZombie();
             // smokey
             // decomposer
             // zomband

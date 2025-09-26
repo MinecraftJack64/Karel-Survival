@@ -2,6 +2,13 @@
 Content
  - Added the Cop Zombie(Missing graphics)
  - Added the Shaman Zombie(missing graphics)
+ - Added the Emotional Support Zombie(missing graphics)
+Other
+ - ZombieFactory spawns the correct Cloud Server Zombie
+TODO
+ - Show zombie being mimicked when shapeshifter zombie attacked
+Graphics
+ - Game Icon set
 
 9/21
 Balancing

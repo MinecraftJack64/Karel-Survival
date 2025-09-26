@@ -1,6 +1,8 @@
 package com.karel;
 
 import com.karel.game.Game;
+import com.karel.game.Greenfoot;
+
 import static com.raylib.Raylib.*;
 
 public class Main {
@@ -9,6 +11,7 @@ public class Main {
         initAudioDevice();
         setTargetFPS(Game.FPS);
         setWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE);
+        setWindowIcon(loadImageFromTexture(Greenfoot.loadTexture("kareln.png")));
         setExitKey(KeyboardKey.KEY_F4);
         maximizeWindow();
         while (!windowShouldClose()) {
@@ -17,6 +20,7 @@ public class Main {
             Game.tick();
             endDrawing();
         }
+        //TODO: Save
         closeWindow();
     }
 }
