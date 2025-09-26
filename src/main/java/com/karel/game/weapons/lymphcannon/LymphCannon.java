@@ -21,7 +21,7 @@ public class LymphCannon extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime) 
         {
-            Antibody bullet = new Antibody(getHand().getTargetRotation(), target, this, getHolder());
+            Antibody bullet = new Antibody(getHand().getTargetRotation(), target, this, getAttackUpgrade()==1, getHolder());
             getHolder().addObjectHere(bullet);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -32,8 +32,9 @@ public class LymphCannon extends Weapon
         target = targ;
     }
     public void fireUlt(){
-        CellTurret bullet = new CellTurret(getHand().getTargetX(), getHand().getTargetY(), target, getHolder());
+        CellTurret bullet = new CellTurret(getHand().getTargetX(), getHand().getTargetY(), target, getUltUpgrade()==1, getHolder());
         getHolder().addObjectHere(bullet);
+        bullet.setFriends(mycells);
         mycells.add(bullet);
         target = null;
         Sounds.play("lassoshoot");

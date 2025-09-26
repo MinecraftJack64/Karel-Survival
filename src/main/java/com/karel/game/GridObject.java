@@ -102,7 +102,6 @@ public abstract class GridObject extends KActor
             while(i.hasNext()){
                 var g = i.next();
                 g.getKey().branchOut(this, g.getValue().getDirection()+getRotation(), g.getValue().getLength(), g.getValue().getHeight());
-                g.getKey().update();
                 if(g.getKey().shouldUnmount()){
                     i.remove();
                 }
@@ -437,8 +436,9 @@ public abstract class GridObject extends KActor
         return 1;
     }
     public void doLanding(){}
-    public void addObjectHere(GridObject obj){
+    public GridObject addObjectHere(GridObject obj){
         getWorld().addObject(obj, getX(), getY());
+        return obj;
     }
     public List<GridEntity> getGEsInRange(int rng){
         ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
@@ -503,7 +503,9 @@ public abstract class GridObject extends KActor
         if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<KActor, Vector>();
         mounts.put(other, new Vector(other.getX()-getX(), other.getY()-getY(), 0));
+        mounts.get(other).setDirection(mounts.get(other).getDirection()-getRotation());
         other.notifyMount(this);
+        getWorld().requestMoveToAfter(this, other);
         return true;
     }
     public boolean mount(KActor other, double deg, double dist){
@@ -512,6 +514,7 @@ public abstract class GridObject extends KActor
         boolean isNewMount = mounts.get(other)==null;
         mounts.put(other, new Vector(deg, dist));
         if(isNewMount)other.notifyMount(this);
+        getWorld().requestMoveToAfter(this, other);
         return true;
     }
     public boolean mount(KActor other, double x, double y, double height){

@@ -8,6 +8,7 @@ import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServerOld;
+import com.karel.game.gridobjects.gridentities.zombies.cop.CopZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.ZombieChick;
@@ -38,6 +39,7 @@ import com.karel.game.gridobjects.gridentities.zombies.president.PresidentZombie
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.russiandoll.RussianDollZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shaman.EvilSpiritZombie;
+import com.karel.game.gridobjects.gridentities.zombies.shaman.ShamanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.ShapeshifterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
@@ -84,16 +86,18 @@ public class ZombieFactory {
             "firebreather",
             "weedwacker",
             "herald",
-            "wizard",//
+            "wizard",
             "portal",
             "warrior",
             "splitter",
             "light",
             "heavy",
+            "cop",
+            "shaman",
             "exorcist",
             "demon",
             "evilspirit",
-            "cloudserver",//
+            "cloudserver",
             "shapeshifter",
             "hugging",
             "tractorbeam",
@@ -174,8 +178,10 @@ public class ZombieFactory {
                 return new LightZombie();
             case "heavy":
                 return new HeavyZombie();
-            // cop
-            // shaman
+            case "cop":
+                return new CopZombie();
+            case "shaman":
+                return new ShamanZombie();
             case "demon":
                 return new DemonZombie();
             case "exorcist":

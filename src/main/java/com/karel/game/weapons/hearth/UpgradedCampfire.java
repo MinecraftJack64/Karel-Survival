@@ -22,4 +22,11 @@ public class UpgradedCampfire extends Campfire
             else if(isAlliedWith(g))heal(g, 350);
         }, null);
     }
+    public void die(){
+        explodeOn(150, (g)->{
+            if(isAggroTowards(g))g.applyEffect(new BurnEffect(100, 30, 5, this));
+            else if(isAlliedWith(g))heal(g, 350);
+        }, null);
+        super.die();
+    }
 }

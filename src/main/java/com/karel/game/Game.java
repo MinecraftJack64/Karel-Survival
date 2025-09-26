@@ -256,7 +256,6 @@ public class Game
             ui.render();
             setUIScreenScaleAndOffset(ui2);
             if(isPaused()||game!=null&&(isPaused()&&!game.usesCustomPause()||game.showPauseMenu()))ui2.render();
-            System.out.println("TICK DONE");
         }else{
             if(ui!=null){
                 setUIScreenScaleAndOffset(ui);

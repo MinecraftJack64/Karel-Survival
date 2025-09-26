@@ -1,4 +1,10 @@
-package com.karel.game;
+package com.karel.game.weapons.drone;
+
+import com.karel.game.ComboTracker;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.SubAffecter;
+
 /**
  * represents the drone hovering above a player with the DroneRemote weapon. At the command of the weapon, it shoots 4 consecutive bullets at a targeted location, which also changes at the command of the weapon
  * 
@@ -13,11 +19,13 @@ public class Drone extends GridObject implements SubAffecter
     public int hoverheight = 100;
     private int remainingshots = 0;//4 remaining shots per attack
     private int tbs = 0;//5 time between shots
-    private int ammo = 0;//40 time between attacks
+    private double ammo = 0;//40 time between attacks
     private int remainingUlt;//40 attacks at 0, 10, 20, 30, 40
     private ComboTracker combo;
+    private boolean createTrail;
     public Drone(GridEntity source){
         this.source = source;//do not set power
+        setImage("robot.png");
     }
     public GridObject getSource(){
         return source;
@@ -30,7 +38,6 @@ public class Drone extends GridObject implements SubAffecter
         }else if(getHeight()>source.getHeight()+hoverheight+2.5){
             this.setHeight(getHeight()-5);
         }
-        ammo++;
         if(remainingshots>0){
             attack(false);
         }
@@ -47,8 +54,12 @@ public class Drone extends GridObject implements SubAffecter
         }
         super.update();
     }
+    public void reload(double c){
+        ammo+=c;
+    }
     public void attack(boolean startCombo){
         if(ammo>=40&&remainingUlt==0){
+            if(source!=null)matchPower(source);
             remainingshots = 4;
             ammo = 0;
             if(startCombo){
@@ -74,11 +85,24 @@ public class Drone extends GridObject implements SubAffecter
             }
         };
         addObjectHere(b);
+        if(createTrail){
+            getWorld().addObject(new ScorchPuddle(source){
+                public boolean covertDamage(){
+                    return true;
+                }
+            }, source.getX()+ddx, source.getY()+ddy);
+        }
     }
-    public void reposition(double dx, double dy){
+    public void reposition(double dx, double dy, boolean upgrade){
+        if(source!=null)matchPower(source);
         remainingshots = 0;// cancel attack
         dvx = (dx-ddx)/40;
         dvy = (dy-ddy)/40;
         remainingUlt = 40;
+        createTrail = upgrade;
+    }
+    public void setPosition(double x, double y){
+        ddx = x;
+        ddy = y;
     }
 }

@@ -60,7 +60,7 @@ public class Campfire extends Pet
         else{
             setImage("hearth/pet"+(animationFrame/3)+".png");
         }
-        renderTexture(auraTexture, getX(), getY(), range*2, range*2, getRotation(), 127);
+        renderTexture(auraTexture, getX(), getY(), range*2, range*2, getRotation(), 70);
         super.render();
     }
     public void gadget(){

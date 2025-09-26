@@ -1,10 +1,14 @@
-package com.karel.game;
+package com.karel.game.weapons.farmer;
 import java.util.ArrayList;
 
+import com.karel.game.HarvestBeeper;
+import com.karel.game.ItemHolder;
+import com.karel.game.SimpleAmmoManager;
+import com.karel.game.Sounds;
+import com.karel.game.UltHarvestBeeper;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.InvisibilityEffect;
 import com.karel.game.gridobjects.collectibles.Collectible;
-import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -22,9 +26,6 @@ public class Farmer extends Weapon
     private InvisibilityEffect invis;
     private Scarecrow sc;
     private static final int ult = 2500;
-    private int remainingslices = 160;
-    private boolean nextdir = false;
-    private ShieldID shield = new ShieldID(this);
     private ArrayList<Collectible> account = new ArrayList<Collectible>();
     public void fire(){
         if(continueUse()){
@@ -63,7 +64,7 @@ public class Farmer extends Weapon
             invis = new InvisibilityEffect(-1, getHolder(), new EffectID(this));
             getHolder().applyEffect(invis);
             sc = new Scarecrow(getHolder());
-            getHolder().addObjectHere(sc);
+            getHolder().getWorld().addObject(sc, getHand().getTargetX(), getHand().getTargetY());
             setContinueUlt(true);
         }else{
             if(getUltUpgrade()==1){

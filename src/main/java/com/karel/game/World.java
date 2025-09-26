@@ -50,6 +50,8 @@ public class World
     private final double gravity = -5;
     
     private boolean paused = false;
+
+    private ArrayList<KActor> mtaRequests = new ArrayList<KActor>();
     public World() 
     {
     }
@@ -166,8 +168,12 @@ public class World
     public void doUpdate(){
         for(int i = 0; i < allKActors().size(); i++){
             KActor g = allKActors().get(i);
-            if(!g.hasMounter())
-                g.update();
+            g.update();
+        }
+
+        //Handle update order requests
+        while(mtaRequests.size()>0){
+            moveToAfter(mtaRequests.remove(0), mtaRequests.remove(0));
         }
 
         // hurt enemies out of bounds
@@ -187,6 +193,17 @@ public class World
             scrollX = getPlayer().getX()-600;
             scrollY = getPlayer().getY()-400;
         }
+    }
+    public void moveToAfter(KActor k, KActor o){
+        if(!allKActors().contains(k)||!allKActors().contains(o))return;
+        int i = allKActors().indexOf(k);
+        int s = allKActors().indexOf(o);
+        if(s>i)return;
+        allKActors().add(i+1, allKActors().remove(s));
+    }
+    public void requestMoveToAfter(KActor k, KActor o){
+        mtaRequests.add(k);
+        mtaRequests.add(o);
     }
     public void render(){
         drawBG();

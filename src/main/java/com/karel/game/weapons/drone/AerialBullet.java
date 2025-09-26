@@ -1,10 +1,11 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.drone;
 
+import com.karel.game.ComboTracker;
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
- * A bullet that can hit asteroids.
+ * A straight bullet shot from the drone weapon
  * 
  * @author Poul Henriksen
  */
@@ -21,9 +22,9 @@ public class AerialBullet extends Bullet
     {
         super(rotation, source);
         setSpeed(speed);
-        setLife((int)(height/reduction)-1);
+        setLife((int)(height/reduction));
         setDamage(75);
-        setRange(30);
+        setRange(40);
         setCollisionMode("radius");
         setHeight(height);
         weight = reduction;
@@ -41,9 +42,10 @@ public class AerialBullet extends Bullet
         //
     }
     public void die(){
+        setHeight(0);
         if(combo!=null)setDamage(getDamage()+combo.get());
         super.checkHit();
-        explodeOn(30, 0);// just for effect for now
+        explodeOn(40, 0);// just for effect for now
         if(getHitStory().size()>0&&combo!=null){
             combo.change(15);
         }

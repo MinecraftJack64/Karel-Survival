@@ -92,7 +92,7 @@ public abstract class Weapon implements Item, Tickable
             onGadgetContinue();
         }
         if(currentgadgettimer>0)currentgadgettimer--;
-        if(gadgetscooldown>0)currentgadgettimer--;
+        if(gadgetscooldown>0)gadgetscooldown--;
     }
     public void render(){}//TODO: MAKE ABSTRACT LATER
     public abstract void fire();
@@ -347,6 +347,10 @@ public abstract class Weapon implements Item, Tickable
         return i;
     }
     public Weapon clone(){
+        return null;
+    }
+    //TODO: Make abstract
+    public String getItemID(){
         return null;
     }
     public BotGuide getBotGuide(){

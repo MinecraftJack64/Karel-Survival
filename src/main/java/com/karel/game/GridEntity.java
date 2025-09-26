@@ -1,8 +1,6 @@
 package com.karel.game;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.HashSet;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.karel.game.effects.Effect;

@@ -9,6 +9,7 @@ import com.karel.game.GridObject;
  */
 public class StickyBullet extends Bullet
 {
+    private boolean isStuck;
     private int stickCooldown;
     public StickyBullet(double rotation, int stick, GridObject source)
     {
@@ -19,8 +20,7 @@ public class StickyBullet extends Bullet
         this(rotation, 30, source);
     }
     public void applyPhysics(){
-        System.out.println("PHYSICS CALL");
-        if(hasMounter()){
+        if(hasMounter()&&isStuck){
             stickCooldown--;
             if(stickCooldown<=0){
                 tryUnmount();
@@ -31,17 +31,26 @@ public class StickyBullet extends Bullet
     public void tryUnmount(){
         GridEntity g = (GridEntity)getMounter();
         g.unmount(this);
+        isStuck = false;
         onUnstick(g);
     }
     public void setStickCooldown(int n){
         stickCooldown = n;
     }
+    public boolean isStuck(){
+        return isStuck;
+    }
     public void onUnstick(GridEntity target){
         damage(target, getDamage(target));
+    }
+    public void onStick(GridEntity target){
+        //
     }
     public void doHit(GridEntity targ){
         if(!hasMounter()){
             targ.mount(this);
+            onStick(targ);
+            isStuck = true;
         }else{
             super.doHit(targ);
         }
@@ -49,6 +58,7 @@ public class StickyBullet extends Bullet
     public void die(){
         if(hasMounter()){
             getMounter().unmount(this);
+            isStuck = false;
         }
         super.die();
     }

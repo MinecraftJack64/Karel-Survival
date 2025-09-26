@@ -21,7 +21,7 @@ public class SmallAntibody extends Bullet
     {
         super(rotation, source);
         setSpeed(17);
-        setLife(20);
+        setLife(25);
         setDamage(4);
         setNumTargets(-1);
         target = targ;

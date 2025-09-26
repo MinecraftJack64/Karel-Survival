@@ -1,3 +1,40 @@
+9/25
+Content
+ - Added the Cop Zombie(Missing graphics)
+ - Added the Shaman Zombie(missing graphics)
+
+9/21
+Balancing
+ - Farmer
+    - (+)Scarecrow Spawn Immunity length(45->200)
+    - (+)Scarecrow reload time(15->10)
+ - Fireworks nuke no longer heals zombies at outer range
+    - Close damage(861->1024)
+
+9/18
+Graphics
+ - Added antibody blinking
+ - Lymph Cannon antibodies and Stunt Zombie sticky bombs show up on the correct side of target
+ - Reduced Hearth campfire and lymph cannon cell turret aura opacity to be more transparent
+Fixes
+ - Fixed lymph cannon not doing any damage(shield had a start cooldown and no self filter)
+ - Lymph Cannon antibody range did not match detection range(340->425)
+ - Lymph Cannon turrets are now protected from target
+ - Lymph Cannon attack upgrade no longer always activates
+ - Fixed weapon gadget cooldowns being half of normal and cooldowns not working
+ - Fixed drone underaiming
+Balancing
+ - Lymph Cannon turret immunity duration(45->120)
+ - Hearth ult upgrade fires burst on death as well
+ - Drone affected by reload speed
+ - Drone affected by power effect
+ - Drone attack radius(30->40)
+Content
+ - Added lymph cannon ult upgrade
+ - Added Drone ult upgrade
+TODO: Fireworks and Soup and Lovestrike? too strong
+TODO: Mousetraps and Drone too weak
+
 9/17
 Other
  - Easter Zombie chicks are now spawnable in the sandbox menu
@@ -9,6 +46,7 @@ Technical
  - Projectiles can be without a source
  - Added StickyBullet, which is a bullet that sticks to the hit entity for a short while
     - Stunt zombie sticky bomb and lymph cannon antibody use this
+ - Mounts are no longer updated by mounters as it caused double updates. Instead, they update independently and request to be moved together
 Balancing
  - Cloud Server class updated
  - Lymph Cannon
@@ -16,9 +54,9 @@ Balancing
     - Cell turrets apply spawn immunity after reaching position
     - Cell turret attack range(300->400)
 Content
- - Added lymph cannon gadget
+ - Added lymph cannon gadget and attack upgrade
 Graphics
- - Lymph Cannon graphics added(TODO: sticking and blinking of attack projectile)
+ - Lymph Cannon graphics added
 Fixes
  - Fixed mount crash when self removing
  - Fixed mount render crash when not in world

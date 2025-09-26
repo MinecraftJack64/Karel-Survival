@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.gridobjects.hitters.Projectile;
 
@@ -56,12 +55,9 @@ public class Nuke extends Projectile
         explodeOnEnemies(1000, (g)->{doHit(g);});
         Sounds.play("rocketcrash");
     }
-    public int getDamage(double distance){
-        return (int)(400+Math.pow(2, -(distance-975)/100));
-    }
-    public void doHit(GridEntity targ){
-        super.doHit(targ);
-        damage(targ, getDamage(distanceTo(targ)));
+    public int getDamage(GridEntity targ){
+        double distance = distanceTo(targ);
+        return (int)(400+Math.pow(2, -(distance-1000)/100));
     }
     
     public boolean covertDamage(){

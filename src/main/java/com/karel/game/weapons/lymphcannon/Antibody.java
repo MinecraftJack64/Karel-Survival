@@ -3,7 +3,6 @@ package com.karel.game.weapons.lymphcannon;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Shield;
-import com.karel.game.effects.InfectionEffect;
 import com.karel.game.gridobjects.hitters.StickyBullet;
 import com.karel.game.weapons.ShieldID;
 
@@ -16,13 +15,16 @@ public class Antibody extends StickyBullet
 {
     private String target;
     private LymphCannon notifier;
-    public Antibody(double rotation, String targ, GridObject source)
+    private int animFrame;
+    private boolean upgrade;
+    public Antibody(double rotation, String targ, boolean isUpgrade, GridObject source)
     {
-        this(rotation, targ, null, source);
+        this(rotation, targ, null, isUpgrade, source);
     }
-    public Antibody(double rotation, String targ, LymphCannon notify, GridObject source)
+    public Antibody(double rotation, String targ, LymphCannon notify, boolean isUpgrade, GridObject source)
     {
         super(rotation, source);
+        upgrade = isUpgrade;
         setSpeed(10);
         setLife(50);
         setDamage(0);
@@ -35,15 +37,26 @@ public class Antibody extends StickyBullet
     }
     public void onUnstick(GridEntity targ){
         int damage = target!=null?(target.equals(targ.getEntityID())?150:75):100;
-        if(damage==150){
+        damage(targ, damage);
+        if(damage==150&&upgrade){
             targ.applyShield(new MarkedShield(new ShieldID(this, "lymphcannon mark"), 120, 50));
         }
         if(notifier!=null)notifier.notifyHit(targ.getEntityID());
     }
+    public void animate(){
+        if(hasMounter())animFrame++;
+        if((animFrame/5)%2==1){
+            if(target==null)setImage("Weapons/lymphcannon/proj1.png");
+            else setImage("Weapons/lymphcannon/projTarg1.png");
+        }else{
+            if(target==null)setImage("Weapons/lymphcannon/proj.png");
+            else setImage("Weapons/lymphcannon/projTarg.png");
+        }
+        super.animate();
+    }
     public static class MarkedShield extends Shield{
         private int markDamage = 50; // Damage dealt when the shield is removed
         private int duration = 120; // Duration in ticks
-        private int startCooldown = 5; // Cooldown before the shield can do damage, if hit before cooldown, it will remove but not do damage
         public MarkedShield(ShieldID myG, int duration, int markDamage){
             super(myG);
             this.markDamage = markDamage;
@@ -54,12 +67,11 @@ public class Antibody extends StickyBullet
             if(duration <= 0){
                 remove();
             }
-            if(startCooldown>0)startCooldown--;
         }
         public int processDamage(int amt, GridObject source){
-            //if(!(source instanceof Antibody)&&!(source instanceof SmallAntibody)||source==getID().getKey())return amt;
+            if(!(source instanceof Antibody)&&!(source instanceof SmallAntibody)||source==getID().getKey())return amt;
             remove();
-            return super.processDamage(startCooldown<=0?(amt+markDamage):0, source);
+            return super.processDamage(amt+markDamage, source);
         }
     }
 }

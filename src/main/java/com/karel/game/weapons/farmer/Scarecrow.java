@@ -1,5 +1,9 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.farmer;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Pet;
+import com.karel.game.weapons.ShieldID;
 
 /**
  * Write a description of class Scarecrow here.
@@ -9,11 +13,11 @@ import java.util.List;
  */
 public class Scarecrow extends Pet
 {
-    public String getStaticTextureURL(){return "chickzareln.png";}
+    public String getStaticTextureURL(){return "chick.png";}
     //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
     private int ammo = 0;
     private static double attackrange = 600;
-    private static final int reloadtime = 15;
+    private static final int reloadtime = 10;
     /**
      * Initilise this rocket.
      */
@@ -24,6 +28,9 @@ public class Scarecrow extends Pet
         scaleTexture(scale, scale);
         startHealth(400);
         inherit(hive);
+    }
+    public int spawnImmunityLength(){
+        return 200;
     }
 
     /**
@@ -38,7 +45,7 @@ public class Scarecrow extends Pet
             attack();
             ammo = (int)((attackrange-distanceTo(getTarget()))/attackrange*reloadtime); // shoot faster when target closer
         }
-        hit(2, this);
+        if(!hasShield(new ShieldID(this, "spawn immunity")))hit(2, this);
     }
     public void attack(){
         ScarecrowStraw bullet = new ScarecrowStraw(getRotation(), this);
