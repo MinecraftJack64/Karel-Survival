@@ -15,8 +15,8 @@ import com.raylib.Vector2;
  */
 public class StatusBar extends Overlay
 {
-    private Color bgColor = Raylib.BLACK, barColor = Raylib.GREEN;
-    private int value, max;
+    private Color bgColor = Raylib.BLACK, barColor = Raylib.GREEN, disabledColor = Raylib.GRAY;
+    private int value, max, disabledPortion;
     private int width, height;
     protected ArrayList<Integer> phases = new ArrayList<Integer>();
 
@@ -40,6 +40,9 @@ public class StatusBar extends Overlay
     public void setValue(int val){
         value = val;
     }
+    public void setDisabledPortion(int val){
+        disabledPortion = val;
+    }
     public void setMax(int val){
         max = val;
     }
@@ -59,34 +62,16 @@ public class StatusBar extends Overlay
     public double getPerc(){
         return value*1.0/max;
     }
+    public double getDisabledPerc(){
+        return disabledPortion*1.0/max;
+    }
     public boolean isFull(){
         return value>=max;
     }
-    /*
-    protected void updateImage()
-    {
-        GreenfootImage image = getImage();
-        image.clear();
-        image.setColor(bgColor);
-        image.fillRect(0, 0, width, height);
-        image.setColor(barColor);
-        image.fillRect(0, 0, width*value/max, height);
-        image.setColor(bgColor);
-        for(int i: phases){
-            image.fillRect(width*i/max-1, 0, 2, height);
-        }
-    }
-    TODO*/
     public void render(){
-        //TODO
-        /*drawRectangle(getX(), getY(), size, height, bgColor);
-        drawRectangle(getX(), getY(), size*getPerc(), height, barColor);
-        for(int i: phases){
-            drawRectangle(getX()+size*i/max-1, getY(), 2, height, bgColor);
-        }*/
-        //System.out.println(this+" "+(int)getX()+" "+(int)getY()+" "+size+" "+height+" "+bgColor);
         Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX(width), renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRotation(), bgColor);
         Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX((int)(width*getPerc())), renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRotation(), barColor);
+        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX((int)(width*getDisabledPerc())), renderTransformY(height)), new Vector2(renderOriginX(width/2-(int)(width*getDisabledPerc())), renderTransformY(height/2)), (float)getRotation(), disabledColor);
         for(int i: phases){
             Raylib.drawRectanglePro(new Rectangle((float)(renderTransformX((int)getX()+width*i/max-1)), (float)renderTransformY((int)getY()), 2, renderTransformY(height)), new Vector2(renderOriginX(width/2), renderTransformY(height/2)), (float)getRotation(), bgColor);
         }

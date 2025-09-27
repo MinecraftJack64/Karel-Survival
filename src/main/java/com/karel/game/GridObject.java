@@ -21,6 +21,7 @@ import java.util.Iterator;
 public abstract class GridObject extends KActor
 {
     private HashMap<KActor, Vector> mounts;
+    private ArrayList<EventListener> listeners = new ArrayList<EventListener>();
     String team;
     String faketeam;
     String joinedteam;
@@ -276,6 +277,7 @@ public abstract class GridObject extends KActor
         return getWorld().getTeams().getAllies(getTeam()).contains(other.getTeam());
     }
     public void die(){
+        broadcastEvent("die");
         clearFakeTeam();
         clearTeam();
     }
@@ -558,6 +560,21 @@ public abstract class GridObject extends KActor
             }
             mounts = null;
         }
+    }
+    public void broadcastEvent(String event){//TODO: Add data
+        Iterator<EventListener> i = listeners.iterator();
+        while(i.hasNext()){
+            EventListener f = i.next();
+            if(f.on(event, this)){
+                i.remove();
+            }
+        }
+    }
+    public void addEventListener(EventListener e){
+        listeners.add(e);
+    }
+    public void removeEventListener(EventListener e){
+        listeners.remove(e);
     }
     //If this object cannot be passed through by other objects with hitboxes
     public boolean isWall(){

@@ -1,3 +1,6 @@
+
+NOTE: Current events: move, ult, gadget, attack, die
+
 9/25
 Content
  - Added the Cop Zombie(Missing graphics)

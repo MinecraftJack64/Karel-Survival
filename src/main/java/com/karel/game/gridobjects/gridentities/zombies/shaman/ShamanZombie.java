@@ -77,9 +77,11 @@ public class ShamanZombie extends Zombie
         double t = 0;
         int tn = 0;
         for(GridEntity ge: l){
-            if(isAlliedWith(ge)&&ge.getMaxHealth()>=200){
+            if(isAlliedWith(ge)&&ge.getMaxHealth()>=200&&!(ge instanceof EvilSpiritZombie)){
                 tn++;
                 t+=ge.getMultipliedSpeed();
+            }else if(isAggroTowards(ge)){
+                damage(ge, 10);
             }
         }
         if(t==0){

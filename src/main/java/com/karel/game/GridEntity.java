@@ -23,6 +23,7 @@ public abstract class GridEntity extends GridObject
 {
     ArrayList<Effect> effects = new ArrayList<Effect>();
     private int maxHealth = 200;//TMP
+    private int healthLimit = 0;
     private int health = maxHealth;
     HealthBar healthBar;
     public double movementspeed = 5, speedmultiplier = 1;
@@ -33,6 +34,7 @@ public abstract class GridEntity extends GridObject
     private boolean isactive = true;//if you can attack or do stuff
     private HashSet<EffectID> hiders;
     private boolean detectable = true;//if enemies can see you
+    private HashSet<EffectID> cursers;
     boolean isdead = false;
     private GridObject killer;
     private Shield healthShield;
@@ -509,6 +511,9 @@ public abstract class GridEntity extends GridObject
         removeAllShields();
         die(source);
     }
+    public int getEffectiveMaxHealth(){
+        return Math.max(1, getMaxHealth()-healthLimit);
+    }
     public void removeAllShields(){
         while(shields.size()>0){
             removeShield();
@@ -531,8 +536,8 @@ public abstract class GridEntity extends GridObject
     }
     public void heal(int amt, GridObject source){
         damage(-amt);
-        if(getHealth()>getMaxHealth()){
-            setHealth(getMaxHealth());
+        if(getHealth()>getEffectiveMaxHealth()){
+            setHealth(getEffectiveMaxHealth());
         }
         Sounds.play("heal");
     }
@@ -605,6 +610,21 @@ public abstract class GridEntity extends GridObject
     public void behave(){}
     public String getName(){return "Grid Entity";}
     public String getEntityID(){return "";}
+    public void setMaxHealthLimit(int amt, EffectID id) {
+        healthLimit+=amt;
+        if(getHealth()>getEffectiveMaxHealth()){
+            setHealth(getEffectiveMaxHealth());
+        }
+        if(healthBar!=null&&!hasHealthShield())healthBar.setDisabledPortion(Math.min(healthLimit, getMaxHealth()-1));
+    }
+    public void clearMaxHealthLimit(int amt, EffectID id) {
+        healthLimit-=amt;
+        if(healthBar!=null&&!hasHealthShield())healthBar.setDisabledPortion(healthLimit);
+    }
+    public void clearMaxHealthLimit(EffectID id) {
+        healthLimit = 0;
+        if(healthBar!=null&&!hasHealthShield())healthBar.setDisabledPortion(healthLimit);
+    }
 }
 
 

@@ -358,7 +358,7 @@ public class Player extends GridEntity implements ItemAccepter {
         }
         if(sudoActive()){
             if(Greenfoot.isActive("ult")){
-                sudo.ult();
+                if(sudo.ult())broadcastEvent("ult");;
             }
             else if(Game.isAttackDown()){
                 sudo.use();
@@ -376,15 +376,17 @@ public class Player extends GridEntity implements ItemAccepter {
                 didspecial = true;
                 if (Greenfoot.isActive("gadget")&&!w.continueUlt()&&w.activateGadget()) {
                     this.hacooldown = 0;
+                    broadcastEvent("gadget");
                 } else if ((Greenfoot.isActive("ult")||autoult||w.continueUlt())&&w.ult()) {
                     this.hacooldown = 0;
+                    broadcastEvent("ult");
                 }else{
                     didspecial = false;
                 }
             }
             if (this.getHeldItem() != null&&(Game.isAttackDown()||autoattack||getHeldItem().continueUse())&&!didspecial) {
                 isattacking = true;
-                this.getHeldItem().use();
+                if(this.getHeldItem().use())broadcastEvent("attack");;
     
                 this.hacooldown = 0;
             }else{

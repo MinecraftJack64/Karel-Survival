@@ -7,7 +7,7 @@ package com.karel.game;
  */
 public interface Item extends Cloneable
 {
-    public void use();
+    public boolean use();
     public void equip();
     public void unequip();
     public void render();

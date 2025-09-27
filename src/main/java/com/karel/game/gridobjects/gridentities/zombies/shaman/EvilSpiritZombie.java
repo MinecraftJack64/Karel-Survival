@@ -1,6 +1,11 @@
 package com.karel.game.gridobjects.gridentities.zombies.shaman;
 
+import com.karel.game.EventListener;
+import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
@@ -10,11 +15,10 @@ import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EvilSpiritZombie extends SpawnableZombie
+public class EvilSpiritZombie extends SpawnableZombie implements EventListener
 {
     private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer};
     public String getStaticTextureURL(){return "spiritzareln.png";}
-    private int damage = 50;
     /**
      * Initilise this rocket.
      */
@@ -43,10 +47,25 @@ public class EvilSpiritZombie extends SpawnableZombie
         if(distanceTo(getTarget())>30)walk(monangle, 1);
         else{
             if(canAttack()){
-                hit(damage, this);//TODO
+                getTarget().setMaxHealthLimit(50, new EffectID(this));
+                getTarget().addEventListener(this);
+                trap();
+                getWorld().removeObject(this);
             }
         }
         hit(1, this);
+    }
+    public boolean on(String event, GridObject source){
+        if(!event.equals("ult")&&!event.equals("die"))return false;
+        source.addObjectHere(this);
+        untrap();
+        matchTeam(source);
+        applyEffect(new SpeedPercentageEffect(1.2, Greenfoot.getRandomNumber(100), source));
+        if(source instanceof GridEntity g){
+            startHealth(g.getMaxHealth()-g.getHealth());
+            g.clearMaxHealthLimit(50, new EffectID(this));
+        }
+        return true;
     }
     
     public ZombieClass[] getZombieClasses(){
