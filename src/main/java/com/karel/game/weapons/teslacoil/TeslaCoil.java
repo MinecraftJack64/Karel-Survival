@@ -16,7 +16,7 @@ public class TeslaCoil extends Weapon
     private TeslaCoilZap zap, zap2;
     public void fire(){
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 500);
-        if(zap!=null){
+        if(zap!=null&&zap.isInWorld()){
             zap.attackAt(getHolder().getRotation()-90, d);
         }
         if(getAttackUpgrade()==1){

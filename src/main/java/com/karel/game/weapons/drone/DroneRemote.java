@@ -15,12 +15,12 @@ public class DroneRemote extends Weapon
     private Drone drone;
     private int ultreload = 0;
     public void fire(){
-        if(drone!=null){
+        if(drone!=null&&drone.isInWorld()){
             drone.attack(getAttackUpgrade()==1);
         }
     }
     public void fireUlt(){
-        if(drone!=null){
+        if(drone!=null&&drone.isInWorld()){
             drone.reposition(getHand().getTargetX()-getHolder().getX(), getHand().getTargetY()-getHolder().getY(), getUltUpgrade()==1);
         }
     }

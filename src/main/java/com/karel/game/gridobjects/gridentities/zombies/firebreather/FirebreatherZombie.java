@@ -1,6 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.firebreather;
 
 import com.karel.game.Sounds;
+import com.karel.game.effects.BurnEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.Greenfoot;
@@ -27,6 +28,7 @@ public class FirebreatherZombie extends Zombie
         reloadDelayCount = 5;
         setSpeed(2);
         startHealth(400);
+        addEffectImmunities(BurnEffect.class);
     }
 
     public void behave()

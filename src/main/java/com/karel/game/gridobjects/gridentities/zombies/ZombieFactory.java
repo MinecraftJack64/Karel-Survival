@@ -18,6 +18,7 @@ import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firingsquad.FiringSquadZombie;
+import com.karel.game.gridobjects.gridentities.zombies.frisbee.FrisbeeZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.guardianangel.GuardianAngelZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
@@ -116,6 +117,7 @@ public class ZombieFactory {
             "assassin",
             "steak",
             "arson",
+            "frisbee",
             "emotionalsupport",
             "mimic",
             "ironclad",
@@ -250,7 +252,8 @@ public class ZombieFactory {
             // network
             // earthblock
             // factory
-            // frisbee
+            case "frisbee":
+                return new FrisbeeZombie();
             // buildingblock
             case "emotionalsupport":
                 return new EmotionalSupportZombie();

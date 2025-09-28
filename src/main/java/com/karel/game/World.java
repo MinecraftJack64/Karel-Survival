@@ -182,16 +182,19 @@ public class World
                 g.hitIgnoreShield((int)Math.ceil(g.getMaxHealth()/300.0), null);
         }
 
+        processRemovals();
+        if(scrollToPlayer){
+            scrollX = getPlayer().getX()-600;
+            scrollY = getPlayer().getY()-400;
+        }
+    }
+    public void processRemovals(){
         //remove all gridobjects that want to be
         for(int i = allKActors().size()-1; i >= 0; i--){
             if(allKActors().get(i).shouldRemove()){
                 allKActors().get(i).notifyWorldRemove();
                 allKActors().remove(i);
             }
-        }
-        if(scrollToPlayer){
-            scrollX = getPlayer().getX()-600;
-            scrollY = getPlayer().getY()-400;
         }
     }
     public void moveToAfter(KActor k, KActor o){

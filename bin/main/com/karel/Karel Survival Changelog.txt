@@ -1,3 +1,15 @@
+9/27
+Balancing
+ - Firebreather Zombie is immune to burning
+Fixes
+ - Fixed a crash due to weapon switching a weapon like drone or weedwacker, since world did not process removals
+
+9/26
+Balancing
+ - Implemented Evil Spirit Zombie Cursing function
+Technical
+ - Added event listeners
+ - Added HealthCurseEffect
 
 NOTE: Current events: move, ult, gadget, attack, die
 

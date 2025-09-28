@@ -92,7 +92,7 @@ public class Weedwacker extends Weapon
     public void reload(double speed){
         if(drone!=null){
             if(drone.isDead())drone = null;
-            else{
+            else if(drone.isInWorld()){
                 if(getAttackUpgrade()==1)drone.setStrength(5-drone.getHealthShield().getHealth());
                 drone.spin(speed);
             }

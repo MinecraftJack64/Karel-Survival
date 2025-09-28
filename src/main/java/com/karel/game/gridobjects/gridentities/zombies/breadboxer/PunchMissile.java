@@ -27,14 +27,10 @@ public class PunchMissile extends Bullet
         setDamage(75);
         setSpeed(0);
         setImage("Projectiles/Bullets/zglove.png");
-        setRotation(getRotation()-90);
         tvx = Math.cos((rotation-90)*Math.PI/180)*pspeed;
         tvy = Math.sin((rotation-90)*Math.PI/180)*pspeed;
         vx = tvx;
         vy = tvy;
-    }
-    public void setRotation(double rot){
-        super.setRotation(rot+90);
     }
     public void applyPhysics(){
         super.applyPhysics();

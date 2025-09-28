@@ -49,13 +49,14 @@ public class Sandbox extends GameMode
         /*Game.setUIScreenScaleAndOffset(ui);
         ui.update();
         ui.render();*/
-        if(getWorld().isPaused()){
+        if(getWorld().isPaused()){//TODO use better way
             player.update();
             for(KActor k: getWorld().allKActors()){
                 if(k instanceof Overlay){
                     k.update();
                 }
             }
+            getWorld().processRemovals();
         }
     }
     public void startGame(){
