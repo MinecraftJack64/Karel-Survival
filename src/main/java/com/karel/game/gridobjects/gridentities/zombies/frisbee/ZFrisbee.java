@@ -18,7 +18,6 @@ public class ZFrisbee extends ZBullet
         setCollisionMode("radius");
         setRange(100);
         setDamage(250);
-        setDamage(10);
     }
     public void applyPhysics(){
         if(grabber!=null&&grabber.isInWorld()&&grabber.canBePulled()){

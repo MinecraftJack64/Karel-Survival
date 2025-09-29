@@ -3,6 +3,7 @@ package com.karel.game.gridobjects.gridentities.zombies.warrior;
 import com.karel.game.Greenfoot;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.gridobjects.gridentities.zombies.chief.ITribal;
 
 /**
  * Write a description of class WarriorZombie here.
@@ -10,7 +11,7 @@ import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class WarriorZombie extends Zombie
+public class WarriorZombie extends Zombie implements ITribal
 {
     private ZombieClass[] classes = new ZombieClass[]{ZombieClass.assault, ZombieClass.midranger};
     private static final int gunReloadTime = 85;
@@ -61,6 +62,9 @@ public class WarriorZombie extends Zombie
         }else{
             behaveAsAssault();
         }
+    }
+    public boolean requestingHeal(){
+        return getPercentHealth()<1;
     }
     public void behaveAsAssault(){
         if(phase==0){//retreating

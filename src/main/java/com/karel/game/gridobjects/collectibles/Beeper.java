@@ -1,5 +1,6 @@
 package com.karel.game.gridobjects.collectibles;
 
+import com.karel.game.BeeperAccepter;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
@@ -19,8 +20,10 @@ public class Beeper extends Collectible
     {
         this.xp = xp;
     }
-    public GridObject getTarget(){
-        return getWorld().getPlayer();
+    public boolean isPotentialTarget(GridEntity g){
+        System.out.println(getWorld().allEntities());
+        System.out.println(g);
+        return g instanceof BeeperAccepter s&&s.acceptingBeepers();
     }
     public void animate(){
         animFrame++;
@@ -37,6 +40,9 @@ public class Beeper extends Collectible
     }
     public void collect(GridObject targ){
         heal(((GridEntity)targ), healing);
+        if(targ instanceof BeeperAccepter t&&xp>0){
+            t.collectBeeper();
+        }
         super.collect(targ);
         Sounds.play("Beeper.collect"+xp);
     }

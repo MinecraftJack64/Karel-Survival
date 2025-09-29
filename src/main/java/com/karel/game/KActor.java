@@ -23,6 +23,7 @@ public abstract class KActor
     private String drawCenter = "center"; // "top" or "center"
     private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     private boolean shouldUnmount;
+    private boolean mountFixed;
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
     }
@@ -180,6 +181,7 @@ public abstract class KActor
     public void notifyUnmount(GridObject other){
         mounter = null;
         shouldUnmount = false;
+        mountFixed = false;
     }
     public GridObject getMounter(){
         return mounter;
@@ -198,6 +200,12 @@ public abstract class KActor
     }
     public void markUnmount(){
         shouldUnmount = true;
+    }
+    public void setMountFixed(boolean b) {
+        mountFixed = b;
+    }
+    public boolean isFixedMount(){
+        return mountFixed;
     }
     public void setWorld(World w){
         world = w;

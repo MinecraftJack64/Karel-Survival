@@ -1,3 +1,10 @@
+9/28
+Content
+ - Added the Frisbee Zombie(needs graphics)
+Technical
+ - Added fixed mounting to allow objects to be unaffected by rotation
+ - Any BeeperAccepter can collect beepers
+
 9/27
 Balancing
  - Firebreather Zombie is immune to burning

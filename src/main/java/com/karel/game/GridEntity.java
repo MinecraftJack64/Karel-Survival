@@ -549,7 +549,12 @@ public abstract class GridEntity extends GridObject
     }
     public void addGraphics(){
         if(healthBar!=null){
-            if(!isBoss)getWorld().addObject(healthBar, getX()*1.0, getY()-40);
+            if(!isBoss){
+                getWorld().addObject(healthBar, getX()*1.0, getY()-40);
+                if(!healthBar.hasMounter()){
+                    //mountFixed(healthBar);
+                }
+            }
             else Game.gameUI().addBossBar((BossBar)healthBar);
         }
         if(shieldBars!=null)shieldBars.forEach((s)->{getWorld().addObject(s, getX(), getY());});

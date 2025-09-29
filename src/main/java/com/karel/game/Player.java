@@ -5,7 +5,7 @@ import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 import com.raylib.Texture;
 
-public class Player extends GridEntity implements ItemAccepter {
+public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     boolean autoaim = false, autoattack = false, autoult = false, isattacking = false, ismoving = false;
     private Vector lastMoveDirection = new Vector(0, 0);
     private PlayerHand hand;
@@ -241,6 +241,12 @@ public class Player extends GridEntity implements ItemAccepter {
     }
     public boolean acceptingFrags(){
         return !Game.getGame().beeperbagfull();
+    }
+    public void collectBeeper(){
+        //
+    }
+    public boolean acceptingBeepers(){
+        return true;
     }
     
     //TODO

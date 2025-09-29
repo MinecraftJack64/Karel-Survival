@@ -1,9 +1,11 @@
 package com.karel.game.gridobjects.gridentities.zombies.frisbee;
 
 import com.karel.game.GridObject;
+import com.karel.game.ProjectileReflectShield;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.weapons.ShieldID;
 
 /**
  * Write a description of class ShooterZombie here.
@@ -35,11 +37,13 @@ public class FrisbeeZombie extends Zombie
         if(frizz!=null&&!frizz.isInWorld()){
             if(frizz.isGrabbed())frizz.letGo();
             frizz = null;
+            if(hasShield(new ShieldID(this)))removeShield(new ShieldID(this));
         }
         if(frizz!=null){
             if(!canAttack()&&!canMove()){
                 frizz.letGo();
                 frizz = null;
+                if(hasShield(new ShieldID(this)))removeShield(new ShieldID(this));
             }
         }else{
             reloadDelayCount+=getReloadMultiplier();
@@ -61,6 +65,7 @@ public class FrisbeeZombie extends Zombie
         else{
             if(frizz.isGrabbed())frizz.letGo();
             frizz = null;
+            if(hasShield(new ShieldID(this)))removeShield(new ShieldID(this));
         }
     }
     public void fire() 
@@ -71,10 +76,11 @@ public class FrisbeeZombie extends Zombie
             Sounds.play("gunshoot");
             bullet.grab(this);
             frizz = bullet;
+            applyShield(new ProjectileReflectShield(new ShieldID(this), 100));
             reloadDelayCount = 0;
         }
     }
-    //ovveride this
+    @Override
     public int getXP(){
         return 200;
     }

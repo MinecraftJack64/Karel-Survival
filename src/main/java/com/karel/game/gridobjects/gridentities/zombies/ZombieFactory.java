@@ -20,6 +20,7 @@ import com.karel.game.gridobjects.gridentities.zombies.firebreather.Firebreather
 import com.karel.game.gridobjects.gridentities.zombies.firingsquad.FiringSquadZombie;
 import com.karel.game.gridobjects.gridentities.zombies.frisbee.FrisbeeZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
+import com.karel.game.gridobjects.gridentities.zombies.gatherer.GathererZombie;
 import com.karel.game.gridobjects.gridentities.zombies.guardianangel.GuardianAngelZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hardhat.HardHatZombie;
 import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
@@ -107,6 +108,7 @@ public class ZombieFactory {
             "bodyguard",
             "joker",
             "firingsquad",
+            "gatherer",
             "jackinthebox",
             "cannon",
             "stunt",
@@ -212,7 +214,8 @@ public class ZombieFactory {
             case "firingsquad":
                 return new FiringSquadZombie();
             // inmate
-            // gatherer
+            case "gatherer":
+                return new GathererZombie();
             // elder
             case "jackinthebox":
                 return new JackITBZombie();

@@ -102,7 +102,7 @@ public abstract class GridObject extends KActor
             updatingMounts = true;
             while(i.hasNext()){
                 var g = i.next();
-                g.getKey().branchOut(this, g.getValue().getDirection()+getRotation(), g.getValue().getLength(), g.getValue().getHeight());
+                g.getKey().branchOut(this, !g.getKey().isFixedMount()?g.getValue().getDirection()+getRotation():g.getValue().getDirection(), g.getValue().getLength(), g.getValue().getHeight());
                 if(g.getKey().shouldUnmount()){
                     i.remove();
                 }
@@ -355,7 +355,7 @@ public abstract class GridObject extends KActor
         GridEntity nearestTarget = null;
         double closestDistance = 0;
         if(!isInWorld())return null;
-        for (GridEntity entity : this.getWorld().allEntities) {
+        for (GridEntity entity : this.getWorld().allEntities()) {
             if (isPotentialTarget(entity)) {
                 double currentDistance = this.distanceTo(entity);
                 
@@ -501,7 +501,16 @@ public abstract class GridObject extends KActor
     public void damageIgnoreShield(GridEntity targ, int amt, double exposure){
         targ.hitIgnoreShield((int)(amt*getPower()), exposure, this);
     }
-
+    public boolean mountFixed(KActor other){
+        if(!isInWorld())return false;
+        if(mounts==null)mounts = new HashMap<KActor, Vector>();
+        mounts.put(other, new Vector(other.getX()-getX(), other.getY()-getY(), 0));
+        mounts.get(other).setDirection(mounts.get(other).getDirection());
+        other.notifyMount(this);
+        other.setMountFixed(true);
+        getWorld().requestMoveToAfter(this, other);
+        return true;
+    }
     public boolean mount(KActor other){
         if(!isInWorld())return false;
         if(mounts==null)mounts = new HashMap<KActor, Vector>();
