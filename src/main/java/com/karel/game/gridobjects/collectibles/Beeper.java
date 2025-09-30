@@ -21,8 +21,6 @@ public class Beeper extends Collectible
         this.xp = xp;
     }
     public boolean isPotentialTarget(GridEntity g){
-        System.out.println(getWorld().allEntities());
-        System.out.println(g);
         return g instanceof BeeperAccepter s&&s.acceptingBeepers();
     }
     public void animate(){

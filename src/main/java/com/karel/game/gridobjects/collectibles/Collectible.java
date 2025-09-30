@@ -58,6 +58,7 @@ public class Collectible extends GridObject
             move(monangle, getSpeed());
             onCollecting();
         }
+        super.update();
         if(distanceTo(getTarget())<getSpeed()/2+1&&isActive())collect(getTarget());
     }
     public void collect(GridObject t){

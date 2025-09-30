@@ -8,6 +8,7 @@ import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServer;
+import com.karel.game.gridobjects.gridentities.zombies.concentrated.ConcentratedZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cop.CopZombie;
 import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
@@ -121,6 +122,7 @@ public class ZombieFactory {
             "arson",
             "frisbee",
             "emotionalsupport",
+            "concentrated",
             "mimic",
             "ironclad",
             "torpedo",
@@ -265,7 +267,8 @@ public class ZombieFactory {
             // zomband
             // conductor
             // riotshield
-            // concentrated
+            case "concentrated":
+                return new ConcentratedZombie();
             // gladiator
             // ghost
             // beast

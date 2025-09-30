@@ -1,3 +1,9 @@
+9/29
+Fixes
+ - Fixed Gatherer Zombie not picking up beepers
+Content
+ - Added Concentrated Zombie(no graphics yet)
+
 9/28
 Content
  - Added the Frisbee Zombie(needs graphics)
