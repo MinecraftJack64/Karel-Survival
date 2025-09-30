@@ -65,9 +65,9 @@ public class ConcentratedZombie extends Zombie
         reloadDelayCount = 0;
         attacking = false;
     }
-    //ovveride this
+    @Override
     public int getXP(){
-        return 200;
+        return 1000;
     }
 
     public ZombieClass[] getZombieClasses(){

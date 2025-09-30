@@ -25,6 +25,6 @@ public class ZConcentratedWave extends WaveAttack
     }
     
     public void doHit(GridEntity g){
-        damage(g, (int)Math.ceil(g.getHealth()*0.99));
+        damageIgnoreShield(g, (int)Math.min(100, g.getHealth()*0.99));
     }
 }
