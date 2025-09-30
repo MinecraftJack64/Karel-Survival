@@ -1,6 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.waterballoons;
 import java.util.HashSet;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.hitters.Bullet;
 

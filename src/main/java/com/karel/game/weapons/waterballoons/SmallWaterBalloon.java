@@ -1,5 +1,6 @@
-package com.karel.game;
+package com.karel.game.weapons.waterballoons;
 
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 
 /**
@@ -7,22 +8,18 @@ import com.karel.game.gridobjects.hitters.FlyingProjectile;
  * 
  * @author Poul Henriksen
  */
-public class BigWaterBalloon extends FlyingProjectile
+public class SmallWaterBalloon extends FlyingProjectile
 {
-    public BigWaterBalloon(double rotation, double targetdistance, double height, GridObject source)
+    public SmallWaterBalloon(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, source);
         setRange(50);
-        setDamage(400);
+        setDamage(200);
     }
     public double getGravity(){
         return 2;
     }
     public void die(){
-        for(int i = 0; i <= 360; i+=72){
-            WaterBalloon wb = new WaterBalloon(i+getDirection(), this, true);
-            addObjectHere(wb);
-        }
         addObjectHere(new WaterPuddle(150, this));
         super.die();
     }

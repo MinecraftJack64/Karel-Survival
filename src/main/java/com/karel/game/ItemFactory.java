@@ -27,6 +27,7 @@ import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.traps.TrapSetter;
+import com.karel.game.weapons.waterballoons.WaterBalloons;
 import com.karel.game.weapons.weedwacker.Weedwacker;
 
 public class ItemFactory

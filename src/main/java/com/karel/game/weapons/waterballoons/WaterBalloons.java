@@ -1,5 +1,10 @@
-package com.karel.game;
+package com.karel.game.weapons.waterballoons;
 
+import com.karel.game.AmmoHolder;
+import com.karel.game.AmmoManager;
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -33,20 +38,32 @@ public class WaterBalloons extends Weapon implements AmmoHolder
         BigWaterBalloon bullet = new BigWaterBalloon(getHand().getTargetRotation(), d, 200, getHolder());
         getHolder().addObjectHere(bullet);
     }
+    public void fireGadgetAt(GridEntity g){
+        double x = g.getX();
+        double y = g.getY();
+        double d = getHolder().distanceTo(x, y);
+        SmallWaterBalloon bullet = new SmallWaterBalloon(getHolder().face(g, false), d, 200, getHolder());
+        getHolder().addObjectHere(bullet);
+    }
+    public void onGadgetActivate(){
+        for(GridEntity g: getHolder().getWorld().allEntities()){
+            if(getHolder().isAggroTowards(g)){
+                fireGadgetAt(g);
+            }
+        }
+        setGadgetTimer(200);
+    }
+    public int defaultGadgets(){
+        return 2;
+    }
     public int getUlt(){
         return ult;
-    }
-    public void reload(){
-        reloadDelayCount++;
-        if(reloadDelayCount>=gunReloadTime){
-            ammo.reload();
-        }
-        updateAmmo(ammo.getAmmoBar());
     }
     public WaterBalloons(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(20, 1, 2);
+        setAmmo(ammo);
     }
     public void equip(){
         super.equip();

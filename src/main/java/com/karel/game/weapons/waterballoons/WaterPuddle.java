@@ -1,6 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.waterballoons;
 import java.util.HashMap;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Puddle;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.StunEffect;
 /**
