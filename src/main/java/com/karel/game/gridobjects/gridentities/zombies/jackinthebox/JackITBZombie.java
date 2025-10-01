@@ -1,6 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.jackinthebox;
 
 import com.karel.game.Target;
+import com.karel.game.effects.StunEffect;
 import com.karel.game.ArmorShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
@@ -82,6 +83,12 @@ public class JackITBZombie extends Zombie
         super.applyPhysics();
     }
     public void launchInside(){
+        explodeOnEnemies(800, (g)->{
+            if(g.isFacing(this)){
+                g.knockBack(face(g, false), 50, 20, this);
+                g.applyEffect(new StunEffect(40, this));
+            }
+        });
         if(inside==null){
             return;
         }

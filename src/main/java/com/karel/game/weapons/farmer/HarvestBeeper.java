@@ -1,7 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.farmer;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
 import com.karel.game.gridobjects.collectibles.Collectible;
-import com.karel.game.weapons.farmer.Farmer;
 
 /**
  * a collectible usually dropped from zombies when killed that can be collected by the player, healing them

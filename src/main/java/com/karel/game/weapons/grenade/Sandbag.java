@@ -1,4 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.grenade;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+
 /**
  * Write a description of class Sandbag here.
  * 
