@@ -1,5 +1,6 @@
-package com.karel.game;
+package com.karel.game.weapons.grenade;
 
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Bullet;
 
 /**

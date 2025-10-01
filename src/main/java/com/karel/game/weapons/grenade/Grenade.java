@@ -1,6 +1,6 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.grenade;
 
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 import com.karel.game.particles.Explosion;
 

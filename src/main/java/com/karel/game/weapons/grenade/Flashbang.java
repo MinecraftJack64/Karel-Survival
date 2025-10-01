@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.grenade;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 import com.karel.game.particles.Explosion;
@@ -19,7 +20,7 @@ public class Flashbang extends FlyingProjectile
         setDamage(0);
     }
     public void doHit(GridEntity g){
-        g.applyEffect(new StunEffect(true/*TODO isFacing*/?60:45, this));
+        g.applyEffect(new StunEffect(g.isFacing(this)?60:45, this));
         super.doHit(g);
     }
     public void die(){

@@ -126,6 +126,9 @@ public abstract class GridObject extends KActor
         if(face)setRotation(monangle);
         return monangle;
     }
+    public boolean isFacing(GridObject other){
+        return getFacingDistance(other)<75;
+    }
     public double getFacingOffset(GridObject other){
         return face(other, false)-getTargetRotation();
     }

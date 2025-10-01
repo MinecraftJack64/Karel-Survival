@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.grenade;
 
+import com.karel.game.ArmorShield;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
 

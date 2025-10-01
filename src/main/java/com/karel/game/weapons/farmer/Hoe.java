@@ -2,7 +2,6 @@ package com.karel.game.weapons.farmer;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.HarvestBeeper;
 import com.karel.game.Melee;
 
 /**

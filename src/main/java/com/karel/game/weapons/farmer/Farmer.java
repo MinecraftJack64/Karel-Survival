@@ -1,7 +1,6 @@
 package com.karel.game.weapons.farmer;
 import java.util.ArrayList;
 
-import com.karel.game.HarvestBeeper;
 import com.karel.game.ItemHolder;
 import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
