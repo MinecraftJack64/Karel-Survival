@@ -16,9 +16,11 @@ public class Button extends Overlay
 {
     private Color barColor = Raylib.GRAY, barDisabledColor = Raylib.LIGHTGRAY, barHoverColor = Raylib.DARKGRAY;
     private int width, height;
+    private int shrinkAmount = 5;
     private String text = "";
     private int textOffsetY = 0;
     private boolean showText = true;
+    private boolean cancelClickOnUnhover = true;
     private Color textColor = Raylib.GREEN;
     private int state = 0;//-1 - inactive, 0 - normal, 1 - mouse over, 2 - mouse clicked
     private boolean active = true;
@@ -69,12 +71,16 @@ public class Button extends Overlay
                 nstate = 1;
             }
             if(isMouseOver()){
-                nstate = 1;
-                if(Game.isMouseDown()){
+                if(nstate!=0&&Game.isMouseDown()){
                     nstate = 2;
+                }else if(!Game.isMouseDown()){
+                    nstate = 1;
+                }else{
+                    nstate = 0;
                 }
             }else{
-                nstate = 0;
+                if(!cancelClickOnUnhover&&nstate==2&&Game.isMouseDown())nstate = 2;
+                else nstate = 0;
             }
         }else{
             nstate = -1;
@@ -110,7 +116,8 @@ public class Button extends Overlay
             c = barHoverColor;
         }
         int size = width/5;
-        Raylib.drawRectangle(renderTransformX((int)(getX()-width/2)), renderTransformY((int)(getY()-height/2)), renderOriginX(width), renderTransformY(height), c);
+        int shrink = state==2?shrinkAmount:0;
+        Raylib.drawRectangle(renderTransformX((int)(getX()-width/2+shrink)), renderTransformY((int)(getY()-height/2+shrink)), renderOriginX(width-shrink*2), renderTransformY(height-shrink*2), c);
         int x = renderTransformX((int)getX()-Raylib.measureText(text, size)/2);
         int y = renderTransformY((int)getY()-Raylib.getFontDefault().getBaseSize()*(size/10)/2-textOffsetY);
         if(showText) Raylib.drawText(text, x, y, (int)(size*getWorld().getScreenScale()), textColor);
