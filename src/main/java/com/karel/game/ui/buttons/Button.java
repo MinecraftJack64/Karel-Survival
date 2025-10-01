@@ -57,6 +57,9 @@ public class Button extends Overlay
     public void setShowText(boolean showText){
         this.showText = showText;
     }
+    public void setCancelClickOnUnhover(boolean b){
+        cancelClickOnUnhover = b;
+    }
     public int getState(){
         return state;
     }
