@@ -2,6 +2,7 @@ package com.karel.game.weapons.waterballoons;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.effects.DamageExposureEffect;
 import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
@@ -11,23 +12,20 @@ import com.karel.game.gridobjects.hitters.Bullet;
  */
 public class WaterBalloon extends Bullet
 {
-    /** The damage this bullet will deal */
-    //private static final int damage = 100;
-    private boolean isSuper;
-    /** A bullet looses one life each act, and will disappear when life = 0 */
-    //private int life = 10;
-    //private double targrot;
+    private boolean isSuper, isUlt;
     
-    public WaterBalloon(double rotation, GridObject source, boolean isSuper)
+    public WaterBalloon(double rotation, GridObject source, boolean isSuper, boolean isUlt)
     {
         super(rotation, source);
         setSpeed(25);
         setLife(15);
-        setDamage(115);
+        setDamage(140);
         this.isSuper = isSuper;
+        this.isUlt = isUlt;
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
+        targ.applyEffect(new DamageExposureEffect(2, isUlt?100:30, this));
         for(int i = -35; i <= 35; i+=10){
             WaterSplash w = new WaterSplash(i+getDirection(), getHitStory(), this);
             addObjectHere(w);

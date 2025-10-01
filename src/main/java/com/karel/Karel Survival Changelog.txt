@@ -1,6 +1,10 @@
 9/30
 Balancing
  - Water Balloons affected by reload speed
+    - Balloon damage(115->140)
+    - Ult big balloon causes zombies to take twice the damage for 3 seconds
+    - Balloon causes zombies to take twice the damage for 1 second(30 frames)
+ - Air Pump affected by reload speed
 Content
  - Water Balloons gadget added
 
