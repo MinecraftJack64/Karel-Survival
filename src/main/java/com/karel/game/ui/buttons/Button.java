@@ -75,6 +75,7 @@ public class Button extends Overlay
             }
             if(isMouseOver()){
                 if(nstate!=0&&Game.isMouseDown()){
+                    if(nstate==1)onPress();
                     nstate = 2;
                 }else if(!Game.isMouseDown()){
                     nstate = 1;
@@ -105,6 +106,9 @@ public class Button extends Overlay
     }
     public void click(){
         //notify observer
+    }
+    public void onPress(){
+        //WHen button is first clicked on
     }
 
     /**

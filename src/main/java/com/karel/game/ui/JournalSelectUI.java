@@ -1,6 +1,7 @@
 package com.karel.game.ui;
 
 import com.karel.game.ui.buttons.Button;
+import com.karel.game.ui.sliders.Slider;
 import com.raylib.Raylib;
 import com.karel.game.Game;
 
@@ -24,5 +25,6 @@ public class JournalSelectUI extends UI{
         getWorld().addToGrid(weaponButton, 15, 4);
         getWorld().addToGrid(karelButton, 8, 11);
         getWorld().addToGrid(mapButton, 15, 11);
+        getWorld().addToGrid(new Slider(100, 100, 5, 20, true), 2, 2);
     }
 }
