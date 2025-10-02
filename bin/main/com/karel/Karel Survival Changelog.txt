@@ -1,3 +1,21 @@
+10/1
+Balancing
+ - Added extra effects of Grenade gadget and Jack-in-the-box Zombie
+Technical
+ - GridObject.isFacing(GridObject) returns true if the degree offset to the other grid object is within 75 degrees
+ - Added sliders(WIP)
+ - Added button alternate behaviors(not cancelling if unhovered)
+
+9/30
+Balancing
+ - Water Balloons affected by reload speed
+    - Balloon damage(115->140)
+    - Ult big balloon causes zombies to take twice the damage for 3 seconds
+    - Balloon causes zombies to take twice the damage for 1 second(30 frames)
+ - Air Pump affected by reload speed
+Content
+ - Water Balloons gadget added
+
 9/29
 Fixes
  - Fixed Gatherer Zombie not picking up beepers

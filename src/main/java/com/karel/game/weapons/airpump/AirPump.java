@@ -1,5 +1,7 @@
-package com.karel.game;
-
+package com.karel.game.weapons.airpump;
+import com.karel.game.ItemHolder;
+import com.karel.game.LandingHandler;
+import com.karel.game.SimpleAmmoManager;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.Weapon;
 
@@ -13,23 +15,22 @@ public class AirPump extends Weapon implements LandingHandler
 {
     private static final int gunReloadTime = 40;
     private int secondWind = 0;
-    private int reloadDelayCount;
     private static final int ult = 225;
     private boolean nextIsSuper = false;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if (getAmmo().hasAmmo()) 
         {
             double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 350);
             WindBurst bullet = new WindBurst(getHand().getTargetRotation(), d, nextIsSuper, getHolder(), getAttackUpgrade()==1?this:null);
             getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
-            reloadDelayCount = 0;
+            getAmmo().useAmmo();
             nextIsSuper = false;
         }
     }
     public void fireUlt(){
         //hop 5 times, dealing damage on landing
         nextIsSuper = true;
-        reloadDelayCount = gunReloadTime;
+        getAmmo().donateAmmo(1);
     }
     public void startJump(double rot, double dist, boolean isSuper){
         if(getAttackUpgrade()==1||isSuper){
@@ -45,23 +46,19 @@ public class AirPump extends Weapon implements LandingHandler
     public void doLanding(){
         setLocked(false);//allow switching weapons
     }
-    public void reload(){
-        reloadDelayCount+=secondWind>0?2:1;
+    public void reload(double d){
+        super.reload(d*(secondWind>0?2:1));
         if(secondWind>0){
             secondWind--;
         }
-        updateAmmo(nextIsSuper?gunReloadTime+1:Math.min(reloadDelayCount, gunReloadTime));
+        if(nextIsSuper)updateAmmo(gunReloadTime+1);
     }
     public int getUlt(){
         return ult;
     }
     public AirPump(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;//
-    }
-    public void equip(){
-        super.equip();
-        Game.gameUI().newAmmo(gunReloadTime, reloadDelayCount);
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
     }
     public String getName(){
         return "Air Pump";

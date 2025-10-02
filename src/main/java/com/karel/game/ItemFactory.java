@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.weapons.airpump.AirPump;
 import com.karel.game.weapons.blade.Blade;
 import com.karel.game.weapons.blowgun.Blowgun;
 import com.karel.game.weapons.captorch.CapsaicinTorch;

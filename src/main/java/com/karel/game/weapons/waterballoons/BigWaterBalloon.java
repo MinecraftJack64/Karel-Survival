@@ -21,7 +21,7 @@ public class BigWaterBalloon extends FlyingProjectile
     }
     public void die(){
         for(int i = 0; i <= 360; i+=72){
-            WaterBalloon wb = new WaterBalloon(i+getDirection(), this, true);
+            WaterBalloon wb = new WaterBalloon(i+getDirection(), this, true, true);
             addObjectHere(wb);
         }
         addObjectHere(new WaterPuddle(150, this));

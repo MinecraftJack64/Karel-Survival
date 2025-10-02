@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.airpump;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.gridobjects.hitters.Bullet;
 import com.karel.game.particles.Explosion;

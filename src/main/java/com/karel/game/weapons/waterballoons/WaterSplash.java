@@ -3,6 +3,7 @@ import java.util.HashSet;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.effects.DamageExposureEffect;
 import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
@@ -30,5 +31,9 @@ public class WaterSplash extends Bullet
         setDamage(30);
         setNumTargets(-1);
         setMultiHit(false);
+    }
+    public void doHit(GridEntity targ){
+        super.doHit(targ);
+        targ.applyEffect(new DamageExposureEffect(2, 30, getSource()));
     }
 }
