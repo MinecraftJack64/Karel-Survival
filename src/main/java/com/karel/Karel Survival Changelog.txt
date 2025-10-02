@@ -1,3 +1,11 @@
+10/1
+Balancing
+ - Added extra effects of Grenade gadget and Jack-in-the-box Zombie
+Technical
+ - GridObject.isFacing(GridObject) returns true if the degree offset to the other grid object is within 75 degrees
+ - Added sliders(WIP)
+ - Added button alternate behaviors(not cancelling if unhovered)
+
 9/30
 Balancing
  - Water Balloons affected by reload speed
