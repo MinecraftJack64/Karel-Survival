@@ -105,13 +105,13 @@ public class World
     }
 
     public int getGridMouseX(){
-        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale);
+        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale+getScrollX());
     }
     public int getGridMouseY(){
         return (int)(Game.getMouseY()/gridSizeScale);
     }
     public int getMouseX(){
-        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale);
+        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale+getScrollY());
     }
     public int getMouseY(){
         return (int)(Game.getMouseY()/gridSizeScale);

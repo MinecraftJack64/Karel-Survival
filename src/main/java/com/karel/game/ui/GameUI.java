@@ -12,6 +12,7 @@ import com.karel.game.ui.bars.StatusBar;
 import com.karel.game.ui.bars.UltBar;
 import com.karel.game.ui.bars.WaveBar;
 import com.karel.game.ui.buttons.Button;
+import com.karel.game.ui.buttons.ImageButton;
 import com.karel.game.ui.text.Counter;
 import com.karel.game.ui.text.ShyTextDisplay;
 import com.karel.game.ui.text.TextDisplay;
@@ -29,6 +30,7 @@ import com.raylib.Raylib;
 public class GameUI extends UI  
 {
     public static final Color DARKRED = new Color((byte)255, (byte)0, (byte)0, (byte)255);
+    private boolean isButtonMode = true;
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
@@ -36,12 +38,16 @@ public class GameUI extends UI
     private StatusBar sprint;
     private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2, bossName;
     private Button goToMenuBtn, nextLvlBtn;
+    private ImageButton weaponCraftButton, pauseButton;
     private BossBar boss;
     public void create(){
         waveCounter = new Counter("Wave ", 20);
         scoreCounter = new Counter("Score: ", 20);
         waveHealth = new WaveBar(1,100,5);
         placeScoreBar();
+
+        pauseButton = new ImageButton(50, 50, "Buttons/pause.png", "Pause");
+        getWorld().addToGrid(pauseButton, getWorld().gridwidth-2, 2);
         
         heldItem = new TextDisplay("Item", 20, Raylib.GRAY);
         getWorld().addObject(heldItem, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-1)*1.0-15);
@@ -76,6 +82,10 @@ public class GameUI extends UI
         weaponmessage = new ShyTextDisplay("You found a weapon fragment", 20, Raylib.GRAY);
         weaponmessage2 = new ShyTextDisplay("Press e to craft", 20, Raylib.GRAY);
         weaponmessage3 = new ShyTextDisplay("You have 0 fragments", 20, Raylib.GRAY);
+        weaponCraftButton = new ImageButton(50, 50, "Controls/craft-stick.png", "Craft!");
+        weaponCraftButton.setShowBackground(false);
+        weaponCraftButton.setVisible(false);
+        weaponCraftButton.setActive(false);
         placeCraftMessage();
         tut1 = new TextDisplay("", 20, Raylib.GRAY);
         getWorld().addObject(tut1, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
@@ -100,6 +110,7 @@ public class GameUI extends UI
         getWorld().addObject(weaponmessage, weaponmessagerarity.getX(), weaponmessagerarity.getBottom()+10);
         getWorld().addObject(weaponmessage2, weaponmessage.getX(), weaponmessage.getBottom()+10);
         getWorld().addObject(weaponmessage3, weaponmessage2.getX(), weaponmessage2.getBottom()+10);
+        weaponmessage2.addKActorHere(weaponCraftButton);
     }
     public void setTutorial(String thing){
         tut1.setText(thing);
@@ -354,19 +365,29 @@ public class GameUI extends UI
     public void showWeaponFrags(int s){
         weaponmessage3.setVisible(true);
         weaponmessage3.setText("You have "+s+" fragment"+(s==1?"":"s"));
-        weaponmessage2.setVisible(true);
-        weaponmessage2.setText(s>=2?"Press e to attempt a crafting":"You need at least 2 to craft");
+        weaponmessage2.setText(s>=2?"Press e to attempt crafting":"You need at least 2 to craft");
+        if(s>=2&&isButtonMode){
+            weaponCraftButton.setVisible(true);
+            weaponCraftButton.setActive(true);
+            weaponmessage2.setVisible(false);
+        }else{
+            weaponCraftButton.setVisible(false);
+            weaponCraftButton.setActive(false);
+            weaponmessage2.setVisible(true);
+        }
         weaponmessage.setVisible(true);
         weaponmessage.setText("You found a weapon fragment!");
         weaponmessagerarity.setText("");
     }
     public void showWeaponFrags(Item i, int s){
+        weaponCraftButton.setVisible(false);
+        weaponCraftButton.setActive(false);
         weaponmessage3.setVisible(true);
         weaponmessage3.setText("You have "+s+" fragment"+(s==1?"":"s"));
         weaponmessage2.setVisible(true);
         weaponmessage2.setText(i==null?"":("You got a "+i.getName()));
         weaponmessage.setVisible(true);
-        weaponmessage.setText(i==null?"Crafting failed":"Crafting Succeeded");
+        weaponmessage.setText(i==null?"Crafting Failed":"Crafting Succeeded");
         weaponmessagerarity.setVisible(true);
         String[] rarities = new String[]{"Common!", "Uncommon!", "Rare!", "Super Rare!", "Epic!", "Mythic!", "Legendary!", "Seasonal!"};
         Color[] colors = new Color[]{Raylib.GRAY, Raylib.GREEN, Raylib.BLUE, Raylib.ORANGE, new Color((byte)255, (byte)0, (byte)255, (byte)1), Raylib.RED, Raylib.YELLOW, Raylib.PINK};

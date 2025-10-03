@@ -48,50 +48,6 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         for(int i=0; i<inventory.length; i++){
             inventory[i] = ItemFactory.createItem(ItemFactory.getItemTypes()[i], getHand());
         }
-        /*this.inventory[0] = new Gale(getHand());
-        this.inventory[1] = new NailGun(getHand());
-        this.inventory[2] = new Crossbow(getHand());
-        this.inventory[4] = new RockCatapult(getHand());
-        this.inventory[5] = new Necromancer(getHand());
-        this.inventory[6] = new CatClaw(getHand());
-        this.inventory[7] = new Slicer(getHand());
-        this.inventory[8] = new WaterBalloons(getHand());
-        this.inventory[9] = new Lovestrike(getHand());
-        this.inventory[10] = new CapsaicinTorch(getHand());
-        this.inventory[11] = new Reaper(getHand());
-        this.inventory[12] = new LilCritters(getHand());
-        this.inventory[13] = new AirPump(getHand());
-        this.inventory[14] = new CrystalGun(getHand());
-        this.inventory[15] = new Weedwacker(getHand());
-        this.inventory[16] = new LymphCannon(getHand());
-        this.inventory[17] = new DroneRemote(getHand());
-        this.inventory[18] = new Shotgun(getHand());
-        this.inventory[19] = new Chameleon(getHand());
-        this.inventory[20] = new DoubleGun(getHand());
-        this.inventory[21] = new Sudo(getHand());
-        this.inventory[22] = new Hearth(getHand());
-        this.inventory[23] = new Blade(getHand());
-        this.inventory[24] = new GlueGun(getHand());
-        this.inventory[25] = new TeslaCoil(getHand());
-        this.inventory[26] = new EasterBasket(getHand());
-        this.inventory[27] = new Pointpinner(getHand());
-        this.inventory[28] = new AirPump(getHand());
-        this.inventory[29] = new Flail(getHand());
-        this.inventory[30] = new Highjacker(getHand());
-        this.inventory[31] = new PetMole(getHand());
-        this.inventory[32] = new Soup(getHand());
-        this.inventory[33] = new FlashDrive(getHand());
-        this.inventory[34] = new Inferno(getHand());
-        this.inventory[35] = new Blowgun(getHand());
-        this.inventory[36] = new PaintGun(getHand());
-        this.inventory[37] = new Scream(getHand());
-        this.inventory[38] = new TrapSetter(getHand());
-        this.inventory[39] = new Fireworks(getHand());
-        this.inventory[40] = new JadeCutter(getHand());
-        this.inventory[41] = new GrenadeLauncher(getHand());
-        this.inventory[42] = new Farmer(getHand());
-        this.inventory[43] = new Gun(getHand());
-        this.inventory[44] = new FastFood(getHand());*/
         for(Item i: inventory){
             if(i!=null){
                 ((Weapon)i).setAttackUpgrade(1);
@@ -99,7 +55,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
                 ((Weapon)i).donateGadgets(((Weapon)i).defaultGadgets());
             }
         }
-        //rarities: common, uncommon, rare, epic, legendary, seasonal
+        //rarities: common, uncommon, rare, super rare, epic, mythic, legendary, seasonal
         this.switchToSlot(0);
         this.hacooldown = 0;
     }
@@ -264,7 +220,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }else if(targetLocked){
             return oldtargetx;
         }
-        return getWorld().getGridMouseX()+getScrollX();
+        return getWorld().getGridMouseX();
     }
     public double getTargetY(){
         if(autoaim){
@@ -273,7 +229,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }else if(targetLocked){
             return oldtargety;
         }
-        return getWorld().getGridMouseY()+getScrollY();
+        return getWorld().getGridMouseY();
     }
     public void setTargetLock(boolean t){
         if(!targetLocked&&t){

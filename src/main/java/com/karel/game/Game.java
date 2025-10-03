@@ -66,6 +66,8 @@ public class Game
     
     //TODO: private static int modehs[]; // high scores of each mode
 
+    public static String inputMethod = "keyboard";
+    public static Vector targetVector = new Vector(0, 60);
     public static boolean shiftkey;
     public static boolean disableGameInputFlag = false;
     

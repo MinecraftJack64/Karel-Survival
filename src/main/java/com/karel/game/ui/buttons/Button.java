@@ -19,7 +19,7 @@ public class Button extends Overlay
     private int shrinkAmount = 5;
     private String text = "";
     private int textOffsetY = 0;
-    private boolean showText = true;
+    private boolean showText = true, showBackground = true;
     private boolean cancelClickOnUnhover = true;
     private Color textColor = Raylib.GREEN;
     private int state = 0;//-1 - inactive, 0 - normal, 1 - mouse over, 2 - mouse clicked
@@ -56,6 +56,9 @@ public class Button extends Overlay
     }
     public void setShowText(boolean showText){
         this.showText = showText;
+    }
+    public void setShowBackground(boolean s){
+        this.showBackground = s;
     }
     public void setCancelClickOnUnhover(boolean b){
         cancelClickOnUnhover = b;
@@ -124,7 +127,7 @@ public class Button extends Overlay
         }
         int size = width/5;
         int shrink = state==2?shrinkAmount:0;
-        Raylib.drawRectangle(renderTransformX((int)(getX()-width/2+shrink)), renderTransformY((int)(getY()-height/2+shrink)), renderOriginX(width-shrink*2), renderTransformY(height-shrink*2), c);
+        if(showBackground)Raylib.drawRectangle(renderTransformX((int)(getX()-width/2+shrink)), renderTransformY((int)(getY()-height/2+shrink)), renderOriginX(width-shrink*2), renderTransformY(height-shrink*2), c);
         int x = renderTransformX((int)getX()-Raylib.measureText(text, size)/2);
         int y = renderTransformY((int)getY()-Raylib.getFontDefault().getBaseSize()*(size/10)/2-textOffsetY);
         if(showText) Raylib.drawText(text, x, y, (int)(size*getWorld().getScreenScale()), textColor);
