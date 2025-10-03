@@ -23,6 +23,7 @@ import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;
 import com.karel.game.weapons.rock.RockCatapult;
+import com.karel.game.weapons.salicycle.Salicycle;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
@@ -99,7 +100,8 @@ public class ItemFactory
                                     "paintgun",
                                     "flashdrive",
                                     "doublegun",
-                                    "fastfood"};
+                                    "fastfood",
+                                    "salicycle"};
     public static Item createItem(String type, ItemHolder holder)
     {
         switch(type)
@@ -239,6 +241,9 @@ public class ItemFactory
                 return new DoubleGun(holder);
             case "fastfood":
                 return new FastFood(holder);
+            //?
+            case "salicycle":
+                return new Salicycle(holder);
             default:
                 return new Gun(holder);
         }

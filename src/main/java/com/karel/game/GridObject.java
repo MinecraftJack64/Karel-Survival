@@ -290,6 +290,7 @@ public abstract class GridObject extends KActor
     }
     public int explodeOn(int range, String filter, Consumer<GridEntity> vore, Explosion exp){
         List<GridEntity> l = getGEsInRange(range);
+        int tax = 0;
         if(exp!=null){
             addObjectHere(exp);
         }
@@ -301,19 +302,22 @@ public abstract class GridObject extends KActor
                 case "ally":
                     if(isAlliedWith(g)){
                         vore.accept(g);
+                        tax++;
                     }
                 break;
                 case "enemy":
                     if(isAggroTowards(g)){
                         vore.accept(g);
+                        tax++;
                     }
                 break;
                 default://all
                     vore.accept(g);
+                    tax++;
                 break;
             }
         }
-        return l.size();
+        return tax;
     }
     public int explodeOn(int range, Consumer<GridEntity> vore, Explosion exp){
         return explodeOn(range, "all", vore, exp);
