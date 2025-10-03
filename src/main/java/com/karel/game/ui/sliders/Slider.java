@@ -1,6 +1,4 @@
 package com.karel.game.ui.sliders;
-
-import com.karel.game.Greenfoot;
 import com.karel.game.ui.Overlay;
 import com.karel.game.ui.bars.StatusBar;
 import com.karel.game.ui.buttons.Button;
@@ -54,9 +52,13 @@ public class Slider extends Overlay{
             double targx = Math.max(beginx, Math.min(xOrigin+offset, endx));
             if(smooth)slide.setLocation(targx, slide.getY());
             //Determine the value of slider
-            double prop = (xOrigin+offset-beginx)/length;
-            value = prop*max;
-            
+            double prop = (targx-beginx)/length;
+            setValue(prop*max);
+            if(interval==0)return;
+            double divis = value/interval;
+            divis = Math.round(divis);
+            setValue(divis*interval);
+            if(!smooth)slide.setLocation(value/max*length+beginx, slide.getY());
         }
     }
     public void render(){
@@ -72,6 +74,11 @@ public class Slider extends Overlay{
     }
     public void setValue(double v){
         value = v;
+        if(slide!=null)slide.setText(""+value);
+        if(bar!=null)bar.setValue((int)value);
+    }
+    public double getValue(){
+        return value;
     }
     public void setInterval(double i){
         interval = i;
@@ -79,5 +86,4 @@ public class Slider extends Overlay{
     public void setIsSmooth(boolean b){
         smooth = b;
     }
-    //extern.com
 }

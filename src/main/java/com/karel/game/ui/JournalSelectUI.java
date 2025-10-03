@@ -25,6 +25,6 @@ public class JournalSelectUI extends UI{
         getWorld().addToGrid(weaponButton, 15, 4);
         getWorld().addToGrid(karelButton, 8, 11);
         getWorld().addToGrid(mapButton, 15, 11);
-        getWorld().addToGrid(new Slider(100, 100, 5, 20, true), 2, 2);
+        getWorld().addToGrid(new Slider(100, 100, 5, 20, false), 2, 2);
     }
 }
