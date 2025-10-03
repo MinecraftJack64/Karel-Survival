@@ -2,7 +2,6 @@ package com.karel.game;
 
 import com.raylib.Texture;
 import com.raylib.Sound;
-import com.raylib.Raylib;
 import com.karel.images.TextureLoader;
 import com.karel.sounds.SoundLoader;
 
@@ -19,8 +18,8 @@ public class Greenfoot {
     public static boolean isMouseDown(){
         return IO.isMouseDown();
     }
-    public static int getMouseX(){return Raylib.getMouseX();}
-    public static int getMouseY(){return Raylib.getMouseY();}
+    public static int getMouseX(){return IO.getMouseX();}
+    public static int getMouseY(){return IO.getMouseY();}
     public static Texture loadTexture(String url){
         return TextureLoader.loadTexture(url);
     }

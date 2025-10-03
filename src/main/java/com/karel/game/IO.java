@@ -9,6 +9,7 @@ import static com.raylib.Raylib.KeyboardKey.*;
 public class IO {
     //known mappings remaining
     //inventory
+    private String controlType = "keyboard";
     public static final HashMap<String, Integer> mappings = new HashMap<String, Integer>();
     static{
         mappings.put("left", KEY_A);
@@ -32,4 +33,6 @@ public class IO {
     public static boolean isMouseDown(){
         return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);
     }
+    public static int getMouseX(){return Raylib.getMouseX();}
+    public static int getMouseY(){return Raylib.getMouseY();}
 }
