@@ -531,10 +531,12 @@ public abstract class GridEntity extends GridObject
             shieldSetHealth(i, s.getHealth());
         }
         if(hasHealthShield()){
+            getHealthShield().tick();
             healthBar.setValue(healthShield.getHealth());
         }
     }
     public void heal(int amt, GridObject source){
+        if(source!=this&&!acceptHeals())return;
         damage(-amt);
         if(getHealth()>getEffectiveMaxHealth()){
             setHealth(getEffectiveMaxHealth());
@@ -592,6 +594,9 @@ public abstract class GridEntity extends GridObject
     }
     //If this grid entity is still in normal function(only for some zombies that run out of ammo)
     public boolean isActive(){
+        return true;
+    }
+    public boolean acceptHeals(){
         return true;
     }
     public boolean canDetect(){//can be detected

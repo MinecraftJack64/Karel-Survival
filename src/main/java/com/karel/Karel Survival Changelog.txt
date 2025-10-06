@@ -1,3 +1,14 @@
+10/4
+ - Salicycle ult can't be pulled
+Technical
+ - Added boolean GridEntity.acceptHeals(), used by salicycle ult and jailbreak zombie bombs
+
+10/3
+Content
+ - Added the Salicycle base kit
+Fixes
+ - Health shields tick
+
 10/1
 Balancing
  - Added extra effects of Grenade gadget and Jack-in-the-box Zombie

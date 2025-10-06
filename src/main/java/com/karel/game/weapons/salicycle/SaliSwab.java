@@ -1,7 +1,7 @@
 package com.karel.game.weapons.salicycle;
 
+import com.karel.game.CoolingMetalShield;
 import com.karel.game.GridEntity;
-import com.karel.game.MetalShield;
 import com.karel.game.Pet;
 import com.karel.game.weapons.ShieldID;
 
@@ -14,7 +14,7 @@ public class SaliSwab extends Pet{
         dir = direction;
         dieCooldown = 200;
         setSpeed(4);
-        startHealthShield(new MetalShield(new ShieldID(this), 4));
+        startHealthShield(new CoolingMetalShield(new ShieldID(this), 4, 10));
     }
     public void behave(){
         int amt = explodeOn(75, 20);
@@ -23,5 +23,11 @@ public class SaliSwab extends Pet{
         if(dieCooldown<=0){
             kill(this);
         }
+    }
+    public boolean canBePulled(){
+        return false;
+    }
+    public boolean acceptHeals(){
+        return false;
     }
 }

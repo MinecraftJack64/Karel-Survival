@@ -24,8 +24,8 @@ public class TickingTimeBomb extends GridEntity implements SubAffecter
     public boolean willNotify(){
         return false;
     }
-    public void heal(int amt, GridObject source){
-        super.heal(0, source);
+    public boolean acceptHeals(){
+        return false;
     }
     public GridObject getSource(){
         return sourc;
