@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 
@@ -15,6 +14,7 @@ public class Dropper extends FlyingProjectile
     {
         super(rotation, targetdistance, height, source);
         load = toSpawn;
+        setDamage(0);
     }
     public double getGravity(){
         return 1;
@@ -26,5 +26,6 @@ public class Dropper extends FlyingProjectile
     public void checkHit(){
         getWorld().addObject(load, getX(), getY());
         Sounds.play("zombiedrop");
+        super.checkHit();
     }
 }

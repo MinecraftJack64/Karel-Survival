@@ -1,5 +1,6 @@
 package com.karel.game;
 
+import com.karel.game.weapons.acidart.Acidart;
 import com.karel.game.weapons.airpump.AirPump;
 import com.karel.game.weapons.blade.Blade;
 import com.karel.game.weapons.blowgun.Blowgun;
@@ -98,6 +99,7 @@ public class ItemFactory
                                     //"gum",
                                     //"tumbleweed",
                                     "paintgun",
+                                    "acidart",
                                     "flashdrive",
                                     "doublegun",
                                     "fastfood",
@@ -234,6 +236,9 @@ public class ItemFactory
                 //return new TumbleweedLauncher(holder);
             case "paintgun":
                 return new PaintGun(holder);
+            //MISSING A LOT
+            case "acidart":
+                return new Acidart(holder);
             //MISSING A LOT
             case "flashdrive":
                 return new FlashDrive(holder);//

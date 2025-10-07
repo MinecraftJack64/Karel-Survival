@@ -44,6 +44,8 @@ public abstract class GridEntity extends GridObject
     private ArrayList<ShieldBar> shieldBars = new ArrayList<ShieldBar>();
     private HashSet<Class> effectImmunities = new HashSet<Class>();
     private ArrayList<Possessor> possessors = new ArrayList<Possessor>();
+    private boolean updatingPossessors;
+    private ArrayList<Possessor> possessorsToRemove = new ArrayList<Possessor>();;
     public boolean isDead(){
         return isdead;
     }
@@ -580,17 +582,25 @@ public abstract class GridEntity extends GridObject
         //addGraphics();
     }
     public boolean possess(Possessor p){
+        if(isDead())return false;
         possessors.add(p);
         return true;
     }
     public boolean unpossess(Possessor p){
-        possessors.remove(p);
+        if(!updatingPossessors)possessors.remove(p);
+        else possessorsToRemove.add(p);
         return true;
     }
     public void updatePossessors(){
+        updatingPossessors = true;
         for(int i = possessors.size()-1; i>= 0; i--){
             possessors.get(i).tick();
         }
+        updatingPossessors = false;
+        for(Possessor f: possessorsToRemove){
+            unpossess(f);
+        }
+        possessorsToRemove.clear();
     }
     //If this grid entity is still in normal function(only for some zombies that run out of ammo)
     public boolean isActive(){
