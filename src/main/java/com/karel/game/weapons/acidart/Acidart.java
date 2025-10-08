@@ -16,7 +16,7 @@ public class Acidart extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 40;
     private int reloadDelayCount;
-    private static final int ult = 1500;
+    private static final int ult = 2000;
     AmmoManager ammo;
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 

@@ -66,6 +66,6 @@ public class AcidLeak extends GridObject implements Possessor, SubAffecter {
         if(getSource()!=null)getSource().notifyDamage(g, amt);
     }
     public double damageSecrecy(){
-        return super.damageSecrecy()*0.35;
+        return super.damageSecrecy()*0.15;
     }
 }

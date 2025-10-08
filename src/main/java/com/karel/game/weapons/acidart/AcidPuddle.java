@@ -17,4 +17,7 @@ public class AcidPuddle extends Puddle
         scaleTexture(80);
         setDamage(200);
     }
+    public double damageSecrecy(){
+        return super.damageSecrecy()*0.2;
+    }
 }
