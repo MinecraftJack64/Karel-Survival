@@ -1,5 +1,11 @@
-package com.karel.game;
+package com.karel.game.weapons.reaper;
 
+import com.karel.game.AmmoHolder;
+import com.karel.game.AmmoManager;
+import com.karel.game.Dasher;
+import com.karel.game.DasherDoer;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -53,12 +59,11 @@ public class Reaper extends Weapon implements AmmoHolder
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void reload(double d){
         reloadDelayCount++;
         if(reloadDelayCount>=gunReloadTime){
-            ammo.reload();
+            super.reload(d);
         }
-        updateAmmo(ammo.getAmmoBar());
     }
     public void notifyHit(){
         if(getUltUpgrade()==1){
@@ -69,10 +74,7 @@ public class Reaper extends Weapon implements AmmoHolder
         super(actor);
         reloadDelayCount = gunReloadTime;
         ammo = new AmmoManager(60, 3, 4);
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(ammo.getMaxAmmoBar(), ammo.getAmmoBar(), ammo.getMaxAmmo());
+        setAmmo(ammo);
     }
     public String getName(){
         return "Reaper";

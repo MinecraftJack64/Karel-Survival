@@ -23,6 +23,7 @@ import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;
+import com.karel.game.weapons.reaper.Reaper;
 import com.karel.game.weapons.rock.RockCatapult;
 import com.karel.game.weapons.salicycle.Salicycle;
 import com.karel.game.weapons.scream.Scream;
