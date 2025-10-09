@@ -18,7 +18,14 @@ public class CoolingMetalShield extends MetalShield
     public int processDamage(int dmg, GridObject source){
         if(cooldown>0)return 0;
         cooldown = cooldownMax;
-        return super.processDamage(dmg, source);
+        int a = 0;
+        for(int i = 0; i < damageMultiplier(); i++){
+            a = super.processDamage(dmg, source);
+        }
+        return a;
+    }
+    public int damageMultiplier(){
+        return 1;
     }
     public void tick(){
         super.tick();

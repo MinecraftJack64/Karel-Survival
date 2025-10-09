@@ -1,5 +1,11 @@
+10/8
+Content
+ - Added salicycle attack upgrade, ult upgrade, and gadget
+ - TODO: Pointpinner rework
+
 10/7
- - WIP Acidart
+Content
+ - Acidart base kit(missing extra effects)
 
 10/4
  - Salicycle ult can't be pulled
@@ -11,6 +17,8 @@ Content
  - Added the Salicycle base kit
 Fixes
  - Health shields tick
+Technical
+ - Sliders done
 
 10/1
 Balancing

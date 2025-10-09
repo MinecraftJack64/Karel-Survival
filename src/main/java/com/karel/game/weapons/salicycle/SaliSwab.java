@@ -7,7 +7,7 @@ import com.karel.game.weapons.ShieldID;
 
 public class SaliSwab extends Pet{
     double dir;
-    int dieCooldown;
+    int dieCooldown, amt;
     public SaliSwab(double direction, GridEntity g){
         super(g);
         inherit(g);
@@ -17,12 +17,15 @@ public class SaliSwab extends Pet{
         startHealthShield(new CoolingMetalShield(new ShieldID(this), 4, 10));
     }
     public void behave(){
-        int amt = explodeOn(75, 20);
-        walk(dir, amt==0?1:0.4);
+        amt = explodeOn(75, 20);
+        walk(dir, !isAttacking()?1:0.4);
         dieCooldown--;
         if(dieCooldown<=0){
             kill(this);
         }
+    }
+    public boolean isAttacking(){
+        return amt>0;
     }
     public boolean canBePulled(){
         return false;
