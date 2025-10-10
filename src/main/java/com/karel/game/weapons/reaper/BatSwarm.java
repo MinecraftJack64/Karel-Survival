@@ -11,7 +11,7 @@ public class BatSwarm extends Bullet
         super(rotation, source);
         setSpeed(13);
         setLife(37);
-        setDamage(100);
+        setDamage(125);
         setNumTargets(-1);
     }
     public BatSwarm(double rotation, Reaper reaper, GridObject source){

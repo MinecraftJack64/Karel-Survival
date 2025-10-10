@@ -6,6 +6,8 @@ import com.karel.game.Dasher;
 import com.karel.game.DasherDoer;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.LifestealEffect;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -19,7 +21,7 @@ public class Reaper extends Weapon implements AmmoHolder
     private static final int gunReloadTime = 13;
     private Dasher dash;
     private int reloadDelayCount;
-    private static final int ult = 1200;
+    private static final int ult = 1500;
     AmmoManager ammo;
     public void fire(){//one full ammo deals 350 damage
         if(continueUse()){
@@ -34,18 +36,17 @@ public class Reaper extends Weapon implements AmmoHolder
             if(getAttackUpgrade()==1){
                 dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, (g)->{
                     if(getHolder().isAggroTowards(g)){
-                        if(g.willNotify(getHolder()))getHolder().heal(getHolder(), 50);
-                        getHolder().damage(g, 150);
+                        if(g.willNotify(getHolder()))getHolder().heal(getHolder(), 75);
+                        getHolder().damage(g, 175);
                     }
                 }, getHolder());
             }else{
-                dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, 150, getHolder());
+                dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, 175, getHolder());
             }
             setContinueUse(true);
             setPlayerLockRotation(true);
             dash.dash();
-            getHolder().heal(getHolder(), 100);
-            //bullet.move ();
+            getHolder().heal(getHolder(), 125);
             Sounds.play("reap");
             reloadDelayCount = 0;
             ammo.useAmmo();
@@ -53,7 +54,7 @@ public class Reaper extends Weapon implements AmmoHolder
     }
     public void fireUlt(){
         Sounds.play("bats");
-        BatSwarm bullet = new BatSwarm(getHand().getTargetRotation(), this, getHolder());
+        BatSwarm bullet = getUltUpgrade()==1?new BatSwarm(getHand().getTargetRotation(), this, getHolder()):new BatSwarm(getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere(bullet);
     }
     public int getUlt(){
@@ -64,6 +65,17 @@ public class Reaper extends Weapon implements AmmoHolder
         if(reloadDelayCount>=gunReloadTime){
             super.reload(d);
         }
+    }
+    public void onGadgetActivate(){
+        getHolder().explodeOnEnemies(200, (g)->{
+            if(getHolder().isAggroTowards(g)){
+                g.applyEffect(new LifestealEffect(100, 30, 4, getHolder(), new EffectID(this)));
+            }
+        });
+        setGadgetTimer(150);
+    }
+    public int defaultGadgets(){
+        return 3;
     }
     public void notifyHit(){
         if(getUltUpgrade()==1){

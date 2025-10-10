@@ -1,11 +1,13 @@
 package com.karel.game.weapons;
 import com.karel.game.Game;
+import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.Item;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.Tickable;
 import com.karel.game.ui.bars.AmmoBar;
+import com.raylib.Texture;
 import com.karel.game.IAmmoManager;
 
 /*
@@ -55,6 +57,7 @@ public abstract class Weapon implements Item, Tickable
     public int gadgetscooldown = 0;//how long until next gadget can be activated
     public int currentgadgetuses = 0;//how many uses current gadget has
     public int currentgadgettimer = 0;//how long until gadget becomes inactive
+    private Texture auraTexture = Greenfoot.loadTexture("Weapons/hearth/proj.png");//temp
     public Weapon(){
         ultready = false;
     }
@@ -95,7 +98,11 @@ public abstract class Weapon implements Item, Tickable
         if(currentgadgettimer>0)currentgadgettimer--;
         if(gadgetscooldown>0)gadgetscooldown--;
     }
-    public void render(){}//TODO: MAKE ABSTRACT LATER
+    public void render(){
+        if(isUsingGadget()){
+            getHolder().renderTexture(auraTexture, getHolder().getX(), getHolder().getY()-20, 30, 30, 0, 255);
+        }
+    }//TODO: MAKE ABSTRACT LATER
     public abstract void fire();
     public abstract void fireUlt();
     public void reload(){

@@ -16,7 +16,6 @@ import com.karel.game.effects.LifestealEffect;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.ReloadPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
-import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
@@ -96,7 +95,6 @@ public class CloudServer extends Boss
         turrets = new ArrayList<GridEntity>();
         lasers = new ArrayList<GridEntity>();
         wizardStun = new EffectID(this);
-        addEffectImmunities(TeamSwitchEffect.class);
     }
     public ZombieClass[] getZombieClasses(){
         return classes;

@@ -1,3 +1,21 @@
+10/9
+Fixes
+ - Reaper ult upgrade is no longer always active
+Graphics
+ - Temporary gadget display when active
+Balancing
+ - Reaper
+    - (+)attack damage(150->175)
+    - (+)ult damage/heal(100->125)
+    - (+)Attack base heal(100->125)
+    - (+)Attack Upgrade heal(50->75)
+    - (-)Ult charge(1200->1500)
+ - Wizard and Cloud Server are immune to fatal poison
+Other
+ - Added totems, which give effects to nearby allies and enemies
+TODO: support multiple boss bars, reduce boss interference with each other
+TODO: Dashes from weapons can be interrupted, especially on death
+
 10/8
 Content
  - Added salicycle attack upgrade, ult upgrade, and gadget
