@@ -15,6 +15,7 @@ Other
  - Added totems, which give effects to nearby allies and enemies
 TODO: support multiple boss bars, reduce boss interference with each other
 TODO: Dashes from weapons can be interrupted, especially on death
+TODO: Poison should not go through immunity shields
 
 10/8
 Content
