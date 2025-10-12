@@ -35,7 +35,6 @@ public class Scream extends Weapon
                 ScreamWave bullet = getProjectile(getHand().getTargetRotation()+i, 25, 50);
                 getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             }
-            chargeUlt(1000);
             getAmmo().useAmmo();
             Sounds.play("gunshoot");
         }
@@ -51,9 +50,7 @@ public class Scream extends Weapon
                     getHolder().addObjectHere(bullet);
                     ultAmmo--;
                     if(ultAmmo<=0){
-                        setContinueUlt(false);
-                        setPlayerLockRotation(false);
-                        getHolder().setSpeedMultiplier(1, new EffectID(this));
+                        onInterrupt();
                     }
                 }
             }
@@ -65,6 +62,11 @@ public class Scream extends Weapon
             getHolder().setSpeedMultiplier(0.2, new EffectID(this));
             setContinueUlt(true);
         }
+    }
+    public void onInterrupt(){
+        setContinueUlt(false);
+        setPlayerLockRotation(false);
+        getHolder().setSpeedMultiplier(1, new EffectID(this));
     }
     public void onGadgetActivate(){
         setGadgetCount(10);

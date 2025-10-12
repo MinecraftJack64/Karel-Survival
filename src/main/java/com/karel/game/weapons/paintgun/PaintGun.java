@@ -56,8 +56,7 @@ public class PaintGun extends Weapon
                     }
                     ammo.useAmmo();
                     if(!ammo.hasAmmo()){
-                        setContinueUlt(false);
-                        setPlayerLockRotation(false);
+                        onInterrupt();
                     }
                 }
             }
@@ -72,6 +71,10 @@ public class PaintGun extends Weapon
     }
     public int getUlt(){
         return ult;
+    }
+    public void onInterrupt(){
+        setContinueUlt(false);
+        setPlayerLockRotation(false);
     }
     public void onGadgetActivate(){
         gadgetAngle = 0;

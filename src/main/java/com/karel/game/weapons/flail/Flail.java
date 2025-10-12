@@ -20,9 +20,7 @@ public class Flail extends Weapon
     public void fire(){//one full ammo deals 350 damage
         if(continueUse()){
             if(core.hasReturned()){
-                setContinueUse(false);
-                setPlayerLockMovement(false);
-                setPlayerLockRotation(false);
+                onInterrupt();
             }
         }else{
             if(getAmmo().hasAmmo()){
@@ -40,9 +38,7 @@ public class Flail extends Weapon
     public void fireUlt(){
         if(continueUlt()){
             if(!dash.dash()){
-                dash = null;
-                setContinueUlt(false);
-                setPlayerLockRotation(false);
+                onInterrupt();
             }else if(getAttackUpgrade()==1){
                 getHolder().explodeOn(150, (g)->{
                     if(getHolder().isAggroTowards(g)&&g.canBePulled())g.pullTowards(getHolder(), 12);
@@ -64,6 +60,16 @@ public class Flail extends Weapon
             setPlayerLockRotation(true);
             dash.dash();
             getHolder().heal(getHolder(), 100);
+        }
+    }
+    public void onInterrupt(){
+        if(continueUlt()){
+            dash = null;
+            setContinueUlt(false);
+            setPlayerLockRotation(false);
+        }else if(continueUse()){
+            setContinueUse(false);
+            setPlayerLockMovement(false);
         }
     }
     public int getUlt(){
