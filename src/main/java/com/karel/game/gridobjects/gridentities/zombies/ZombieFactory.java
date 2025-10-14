@@ -7,6 +7,7 @@ import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
+import com.karel.game.gridobjects.gridentities.zombies.chocolate.ChocolateZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServer;
 import com.karel.game.gridobjects.gridentities.zombies.concentrated.ConcentratedZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cop.CopZombie;
@@ -115,6 +116,7 @@ public class ZombieFactory {
             "stunt",
             "watermelon",
             "jailbreak",
+            "chocolate",
             "breadboxer",
             "guardianangel",
             "assassin",
@@ -232,7 +234,8 @@ public class ZombieFactory {
             case "jailbreak":
                 return new JailBreakZombie();
             // tornado
-            // chocolate
+            case "chocolate":
+                return new ChocolateZombie();
             // drone
             // helicopter
             case "breadboxer":

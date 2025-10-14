@@ -19,6 +19,7 @@ import com.karel.game.weapons.gale.Gale;
 import com.karel.game.weapons.grenade.GrenadeLauncher;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;
+import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
@@ -29,6 +30,7 @@ import com.karel.game.weapons.salicycle.Salicycle;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
+import com.karel.game.weapons.sodahat.SodaHat;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.traps.TrapSetter;
@@ -89,7 +91,7 @@ public class ItemFactory
                                     //"realsim",
                                     //"capacitor",
                                     //"flyswatter",
-                                    //"sodahat",
+                                    "sodahat",
                                     //"coco",
                                     "flail",
                                     //"rifle",
@@ -102,6 +104,7 @@ public class ItemFactory
                                     "paintgun",
                                     "acidart",
                                     "flashdrive",
+                                    "inferno",
                                     "doublegun",
                                     "fastfood",
                                     "salicycle"};
@@ -216,7 +219,7 @@ public class ItemFactory
             case "flyswatter":
                 //return new PneumaticFlyswatter(holder);
             case "sodahat":
-                //return new SodaHat(holder);
+                return new SodaHat(holder);
             case "coco":
                 //return new Coco(holder);
             case "flail":
@@ -243,6 +246,10 @@ public class ItemFactory
             //MISSING A LOT
             case "flashdrive":
                 return new FlashDrive(holder);//
+            //MISSING
+            case "inferno":
+                return new Inferno(holder);
+            //MISSING
             case "doublegun":
                 return new DoubleGun(holder);
             case "fastfood":

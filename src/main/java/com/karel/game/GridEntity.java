@@ -1,5 +1,6 @@
 package com.karel.game;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
@@ -26,6 +27,7 @@ public abstract class GridEntity extends GridObject
     private int healthLimit = 0;
     private int health = maxHealth;
     HealthBar healthBar;
+    private HashMap<EffectID, Double> speedAffecters = new HashMap<EffectID, Double>();
     public double movementspeed = 5, speedmultiplier = 1;
     private double exposureMultiplier = 1, sizeMultiplier = 1, reloadMultiplier = 1;//exposure multiplier is used to increase damage taken from bullets
     private HashSet<EffectID> immobilizers;//these store the affectors behind each effect
@@ -96,7 +98,17 @@ public abstract class GridEntity extends GridObject
     }
 
     public void setSpeedMultiplier(double perc, EffectID ctrl){
-        speedmultiplier = perc;
+        if(perc==1&&speedAffecters.containsKey(ctrl))speedAffecters.remove(ctrl);
+        else speedAffecters.put(ctrl, perc);
+        double high = 1, low = 1;
+        for(double p: speedAffecters.values()){
+            if(p<1&&p<low){
+                low = p;
+            }else if(p>1&&p>high){
+                high = p;
+            }
+        }
+        speedmultiplier = high*low;
     }
     
     public double getExposure(){

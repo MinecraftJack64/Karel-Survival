@@ -1,3 +1,22 @@
+10/13
+Mechanics
+ - Added speed and power accountability system(the highest and lowest make up the final value)
+Content
+ - Added the Soda Hat complete kit
+ - Added the Chocolate Zombie
+Balancing
+ - Acidart ult no longer charges ult
+ - Salicycle
+    - Only one ult can be active at a time
+    - Ult charge from ult(1->0.3)
+    - TODO: scabs only come out on an interval
+Fixes
+ - Inferno is now obtainable
+ - Weapon ammo bar updates regardless of the reload function
+ - Fixed double gun second wave values set to seconds and percent instead of proportion and ticks
+Other
+ - Temporarily reversed change to weapon interrupts until pulls are fixed
+
 10/12
 Fixes
  - Fixed Scream weapon charging ult from attack

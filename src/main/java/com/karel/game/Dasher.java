@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.function.Consumer;
 
 /**
  * Write a description of class Dasher here.
@@ -9,9 +8,9 @@ import java.util.function.Consumer;
  */
 public class Dasher  
 {
-    private double speed, direction;//how much to move in one frame, how wide to do things
-    private int time;//how many frames to move
-    private GridEntity subject;//which gridentity is dashing
+    double speed, direction;//how much to move in one frame, how wide to do things
+    int time;//how many frames to move
+    GridEntity subject;//which gridentity is dashing
     public Dasher(double direction, double speed, int time, GridEntity subject){
         this.time = time;
         this.speed = speed;

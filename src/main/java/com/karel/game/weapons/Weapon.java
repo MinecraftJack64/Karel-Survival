@@ -105,6 +105,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
         if(isUsingGadget()){
             getHolder().renderTexture(auraTexture, getHolder().getX(), getHolder().getY()-20, 30, 30, 0, 255);
         }
+        if(getAmmo()!=null){
+            updateAmmo(getAmmo());
+        }
     }//TODO: MAKE ABSTRACT LATER
     public abstract void fire();
     public abstract void fireUlt();
@@ -115,7 +118,6 @@ public abstract class Weapon implements Item, Tickable, EventListener
         //reload ammo
         if(getAmmo()!=null){
             getAmmo().reload(amt);
-            updateAmmo(getAmmo());
         }
     }
     public void update(){
@@ -126,7 +128,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
     }
     public boolean on(String id, GridObject source){
         if(id.equals("die")||id.equals("pull")){
-            onInterrupt();
+            //TODOonInterrupt();
         }
         return false;
     }
@@ -235,7 +237,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
         }
     }
     public void updateAmmo(int amt){
-        if(isMainWeapon())Game.gameUI().setAmmo(amt);
+        if(isMainWeapon())if(Game.gameUI()!=null)Game.gameUI().setAmmo(amt);
     }
     public void updateAmmo(IAmmoManager ammo){
         updateAmmo(ammo.getAmmoBar());
@@ -259,6 +261,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
         if(getAmmo()!=null){
             Game.gameUI().newAmmo(getAmmo());
         }
+        if(getHolder()!=null){
+            getHolder().addEventListener(this);
+        }
     }
     public boolean isUltReady(){
         return ultready;
@@ -267,6 +272,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
         if(!isMainWeapon())return;
         Game.disableUltCharge();
         Game.gameUI().disableAmmo();
+        if(getHolder()!=null){
+            getHolder().removeEventListener(this);
+        }
     }
     public AmmoBar getAmmoBar(){
         return Game.gameUI().getAmmoBar();

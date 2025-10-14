@@ -7,9 +7,9 @@ import com.karel.game.Sounds;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.hitters.Projectile;
 import com.karel.game.weapons.Weapon;
+import com.karel.game.weapons.sodahat.SodaPuddle;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.DecayingArmorShield;
-import com.karel.game.SodaPuddle;
 
 /**
  * Write a description of class Shotgun here.

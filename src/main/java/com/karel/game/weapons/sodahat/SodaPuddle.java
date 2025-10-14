@@ -1,11 +1,15 @@
-package com.karel.game;
+package com.karel.game.weapons.sodahat;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Puddle;
 import com.karel.game.effects.SpeedPercentageEffect;
 
 public class SodaPuddle extends Puddle {
     public SodaPuddle(GridObject source){
         super(source);
         setImage("Weapons/fastfood/projPuddle.png");
+        setOpacity(170);
         scaleTexture(getRange()*2);
         setHitAllies(true);
         setSelfHarm(true);
@@ -17,6 +21,7 @@ public class SodaPuddle extends Puddle {
         super(range, interv, 1, source);
         setDamage(damage);
         setImage("Weapons/fastfood/projPuddle.png");
+        setOpacity(170);
         scaleTexture(getRange()*2);
         setHitAllies(true);
         setSelfHarm(true);

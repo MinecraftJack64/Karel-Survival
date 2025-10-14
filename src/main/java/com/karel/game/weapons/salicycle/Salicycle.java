@@ -19,6 +19,7 @@ public class Salicycle extends Weapon
     private static final int ult = 2200;
     private int unloadDelay = 40;
     private GridObject ride;
+    private SaliSwab ss;
     public void fire(){
         if (getAmmo().hasAmmo()&&unloadDelay<=0)
         {
@@ -47,8 +48,13 @@ public class Salicycle extends Weapon
         }
     }
     public void fireUlt(){
+        if(ss!=null&&ss.isInWorld()){
+            cancelUltReset();
+            return;
+        }
         getAmmo().donateAmmo(1);
-        GridObject s = getUltUpgrade()==1?new SuperSaliSwab(getHand().getTargetRotation(), getHolder()):new SaliSwab(getHand().getTargetRotation(), getHolder());
+        ss = getUltUpgrade()==1?new SuperSaliSwab(getHand().getTargetRotation(), getHolder()):new SaliSwab(getHand().getTargetRotation(), getHolder());
+        GridObject s = ss;
         getHolder().addObjectHere(s);
         if(useGadget())setRide(s);
     }

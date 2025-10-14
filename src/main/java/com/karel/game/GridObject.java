@@ -28,7 +28,8 @@ public abstract class GridObject extends KActor
     String oldteam;
     private Arc arcmomentum;
     private double dirmomentum;
-    private double powermultiplier = 1;
+    private HashMap<EffectID, Double> powerAffecters = new HashMap<EffectID, Double>();
+    private double powermultiplier = 1, basepower = 1;
     private int arcframe = 0;
     private boolean grounded;
     private GridEntity cachedTarget;
@@ -486,13 +487,23 @@ public abstract class GridObject extends KActor
         return Math.abs(other.getHeight()-getHeight())<5;
     }
     public double getPower(){
-        return powermultiplier;
+        return powermultiplier*basepower;
     }
     public void setPower(double perc, EffectID ctrl){
-        powermultiplier = perc;
+        if(perc==1&&powerAffecters.containsKey(ctrl))powerAffecters.remove(ctrl);
+        else powerAffecters.put(ctrl, perc);
+        double high = 1, low = 1;
+        for(double p: powerAffecters.values()){
+            if(p<1&&p<low){
+                low = p;
+            }else if(p>1&&p>high){
+                high = p;
+            }
+        }
+        powermultiplier = high*low;
     }
     public void setPower(double perc){
-        powermultiplier = perc;
+        basepower = perc;
     }
     
     public void heal(GridEntity targ, int amt){

@@ -42,7 +42,7 @@ public class NeutronWave extends WaveAttack
         if(radiate == 1){
             g.applyEffect(new SpeedPercentageEffect(0.8, -1, this));
         }else if(radiate == 2){
-            g.applyEffect(new ReloadPercentageEffect(10, 5, this));
+            g.applyEffect(new ReloadPercentageEffect(0.5, 150, this));
         }
     }
     public boolean covertDamage(){
