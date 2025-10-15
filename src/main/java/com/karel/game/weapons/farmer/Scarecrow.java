@@ -55,4 +55,7 @@ public class Scarecrow extends Pet
         super.die(killer);
         try{getWorld().removeObject(this);}catch(Exception e){}
     }
+    public String getPetID(){
+        return "farmer-scarecrow";
+    }
 }

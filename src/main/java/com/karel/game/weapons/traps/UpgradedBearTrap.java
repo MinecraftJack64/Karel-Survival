@@ -24,4 +24,7 @@ public class UpgradedBearTrap extends BearTrap
             }
         });
     }
+    public String getPetID(){
+        return "traps-beartrap+";
+    }
 }

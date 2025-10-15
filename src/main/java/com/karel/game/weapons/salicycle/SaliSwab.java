@@ -33,4 +33,7 @@ public class SaliSwab extends Pet{
     public boolean acceptHeals(){
         return false;
     }
+    public String getPetID(){
+        return "salicycle-swab";
+    }
 }

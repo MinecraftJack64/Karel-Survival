@@ -6,6 +6,7 @@ import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
+import com.karel.game.gridobjects.gridentities.zombies.cancer.CancerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServer;
 import com.karel.game.gridobjects.gridentities.zombies.concentrated.ConcentratedZombie;
@@ -128,6 +129,7 @@ public class ZombieFactory {
             "torpedo",
             "cowboy",
             "boid",
+            "cancer",
             "bot" };
 
     public static GridEntity createZombie(String type) {
@@ -309,7 +311,10 @@ public class ZombieFactory {
             // spy
             case "boid":
                 return new BoidZombie(true);
-            //cancer
+            case "cancer":
+                return new CancerZombie();
+            ////rootkit
+            //chill
             case "bot":
                 return new Bot(null);
         }

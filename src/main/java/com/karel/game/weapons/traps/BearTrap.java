@@ -116,4 +116,7 @@ public class BearTrap extends Pet implements ITrap
     public String spriteOrigin(){
         return "";
     }
+    public String getPetID(){
+        return "traps-beartrap";
+    }
 }

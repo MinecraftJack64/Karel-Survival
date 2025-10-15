@@ -1,3 +1,9 @@
+10/10
+Technical
+ - Added shield.canPierce
+Balancing
+ - External Immunity Shields can no longer be pierced
+
 10/9
 Fixes
  - Reaper ult upgrade is no longer always active

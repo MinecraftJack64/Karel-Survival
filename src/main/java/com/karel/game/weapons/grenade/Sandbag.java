@@ -34,4 +34,5 @@ public class Sandbag extends GridEntity
         return false;
     }
     public boolean canDetect(){return false;}
+    public String getEntityID(){return "pet-grenade-sandbag";}
 }

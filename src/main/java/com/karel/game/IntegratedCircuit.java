@@ -71,4 +71,7 @@ public class IntegratedCircuit extends Pet
             ((IntegratedCircuit)getSource()).boltDone();
         }
     }
+    public String getPetID(){
+        return "flashdrive-ic";
+    }
 }

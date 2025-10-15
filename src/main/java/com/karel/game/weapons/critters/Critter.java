@@ -138,4 +138,7 @@ public class Critter extends Pet implements ICritter
         heal(getSpawner(), getSpawner().getMaxHealth()/7);
         die(this);
     }
+    public String getPetID(){
+        return "critters-critter";
+    }
 }

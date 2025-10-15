@@ -11,4 +11,7 @@ public class ReloadTotem extends Totem{
             target.applyEffect(new ReloadPercentageEffect(0.5, 2, this));
         }
     }
+    public String getTotemID(){
+        return "reload";
+    }
 }

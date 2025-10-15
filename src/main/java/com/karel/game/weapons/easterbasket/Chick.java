@@ -56,4 +56,7 @@ public class Chick extends Pet
     public void attack(){
         if(isAggroTowards(getTarget()))damage(getTarget(), (int)(damage*strength));
     }
+    public String getPetID(){
+        return "easterbasket-chick";
+    }
 }

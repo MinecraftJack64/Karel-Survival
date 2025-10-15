@@ -66,4 +66,7 @@ public class Campfire extends Pet
     public void gadget(){
         gadgetCooldown = 200;
     }
+    public String getPetID(){
+        return "hearth-campfire";
+    }
 }

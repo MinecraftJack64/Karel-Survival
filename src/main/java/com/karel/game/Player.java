@@ -427,6 +427,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     public String getName(){
         return "Player";
     }
+    public String getEntityID(){return "player";}
     
     public class PlayerHand implements ItemHolder{
         //TODO

@@ -22,4 +22,8 @@ public class Totem extends GridEntity {
         renderTexture(auraTexture, getX(), getY(), range*2, range*2, getRotation(), 70);
         super.render();
     }
+    public String getTotemID(){
+        return "";
+    }
+    public String getEntityID(){return "totem-"+getTotemID();}
 }

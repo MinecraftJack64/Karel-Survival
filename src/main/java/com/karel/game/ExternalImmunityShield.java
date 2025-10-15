@@ -37,6 +37,9 @@ public class ExternalImmunityShield extends Shield
     public boolean canBreak(){
         return duration>=0;
     }
+    public boolean canPierce(){
+        return false;
+    }
 }
 
 
