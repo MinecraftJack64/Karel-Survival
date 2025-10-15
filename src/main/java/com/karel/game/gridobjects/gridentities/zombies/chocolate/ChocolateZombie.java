@@ -40,7 +40,6 @@ public class ChocolateZombie extends Zombie
                 dash = null;
             }
         }else{
-            System.out.println(getMultipliedSpeed()+" "+hasEffect(SpeedPercentageEffect.class));
             if(getMultipliedSpeed()>1.5&&distanceTo(getTarget())>30){
                 walk(getRotation(), 1);
             }
