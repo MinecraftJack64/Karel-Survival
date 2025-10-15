@@ -46,11 +46,11 @@ public class Harpoon extends Boomerang
             super.doReturn();
             if(!target.isDead()){
                 //stun target
-                if(!target.pullTo(getX(), getY())){
+                if(!target.pullTo(getX(), getY(), this)){
                     setLocation(getSource().getX(), getSource().getY());
                     phase = 3;
                     getSource().stun(pullStun);
-                    if(!getSource().pullTo(getX(), getY())){
+                    if(!getSource().pullTo(getX(), getY(), this)){
                         dieForReal();
                     }
                 }
@@ -64,11 +64,11 @@ public class Harpoon extends Boomerang
             move(getRotation()-90, getSpeed());
             if(!getSource().isDead()){
                 //stun source
-                if(!getSource().pullTo(getX(), getY())){
+                if(!getSource().pullTo(getX(), getY(), this)){
                     setLocation(target.getX(), target.getY());
                     phase = 2;
                     getSource().unstun(pullStun);
-                    if(!target.pullTo(getX(), getY())){
+                    if(!target.pullTo(getX(), getY(), this)){
                         dieForReal();
                     }
                 }

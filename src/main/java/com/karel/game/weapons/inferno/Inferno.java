@@ -33,7 +33,7 @@ public class Inferno extends Weapon
                 onInterrupt();
             }
         }
-        else if (ammo.hasAmmo()&&reloadDelay<=0)
+        else if (ammo.hasAmmo()&&reloadDelay<=0&&!isUsingGadget())
         {
             fireWave(true);
             setContinueUse(true);
@@ -43,6 +43,10 @@ public class Inferno extends Weapon
         }
     }
     public void fireWave(boolean firstWave){
+        if(isUsingGadget()){
+            cancelUltReset();
+            return;
+        }
         InfernalFlame bullet = getProjectile(0, firstWave);
         getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         InfernalFlame bullet2 = getProjectile(5, firstWave);
@@ -74,6 +78,7 @@ public class Inferno extends Weapon
                         else hs = bullet.getHitStory();
                     }
                 }
+                onInterrupt();
             }
         }else{
             ultTeleportCooldown = 30;

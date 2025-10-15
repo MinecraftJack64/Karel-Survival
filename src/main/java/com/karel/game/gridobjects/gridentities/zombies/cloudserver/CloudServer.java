@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 import com.karel.game.ArmorShield;
 import com.karel.game.BombTurret;
+import com.karel.game.Dasher;
+import com.karel.game.DasherDoer;
 import com.karel.game.ExternalImmunityShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
@@ -10,6 +12,7 @@ import com.karel.game.GridObject;
 import com.karel.game.LaserSquad;
 import com.karel.game.Sounds;
 import com.karel.game.Turret;
+import com.karel.game.World;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.FatalPoisonEffect;
 import com.karel.game.effects.LifestealEffect;
@@ -26,6 +29,7 @@ import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
 import com.karel.game.gridobjects.gridentities.zombies.hornetneck.HornetNeckZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.russiandoll.RussianDollZombie;
+import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.particles.Explosion;
 
@@ -55,12 +59,16 @@ import com.karel.game.particles.Explosion;
 public class CloudServer extends Boss
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.boss};
-    private static final int sporereload = 700;         // The minimum delay between firing the gun.
-    private ArrayList<FungalZombie> spores;
+    private static final int warriorreload = 700;         // The minimum delay between firing the gun.
+    private static final int hoverHeight = 200;
+    private int hoverCooldown; // 1000 in sky, 500 on ground
+    private boolean isHovering;
+    private Dasher dash;
+    private ArrayList<WarriorZombie> warriors;
     private ArrayList<GridEntity> turrets;
     private ArrayList<GridEntity> lasers;
     private EffectID wizardStun;// The stuns placed on all other enemies on death
-    private int sporeammo;               // How long ago we fired the gun the last time.
+    private int warriorammo;               // How long ago we fired the gun the last time.
     private int hivereload = 850;
     private int hiveammo;
     private boolean hashived;
@@ -70,18 +78,29 @@ public class CloudServer extends Boss
     private int rocketammo;
     private int meleereload = 15;
     private int meleeammo;
+    private int lightningammo;
+    private int lightningreload = 300;
+    private int groundCooldown = 60; // 60
+    private int primeLightning; // 30
+    private int primeDashes; // 30
+    private int startDashCooldown; // 30
+    private int remainingDashes; // 3
+    private int remainingHail; // 16
+    private int throwBallCooldown; // 30
     private int effectammo = 0; // for random effects
     private static final int laserReload = 700;
     private int laserAmmo;
     private int deathwaitcooldown = 100;
+    private ShieldID hoverShield = new ShieldID(this, "hover");
     public String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
+    private static final int hailRange = 200;
     /**
      * Initilise this rocket.
      */
     public CloudServer()
     {
-        sporeammo = 400;
+        warriorammo = 400;
         meleeammo = 15;
         hiveammo = 400;
         turretammo = -300;
@@ -91,7 +110,7 @@ public class CloudServer extends Boss
         setSpeed(0);
         startHealthAsBoss(9000, 3);
         phase = 1;
-        spores = new ArrayList<FungalZombie>();
+        warriors = new ArrayList<WarriorZombie>();
         turrets = new ArrayList<GridEntity>();
         lasers = new ArrayList<GridEntity>();
         wizardStun = new EffectID(this);
@@ -104,7 +123,7 @@ public class CloudServer extends Boss
         return 10000;
     }
     public void behave(){
-        if(phase==6||phase==7){
+        if(phase==4){
             deathwaitcooldown--;
             setSpeed(0.5);
             Sounds.play("bossshivering");
@@ -115,28 +134,114 @@ public class CloudServer extends Boss
             }
             walk(Greenfoot.getRandomNumber(360), 1);
             return;
-        }else if(phase==8){
+        }else if(phase==5){
             behaveInLastPhase();
             return;
         }
+        boolean canSwitchHover = true;
         int op = phase;
         phase = Math.max(3-(3*(getHealth()-1)/getMaxHealth()), op);
         if(op!=phase){
-            healSelfAttack();
-            fungalDefense();
-            hashived = false;
-            if(phase==3){
-                tankAttack();
+            //
+        }
+        lightningammo++;
+        if(lightningammo>=lightningreload){
+            lightningAttack();
+        }
+        if(checkWarriors()){
+            warriorammo++;
+        }
+        if(warriorammo>=warriorreload){
+            warriorAttack();
+            warriorammo = 0;
+        }
+
+        if(dash!=null)if(!dash.dash()){
+            dash = null;
+            //if(shamanToSpawn)
+        }else{
+            canSwitchHover = false;
+        }else if(!isHovering&&isOnGround()){
+            face(getTarget(), true);
+            canSwitchHover = false;
+            if(primeLightning>0){
+                primeLightning--;
+                if(primeLightning<=0){
+                    //boltAttack();
+                }
+            }else if(primeDashes>0){
+                primeDashes--;
+                if(primeDashes<=0){
+                    startDashCooldown = 30;
+                    remainingDashes = 3;
+                }
+            }else if(startDashCooldown>0){
+                startDashCooldown--;
+                if(startDashCooldown<=0){
+                    remainingDashes--;
+                    dashAttack();
+                    if(remainingDashes>0){
+                        startDashCooldown = 30;
+                    }
+                }
+            }else if(remainingHail>0){
+                remainingHail--;
+                //hailAttack();
+            }
+            else if(throwBallCooldown>0){
+                throwBallCooldown--;
+                if(throwBallCooldown<=0){
+                    //ballAttack();
+                }
+            }else if(groundCooldown>0){
+                canSwitchHover = true;
+                groundCooldown--;
+                if(groundCooldown<=0){
+                    groundCooldown = 60;
+                    //Choose attack
+                    if(distanceTo(getTarget())<hailRange&&Greenfoot.getRandomNumber(4)<3){
+                        remainingHail = 16;
+                    }else{
+                        switch(Greenfoot.getRandomNumber(phase)){
+                            case 0:
+                                primeDashes = 30;
+                                break;
+                            case 1:
+                                primeLightning = 30;
+                                break;
+                            case 2:
+                                //shamanAttack();
+                                break;
+                        }
+                    }
+                }
             }
         }
-        //if(true)return;// DEBUG
-        if(checkSpores()){
-            sporeammo++;
+
+        if(hoverCooldown>0){
+            hoverCooldown--;
+        }else if(canSwitchHover){
+            if(isHovering = !isHovering){
+                hoverCooldown = 1000;
+                setRotation(0);
+            }else{
+                hoverCooldown = 500;
+            }
         }
-        if(sporeammo>=sporereload){
-            sporeAttack();
-            sporeammo = 0;
+        if(isHovering&&getHeight()<hoverHeight){
+            setHeight(getHeight()+10);
+        }else if(!isHovering&&!isOnGround()){
+            setHeight(getHeight()-10);
+            if(isOnGround()){
+                knockBackOnEnemies(200, 100);
+            }
         }
+        if(isHovering&&!hasShield(hoverShield)){
+            applyShield(new ExternalImmunityShield(hoverShield, -1));
+        }else if(!isHovering&&hasShield(hoverShield)){
+            removeShield(hoverShield);
+        }
+        if(true)return;
         
         if(phase>1&&!hashived){
             hiveammo++;
@@ -186,14 +291,14 @@ public class CloudServer extends Boss
         hit(10000, this);//intended
         //super.behave();
     }
-    public boolean checkSpores(){
-        for(FungalZombie z:spores){
+    public boolean checkWarriors(){
+        for(WarriorZombie z: warriors){
             if(!z.isDead()){
                 return false;
             }
         }
-        if(spores.size()>0){
-            spores.clear();
+        if(warriors.size()>0){
+            warriors.clear();
         }
         return true;
     }
@@ -233,6 +338,9 @@ public class CloudServer extends Boss
         getWorld().addObject(pack, getX(), getY());
         Sounds.play("zombiedropshoot");
     }
+    public void spawnAt(GridObject z, double x, double y){
+        getWorld().addObject(z, x, y);
+    }
     public void spawnZombie(GridObject z){
         getWorld().addObject(z, getX(), getY());
     }
@@ -254,14 +362,39 @@ public class CloudServer extends Boss
         r.applyEffect(new SpeedPercentageEffect(0, 800, this));
         return r;
     }
-    public void sporeAttack(){
-        for(int i = 0; i < Math.min(phase, 4); i++){
+    public void warriorAttack(){
+        int gx = getWorld().gridwidth*World.gridSize/2, gy = getWorld().gridheight*World.gridSize/2;
+        double lx = getX()-gx, rx = getX()+gx, by = getY()-gy, uy = getY()+gy;
+        if(Greenfoot.getRandomNumber(2)==1){
+            spawnWarrior(lx, getY());
+            spawnWarrior(rx, getY());
+            spawnWarrior(getX(), uy);
+            spawnWarrior(getX(), by);
+        }else{
+            spawnWarrior(lx, by);
+            spawnWarrior(rx, by);
+            spawnWarrior(lx, uy);
+            spawnWarrior(rx, uy);
+        }
+    }
+    public void spawnWarrior(double x, double y){
+        WarriorZombie z = new WarriorZombie();
+        warriors.add(z);
+        spawnZombieAt(z, x, y);
+    }
+    public void lightningAttack(){
+        for(int i = 0; i < phase+2; i++){
             double x = getRandomCellX();
             double y = getRandomCellY();
-            FungalZombie z = new FungalZombie();
-            spores.add(z);
-            spawnZombieAt(z, x, y);
+            SuperLightningStrike z = new SuperLightningStrike(this);
+            spawnAt(z, x, y);
         }
+        lightningammo = 0;
+    }
+    public void dashAttack(){
+        dash = new DasherDoer(getRotation(), 18, 25, 100, (g)->{
+            g.knockBack(face(g, false), 30, 200, this);
+        }, this);
     }
     public void hiveDropAttack(){
         Zombie toSpawn;
@@ -293,7 +426,7 @@ public class CloudServer extends Boss
             sy+=g.getY()-getY();
             n++;
         }
-        for(GridEntity g: spores){
+        for(GridEntity g: warriors){
             sx+=g.getX()-getX();
             sy+=g.getY()-getY();
             n++;

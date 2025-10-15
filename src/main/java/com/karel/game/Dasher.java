@@ -24,7 +24,7 @@ public class Dasher
         if(subject.isDead()||!subject.canBePulled()){
             return false;
         }
-        subject.pull(direction, speed);
+        System.out.println(subject.pull(direction, speed, subject));
         time--;
         if(time<=0){
             return false;

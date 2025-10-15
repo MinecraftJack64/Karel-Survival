@@ -29,7 +29,7 @@ public class SoftPullEffect extends DurationEffect
         return "Symbols/Effects/soft_pull.png";
     }
     public void affect(){
-        getTarget().pull(direction, speed);
+        getTarget().pull(direction, speed, getSource());
         super.affect();
     }
     public int getCollisionProtocol(){

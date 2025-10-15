@@ -49,7 +49,7 @@ public class Pinpoint extends FlyingProjectile
                 target.ground();
                 target.setSpeedMultiplier(0, immobilize);
                 if(distanceTo(target)<50){
-                    target.pullTo(tx, ty);
+                    target.pullTo(tx, ty, this);
                 }else{
                     target.unground();
                     target.setSpeedMultiplier(1, immobilize);

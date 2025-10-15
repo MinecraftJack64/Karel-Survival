@@ -72,7 +72,7 @@ public class Blade extends Weapon
             bonusSlices/=2;
         }
         getHolder().explodeOn(120, (e) -> {
-            if(getUltUpgrade()==1)if(getHolder().distanceTo(e)>20)e.pullTowards(getHolder(), 2);
+            if(getUltUpgrade()==1)if(getHolder().distanceTo(e)>20)e.pullTowards(getHolder(), 2, getHolder());
             getHolder().damage(e, 20-(int)getHolder().distanceTo(e)/6);
             if(e.isDead()&&e.willNotify(s)){
                 s.notifyDamage(e, 2000);

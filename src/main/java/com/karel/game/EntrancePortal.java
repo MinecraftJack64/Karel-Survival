@@ -79,7 +79,7 @@ public class EntrancePortal extends GridObject
         explodeOn(health*5, "ally", (g)->{
             if(!exiters.contains(g)){
                 if(g.canBePulled()){
-                    g.pullTowards(this, 10);
+                    g.pullTowards(this, 10, this);
                     if(distanceTo(g)<=10){
                         lowerHealth();
                         other.receive(g);
@@ -104,7 +104,7 @@ public class EntrancePortal extends GridObject
         scaleTexture((int)(health*2.5+35), (int)(health*2.5+35));
     }
     public void receive(GridEntity g){
-        g.pullTo(getX(), getY());
+        g.pullTo(getX(), getY(), this);
         exiters.add(g);
         lowerHealth();
         if(health<=0){

@@ -41,13 +41,13 @@ public class Lasso extends Reelin
         if(!updateCenter()){
             for(GridEntity target: targets){
                 target.stun(pullStun);
-                target.pullTowards(this, 15);
+                target.pullTowards(this, 15, this);
             }
             super.doReturn();
         }else{
-            pullTowards(latchx, latchy, 20);
+            pullTowards(latchx, latchy, 20, this);
             getSource().stun(pullStun);
-            getSource().pullTowards(this, 10);
+            getSource().pullTowards(this, 10, this);
             if(distanceTo(getSource())<20){
                 die();
             }

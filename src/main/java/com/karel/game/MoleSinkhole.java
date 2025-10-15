@@ -46,7 +46,7 @@ public class MoleSinkhole extends Bullet
                 suckedenemies.remove(i);
             }else{
                 g.stun(stun);
-                g.pullTowards(this, 20);
+                g.pullTowards(this, 20, this);
             }
         }
         super.applyPhysics();

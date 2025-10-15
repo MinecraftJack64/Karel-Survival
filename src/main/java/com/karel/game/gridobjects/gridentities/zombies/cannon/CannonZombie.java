@@ -74,7 +74,7 @@ public class CannonZombie extends Zombie
                     if(!scammed.canBePulled()){
                         blacklist.add(scammed);
                     }
-                    scammed.pullTowards(this, 10);
+                    scammed.pullTowards(this, 10, this);
                     if(distanceTo(scammed)<=10){
                         if(scammed.trap()){
                             getWorld().removeObject(scammed);

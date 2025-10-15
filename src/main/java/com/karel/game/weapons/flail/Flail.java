@@ -41,7 +41,7 @@ public class Flail extends Weapon
                 onInterrupt();
             }else if(getAttackUpgrade()==1){
                 getHolder().explodeOn(150, (g)->{
-                    if(getHolder().isAggroTowards(g)&&g.canBePulled())g.pullTowards(getHolder(), 12);
+                    if(getHolder().isAggroTowards(g)&&g.canBePulled())g.pullTowards(getHolder(), 12, getHolder());
                 }, null);
             }
         }else if(continueUse()){

@@ -1,3 +1,74 @@
+CLOUD SERVER TO SPAWN:
+- Portal Zombie
+- Warrior Zombie
+- Splitter Zombie
+- Cop
+- Shaman
+- Exorcist
+- Zombie
+- Shield
+- Exploding
+- Bread Boxer
+- Gatherer
+- Hivemind
+- Watermelon
+- Marksman
+Phase 1:
+- Create lightning at random locations
+- Create a rain cloud that follows you, slowing you down and slowly damaging you. They disappear after a while
+- Spawn warrior zombies at corners or edges
+- Spawn zombie and shield zombie passively
+- Occassionally lower to the ground for a while, becoming vulnerable, then
+- On the ground
+  - Dash forward 3 times towards you to knock you up and damage you
+  - Shoot a lot of small hail at you, dealing a little damage
+Phase 2:
+- On reaching, spawn 5 splitter zombies around
+- Includes previous
+- Spawn portal zombies occasionally at clumps of zombies
+- Spawn exploding zombies and hiveminds passively
+- Rain over groups of zombies, healing them
+- Any zombie may be spawned with exorcist zombies to heal them
+- Create up to 1 assault point at a time, spawners that create 3-4 watermelon zombies, breadboxer zombies, or cop zombies over a long time
+- On the ground
+  - Spawn 2-3 splitter zombies around it(when hitting ground)
+  - Shoot fast piercing lightning bolts(there is a little time to react)
+Phase 3:
+- On reaching, spawn 2 gatherers along with the splitter zombies
+- Includes previous, but goes back to spawning up to 1 assault point
+- Can spawn up to 2 assault points
+- On the ground
+  - Throw 1-2 giant hail balls, may or may not lead shots
+  - Can dash into a clump of zombies, spawning a shaman zombie
+  - Lightning bolts bounce at the end of their range towards you again
+Last Phase:
+- Goes to the middle and stays on the ground
+- Strikes you with lightning fast if you are too close.
+- Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
+
+10/15
+Balancing
+ - Tractor Beam Zombies now pull in ranger zombies that have less than 50% health and heal them over time
+Technical
+ - Pulling accounts for sources now
+Content
+ - TODO: Added the Cloud Server Boss
+
+10/14
+Fixes
+ - Fixed Concentrated Zombie dealing only 100 damage
+ - Fixed inferno infinite loop ult
+ - Fixed weird graphics crash when rendering targetless effects
+ - Fixed president zombie trying to cast projectiles to entity
+Technical
+ - All grid entities have unique ids
+Balancing
+ - Inferno cannot use attack or ult while in gadget
+Content
+ - Added the Cancer Zombie
+Note
+ - Cursing and evil spirits do not work
+
 10/13
 Mechanics
  - Added speed and power accountability system(the highest and lowest make up the final value)
@@ -36,7 +107,7 @@ Balancing
 
 10/10
 Technical
- - Added shield.canPierce
+ - TODO: Added shield.canPierce
 Balancing
  - External Immunity Shields can no longer be pierced
 

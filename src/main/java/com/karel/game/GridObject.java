@@ -211,6 +211,9 @@ public abstract class GridObject extends KActor
     public boolean canBePulled(){
         return !isGrounded()&&!hasMounter();
     }
+    public boolean canBePulled(GridObject source){
+        return canBePulled()||source==this;
+    }
     public void notifyPull(){
         broadcastEvent("pull");
     }
@@ -219,6 +222,15 @@ public abstract class GridObject extends KActor
         if(canBePulled()){
             setLocation(x, y);
             notifyPull();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean pullTo(double x, double y, GridObject source){
+        if(canBePulled(source)){
+            setLocation(x, y);
+            notifyPull(source);
             return true;
         }else{
             return false;
@@ -233,10 +245,28 @@ public abstract class GridObject extends KActor
             return false;
         }
     }
+    public boolean pullTo(double x, double y, double h, GridObject source){
+        if(canBePulled(source)){
+            setLocation(x, y, h);
+            notifyPull(source);
+            return true;
+        }else{
+            return false;
+        }
+    }
     public boolean pullToBranch(GridObject g, double deg, double dist){
         if(canBePulled()){
             branchOut(g, deg, dist);
             notifyPull();
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean pullToBranch(GridObject g, double deg, double dist, GridObject source){
+        if(canBePulled(source)){
+            branchOut(g, deg, dist);
+            notifyPull(source);
             return true;
         }else{
             return false;
@@ -251,12 +281,29 @@ public abstract class GridObject extends KActor
             return false;
         }
     }
+    public boolean pull(double ang, double speed, GridObject source){
+        if(canBePulled(source)){
+            move(ang, speed);
+            notifyPull(source);
+            return true;
+        }else{
+            return false;
+        }
+    }
     public boolean pullTowards(GridObject targ, double speed){
         if(distanceTo(targ)<=speed/2){
             return pullTo(targ.getX(), targ.getY());
         }
         else{
             return pull(face(targ, false), speed);
+        }
+    }
+    public boolean pullTowards(GridObject targ, double speed, GridObject source){
+        if(distanceTo(targ)<=speed/2){
+            return pullTo(targ.getX(), targ.getY(), source);
+        }
+        else{
+            return pull(face(targ, false), speed, source);
         }
     }
     public boolean pullTowards(double x, double y, double speed){
@@ -267,8 +314,16 @@ public abstract class GridObject extends KActor
             return pull(face(x, y, false), speed);
         }
     }
+    public boolean pullTowards(double x, double y, double speed, GridObject source){
+        if(distanceTo(x, y)<=speed/2){
+            return pullTo(x, y, source);
+        }
+        else{
+            return pull(face(x, y, false), speed, source);
+        }
+    }
     public boolean knockBack(double r, double d, double h, GridObject source){
-        if(!canBePulled()){
+        if(!canBePulled(source)){
             return false;
         }
         notifyPull(source);
@@ -349,14 +404,14 @@ public abstract class GridObject extends KActor
     public int explodeOnEnemies(int range, Consumer<GridEntity> vore){
         return explodeOn(range, "enemy", vore, new Explosion(((double)range)/60));
     }
-    public int knockBackOnEnemies(int range, double speed){
+    public int knockBackOnEnemies(int range, double dist){
         return explodeOn(range, "enemy", (g)->{
-                g.knockBack(face(g, false), speed, 30, this);
+                g.knockBack(face(g, false), dist, 30, this);
         }, null);
     }
-    public int knockBackOn(int range, double speed){
+    public int knockBackOn(int range, double dist){
         return explodeOn(range, "all", (g)->{
-                g.knockBack(face(g, false), speed, 30, this);
+                g.knockBack(face(g, false), dist, 30, this);
         }, null);
     }
     public GridEntity getNearestTarget() {

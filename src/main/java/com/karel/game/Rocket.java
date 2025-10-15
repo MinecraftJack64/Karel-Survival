@@ -36,7 +36,7 @@ public class Rocket extends FlyingProjectile
     }
     public void applyPhysics(){
         if(!load.isDead()){
-            load.pullTo(getX(), getY(), getHeight());
+            load.pullTo(getX(), getY(), getHeight(), this);
         }
         super.applyPhysics();
     }
@@ -45,7 +45,7 @@ public class Rocket extends FlyingProjectile
     }
     
     public void checkHit(){
-        load.pullTo(getX(), getY(), 0);
+        load.pullTo(getX(), getY(), 0, this);
         load.unstun(loadStun);
         hasLanded = true;
         if(targetsymbol!=null){

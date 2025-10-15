@@ -29,7 +29,7 @@ public class PullEffect extends DurationEffect
         return "Symbols/Effects/pull.png";
     }
     public void affect(){
-        getTarget().pull(direction, speed);
+        getTarget().pull(direction, speed, getSource());
         super.affect();
     }
     public void onClear(){

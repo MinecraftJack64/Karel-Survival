@@ -21,7 +21,7 @@ public class ZFrisbee extends ZBullet
     }
     public void applyPhysics(){
         if(grabber!=null&&grabber.isInWorld()&&grabber.canBePulled()){
-            grabber.pullTowards(this, getSpeed());
+            grabber.pullTowards(this, getSpeed(), grabber);
         }
         super.applyPhysics();
     }

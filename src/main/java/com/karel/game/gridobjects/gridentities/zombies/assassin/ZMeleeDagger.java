@@ -26,7 +26,7 @@ public class ZMeleeDagger extends Bullet
     }
     public void doHit(GridEntity targ){
         GridEntity gs = (GridEntity)getSource();
-        if(!gs.isDead()&&gs.canBePulled())gs.pullToBranch(targ, targ.getRotation()+90, 30);
+        if(!gs.isDead()&&gs.canBePulled())gs.pullToBranch(targ, targ.getRotation()+90, 30, this);
         targ.applyEffect(new PowerPercentageEffect(0.65, 60, this));
         super.doHit(targ);
     }

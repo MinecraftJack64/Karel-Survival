@@ -3,7 +3,6 @@ package com.karel.game.gridobjects.gridentities.zombies.chocolate;
 import com.karel.game.ArmorShield;
 import com.karel.game.Dasher;
 import com.karel.game.FrictionDasher;
-import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.weapons.ShieldID;

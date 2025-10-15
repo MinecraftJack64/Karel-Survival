@@ -6,7 +6,6 @@ import com.karel.game.GridObject;
 import com.karel.game.Nuke;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
-import com.karel.game.gridobjects.hitters.Projectile;
 import com.karel.game.weapons.ShieldID;
 
 import java.util.ArrayList;
@@ -105,14 +104,8 @@ public class PresidentZombie extends Zombie
     
     public void hitIgnoreShield(int amt, double exp, GridObject source){
         super.hitIgnoreShield(amt, exp, source);
-        GridEntity sourc;
-        if(source instanceof Projectile){
-            sourc = (GridEntity)((Projectile)source).getSource();
-        }else if(source instanceof GridEntity){
-            sourc = (GridEntity) source;
-        }else{
-            return;
-        }
+        GridEntity sourc = source.getParentAffecter();
+        if(sourc==null)return;
         if(isAggroTowards(sourc)&&!targets.contains(sourc)){
             targets.add(sourc);
         }
