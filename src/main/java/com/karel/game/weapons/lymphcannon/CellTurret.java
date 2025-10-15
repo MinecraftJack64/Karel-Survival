@@ -188,4 +188,7 @@ public class CellTurret extends Pet
             super.notifyDamage(source, amt);
         }
     }
+    public String getPetID(){
+        return "lymphcannon-cellturret";
+    }
 }

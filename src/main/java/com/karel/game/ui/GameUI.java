@@ -3,6 +3,9 @@ package com.karel.game.ui;
 import com.karel.game.IAmmoManager;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+
+import java.util.HashMap;
+
 import com.karel.game.Game;
 import com.karel.game.Item;
 import com.karel.game.ZombieSpawner;
@@ -36,10 +39,10 @@ public class GameUI extends UI
     private UltBar ultCharge;
     private AmmoBar ammo;
     private StatusBar sprint;
-    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2, bossName;
+    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2;
     private Button goToMenuBtn, nextLvlBtn;
     private ImageButton weaponCraftButton, pauseButton;
-    private BossBar boss;
+    private HashMap<GridEntity, BossBar> bossBars = new HashMap<GridEntity, BossBar>();
     public void create(){
         waveCounter = new Counter("Wave ", 20);
         scoreCounter = new Counter("Score: ", 20);
@@ -343,24 +346,24 @@ public class GameUI extends UI
     public void changeHeldItem(String t){
         heldItem.setText(t);
     }
-    public void addBossBar(BossBar bar){
+    public void addBossBar(BossBar bar, GridEntity source){
+        if(bossBars.containsKey(source)){
+            removeBossBar(source);
+        }
         System.out.println("Adding boss bar "+bar);
-        boss = bar;
+        bossBars.put(source, bar);
         waveCounter.setVisible(false);
         waveHealth.setVisible(false);
         scoreCounter.setLocation(waveCounter.getX(), waveCounter.getY());
-        bossName = new TextDisplay(bar.getLabel(), 30);
-        getWorld().addObject(bossName, waveCounter.getX(), scoreCounter.getBottom());
-        getWorld().addObject(bar, waveCounter.getX(), bossName.getBottom());
+        getWorld().addObject(bar, waveCounter.getX(), scoreCounter.getBottom());
     }
-    public void removeBossBar(){
-        System.out.println("Removing boss bar "+boss);
-        getWorld().removeObject(boss);
-        getWorld().removeObject(bossName);
+    public void removeBossBar(GridEntity source){
+        if(!bossBars.containsKey(source))return;
+        System.out.println("Removing boss bar "+source);
+        getWorld().removeObject(bossBars.remove(source));
         waveCounter.setVisible(true);
         waveHealth.setVisible(true);
         placeScoreBar();
-        boss = null;
     }
     public void showWeaponFrags(int s){
         weaponmessage3.setVisible(true);

@@ -61,4 +61,8 @@ public class Baby extends GridEntity
     public void repair(){
         lvl++;
     }
+    public String getName(){
+        return "Turret";
+    }
+    public String getEntityID(){return "turret";}
 }

@@ -62,4 +62,8 @@ public class Pet extends GridEntity
             super.notifyDamage(target, amt);
         }
     }
+    public String getPetID(){
+        return "";
+    }
+    public String getEntityID(){return "pet-"+getPetID();}
 }

@@ -33,4 +33,5 @@ public class TickingTimeBomb extends GridEntity implements SubAffecter
     public boolean acceptExternalShields(){
         return false;
     }
+    public String getEntityID(){return "bomb";}
 }

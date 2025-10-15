@@ -36,4 +36,7 @@ public class SaliSwab extends Pet{
     public double damageSecrecy(){
         return super.damageSecrecy()*0.3;
     }
+    public String getPetID(){
+        return "salicycle-swab";
+    }
 }

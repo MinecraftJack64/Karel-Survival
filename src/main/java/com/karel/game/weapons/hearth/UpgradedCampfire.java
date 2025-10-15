@@ -29,4 +29,7 @@ public class UpgradedCampfire extends Campfire
         }, null);
         super.die();
     }
+    public String getPetID(){
+        return "hearth-campfire+";
+    }
 }

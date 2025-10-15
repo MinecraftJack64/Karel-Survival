@@ -33,4 +33,7 @@ public class SurpriseEasterEgg extends Pet
     public boolean acceptExternalShields(){
         return false;
     }
+    public String getPetID(){
+        return "easter-egg";
+    }
 }

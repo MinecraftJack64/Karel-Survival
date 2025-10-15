@@ -32,6 +32,9 @@ public class Shield
     public boolean canStack(){
         return false;
     }
+    public boolean canPierce(){
+        return true;
+    }
     public GridEntity getHolder(){
         return myGE;
     }

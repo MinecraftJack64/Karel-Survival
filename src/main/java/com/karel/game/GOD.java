@@ -17,4 +17,5 @@ public class GOD extends GridEntity
     public boolean willNotify(GridObject source){
         return false;
     }
+    public String getEntityID(){return "god";}
 }

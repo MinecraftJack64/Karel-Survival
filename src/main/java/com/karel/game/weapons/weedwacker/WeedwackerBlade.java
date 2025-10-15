@@ -128,4 +128,5 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
     public boolean canAttack(){
         return source.canAttack();
     }
+    public String getEntityID(){return "weedwacker-blade";}
 }

@@ -17,4 +17,7 @@ public class SuperSaliSwab extends SaliSwab{
             return isAttacking()?2:1;
         }
     }
+    public String getPetID(){
+        return "salicycle-swab+";
+    }
 }

@@ -181,4 +181,7 @@ public class Bot extends Pet implements ItemAccepter
             return Bot.this;
         }
     }
+    public String getEntityID(){
+        return "bot";
+    }
 }
