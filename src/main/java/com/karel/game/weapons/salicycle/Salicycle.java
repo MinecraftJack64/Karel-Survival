@@ -62,6 +62,11 @@ public class Salicycle extends Weapon
             getHolder().mute(new EffectID(this));
         }
     }
+    public void onInterrupt(){
+        if(ride!=null){
+            setRide(null);
+        }
+    }
     public int getUlt(){
         return ult;
     }

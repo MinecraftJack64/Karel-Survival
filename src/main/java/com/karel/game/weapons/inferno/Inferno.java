@@ -30,9 +30,7 @@ public class Inferno extends Weapon
                 fireWave(false);
                 remainingFrames--;
             }else{
-                setContinueUse(false);
-                setPlayerLockRotation(false);
-                reloadDelay = 3;
+                onInterrupt();
             }
         }
         else if (ammo.hasAmmo()&&reloadDelay<=0)
@@ -76,9 +74,6 @@ public class Inferno extends Weapon
                         else hs = bullet.getHitStory();
                     }
                 }
-                setPlayerLockMovement(false);
-                setPlayerLockRotation(false);
-                setContinueUlt(false);
             }
         }else{
             ultTeleportCooldown = 30;
@@ -90,6 +85,17 @@ public class Inferno extends Weapon
             setPlayerLockMovement(true);
             setPlayerLockRotation(true);
             setContinueUlt(true);
+        }
+    }
+    public void onInterrupt(){
+        if(continueUlt()){
+            setPlayerLockMovement(false);
+            setPlayerLockRotation(false);
+            setContinueUlt(false);
+        }else if(continueUse()){
+            setContinueUse(false);
+            setPlayerLockRotation(false);
+            reloadDelay = 3;
         }
     }
     public int getUlt(){

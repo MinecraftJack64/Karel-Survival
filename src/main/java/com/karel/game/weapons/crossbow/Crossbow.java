@@ -41,10 +41,8 @@ public class Crossbow extends Weapon
                 ultDelay--;
                 return;
             }
-            setContinueUlt(false);
-            setPlayerLockRotation(false);
-            getHand().setTargetLock(false);
             fireRainingArrows(true);
+            onInterrupt();
         }
         else if(getUltUpgrade()==1){
             setContinueUlt(true);
@@ -56,6 +54,11 @@ public class Crossbow extends Weapon
             fireRainingArrows(false);
         }
         Sounds.play("crossbowshoot");
+    }
+    public void onInterrupt(){
+        setContinueUlt(false);
+        setPlayerLockRotation(false);
+        getHand().setTargetLock(false);
     }
     //constant - if height is same, they will land at same time.
     public void fireRainingArrows(boolean constant){

@@ -49,12 +49,16 @@ public class Blade extends Weapon
         }else{
             fireSword();
             if(remainingslices<=0){
-                setContinueUlt(false);
-                if(continueGadget()){
-                    setContinueGadget(false);
-                    bonusSlices = 80;
-                }
+                onInterrupt();
             }
+        }
+    }
+    public void onInterrupt(){
+        setContinueUlt(false);
+        remainingslices = 0;
+        if(continueGadget()){
+            setContinueGadget(false);
+            bonusSlices = 80;
         }
     }
     public void fireSword(){

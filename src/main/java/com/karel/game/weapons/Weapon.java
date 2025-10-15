@@ -1,7 +1,10 @@
 package com.karel.game.weapons;
+
+import com.karel.game.EventListener;
 import com.karel.game.Game;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.Item;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
@@ -37,7 +40,7 @@ import com.karel.game.IAmmoManager;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Weapon implements Item, Tickable
+public abstract class Weapon implements Item, Tickable, EventListener
 {
     private int ultcharge = 0;
     private boolean ultready;
@@ -117,6 +120,15 @@ public abstract class Weapon implements Item, Tickable
     }
     public void update(){
         //
+    }
+    public void onInterrupt(){
+        //Called when holder pulled, killed, or knocked
+    }
+    public boolean on(String id, GridObject source){
+        if(id.equals("die")||id.equals("pull")){
+            onInterrupt();
+        }
+        return false;
     }
     public IAmmoManager getAmmo(){
         return ammo;

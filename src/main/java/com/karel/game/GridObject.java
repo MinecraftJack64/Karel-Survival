@@ -210,8 +210,10 @@ public abstract class GridObject extends KActor
     public boolean canBePulled(){
         return !isGrounded()&&!hasMounter();
     }
-    public void notifyPull(){}
-    public void notifyPull(GridEntity t){notifyPull();}//TODO
+    public void notifyPull(){
+        broadcastEvent("pull");
+    }
+    public void notifyPull(GridObject source){notifyPull();}//TODO
     public boolean pullTo(double x, double y){
         if(canBePulled()){
             setLocation(x, y);
@@ -268,6 +270,7 @@ public abstract class GridObject extends KActor
         if(!canBePulled()){
             return false;
         }
+        notifyPull(source);
         initiateJump(r, d, h);
         return true;
     }

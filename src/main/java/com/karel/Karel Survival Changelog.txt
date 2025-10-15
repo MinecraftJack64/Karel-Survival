@@ -1,3 +1,20 @@
+10/12
+Fixes
+ - Fixed Scream weapon charging ult from attack
+Technical
+ - Knockbacks call notifyPull and notifyPull takes a grid object argument
+ - Notifypull broadcasts a pull event.
+Balancing
+ - Some weapons' abilities are cancelled when interrupted(killed or pulled)
+    - Blade ult and gadget
+    - Crossbow ult upgrade
+    - Flail attack and ult
+    - Inferno attack and ult
+    - Paint Sprayer ult
+    - Reaper attack
+    - Salicycle gadget
+    - Scream ult and gadget
+
 10/10
 Technical
  - Added shield.canPierce

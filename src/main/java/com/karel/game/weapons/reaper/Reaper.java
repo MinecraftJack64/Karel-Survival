@@ -26,9 +26,7 @@ public class Reaper extends Weapon implements AmmoHolder
     public void fire(){//one full ammo deals 350 damage
         if(continueUse()){
             if(!dash.dash()){
-                dash = null;
-                setContinueUse(false);
-                setPlayerLockRotation(false);
+                onInterrupt();
             }
         }
         else if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
@@ -56,6 +54,11 @@ public class Reaper extends Weapon implements AmmoHolder
         Sounds.play("bats");
         BatSwarm bullet = getUltUpgrade()==1?new BatSwarm(getHand().getTargetRotation(), this, getHolder()):new BatSwarm(getHand().getTargetRotation(), getHolder());
         getHolder().addObjectHere(bullet);
+    }
+    public void onInterrupt(){
+        dash = null;
+        setContinueUse(false);
+        setPlayerLockRotation(false);
     }
     public int getUlt(){
         return ult;
