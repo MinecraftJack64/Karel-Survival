@@ -17,8 +17,10 @@ import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
 import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
-import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
+import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.gatherer.GathererZombie;
+import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
+import com.karel.game.gridobjects.gridentities.zombies.shaman.ShamanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.splitter.SplitterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.weapons.ShieldID;
@@ -59,10 +61,13 @@ public class CloudServer extends Boss
     private ArrayList<WarriorZombie> warriors;
     private ArrayList<GridEntity> turrets;
     private ArrayList<AssaultPoint> aps;
+    private ArrayList<ExorcistZombie> exors;
     private EffectID wizardStun;// The stuns placed on all other enemies on death
     private int warriorammo;               // How long ago we fired the gun the last time.
     private int meleereload = 15;
     private int meleeammo;
+    private int portalReload = 400;
+    private int portalAmmo;
     private int assaultammo = 0;
     private int assaultreload = 500;
     private int lightningammo;
@@ -83,6 +88,7 @@ public class CloudServer extends Boss
     private ShieldID hoverShield = new ShieldID(this, "hover");
     public String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
+    private boolean toSpawnShaman;
     private static final int hailRange = 250;
     /**
      * Initilise this rocket.
@@ -93,6 +99,7 @@ public class CloudServer extends Boss
         meleeammo = 15;
         assaultammo = 200;
         cloudAmmo = 0;
+        portalAmmo = 0;
         scaleTexture(90, 90);
         setRotation(0);
         setSpeed(0);
@@ -101,6 +108,7 @@ public class CloudServer extends Boss
         warriors = new ArrayList<WarriorZombie>();
         turrets = new ArrayList<GridEntity>();
         aps = new ArrayList<AssaultPoint>();
+        exors = new ArrayList<ExorcistZombie>();
         wizardStun = new EffectID(this);
     }
     public ZombieClass[] getZombieClasses(){
@@ -131,6 +139,7 @@ public class CloudServer extends Boss
         phase = Math.max(3-(3*(getHealth()-1)/getMaxHealth()), op);
         if(op!=phase){
             splitterAttack(5);
+            flameDefense();
             if(phase==3){
                 gathererAttack();
             }
@@ -155,9 +164,20 @@ public class CloudServer extends Boss
             warriorAttack();
             warriorammo = 0;
         }
+        if(phase>=2){
+            portalAmmo++;
+        }
+        if(portalAmmo>=portalReload){
+            portalAmmo = 0;
+            portalAttack();
+        }
 
         if(dash!=null){if(!dash.dash()){
             dash = null;
+            if(toSpawnShaman){
+                addObjectHere(new ShamanZombie());
+                toSpawnShaman = false;
+            }
         }else{
             canSwitchHover = false;
         }}
@@ -210,7 +230,7 @@ public class CloudServer extends Boss
                                 primeLightning = 30;
                                 break;
                             case 2:
-                                //shamanAttack();
+                                shamanAttack();
                                 break;
                         }
                     }
@@ -258,6 +278,8 @@ public class CloudServer extends Boss
             assaultammo = 0;
         }
         
+        clearExorcists();
+
         meleeammo++;
         if(distanceTo(getTarget())<40&&meleeammo>=meleereload){
             damageIgnoreShield(getTarget(), 150);// melee attack
@@ -302,10 +324,17 @@ public class CloudServer extends Boss
         }
         return true;
     }
-    public void fungalDefense(){
+    public void flameDefense(){
         for(GridEntity g: getGEsInRange(110)){
             if(isAggroTowards(g)){
-                spawnZombieAt(new FungalZombie(), g.getX(), g.getY());
+                spawnZombieAt(new FirebreatherZombie(), g.getX(), g.getY());
+            }
+        }
+    }
+    public void clearExorcists(){
+        for(int i = exors.size()-1; i>=0; i--){
+            if(exors.get(i).isDead()){
+                exors.remove(i);
             }
         }
     }
@@ -315,7 +344,7 @@ public class CloudServer extends Boss
         getWorld().addObject(pack, getX(), getY());
         Sounds.play("zombiedropshoot");
         if(phase>=2&&z instanceof GridEntity g){
-            if(Greenfoot.getRandomNumber(5)==0){
+            if(Greenfoot.getRandomNumber(5)==0&&exors.size()<phase){
                 spawnZombieAt(Greenfoot.getRandomNumber(2)==0?new ExorcistZombie():new ExorcistZombie(g), x+Greenfoot.getRandomNumber(50)-25, y+Greenfoot.getRandomNumber(50)-25);
             }
         }
@@ -341,6 +370,11 @@ public class CloudServer extends Boss
             spawnWarrior(lx, uy);
             spawnWarrior(rx, uy);
         }
+    }
+    public void portalAttack(){
+        Location l = findCluster(1000, 300);
+        if(l==null)return;
+        spawnZombieAt(new PortalZombie(), l.x, l.y);
     }
     public void spawnWarrior(double x, double y){
         WarriorZombie z = new WarriorZombie();
@@ -398,6 +432,15 @@ public class CloudServer extends Boss
     }
     public void boltAttack(){
         addObjectHere(new ZBolt(getRotation(), this, phase>2));
+    }
+    public void shamanAttack(){
+        Location l = findCluster(1000, 200);
+        if(l==null)return;
+        double ang = face(l.x, l.y, false);
+        double dist = distanceTo(l.x, l.y);
+        int speed = 20;
+        toSpawnShaman = true;
+        dash = new Dasher(ang, speed, (int)(dist/speed), this);
     }
     public void turretAttack(){
         for(int i = 0; i < phase-1; i++){

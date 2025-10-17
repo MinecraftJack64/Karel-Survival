@@ -19,11 +19,9 @@ public class ZExorcistShot extends ZBullet
         setLife(20);
         setSpeed(15);
         if(hitself){
-            setNumTargets(1);
             setDamage(35);
         }
-        else
-            setNumTargets(-1);
+        setNumTargets(1);
         //setAggression(false);
         setSelfHarm(hitself);
         setHitAllies(true);

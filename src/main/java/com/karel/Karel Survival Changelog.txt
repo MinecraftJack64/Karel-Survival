@@ -21,6 +21,8 @@ CLOUD SERVER TO SPAWN:
 - Watermelon
 - Marksman
 Phase 1:
+- In the air, dash around, trying to stay near the middle
+- If phase completed while too close, spawn a firebreather zombie on each nearby player
 - Create lightning at random locations
 - Create a rain cloud that follows you, slowing you down and slowly damaging you. They disappear after a while
 - Spawn warrior zombies at corners or edges
@@ -31,8 +33,8 @@ Phase 1:
   - Shoot a lot of small hail at you, dealing a little damage
 Phase 2:
 - On reaching, spawn 5 splitter zombies around
-- Includes previous
-- .Spawn portal zombies occasionally at clumps of zombies
+- Includes previous except for cloud
+- Spawn portal zombies occasionally at clumps of zombies
 - .Spawn exploding zombies and hiveminds passively
 - .Rain over groups of zombies, healing them
 - Any zombie may be spawned with exorcist zombies to heal them
@@ -46,7 +48,7 @@ Phase 3:
 - Can spawn up to 2 assault points
 - On the ground
   - .Throw 1-2 giant hail balls, leads shots based on player movement in the last second
-  - .Can dash into a clump of zombies, spawning a shaman zombie
+  - Can dash into a clump of zombies, spawning a shaman zombie
   - Lightning bolts bounce at the end of their range towards you again
 Last Phase:
 - .Goes to the middle and stays on the ground
@@ -54,6 +56,10 @@ Last Phase:
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
 10/17
+Balancing
+ - Exorcist Zombie attack no longer pierces
+Other
+ - Continued with Cloud Server
 Technical
  - Added findCluster() for GridObject
  - Added isColumnar() for GridObject to ignore height in distance checks
