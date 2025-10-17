@@ -158,7 +158,11 @@ public abstract class GridObject extends KActor
         return Math.sqrt(Math.pow(x-getX(), 2)+Math.pow(y-getY(), 2)+Math.pow(z-getHeight(), 2));
     }
     public double distanceTo(GridObject obj){
-        return distanceTo(obj.getX(),obj.getY(), obj.getHeight());
+        return distanceTo(obj.getX(),obj.getY(), isColumnar()?this.getHeight():obj.getHeight());
+    }
+    //Ignore height for distance checks
+    public boolean isColumnar(){
+        return false;
     }
     public double getRandomCellX(){
         return getWorld().gridXToRealX(Greenfoot.getRandomNumber(getWorld().gridwidth));
@@ -414,6 +418,49 @@ public abstract class GridObject extends KActor
                 g.knockBack(face(g, false), dist, 30, this);
         }, null);
     }
+    public Location findCluster(int range, double radius){
+        var all = getTargetsInRange(range);
+        Location best = null;
+        int bestCount = 1;
+        for(int i = 0; i < all.size(); i++){
+            GridEntity a = all.get(i);
+            for(int j = i+1; j < all.size(); j++){
+                GridEntity b = all.get(j);
+                double d = a.distanceTo(b);
+                if(d>2*radius)continue;
+
+                double md = d/2;
+                double h = Math.sqrt(radius*radius-md*md);
+                double mx = (a.getX()+b.getX())/2;
+                double my = (a.getY()+b.getY())/2;
+                double offsetX = -(b.getX()-a.getX())*(h/d);
+                double offsetY = -(b.getY()-b.getY())*(h/d);
+                Location p1 = new Location(mx+offsetX, my+offsetY);
+                Location p2 = new Location(mx-offsetX, my-offsetY);
+                for(Location p: new Location[]{p1, p2}){
+                    int count = 0;
+                    //counting
+                    for(GridEntity t: all){
+                        double dx = t.getX()-p.x;
+                        double dy = t.getY()-p.y;
+                        if(Math.sqrt(dx*dx+dy*dy)<radius){
+                            count++;
+                        }
+                    }
+                    if(count>bestCount){
+                        best = p;
+                        bestCount = count;
+                    }
+                }
+            }
+        }
+        if(best==null){
+            if(all.size()>=1){
+                return new Location(all.get(0).getX(), all.get(0).getY());
+            }
+        }
+        return best;
+    }
     public GridEntity getNearestTarget() {
         if(useTargetCache()&&cachedTarget!=null&&!cachedTarget.isDead()&&isPotentialTarget(cachedTarget)){
             return cachedTarget;
@@ -513,6 +560,15 @@ public abstract class GridObject extends KActor
         ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
         for(GridEntity g:getWorld().allEntities()){
             if(this!=g&&distanceTo(g)<=rng){
+                gs.add(g);
+            }
+        }
+        return gs;
+    }
+    public List<GridEntity> getTargetsInRange(int rng){
+        ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
+        for(GridEntity g:getWorld().allEntities()){
+            if(this!=g&&distanceTo(g)<=rng&&isPotentialTarget(g)){
                 gs.add(g);
             }
         }

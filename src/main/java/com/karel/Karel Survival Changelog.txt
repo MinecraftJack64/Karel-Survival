@@ -1,3 +1,10 @@
+-ituti da !votannali, monlo !dostado -u dis
+Patrol(rare)
+Two siren lights on opposite sides spin around constantly. Attacking causes them to flash out, each one damaging in an arc
+Ult "Police Bots": Spawn 2 police robots, one on either side of you. They walk towards the nearest enemy and shoot them with a taser gun that stuns them after enough hits. They shoot faster when retreating
+Attack Upgrade "Blaring": Another attack damages in the cone next to the first one.
+Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot(it can't spawn more) and both gain a small shield
+Gadget "Spotlights": Switch siren light direction
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -17,7 +24,7 @@ Phase 1:
 - Create lightning at random locations
 - Create a rain cloud that follows you, slowing you down and slowly damaging you. They disappear after a while
 - Spawn warrior zombies at corners or edges
-- Spawn zombie and shield zombie passively
+- .Spawn zombie and shield zombie passively
 - Occassionally lower to the ground for a while, becoming vulnerable, then
 - On the ground
   - Dash forward 3 times towards you to knock you up and damage you
@@ -25,32 +32,39 @@ Phase 1:
 Phase 2:
 - On reaching, spawn 5 splitter zombies around
 - Includes previous
-- Spawn portal zombies occasionally at clumps of zombies
-- Spawn exploding zombies and hiveminds passively
-- Rain over groups of zombies, healing them
+- .Spawn portal zombies occasionally at clumps of zombies
+- .Spawn exploding zombies and hiveminds passively
+- .Rain over groups of zombies, healing them
 - Any zombie may be spawned with exorcist zombies to heal them
-- Create up to 1 assault point at a time, spawners that create 3-4 watermelon zombies, breadboxer zombies, or cop zombies over a long time
+- Create up to 1 assault point(Endpoints) at a time, spawners that create 3-4 watermelon zombies, breadboxer zombies, or cop zombies over a long time
 - On the ground
   - Spawn 2-3 splitter zombies around it(when hitting ground)
   - Shoot fast piercing lightning bolts(there is a little time to react)
 Phase 3:
-- On reaching, spawn 2 gatherers along with the splitter zombies
-- Includes previous, but goes back to spawning up to 1 assault point
+- On reaching, spawn 2 gatherers and 2 exorcists along with the splitter zombies
+- Includes previous
 - Can spawn up to 2 assault points
 - On the ground
-  - Throw 1-2 giant hail balls, may or may not lead shots
-  - Can dash into a clump of zombies, spawning a shaman zombie
+  - .Throw 1-2 giant hail balls, leads shots based on player movement in the last second
+  - .Can dash into a clump of zombies, spawning a shaman zombie
   - Lightning bolts bounce at the end of their range towards you again
 Last Phase:
-- Goes to the middle and stays on the ground
-- Strikes you with lightning fast if you are too close.
-- Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
+- .Goes to the middle and stays on the ground
+- .Strikes you with lightning fast if you are too close(like flash drive attack).
+- .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
+
+10/17
+Technical
+ - Added findCluster() for GridObject
+ - Added isColumnar() for GridObject to ignore height in distance checks
 
 10/15
 Balancing
  - Tractor Beam Zombies now pull in ranger zombies that have less than 50% health and heal them over time
 Technical
  - Pulling accounts for sources now
+Graphics
+ - Zombie droppers display correct graphics
 Content
  - TODO: Added the Cloud Server Boss
 

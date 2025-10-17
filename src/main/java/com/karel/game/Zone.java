@@ -3,12 +3,12 @@ package com.karel.game;
 
 public class Zone implements Place
 {
-    public Location tip1, tip2;
-    public Zone(Location tip1, Location tip2){
+    public LocationOld tip1, tip2;
+    public Zone(LocationOld tip1, LocationOld tip2){
         this.tip1 = tip1;
         this.tip2 = tip2;
     }
-    public void translate(Location loc)
+    public void translate(LocationOld loc)
     {
         tip1.translate(loc);
         tip2.translate(loc);
@@ -26,11 +26,11 @@ public class Zone implements Place
     {
         tip1.translate(x, y);
     }
-    public void translateNE(Location loc)
+    public void translateNE(LocationOld loc)
     {
         tip2.translate(loc);
     }
-    public void translateSW(Location loc)
+    public void translateSW(LocationOld loc)
     {
         tip1.translate(loc);
     }
@@ -40,8 +40,8 @@ public class Zone implements Place
     public int getPerimeter(){
         return 2*((tip2.y-tip1.y)+(tip2.x-tip1.x));
     }
-    public Location getCenter(){
-        return new Location((tip2.x+tip1.x)/2, (tip2.y+tip1.y)/2);
+    public LocationOld getCenter(){
+        return new LocationOld((tip2.x+tip1.x)/2, (tip2.y+tip1.y)/2);
     }
     public void reformat(){
         if(tip1.x>tip2.x){

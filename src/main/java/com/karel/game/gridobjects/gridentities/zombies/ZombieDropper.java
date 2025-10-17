@@ -13,5 +13,6 @@ public class ZombieDropper extends Dropper
     public ZombieDropper(double rotation, double targetdistance, double height, GridObject toSpawn, GridObject source)
     {
         super(rotation, targetdistance, height, toSpawn, source);
+        setImage("zdrop.png");
     }
 }

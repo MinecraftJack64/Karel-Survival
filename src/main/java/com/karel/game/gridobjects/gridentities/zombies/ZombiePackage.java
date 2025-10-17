@@ -20,5 +20,4 @@ public abstract class ZombiePackage extends GridObject
     public void setSource(GridObject s){
         source = s;
     }
-    public void render(){}
 }

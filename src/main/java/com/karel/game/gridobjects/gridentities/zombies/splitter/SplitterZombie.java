@@ -14,13 +14,13 @@ public class SplitterZombie extends Zombie
 {
     private ZombieClass[] classes = new ZombieClass[]{ZombieClass.spawner};
     public String getStaticTextureURL(){return "splitzareln.png";}
+    public LightZombie l = new LightZombie(this);
+    public HeavyZombie h = new HeavyZombie(this);
     public SplitterZombie()
     {
         super();
     }
     public void die(GridObject cause){
-        LightZombie l = new LightZombie(this);
-        HeavyZombie h = new HeavyZombie(this);
         addObjectHere(l);
         addObjectHere(h);
         super.die(cause);

@@ -21,10 +21,10 @@ public class Dasher
         return subject;
     }
     public boolean dash(){//return false if dashing is done
-        if(subject.isDead()||!subject.canBePulled()){
+        if(subject.isDead()||!subject.canBePulled(subject)){
             return false;
         }
-        System.out.println(subject.pull(direction, speed, subject));
+        subject.pull(direction, speed, subject);
         time--;
         if(time<=0){
             return false;

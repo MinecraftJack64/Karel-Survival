@@ -12,10 +12,10 @@ public class Grid<T>
 {
     public ArrayList<ArrayList<ArrayList<T>>> grid;
     private int xsize, ysize;
-    public Location origin;
+    public LocationOld origin;
     public Grid(){
         grid = new ArrayList<ArrayList<ArrayList<T>>>();
-        origin = new Location(0, 0);
+        origin = new LocationOld(0, 0);
         xsize = 1;
         ysize = 1;
         grid.add(new ArrayList<ArrayList<T>>());
@@ -96,7 +96,7 @@ public class Grid<T>
             extend(xdiff, ydiff);
         }
     }
-    public void extendto(Location loc){
+    public void extendto(LocationOld loc){
         extendto(loc.x, loc.y);
     }
     public void place(T obj, int x, int y){
@@ -106,20 +106,20 @@ public class Grid<T>
     public ArrayList<T> get(int x, int y){
         return grid.get(x+origin.x).get(y+origin.y);
     }
-    public ArrayList<T> get(Location loc){
+    public ArrayList<T> get(LocationOld loc){
         return get(loc.x, loc.y);
     }
     public void remove(T obj, int x, int y){
         ArrayList<T> c = grid.get(x+origin.x).get(y+origin.y);
         c.remove(obj);
     }
-    public void place(T obj, Location loc){
+    public void place(T obj, LocationOld loc){
         place(obj, loc.x, loc.y);
     }
     public boolean isEmpty(int x, int y){
         return get(x, y).size()==0;
     }
-    public boolean isEmpty(Location loc){
+    public boolean isEmpty(LocationOld loc){
         return isEmpty(loc.x, loc.y);
     }
     public void place(T obj, Zone loc){
@@ -137,7 +137,7 @@ public class Grid<T>
             }
         }
     }
-    public void remove(T obj, Location loc){
+    public void remove(T obj, LocationOld loc){
         remove(obj, loc.x, loc.y);
     }
     public void print(){

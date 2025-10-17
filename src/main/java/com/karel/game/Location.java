@@ -9,12 +9,12 @@ package com.karel.game;
  */
 public class Location implements Place
 {
-    public int x;
-    public int y;
+    public double x;
+    public double y;
     /**
      * Construct location with x and y
      */
-    public Location(int x, int y)
+    public Location(double x, double y)
     {
         // initialise instance variables
         this.x = x;

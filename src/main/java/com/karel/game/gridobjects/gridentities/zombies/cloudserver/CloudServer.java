@@ -1,34 +1,25 @@
 package com.karel.game.gridobjects.gridentities.zombies.cloudserver;
 import java.util.ArrayList;
-
-import com.karel.game.ArmorShield;
-import com.karel.game.BombTurret;
 import com.karel.game.Dasher;
 import com.karel.game.DasherDoer;
 import com.karel.game.ExternalImmunityShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
-import com.karel.game.LaserSquad;
+import com.karel.game.Location;
 import com.karel.game.Sounds;
-import com.karel.game.Turret;
 import com.karel.game.World;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.FatalPoisonEffect;
 import com.karel.game.effects.LifestealEffect;
-import com.karel.game.effects.PowerPercentageEffect;
-import com.karel.game.effects.ReloadPercentageEffect;
-import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
-import com.karel.game.gridobjects.gridentities.zombies.doctor.DoctorZombie;
+import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
-import com.karel.game.gridobjects.gridentities.zombies.hivemind.HivemindZombie;
-import com.karel.game.gridobjects.gridentities.zombies.hornetneck.HornetNeckZombie;
-import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
-import com.karel.game.gridobjects.gridentities.zombies.russiandoll.RussianDollZombie;
+import com.karel.game.gridobjects.gridentities.zombies.gatherer.GathererZombie;
+import com.karel.game.gridobjects.gridentities.zombies.splitter.SplitterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.weapons.ShieldID;
 import com.karel.game.particles.Explosion;
@@ -64,37 +55,35 @@ public class CloudServer extends Boss
     private int hoverCooldown; // 1000 in sky, 500 on ground
     private boolean isHovering;
     private Dasher dash;
+    private boolean isFindingAllies;
     private ArrayList<WarriorZombie> warriors;
     private ArrayList<GridEntity> turrets;
-    private ArrayList<GridEntity> lasers;
+    private ArrayList<AssaultPoint> aps;
     private EffectID wizardStun;// The stuns placed on all other enemies on death
     private int warriorammo;               // How long ago we fired the gun the last time.
-    private int hivereload = 850;
-    private int hiveammo;
-    private boolean hashived;
-    private int turretreload = 600;
-    private int turretammo;
-    private int rocketreload = 800;
-    private int rocketammo;
     private int meleereload = 15;
     private int meleeammo;
+    private int assaultammo = 0;
+    private int assaultreload = 500;
     private int lightningammo;
     private int lightningreload = 300;
+    private int cloudAmmo;
+    private int cloudReload = 500;
+    private ZRainCloud cloud;
     private int groundCooldown = 60; // 60
     private int primeLightning; // 30
     private int primeDashes; // 30
-    private int startDashCooldown; // 30
+    private int startDashCooldown; // 60
     private int remainingDashes; // 3
     private int remainingHail; // 16
+    private int nthHail;
     private int throwBallCooldown; // 30
     private int effectammo = 0; // for random effects
-    private static final int laserReload = 700;
-    private int laserAmmo;
     private int deathwaitcooldown = 100;
     private ShieldID hoverShield = new ShieldID(this, "hover");
     public String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
-    private static final int hailRange = 200;
+    private static final int hailRange = 250;
     /**
      * Initilise this rocket.
      */
@@ -102,9 +91,8 @@ public class CloudServer extends Boss
     {
         warriorammo = 400;
         meleeammo = 15;
-        hiveammo = 400;
-        turretammo = -300;
-        rocketammo = 200;
+        assaultammo = 200;
+        cloudAmmo = 0;
         scaleTexture(90, 90);
         setRotation(0);
         setSpeed(0);
@@ -112,7 +100,7 @@ public class CloudServer extends Boss
         phase = 1;
         warriors = new ArrayList<WarriorZombie>();
         turrets = new ArrayList<GridEntity>();
-        lasers = new ArrayList<GridEntity>();
+        aps = new ArrayList<AssaultPoint>();
         wizardStun = new EffectID(this);
     }
     public ZombieClass[] getZombieClasses(){
@@ -142,11 +130,23 @@ public class CloudServer extends Boss
         int op = phase;
         phase = Math.max(3-(3*(getHealth()-1)/getMaxHealth()), op);
         if(op!=phase){
-            //
+            splitterAttack(5);
+            if(phase==3){
+                gathererAttack();
+            }
+            isHovering = false;
+            hoverCooldown = 0;
+            //switch instantly
         }
         lightningammo++;
         if(lightningammo>=lightningreload){
             lightningAttack();
+        }
+        if(isHovering&&(cloud==null||!cloud.isInWorld()))
+            cloudAmmo++;
+        if(cloudAmmo>=cloudReload){
+            cloudAttack();
+            cloudAmmo = 0;
         }
         if(checkWarriors()){
             warriorammo++;
@@ -156,23 +156,23 @@ public class CloudServer extends Boss
             warriorammo = 0;
         }
 
-        if(dash!=null)if(!dash.dash()){
+        if(dash!=null){if(!dash.dash()){
             dash = null;
-            //if(shamanToSpawn)
         }else{
             canSwitchHover = false;
-        }else if(!isHovering&&isOnGround()){
-            face(getTarget(), true);
+        }}
+        else if(!isHovering&&isOnGround()){
+            if(remainingHail==0&&primeLightning==0)face(getTarget(), true);
             canSwitchHover = false;
             if(primeLightning>0){
                 primeLightning--;
                 if(primeLightning<=0){
-                    //boltAttack();
+                    boltAttack();
                 }
             }else if(primeDashes>0){
                 primeDashes--;
                 if(primeDashes<=0){
-                    startDashCooldown = 30;
+                    startDashCooldown = 60;
                     remainingDashes = 3;
                 }
             }else if(startDashCooldown>0){
@@ -181,12 +181,12 @@ public class CloudServer extends Boss
                     remainingDashes--;
                     dashAttack();
                     if(remainingDashes>0){
-                        startDashCooldown = 30;
+                        startDashCooldown = 60;
                     }
                 }
             }else if(remainingHail>0){
                 remainingHail--;
-                //hailAttack();
+                hailAttack();
             }
             else if(throwBallCooldown>0){
                 throwBallCooldown--;
@@ -233,7 +233,10 @@ public class CloudServer extends Boss
         }else if(!isHovering&&!isOnGround()){
             setHeight(getHeight()-10);
             if(isOnGround()){
-                knockBackOnEnemies(200, 100);
+                knockBackOn(200, 100);
+                if(phase>1){
+                    splitterAttack(Greenfoot.getRandomNumber(2)+2);
+                }
             }
         }
         if(isHovering&&!hasShield(hoverShield)){
@@ -241,40 +244,18 @@ public class CloudServer extends Boss
         }else if(!isHovering&&hasShield(hoverShield)){
             removeShield(hoverShield);
         }
-        if(true)return;
-        
-        if(phase>1&&!hashived){
-            hiveammo++;
-        }
-        if(hiveammo>=hivereload){
-            hiveDropAttack();
-            hashived = true;
-            hiveammo = 0;
-        }
-        
-        if(checkTurrets())turretammo++;
-        if(turretammo>=turretreload){
-            turretAttack();
-            turretammo = 0;
-        }
 
         effectammo++;
         if(effectammo>=600){
-            applyRandomEffect();
+            applyHeal();
             effectammo = 0;
         }
-        
-        rocketammo++;
-        if(rocketammo>=rocketreload){
-            rocketAttack();
-            rocketammo = 0;
+        if(checkTurrets()){
+            assaultammo++;
         }
-        
-        checkLasers();
-        laserAmmo++;
-        if(laserAmmo>=laserReload){
-            laserAttack();
-            laserAmmo = 0;
+        if(assaultammo>=assaultreload){
+            turretAttack();
+            assaultammo = 0;
         }
         
         meleeammo++;
@@ -308,22 +289,18 @@ public class CloudServer extends Boss
                 return false;
             }
         }
+        for(AssaultPoint z:aps){
+            if(z.isInWorld()){
+                return false;
+            }
+        }
         if(turrets.size()>0){
             turrets.clear();
         }
+        if(aps.size()>0){
+            aps.clear();
+        }
         return true;
-    }
-    public void checkLasers(){
-        for(int i = lasers.size()-1; i >= 0; i--){
-            if(lasers.get(i).isDead()){
-                lasers.remove(i);
-            }
-        }
-        if(lasers.size()>=3){
-            for(int i = 0; i < lasers.size()-3; i++){
-                lasers.get(i).applyEffect(new FatalPoisonEffect(10, 1, this));
-            }
-        }
     }
     public void fungalDefense(){
         for(GridEntity g: getGEsInRange(110)){
@@ -337,6 +314,11 @@ public class CloudServer extends Boss
         ZombieDropper pack = new ZombieDropper(getAngle(x, y)+90, d, d, z, this);
         getWorld().addObject(pack, getX(), getY());
         Sounds.play("zombiedropshoot");
+        if(phase>=2&&z instanceof GridEntity g){
+            if(Greenfoot.getRandomNumber(5)==0){
+                spawnZombieAt(Greenfoot.getRandomNumber(2)==0?new ExorcistZombie():new ExorcistZombie(g), x+Greenfoot.getRandomNumber(50)-25, y+Greenfoot.getRandomNumber(50)-25);
+            }
+        }
     }
     public void spawnAt(GridObject z, double x, double y){
         getWorld().addObject(z, x, y);
@@ -345,23 +327,6 @@ public class CloudServer extends Boss
         getWorld().addObject(z, getX(), getY());
     }
     //Attacks
-    public void healSelfAttack(){
-        spawnZombieAt(new DoctorZombie(this), getXAtOffset(2), getYAtOffset(1));
-        spawnZombieAt(new DoctorZombie(this), getXAtOffset(-1), getYAtOffset(2));
-        spawnZombieAt(new DoctorZombie(this), getXAtOffset(-2), getYAtOffset(-1));
-        spawnZombieAt(new DoctorZombie(this), getXAtOffset(1), getYAtOffset(-2));
-    }
-    public void tankAttack(){
-        spawnZombieAt(newRDZ(), getXAtOffset(1), getYAtOffset(1));
-        spawnZombieAt(newRDZ(), getXAtOffset(1), getYAtOffset(-1));
-        spawnZombieAt(newRDZ(), getXAtOffset(-1), getYAtOffset(1));
-        spawnZombieAt(newRDZ(), getXAtOffset(-1), getYAtOffset(-1));
-    }
-    public RussianDollZombie newRDZ(){
-        RussianDollZombie r = new RussianDollZombie();
-        r.applyEffect(new SpeedPercentageEffect(0, 800, this));
-        return r;
-    }
     public void warriorAttack(){
         int gx = getWorld().gridwidth*World.gridSize/2, gy = getWorld().gridheight*World.gridSize/2;
         double lx = getX()-gx, rx = getX()+gx, by = getY()-gy, uy = getY()+gy;
@@ -382,6 +347,18 @@ public class CloudServer extends Boss
         warriors.add(z);
         spawnZombieAt(z, x, y);
     }
+    public void gathererAttack(){
+        for(int i = 0; i < 2; i++){
+            spawnZombieAt(new GathererZombie(), getRandomCellX(), getRandomCellY());
+        }
+    }
+    public void splitterAttack(int num){
+        for(int i = 0; i < 360; i+=360/num){
+            SplitterZombie o = new SplitterZombie();
+            o.h.applyEffect(new FatalPoisonEffect(3, 1, this));
+            spawnZombieAt(o, getX()+getBranchX(i, 100), getY()+getBranchY(i, 100));
+        }
+    }
     public void lightningAttack(){
         for(int i = 0; i < phase+2; i++){
             double x = getRandomCellX();
@@ -391,77 +368,51 @@ public class CloudServer extends Boss
         }
         lightningammo = 0;
     }
+    public void cloudAttack(){
+        if(phase==1)addObjectHere(cloud = new ZRainCloud(this));
+    }
+    public void clusterAttackTest(){
+        isFindingAllies = true;
+        Location t = findCluster(10000, 300);
+        isFindingAllies = false;
+        if(t!=null){
+            double ang = face(t.x, t.y, false);
+            double dist = distanceTo(t.x, t.y);
+            addObjectHere(new ZHailBall(ang, dist, 100, this));
+        }
+    }
+    public boolean isPotentialTarget(GridEntity t){
+        return isFindingAllies?isAlliedWith(t):super.isPotentialTarget(t);
+    }
     public void dashAttack(){
         dash = new DasherDoer(getRotation(), 18, 25, 100, (g)->{
-            g.knockBack(face(g, false), 30, 200, this);
+            if(isAggroTowards(g)){
+                g.knockBack(face(g, false), 30, 200, this);
+                damage(g, 100);
+            }
         }, this);
     }
-    public void hiveDropAttack(){
-        Zombie toSpawn;
-        if(phase>3){
-            toSpawn = new HornetNeckZombie();
-            if(phase==5){
-                toSpawn.applyShield(new ArmorShield(new ShieldID(this, "hornetneck protection"), 200));
-            }
-        }else{
-            toSpawn = new HivemindZombie();
-        }
-        getWorld().addObject(toSpawn, getX(), getY());
+    public void hailAttack(){
+        addObjectHere(new ZHail(getRotation()+15*Math.sin(nthHail*Math.PI/4), this));
+        nthHail++;
+    }
+    public void boltAttack(){
+        addObjectHere(new ZBolt(getRotation(), this, phase>2));
     }
     public void turretAttack(){
-        int num = phase/2+1;
-        if(phase>=5)num = 1;
-        for(int i = 0; i < num; i++){
+        for(int i = 0; i < phase-1; i++){
             double x = getRandomCellX();
             double y = getRandomCellY();
-            if(Greenfoot.getRandomNumber(3)<2)spawnZombieAt(new Turret(phase, turrets, this), x, y);
-            else spawnZombieAt(new BombTurret(phase, turrets, this), x, y);
+            AssaultPoint s = new AssaultPoint(turrets, this);
+            aps.add(s);
+            spawnZombieAt(s, x, y);
         }
     }
-    public void laserAttack(){
-        double sx = 0, sy = 0;
-        int n = 0;
-        for(GridEntity g: lasers){
-            sx+=g.getX()-getX();
-            sy+=g.getY()-getY();
-            n++;
-        }
-        for(GridEntity g: warriors){
-            sx+=g.getX()-getX();
-            sy+=g.getY()-getY();
-            n++;
-        }
-        for(GridEntity g: turrets){
-            sx+=g.getX()-getX();
-            sy+=g.getY()-getY();
-            n++;
-        }
-        if(n==0)return;
-        sx/=n;
-        sy/=n;
-        spawnZombieAt(new LaserSquad(phase, lasers, this), getX()*2-sx, getY()*2-sy);
-    }
-    public void rocketAttack(){
-        for(int i = 75; i <= 195; i+=30){
-            spawnZombie(new RocketZombie(50, i));
-        }
-    }
-    public void applyRandomEffect(){
-        if(phase>5)return;//no random effects past last phase
-        boolean affectsAllies = Greenfoot.getRandomNumber(2)==0;
-        int r = Greenfoot.getRandomNumber(3);
-        System.out.println("Applying random effect "+r+" with allies? "+affectsAllies);
+    public void applyHeal(){
+        int amt = 200+phase*50;
         explodeOn(1000, (ge) -> {
-            if(ge!=this&&isAggroTowards(ge)&&!affectsAllies){
-                double amt = 1-phase/20.0;
-                if(r==0)ge.applyEffect(new SpeedPercentageEffect(amt, 600, this));
-                else if(r==1)ge.applyEffect(new PowerPercentageEffect(amt, 600, this));
-                else if(r==2)ge.applyEffect(new ReloadPercentageEffect(amt, 600, this));
-            }else if(isAlliedWith(ge)){
-                double amt = 1+phase/5.0;
-                if(r==0)ge.applyEffect(new SpeedPercentageEffect(amt, 600, this));
-                else if(r==1)ge.applyEffect(new PowerPercentageEffect(amt, 600, this));
-                else if(r==2)ge.applyEffect(new ReloadPercentageEffect(amt, 600, this));
+            if(isAlliedWith(ge)){
+                heal(ge, amt);
             }
         }, new Explosion(10));
     }
