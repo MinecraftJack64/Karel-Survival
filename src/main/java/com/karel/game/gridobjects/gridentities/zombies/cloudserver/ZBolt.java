@@ -15,6 +15,7 @@ public class ZBolt extends ZBullet {
     }
     public void expire(){
         if(upgraded){
+            if(getNearestTarget()!=null)
             addObjectHere(new ZBolt(face(getNearestTarget(), true), this, false));
         }
         super.expire();

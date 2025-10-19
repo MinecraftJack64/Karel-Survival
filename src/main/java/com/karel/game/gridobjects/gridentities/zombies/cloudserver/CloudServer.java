@@ -100,6 +100,7 @@ public class CloudServer extends Boss
         assaultammo = 200;
         cloudAmmo = 0;
         portalAmmo = 0;
+        lightningammo = 200;
         scaleTexture(90, 90);
         setRotation(0);
         setSpeed(0);
