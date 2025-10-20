@@ -55,6 +55,10 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+10/20
+Balancing
+ - Hail range(180->252)
+
 10/17
 Balancing
  - Exorcist Zombie attack no longer pierces
