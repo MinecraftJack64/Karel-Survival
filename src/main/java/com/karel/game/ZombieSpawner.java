@@ -6,11 +6,10 @@ import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.collectibles.WeaponFrag;
 import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServerOld;
 import com.karel.game.gridobjects.gridentities.zombies.easter.EasterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
-import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
+import com.karel.game.spawndata.SpawnCalculator;
 
 
 /**
@@ -26,26 +25,23 @@ public class ZombieSpawner implements Spawner
     public int waveHealth = 0;
     public int waveMaxHealth = 0;
     public int wavelevel = 1;
-    
-    public QueueMap<Integer, Boss> bosses;
-    private int nextBossWave;
-    public int cwavecooldown = 200;
-    private int bossphase = 0;
-    private boolean bossfight;
-    public Boss boss;
-    
+
     SpawnCalculator calculator = new SpawnCalculator();
     private SpawnData toSpawn;
     private int nextSpawn;
     private int remainingSections;
     private int forceNextSpawn; // 450
-    private int lastMaxHealth = 0;
+    private int lastMaxHealth = 0;//TODO
+    
+    public QueueMap<Integer, Boss> bosses = calculator.bosses;
+    private int nextBossWave;
+    public int cwavecooldown = 200;
+    private int bossphase = 0;
+    private boolean bossfight;
+    public Boss boss;
     public ArrayList<GridEntity> currentlySpawned;
     
     public ZombieSpawner(){
-        bosses = new QueueMap<Integer, Boss>();
-        bosses.add(31, new Wizard());
-        bosses.add(45, new CloudServerOld());
         try{nextBossWave = bosses.peek().getKey();}
         catch(Exception e){nextBossWave = Integer.MAX_VALUE;}
     }

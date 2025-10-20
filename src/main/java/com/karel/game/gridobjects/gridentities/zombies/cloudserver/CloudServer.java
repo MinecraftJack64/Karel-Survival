@@ -52,6 +52,7 @@ import com.karel.game.particles.Explosion;
 public class CloudServer extends Boss
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.boss};
+    private CloudServerSpawner spawner;
     private static final int warriorreload = 700;         // The minimum delay between firing the gun.
     private static final int hoverHeight = 200;
     private int hoverCooldown; // 1000 in sky, 500 on ground
@@ -110,6 +111,7 @@ public class CloudServer extends Boss
         turrets = new ArrayList<GridEntity>();
         aps = new ArrayList<AssaultPoint>();
         exors = new ArrayList<ExorcistZombie>();
+        spawner = new CloudServerSpawner();
         wizardStun = new EffectID(this);
     }
     public ZombieClass[] getZombieClasses(){
