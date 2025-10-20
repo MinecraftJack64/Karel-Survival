@@ -32,6 +32,6 @@ public class ShamanWave extends WaveAttack
         if(g.getHealth()==g.getMaxHealth())return;
         int amt = (int)((g.getMaxHealth()-g.getHealth())*0.35);
         heal(g, amt);
-        g.addObjectHere(new EvilSpiritZombie((GridEntity)getSource(), amt));
+        g.addObjectHere(new EvilSpiritZombie((GridEntity)getSource(), Math.min(amt, 500)));
     }
 }

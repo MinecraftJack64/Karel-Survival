@@ -375,7 +375,7 @@ public class CloudServer extends Boss
     public void portalAttack(){
         Location l = findCluster(1000, 300);
         if(l==null)return;
-        spawnZombieAt(new PortalZombie(), l.x, l.y);
+        spawnZombieAt(new PortalZombie(1, portalReload*2), l.x, l.y);
     }
     public void spawnWarrior(double x, double y){
         WarriorZombie z = new WarriorZombie();

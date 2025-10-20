@@ -16,11 +16,16 @@ public class EntrancePortal extends GridObject
     EntrancePortal other;
     GridObject source;
     int health = 14;
+    int life = -1;
     int colorCode = -1; // red, green, blue, yellow, purple, cyan, orange
     public EntrancePortal(GridObject source){
         this.source = source;
         setImage("Projectiles/Static/portal.png");
         setTeam(source.getTeam());
+    }
+    public EntrancePortal(GridObject source, int life){
+        this(source);
+        this.life = life;
     }
     public void link(EntrancePortal other){
         colorCode = Greenfoot.getRandomNumber(7);
@@ -38,6 +43,7 @@ public class EntrancePortal extends GridObject
         colorCode = color;
         this.other = other;
         updateTint(colorCode);
+        life = -1;
     }
     public static void registerColor(int color){
         registeredColors.add(color);
@@ -92,6 +98,13 @@ public class EntrancePortal extends GridObject
         for(int i = exiters.size()-1; i >= 0; i--){
             if(exiters.get(i).isDead()||distanceTo(exiters.get(i))>health*5){
                 exiters.remove(i);
+            }
+        }
+        if(life>0){
+            life--;
+            if(life==0){
+                other.kill();
+                kill();
             }
         }
     }

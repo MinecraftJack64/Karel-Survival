@@ -7,7 +7,9 @@ import com.karel.game.Greenfoot;
 import com.karel.game.Possessor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 public class ShapeshifterZombie extends Zombie implements Possessor{
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer, ZombieClass.ranger};
@@ -97,8 +99,11 @@ public class ShapeshifterZombie extends Zombie implements Possessor{
     public GridEntity searchModel(){
         ArrayList<GridEntity> options = new ArrayList<GridEntity>();
         for(GridEntity ge: getWorld().allEntities()){
-            if(ge!=this&&isAlliedWith(ge)&&ge instanceof Zombie&&!priorModels.contains(ge)){
-                options.add(ge);
+            if(ge!=this&&isAlliedWith(ge)&&ge instanceof Zombie z&&!priorModels.contains(ge)){
+                List<ZombieClass> l = Arrays.asList(z.getZombieClasses());
+                if(!l.contains(ZombieClass.boss)&&!l.contains(ZombieClass.miniboss)){
+                    options.add(ge);
+                }
             }
         }
         if(options.size()==0)return null;

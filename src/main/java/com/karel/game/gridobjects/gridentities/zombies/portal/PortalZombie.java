@@ -30,7 +30,7 @@ import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 public class PortalZombie extends Zombie
 {
     private static final ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.meatshield};
-    private int portals;
+    private int portals, life;
     public String getStaticTextureURL(){return "portalzareln.png";}
     /**
      * Initilise this rocket.
@@ -39,6 +39,11 @@ public class PortalZombie extends Zombie
     {
         startHealth(250);
         portals = 1;
+    }
+    public PortalZombie(int portals, int portalLife){
+        this();
+        this.portals = portals;
+        life = portalLife;
     }
     public void behave(){
         super.behave();
@@ -64,9 +69,9 @@ public class PortalZombie extends Zombie
             double ang = face(getTarget(), false);
             double d = 400;
             double x = getX()+Math.cos((ang-90)*Math.PI/180)*d, y = getY()+Math.sin((ang-90)*Math.PI/180)*d;
-            EntrancePortal one = new EntrancePortal(this);
+            EntrancePortal one = new EntrancePortal(this, life);
             addObjectHere(one);
-            EntrancePortal two = new EntrancePortal(this);
+            EntrancePortal two = new EntrancePortal(this, life);
             getWorld().addObject(two, x, y);
             one.link(two);
             portals--;

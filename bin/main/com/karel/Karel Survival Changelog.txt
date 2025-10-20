@@ -55,6 +55,21 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+10/19
+Balancing
+ - Evil Spirit Zombie health is capped at 500
+
+10/18
+Balancing
+ - Cloud Server spawned portal life(inf->800)
+ - Shapeshifter Zombie can no longer mimic bosses and minibosses
+ - Frisbee zombies prioritize targets
+Technical
+ - Portal Zombies can now spawn portals with a certain amount of 'life'(amount of time to last)
+Fixes
+ - Fixed cloud server crash when bolt tries to change direction without a target
+ - Fixed frisbee zombies letting go of their frisbees all the time
+
 10/17
 Balancing
  - Exorcist Zombie attack no longer pierces

@@ -60,7 +60,7 @@ public class FrisbeeZombie extends Zombie
         }
     }
     public void notifyPull(GridObject t){
-        if(t==frizz)
+        if(t==this)
             super.notifyPull();
         else{
             if(frizz.isGrabbed())frizz.letGo();
@@ -79,6 +79,9 @@ public class FrisbeeZombie extends Zombie
             applyShield(new ProjectileReflectShield(new ShieldID(this), 100));
             reloadDelayCount = 0;
         }
+    }
+    public boolean prioritizeTarget(){
+        return true;
     }
     @Override
     public int getXP(){
