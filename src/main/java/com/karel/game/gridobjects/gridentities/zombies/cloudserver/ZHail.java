@@ -8,6 +8,6 @@ public class ZHail extends ZBullet {
         super(rot, source);
         setDamage(10);
         setSpeed(18);
-        setLife(10);
+        setLife(14);
     }
 }

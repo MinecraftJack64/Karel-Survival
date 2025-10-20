@@ -2,10 +2,6 @@ package com.karel.game;
 import java.util.ArrayList;
 
 import com.karel.game.gamemodes.SpawnData;
-import com.karel.game.gridobjects.gridentities.zombies.Zombie;
-import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
-import com.karel.game.gridobjects.gridentities.zombies.shield.ShieldZombie;
-import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 /**
  * Write a description of class Levels here.
  * 
@@ -17,32 +13,32 @@ public class Levels
     private static Level[] lvls = new Level[]{
         new Level(
             new Wave(0.5,
-                new ZombieGroup(Zombie.class, 3)
+                new ZombieGroup("zombie", 3)
             ),
             new Wave(0.5,
-                new ZombieGroup(Zombie.class, 3),
-                new ZombieGroup(ShieldZombie.class, 1)
+                new ZombieGroup("zombie", 3),
+                new ZombieGroup("shield", 1)
             ),
             new Wave(0.5,
-                new ZombieGroup(Zombie.class, 5),
-                new ZombieGroup(ShieldZombie.class, 3)
+                new ZombieGroup("zombie", 5),
+                new ZombieGroup("shield", 3)
             )
         ),
         new Level(
             new Wave(0.5,
-                new ZombieGroup(Zombie.class, 3),
-                new ZombieGroup(ShieldZombie.class, 1)
+                new ZombieGroup("zombie", 3),
+                new ZombieGroup("shield", 1)
             ),
             new Wave(0.5,
-                new ZombieGroup(Zombie.class, 3),
-                new ZombieGroup(ExplodingZombie.class, 1)
+                new ZombieGroup("zombie", 3),
+                new ZombieGroup("exploding", 1)
             ),
             new Wave(0.5,
-                new ZombieGroup(ShieldZombie.class, 2),
-                new ZombieGroup(ExplodingZombie.class, 2)
+                new ZombieGroup("shield", 2),
+                new ZombieGroup("exploding", 2)
             ),
             new Wave(0.5,
-                new ZombieGroup(ShooterZombie.class, 1)
+                new ZombieGroup("shooter", 1)
             )
         )
     };
@@ -56,13 +52,13 @@ public class Levels
         return lvls.length;
     }
     public static final class ZombieGroup{
-        private final Class type;
+        private final String type;
         private final int count;
-        public ZombieGroup(Class type, int cnt){
+        public ZombieGroup(String type, int cnt){
             this.type = type;
             this.count = cnt;
         }
-        public Class getType(){
+        public String getType(){
             return type;
         }
         public int getCount(){
@@ -80,7 +76,7 @@ public class Levels
             return threshold;
         }
         public SpawnData getSpawnData(){
-            ArrayList<Class> st = new ArrayList<Class>();
+            ArrayList<String> st = new ArrayList<String>();
             ArrayList<Integer> sc = new ArrayList<Integer>();
             for(ZombieGroup g: groups){
                 st.add(g.getType());

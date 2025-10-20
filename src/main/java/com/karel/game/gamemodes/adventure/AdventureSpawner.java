@@ -8,6 +8,7 @@ import com.karel.game.GridObject;
 import com.karel.game.Levels;
 import com.karel.game.Levels.LevelRunner;
 import com.karel.game.gamemodes.SpawnData;
+import com.karel.game.gridobjects.gridentities.zombies.ZombieFactory;
 import com.karel.game.gridobjects.gridentities.zombies.herald.ZombieHerald;
 import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
 import com.karel.game.Spawner;
@@ -27,7 +28,7 @@ public class AdventureSpawner implements Spawner
     public GridEntity boss;
     public LevelRunner runner;
     private World myWorld = Game.world;
-    public ArrayList<Class> spawnTypes;
+    public ArrayList<String> spawnTypes;
     public ArrayList<Integer> spawnCount;
     public ArrayList<GridEntity> currentlySpawned = new ArrayList<GridEntity>();
     public int level;
@@ -63,7 +64,7 @@ public class AdventureSpawner implements Spawner
         currentlySpawned = new ArrayList<GridEntity>();
         for(int i = 0; i < spawnTypes.size(); i++){
             for(int f = 0; f < spawnCount.get(i); f++){
-                try{GridEntity toSpawn = (GridEntity)(spawnTypes.get(i).getDeclaredConstructor().newInstance());
+                try{GridEntity toSpawn = ZombieFactory.createZombie(spawnTypes.get(i));
                 spawnZombie(toSpawn);currentlySpawned.add(toSpawn);}catch(Exception e){e.printStackTrace();}
             }
         }
