@@ -1,0 +1,23 @@
+{
+    "title": "la Karel na Firsvosmo",
+    "buttons.play": "Flesu",
+    "buttons.edit": "Motetansu",
+    "buttons.settings": "Xutanox",
+    "buttons.quit": "Promosu",
+    "buttons.restart": "Kosisu -icesmo",
+    "buttons.save": "Entansu",
+    "buttons.load": "Kitansu",
+    "buttons.new": "Niui",
+    "buttons.back": "Dazosu",
+    "buttons.confirm": "Tanvo'osu",
+    "buttons.cancel": "Promosu",
+    "buttons.next": "Zosu -u ceo",
+    "buttons.previous": "Zosu -u freo",
+    "buttons.start": "Kosisu",
+    "buttons.stop": "Mosisu",
+    "buttons.resume": "Mekkosisu",
+    "buttons.pause": "Momisisu",
+    "buttons.help": "Dono",
+    "weapons.fastfood": "Hambergerso",
+    "weapons.fastfood.description": "Solito vipaotuli ki"
+}

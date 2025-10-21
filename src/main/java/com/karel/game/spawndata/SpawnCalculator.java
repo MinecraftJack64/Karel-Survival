@@ -16,9 +16,9 @@ import com.karel.game.gridobjects.gridentities.zombies.ZombieFactory;
  */
 public class SpawnCalculator
 {
-    public String[] spawnables;
-    public int[] minlevels;//18 is doctor, 49 is JITB, 71 - boid zombie
-    public int[] maxnums;
+    public String[] spawnables = new String[]{"shield"};
+    public int[] minlevels = new int[]{1};//18 is doctor, 49 is JITB, 71 - boid zombie
+    public int[] maxnums = new int[]{8};
     public QueueMap<Integer, Boss> bosses;
     public ArrayList<Integer> canSpawn = new ArrayList<Integer>(), forceSpawn = new ArrayList<Integer>();
     public ArrayList<Integer> spawnTypes = new ArrayList<Integer>(), spawnCount = new ArrayList<Integer>();
@@ -27,22 +27,25 @@ public class SpawnCalculator
         ArrayList<Integer> levels = new ArrayList<Integer>();
         ArrayList<Integer> nums = new ArrayList<Integer>();
         try{
-            try (Scanner sc = new Scanner(new File("survivl.dat"))) {
-                String type = sc.next();
-                if(type.equals("boss")){
-                    int wave = sc.nextInt();
-                    bosses = new QueueMap<Integer, Boss>();
-                    bosses.add(wave, (Boss)ZombieFactory.createZombie(type));
-                }else{
-                    int level = sc.nextInt();
-                    int num = sc.nextInt();
-                    types.add(type);
-                    levels.add(level);
-                    nums.add(num);
+            try (Scanner sc = new Scanner(new File("src/main/java/com/karel/game/spawndata/survival.dat"))) {
+                while(sc.hasNext()){
+                    String type = sc.next();
+                    if(type.equals("boss")){
+                        type = sc.next();
+                        int wave = sc.nextInt();
+                        bosses = new QueueMap<Integer, Boss>();
+                        bosses.add(wave, (Boss)ZombieFactory.createZombie(type));
+                    }else{
+                        int level = sc.nextInt();
+                        int num = sc.nextInt();
+                        types.add(type);
+                        levels.add(level);
+                        nums.add(num);
+                    }
                 }
             }
         }catch(Exception e){
-            //
+            e.printStackTrace();
         }
         spawnables = types.stream().toArray(String[]::new);
         minlevels = levels.stream().mapToInt(Integer::intValue).toArray();
