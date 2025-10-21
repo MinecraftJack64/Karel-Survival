@@ -58,6 +58,10 @@ Last Phase:
 10/20
 Balancing
  - Hail range(180->252)
+Technical
+ - Spawn calculator uses strings and zombiefactory instead of classes
+Other
+ - Updated some Baliski-Baitre(bb_al) translations
 
 10/19
 Balancing
