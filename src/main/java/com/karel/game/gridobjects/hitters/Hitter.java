@@ -28,6 +28,7 @@ public class Hitter extends GridObject implements SubAffecter
         return "bullet.png";
     }
     HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
+    private boolean hitfullallies = true;
     public Hitter(GridObject source){
         this.source = source;
         if(source!=null)inherit(source);
@@ -50,6 +51,10 @@ public class Hitter extends GridObject implements SubAffecter
     public void setHitAllies(boolean d){
         hitallies = d;
     }
+    public void setHitAllies(boolean d, boolean f){
+        setHitAllies(d);
+        hitfullallies = f;
+    }
     public void setNumTargets(int ist){
         targets = ist;
     }
@@ -68,10 +73,10 @@ public class Hitter extends GridObject implements SubAffecter
     public int getDamage(GridEntity g){
         return getDamage();
     }
-    public boolean willSelfHarm(){
+    public boolean willSelfHit(){
         return hitself;
     }
-    public void setSelfHarm(boolean will){
+    public void setSelfHit(boolean will){
         hitself = will;
     }
     public boolean canMultiHit(){
@@ -178,7 +183,7 @@ public class Hitter extends GridObject implements SubAffecter
         return asteroid;
     }
     public boolean willHit(GridEntity thing){
-        return thing==getSource()&&willSelfHarm() || isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing);
+        return thing==getSource()&&willSelfHit() || thing!=getSource()&&!willSelfHit()&&(isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing)&&(hitfullallies||thing.getPercentHealth()<1));
     }
     public boolean isPotentialTarget(GridEntity thing){
         return super.isPotentialTarget(thing)&&willHit(thing)&&!hitstory.contains(thing);

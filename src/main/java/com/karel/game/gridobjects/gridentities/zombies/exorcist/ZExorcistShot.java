@@ -22,9 +22,8 @@ public class ZExorcistShot extends ZBullet
             setDamage(35);
         }
         setNumTargets(1);
-        //setAggression(false);
-        setSelfHarm(hitself);
-        setHitAllies(true);
+        setSelfHit(hitself);
+        setHitAllies(true, false);
     }
     
     /**

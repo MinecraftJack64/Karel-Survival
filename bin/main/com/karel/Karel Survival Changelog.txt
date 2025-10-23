@@ -55,6 +55,14 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+10/22
+Fixes
+ - Fixed Cloud Server spawning too many exorcists
+Balancing
+ - Exorcists and Cloud Servers no longer hit themselves if they don't want to and their shots phase through enemies that don't need healing
+Technical
+ - willSelfHarm and setSelfHarm renamed to willSelfHit and setSelfHit
+
 10/20
 Balancing
  - Hail range(180->252)

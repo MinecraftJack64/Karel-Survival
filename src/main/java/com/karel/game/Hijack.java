@@ -15,7 +15,7 @@ public class Hijack extends Rocket
         setRange(200);
         setNumTargets(1);
         setHitAllies(false);
-        setSelfHarm(false);
+        setSelfHit(false);
     }
     public void doHit(GridEntity g){
         toNotify.notifyHit(g);

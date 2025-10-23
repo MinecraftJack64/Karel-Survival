@@ -12,7 +12,7 @@ public class SodaPuddle extends Puddle {
         setOpacity(170);
         scaleTexture(getRange()*2);
         setHitAllies(true);
-        setSelfHarm(true);
+        setSelfHit(true);
     }
     public SodaPuddle(int range, int interv, GridObject source){
         this(100, range, interv, source);
@@ -24,7 +24,7 @@ public class SodaPuddle extends Puddle {
         setOpacity(170);
         scaleTexture(getRange()*2);
         setHitAllies(true);
-        setSelfHarm(true);
+        setSelfHit(true);
     }
     public void tick(){
         super.tick();

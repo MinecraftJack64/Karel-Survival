@@ -130,12 +130,11 @@ public class ExorcistZombie extends Zombie
                 hastarget = false;
             }
         }
-        if(getHealth()<getMaxHealth()){//less than half health, heal self
+        if(getHealth()<getMaxHealth()){//less than full health, heal self
             shouldheal = true;
             healself = true;
         }
         if(candidate!=null)attackcooldown = 400;
-        //healself = getHealth()<getMaxHealth()/2;
         return candidate==null?super.getTarget():candidate;
     }
     public GridEntity getNearestAlly(boolean mustbehurt){

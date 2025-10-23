@@ -24,7 +24,7 @@ public class ShamanWave extends WaveAttack
         setMultiHit(false);
         setAggression(false);
         setHitAllies(true);
-        setSelfHarm(true);
+        setSelfHit(true);
     }
     
     public void doHit(GridEntity g){

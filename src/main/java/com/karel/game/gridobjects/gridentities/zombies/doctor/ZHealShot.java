@@ -30,9 +30,8 @@ public class ZHealShot extends ZBullet
             setNumTargets(1);
         else
             setNumTargets(-1);
-        //setAggression(false);
-        setSelfHarm(hitself);
-        setHitAllies(true);
+        setSelfHit(hitself);
+        setHitAllies(true, false);
     }
     
     /**

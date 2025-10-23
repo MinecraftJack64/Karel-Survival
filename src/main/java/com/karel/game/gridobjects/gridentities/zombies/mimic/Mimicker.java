@@ -11,7 +11,7 @@ public class Mimicker extends Bullet {
     public Mimicker(GridEntity t, MimicZombie mz){
         super(0, mz);
         setSpeed(12);
-        setSelfHarm(true);
+        setSelfHit(true);
         setAggression(false);
         try{
             weapon = t instanceof Player p?(p.getHeldItem() instanceof Weapon w?w:null):null;

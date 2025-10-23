@@ -15,7 +15,7 @@ public class SodaSquirt extends Bullet {
         setLife(20);
         if(heals){
             setNumTargets(1);
-            setSelfHarm(true);
+            setSelfHit(true);
         }else{
             setNumTargets(3);
         }

@@ -34,9 +34,7 @@ public class DemonZombie extends SpawnableZombie
             setHeight(1);
         }
         super.behave();
-        if(myhive!=null&&myhive.isDead()){
-            heal(1, this);
-        }
+        heal(1, this);
     }
     public void attack(){
         super.attack();
@@ -56,11 +54,11 @@ public class DemonZombie extends SpawnableZombie
         return 40;
     }
     
-    public void hit(int amt, GridObject source){
-        super.heal(amt, source);
+    public void hit(int amt, double x, GridObject source){
+        super.heal((int)(amt*x), source);
     }
     public void heal(int amt, GridObject source){
-        super.hit(amt, source);
+        super.hit(amt, 1, source);
     }
     
     @Override

@@ -22,7 +22,7 @@ public class ProjectileReflectShield extends Shield
             Bullet psource = (Bullet)source;
             redirectProjectile(psource);
             psource.setTeam(getHolder().getTeam());
-            psource.setSelfHarm(true);
+            psource.setSelfHit(true);
             if(psource.getNumTargets()!=-1){
                 psource.setNumTargets(psource.getNumTargets()+1);
             }

@@ -20,7 +20,7 @@ public class Rocket extends FlyingProjectile
         load = toSpawn;
         setRange(150);
         setHitAllies(true);
-        setSelfHarm(true);
+        setSelfHit(true);
         hasLanded = false;
         loadStun = new EffectID(this, "carryload");
         load.stun(loadStun);

@@ -36,7 +36,7 @@ public class Bullet extends Projectile
         setDamage(40);
         setNumTargets(1);
         setAggression(true);
-        setSelfHarm(false);
+        setSelfHit(false);
         setMultiHit(true);
     }
     public Bullet(double rotation, GridObject source)

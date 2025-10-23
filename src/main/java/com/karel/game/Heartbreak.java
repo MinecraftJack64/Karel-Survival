@@ -23,7 +23,7 @@ public class Heartbreak extends Bullet
         setSpeed(15);
         setNumTargets(2);
         //setAggression(false);
-        setSelfHarm(true);
+        setSelfHit(true);
         setHitAllies(true);
     }
     
