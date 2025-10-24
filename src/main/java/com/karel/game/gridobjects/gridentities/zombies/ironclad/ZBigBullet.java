@@ -14,6 +14,8 @@ public class ZBigBullet extends ZBullet
     public ZBigBullet(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Projectiles/Bullets/tankround.png");
+        setRotation(getRotation()-180);
         setSpeed(20);
         setLife(100);
         setDamage(500);

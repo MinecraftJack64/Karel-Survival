@@ -41,7 +41,10 @@ public class DemonZombie extends SpawnableZombie
         getTarget().applyEffect(new PoisonEffect(2, 2, 2, this));
         GridObject t = getTarget();
         pullToBranch(t, t.getRotation()+90, distanceTo(t)-10);
-        heal(this, 2);
+        heal(this, 1);
+        if(myhive==null||!myhive.isDead()){
+            heal(this, 1);
+        }
     }
     
     public int defaultDamage(){

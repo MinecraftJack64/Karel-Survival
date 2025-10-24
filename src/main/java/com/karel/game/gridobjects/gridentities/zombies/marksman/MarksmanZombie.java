@@ -1,9 +1,11 @@
 package com.karel.game.gridobjects.gridentities.zombies.marksman;
 
+import com.karel.game.Greenfoot;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.firingsquad.FiringSquadZombie;
+import com.karel.game.particles.SniperCasing;
 
 /**
  * Write a description of class MarksmanZombie here.
@@ -68,6 +70,7 @@ public class MarksmanZombie extends Zombie
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
             ZSBullet bullet = new ZSBullet (getRotation(), this);
             getWorld().addObject (bullet, getX(), getY());
+            addObjectHere(new SniperCasing(Greenfoot.getRandomNumber(360)));
             Sounds.play("marksmanshoot");
             reloadDelayCount = 0;
         }

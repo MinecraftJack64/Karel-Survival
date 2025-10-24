@@ -1,11 +1,13 @@
 package com.karel.game.gridobjects.gridentities.zombies.ironclad;
 
 import com.karel.game.ArmorShield;
+import com.karel.game.Greenfoot;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
+import com.karel.game.particles.TankScrap;
 import com.karel.game.weapons.ShieldID;
 
 /**
@@ -55,6 +57,10 @@ public class IroncladZombie extends Zombie
         try{
             //explode if not stunned
             addObjectHere(new RocketZombie(50, 0));
+            for(int i = 0; i < 360; i+=60){
+                TankScrap me = new TankScrap(i+getRotation()+Greenfoot.getRandomNumber(80)-40);
+                addObjectHere(me);
+            }
             super.die(source);
             explodeOn(100, 500);
             Sounds.play("explode");

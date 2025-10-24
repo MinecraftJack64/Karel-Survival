@@ -59,7 +59,9 @@ Last Phase:
 Graphics
  - Spear shows translucent orange line when returned via ult and a purple one if loaded
  - Linked portals show line between when teleporting
- - Added Cop Zombie graphics
+ - Added Cop Zombie and Ironclad Zombie graphics
+Balancing
+ - Demon Zombies lose health slower when their exorcist dies
 
 10/22
 Fixes

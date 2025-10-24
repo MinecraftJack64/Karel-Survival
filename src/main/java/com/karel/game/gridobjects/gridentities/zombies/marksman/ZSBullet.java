@@ -14,6 +14,8 @@ public class ZSBullet extends ZBullet
     public ZSBullet(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("Projectiles/Bullets/round.png");
+        setRotation(getRotation()-180);
         setSpeed(20);
         setLife(100);
         setDamage(300);
