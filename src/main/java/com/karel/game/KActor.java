@@ -142,6 +142,9 @@ public abstract class KActor
     public void setTint(int r, int g, int b){
         setTint(new Color((byte)r, (byte)g, (byte)b, (byte)getOpacity()));
     }
+    public Color getTint(){
+        return transColor;
+    }
     public void resetTint(){
         transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     }

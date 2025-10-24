@@ -4,6 +4,9 @@ import java.util.HashMap;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Bullet;
+import com.raylib.Color;
+import com.raylib.Raylib;
+import com.raylib.Vector2;
 
 /**
  * A bullet that can hit asteroids.
@@ -14,6 +17,8 @@ public class ThrownSpear extends Bullet
 {
     /** The damage this bullet will deal */
     private static final int maxdrawcooldown = 15;
+
+    private static Color retColor = new Color((byte)255, (byte)200, (byte)0, (byte)127), loadColor = new Color((byte)234, (byte)0, (byte)255, (byte)255);
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     //private int life = 10;
@@ -66,6 +71,26 @@ public class ThrownSpear extends Bullet
                 myspear.returnSpear(isAttack()/*is this called back or from melee*/?scores:null);
                 myspear.enterHand();
                 super.die();
+            }
+        }
+    }
+    public void render(){
+        super.render();
+        //draw line between source and me
+        if(isreturning&&isAttack()){
+            Raylib.drawLineEx(
+                new Vector2(renderTransformX((int)getX()), renderTransformY((int)(getY()-getHeight()))),
+                new Vector2(renderTransformX((int)returnto.getX()), renderTransformY((int)(returnto.getY()-returnto.getHeight()))),
+                7,
+                retColor
+            );
+            if(scores.size()>0){
+                Raylib.drawLineEx(
+                    new Vector2(renderTransformX((int)getX()), renderTransformY((int)(getY()-getHeight()))),
+                    new Vector2(renderTransformX((int)returnto.getX()), renderTransformY((int)(returnto.getY()-returnto.getHeight()))),
+                    4,
+                    loadColor
+                );
             }
         }
     }

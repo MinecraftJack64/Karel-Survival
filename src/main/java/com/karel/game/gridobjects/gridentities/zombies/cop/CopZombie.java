@@ -15,7 +15,7 @@ public class CopZombie extends Zombie {
     private TaserNode prong;
     private GridObject baton, handcuffs;
 
-    public String getStaticTextureURL(){return "gunzareln.png";}
+    public String getStaticTextureURL(){return "copzareln.png";}
     private static double attackrange = 400, retreatrange = 390;
     private static double meleerange = 100;
     /**

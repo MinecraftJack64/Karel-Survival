@@ -4,6 +4,8 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.EffectID;
 import com.karel.game.gridobjects.hitters.StickyBullet;
+import com.raylib.Raylib;
+import com.raylib.Vector2;
 
 public class TaserNode extends StickyBullet {
     private TaserNode other;
@@ -11,6 +13,7 @@ public class TaserNode extends StickyBullet {
     private boolean onReturn;
     public TaserNode(double rotation, GridObject source){
         super(rotation, 120, source);
+        setImage("Projectiles/Bullets/taserprong.png");
         setSpeed(18);
         setDamage(10);
     }
@@ -42,6 +45,16 @@ public class TaserNode extends StickyBullet {
     }
     public void onUnstick(GridEntity t){
         if(isStunner)t.unstun(new EffectID(this));
+    }
+    public void render(){
+        super.render();
+        //draw line between source and me
+        Raylib.drawLineEx(
+            new Vector2(renderTransformX((int)getX()), renderTransformY((int)(getY()-getHeight()))),
+            new Vector2(renderTransformX((int)getSource().getX()), renderTransformY((int)(getSource().getY()-getSource().getHeight()))),
+            3,
+            Raylib.LIGHTGRAY
+        );
     }
     public void die(){
         onReturn = true;

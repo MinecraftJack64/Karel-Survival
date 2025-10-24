@@ -12,7 +12,7 @@ public class Handcuffs extends Melee
     public Handcuffs(double rotation, GridObject source)
     {
         super(rotation, source);
-        setImage("Weapons/blade/proj.png");
+        setImage("Projectiles/Melee/handcuffs.png");
         scaleTexture(70);
         setSpeed(15);
         setLife(life);

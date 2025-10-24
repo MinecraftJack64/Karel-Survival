@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import com.raylib.Raylib;
+import com.raylib.Vector2;
+
 /**
  * Write a description of class EntrancePortal here.
  * 
@@ -18,6 +21,7 @@ public class EntrancePortal extends GridObject
     int health = 14;
     int life = -1;
     int colorCode = -1; // red, green, blue, yellow, purple, cyan, orange
+    private int opacityTint;
     public EntrancePortal(GridObject source){
         this.source = source;
         setImage("Projectiles/Static/portal.png");
@@ -86,6 +90,7 @@ public class EntrancePortal extends GridObject
             if(!exiters.contains(g)){
                 if(g.canBePulled()){
                     g.pullTowards(this, 10, this);
+                    opacityTint = 51;
                     if(distanceTo(g)<=10){
                         lowerHealth();
                         other.receive(g);
@@ -128,6 +133,20 @@ public class EntrancePortal extends GridObject
     public void notifyWorldRemove(){
         deregisterColor(colorCode);
         super.notifyWorldRemove();
+    }
+    public void render(){
+        super.render();
+        //draw line between source and me
+        if(other==null)return;
+        getTint().setA((byte)(opacityTint*5));
+        Raylib.drawLineEx(
+            new Vector2(renderTransformX((int)getX()), renderTransformY((int)(getY()-getHeight()))),
+            new Vector2(renderTransformX((int)other.getX()), renderTransformY((int)(other.getY()-other.getHeight()))),
+            10,
+            getTint()
+        );
+        setOpacity(getOpacity());//reset opacity
+        if(opacityTint>0)opacityTint--;
     }
     public void kill(){
         //placeholder

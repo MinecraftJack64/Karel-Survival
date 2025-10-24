@@ -10,8 +10,8 @@ public class Baton extends Melee
     public Baton(double rotation, GridObject source)
     {
         super(rotation, source);
-        setImage("Weapons/blade/proj.png");
-        scaleTexture(70);
+        setImage("Projectiles/Melee/baton.png");
+        scaleTexture(25);
         setSpeed(15);
         setLife(life);
         setDamage(250);
@@ -28,7 +28,7 @@ public class Baton extends Melee
             life--;
             double centerx = getSource().getX(), centery = getSource().getY();
             setLocation(centerx+radius*Math.cos(degtotarg*Math.PI/180), centery+radius*Math.sin(degtotarg*Math.PI/180));
-            setRotation(degtotarg+45);
+            setRotation(degtotarg+90);
             degtotarg+=12;
             checkHit();
         }
