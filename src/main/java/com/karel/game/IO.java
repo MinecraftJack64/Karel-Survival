@@ -9,13 +9,17 @@ import static com.raylib.Raylib.KeyboardKey.*;
 public class IO {
     //known mappings remaining
     //inventory
-    private String controlType = "keyboard";
+    private static String controlType = "keyboard";
     public static final HashMap<String, Integer> mappings = new HashMap<String, Integer>();
     static{
         mappings.put("left", KEY_A);
         mappings.put("right", KEY_D);
         mappings.put("up", KEY_W);
         mappings.put("down", KEY_S);
+        mappings.put("targetleft", KEY_LEFT);
+        mappings.put("targetright", KEY_RIGHT);
+        mappings.put("targetforward", KEY_UP);
+        mappings.put("targetback", KEY_DOWN);
         mappings.put("ult", KEY_SPACE);
         mappings.put("sprint", KEY_LEFT_ALT);
         mappings.put("autoaim", KEY_LEFT_SHIFT);
@@ -25,6 +29,9 @@ public class IO {
         mappings.put("inventoryLeft", KEY_X);
         mappings.put("inventoryRight", KEY_C);
         mappings.put("inventory", KEY_Z);
+        if(!controlType.equals("keyboard")){
+            //
+        }
     }
     public static boolean isActive(String action){
         if(action.equals("attack")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);}

@@ -15,6 +15,7 @@ public class Joystick extends Overlay {
     private boolean hovered;
     private double oldX, oldY;
     private boolean unlocked;
+    private boolean isActive = true;
     public Joystick(String typeid, int size){
         this.size = size;
         this.type = typeid;
@@ -27,11 +28,11 @@ public class Joystick extends Overlay {
     public void update(){
         super.update();
         if(!isPressed){
-            if(Greenfoot.isMouseDown()&&hovered&&size>=distanceTo(getWorld().getMouseX(), getWorld().getMouseY())){
+            if(Greenfoot.isMouseDown()&&isActive&&hovered&&size>=distanceTo(getWorld().getMouseX(), getWorld().getMouseY())){
                 onPress();
             }
         }else{
-            if(!Greenfoot.isMouseDown()){
+            if(!Greenfoot.isMouseDown()||!isActive){
                 onUnpress();
             }
         }
@@ -75,8 +76,14 @@ public class Joystick extends Overlay {
     public double getAngle(){
         return angle;
     }
+    public boolean isPressed(){
+        return isPressed;
+    }
     public void render(){
         super.render();
         renderTexture(thumbTexture, getX()+getBranchX(angle, distance), getY()+getBranchY(angle, distance), thumbSize, thumbSize, 0, isPressed?255:127);
+    }
+    public void setActive(boolean f){
+        isActive = f;
     }
 }

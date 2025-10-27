@@ -56,10 +56,16 @@ Last Phase:
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
 10/26
+Mechanics
+ - Added new control methods
+    - Keyboard/Mouse: default
+    - Keyboard: targeting is controlled by arrow keys and firing is controlled by right control
+    - Touch(WIP): joysticks and buttons
 Other
  - Added joysticks
 Technical
  - Overlay no longer has an empty render method
+Idea - swipe on weapon to change
 
 10/23
 Graphics

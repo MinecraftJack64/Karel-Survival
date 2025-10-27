@@ -10,6 +10,7 @@ import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.PauseUI;
 import com.karel.game.ui.JournalSelectUI;
 import com.karel.game.ui.UI;
+import com.karel.game.ui.joysticks.Joystick;
 
 import static com.raylib.Raylib.getFrameTime;
 import static com.raylib.Raylib.getScreenHeight;
@@ -66,8 +67,9 @@ public class Game
     
     //TODO: private static int modehs[]; // high scores of each mode
 
-    public static String inputMethod = "keyboard";
+    public static String inputMethod = "touch";
     public static Vector targetVector = new Vector(0, 60);
+    public static Vector moveVector = new Vector(0, 0);
     public static boolean shiftkey;
     public static boolean disableGameInputFlag = false;
     
@@ -75,6 +77,7 @@ public class Game
     static int gameDiff; // current game difficulty
     private static GameMode game; // current game
     private static boolean currentlypausing = false;
+    public static boolean pauseFlag = false;
     
     private static boolean autoattack = false;
     private static boolean currentlyTogglingAutoattack = false;
@@ -230,8 +233,24 @@ public class Game
         lastY = Greenfoot.getMouseY();
         lastClicked = Greenfoot.isActive("attack")&&!disableGameInputFlag;
         shiftkey = Greenfoot.isActive("autoaim");
+        boolean targetLeft = Greenfoot.isActive("targetleft");
+        boolean targetRight = Greenfoot.isActive("targetright");
+        boolean targetForward = Greenfoot.isActive("targetforward");
+        boolean targetBack = Greenfoot.isActive("targetback");
+        int vlr = 7, vfb = 5;
+        if(targetLeft){
+            targetVector.setDirection(targetVector.getDirection()-vlr);
+        }else if(targetRight){
+            targetVector.setDirection(targetVector.getDirection()+vlr);
+        }
+        if(targetBack){
+            targetVector.setLength(Math.max(0, targetVector.getLength()-vfb));
+        }else if(targetForward){
+            targetVector.setLength(Math.min(600, targetVector.getLength()+vfb));
+        }
         boolean ocp = currentlypausing;
-        currentlypausing = Greenfoot.isActive("pause");
+        currentlypausing = Greenfoot.isActive("pause")||pauseFlag;
+        pauseFlag = false;
         if(ocp&&!currentlypausing&&currentMenu.equals("game")&&gameStatus().equals("running")){
             togglePause();
         }
@@ -288,6 +307,9 @@ public class Game
     public static boolean isShiftDown(){
         return shiftkey;
     }
+    public static String getInputMethod(){
+        return inputMethod;
+    }
     public static void playSound(Sound sound){
         if(soundOn)Raylib.playSound(sound);
     }
@@ -333,5 +355,13 @@ public class Game
     }
     public static boolean isPaused(){
         return world.isPaused();
+    }
+    public static void setTargetVector(Joystick attack) {
+        targetVector.setDirection(attack.getAngle());
+        targetVector.setLength(attack.getPercentDistance()*600);
+    }
+    public static void setMovementVector(Joystick attack) {
+        moveVector.setDirection(attack.getAngle());
+        moveVector.setLength(attack.getPercentDistance());
     }
 }

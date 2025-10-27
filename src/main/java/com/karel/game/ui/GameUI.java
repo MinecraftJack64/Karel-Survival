@@ -16,6 +16,7 @@ import com.karel.game.ui.bars.UltBar;
 import com.karel.game.ui.bars.WaveBar;
 import com.karel.game.ui.buttons.Button;
 import com.karel.game.ui.buttons.ImageButton;
+import com.karel.game.ui.joysticks.Joystick;
 import com.karel.game.ui.text.Counter;
 import com.karel.game.ui.text.ShyTextDisplay;
 import com.karel.game.ui.text.TextDisplay;
@@ -33,7 +34,7 @@ import com.raylib.Raylib;
 public class GameUI extends UI  
 {
     public static final Color DARKRED = new Color((byte)255, (byte)0, (byte)0, (byte)255);
-    private boolean isButtonMode = true;
+    private boolean isButtonMode = true, isJoystickMode = true;
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
@@ -42,6 +43,7 @@ public class GameUI extends UI
     private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2;
     private Button goToMenuBtn, nextLvlBtn;
     private ImageButton weaponCraftButton, pauseButton;
+    private Joystick movement, attack, ult;
     private HashMap<GridEntity, BossBar> bossBars = new HashMap<GridEntity, BossBar>();
     public void create(){
         waveCounter = new Counter("Wave ", 20);
@@ -49,8 +51,12 @@ public class GameUI extends UI
         waveHealth = new WaveBar(1,100,5);
         placeScoreBar();
 
-        pauseButton = new ImageButton(50, 50, "Buttons/pause.png", "Pause");
-        getWorld().addToGrid(pauseButton, getWorld().gridwidth-2, 2);
+        pauseButton = new ImageButton(50, 50, "Buttons/pause.png", "Pause"){
+            public void click(){
+                Game.pauseFlag = true;
+            }
+        };
+        getWorld().addToGrid(pauseButton, getWorld().gridwidth-2, 1);
         
         heldItem = new TextDisplay("Item", 20, Raylib.GRAY);
         getWorld().addObject(heldItem, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-1)*1.0-15);
@@ -85,11 +91,17 @@ public class GameUI extends UI
         weaponmessage = new ShyTextDisplay("You found a weapon fragment", 20, Raylib.GRAY);
         weaponmessage2 = new ShyTextDisplay("Press e to craft", 20, Raylib.GRAY);
         weaponmessage3 = new ShyTextDisplay("You have 0 fragments", 20, Raylib.GRAY);
-        weaponCraftButton = new ImageButton(50, 50, "Controls/craft-stick.png", "Craft!");
+        weaponCraftButton = new ImageButton(100, 100, "Controls/craft-stick.png", "Craft!");
         weaponCraftButton.setShowBackground(false);
         weaponCraftButton.setVisible(false);
         weaponCraftButton.setActive(false);
         placeCraftMessage();
+
+        movement = new Joystick("movement", 60);
+        attack = new Joystick("attack", 60);
+        ult = new Joystick("ult", 60);
+        placeJoysticks();
+
         tut1 = new TextDisplay("", 20, Raylib.GRAY);
         getWorld().addObject(tut1, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight)/2.0);
         tut2 = new TextDisplay("", 20, Raylib.GRAY);
@@ -114,6 +126,16 @@ public class GameUI extends UI
         getWorld().addObject(weaponmessage2, weaponmessage.getX(), weaponmessage.getBottom()+10);
         getWorld().addObject(weaponmessage3, weaponmessage2.getX(), weaponmessage2.getBottom()+10);
         weaponmessage2.addKActorHere(weaponCraftButton);
+    }
+    public void placeJoysticks(){
+        getWorld().addToGrid(attack, getWorld().gridwidth-2, getWorld().gridheight-5);
+        getWorld().addToGrid(ult, getWorld().gridwidth-5, getWorld().gridheight-4);
+        getWorld().addToGrid(movement, 2, getWorld().gridheight-5);
+        if(!isJoystickMode){
+            attack.setVisible(false);
+            ult.setVisible(false);
+            movement.setVisible(false);
+        }
     }
     public void setTutorial(String thing){
         tut1.setText(thing);
@@ -407,5 +429,10 @@ public class GameUI extends UI
         weaponmessage.setVisible(true);
         weaponmessage.setText("");
         weaponmessagerarity.setText("");
+    }
+    public void update(){
+        super.update();
+        Game.setTargetVector(attack);
+        Game.setMovementVector(movement);
     }
 }

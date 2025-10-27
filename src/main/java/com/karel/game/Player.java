@@ -11,6 +11,8 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     private PlayerHand hand;
     private Texture rocket = Greenfoot.loadTexture("kareln.png");
     private Texture off = Greenfoot.loadTexture("karelnOff.png");
+    private Texture crosshair = Greenfoot.loadTexture("Controls/target.png");
+    private int crosshairSize = 20;
     private Item[] inventory;
     private boolean currentlyscrolling;
     private int currentItemIndex;
@@ -31,6 +33,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     private boolean sudoActive;
     public Player() {
         hand = new PlayerHand();
+        setSpeed(5);
         scaleTexture(45, 45);
         this.setImage(this.rocket);
         diff = Game.currentDiff();
@@ -194,6 +197,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         if(getHeldItem()!=null){
             getHeldItem().render();
         }
+        if(getWorld().usesInputVector()){
+            renderTexture(crosshair, getTargetX(), getTargetY(), crosshairSize, crosshairSize, 0, 127);
+        }
     }
     public boolean acceptingFrags(){
         return !Game.getGame().beeperbagfull();
@@ -220,6 +226,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }else if(targetLocked){
             return oldtargetx;
         }
+        if(getWorld().usesInputVector()){
+            return getWorld().getInputVector().getX()+getX();
+        }
         return getWorld().getGridMouseX();
     }
     public double getTargetY(){
@@ -228,6 +237,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
             if(targ!=null)return targ.getY();
         }else if(targetLocked){
             return oldtargety;
+        }
+        if(getWorld().usesInputVector()){
+            return getWorld().getInputVector().getY()+getY();
         }
         return getWorld().getGridMouseY();
     }
@@ -277,29 +289,38 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         ismoving = false;
         //handle movement
         int xd = 0, yd = 0;
+        Vector v = new Vector(xd, yd);
         if(canMove()&&!movementLocked){
-            if (!Greenfoot.isActive("right")) {
-                if (Greenfoot.isActive("left")) {
-                    xd = -1;
+            if(!getWorld().usesMovementVector()){
+                if (!Greenfoot.isActive("right")) {
+                    if (Greenfoot.isActive("left")) {
+                        xd = -1;
+                        ismoving = true;
+                    }
+                } else {
+                    xd = 1;
                     ismoving = true;
                 }
-            } else {
-                xd = 1;
-                ismoving = true;
-            }
 
-            if (!Greenfoot.isActive("up")) {
-                if (Greenfoot.isActive("down")) {
-                    yd = 1;
+                if (!Greenfoot.isActive("up")) {
+                    if (Greenfoot.isActive("down")) {
+                        yd = 1;
+                        ismoving = true;
+                    }
+                } else {
+                    yd = -1;
                     ismoving = true;
                 }
-            } else {
-                yd = -1;
-                ismoving = true;
+                v = new Vector(xd, yd, 0);
+            }else{
+                v = getWorld().getMovementVector();
+                if(v.getLength()>0.2){
+                    v.setLength(1);
+                    ismoving = true;
+                }
             }
         }
-        Vector v = new Vector(xd, yd, 0);
-        walk(v.getDirection()+90, (int)(sprintamt*v.getLength()));
+        walk(v.getDirection()+90, sprintamt*v.getLength());
 
         //handle item switching
         if(!canAttack()){

@@ -108,10 +108,22 @@ public class World
         return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale+getScrollX());
     }
     public int getGridMouseY(){
-        return (int)(Game.getMouseY()/gridSizeScale);
+        return (int)(Game.getMouseY()/gridSizeScale+getScrollY());
+    }
+    public Vector getInputVector(){
+        return Game.targetVector;
+    }
+    public Vector getMovementVector(){
+        return Game.moveVector;
+    }
+    public boolean usesInputVector(){
+        return !Game.getInputMethod().equals("keyboard-mouse");
+    }
+    public boolean usesMovementVector(){
+        return Game.getInputMethod().equals("touch");
     }
     public int getMouseX(){
-        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale+getScrollY());
+        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale);
     }
     public int getMouseY(){
         return (int)(Game.getMouseY()/gridSizeScale);
