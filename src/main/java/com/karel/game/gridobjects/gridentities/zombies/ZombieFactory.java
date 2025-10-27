@@ -318,6 +318,10 @@ public class ZombieFactory {
                 return new CancerZombie();
             ////rootkit
             //chill
+            //urchin
+            //super
+            //minishooter
+            //hologuard
             case "bot":
                 return new Bot(null);
         }

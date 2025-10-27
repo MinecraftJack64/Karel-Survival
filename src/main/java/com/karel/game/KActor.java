@@ -80,6 +80,48 @@ public abstract class KActor
     public void translate(double x, double y){
         setLocation(getX()+x, getY()+y);
     }
+    public double face(KActor obj, boolean face){
+        return face(obj.getX(), obj.getY(), face);
+    }
+    public double face(double x, double y, boolean face){
+        double targang = getAngle(x, y)+90;
+        double monangle = targang;
+        if(face)setRotation(monangle);
+        return monangle;
+    }
+    public boolean isFacing(KActor other){
+        return getFacingDistance(other)<75;
+    }
+    public double getFacingOffset(KActor other){
+        return face(other, false)-getTargetRotation();
+    }
+    public double getFacingDistance(KActor other){
+        return Math.abs(getFacingOffset(other));
+    }
+    public double getTargetRotation(){
+        return getRotation();
+    }
+    public float getAngle(double x, double y) {
+        return getAngleBetween(getX(), getY(), x, y);
+    }
+    public static float getAngleBetween(double x, double y, double x2, double y2) {
+        float angle = (float) Math.toDegrees(Math.atan2(y2 - y, x2 - x));
+
+        if(angle < 0){
+            angle += 360;
+        }
+
+        return angle;
+    }
+    public double distanceTo(double x, double y){
+        return Math.sqrt(Math.pow(x-getX(), 2)+Math.pow(y-getY(), 2));
+    }
+    public double distanceTo(double x, double y, double z){
+        return Math.sqrt(Math.pow(x-getX(), 2)+Math.pow(y-getY(), 2)+Math.pow(z-getHeight(), 2));
+    }
+    public double distanceTo(KActor obj){
+        return distanceTo(obj.getX(),obj.getY(), obj.getHeight());
+    }
     public void setVisible(boolean visible){
         if(!visible){
             setOpacity(0);

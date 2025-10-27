@@ -16,7 +16,4 @@ public class Overlay extends KActor
     public void update(){
         //Do nothing by default for overlays
     }
-    public void render(){
-        //TODO: require all subclasses to implement this
-    }
 }
