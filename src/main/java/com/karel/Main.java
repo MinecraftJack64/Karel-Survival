@@ -2,12 +2,15 @@ package com.karel;
 
 import com.karel.game.Game;
 import com.karel.game.Greenfoot;
+import com.karel.lang.Lang;
+import com.raylib.Raylib.ConfigFlags;
+import com.raylib.Raylib.KeyboardKey;
 
 import static com.raylib.Raylib.*;
 
 public class Main {
     public static void main(String args[]) {
-        initWindow(1200, 800, "Karel Survival");
+        initWindow(1200, 800, Lang.get("title"));
         initAudioDevice();
         setTargetFPS(Game.FPS);
         setWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE);

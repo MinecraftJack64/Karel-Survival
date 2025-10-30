@@ -229,6 +229,7 @@ public class Game
 
     public static void tick(){
         timeScale = getFrameTime()/((float)FPS);
+        if(inputMethod.equals("touch"))IO.updateTouchPoints();
         lastX = Greenfoot.getMouseX();
         lastY = Greenfoot.getMouseY();
         lastClicked = Greenfoot.isActive("attack")&&!disableGameInputFlag;
@@ -298,7 +299,13 @@ public class Game
     public static int getMouseY(){
         return lastY;
     }
+    public static Location[] getTouchPoints(){
+        return IO.getTouchPoints();
+    }
     public static boolean isAttackDown(){
+        if(inputMethod.equals("touch")){
+            return targetVector.getLength()>10; //TODO: for now
+        }
         return lastClicked;
     }
     public static boolean isMouseDown(){

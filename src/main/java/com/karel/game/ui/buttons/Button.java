@@ -1,8 +1,9 @@
 package com.karel.game.ui.buttons;
 
 import com.karel.game.Sounds;
-import com.karel.game.ui.Overlay;
+import com.karel.game.ui.Input;
 import com.karel.game.Game;
+import com.karel.game.Location;
 import com.raylib.Color;
 import com.raylib.Raylib;
 
@@ -12,7 +13,7 @@ import com.raylib.Raylib;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Button extends Overlay
+public class Button extends Input
 {
     private Color barColor = Raylib.GRAY, barDisabledColor = Raylib.LIGHTGRAY, barHoverColor = Raylib.DARKGRAY;
     private int width, height;
@@ -100,7 +101,15 @@ public class Button extends Overlay
         }
     }
     public boolean isMouseOver(){
-        double mxx = getWorld().getMouseX()-getX()+width/2, myy = getWorld().getMouseY()-getY()+height/2;
+        if(getWorld().usesTouch()){
+            for(Location l: getWorld().getTouchPoints()){
+                if(l!=null&&isOver(l.x, l.y))return true;
+            }
+        }
+        return isOver(getWorld().getMouseX(), getWorld().getMouseY());
+    }
+    public boolean isOver(double x, double y){
+        double mxx = x-getX()+width/2, myy = y-getY()+height/2;
         return (mxx>=0&&mxx<=width)&&(myy>=0&&myy<=height);
     }
     public void setColor(Color c){

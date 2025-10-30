@@ -265,4 +265,12 @@ public class World
     public void removeObject(KActor a){
         a.remove();
     }
+
+    public boolean usesTouch() {
+        return Game.getInputMethod().equals("touch");
+    }
+
+    public Location[] getTouchPoints() {
+        return Game.getTouchPoints();
+    }
 }

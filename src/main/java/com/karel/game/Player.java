@@ -367,13 +367,18 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
                     didspecial = false;
                 }
             }
-            if (this.getHeldItem() != null&&(Game.isAttackDown()||autoattack||getHeldItem().continueUse())&&!didspecial) {
+            if (this.getHeldItem() != null&&(Game.isAttackDown()||Game.getInputMethod().equals("keyboard")&&Greenfoot.isActive("attack")||autoattack||getHeldItem().continueUse())&&!didspecial) {
                 isattacking = true;
                 if(this.getHeldItem().use())broadcastEvent("attack");;
     
                 this.hacooldown = 0;
             }else{
                 isattacking = false;
+            }
+        }
+        for(Location l: getWorld().getTouchPoints()){
+            if(l!=null){
+                renderTexture(crosshair, l.x, l.y, 70, 70, 0, 127);
             }
         }
     }

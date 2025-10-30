@@ -1,9 +1,9 @@
 package com.karel.game.ui.sliders;
-import com.karel.game.ui.Overlay;
+import com.karel.game.ui.Input;
 import com.karel.game.ui.bars.StatusBar;
 import com.karel.game.ui.buttons.Button;
 
-public class Slider extends Overlay{
+public class Slider extends Input{
     private int length, width;
     private int clickOrigin;
     private double max, value, interval;

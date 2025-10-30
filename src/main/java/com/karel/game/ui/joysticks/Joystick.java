@@ -1,10 +1,10 @@
 package com.karel.game.ui.joysticks;
 
 import com.karel.game.Greenfoot;
-import com.karel.game.ui.Overlay;
+import com.karel.game.ui.Input;
 import com.raylib.Texture;
 
-public class Joystick extends Overlay {
+public class Joystick extends Input {
     private int size;
     private String type;
     private boolean shiftCenter = true; // if this joystick will recenter if activated
