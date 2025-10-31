@@ -20,6 +20,7 @@ import com.karel.game.weapons.grenade.GrenadeLauncher;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;
 import com.karel.game.weapons.inferno.Inferno;
+import com.karel.game.weapons.jadecutter.JadeCutter;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;

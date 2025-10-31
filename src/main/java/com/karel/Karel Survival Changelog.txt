@@ -55,6 +55,21 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+10/31
+Balancing
+ - Bosses are immune to size effect
+    - TODO: only immune to malicious size
+ - Jade Cutter only shrinks enemies once
+    - Also affected by reload speed
+    - TODO: Cannot use gadget on ult blade
+    - TODO: If unequipped then reequipped without shooting ult, new blade has ult too
+ - Shrunken enemies don't charge more ult
+Fixes
+ - Fixed Jade Cutter attack upgrade doing nothing
+ - TODO: Fix graphics of shrink and add animations
+Notes
+ - When using the sudo sandbox, weapons like the jade cutter are reset
+
 10/26
 Mechanics
  - Added new control methods

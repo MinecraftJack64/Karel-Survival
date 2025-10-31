@@ -67,7 +67,7 @@ public class Game
     
     //TODO: private static int modehs[]; // high scores of each mode
 
-    public static String inputMethod = "touch";
+    public static String inputMethod = "keyboard-mouse";
     public static Vector targetVector = new Vector(0, 60);
     public static Vector moveVector = new Vector(0, 0);
     public static boolean shiftkey;

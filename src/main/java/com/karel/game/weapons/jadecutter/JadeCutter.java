@@ -1,5 +1,6 @@
-package com.karel.game;
+package com.karel.game.weapons.jadecutter;
 
+import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
 
 /**

@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.jadecutter;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SizePercentageEffect;
 
@@ -11,12 +13,12 @@ import com.karel.game.effects.SizePercentageEffect;
 public class UltJadeBlade extends JadeBlade
 {
     
-    public UltJadeBlade(double rotation, int size, boolean isUpgrade, GridObject source)
+    public UltJadeBlade(double rotation, double size, boolean isUpgrade, GridObject source)
     {
         super(rotation, size, isUpgrade, source);
     }
     public void doHit(GridEntity targ){
-        targ.applyEffect(new SizePercentageEffect(0.70, -1, this, new EffectID(this)));
+        if(!targ.hasEffect(SizePercentageEffect.class))targ.applyEffect(new SizePercentageEffect(0.70, -1, this, new EffectID(this)));
         super.doHit(targ);
     }
 }

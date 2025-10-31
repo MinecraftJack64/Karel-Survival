@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.jadecutter;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SizePercentageEffect;
 import com.karel.game.gridobjects.hitters.Hitter;
@@ -12,7 +13,7 @@ import com.karel.game.gridobjects.hitters.Hitter;
  * @version (a version number or a date)
  */
 public class StaticJadeBlade extends Hitter{
-    private int size = 40;//160 damage
+    private double size = 40;//160 damage
     private int maxsize = 80;
     private boolean isSuper;
     private int growthRate = 2;
@@ -44,12 +45,12 @@ public class StaticJadeBlade extends Hitter{
         return true;
     }
     public void update(){
-        setDamage(size*5);
+        setDamage((int)(size*5));
         if(getSource()!=null&&(!(getSource() instanceof GridEntity)||!((GridEntity)getSource()).isDead())&&!getSource().getTeam().equals(getTeam())){//make sure team is same as source
             setTeam(getSource().getTeam());
         }
         checkHit();
-        size+=growthRate;
+        size+=growthRate*(getSource() instanceof GridEntity g?g.getReloadMultiplier():1);
         if(size>maxsize){
             size = maxsize;
         }
@@ -58,11 +59,11 @@ public class StaticJadeBlade extends Hitter{
         }
     }
     public void animate(){
-        scaleTexture(size, size);
+        scaleTexture((int)size);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        if(isSuper){
+        if(isSuper&&!targ.hasEffect(SizePercentageEffect.class)){
             targ.applyEffect(new SizePercentageEffect(0.70, -1, this, new EffectID(this)));
         }
     }
