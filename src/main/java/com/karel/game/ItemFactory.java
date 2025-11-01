@@ -20,6 +20,7 @@ import com.karel.game.weapons.grenade.GrenadeLauncher;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;
 import com.karel.game.weapons.inferno.Inferno;
+import com.karel.game.weapons.jackolantern.JackOLantern;
 import com.karel.game.weapons.jadecutter.JadeCutter;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.necromancer.Necromancer;
@@ -108,7 +109,8 @@ public class ItemFactory
                                     "inferno",
                                     "doublegun",
                                     "fastfood",
-                                    "salicycle"};
+                                    "salicycle",
+                                    "jackolantern"};
     public static Item createItem(String type, ItemHolder holder)
     {
         switch(type)
@@ -258,6 +260,9 @@ public class ItemFactory
             //?
             case "salicycle":
                 return new Salicycle(holder);
+            //?
+            case "jackolantern":
+                return new JackOLantern(holder);
             default:
                 return new Gun(holder);
         }
