@@ -55,6 +55,10 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+10/31-11/2
+Content
+ - Added the Jack-o-Lantern base kit, attack upgrade, ult upgrade, gadget
+
 10/31
 Balancing
  - Bosses are immune to size effect

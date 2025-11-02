@@ -1,11 +1,9 @@
 package com.karel.game.weapons.jackolantern;
 
-import com.karel.game.Greenfoot;
+import com.karel.game.AmmoManager;
 import com.karel.game.ItemHolder;
 import com.karel.game.LandingHandler;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
-import com.karel.game.weapons.easterbasket.SurpriseEasterEgg;
 
 public class JackOLantern extends Weapon implements LandingHandler
 {
@@ -18,36 +16,35 @@ public class JackOLantern extends Weapon implements LandingHandler
             if(!toLand){
                 smashCooldown--;
                 if(smashCooldown<=0){
-                    double r = getHand().getTargetRotation(), d = 40;
-                    getHolder().getWorld().addObject(new SmashedJack(getHolder()), getHolder().getBranchX(r, d)+getHolder().getX(), getHolder().getBranchY(r, d)+getHolder().getY());
+                    double r = getHand().getTargetRotation()-90, d = 40;
+                    getHolder().getWorld().addObject(new SmashedJack(getHolder(), getAttackUpgrade()==1), getHolder().getBranchX(r, d)+getHolder().getX(), getHolder().getBranchY(r, d)+getHolder().getY());
                     setContinueUse(false);
-                    setPlayerLockRotation(false);
                     setPlayerLockMovement(false);
                 }
             }
         }
-        else if (getAmmo().hasAmmo()) 
+        else if (getAmmo().hasAmmo()&&!isUsingGadget()) 
         {
             toLand = true;
             getHolder().initiateJump(getHand().getTargetRotation(), Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 220), 100);
             getAmmo().useAmmo();
             setContinueUse(true);
-            setPlayerLockRotation(true);
             setPlayerLockMovement(true);
         }
     }
     public void fireUlt(){
-        getHolder().addObjectHere(new PossessedPumpkinDropper(getHand().getTargetRotation(), Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 100), 50, getHolder(), new SurpriseEasterEgg(getHolder())));
-    }
-    public void spawnSurpriseEgg(){
-        SurpriseEasterEgg egg = new SurpriseEasterEgg(getHolder());
-        getHolder().getWorld().addObject(egg, getHolder().getX()+Greenfoot.getRandomNumber(500)-250, getHolder().getY()+Greenfoot.getRandomNumber(500)-250);
+        getHolder().addObjectHere(new PossessedPumpkinDropper(getHand().getTargetRotation(), Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 100), 50, new PossessedPumpkin(getHolder(), getUltUpgrade()==1), getHolder()));
     }
     public void onGadgetActivate(){
         setGadgetTimer(100);
-        for(int i = 0; i < 4; i++){
-            spawnSurpriseEgg();
-        }
+        getHolder().addObjectHere(new SmashedJack(getHolder(), 6));
+        SmashedJack s = new SmashedJack(getHolder(), 6);
+        getHolder().addObjectHere(s);
+        getHolder().mount(s);
+    }
+    public void update(){
+        chargeUlt(1);
+        super.update();
     }
     public int defaultGadgets(){
         return 1;
@@ -63,30 +60,12 @@ public class JackOLantern extends Weapon implements LandingHandler
     }
     public JackOLantern(ItemHolder actor){
         super(actor);
-        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
+        setAmmo(new AmmoManager(gunReloadTime, 1, 2));
     }
     public String getName(){
         return "Jack-o-Lantern";
     }
     public int getRarity(){
         return 7;
-    }
-    public BotGuide getBotGuide(){
-        return new BotGuide();
-    }
-    public class BotGuide extends Weapon.BotGuide{
-        public int getEffectiveRange(){
-            return 325;
-        }
-        public int getUltEffectiveRange(){
-            return 350;
-        }
-        public int getUltIdealRange(){
-            return 275;
-        }
-        //AVERAGE SPEED OF PROJECTILE
-        public double getLead(double d){
-            return 13;
-        }
     }
 }
