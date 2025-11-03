@@ -15,7 +15,7 @@ public class PossessedPumpkin extends Hitter {
     }
     public void update(){
         super.update();
-        face(getNearestTarget(), true);
+        if(getNearestTarget()!=null)face(getNearestTarget(), true);
         cooldown--;
         if(cooldown<=0){
             cooldown = 15;
