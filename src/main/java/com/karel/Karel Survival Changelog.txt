@@ -58,8 +58,15 @@ Last Phase:
 11/4
 Balancing
  - Torpedo zombie torpedo disappears when torpedo zombie dies
+ - Jack-o-lantern
+    - ult placement range(100->200)
+    - seeds from attack upgrade no longer charge ult
+    - small ghost damage(50->100)
+    - ult charge(1000->900)
 Graphics
  - Fixed health bar curse
+Fixes
+ - Fixed Jack-o-lantern ult upgrade spawning normal ghosts
 TODO: Add hunger(like minecraft)
 
 10/31-11/2

@@ -24,7 +24,7 @@ public class PossessedPumpkin extends Hitter {
             PumpkinGhost center = new PumpkinGhost(getRotation()+rot, this);
             addObjectHere(center);
             if(upgraded){
-                PumpkinGhost center2 = new PumpkinGhost(getRotation()+rot+180, this);
+                SmallPumpkinGhost center2 = new SmallPumpkinGhost(getRotation()+rot+180, this);
                 addObjectHere(center2);
             }
             rot+=120;

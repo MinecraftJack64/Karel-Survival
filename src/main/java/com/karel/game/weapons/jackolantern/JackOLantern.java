@@ -8,7 +8,7 @@ import com.karel.game.weapons.Weapon;
 public class JackOLantern extends Weapon implements LandingHandler
 {
     private static final int gunReloadTime = 60;
-    private static final int ult = 1000;
+    private static final int ult = 900;
     private int smashCooldown = 15;
     private boolean toLand;
     public void fire(){
@@ -33,7 +33,7 @@ public class JackOLantern extends Weapon implements LandingHandler
         }
     }
     public void fireUlt(){
-        getHolder().addObjectHere(new PossessedPumpkinDropper(getHand().getTargetRotation(), Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 100), 50, new PossessedPumpkin(getHolder(), getUltUpgrade()==1), getHolder()));
+        getHolder().addObjectHere(new PossessedPumpkinDropper(getHand().getTargetRotation(), Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 200), 50, new PossessedPumpkin(getHolder(), getUltUpgrade()==1), getHolder()));
     }
     public void onGadgetActivate(){
         setGadgetTimer(100);

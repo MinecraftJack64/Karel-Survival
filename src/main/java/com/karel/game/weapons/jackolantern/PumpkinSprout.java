@@ -16,4 +16,7 @@ public class PumpkinSprout extends Bullet{
         if(growingCooldown<=0)super.applyPhysics();
         else growingCooldown--;
     } // TODO: watermelon graphics
+    public boolean covertDamage(){
+        return false;
+    }
 }
