@@ -12,7 +12,7 @@ public class ZTorpedo extends Bullet
     public ZTorpedo(double rotation, GridObject source)
     {
         super(rotation, source);
-        setLife(30);
+        setLife(60);
         setDamage(50);
         setSpeed(0);
         tvx = Math.cos((rotation-90)*Math.PI/180)*pspeed;
@@ -25,7 +25,7 @@ public class ZTorpedo extends Bullet
     }
     public void applyPhysics(){
         super.applyPhysics();
-        setLife(30);
+        if(getSource().isInWorld())setLife(60);
         GridEntity g = getTarget();
         double dir = face(g==null?getWorld().getPlayer():g, true)-90;
         tvx = Math.cos(dir*Math.PI/180)*pspeed;
