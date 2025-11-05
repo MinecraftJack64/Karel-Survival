@@ -14,7 +14,8 @@ import com.karel.game.weapons.ShieldID;
 public class Scarecrow extends Pet
 {
     public String getStaticTextureURL(){return "chick.png";}
-    //private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    private int healthLoss = 1;
+    private int increaseLossCooldown = 15; // 15
     private int ammo = 0;
     private static double attackrange = 600;
     private static final int reloadtime = 10;
@@ -39,13 +40,21 @@ public class Scarecrow extends Pet
      */
     public void behave()
     {
-        ammo++;
         face(getTarget(), true);
         if(getTarget()!=getSpawner()&&distanceTo(getTarget())<attackrange&&ammo>reloadtime&&canAttack()){
             attack();
             ammo = (int)((attackrange-distanceTo(getTarget()))/attackrange*reloadtime); // shoot faster when target closer
         }
-        if(!hasShield(new ShieldID(this, "spawn immunity")))hit(2, this);
+        if(!hasShield(new ShieldID(this, "spawn immunity"))){
+            hit(healthLoss, this);
+            ammo++;
+            if(increaseLossCooldown>0){
+                increaseLossCooldown--;
+            }else{
+                increaseLossCooldown = 15;
+                healthLoss++;
+            }
+        }
     }
     public void attack(){
         ScarecrowStraw bullet = new ScarecrowStraw(getRotation(), this);

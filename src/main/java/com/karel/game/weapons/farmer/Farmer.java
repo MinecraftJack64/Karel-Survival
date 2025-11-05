@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import com.karel.game.ItemHolder;
 import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
-import com.karel.game.UltHarvestBeeper;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.InvisibilityEffect;
 import com.karel.game.gridobjects.collectibles.Collectible;
@@ -31,7 +30,7 @@ public class Farmer extends Weapon
             for(int i = account.size()-1; i >= 0; i--){
                 if(account.get(i).collected()){
                     account.remove(i);
-                    chargeUlt(50);
+                    chargeUlt(150);
                 }
             }
             if(account.size()==0)setContinueUse(false);

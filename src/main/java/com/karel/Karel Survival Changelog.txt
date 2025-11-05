@@ -57,6 +57,15 @@ Last Phase:
 
 11/4
 Balancing
+ - Farmer
+    - (+)Ult charge from blank attack(50->150)
+    - (-)Ult charge from ult(100%->25%)
+    - (/)Ult damage scales by range(50->25-65)
+    - (/)Ult health drain increases over time, every 15, starting from 1
+    - (+)Attack damage(100->175)
+
+11/3
+Balancing
  - Torpedo zombie torpedo disappears when torpedo zombie dies
  - Jack-o-lantern
     - ult placement range(100->200)

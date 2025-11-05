@@ -26,7 +26,7 @@ public class Hoe extends Melee
         super(rotation, source);
         setSpeed(15);
         setLife(life);
-        setDamage(100);
+        setDamage(175);
         setNumTargets(-1);
         degtotarg = rotation+90;
         clockwise = true;

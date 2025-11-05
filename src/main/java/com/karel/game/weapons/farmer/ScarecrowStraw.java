@@ -23,10 +23,17 @@ public class ScarecrowStraw extends Bullet
         super(rotation, source);
         setSpeed(15);
         setLife(40);
-        setDamage(50);
+        setDamage(25);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
         addObjectHere(new HealCharge(face(getSource(), false), this, (GridEntity)getSource(), 25));
+    }
+    public void applyPhysics(){
+        setDamage(getDamage()+1);
+        super.applyPhysics();
+    }
+    public double damageSecrecy(){
+        return super.damageSecrecy()*0.25;
     }
 }
