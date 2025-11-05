@@ -1,4 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.flashdrive;
+
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.LightningStrike;
+import com.karel.game.Pet;
 
 /**
  * Used by FlashDrive
@@ -10,13 +15,16 @@ public class IntegratedCircuit extends Pet
 {   
     private LightningStrike bolt;
     private boolean started = false;
-    private static int attackrange = 35;
+    private static int attackrange = 50;
+    private boolean upgraded;
+    private int boltCooldown = 30;
     /**
      * Initilise this rocket.
      */
-    public IntegratedCircuit(GridEntity hive)
+    public IntegratedCircuit(GridEntity hive, boolean upgraded)
     {
         super(hive);
+        this.upgraded = upgraded;
         setSpeed(1.5);
         startHealth(600);
         inherit(hive);
@@ -43,6 +51,17 @@ public class IntegratedCircuit extends Pet
                 attack();
             }
         }
+        boltCooldown--;
+        if(boltCooldown<=0){
+            boltCooldown = 30;
+            if(upgraded){
+                if(distanceTo(getTarget())<attackrange*8&&isAggroTowards(getTarget())){
+                    getTarget().addObjectHere(new FlashLightningStrike(this));
+                }else if(getHealth()<getMaxHealth()){
+                    addObjectHere(new FlashLightningStrike(this));
+                }
+            }
+        }
         
     }
     public void attack(){
@@ -63,12 +82,29 @@ public class IntegratedCircuit extends Pet
     private static class Awakener extends LightningStrike{
         public Awakener(GridObject source){
             super(source);
-            setDamage(600);
+            setDamage(450);
             setHeight(4500);
         }
         public void die(){
             super.die();
             ((IntegratedCircuit)getSource()).boltDone();
+        }
+    }
+    private static class FlashLightningStrike extends LightningStrike{
+        public FlashLightningStrike(GridObject source){
+            super(source);
+            setDamage(40);
+            setHeight(2500);
+            setHitAllies(true);
+            setSelfHit(true);
+        }
+        public void doHit(GridEntity g){
+            if(!isAlliedWith(g))super.doHit(g);
+            else{
+                heal(g, getDamage());
+                System.out.println(g);
+                System.out.println(getPower());
+            }
         }
     }
     public String getPetID(){

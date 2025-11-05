@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.flashdrive;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -12,7 +14,7 @@ public class FlashDrive extends Weapon
 {
     private static final int ult = 1900;
     private static final int reloadTime = 10;
-    private int ammo;
+    private double ammo;
     public void fire(){
         if(ammo>=reloadTime){
             FlashBolt bullet2 = new FlashBolt(getHand().getTargetRotation()+15, getHolder());
@@ -27,16 +29,16 @@ public class FlashDrive extends Weapon
     }
     public void fireUlt(){
         double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 200);
-        ICDropper bullet = new ICDropper(getHand().getTargetRotation(), d, d, getHolder());
+        ICDropper bullet = new ICDropper(getHand().getTargetRotation(), d, d, getHolder(), getUltUpgrade()==1);
         getHolder().addObjectHere(bullet);
         Sounds.play("protonwave");
     }
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        if(ammo<reloadTime)ammo++;
-        updateAmmo(ammo);
+    public void reload(double speed){
+        if(ammo<reloadTime)ammo+=speed;
+        updateAmmo((int)ammo);
     }
     public FlashDrive(ItemHolder actor){
         super(actor);
@@ -44,7 +46,7 @@ public class FlashDrive extends Weapon
     }
     public void equip(){
         super.equip();
-        newAmmo(reloadTime, ammo);
+        newAmmo(reloadTime, (int)ammo);
     }
     public String getName(){
         return "Flash Drive";

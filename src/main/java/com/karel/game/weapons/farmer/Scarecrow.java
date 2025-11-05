@@ -15,7 +15,7 @@ public class Scarecrow extends Pet
 {
     public String getStaticTextureURL(){return "chick.png";}
     private int healthLoss = 1;
-    private int increaseLossCooldown = 15; // 15
+    private int increaseLossCooldown = 40; // 40
     private int ammo = 0;
     private static double attackrange = 600;
     private static final int reloadtime = 10;
@@ -51,7 +51,7 @@ public class Scarecrow extends Pet
             if(increaseLossCooldown>0){
                 increaseLossCooldown--;
             }else{
-                increaseLossCooldown = 15;
+                increaseLossCooldown = 40;
                 healthLoss++;
             }
         }

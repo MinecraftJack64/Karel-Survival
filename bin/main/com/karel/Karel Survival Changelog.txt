@@ -61,8 +61,19 @@ Balancing
     - (+)Ult charge from blank attack(50->150)
     - (-)Ult charge from ult(100%->25%)
     - (/)Ult damage scales by range(50->25-65)
-    - (/)Ult health drain increases over time, every 15, starting from 1
+    - (/)Ult health drain increases over time, every 40, starting from 1
+    - (-)Ult starts attacking only after losing invincibility
     - (+)Attack damage(100->175)
+    - (-)Attack ult charge(100%->50%)
+ - Flash drive
+    - Ult pet range(35->50)
+    - Ult spawn lightning damage(600->450)
+    - Affected by reload speed
+ - Content
+    - Added flash drive ult upgrade
+ - Technical
+    - Lightning uses checkHit
+    - Hitters no longer avoid hitting aggro if they were self hitting
 
 11/3
 Balancing

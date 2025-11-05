@@ -59,6 +59,6 @@ public class Hoe extends Melee
         }
     }
     public double damageSecrecy(){
-        return super.damageSecrecy()*(issuper?1.33:1);
+        return super.damageSecrecy()*(issuper?0.667:0.5);
     }
 }

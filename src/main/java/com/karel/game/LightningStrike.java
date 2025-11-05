@@ -22,6 +22,9 @@ public class LightningStrike extends Projectile
         setRotation(90);
         setHeight(2000);
         setDamage(250);
+        setCollisionMode("radius");
+        setRange(125);
+        setNumTargets(-1);
     }
     
     /**
@@ -35,7 +38,7 @@ public class LightningStrike extends Projectile
         }
         if(getHeight()<=0) {
             setHeight(0);
-            checkAsteroidHit();
+            checkHit();
             getWorld().removeObject(this);
             if(targ!=null){
                 getWorld().removeObject(targ);
@@ -51,10 +54,10 @@ public class LightningStrike extends Projectile
     /**
      * Check whether we have hit an asteroid.
      */
-    public void checkAsteroidHit()
+    public void checkHit()
     {
-        explodeOnEnemies(125, (g)->{doHit(g);});
         Sounds.play("rocketcrash");
+        super.checkHit();
     }
     
     public boolean covertDamage(){
