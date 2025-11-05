@@ -55,6 +55,10 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+11/5
+Balancing
+ - Flash Drive ult upgrade lightning heals you too(only when no other targets)
+
 11/4
 Balancing
  - Farmer

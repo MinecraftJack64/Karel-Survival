@@ -59,6 +59,8 @@ public class IntegratedCircuit extends Pet
                     getTarget().addObjectHere(new FlashLightningStrike(this));
                 }else if(getHealth()<getMaxHealth()){
                     addObjectHere(new FlashLightningStrike(this));
+                }else if(isAlliedWith(getTarget())&&getTarget().getPercentHealth()<1){
+                    getTarget().addObjectHere(new FlashLightningStrike(this));
                 }
             }
         }
