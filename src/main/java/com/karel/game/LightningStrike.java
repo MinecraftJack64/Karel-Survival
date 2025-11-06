@@ -15,6 +15,7 @@ public class LightningStrike extends Projectile
     public LightningStrike()
     {
         super(null);
+        setHitAll(true);
     }
     public LightningStrike(GridObject source)
     {

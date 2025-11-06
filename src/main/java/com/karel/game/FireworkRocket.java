@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.List;
 
 import com.karel.game.effects.PoisonEffect;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;

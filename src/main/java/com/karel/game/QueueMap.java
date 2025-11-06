@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class QueueMap<T extends Comparable, E>  
+public class QueueMap<T extends Comparable<T>, E>  
 {
     ArrayList<T> keys;
     ArrayList<E> values;

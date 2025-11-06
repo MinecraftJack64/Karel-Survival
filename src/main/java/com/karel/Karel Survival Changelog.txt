@@ -58,6 +58,7 @@ Last Phase:
 11/5
 Balancing
  - Flash Drive ult upgrade lightning heals you too(only when no other targets)
+ - Cloud Server lightning strikes also damage zombie for half
 
 11/4
 Balancing

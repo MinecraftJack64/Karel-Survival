@@ -29,6 +29,7 @@ public class Hitter extends GridObject implements SubAffecter
     }
     HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
     private boolean hitfullallies = true;
+    private boolean hitall;
     public Hitter(GridObject source){
         this.source = source;
         if(source!=null)inherit(source);
@@ -54,6 +55,12 @@ public class Hitter extends GridObject implements SubAffecter
     public void setHitAllies(boolean d, boolean f){
         setHitAllies(d);
         hitfullallies = f;
+    }
+    public boolean hitsAll(){
+        return hitall;
+    }
+    public void setHitAll(boolean res){
+        hitall = res;
     }
     public void setNumTargets(int ist){
         targets = ist;
@@ -183,7 +190,7 @@ public class Hitter extends GridObject implements SubAffecter
         return asteroid;
     }
     public boolean willHit(GridEntity thing){
-        return thing==getSource()&&willSelfHit() || thing!=getSource()&&(isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing)&&(hitfullallies||thing.getPercentHealth()<1));
+        return hitsAll()&&thing!=getSource() || thing==getSource()&&willSelfHit() || thing!=getSource()&&(isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing)&&(hitfullallies||thing.getPercentHealth()<1));
     }
     public boolean isPotentialTarget(GridEntity thing){
         return super.isPotentialTarget(thing)&&willHit(thing)&&!hitstory.contains(thing);
