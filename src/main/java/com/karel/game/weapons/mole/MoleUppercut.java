@@ -1,6 +1,7 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.mole;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 

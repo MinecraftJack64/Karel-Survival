@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.mole;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Hitter;
 
 /**
@@ -10,7 +12,7 @@ import com.karel.game.gridobjects.hitters.Hitter;
  */
 public class Mole extends Hitter
 {
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private int gunReloadTime = 15;
     private MoleUppercut mu;
     private MoleSinkhole ms;
@@ -69,7 +71,6 @@ public class Mole extends Hitter
     }
     public void update(){
         super.update();
-        if(mu==null)reloadDelayCount++;
         if(!inUlt()){
             face(tx, ty, true);
             if(distanceTo(tx, ty)>30&&reloadDelayCount>=gunReloadTime){
@@ -81,5 +82,8 @@ public class Mole extends Hitter
         if(getSource()!=null&&(!(getSource() instanceof GridEntity)||!((GridEntity)getSource()).isDead())&&!getSource().getTeam().equals(getTeam())){//make sure team is same as source
             setTeam(getSource().getTeam());
         }
+    }
+    public void reload(double speed){
+        if(mu==null)reloadDelayCount+=speed;
     }
 }

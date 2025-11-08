@@ -1,13 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.nailgun;
 
-import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
-import com.karel.game.weapons.ShieldID;
 import com.karel.game.weapons.Weapon;
-import com.karel.game.weapons.gun.Gun;
-import com.karel.game.gridobjects.gridentities.Bot;
-import com.karel.game.gridobjects.gridentities.zombies.boid.BoidSpawner;
-import com.karel.game.gridobjects.gridentities.zombies.shapeshifter.ShapeshifterZombie;
-import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
+import com.karel.game.weapons.rock.RockChunk;
+import com.karel.game.ItemHolder;
 
 /**
  * Write a description of class NailGun here.
@@ -22,7 +17,7 @@ public class NailGun extends Weapon
     private static final int spread = 5;
     private int atkphase = 1;//1-3: shoot nails, 4 - shoot drill
     private boolean drillnext = false;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private int wavesleft = 0;
     private int r[] = {500, 350, 250, 100};
     private int r2[] = {500, 375, 300, 175};
@@ -78,22 +73,7 @@ public class NailGun extends Weapon
         double x = getHand().getTargetX();
         double y = getHand().getTargetY();
         double d = Math.min(600, getHolder().distanceTo(x, y));
-        /*JailBreakZombie wz = new JailBreakZombie();
-        wz.setTeam(getHolder().getTeam());
-        wz.startHealthShield(new StrikeSurvivalShield(new ShieldID(this), 100000));
-        LaserZombie dz = new LaserZombie();
-        dz.setTeam(getHolder().getTeam());
-        dz.startHealthShield(new ImmunityShield(new ShieldID(this), -1));
-        ZombieDropper bullet = new ZombieDropper(getHand().getTargetRotation()+180, d, 200, wz, getHolder());
-        getHolder().addObjectHere(bullet);
-        ZombieDropper bullet2 = new ZombieDropper(getHand().getTargetRotation(), d, 200, dz, getHolder());
-        getHolder().addObjectHere(bullet2);*/
-        //Spawn a BoidSpawner instead
-        //ShapeshifterZombie spawner = new ShapeshifterZombie();
-        Bot spawner = new Bot(getHolder());
-        spawner.setWeapon(new Gun(spawner.getHand()));
-        spawner.setTeam(getHolder().getTeam());
-        Dropper dropper = new Dropper(getHand().getTargetRotation(), d, 200, spawner, getHolder());
+        RockChunk dropper = new RockChunk(getHand().getTargetRotation(), d, 200, getHolder());
         getHolder().addObjectHere(dropper);
     }
     public int getUlt(){
@@ -102,21 +82,21 @@ public class NailGun extends Weapon
     public void notifyHit(){
         drillnext = true;
     }
-    public void reload(){
+    public void reload(double s){
         if(reloadDelayCount<0){
-            reloadDelayCount++;
+            reloadDelayCount+=s;
             if(reloadDelayCount==0){
                 getAmmoBar().reset();
                 updateAmmo(0);
             }
         }else{
-            reloadDelayCount++;
+            reloadDelayCount+=s;
             if(drillnext){
                 updateAmmo(gunReloadTime+1);
             }else if(wavesleft>0){
                 updateAmmo(0);
             }else{
-                updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+                updateAmmo(Math.min((int)reloadDelayCount, gunReloadTime));
             }
         }
     }
@@ -126,7 +106,7 @@ public class NailGun extends Weapon
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, (int)reloadDelayCount);
     }
     public String getName(){
         return "Nailgun";

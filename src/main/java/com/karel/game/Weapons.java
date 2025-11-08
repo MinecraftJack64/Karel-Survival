@@ -7,6 +7,7 @@ import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.drone.DroneRemote;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.gun.Gun;
+import com.karel.game.weapons.mole.PetMole;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.rock.RockCatapult;
 import com.karel.game.weapons.shotgun.Shotgun;

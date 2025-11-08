@@ -1,6 +1,9 @@
-package com.karel.game;
-import java.util.HashSet;
+package com.karel.game.weapons.mole;
+//import java.util.HashSet;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Puddle;
 import com.karel.game.effects.EffectID;
 /**
  * Write a description of class MoleSpikePuddle here.
@@ -10,12 +13,12 @@ import com.karel.game.effects.EffectID;
  */
 public class MoleSpikePuddle extends Puddle
 {
-    private HashSet<GridEntity> lastAffected;
+    //TODO: private HashSet<GridEntity> lastAffected;
     private EffectID slow;
     public MoleSpikePuddle(GridObject source){
         super(120, 1, 90, source);
         setTrackAfterHit(true);
-        lastAffected = new HashSet<GridEntity>();
+        //lastAffected = new HashSet<GridEntity>();
         slow = new EffectID(this);
     }
     public void doHit(GridEntity t){

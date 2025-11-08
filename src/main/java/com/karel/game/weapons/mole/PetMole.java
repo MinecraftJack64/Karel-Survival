@@ -1,6 +1,6 @@
-package com.karel.game;
-import java.util.List;
+package com.karel.game.weapons.mole;
 
+import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -45,9 +45,11 @@ public class PetMole extends Weapon
     public int defaultGadgets(){
         return 7;
     }
-    public void reload(){
-        if(zap.getWorld()!=null)
+    public void reload(double s){
+        if(zap.getWorld()!=null){
             zap.target(getHand().getTargetX(), getHand().getTargetY());
+            zap.reload(s);
+        }
     }
     public void equip(){
         super.equip();

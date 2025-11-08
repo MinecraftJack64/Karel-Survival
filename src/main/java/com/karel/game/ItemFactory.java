@@ -24,6 +24,8 @@ import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.jackolantern.JackOLantern;
 import com.karel.game.weapons.jadecutter.JadeCutter;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
+import com.karel.game.weapons.mole.PetMole;
+import com.karel.game.weapons.nailgun.NailGun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;

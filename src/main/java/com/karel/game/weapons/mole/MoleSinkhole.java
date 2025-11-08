@@ -1,6 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.mole;
 import java.util.List;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.EffectID;
 import com.karel.game.gridobjects.hitters.Bullet;
 
