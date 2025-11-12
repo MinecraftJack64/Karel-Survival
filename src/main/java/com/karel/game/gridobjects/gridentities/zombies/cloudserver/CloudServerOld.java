@@ -13,7 +13,6 @@ import com.karel.game.effects.EffectID;
 import com.karel.game.effects.FatalPoisonEffect;
 import com.karel.game.effects.LifestealEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
-import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
@@ -89,7 +88,7 @@ public class CloudServerOld extends Boss
         turrets = new ArrayList<GridEntity>();
         lasers = new ArrayList<GridEntity>();
         wizardStun = new EffectID(this);
-        addEffectImmunities(TeamSwitchEffect.class);
+        //addEffectImmunities(TeamSwitchEffect.class);
     }
     //ovveride this
     public int getXP(){
@@ -312,7 +311,7 @@ public class CloudServerOld extends Boss
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)&&!g.isDead()){
                 found = true;
                 if(g.canMove()||g.canAttack())g.stun(wizardStun);
-                if(!g.hasEffect(LifestealEffect.class))g.applyEffect(new LifestealEffect(20, 1, -1, this));
+                if(!g.hasEffect(""))g.applyEffect(new LifestealEffect(20, 1, -1, this));
             }
         }
         return found;

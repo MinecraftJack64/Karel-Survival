@@ -17,8 +17,6 @@ public class Tutorial extends GameMode
     private Teams teams;
     public TutorialSpawner spawner;
     private String status;
-    private static int highscore;
-    private static int level = 0;
     private boolean tutorialcomplete = false;
     private int tutorialphase = 0;
     private double playerogx, playerogy;
@@ -126,7 +124,6 @@ public class Tutorial extends GameMode
         if(tutorialcomplete){
             status = "win";
             gameUI().gameOver("tutorial", true);
-            level++;
         }else{
             gameUI().gameOver("tutorial", false);
             status = "lose";

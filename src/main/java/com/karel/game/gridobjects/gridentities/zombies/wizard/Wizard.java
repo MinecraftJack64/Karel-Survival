@@ -348,7 +348,7 @@ public class Wizard extends Boss
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)&&!g.isDead()){
                 found = true;
                 if(g.canMove()||g.canAttack())g.stun(wizardStun);
-                if(!g.hasEffect(LifestealEffect.class))g.applyEffect(new LifestealEffect(20, 1, -1, this));
+                if(!g.hasEffect("lifesteal"))g.applyEffect(new LifestealEffect(20, 1, -1, this));
             }
         }
         return found;

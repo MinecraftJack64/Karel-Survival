@@ -17,6 +17,7 @@ import com.karel.game.weapons.fastfood.FastFood;
 import com.karel.game.weapons.flail.Flail;
 import com.karel.game.weapons.flashdrive.FlashDrive;
 import com.karel.game.weapons.gale.Gale;
+import com.karel.game.weapons.gluegun.GlueGun;
 import com.karel.game.weapons.grenade.GrenadeLauncher;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;

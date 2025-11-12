@@ -1,7 +1,6 @@
 package com.karel.game.gridobjects.gridentities.zombies.exploding;
 
 import com.karel.game.GridObject;
-import com.karel.game.effects.BurnEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.arson.FirePuddle;
@@ -51,7 +50,7 @@ public class ExplodingZombie extends Zombie
                 damage(e, damage);
                 e.knockBack(face(e, false), 50, 30, this);
             }, new Explosion(1));
-            if(hasEffect(BurnEffect.class)){
+            if(hasEffect("burn")){
                 addObjectHere(new FirePuddle(this));
             }
             playSound("Zombies/exploding/explode.wav");

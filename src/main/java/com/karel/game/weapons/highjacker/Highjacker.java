@@ -1,5 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.highjacker;
 
+import com.karel.game.ExternalImmunityShield;
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.weapons.ShieldID;
@@ -15,7 +19,7 @@ public class Highjacker extends Weapon
 {
     private static final int ult = 2500, reload = 50;
     private Scissors lasso;
-    private int ammo;
+    private double ammo;
     private boolean mounted = false;
     private GridEntity mount;
     private static final int mountHeight = 60;
@@ -60,7 +64,7 @@ public class Highjacker extends Weapon
         mount.applyEffect(hypno);
         mount.applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
         ammo = reload;
-        newAmmo(reload, ammo);
+        newAmmo(reload, (int)ammo);
         chargeUlt(2500);
     }
     public void unmount(){
@@ -95,15 +99,12 @@ public class Highjacker extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
+    public void update(){
         if(lasso!=null&&lasso.hasReturned()){
             lasso = null;
         }
         if(mounted){
-            if(hypno.getDuration()>0&&!mount.isDead()){
-                ammo++;
-                updateAmmo(Math.min(ammo, reload));
-            }else{
+            if(hypno.getDuration()<=0||mount.isDead()){
                 unmount();
                 dischargeUlt(2500);
             }
@@ -111,6 +112,14 @@ public class Highjacker extends Weapon
             confirmUnmount();
         }
         chargeUlt(2);
+    }
+    public void reload(double speed){
+        if(mounted){
+            if(hypno.getDuration()>0&&!mount.isDead()){
+                ammo+=speed;
+                updateAmmo(Math.min((int)ammo, reload));
+            }
+        }
     }
     public boolean canAttackInAir(){
         return mounted;

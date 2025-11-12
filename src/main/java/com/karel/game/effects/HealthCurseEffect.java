@@ -31,5 +31,5 @@ public class HealthCurseEffect extends MaliciousEffect
     public void onClear(){
         getTarget().clearMaxHealthLimit(getID());
     }
-    public String getStringID(){return "healthcurse";}
+    public String getStringID(){return "health_curse";}
 }

@@ -58,8 +58,12 @@ Last Phase:
 11/12
 Graphics
  - Effects show duration if possible
+Balancing
+ - Highjacker and Glue Gun affected by reload speed
 Technical
+ - All effects use string now
  - Added accountability for all gridentity effects
+ - Health Curse Effect id(healthcurse->health_curse)
 
 11/7
 Balancing

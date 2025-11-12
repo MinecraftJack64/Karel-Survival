@@ -31,7 +31,7 @@ public class ZombieSpawner implements Spawner
     private int nextSpawn;
     private int remainingSections;
     private int forceNextSpawn; // 450
-    private int lastMaxHealth = 0;//TODO
+    //private int lastMaxHealth = 0;//TODO
     
     public QueueMap<Integer, Boss> bosses = calculator.bosses;
     private int nextBossWave;
@@ -145,7 +145,7 @@ public class ZombieSpawner implements Spawner
     public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
-        lastMaxHealth = toSpawn.totalHealth();
+        //lastMaxHealth = toSpawn.totalHealth();
         Game.gameUI().newWave(toSpawn.totalHealth());
         //System.out.println("first Spawn");
         spawnZombies(toSpawn, sections);

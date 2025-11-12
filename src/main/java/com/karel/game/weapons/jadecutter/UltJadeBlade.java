@@ -18,7 +18,7 @@ public class UltJadeBlade extends JadeBlade
         super(rotation, size, isUpgrade, source);
     }
     public void doHit(GridEntity targ){
-        if(!targ.hasEffect(SizePercentageEffect.class))targ.applyEffect(new SizePercentageEffect(0.70, -1, this, new EffectID(this)));
+        if(!targ.hasEffect("sizeMal"))targ.applyEffect(new SizePercentageEffect(0.70, -1, this, new EffectID(this)));
         super.doHit(targ);
     }
 }

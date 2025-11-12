@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.gluegun;
 
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.effects.SilenceEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.Weapon;
@@ -12,7 +14,7 @@ import com.karel.game.weapons.Weapon;
  */
 public class GlueGun extends Weapon
 {
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 800;
     private int dropsremaining = 0;
     private int explodecooldown = -1;
@@ -85,8 +87,8 @@ public class GlueGun extends Weapon
     public void onGadgetActivate(){
         setGadgetTimer(120);
     }
-    public void reload(){
-        reloadDelayCount++;
+    public void reload(double speed){
+        reloadDelayCount+=speed;
     }
     public GlueGun(ItemHolder actor){
         super(actor);

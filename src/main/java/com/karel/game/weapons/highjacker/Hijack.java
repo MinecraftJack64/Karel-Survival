@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.highjacker;
+
+import com.karel.game.GridEntity;
+import com.karel.game.Rocket;
 
 /**
  * The representation of the Highjacker weapon while jumping on an enemy

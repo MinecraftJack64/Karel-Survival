@@ -63,7 +63,7 @@ public class StaticJadeBlade extends Hitter{
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
-        if(isSuper&&!targ.hasEffect(SizePercentageEffect.class)){
+        if(isSuper&&!targ.hasEffect("sizeMal")){
             targ.applyEffect(new SizePercentageEffect(0.70, -1, this, new EffectID(this)));
         }
     }

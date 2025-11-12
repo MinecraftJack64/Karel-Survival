@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.highjacker;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.HealCharge;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 
 /**

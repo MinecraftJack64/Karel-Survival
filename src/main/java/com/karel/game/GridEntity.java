@@ -47,7 +47,7 @@ public abstract class GridEntity extends GridObject
     private int maxshields = 10;
     private boolean isBoss;
     private ArrayList<ShieldBar> shieldBars = new ArrayList<ShieldBar>();
-    private HashSet<Class> effectImmunities = new HashSet<Class>();
+    private HashSet<String> effectImmunities = new HashSet<String>();
     private ArrayList<Possessor> possessors = new ArrayList<Possessor>();
     private boolean updatingPossessors;
     private ArrayList<Possessor> possessorsToRemove = new ArrayList<Possessor>();
@@ -213,9 +213,9 @@ public abstract class GridEntity extends GridObject
         e.appliedTo(this);
         return true;
     }
-    public boolean hasEffect(Class cls){
+    public boolean hasEffect(String cls){
         for(Effect e: effects){
-            if(cls.isInstance(e)){
+            if(cls.equals(e.getStringID())){
                 return true;
             }
         }
@@ -263,17 +263,17 @@ public abstract class GridEntity extends GridObject
     public void filterEffects(Predicate<Effect> vore){
         clearEffects(vore.negate());
     }
-    public HashSet<Class> getEffectImmunities(){
+    public HashSet<String> getEffectImmunities(){
         return effectImmunities;
     }
-    public void addEffectImmunities(Class... clss){
-        for(Class cls: clss){
+    public void addEffectImmunities(String... clss){
+        for(String cls: clss){
             getEffectImmunities().add(cls);
         }
     }
     public boolean isImmuneTo(Effect eff){
-        for(Class cls: getEffectImmunities()){
-            if(cls.isInstance(eff)){
+        for(String cls: getEffectImmunities()){
+            if(cls.equals(eff.getStringID())){
                 return true;
             }
         }

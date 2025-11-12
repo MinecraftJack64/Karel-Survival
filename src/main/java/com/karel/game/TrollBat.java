@@ -13,7 +13,6 @@ public class TrollBat extends Melee
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private int life = 12;
     private double degtotarg, radius;
-    private boolean clockwise;
     
     public TrollBat(double rotation, boolean issuper, GridObject source)
     {

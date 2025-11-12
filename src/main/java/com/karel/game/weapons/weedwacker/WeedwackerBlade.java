@@ -7,8 +7,6 @@ import com.karel.game.MetalShield;
 import com.karel.game.ProjectileReflectShield;
 import com.karel.game.ProjectileParryShield;
 import com.karel.game.SubAffecter;
-import com.karel.game.effects.BurnEffect;
-import com.karel.game.effects.PoisonEffect;
 import com.karel.game.weapons.ShieldID;
 import com.raylib.Raylib;
 import com.raylib.Vector2;
@@ -35,7 +33,7 @@ public class WeedwackerBlade extends GridEntity implements SubAffecter
         setDetectable(false);
         setImage("Weapons/weedwacker/proj.png");
         scaleTexture(40);
-        addEffectImmunities(PoisonEffect.class, BurnEffect.class);
+        addEffectImmunities("burn", "poison");
     }
     public WeedwackerBlade(GridEntity source, Weedwacker myWeapon){
         this(source);
