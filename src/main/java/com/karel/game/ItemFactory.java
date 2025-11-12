@@ -36,6 +36,7 @@ import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
 import com.karel.game.weapons.sodahat.SodaHat;
+import com.karel.game.weapons.soup.Soup;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.traps.TrapSetter;

@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.soup;
 import java.util.List;
+
+import com.karel.game.Dropper;
+import com.karel.game.GridObject;
 
 /**
  * A bullet that can hit asteroids.

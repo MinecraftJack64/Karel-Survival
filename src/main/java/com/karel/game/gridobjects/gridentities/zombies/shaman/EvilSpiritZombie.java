@@ -63,7 +63,7 @@ public class EvilSpiritZombie extends SpawnableZombie implements EventListener
         applyEffect(new SpeedPercentageEffect(1.2, Greenfoot.getRandomNumber(100), source));
         if(source instanceof GridEntity g){
             startHealth(g.getMaxHealth()-g.getHealth());
-            g.clearMaxHealthLimit(50, new EffectID(this));
+            g.clearMaxHealthLimit(new EffectID(this));
         }
         return true;
     }

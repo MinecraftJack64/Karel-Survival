@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.soup;
 
+import com.karel.game.AmmoManager;
+import com.karel.game.ItemHolder;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.weapons.Weapon;

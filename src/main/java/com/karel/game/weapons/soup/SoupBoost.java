@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.soup;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.HealEffect;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;

@@ -29,7 +29,7 @@ public class HealthCurseEffect extends MaliciousEffect
         getTarget().setMaxHealthLimit(amt, getID());
     }
     public void onClear(){
-        getTarget().clearMaxHealthLimit(amt, getID());
+        getTarget().clearMaxHealthLimit(getID());
     }
     public String getStringID(){return "healthcurse";}
 }

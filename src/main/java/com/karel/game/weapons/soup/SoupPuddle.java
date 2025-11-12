@@ -1,6 +1,9 @@
-package com.karel.game;
+package com.karel.game.weapons.soup;
 import java.util.HashSet;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Puddle;
 import com.karel.game.effects.EffectID;
 /**
  * Write a description of class SoupPuddle here.

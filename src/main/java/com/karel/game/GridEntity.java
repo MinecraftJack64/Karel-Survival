@@ -24,19 +24,22 @@ public abstract class GridEntity extends GridObject
 {
     ArrayList<Effect> effects = new ArrayList<Effect>();
     private int maxHealth = 200;//TMP
-    private int healthLimit = 0;
     private int health = maxHealth;
     HealthBar healthBar;
     private HashMap<EffectID, Double> speedAffecters = new HashMap<EffectID, Double>();
     public double movementspeed = 5, speedmultiplier = 1;
+    private HashMap<EffectID, Double> exposureAffecters = new HashMap<EffectID, Double>();
+    private HashMap<EffectID, Double> sizeAffecters = new HashMap<EffectID, Double>();
+    private HashMap<EffectID, Double> reloadAffecters = new HashMap<EffectID, Double>();
     private double exposureMultiplier = 1, sizeMultiplier = 1, reloadMultiplier = 1;//exposure multiplier is used to increase damage taken from bullets
-    private HashSet<EffectID> immobilizers;//these store the affectors behind each effect
+    private HashSet<EffectID> immobilizers = new HashSet<EffectID>();//these store the affectors behind each effect
     private boolean canmove = true;//if you can move
-    private HashSet<EffectID> silencers;
+    private HashSet<EffectID> silencers = new HashSet<EffectID>();
     private boolean isactive = true;//if you can attack or do stuff
-    private HashSet<EffectID> hiders;
+    private HashSet<EffectID> hiders = new HashSet<EffectID>();
     private boolean detectable = true;//if enemies can see you
-    private HashSet<EffectID> cursers;
+    private HashMap<EffectID, Integer> cursers = new HashMap<EffectID, Integer>();
+    private int healthLimit = 0; // amount of health blocked
     boolean isdead = false;
     private GridObject killer;
     private Shield healthShield;
@@ -47,7 +50,8 @@ public abstract class GridEntity extends GridObject
     private HashSet<Class> effectImmunities = new HashSet<Class>();
     private ArrayList<Possessor> possessors = new ArrayList<Possessor>();
     private boolean updatingPossessors;
-    private ArrayList<Possessor> possessorsToRemove = new ArrayList<Possessor>();;
+    private ArrayList<Possessor> possessorsToRemove = new ArrayList<Possessor>();
+    private boolean invisible;
     public boolean isDead(){
         return isdead;
     }
@@ -98,24 +102,14 @@ public abstract class GridEntity extends GridObject
     }
 
     public void setSpeedMultiplier(double perc, EffectID ctrl){
-        if(perc==1&&speedAffecters.containsKey(ctrl))speedAffecters.remove(ctrl);
-        else speedAffecters.put(ctrl, perc);
-        double high = 1, low = 1;
-        for(double p: speedAffecters.values()){
-            if(p<1&&p<low){
-                low = p;
-            }else if(p>1&&p>high){
-                high = p;
-            }
-        }
-        speedmultiplier = high*low;
+        speedmultiplier = accountForStatus(speedAffecters, perc, ctrl);
     }
     
     public double getExposure(){
         return exposureMultiplier*(1.0/sizeMultiplier);
     }
     public void setExposure(double perc, EffectID ctrl){
-        exposureMultiplier = perc;
+        exposureMultiplier = accountForStatus(exposureAffecters, perc, ctrl);
     }
     public void setExposure(double perc){
         exposureMultiplier = perc;
@@ -129,7 +123,7 @@ public abstract class GridEntity extends GridObject
         return super.getPower()*sizeMultiplier;
     }
     public void setReloadMultiplier(double perc, EffectID ctrl){
-        reloadMultiplier = perc;
+        reloadMultiplier = accountForStatus(reloadAffecters, perc, ctrl);
     }
     public void setReloadMultiplier(double perc){
         reloadMultiplier = perc;
@@ -138,21 +132,48 @@ public abstract class GridEntity extends GridObject
         return reloadMultiplier;
     }
     public void setSizeMultiplier(double perc, EffectID ctrl){
-        sizeMultiplier = perc;
+        sizeMultiplier = accountForStatus(sizeAffecters, perc, ctrl);
     }
     public void setSizeMultiplier(double perc){
         sizeMultiplier = perc;
     }
     public void scaleSize(double amt){
-        setSizeMultiplier(amt*getSizeMultiplier());
+        setSizeMultiplier(amt);
         scaleTexture((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
     }
     public void scaleSize(double amt, EffectID ctrl){
-        setSizeMultiplier(amt*getSizeMultiplier(), ctrl);
+        setSizeMultiplier(amt, ctrl);
         scaleTexture((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
     }
     public double getSizeMultiplier(){
         return sizeMultiplier;
+    }
+    public double accountForStatus(HashMap<EffectID, Double> acc, double perc, EffectID ctrl){
+        if(perc==1&&acc.containsKey(ctrl))acc.remove(ctrl);
+        else acc.put(ctrl, perc);
+        double high = 1, low = 1;
+        for(double p: acc.values()){
+            if(p<1&&p<low){
+                low = p;
+            }else if(p>1&&p>high){
+                high = p;
+            }
+        }
+        return high*low;
+    }
+    public int accountForStatus(HashMap<EffectID, Integer> acc, int amt, EffectID ctrl){
+        if(amt==0&&acc.containsKey(ctrl))acc.remove(ctrl);
+        else acc.put(ctrl, amt);
+        int total = 0;
+        for(int p: acc.values()){
+            total+=p;
+        }
+        return total;
+    }
+    public boolean accountForStatus(HashSet<EffectID> acc, boolean b, EffectID ctrl){
+        if(!b&&acc.contains(ctrl))acc.remove(ctrl);
+        else acc.add(ctrl);
+        return acc.size()>0;
     }
 
     public void walk(double angle, double speed){
@@ -269,19 +290,19 @@ public abstract class GridEntity extends GridObject
     }
     
     public void mute(EffectID ctrl){
-        isactive = false;
+        isactive = !accountForStatus(silencers, true, ctrl);
     }
     
     public void unmute(EffectID ctrl){
-        isactive = true;
+        isactive = !accountForStatus(silencers, false, ctrl);
     }
     
     public void immobilize(EffectID ctrl){
-        canmove = false;
+        canmove = !accountForStatus(immobilizers, true, ctrl);
     }
     
     public void mobilize(EffectID ctrl){
-        canmove = true;
+        canmove = !accountForStatus(immobilizers, false, ctrl);
     }
 
     public boolean canAttack(){
@@ -622,10 +643,13 @@ public abstract class GridEntity extends GridObject
         return true;
     }
     public boolean canDetect(){//can be detected
-        return detectable&&!hasMounter();
+        return detectable&&!hasMounter()&&!invisible;
     }
     public void setDetectable(boolean b){
         detectable = b;
+    }
+    public void setInvisible(boolean b, EffectID ctrl){
+        invisible = accountForStatus(hiders, b, ctrl);
     }
     public boolean hasHitbox(){
         return true;
@@ -643,18 +667,14 @@ public abstract class GridEntity extends GridObject
     public String getName(){return "Grid Entity";}
     public String getEntityID(){return "";}
     public void setMaxHealthLimit(int amt, EffectID id) {
-        healthLimit+=amt;
+        healthLimit = accountForStatus(cursers, amt, id);
         if(getHealth()>getEffectiveMaxHealth()){
             setHealth(getEffectiveMaxHealth());
         }
         if(healthBar!=null&&!hasHealthShield())healthBar.setDisabledPortion(Math.min(healthLimit, getMaxHealth()-1));
     }
-    public void clearMaxHealthLimit(int amt, EffectID id) {
-        healthLimit-=amt;
-        if(healthBar!=null&&!hasHealthShield())healthBar.setDisabledPortion(healthLimit);
-    }
     public void clearMaxHealthLimit(EffectID id) {
-        healthLimit = 0;
+        healthLimit = accountForStatus(cursers, 0, id);
         if(healthBar!=null&&!hasHealthShield())healthBar.setDisabledPortion(healthLimit);
     }
 }
