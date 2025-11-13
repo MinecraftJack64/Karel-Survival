@@ -1,5 +1,4 @@
 package com.karel.game;
-import java.util.ArrayList;
 
 import com.karel.game.gridobjects.hitters.Bullet;
 import com.karel.game.weapons.ShieldID;

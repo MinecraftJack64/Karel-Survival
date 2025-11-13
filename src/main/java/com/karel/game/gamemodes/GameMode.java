@@ -1,6 +1,7 @@
 package com.karel.game.gamemodes;
 
 import com.karel.game.Game;
+import com.karel.game.ItemFactory;
 import com.karel.game.Player;
 import com.karel.game.Sounds;
 import com.karel.game.Spawner;
@@ -66,9 +67,9 @@ public abstract class GameMode implements Tickable
         return weaponfrags>=beeperbagsize;
     }
     public Weapon getCraft(){
-        Class cls = Weapons.attemptWeaponCrafting(weaponfrags, getPlayer().getInventory());
+        String cls = Weapons.attemptWeaponCrafting(weaponfrags, getPlayer().getInventory());
         if(cls!=null){
-            try{return (Weapon)(cls.getConstructors()[0].newInstance(getPlayer().getHand()));}catch(Exception e){e.printStackTrace();return null;}
+            try{return (Weapon)(ItemFactory.createItem(cls, getPlayer().getHand()));}catch(Exception e){e.printStackTrace();return null;}
         }else{
             return null;
         }

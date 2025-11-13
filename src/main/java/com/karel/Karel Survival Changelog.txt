@@ -58,6 +58,8 @@ Last Phase:
 11/12
 Graphics
  - Effects show duration if possible
+Content
+ - Added Glue Gun ult upgrade
 Balancing
  - Highjacker and Glue Gun affected by reload speed
 Technical

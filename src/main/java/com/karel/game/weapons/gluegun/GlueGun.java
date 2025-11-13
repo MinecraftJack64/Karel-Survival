@@ -18,6 +18,7 @@ public class GlueGun extends Weapon
     private static final int ult = 800;
     private int dropsremaining = 0;
     private int explodecooldown = -1;
+    private boolean ultBoost = false;
     public void fire(){
         if(continueUse()){
             double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), getRange());
@@ -63,6 +64,9 @@ public class GlueGun extends Weapon
         if(!continueUlt()){
             explodecooldown = 20;
             setContinueUlt(true);
+            if(getUltUpgrade()==1){
+                ultBoost = true;
+            }
         }else{
             explodecooldown--;
             if(explodecooldown<=0){
@@ -78,6 +82,22 @@ public class GlueGun extends Weapon
                     g.knockBack(getHolder().face(g, false), 100, 30, getHolder());
                 });
                 setContinueUlt(false);
+            }
+        }
+    }
+    public void chargeUlt(int amt){
+        if(!ultBoost){
+            super.chargeUlt(amt);
+        }else{
+            // If ult charge 100, currently 40, and trying to add ultBoost 6, then 11 will be added
+            int residuePoint = (getUlt()/2+getUltCharge())/2;
+            if(getUltCharge()+amt>=residuePoint){
+                int main = residuePoint-getUltCharge();
+                int residue = getUltCharge()+amt-residuePoint;
+                super.chargeUlt(residue+main*2);
+                ultBoost = false;
+            }else{
+                super.chargeUlt(amt*2);
             }
         }
     }

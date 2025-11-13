@@ -18,4 +18,5 @@ public interface Item extends Cloneable
     public void setContinueUlt(boolean s);
     public String getName();
     public int getRarity();
+    public String getItemID();
 }

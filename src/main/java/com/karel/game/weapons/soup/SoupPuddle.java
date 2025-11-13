@@ -1,5 +1,5 @@
 package com.karel.game.weapons.soup;
-import java.util.HashSet;
+//import java.util.HashSet;
 
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
@@ -13,14 +13,14 @@ import com.karel.game.effects.EffectID;
  */
 public class SoupPuddle extends Puddle
 {
-    private HashSet<GridEntity> lastAffected;
+    //private HashSet<GridEntity> lastAffected;
     private EffectID slow;
     private double focus;
     public SoupPuddle(double fc, GridObject source){
         // 75 frames of 0.5 slow at 0.5 focus, 15 frames of no slow at 2 focus
         super(100, 1, 95-(int)fc*40, source);
         setTrackAfterHit(true);
-        lastAffected = new HashSet<GridEntity>();
+        //lastAffected = new HashSet<GridEntity>();
         slow = new EffectID(this);
         focus = fc;
     }

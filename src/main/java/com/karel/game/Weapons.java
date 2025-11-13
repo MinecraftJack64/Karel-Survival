@@ -1,20 +1,6 @@
 package com.karel.game;
 import java.util.ArrayList;
 
-import com.karel.game.weapons.catclaw.CatClaw;
-import com.karel.game.weapons.crossbow.Crossbow;
-import com.karel.game.weapons.crystalgun.CrystalGun;
-import com.karel.game.weapons.drone.DroneRemote;
-import com.karel.game.weapons.easterbasket.EasterBasket;
-import com.karel.game.weapons.gun.Gun;
-import com.karel.game.weapons.mole.PetMole;
-import com.karel.game.weapons.necromancer.Necromancer;
-import com.karel.game.weapons.rock.RockCatapult;
-import com.karel.game.weapons.shotgun.Shotgun;
-import com.karel.game.weapons.slicer.Slicer;
-import com.karel.game.weapons.sudo.Sudo;
-import com.karel.game.weapons.teslacoil.TeslaCoil;
-import com.karel.game.weapons.traps.TrapSetter;
 /**
  * Write a description of class Weapons here.
  * 
@@ -23,8 +9,8 @@ import com.karel.game.weapons.traps.TrapSetter;
  */
 public class Weapons  
 {
-    public static Class weaponRarities[][] = new Class[][]{
-        {Gun.class, TrapSetter.class, DroneRemote.class},
+    public static String weaponRarities[][] = new String[][]{{"Hello"}
+        /*{Gun.class, TrapSetter.class, DroneRemote.class},
         {RockCatapult.class, Shotgun.class},
         {Crossbow.class, Slicer.class},
         {TeslaCoil.class},
@@ -32,13 +18,13 @@ public class Weapons
         {PetMole.class},
         {Necromancer.class},
         {EasterBasket.class, Fireworks.class, Lovestrike.class},
-        {Sudo.class}
+        {Sudo.class}*/
     };
     public static int chances[][] = {{0,0,0,0,0},{0,0,0,0,0},{100,0,0,0,0},{100,50,0,0,0},{100,75,0,0,0},{100,85,25,0,0},{100,90,50,0,0},{100,90,75,0,0},{100,90,80,25,0},{100,90,85,50, 0},{100,90,75,75,0}, {100, 90, 90, 80, 25}};
-    public static Class attemptWeaponCrafting(int stuff, Item[] exclude){
-        ArrayList<ArrayList<Class>> nws = new ArrayList<ArrayList<Class>>();
+    public static String attemptWeaponCrafting(int stuff, Item[] exclude){
+        ArrayList<ArrayList<String>> nws = new ArrayList<ArrayList<String>>();
         for(int i = 0; i < weaponRarities.length; i++){
-            nws.add(new ArrayList<Class>());
+            nws.add(new ArrayList<String>());
             for(int j = 0; j < weaponRarities[i].length; j++){
                 if(!isExcluded(weaponRarities[i][j], exclude)){
                     nws.get(i).add(weaponRarities[i][j]);
@@ -57,9 +43,9 @@ public class Weapons
         }
         return null;
     }
-    public static boolean isExcluded(Class cls, Item[] exclude){
+    public static boolean isExcluded(String cls, Item[] exclude){
         for(Item e: exclude){
-            if(cls.isInstance(e)){
+            if(cls.equals(e.getItemID())){
                 return true;
             }
         }
