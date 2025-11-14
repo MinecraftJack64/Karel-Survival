@@ -51,6 +51,8 @@ public class TrollBat extends Melee
         super.doHit(targ);
         if(targ.hasEffect(new EffectID("trolltest-riddle"))&&targ.willNotify(this)){
             notifyDamage(targ, getDamage(targ)*5);
+            heal((GridEntity)getSource(), 50);
+            targ.knockBack(getSource().face(targ, false), 60, 20, this);
         }
     }
 }
