@@ -15,6 +15,10 @@ public class TeamSwitchEffect extends MaliciousEffect
         super(duration, source);
         this.team = team;
     }
+    public TeamSwitchEffect(String team, int duration, GridObject source, EffectID id){
+        super(duration, source, id);
+        this.team = team;
+    }
     public String getStaticTextureURL(){
         return "Symbols/Effects/team_switch.png";
     }

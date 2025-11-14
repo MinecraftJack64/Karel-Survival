@@ -55,6 +55,16 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+11/13
+Content
+ - Lovestrike attack upgrade, ult upgrade, gadget added
+ - Added Troll Test weapon base kit, ult upgrade, gadget
+Balancing
+ - Lovestrike attack pierce(Infinite->2)
+    - Affected by reload speed
+Graphics
+ - Lovestrike shows charging area
+
 11/12
 Graphics
  - Effects show duration if possible

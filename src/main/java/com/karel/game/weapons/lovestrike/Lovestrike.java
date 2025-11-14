@@ -1,7 +1,16 @@
-package com.karel.game;
+package com.karel.game.weapons.lovestrike;
 import java.util.List;
 
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.ItemHolder;
+import com.karel.game.SimpleAmmoManager;
+import com.karel.game.Sounds;
+import com.karel.game.effects.ReloadPercentageEffect;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.Weapon;
+import com.raylib.Texture;
 
 /**
  * Write a description of class Lovestrike here.
@@ -12,22 +21,22 @@ import com.karel.game.weapons.Weapon;
 public class Lovestrike extends Weapon
 {
     private static final int gunReloadTime = 40;
-    private int reloadDelayCount;
     private static final int ult = 300;
     private int ultchargedelay = 0;
     private Heart heart;
+    private Texture auraTexture = Greenfoot.loadTexture("Weapons/lymphcannon/aura.png");
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if (getAmmo().hasAmmo()) 
         {
-            CupidArrow bullet = new CupidArrow (getHand().getTargetRotation(), getHolder(), this);
+            CupidArrow bullet = new CupidArrow (getHand().getTargetRotation(), getAttackUpgrade()==1, getHolder(), this);
             getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             //bullet.move ();
             Sounds.play("gunshoot");
-            reloadDelayCount = 0;
+            getAmmo().useAmmo();
         }
     }
     public void fireUlt(){
-        Kiss bullet = new Kiss(getHand().getTargetRotation(), getHolder(), this);
+        Kiss bullet = new Kiss(getHand().getTargetRotation(), getAttackUpgrade()==1, getUltUpgrade()==1, getHolder(), this);
         getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("protonwave");
     }
@@ -43,28 +52,41 @@ public class Lovestrike extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        reloadDelayCount++;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+    public void onGadgetActivate(){
+        setGadgetTimer(300);
+    }
+    public int defaultGadgets(){
+        return 1;
+    }
+    public void update(){
         if(ultchargedelay<=0){
             List<GridEntity> l = getHolder().getGEsInRange(600);
+            int total = 0;
             for(GridEntity g:l){
                 if(g!=null&&getHolder().isAggroTowards(g)&&g.willNotify((GridObject)getHolder())){
                     chargeUlt(7);
+                    if(isUsingGadget()){
+                        total++;
+                    }
                 }
+            }
+            if(total>0){
+                if(total>3)total = 3;
+                getHolder().heal(getHolder(), 30);
+                getHolder().applyEffect(new ReloadPercentageEffect(1+0.25*total, 7, getHolder()));
+                getHolder().applyEffect(new SpeedPercentageEffect(1+0.15*total, 7, getHolder()));
             }
             ultchargedelay = 5;
         }else{
             ultchargedelay--;
         }
     }
+    public void render(){
+        getHolder().renderTexture(auraTexture, getHolder().getX(), getHolder().getY(), 1200, 1200, 0, 50);
+    }
     public Lovestrike(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
     }
     public String getName(){
         return "Lovestrike";

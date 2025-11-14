@@ -55,9 +55,27 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+11/12
+Graphics
+ - Effects show duration if possible
+Content
+ - Added Glue Gun ult upgrade
+Balancing
+ - Highjacker and Glue Gun affected by reload speed
+Technical
+ - All effects use string now
+ - Added accountability for all gridentity effects
+ - Health Curse Effect id(healthcurse->health_curse)
+
+11/7
+Balancing
+ - Nail gun affected by reload speed
+ - Mole affected by reload speed
+
 11/5
 Balancing
  - Flash Drive ult upgrade lightning heals you too(only when no other targets)
+ - Cloud Server lightning strikes also damage zombie for half
 
 11/4
 Balancing

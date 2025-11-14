@@ -24,6 +24,7 @@ import com.karel.game.weapons.hearth.Hearth;
 import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.jackolantern.JackOLantern;
 import com.karel.game.weapons.jadecutter.JadeCutter;
+import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.mole.PetMole;
 import com.karel.game.weapons.nailgun.NailGun;
@@ -41,6 +42,7 @@ import com.karel.game.weapons.soup.Soup;
 import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.traps.TrapSetter;
+import com.karel.game.weapons.trolltest.TrollTest;
 import com.karel.game.weapons.waterballoons.WaterBalloons;
 import com.karel.game.weapons.weedwacker.Weedwacker;
 
@@ -109,6 +111,7 @@ public class ItemFactory
                                     //"gum",
                                     //"tumbleweed",
                                     "paintgun",
+                                    "trolltest",
                                     "acidart",
                                     "flashdrive",
                                     "inferno",
@@ -249,6 +252,8 @@ public class ItemFactory
             case "paintgun":
                 return new PaintGun(holder);
             //MISSING A LOT
+            case "trolltest":
+                return new TrollTest(holder);
             case "acidart":
                 return new Acidart(holder);
             //MISSING A LOT
