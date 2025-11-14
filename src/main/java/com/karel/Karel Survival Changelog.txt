@@ -58,6 +58,8 @@ Last Phase:
 11/14
 Balancing
  - Added heal and knockback to troll test
+Content
+ - Implemented yellow boost for chameleon ult
 
 11/13
 Content

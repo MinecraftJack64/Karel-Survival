@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.chameleon;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Sounds;
 import com.karel.game.gridobjects.collectibles.Collectible;
 
 /**
@@ -18,6 +21,30 @@ public class ChameleonOrb extends Collectible
         this.mycham = mycham;
         this.color = color;
         setCooldown(15);
+        setImage("lightKaro.png");
+        tintPlayer();
+    }
+    public void tintPlayer(){
+        switch(color){
+            case 0:
+                setTint(255, 0 ,0);
+                break;
+            case 1:
+                setTint(255, 128, 0);
+                break;
+            case 2:
+                setTint(255, 255, 0);
+                break;
+            case 3:
+                setTint(0, 255, 0);
+                break;
+            case 4:
+                setTint(0, 0, 255);
+                break;
+            case 5:
+                setTint(128, 0, 255);
+                break;
+        }
     }
     public GridObject getTarget(){
         return mycham.getHolder();

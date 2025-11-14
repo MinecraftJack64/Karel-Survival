@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.chameleon;
 
+import com.karel.game.Boomerang;
+import com.karel.game.GridEntity;
+import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.effects.StunEffect;

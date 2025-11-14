@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.weapons.chameleon;
 
+import com.karel.game.GridEntity;
+import com.karel.game.ItemHolder;
+import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.weapons.Weapon;
@@ -14,7 +17,7 @@ public class Chameleon extends Weapon
 {
     private static final int gunReloadTime = 10;
     private int colorCooldown = 0;
-    private int color = 2;//0,1,2,3,4,5 - red-purple
+    private int color = 3;//0,1,2,3,4,5 - red-purple
     private int nextColor = 4;
     private int reloadDelayCount;
     private boolean greenboostson = false;
@@ -47,17 +50,20 @@ public class Chameleon extends Weapon
             getHolder().addObjectHere(bullet);
             tongue = bullet;
             if(isColor(2)){
-                double bestResidual[] = new double[]{180};
+                double bestResidual[] = new double[]{0, -1};
                 getHolder().explodeOn(480, "enemy", (g)->{
-                    if(Math.abs(getHolder().face(g, false)-getHand().getTargetRotation()-180)%360<90){
-                        double residual = Math.abs(getHolder().face(g, false)-getHand().getTargetRotation())%360;
-                        System.out.println(residual+" "+getHolder().face(g, false)+" "+getHand().getTargetRotation());
-                        if(residual<bestResidual[0]){
+                    if(getHolder().getFacingDistance(g)>90){
+                        double residual = getHolder().getFacingDistance(g);
+                        if(residual>bestResidual[0]){
                             bestResidual[0] = residual;
+                            bestResidual[1] = getHolder().getFacingOffset(g)>0?1:-1;
                         }
                     }
                 }, null);
-                ChameleonTongue bullet2 = new ChameleonTongue (getHand().getTargetRotation()+bestResidual[0], false, false, getHolder());
+                if(bestResidual[0]<90){
+                    bestResidual[0] = 180;
+                }
+                ChameleonTongue bullet2 = new ChameleonTongue (getHand().getTargetRotation()+bestResidual[0]*bestResidual[1], false, false, getHolder());
                 getHolder().addObjectHere(bullet2);
             }
         }//bullet.move ();
@@ -84,11 +90,11 @@ public class Chameleon extends Weapon
         }
     }
     public void notifyColorChange(int c, int heal, GridEntity catcher){
-        //if(catcher==getHolder())color = c;
+        if(catcher==getHolder())color = c;
         getHolder().heal(catcher, heal);
+        tintPlayer();
     }
     public boolean isColor(int chk){
-        if(chk==2)return true;
         return colorCooldown>0&&color==chk;
     }
     public void fireUlt(){
@@ -124,7 +130,29 @@ public class Chameleon extends Weapon
             greenboostson = false;
         }
         if(isColor(4)){
-            getHolder().heal(getHolder(), 10);
+            getHolder().heal(getHolder(), 15);
+        }
+    }
+    public void tintPlayer(){
+        switch(color){
+            case 0:
+                getHolder().setTint(255, 0 ,0);
+                break;
+            case 1:
+                getHolder().setTint(255, 170, 0);
+                break;
+            case 2:
+                getHolder().setTint(255, 255, 0);
+                break;
+            case 3:
+                getHolder().setTint(0, 255, 0);
+                break;
+            case 4:
+                getHolder().setTint(0, 0, 255);
+                break;
+            case 5:
+                getHolder().setTint(128, 0, 255);
+                break;
         }
     }
     public Chameleon(ItemHolder actor){
@@ -135,6 +163,7 @@ public class Chameleon extends Weapon
     public void equip(){
         super.equip();
         newAmmo(gunReloadTime, reloadDelayCount);
+        tintPlayer();
     }
     public void unequip(){
         super.unequip();
@@ -143,6 +172,8 @@ public class Chameleon extends Weapon
             getHolder().unground();
             greenboostson = false;
         }
+        //clear color
+        getHolder().setTint(255, 255, 255);
     }
     public String getName(){
         return "Chameleon";
