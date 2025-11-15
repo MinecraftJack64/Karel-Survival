@@ -2,6 +2,7 @@ package com.karel.game.weapons.chameleon;
 
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
+import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.StunEffect;
@@ -19,16 +20,15 @@ public class Chameleon extends Weapon
     private int colorCooldown = 0;
     private int color = 3;//0,1,2,3,4,5 - red-purple
     private int nextColor = 4;
-    private int reloadDelayCount;
     private boolean greenboostson = false;
     private static final int ult = 2000;
     private ChameleonTongue tongue;
     private EffectID greenspeed;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime&&!checkTongue()) 
+        if (getAmmo().hasAmmo()&&!checkTongue()) 
         {
             attack();
-            reloadDelayCount = 0;
+            getAmmo().useAmmo();
         }
     }
     public void attack(){
@@ -115,11 +115,9 @@ public class Chameleon extends Weapon
     public int getUlt(){
         return ult;
     }
-    public void reload(){
-        reloadDelayCount++;
+    public void update(){
         checkTongue();
         if(colorCooldown>0)colorCooldown--;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
         if(!greenboostson&&isColor(3)){
             getHolder().setSpeedMultiplier(1.5, greenspeed);
             getHolder().ground();
@@ -157,12 +155,11 @@ public class Chameleon extends Weapon
     }
     public Chameleon(ItemHolder actor){
         super(actor);
-        reloadDelayCount = gunReloadTime;
+        setAmmo(new SimpleAmmoManager(gunReloadTime, 1));
         greenspeed = new EffectID(actor, "chameleon_ult_speed");
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
         tintPlayer();
     }
     public void unequip(){

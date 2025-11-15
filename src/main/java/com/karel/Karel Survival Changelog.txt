@@ -58,6 +58,10 @@ Last Phase:
 11/14
 Balancing
  - Added heal and knockback to troll test
+ - Chameleon affected by reload speed
+Graphics
+ - Chameleon now indicates color
+ - TODO: Show super duration for some weapons
 Content
  - Implemented yellow boost for chameleon ult
 
