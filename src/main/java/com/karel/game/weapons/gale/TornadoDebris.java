@@ -43,4 +43,7 @@ public class TornadoDebris extends Melee
             }
         }
     }
+    public boolean covertDamage(){
+        return true;
+    }
 }

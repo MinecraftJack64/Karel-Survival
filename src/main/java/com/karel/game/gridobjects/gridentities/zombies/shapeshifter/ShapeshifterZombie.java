@@ -99,7 +99,7 @@ public class ShapeshifterZombie extends Zombie implements Possessor{
     public GridEntity searchModel(){
         ArrayList<GridEntity> options = new ArrayList<GridEntity>();
         for(GridEntity ge: getWorld().allEntities()){
-            if(ge!=this&&isAlliedWith(ge)&&ge instanceof Zombie z&&!priorModels.contains(ge)){
+            if(ge!=this&&!ge.getEntityID().equals("zombie-shapeshifter")&&isAlliedWith(ge)&&ge instanceof Zombie z&&!priorModels.contains(ge)){
                 List<ZombieClass> l = Arrays.asList(z.getZombieClasses());
                 if(!l.contains(ZombieClass.boss)&&!l.contains(ZombieClass.miniboss)){
                     options.add(ge);
