@@ -54,8 +54,9 @@ public class Drone extends GridObject implements SubAffecter
         }
         super.update();
     }
-    public void reload(double c){
+    public double reload(double c){
         ammo+=c;
+        return Math.min(40, ammo);
     }
     public void attack(boolean startCombo){
         if(ammo>=40&&remainingUlt==0){
@@ -104,5 +105,8 @@ public class Drone extends GridObject implements SubAffecter
     public void setPosition(double x, double y){
         ddx = x;
         ddy = y;
+    }
+    public int getAmmo() {
+        return (int)Math.min(40, ammo);
     }
 }

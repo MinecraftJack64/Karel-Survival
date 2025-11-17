@@ -41,6 +41,7 @@ public class Gun extends Weapon
     }
     public void onGadgetActivate(){
         setGadgetTimer(360);
+        trackGadget();
     }
     public Gun(ItemHolder actor){
         super(actor);

@@ -11,8 +11,9 @@ import com.karel.game.GridObject;
  */
 public class Scissors extends Boomerang
 {
-    
-    public Scissors(double rotation, GridObject source)
+    int bonus = 0;
+    boolean isUpgrade;
+    public Scissors(double rotation, GridObject source, boolean upgrade)
     {
         super(rotation, source);
         setSpeed(27);
@@ -21,9 +22,15 @@ public class Scissors extends Boomerang
         setDamage(115);
         setLife(4);
         setDamageOnReturn(1);
+        isUpgrade = upgrade;
     }
     public void doHit(GridEntity targ){
-        //
         super.doHit(targ);
+        damage(targ, bonus*25);
+        if(isUpgrade)bonus++;
+    }
+    public void startReturn(){
+        bonus = 0;
+        super.startReturn();
     }
 }

@@ -17,6 +17,7 @@ public class CapsaicinTorch extends Weapon
     private int maxAmmo = 140;
     private int ultammo = 0;
     private int range = 0;
+    //TODO: show fire bar
     private static final int ult = 2000;
     public void fire(){
         if (ammo>0)

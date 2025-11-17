@@ -46,17 +46,17 @@ public class Necromancer extends Weapon
         if(hypno!=null&&(hypno.isDead()||!hypno.getTeam().equals(getHolder().getTeam()))){
             hypno = null;
             hypnoEffect = null;
-            disableAmmo();
+            disableSpecial();
         }
         if(hypnoEffect!=null){
-            updateAmmo(hypnoEffect.getDuration());
+            updateSpecial(hypnoEffect.getDuration());
         }
     }
     public void notifyHypno(GridEntity targ, TeamSwitchEffect effect){
         hypno = targ;
         hypnoEffect = effect;
         hypnoMaxDuration = hypnoEffect.getDuration();
-        newAmmo(hypnoEffect.getDuration(), hypnoEffect.getDuration());
+        newSpecial(hypnoEffect.getDuration(), hypnoEffect.getDuration());
     }
     public void notifyKill(GridEntity g){
         resurrectQueue.add(g);
@@ -81,7 +81,7 @@ public class Necromancer extends Weapon
     public void equip(){
         super.equip();
         if(hypnoEffect!=null){
-            newAmmo(hypnoMaxDuration, hypnoEffect.getDuration());
+            newSpecial(hypnoMaxDuration, hypnoEffect.getDuration());
         }
     }
     public Necromancer(ItemHolder actor){

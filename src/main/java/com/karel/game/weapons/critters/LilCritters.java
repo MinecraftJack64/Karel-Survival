@@ -13,6 +13,7 @@ import com.karel.game.weapons.Weapon;
  * @author (your name) 
  * @version (a version number or a date)
  */
+//TODO: Make custom stats bar showing critters state and health
 public class LilCritters extends Weapon
 {
     private static final int ult = 1200;

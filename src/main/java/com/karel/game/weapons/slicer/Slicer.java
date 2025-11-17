@@ -47,6 +47,7 @@ public class Slicer extends Weapon
     public void onGadgetActivate(){
         for(int i = 0; i < 360; i+=120)getHolder().addObjectHere(new BladeGuard(getHand().getTargetRotation()+i, getHolder()));
         setGadgetTimer(180);
+        trackGadget();
     }
     public int defaultGadgets(){
         return 2;

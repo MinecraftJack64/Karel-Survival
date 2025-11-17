@@ -11,6 +11,7 @@ import com.karel.game.Item;
 import com.karel.game.ZombieSpawner;
 import com.karel.game.ui.bars.AmmoBar;
 import com.karel.game.ui.bars.BossBar;
+import com.karel.game.ui.bars.SpecialBar;
 import com.karel.game.ui.bars.StatusBar;
 import com.karel.game.ui.bars.UltBar;
 import com.karel.game.ui.bars.WaveBar;
@@ -38,7 +39,7 @@ public class GameUI extends UI
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
-    private AmmoBar ammo;
+    private AmmoBar ammo, special;
     private StatusBar sprint;
     private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2;
     private Button goToMenuBtn, nextLvlBtn;
@@ -64,6 +65,10 @@ public class GameUI extends UI
         ammo = new AmmoBar(0, 1, 120, 10);
         ammo.setVisible(false);
         getWorld().addObject(ammo, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-2)*1.0+15);
+        
+        special = new SpecialBar(0, 1, 120, 10);
+        special.setVisible(false);
+        getWorld().addObject(special, getWorld().gridXToRealX(getWorld().gridwidth)/2.0, getWorld().gridYToRealY(getWorld().gridheight-2)*1.0-5);
         
         sprint = new StatusBar(0, 1, 120, 10, Raylib.MAGENTA);
         sprint.setVisible(false);
@@ -325,6 +330,24 @@ public class GameUI extends UI
     public void disableAmmo(){
         ammo.setVisible(false);
     }
+
+    public void setSpecial(int amt){
+        special.setValue(amt);
+    }
+    public void newSpecial(int max, int value){
+        special.clearPhases();
+        special.setVisible(true);
+        special.setMax(max);
+        setSpecial(value);
+        special.reset();
+    }
+    public void newSpecial(int max, int value, int phases){
+        newSpecial(max, value);
+        special.divideIntoPhases(phases);
+    }
+    public void disableSpecial(){
+        special.setVisible(false);
+    }
     
     public void newSprint(int max){
         sprint.setMax(max);
@@ -363,6 +386,9 @@ public class GameUI extends UI
     
     public AmmoBar getAmmoBar(){
         return ammo;
+    }
+    public AmmoBar getSpecialBar(){
+        return special;
     }
     
     public void changeHeldItem(String t){

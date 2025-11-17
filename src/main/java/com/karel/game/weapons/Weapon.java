@@ -61,6 +61,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public int currentgadgetuses = 0;//how many uses current gadget has
     public int currentgadgettimer = 0;//how long until gadget becomes inactive
     private Texture auraTexture = Greenfoot.loadTexture("Weapons/hearth/proj.png");//temp
+    private boolean trackingGadget;
     public Weapon(){
         ultready = false;
     }
@@ -97,6 +98,17 @@ public abstract class Weapon implements Item, Tickable, EventListener
         reloadGadget();
         if(continueGadget()){
             onGadgetContinue();
+        }
+        if(trackingGadget){
+            if(getGadgetCount()>0){
+                updateSpecial(getGadgetCount());
+            }else{
+                updateSpecial(getGadgetTimer());
+            }
+            if(!isUsingGadget()){
+                disableSpecial();
+                trackingGadget = false;
+            }
         }
         if(currentgadgettimer>0)currentgadgettimer--;
         if(gadgetscooldown>0)gadgetscooldown--;
@@ -254,6 +266,20 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public void disableAmmo(){
         if(isMainWeapon())Game.gameUI().disableAmmo();
     }
+
+    public void updateSpecial(int amt){
+        if(isMainWeapon())if(Game.gameUI()!=null)Game.gameUI().setSpecial(amt);
+    }
+    public void newSpecial(int max, int value){
+        if(isMainWeapon())Game.gameUI().newSpecial(max, value);
+    }
+    public void newSpecial(int max, int value, int phases){
+        if(isMainWeapon())Game.gameUI().newSpecial(max, value, phases);
+    }
+    public void disableSpecial(){
+        if(isMainWeapon())Game.gameUI().disableSpecial();
+    }
+
     public void equip(){
         Sounds.play("equip");
         if(!isMainWeapon())return;
@@ -271,7 +297,8 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public void unequip(){
         if(!isMainWeapon())return;
         Game.disableUltCharge();
-        Game.gameUI().disableAmmo();
+        disableAmmo();
+        disableSpecial();
         if(getHolder()!=null){
             getHolder().removeEventListener(this);
         }
@@ -321,6 +348,14 @@ public abstract class Weapon implements Item, Tickable, EventListener
     
     public void donateGadgets(int amt){
         gadgets+=amt;
+    }
+    public void trackGadget(){
+        if(getGadgetCount()>0){
+            newSpecial(getGadgetCount(), getGadgetCount(), getGadgetCount());
+        }else{
+            newSpecial(getGadgetTimer(), getGadgetTimer());
+        }
+        trackingGadget = true;
     }
     public int getGadgets(){
         return gadgets;

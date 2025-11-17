@@ -34,9 +34,8 @@ public class Highjacker extends Weapon
             }
         }else if (lasso == null) 
         {
-            Scissors bullet = new Scissors(getHand().getTargetRotation(), getHolder());
+            Scissors bullet = new Scissors(getHand().getTargetRotation(), getHolder(), getAttackUpgrade()==1);
             getHolder().addObjectHere(bullet);
-            //bullet.move ();
             lasso = bullet;
             Sounds.play("lifestealshoot");
         }

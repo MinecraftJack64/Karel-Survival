@@ -22,6 +22,7 @@ import com.karel.game.weapons.gluegun.GlueGun;
 import com.karel.game.weapons.grenade.GrenadeLauncher;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;
+import com.karel.game.weapons.highjacker.Highjacker;
 import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.jackolantern.JackOLantern;
 import com.karel.game.weapons.jadecutter.JadeCutter;
@@ -76,6 +77,7 @@ public class ItemFactory
                                     "hearth",
                                     //"mountaineer",
                                     "airpump",
+                                    "highjacker",
                                     //"maelstrom",
                                     "scream",
                                     "nailgun",
@@ -180,6 +182,8 @@ public class ItemFactory
                 //return new MountainClimber(holder);
             case "airpump":
                 return new AirPump(holder);
+            case "highjacker":
+                return new Highjacker(holder);
             case "maelstrom":
                 //return new Maelstrom(holder);
             case "scream":

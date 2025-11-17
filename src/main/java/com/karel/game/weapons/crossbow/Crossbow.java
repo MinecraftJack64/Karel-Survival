@@ -32,7 +32,14 @@ public class Crossbow extends Weapon
             //bullet.move ();
             Sounds.play("crossbowshoot");
             reloadDelayCount = 0;
-            if(!useGadget())focus = 0.5;
+            if(!useGadget()){
+                focus = 0.5;
+            }else{
+                updateSpecial(getGadgetCount());
+                if(getGadgetCount()==0){
+                    disableSpecial();
+                }
+            }
         }
     }
     public void fireUlt(){
@@ -68,11 +75,19 @@ public class Crossbow extends Weapon
             RainingPoisonArrow bullet = new RainingPoisonArrow(getHolder().getAngle(x, y)+90, Math.min(getHolder().distanceTo(x, y), 1000), constant?1000:i, focus, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
         }
-        if(!useGadget())focus = 0.5;
+        if(!useGadget()){
+            focus = 0.5;
+        }else{
+            updateSpecial(getGadgetCount());
+            if(getGadgetCount()==0){
+                disableSpecial();
+            }
+        }
     }
     public void onGadgetActivate(){
         focus = 1.5;
         setGadgetCount(4);
+        newSpecial(4, 4, 4);
     }
     public int defaultGadgets(){
         return 5;

@@ -55,6 +55,34 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+11/17
+Content
+ - Added highjacker attack upgrade
+ - Added spear gadget
+Balancing
+ - Chameleon cannot activate ult during ult
+Graphics
+ - Some weapons can show a special bar for durations and special abilities
+    - Chameleon(ult duration)
+    - Necromancer(ult duration)
+    - Blade(ult duration)
+    - Easter Basket(ult jump count)
+    - Crossbow(gadget count)
+    - Double Gun(gadget duration)
+    - Drone(gadget duration)
+    - TODO: Highjacker
+    - Other Gadget count and duration
+       - Gun
+       - Jack-O-Lantern
+       - Lovestrike
+       - Necromancer
+       - Rock
+       - Slicer
+       - Weedwacker
+ - Drone shows ammo
+Fixes
+ - Highjacker now spawnable
+
 11/16
 Balancing
  - Shapeshifter zombies cannot shapeshift into other shapeshifter zombies
@@ -64,6 +92,7 @@ Balancing
 Balancing
  - Added heal and knockback to troll test
  - Chameleon affected by reload speed
+ - Chameleon purple tongue damages on return as well, and pulls enemies on return(overriding on better choices)
 Graphics
  - Chameleon now indicates color
  - TODO: Show super duration for some weapons

@@ -38,9 +38,11 @@ public class EasterBasket extends Weapon implements LandingHandler
         //hop 5 times, dealing damage on landing
         if(hopsLeft!=0){
             hopsLeft+=5;
+            newSpecial(hopsLeft, hopsLeft);
             return;
         }
         hopsLeft = 5;
+        newSpecial(5, 5);
         setLocked(true);
         startJump();
     }
@@ -65,11 +67,13 @@ public class EasterBasket extends Weapon implements LandingHandler
     }
     public void doLanding(){
         hopsLeft--;
+        updateSpecial(hopsLeft);
         getHolder().explodeOn(100, 200);
         if(!getHolder().isDead()&&hopsLeft>0&&getHolder().canMove()&&getHolder().canAttack()){
             startJump();
         }else{
             setLocked(false);//allow switching weapons
+            disableSpecial();
         }
     }
     public int getUlt(){

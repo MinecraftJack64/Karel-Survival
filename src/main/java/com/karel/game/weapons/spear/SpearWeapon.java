@@ -68,6 +68,15 @@ public class SpearWeapon extends Weapon
     public void enterHand(){
         spearinhand = true;
     }
+    public int defaultGadgets(){
+        return 1;
+    }
+    public void onGadgetActivate(){
+        spear.gadget();
+    }
+    public boolean canActivateGadget(){
+        return canActivateGadget()&&spear!=null;
+    }
     public void reload(double speed){
         chargeUlt(1);
         if(reloadDelay>0){

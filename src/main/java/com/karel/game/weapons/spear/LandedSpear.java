@@ -1,10 +1,12 @@
 package com.karel.game.weapons.spear;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
+import com.karel.game.effects.StunEffect;
 import com.karel.game.gridobjects.collectibles.Collectible;
 import com.raylib.Texture;
 
@@ -18,6 +20,8 @@ public class LandedSpear extends Collectible
 {
     private SpearWeapon myspear;
     private HashMap<GridEntity, Integer> hs;
+    private HashSet<GridEntity> gs = new HashSet<GridEntity>();
+    private int gadgetCooldown = 0;
     private Texture auraTexture = Greenfoot.loadTexture("Weapons/spear/wave.png");
     public LandedSpear(SpearWeapon sp, HashMap<GridEntity, Integer> scores)
     {
@@ -43,6 +47,18 @@ public class LandedSpear extends Collectible
                 break;
             }
         }
+        if(gadgetCooldown>0){
+            gadgetCooldown--;
+            if(gadgetCooldown==0){
+                explodeOn(60, (g)->{
+                    if(gs.contains(g)){
+                        g.applyEffect(new StunEffect(60, this));
+                    }
+                    g.knockBack(face(g, false), 40, 30, this);
+                    damage(g, 100);
+                });
+            }
+        }
         super.update();
     }
     public void collect(GridObject targ){
@@ -58,6 +74,14 @@ public class LandedSpear extends Collectible
         myspear.removeSpear();
         addObjectHere(bullet);
         super.die();
+    }
+    public void gadget(){
+        gs.clear();
+        gadgetCooldown = 30;
+        explodeOn(60, (g)->{
+            damage(g, 100);
+            gs.add(g);
+        });
     }
     public void render(){
         super.render();

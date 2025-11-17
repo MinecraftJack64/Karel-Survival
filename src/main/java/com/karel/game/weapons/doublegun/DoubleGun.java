@@ -62,6 +62,7 @@ public class DoubleGun extends Weapon
     }
     public void onGadgetActivate(){
         setGadgetTimer(360);
+        trackGadget();
     }
     public DoubleGun(ItemHolder actor){
         super(actor);

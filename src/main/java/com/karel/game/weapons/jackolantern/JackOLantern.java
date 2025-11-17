@@ -36,7 +36,8 @@ public class JackOLantern extends Weapon implements LandingHandler
         getHolder().addObjectHere(new PossessedPumpkinDropper(getHand().getTargetRotation(), Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 200), 50, new PossessedPumpkin(getHolder(), getUltUpgrade()==1), getHolder()));
     }
     public void onGadgetActivate(){
-        setGadgetTimer(100);
+        setGadgetTimer(180);
+        trackGadget();
         getHolder().addObjectHere(new SmashedJack(getHolder(), 6));
         SmashedJack s = new SmashedJack(getHolder(), 6);
         getHolder().addObjectHere(s);

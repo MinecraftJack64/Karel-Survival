@@ -75,6 +75,8 @@ public class Weedwacker extends Weapon
                 }else{
                     setContinueGadget(false); // Stop if fully retracted
                 }
+            }else{
+                updateSpecial(droneExtension);
             }
         }else if(gadgetAction==2){
             setContinueGadget(false);
@@ -87,6 +89,7 @@ public class Weedwacker extends Weapon
         if(continueGadget()){
             gadgetAction = 1; // Stay in current state
             gadgetExtensionCooldown = 200; // Reset cooldown for staying
+            newSpecial(200, 200);
         }
     }
     public void reload(double speed){

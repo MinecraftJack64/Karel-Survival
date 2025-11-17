@@ -31,6 +31,7 @@ public class RockCatapult extends Weapon
     }
     public void onGadgetActivate(){
         setGadgetCount(5);
+        trackGadget();
     }
     public void reload(double s){
         reloadDelayCount+=s;

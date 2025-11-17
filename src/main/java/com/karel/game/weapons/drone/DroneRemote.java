@@ -33,7 +33,7 @@ public class DroneRemote extends Weapon
             ultreload++;
         }
         if(drone!=null){
-            drone.reload(x);
+            updateAmmo((int)drone.reload(x));
             if(useGadget()){
                 drone.setPosition(getHand().getTargetX()-getHolder().getX(), getHand().getTargetY()-getHolder().getY());
             }
@@ -41,6 +41,7 @@ public class DroneRemote extends Weapon
     }
     public void onGadgetActivate(){
         setGadgetTimer(600);
+        trackGadget();
     }
     public int defaultGadgets(){
         return 3;
@@ -48,6 +49,7 @@ public class DroneRemote extends Weapon
     public void equip(){
         super.equip();
         getHolder().addObjectHere(drone);
+        newAmmo(drone.getAmmo(), 40);
     }
     public void unequip(){
         getHolder().getWorld().removeObject(drone);

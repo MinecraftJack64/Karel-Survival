@@ -98,7 +98,12 @@ public class Chameleon extends Weapon
         return colorCooldown>0&&color==chk;
     }
     public void fireUlt(){
-        colorCooldown = 300;
+        if(colorCooldown>0){
+            cancelUltReset();
+        }else{
+            newSpecial(300, 300);
+            colorCooldown = 300;
+        }
     }
     public boolean ult(){
         if(super.ult()){
@@ -117,7 +122,13 @@ public class Chameleon extends Weapon
     }
     public void update(){
         checkTongue();
-        if(colorCooldown>0)colorCooldown--;
+        if(colorCooldown>0){
+            colorCooldown--;
+            updateSpecial(colorCooldown);
+            if(colorCooldown==0){
+                disableSpecial();
+            }
+        }
         if(!greenboostson&&isColor(3)){
             getHolder().setSpeedMultiplier(1.5, greenspeed);
             getHolder().ground();

@@ -45,6 +45,7 @@ public class Blade extends Weapon
             getHolder().applyShield(new PercentageShield(shield, 0.5, 160));
             setContinueUlt(true);
             remainingslices = 160;
+            newSpecial(remainingslices, remainingslices);
             fireSword();
         }else{
             fireSword();
@@ -56,6 +57,7 @@ public class Blade extends Weapon
     public void onInterrupt(){
         setContinueUlt(false);
         remainingslices = 0;
+        disableSpecial();
         if(continueGadget()){
             setContinueGadget(false);
             bonusSlices = 80;
@@ -63,6 +65,7 @@ public class Blade extends Weapon
     }
     public void fireSword(){
         remainingslices--;
+        updateSpecial(remainingslices);
         CuttingSword s = new CuttingSword(nextstabdir, getHolder());
         nextstabdir+=45;
         nextstabdir%=360;
