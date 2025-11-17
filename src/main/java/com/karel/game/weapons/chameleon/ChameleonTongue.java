@@ -35,6 +35,7 @@ public class ChameleonTongue extends Boomerang
         sticky = issticky;
         if(ispurple){
             setNumTargets(-1);
+            setDamageOnReturn(1);
         }
     }
     public GridEntity target(){
@@ -77,7 +78,7 @@ public class ChameleonTongue extends Boomerang
     {
         super.doHit(asteroid);
         if(sticky)asteroid.applyEffect(new SpeedPercentageEffect(0.5, 10, this));
-        if(getNumTargets()>=0&&(asteroid.getPercentHealth()<=(sticky?0.45:0.3)||asteroid.getHealth()<=getPower()*100)){
+        if((getNumTargets()>=0||isReturning())&&target==null&&(asteroid.getPercentHealth()<=(sticky?0.45:0.3)||asteroid.getHealth()<=getPower()*100)){
             asteroid.stun(pullStun);
             target = asteroid;
             hasTarget = true;
@@ -86,7 +87,7 @@ public class ChameleonTongue extends Boomerang
         }else{
             //
         }
-        hashitfirst = true;
+        //hashitfirst = true;
     }
     public boolean covertDamage(){
         return hashitfirst;

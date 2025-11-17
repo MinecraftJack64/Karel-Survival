@@ -79,6 +79,12 @@ public class Boomerang extends Bullet implements IBoomerang
             getHitStory().clear();
         }
     }
+    public boolean isReturning(){
+        return phase==1;
+    }
+    public int getPhase(){
+        return phase;
+    }
     public boolean hasReturned(){
         return hasreturned;
     }
