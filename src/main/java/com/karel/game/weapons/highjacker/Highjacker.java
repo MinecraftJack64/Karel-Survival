@@ -60,6 +60,7 @@ public class Highjacker extends Weapon
         setPlayerLockMovement(true);
         getHolder().pullTo(targ.getX(), targ.getY(), targ.getHeight()+mountHeight);
         hypno = new TeamSwitchEffect(getHolder().getTeam(), 500, getHolder());
+        newSpecial(500, 500);
         mount.applyEffect(hypno);
         mount.applyShield(new ExternalImmunityShield(new ShieldID("highjacker immunity"), 90));
         ammo = reload;
@@ -106,6 +107,9 @@ public class Highjacker extends Weapon
             if(hypno.getDuration()<=0||mount.isDead()){
                 unmount();
                 dischargeUlt(2500);
+                disableSpecial();
+            }else{
+                updateSpecial(hypno.getDuration());
             }
         }else if(isPlayerMovementLocked()){
             confirmUnmount();

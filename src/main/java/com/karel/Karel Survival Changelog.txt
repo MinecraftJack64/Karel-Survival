@@ -59,8 +59,12 @@ Last Phase:
 Content
  - Added highjacker attack upgrade
  - Added spear gadget
+ - Added chameleon ult upgrade
 Balancing
- - Chameleon cannot activate ult during ult
+ - Chameleon
+    - (/)Cannot activate ult during ult
+    - (+)Tongue damage(60->85)
+    - (+)Ult gives 20% damage boost
 Graphics
  - Some weapons can show a special bar for durations and special abilities
     - Chameleon(ult duration)
@@ -70,7 +74,7 @@ Graphics
     - Crossbow(gadget count)
     - Double Gun(gadget duration)
     - Drone(gadget duration)
-    - TODO: Highjacker
+    - Highjacker(ult duration)
     - Other Gadget count and duration
        - Gun
        - Jack-O-Lantern

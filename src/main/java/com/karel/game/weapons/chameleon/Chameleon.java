@@ -1,10 +1,13 @@
 package com.karel.game.weapons.chameleon;
 
+import java.util.HashSet;
+
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
+import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.weapons.Weapon;
 
@@ -17,6 +20,7 @@ import com.karel.game.weapons.Weapon;
 public class Chameleon extends Weapon
 {
     private static final int gunReloadTime = 10;
+    private HashSet<Integer> colors = new HashSet<Integer>();
     private int colorCooldown = 0;
     private int color = 3;//0,1,2,3,4,5 - red-purple
     private int nextColor = 4;
@@ -90,12 +94,15 @@ public class Chameleon extends Weapon
         }
     }
     public void notifyColorChange(int c, int heal, GridEntity catcher){
-        if(catcher==getHolder())color = c;
+        if(catcher==getHolder()){
+            color = c;
+            colors.add(c);
+        }
         getHolder().heal(catcher, heal);
         tintPlayer();
     }
     public boolean isColor(int chk){
-        return colorCooldown>0&&color==chk;
+        return colorCooldown>0&&(color==chk||colors.contains(chk));
     }
     public void fireUlt(){
         if(colorCooldown>0){
@@ -103,6 +110,8 @@ public class Chameleon extends Weapon
         }else{
             newSpecial(300, 300);
             colorCooldown = 300;
+            getHolder().applyEffect(new PowerPercentageEffect(1.2, 300, getHolder()));
+            colors.clear();
         }
     }
     public boolean ult(){

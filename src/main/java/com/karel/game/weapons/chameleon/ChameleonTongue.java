@@ -29,7 +29,7 @@ public class ChameleonTongue extends Boomerang
         setSpeed(25);
         setReturnSpeed(25);
         setLife(18);
-        setDamage(60);
+        setDamage(85);
         pullStun = new EffectID(this, "pull");
         afterStun = new EffectID(this, "pullfinish");
         sticky = issticky;

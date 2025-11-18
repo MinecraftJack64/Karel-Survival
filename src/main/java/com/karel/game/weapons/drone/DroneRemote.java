@@ -49,7 +49,7 @@ public class DroneRemote extends Weapon
     public void equip(){
         super.equip();
         getHolder().addObjectHere(drone);
-        newAmmo(drone.getAmmo(), 40);
+        newAmmo(40, drone.getAmmo());
     }
     public void unequip(){
         getHolder().getWorld().removeObject(drone);
