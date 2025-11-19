@@ -4,6 +4,7 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Possessor;
 import com.karel.game.SubAffecter;
+import com.karel.game.effects.SpeedPercentageEffect;
 
 public class AcidLeak extends GridObject implements Possessor, SubAffecter {
     private GridObject source;
@@ -27,8 +28,10 @@ public class AcidLeak extends GridObject implements Possessor, SubAffecter {
                 explodeOnEnemies(165, (g)->{
                     if(possessor!=g){
                         damage(g, 100);
+                        g.applyEffect(new SpeedPercentageEffect(0.8, 30, this));
                     }else if(possessor==g){
                         damage(g, 10);
+                        g.applyEffect(new SpeedPercentageEffect(0.7, 30, this));
                     }
                 });
                 if(ticks==0){

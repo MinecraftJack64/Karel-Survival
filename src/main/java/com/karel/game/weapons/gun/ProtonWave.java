@@ -32,7 +32,7 @@ public class ProtonWave extends WaveAttack
      */
     public void applyPhysics()
     {
-        setDamage(getDamage() - 10);
+        setDamage(getDamage() - 5);
         super.applyPhysics();
     }
     

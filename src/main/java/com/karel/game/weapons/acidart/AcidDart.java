@@ -8,7 +8,7 @@ public class AcidDart extends Bullet {
     public AcidDart(double rot, GridObject source){
         super(rot, source);
         setSpeed(15);
-        setLife(20);
+        setLife(23);
         setDamage(200);
     }
     public void doHit(GridEntity targ){

@@ -33,7 +33,7 @@ public class NeutronWave extends WaveAttack
      */
     public void applyPhysics()
     {
-        setDamage(getDamage() - 10);
+        setDamage(getDamage() - 5);
         super.applyPhysics();
     }
     
