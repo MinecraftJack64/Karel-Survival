@@ -66,6 +66,24 @@ public class AirPump extends Weapon implements LandingHandler
     public int getRarity(){
         return 4;
     }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 350;
+        }
+        public int getUltEffectiveRange(){
+            return 350;
+        }
+        public int getUltIdealRange(){
+            return -1;
+        }
+        //TODO: requires number of nearby enemies, more when farther, just one when close
+        public boolean shouldUseUlt(){
+            return true;
+        }
+    }
 }
 
 

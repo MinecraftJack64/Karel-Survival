@@ -4,13 +4,15 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Possessor;
 import com.karel.game.SubAffecter;
+import com.karel.game.effects.ReloadPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 
 public class AcidLeak extends GridObject implements Possessor, SubAffecter {
     private GridObject source;
     private GridEntity possessor;
     private int ticks = 120;
-    public AcidLeak(GridObject source, GridEntity possess){
+    private boolean isUpgrade;
+    public AcidLeak(GridObject source, GridEntity possess, boolean isUpgrade){
         this.source = source;
         inherit(source);
         setImage("explosion-big.png");
@@ -34,6 +36,11 @@ public class AcidLeak extends GridObject implements Possessor, SubAffecter {
                         g.applyEffect(new SpeedPercentageEffect(0.7, 30, this));
                     }
                 });
+                if(isUpgrade){
+                    if(distanceTo(getSource())<165){
+                        ((GridEntity)getSource()).applyEffect(new ReloadPercentageEffect(1.5, 30, this));
+                    }
+                }
                 if(ticks==0){
                     getWorld().removeObject(this);
                 }
@@ -43,6 +50,12 @@ public class AcidLeak extends GridObject implements Possessor, SubAffecter {
     public void onDeath(){
         possessor.unpossess(this);
         possessor = null;
+    }
+    public void gadget(){
+        setTint(127, 127, 0);
+        explodeOnEnemies(180, (g)->{
+            g.addObjectHere(new AcidLeak(getSource(), g, false));
+        });
     }
     public void tick(){
         setLocation(possessor.getX(), possessor.getY());

@@ -55,6 +55,60 @@ Last Phase:
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
 
+Bot Guide Tracker
+ - Acidart(Y)
+ - Airpump(Y)
+ - Blade(Y)
+ - Blowgun(Y)
+ - Capsaicin Torch(Y)
+ - Cat Claw(Y)
+ - Critters(Y)
+ - Crossbow(Y)
+ - Crystal Gun(Y)
+ - Double Gun(Y)
+ - Easter basket(Y)
+ - Farmer(N)
+ - Hamburgerer(Y)
+ - Flail(Y)
+ - Flash Drive(N)
+ - Gale(N)
+ - Glue Gun(N)
+ - Grenade(N)
+ - Minigun(Y)
+ - Hearth(N)
+ - Highjacker(N)
+ - Inferno(N)
+ - Jack-O-Lantern(N)
+ - Jade Cutter(N)
+ - Lovestrike(N)
+ - Lymph Cannon(N)
+ - Mole(N)
+ - Nailgun(N)
+ - Necromancer(N)
+ - Paint Gun(N)
+ - Pointpinner(N)
+ - Reaper(N)
+ - Rock Launcher(N)
+ - Salicycle(N)
+ - Scream(N)
+ - Shotgun(N)
+ - Slicer(N)
+ - Soda Hat(N)
+ - Soup(N)
+ - Spear(N)
+ - Tesla Coil(N)
+ - Traps(N)
+ - Troll Test(N)
+ - Water Balloons(N)
+ - Weedwacker(N)
+11/19
+Content
+ - Acidart ult upgrade, attack upgrade, and gadget added
+Other
+ - Implemented bot guides
+    - Acidart
+    - Air Pump
+
 11/18
 Content
  - Implemented acidart reload speed from ult and slow from attack

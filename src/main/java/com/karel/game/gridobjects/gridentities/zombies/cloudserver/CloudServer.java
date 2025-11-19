@@ -90,6 +90,8 @@ public class CloudServer extends Boss
     public String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
     private boolean toSpawnShaman;
+    private GridEntity lastTarget;
+    private double lastTargetX, lastTargetY;
     private static final int hailRange = 250;
     /**
      * Initilise this rocket.
@@ -214,7 +216,7 @@ public class CloudServer extends Boss
             else if(throwBallCooldown>0){
                 throwBallCooldown--;
                 if(throwBallCooldown<=0){
-                    //ballAttack();
+                    ballAttack();
                 }
             }else if(groundCooldown>0){
                 canSwitchHover = true;
@@ -233,7 +235,14 @@ public class CloudServer extends Boss
                                 primeLightning = 30;
                                 break;
                             case 2:
-                                shamanAttack();
+                                if(Greenfoot.getRandomNumber(2)==0){
+                                    lastTargetX = getTarget().getX();
+                                    lastTargetY = getTarget().getY();
+                                    lastTarget = getTarget();
+                                    throwBallCooldown = 30;
+                                    addObjectHere(new ZHailBall(face(getTarget(), false), distanceTo(getTarget()), distanceTo(getTarget()), this));
+                                }else
+                                    shamanAttack();
                                 break;
                         }
                     }
@@ -437,6 +446,18 @@ public class CloudServer extends Boss
     }
     public void boltAttack(){
         addObjectHere(new ZBolt(getRotation(), this, phase>2));
+    }
+    public void ballAttack(){
+        if(!isPotentialTarget(lastTarget)){
+            addObjectHere(new ZHailBall(face(getTarget(), false), distanceTo(getTarget()), distanceTo(getTarget()), this));
+        }else{
+            double spf = lastTarget.distanceTo(lastTargetX, lastTargetY)/30;
+            ZHailBall ball = new ZHailBall(face(lastTarget, false), distanceTo(lastTarget), distanceTo(lastTarget), this);
+            int frames = (int)ball.getPhysicsArc().getDuration();
+            double d = lastTarget.face(lastTargetX, lastTargetY, false);
+            double fx = getX()+getBranchX(d, spf*frames), fy = getY()+getBranchY(d, spf*frames);
+            addObjectHere(new ZHailBall(face(fx, fy, false), distanceTo(fx, fy), distanceTo(fx, fy), this));
+        }
     }
     public void shamanAttack(){
         Location l = findCluster(1000, 200);

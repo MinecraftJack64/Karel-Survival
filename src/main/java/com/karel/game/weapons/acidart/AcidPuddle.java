@@ -13,16 +13,19 @@ import com.karel.game.effects.ReloadPercentageEffect;
  */
 public class AcidPuddle extends Puddle
 {
-    public AcidPuddle(GridObject source){
+    private boolean upgraded;
+    public AcidPuddle(GridObject source, boolean upgraded){
         super(200, 40, 4, source);
         setImage("Symbols/Effects/infection.png");
         scaleTexture(80);
         setDamage(200);
         setSelfHit(true);
+        this.upgraded = upgraded;
     }
     public void doHit(GridEntity t){
         if(isAlliedWith(t)){
             t.applyEffect(new ReloadPercentageEffect(1.5, 40, this));
+            if(upgraded)heal(t, 200);
         }
         else super.doHit(t);
     }

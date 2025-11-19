@@ -21,7 +21,7 @@ public class Acidart extends Weapon implements AmmoHolder
     public void fire(){//one full ammo deals 350 damage
         if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
-            AcidDart wb = new AcidDart(getHand().getTargetRotation(), getHolder());
+            AcidDart wb = new AcidDart(getHand().getTargetRotation(), getHolder(), getAttackUpgrade()==1, useGadget());
             getHolder().addObjectHere(wb);
             //bullet.move ();
             Sounds.play("fireworkshoot");
@@ -34,14 +34,14 @@ public class Acidart extends Weapon implements AmmoHolder
         double x = getHand().getTargetX();
         double y = getHand().getTargetY();
         double d = Math.min(600, getHolder().distanceTo(x, y));
-        AcidDrop bullet = new AcidDrop(getHand().getTargetRotation(), d, d*0.75, getHolder());
+        AcidDrop bullet = new AcidDrop(getHand().getTargetRotation(), d, d*0.75, getHolder(), getUltUpgrade()==1);
         getHolder().addObjectHere(bullet);
     }
     public void onGadgetActivate(){
-        setGadgetTimer(200);
+        setGadgetCount(1);
     }
     public int defaultGadgets(){
-        return 2;
+        return 1;
     }
     public void reload(double g){
         if(reloadDelayCount>=gunReloadTime)super.reload(g);
@@ -65,6 +65,24 @@ public class Acidart extends Weapon implements AmmoHolder
     }
     public int getRarity(){
         return 1;
+    }
+    public BotGuide getBotGuide(){
+        return new BotGuide();
+    }
+    public class BotGuide extends Weapon.BotGuide{
+        public int getEffectiveRange(){
+            return 345;
+        }
+        public int getUltEffectiveRange(){
+            return 600;
+        }
+        public int getUltIdealRange(){
+            return getHolder().getPercentHealth()<0.5||ammo.getAmmo()<2?600:400;
+        }
+        //TODO: requires number of nearby enemies, more when farther, just one when close
+        public boolean shouldUseUlt(){
+            return true;
+        }
     }
 }
 
