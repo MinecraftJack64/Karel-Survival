@@ -152,6 +152,9 @@ public class CloudServer extends Boss
             hoverCooldown = 0;
             //switch instantly
         }
+        if(isHovering){//WIP
+            hoverCooldown = 0;
+        }
         lightningammo++;
         if(lightningammo>=lightningreload){
             lightningAttack();
@@ -453,9 +456,9 @@ public class CloudServer extends Boss
         }else{
             double spf = lastTarget.distanceTo(lastTargetX, lastTargetY)/30;
             ZHailBall ball = new ZHailBall(face(lastTarget, false), distanceTo(lastTarget), distanceTo(lastTarget), this);
-            int frames = (int)ball.getPhysicsArc().getDuration();
-            double d = lastTarget.face(lastTargetX, lastTargetY, false);
-            double fx = getX()+getBranchX(d, spf*frames), fy = getY()+getBranchY(d, spf*frames);
+            int frames = (int)ball.getPath().getDuration()*2;
+            double d = lastTarget.face(lastTargetX, lastTargetY, false)+90;
+            double fx = lastTargetX+getBranchX(d, spf*frames), fy = lastTargetY+getBranchY(d, spf*frames);
             addObjectHere(new ZHailBall(face(fx, fy, false), distanceTo(fx, fy), distanceTo(fx, fy), this));
         }
     }

@@ -49,7 +49,7 @@ public class PoisonEffect extends TickingEffect
         log.add("cleared");
     }
     public void damage(GridEntity e){
-        e.hitIgnoreShield(damage, getSource());
+        if(e!=null&&!e.isDead())e.hitIgnoreShield(damage, getSource());
     }
     public String getStringID(){return "poison";}
 }

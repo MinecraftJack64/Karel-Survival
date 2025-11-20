@@ -21,7 +21,7 @@ CLOUD SERVER TO SPAWN:
 - Watermelon
 - Marksman
 Phase 1:
-- In the air, dash around, trying to stay near the middle
+- .In the air, dash around, trying to stay near the middle
 - If phase completed while too close, spawn a firebreather zombie on each nearby player
 - Create lightning at random locations
 - Create a rain cloud that follows you, slowing you down and slowly damaging you. They disappear after a while
@@ -104,6 +104,10 @@ Bot Guide Tracker
 11/19
 Content
  - Acidart ult upgrade, attack upgrade, and gadget added
+ - Added hail ball attack of cloud server
+Fixes
+ - "Fixed" poison crash temporarily(TODO: Fix for real)
+ - Cop Zombie no longer perma stuns due to mismatch of effectid hash codes
 Other
  - Implemented bot guides
     - Acidart

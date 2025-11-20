@@ -11,6 +11,7 @@ public class TaserNode extends StickyBullet {
     private TaserNode other;
     private boolean isStunner;
     private boolean onReturn;
+    private EffectID effect = new EffectID(this);
     public TaserNode(double rotation, GridObject source){
         super(rotation, 120, source);
         setImage("Projectiles/Bullets/taserprong.png");
@@ -23,7 +24,7 @@ public class TaserNode extends StickyBullet {
     public void onStick(GridEntity t){
         damage(t, 30);
         if(other!=null&&other.isStuck()){
-            t.stun(new EffectID(this));
+            t.stun(effect);
             other.confirmStun();
             confirmStun();
             isStunner = true;
@@ -44,7 +45,7 @@ public class TaserNode extends StickyBullet {
         setStickCooldown(90);
     }
     public void onUnstick(GridEntity t){
-        if(isStunner)t.unstun(new EffectID(this));
+        if(isStunner)t.unstun(effect);
     }
     public void render(){
         super.render();
