@@ -80,6 +80,12 @@ public class Sudo extends Weapon
         boolean scaled = false;
         int damage = 20;
         String weapon = "blade";
+        if(mode>0){
+            if(zap==null){
+                zap = new SudoGauntlet(getHolder());
+                getHolder().getWorld().addObject(zap, getHolder().getX(), getHolder().getY());
+            }
+        }
         switch(mode){
             case 0:
                 Nuke bullet = new Nuke(getHolder());
