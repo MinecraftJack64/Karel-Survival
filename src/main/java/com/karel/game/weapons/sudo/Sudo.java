@@ -150,6 +150,9 @@ public class Sudo extends Weapon
     public String getName(){
         return "Sudo";
     }
+    public String getItemID(){
+        return "sudo";
+    }
     public int getRarity(){
         return 0;
     }
