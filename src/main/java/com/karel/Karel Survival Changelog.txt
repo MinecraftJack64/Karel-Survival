@@ -102,6 +102,13 @@ Bot Guide Tracker
  - Water Balloons(N)
  - Weedwacker(N)
 
+11/28
+Fixes
+ - Flail lock target on attack permanently
+Balance
+ - Capsaicin Torch max ammo(140->280)
+ - Bosses cannot accept external shields
+
 11/23
 Fixes
  - Fixed crash when adding weapon when weedwacker held underneath sudo
