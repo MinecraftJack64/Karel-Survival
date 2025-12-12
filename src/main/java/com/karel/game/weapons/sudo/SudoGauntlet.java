@@ -30,6 +30,7 @@ public class SudoGauntlet extends Hitter
         branchOut(getSource(), deg, dist);
         setVisible(true);
         if(ult){
+            dmg*=100;
             List<GridEntity> l = getGEsInRange(range);
             if(l.size()>0){
                 for(GridEntity g:l){

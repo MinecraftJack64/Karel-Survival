@@ -414,7 +414,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
     }
     //TODO: Make abstract
     public String getItemID(){
-        return null;
+        return "weapon";
     }
     public BotGuide getBotGuide(){
         return new BotGuide();

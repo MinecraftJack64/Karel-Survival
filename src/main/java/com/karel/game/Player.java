@@ -126,12 +126,12 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     
     public Item equipAtSlot(Item i){
         Item old = this.getHeldItem();
-        if(old!=null){
+        if(old!=null&&!sudoActive()){
             old.unequip();
             Game.changeHeldItem("");
         }
         this.inventory[currentItemIndex] = i;
-        if(i!=null){
+        if(i!=null&&!sudoActive()){
             i.equip();
             Game.changeHeldItem(this.getHeldItem().getName());
         }

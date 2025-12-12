@@ -70,6 +70,7 @@ public class Flail extends Weapon
         }else if(continueUse()){
             setContinueUse(false);
             setPlayerLockMovement(false);
+            setPlayerLockRotation(false);
         }
     }
     public int getUlt(){

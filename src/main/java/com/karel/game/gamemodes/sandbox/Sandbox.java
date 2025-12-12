@@ -109,10 +109,10 @@ public class Sandbox extends GameMode
         this.selectedMode = selectedMode;
         if(selectedMode>0){
             sudo.setMode(selectedMode);
-            player.setSudoActive(true);
+            if(!player.sudoActive())player.setSudoActive(true);
         }else{
             sudo.setMode(0);
-            player.setSudoActive(false);
+            if(player.sudoActive())player.setSudoActive(false);
         }
     }
     public int getSelectedWeapon(){

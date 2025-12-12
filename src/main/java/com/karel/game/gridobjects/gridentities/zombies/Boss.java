@@ -8,4 +8,7 @@ public class Boss extends Zombie{
     public int getPhase(){
         return 1;
     }
+    public boolean acceptExternalShields(){
+        return false;
+    }
 }

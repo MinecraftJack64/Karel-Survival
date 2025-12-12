@@ -13,8 +13,8 @@ import com.karel.game.weapons.Weapon;
 public class CapsaicinTorch extends Weapon
 {
     private int reloadDelayCount;
-    private double ammo = 140;
-    private int maxAmmo = 140;
+    private double ammo = 280;
+    private int maxAmmo = 280;
     private int ultammo = 0;
     private int range = 0;
     //TODO: show fire bar

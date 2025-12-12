@@ -22,7 +22,7 @@ public class PepperFlame extends Bullet
     }
     
     public void doHit(GridEntity targ){
-        targ.applyEffect(new BurnEffect(1,1,(int)(17*(getLife()*1.0/maxLife)),this));
+        targ.applyEffect(new BurnEffect(1,1,Math.max(1, (int)(17*(getLife()*1.0/maxLife))),this));
         super.doHit(targ);
     }
 }
