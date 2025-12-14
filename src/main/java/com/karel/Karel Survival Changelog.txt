@@ -47,7 +47,7 @@ Phase 3:
 - Includes previous
 - Can spawn up to 2 assault points
 - On the ground
-  - .Throw 1-2 giant hail balls, leads shots based on player movement in the last second
+  - Throw 1-2 giant hail balls, leads shots based on player movement in the last second
   - Can dash into a clump of zombies, spawning a shaman zombie
   - Lightning bolts bounce at the end of their range towards you again
 Last Phase:
