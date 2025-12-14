@@ -14,6 +14,7 @@ import com.karel.game.SubAffecter;
 public class Hitter extends GridObject implements SubAffecter
 {
     GridObject source;
+    GridEntity intendedTarget;
     private int damage = 0;
     private int targets;
     private int range = 0;// for radius collision
@@ -23,7 +24,7 @@ public class Hitter extends GridObject implements SubAffecter
     private boolean multihit;// hit enemies more than once
     private boolean trackAfterHit;// if this hitter checks and calls afterHit
     private boolean clipHits;// ignore hitstory, allowing hitting enemies multiple times while passing through them
-    private String collidemode = "collide";
+    private String collidemode = "collide"; // radius, collide, target
     public String getStaticTextureURL(){
         return "bullet.png";
     }
@@ -39,6 +40,13 @@ public class Hitter extends GridObject implements SubAffecter
     }
     public void setSource(GridObject s){
         source = s;
+    }
+    public void setIntendedTarget(GridEntity ge){
+        intendedTarget = ge;
+        setCollisionMode("target");
+    }
+    public GridEntity getIntendedTarget(){
+        return intendedTarget;
     }
     public int getNumTargets(){
         return targets;
@@ -184,7 +192,8 @@ public class Hitter extends GridObject implements SubAffecter
     }
     public List<GridEntity> getColliding(){
         List<GridEntity> asteroid = new ArrayList<GridEntity>();
-        if(getCollisionMode().equals("collide"))asteroid.addAll(getCollidingGEs());
+        if(getCollisionMode().equals("target"))asteroid.add(intendedTarget);
+        else if(getCollisionMode().equals("collide"))asteroid.addAll(getCollidingGEs());
         else if(getCollisionMode().equals("radius"))asteroid.addAll(getGEsInRange(getRange()));
         Collections.sort(asteroid, Comparator.comparingDouble(this::distanceTo));
         return asteroid;

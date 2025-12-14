@@ -16,6 +16,7 @@ public class FlyingProjectile extends Projectile
 {
     /** The damage this bullet will deal */
     private static final int damage = 200;
+    public boolean defaultmove = true;
     private Arc path;
     private double rot;
     protected int frame;
@@ -73,7 +74,7 @@ public class FlyingProjectile extends Projectile
             if(dieonhit)die();
         } 
         else {
-            move(rot, path.getRate());
+            if(defaultmove)move(rot, path.getRate());
             setHeight(path.getHeight(frame));
             continueFrame();
         }
