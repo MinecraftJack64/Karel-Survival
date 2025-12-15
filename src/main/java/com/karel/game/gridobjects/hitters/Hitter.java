@@ -199,7 +199,7 @@ public class Hitter extends GridObject implements SubAffecter
         return asteroid;
     }
     public boolean willHit(GridEntity thing){
-        return hitsAll()&&thing!=getSource() || thing==getSource()&&willSelfHit() || thing!=getSource()&&(isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing)&&(hitfullallies||thing.getPercentHealth()<1));
+        return getIntendedTarget()==thing || hitsAll()&&thing!=getSource() || thing==getSource()&&willSelfHit() || thing!=getSource()&&(isAttack()&&isAggroTowards(thing) || willHitAllies()&&isAlliedWith(thing)&&(hitfullallies||thing.getPercentHealth()<1));
     }
     public boolean isPotentialTarget(GridEntity thing){
         return super.isPotentialTarget(thing)&&willHit(thing)&&!hitstory.contains(thing);

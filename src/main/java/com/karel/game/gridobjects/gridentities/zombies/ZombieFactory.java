@@ -8,6 +8,7 @@ import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cancer.CancerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
+import com.karel.game.gridobjects.gridentities.zombies.chill.ChillZombie;
 import com.karel.game.gridobjects.gridentities.zombies.chocolate.ChocolateZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cloudserver.CloudServer;
 import com.karel.game.gridobjects.gridentities.zombies.concentrated.ConcentratedZombie;
@@ -132,6 +133,7 @@ public class ZombieFactory {
             "cowboy",
             "boid",
             "cancer",
+            "chill",
             "bot" };
 
     public static GridEntity createZombie(String type) {
@@ -317,11 +319,13 @@ public class ZombieFactory {
             case "cancer":
                 return new CancerZombie();
             ////rootkit
-            //chill
+            case "chill":
+                return new ChillZombie();
             //urchin
             //super
             //minishooter
             //hologuard
+            //caffeinated
             case "bot":
                 return new Bot(null);
         }

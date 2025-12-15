@@ -10,6 +10,9 @@ public class IceBolt extends HomingFlyingProjectile {
         setDamage(0);
     }
     public void doHit(GridEntity targ){
-        addObjectHere(new IceBlock(targ, getSource()));
+        if(isAlliedWith(targ))addObjectHere(new IceBlock(targ, getSource()));
+        else{
+            damage(targ, 100);
+        }
     }
 }

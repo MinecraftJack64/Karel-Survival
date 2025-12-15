@@ -1,7 +1,11 @@
 package com.karel.game.gridobjects.gridentities.zombies.chill;
 
+import java.util.Arrays;
+
 import com.karel.game.AmmoManager;
 import com.karel.game.GridEntity;
+import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
+import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
 
@@ -13,26 +17,21 @@ import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
  */
 public class ChillZombie extends ShooterZombie
 {
-    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.ranger, ZombieClass.penetrator};
-    private static final int gunReloadTime = 25;         // The minimum delay between firing the gun.
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.support, ZombieClass.tactician, ZombieClass.controller};
+    private static final int gunReloadTime = 60;         // The minimum delay between firing the gun.
 
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
-    public String getStaticTextureURL(){return "steakzareln.png";}
-    private AmmoManager ammo = new AmmoManager(30, 3, 3);
-    private boolean hastarget = false;
-    private boolean shouldheal = false;
-    private boolean healself = false;
-    private boolean mustbehurt = false;
+    public String getStaticTextureURL(){return "chillzareln.png";}
+    private AmmoManager ammo = new AmmoManager(400, 3, 3);
     private GridEntity priority;
-    private static double attackrange = 400, retreatrange = 600;
+    private static double attackrange = 1000, standingrange = 600, retreatrange = 400;
     /**
      * Initilise this rocket.
      */
     public ChillZombie()
     {
         reloadDelayCount = 5;
-        scaleTexture(50, 50);
-        setSpeed(2);
+        setSpeed(1);
         startHealth(500);
     }
     public ChillZombie(GridEntity target)
@@ -43,29 +42,20 @@ public class ChillZombie extends ShooterZombie
 
     public void behave()
     {
-        reloadDelayCount+=getReloadMultiplier();
-        heal(this, 1);
-        double monangle = face(getTarget(), canMove());
-        //setRotation(getRotation()-1);
+        reloadDelayCount++;
+        System.out.println(super.getTarget());
+        double monangle = face(super.getTarget(), canMove());
+        if(distanceTo(getTarget())<attackrange){
+            fire();
+        }else{
+            walk(face(getTarget(), canMove()), 1);
+        }
         if(reloadDelayCount>=gunReloadTime)ammo.reload(getReloadMultiplier());
-        if(!hastarget){
-            super.behave();
-            getTarget();
-            if(shouldheal&&healself){
-                fire();
-            }
-            return;
-        }
-        if(hastarget&&distanceTo(getTarget())>attackrange)walk(monangle, 1);
-        else if(!hastarget&&distanceTo(getTarget())<retreatrange){
+        else return;
+        if(distanceTo(super.getTarget())>standingrange){
+            walk(monangle, 1);
+        }else if(distanceTo(super.getTarget())<retreatrange){
             walk(monangle, -1);
-        }
-        else if(shouldheal){
-            fire();
-            return;
-        }
-        if(shouldheal&&healself){
-            fire();
         }
     }
 
@@ -75,11 +65,12 @@ public class ChillZombie extends ShooterZombie
     public void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()&&ammo.hasAmmo()){
-            double d = healself?3:distanceTo(getTarget());
+            double d = distanceTo(getTarget());
             IceBolt bullet = new IceBolt(getRotation(), d, 150, this, getTarget());
             addObjectHere(bullet);
             reloadDelayCount = 0;
             ammo.useAmmo();
+            if(isAggroTowards(getTarget()))ammo.donateAmmoBar(200); // reloads faster
         }
     }
     @Override
@@ -88,41 +79,32 @@ public class ChillZombie extends ShooterZombie
     }
     
     public GridEntity getTarget(){
-        hastarget = true;
-        shouldheal = true;
-        healself = false;
-        GridEntity candidate = getNearestAlly(true);
-        if(candidate==null){
-            shouldheal = false;
-            if(getHealth()<getMaxHealth()){//not at max health, no targets, then heal self
-                shouldheal = true;
-                healself = true;
-            }
-            candidate = getNearestAlly(false);
-            if(candidate==null){
-                hastarget = false;
+        if(priority!=null&&!priority.isDead()&&getPriority(priority)==0){
+            return priority;
+        }
+        int bestP = -1;
+        GridEntity best = null;
+        for(GridEntity g: getWorld().allEntities()){
+            int op = getPriority(g);
+            if((g.canDetect()&&(isAlliedWith(g)||isAggroTowards(g)))&&(bestP<0&&getPriority(g)>=0||op<bestP||bestP!=0&&op==bestP&&distanceTo(best)>distanceTo(g))){
+                best = g;
+                bestP = op;
             }
         }
-        if(getHealth()<getMaxHealth()/2){//less than half health, heal self
-            shouldheal = true;
-            healself = true;
-        }
-        //healself = getHealth()<getMaxHealth()/2;
-        return candidate==null?super.getTarget():candidate;
+        return bestP==-1?super.getTarget():best;
     }
-    public GridEntity getNearestAlly(boolean mustbehurt){
-        if(priority!=null&&!priority.isDead()){
-            if(mustbehurt){
-                if(priority.getHealth()<priority.getMaxHealth()){
-                    return priority;//prioritize a patient
-                }
-            }else{
-                return priority;
-            }
+    public int getPriority(GridEntity targ){
+        if(targ.getPercentHealth()<0.5||targ.getPercentHealth()<1&&targ.getHealth()<100){
+            if(targ==this)return 1;
+            else return 0;
+        }else if(targ instanceof Zombie z&&Arrays.asList(z.getZombieClasses()).contains(ZombieClass.meatshield)&&!(targ instanceof SpawnableZombie)){
+            return 2;
+        }else if(isAggroTowards(targ)){
+            return 3;
+        }else if(isAlliedWith(targ)){
+            return 4;
         }
-        
-        this.mustbehurt = mustbehurt;
-        return getNearestTarget();
+        return -1;
     }
     @Override
     public void feast(){
@@ -131,14 +113,11 @@ public class ChillZombie extends ShooterZombie
     public ZombieClass[] getZombieClasses(){
         return classes;
     }
-    public boolean isPotentialTarget(GridEntity e){
-        return !(e==this||!e.canDetect()||!isAlliedWith(e)||(mustbehurt&&!(e.getHealth()<e.getMaxHealth())));
-    }
     public String getName(){
-        return "Steak Zombie";
+        return "Chill Zombie";
     }
     @Override
     public String getZombieID(){
-        return "steak";
+        return "chill";
     }
 }

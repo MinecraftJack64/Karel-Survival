@@ -28,7 +28,7 @@ public class IceBlock extends GridEntity implements SubAffecter
             kill(this);
             return;
         }
-        heal(targ, 7);
+        heal(targ, 1);
         life--;
         if(life<=0){
             kill(this);
