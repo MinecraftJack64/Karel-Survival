@@ -18,16 +18,20 @@ public class DurationEffect extends Effect
     private Color durationColor = new Color((byte)255, (byte)127, (byte)255, (byte)127);
     public DurationEffect(int duration, GridObject source){
         this(duration, source, new EffectID(source));
+        setCollisionProtocol(1);
+        if(!updateMaxOnApplication())maxDuration = getDuration();
     }
     public DurationEffect(int duration, GridObject source, EffectID id){
         super(id);
         this.duration = duration;
+        if(!updateMaxOnApplication())maxDuration = getDuration();
         setSource(source);
         setCollisionProtocol(1);
     }
     public DurationEffect(int duration, EffectID id){
         super(id);
         this.duration = duration;
+        if(!updateMaxOnApplication())maxDuration = getDuration();
         setCollisionProtocol(1);
     }
     public String getStaticTextureURL(){
@@ -47,8 +51,11 @@ public class DurationEffect extends Effect
     }
     public void appliedTo(GridEntity source){
         super.appliedTo(source);
-        maxDuration = getDuration();
+        if(updateMaxOnApplication())maxDuration = getDuration();
         onApply();
+    }
+    public boolean updateMaxOnApplication(){
+        return true;
     }
     public void clear(){
         onClear();

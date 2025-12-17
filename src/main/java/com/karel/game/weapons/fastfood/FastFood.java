@@ -6,9 +6,9 @@ import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.hitters.Projectile;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.sodahat.SodaPuddle;
-import com.karel.game.weapons.ShieldID;
 import com.karel.game.DecayingArmorShield;
 
 /**

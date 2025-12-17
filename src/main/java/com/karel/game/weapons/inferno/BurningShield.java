@@ -5,7 +5,7 @@ import com.karel.game.GridObject;
 import com.karel.game.Shield;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.PoisonEffect;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class ImmunityShield here.

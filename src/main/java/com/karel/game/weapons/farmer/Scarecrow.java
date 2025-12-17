@@ -3,7 +3,7 @@ package com.karel.game.weapons.farmer;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Pet;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class Scarecrow here.

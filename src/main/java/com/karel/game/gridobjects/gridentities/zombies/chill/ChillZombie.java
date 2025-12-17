@@ -43,7 +43,6 @@ public class ChillZombie extends ShooterZombie
     public void behave()
     {
         reloadDelayCount++;
-        System.out.println(super.getTarget());
         double monangle = face(super.getTarget(), canMove());
         if(distanceTo(getTarget())<attackrange){
             fire();

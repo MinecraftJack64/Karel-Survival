@@ -1,8 +1,8 @@
 package com.karel.game.weapons.fastfood;
 import com.karel.game.GridObject;
 import com.karel.game.Shield;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.GridEntity;
-import com.karel.game.weapons.ShieldID;
 
 public class KetchupFry extends Fry
 {

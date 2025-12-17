@@ -6,7 +6,7 @@ import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.particles.MelonExplosion;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.raylib.Texture;
 
 /*

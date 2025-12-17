@@ -12,7 +12,7 @@ public class IceBolt extends HomingFlyingProjectile {
     public void doHit(GridEntity targ){
         if(isAlliedWith(targ))addObjectHere(new IceBlock(targ, getSource()));
         else{
-            damage(targ, 100);
+            targ.applyEffect(new ChillEffect(450, getSource()));
         }
     }
 }

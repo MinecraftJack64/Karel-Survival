@@ -7,12 +7,12 @@ import java.util.function.Predicate;
 import com.karel.game.effects.Effect;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.KnockbackEffect;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.ui.bars.BadShieldBar;
 import com.karel.game.ui.bars.BossBar;
 import com.karel.game.ui.bars.HealthBar;
 import com.karel.game.ui.bars.LifeBar;
 import com.karel.game.ui.bars.ShieldBar;
-import com.karel.game.weapons.ShieldID;
 
 /**
  * Write a description of class GridEntity here.

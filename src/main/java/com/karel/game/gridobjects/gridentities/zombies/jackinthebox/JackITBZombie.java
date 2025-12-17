@@ -9,7 +9,7 @@ import com.karel.game.GridObject;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.joker.JokerZombie;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 public class JackITBZombie extends Zombie
 {
     private ZombieClass[] classes = new ZombieClass[]{ZombieClass.tank, ZombieClass.controller};

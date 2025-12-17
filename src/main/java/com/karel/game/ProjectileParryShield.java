@@ -1,7 +1,7 @@
 package com.karel.game;
 
 import com.karel.game.gridobjects.hitters.Bullet;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class ImmunityShield here.

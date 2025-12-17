@@ -102,6 +102,18 @@ Bot Guide Tracker
  - Water Balloons(N)
  - Weedwacker(N)
 
+12/14-12/16
+Content
+ - Added Chill Zombie(TODO: Chilling Attack)
+ - TODO: Add Urchin Zombie
+ - TODO: Add Scalpel weapon
+Balancing
+ - TODO: Salicycle rework(melee attack, ult wider range, higher health, lower damage)
+Technical
+ - TODO: Maybe change healers to use priority like Chill Zombie?
+ - Fixed Duration effect collision protocol and max duration at start of instantiation
+ - Added BuildupEffect, which stacks until an amount and calls a method, decaying over time
+
 11/28
 Fixes
  - Flail lock target on attack permanently

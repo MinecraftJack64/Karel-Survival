@@ -8,7 +8,7 @@ import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 import java.util.HashSet;
 

@@ -1,4 +1,4 @@
-package com.karel.game.weapons;
+package com.karel.game.shields;
 
 public class ShieldID{
     final Object key;

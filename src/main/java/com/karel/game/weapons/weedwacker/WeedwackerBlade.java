@@ -7,7 +7,7 @@ import com.karel.game.MetalShield;
 import com.karel.game.ProjectileReflectShield;
 import com.karel.game.ProjectileParryShield;
 import com.karel.game.SubAffecter;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.raylib.Raylib;
 import com.raylib.Vector2;
 

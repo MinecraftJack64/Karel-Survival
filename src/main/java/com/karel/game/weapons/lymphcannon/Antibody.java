@@ -4,7 +4,7 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Shield;
 import com.karel.game.gridobjects.hitters.StickyBullet;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * A bullet that can hit asteroids.

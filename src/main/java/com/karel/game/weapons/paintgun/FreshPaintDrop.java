@@ -3,7 +3,7 @@ package com.karel.game.weapons.paintgun;
 import com.karel.game.GridObject;
 import com.karel.game.PercentageShield;
 import com.karel.game.Shield;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * A bullet that can hit asteroids.

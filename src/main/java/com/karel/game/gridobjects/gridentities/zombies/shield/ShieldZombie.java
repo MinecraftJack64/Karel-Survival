@@ -4,7 +4,7 @@ import com.karel.game.ArmorShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.raylib.Texture;
 /**
  * A zombie with a shield

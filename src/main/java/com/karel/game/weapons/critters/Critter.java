@@ -9,7 +9,7 @@ import com.karel.game.HealCharge;
 import com.karel.game.Pet;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.StunEffect;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.raylib.Texture;
 
 /**

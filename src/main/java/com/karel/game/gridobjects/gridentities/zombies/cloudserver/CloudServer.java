@@ -23,8 +23,8 @@ import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shaman.ShamanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.splitter.SplitterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
-import com.karel.game.weapons.ShieldID;
 import com.karel.game.particles.Explosion;
+import com.karel.game.shields.ShieldID;
 
 /*
  * classes

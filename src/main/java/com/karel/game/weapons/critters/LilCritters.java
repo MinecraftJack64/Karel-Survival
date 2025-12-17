@@ -4,7 +4,7 @@ import com.karel.game.ArmorShield;
 import com.karel.game.GridObject;
 import com.karel.game.ItemHolder;
 import com.karel.game.Shield;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.weapons.Weapon;
 
 /**

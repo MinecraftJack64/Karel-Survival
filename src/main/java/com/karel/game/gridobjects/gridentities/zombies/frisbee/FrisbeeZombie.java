@@ -5,7 +5,7 @@ import com.karel.game.ProjectileReflectShield;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class ShooterZombie here.

@@ -1,6 +1,6 @@
 package com.karel.game;
 
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Allow the holder to survive a certain number of lethal hits with 1 health

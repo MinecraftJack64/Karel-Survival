@@ -1,6 +1,6 @@
 package com.karel.game;
 
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class Shield here.

@@ -1,6 +1,6 @@
 package com.karel.game;
 
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class ImmunityShield here.
@@ -40,7 +40,7 @@ public class PercentageShield extends Shield
         return duration;
     }
     public int getHealth(){
-        return -1;
+        return duration;
     }
     public boolean canBreak(){
         return duration>=0;

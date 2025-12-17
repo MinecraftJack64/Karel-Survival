@@ -9,23 +9,49 @@ import com.karel.game.GridObject;
  */
 public class BuildupEffect extends DurationEffect
 {
-    public BuildupEffect(int duration, GridObject source){
-        super(duration, source);
+    public int maxDuration = 0;
+    public BuildupEffect(int duration, int maxDuration, GridObject source){
+        super(maxDuration, source);
+        setDuration(duration);
+        this.maxDuration = maxDuration;
+        System.out.println("NEW: "+getDuration()+" "+getMaxDuration());
     }
-    public BuildupEffect(int duration, GridObject source, EffectID id){
-        super(duration, source, id);
-    }
-    public BuildupEffect(int duration, EffectID id){
-        super(duration, id);
+    public BuildupEffect(int duration, int maxDuration, GridObject source, EffectID id){
+        super(maxDuration, source, id);
+        setDuration(duration);
+        this.maxDuration = maxDuration;
     }
     public String getStaticTextureURL(){
         return "Symbols/Effects/stun.png";
     }
-    public void onClear(){
-        getTarget().unstun(getID());
+    public void affect(){
+        if(getDuration()==maxDuration){
+            score();
+            clear();
+        }
+        else super.affect();
     }
-    public void onApply(){
-        getTarget().stun(getID());
+    @Override
+    public boolean updateMaxOnApplication(){
+        return false;
     }
-    public String getStringID(){return "stun";}
+    public void score(){
+        //
+    }
+    public int getScore(){
+        return getDuration();
+    }
+    public double getScorePercent(){
+        return getDuration()*1.0/maxDuration;
+    }
+    public void stack(Effect other){
+        super.stack(other);
+        System.out.println(((BuildupEffect)other).getDuration()+" "+getDuration());
+        setDuration(((BuildupEffect)other).getDuration()+getDuration());
+        if(getDuration()>maxDuration){
+            setDuration(maxDuration);
+            System.out.println(maxDuration);
+        }
+    }
+    public String getStringID(){return "buildup";}
 }

@@ -6,7 +6,7 @@ import com.karel.game.Sounds;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 /**
  * Write a description of class BodyguardZombie here.

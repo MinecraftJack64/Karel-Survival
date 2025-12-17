@@ -6,7 +6,7 @@ import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.effects.TeamSwitchEffect;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.weapons.Weapon;
 
 /**

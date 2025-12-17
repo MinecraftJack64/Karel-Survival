@@ -80,7 +80,7 @@ public abstract class Effect
     public boolean isMalicious(){
         return false;
     }
-    //0-3, independent(codominant), stack(incomplete), override(dominant), fail(recessive)
+    //0-3, independent(codominant), stack(incomplete recessive), override(dominant), fail(recessive)
     public int getCollisionProtocol(){
         return collisionProtocol;
     }

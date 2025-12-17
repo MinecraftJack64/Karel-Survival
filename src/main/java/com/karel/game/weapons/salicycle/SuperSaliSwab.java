@@ -2,7 +2,7 @@ package com.karel.game.weapons.salicycle;
 
 import com.karel.game.CoolingMetalShield;
 import com.karel.game.GridEntity;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 
 public class SuperSaliSwab extends SaliSwab{
     public SuperSaliSwab(double direction, GridEntity g){

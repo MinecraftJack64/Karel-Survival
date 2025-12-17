@@ -4,8 +4,8 @@ import com.karel.game.AmmoManager;
 import com.karel.game.ExternalImmunityShield;
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.weapons.Weapon;
-import com.karel.game.weapons.ShieldID;
 
 import java.util.HashSet;
 

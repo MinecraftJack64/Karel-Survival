@@ -7,7 +7,7 @@ import com.karel.game.PercentageShield;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SpeedPercentageEffect;
-import com.karel.game.weapons.ShieldID;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.weapons.Weapon;
 
 /**
