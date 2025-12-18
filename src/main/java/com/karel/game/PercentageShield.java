@@ -40,7 +40,7 @@ public class PercentageShield extends Shield
         return duration;
     }
     public int getHealth(){
-        return duration;
+        return duration>0?duration:1;
     }
     public boolean canBreak(){
         return duration>=0;

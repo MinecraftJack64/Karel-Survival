@@ -14,6 +14,7 @@ public class LifestealEffect extends TickingEffect
 {
     private int damage;
     private GridEntity healtarget;
+    private double ratio;
     /*
      * Use this if entity is applying effect directly
      */
@@ -34,6 +35,9 @@ public class LifestealEffect extends TickingEffect
         this.damage = (int)(damage*getSource().getPower());
         healtarget = target;
     }
+    public void setRatio(double n){
+        ratio = n;
+    }
     public String getStaticTextureURL(){
         return "Symbols/Effects/lifesteal.png";
     }
@@ -46,7 +50,7 @@ public class LifestealEffect extends TickingEffect
     public void damage(GridEntity e){
         e.hit(damage, getSource());
         if(!healtarget.isDead()){
-            healtarget.heal(healtarget, damage);
+            healtarget.heal(healtarget, (int)(damage*ratio));
         }
     }
     public String getStringID(){return "lifesteal";}

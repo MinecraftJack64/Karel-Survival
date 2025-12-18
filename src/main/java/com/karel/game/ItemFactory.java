@@ -36,6 +36,7 @@ import com.karel.game.weapons.pointpinner.Pointpinner;
 import com.karel.game.weapons.reaper.Reaper;
 import com.karel.game.weapons.rock.RockCatapult;
 import com.karel.game.weapons.salicycle.Salicycle;
+import com.karel.game.weapons.scalpel.Scalpel;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
@@ -116,6 +117,7 @@ public class ItemFactory
                                     "paintgun",
                                     "trolltest",
                                     "acidart",
+                                    "scalpel",
                                     "flashdrive",
                                     "inferno",
                                     "doublegun",
@@ -261,6 +263,10 @@ public class ItemFactory
                 return new TrollTest(holder);
             case "acidart":
                 return new Acidart(holder);
+            //uranium drum
+            //puppeteer
+            case "scalpel":
+                return new Scalpel(holder);
             //MISSING A LOT
             case "flashdrive":
                 return new FlashDrive(holder);//

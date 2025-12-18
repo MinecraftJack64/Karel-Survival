@@ -22,7 +22,7 @@ public class BuildupEffect extends DurationEffect
         this.maxDuration = maxDuration;
     }
     public String getStaticTextureURL(){
-        return "Symbols/Effects/stun.png";
+        return "Symbols/Effects/duration.png";
     }
     public void affect(){
         if(getDuration()==maxDuration){

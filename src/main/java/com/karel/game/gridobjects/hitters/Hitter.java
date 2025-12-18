@@ -17,6 +17,7 @@ public class Hitter extends GridObject implements SubAffecter
     GridEntity intendedTarget;
     private int damage = 0;
     private int targets;
+    private int totalHits = 0;
     private int range = 0;// for radius collision
     private boolean isattack = true;// hit enemies
     private boolean hitallies;// hit allies
@@ -87,6 +88,9 @@ public class Hitter extends GridObject implements SubAffecter
     }
     public int getDamage(GridEntity g){
         return getDamage();
+    }
+    public int totalHits(){
+        return totalHits;
     }
     public boolean willSelfHit(){
         return hitself;
@@ -175,6 +179,7 @@ public class Hitter extends GridObject implements SubAffecter
         if(willHit(thing)){
             if(!hitstory.contains(thing)){
                 doHit(thing);
+                totalHits++;
                 onHit(thing);
                 changeNumTargets(-1);
                 if(!canMultiHit())hitstory.add(thing);
@@ -183,9 +188,11 @@ public class Hitter extends GridObject implements SubAffecter
                 }
             }else if(clipHits()){
                 doHit(thing);
+                totalHits++;
                 onHit(thing);
             }else{
                 onHit(thing);
+                totalHits++;
             }
         }
         return true;

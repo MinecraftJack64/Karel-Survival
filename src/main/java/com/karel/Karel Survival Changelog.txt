@@ -1,10 +1,15 @@
 -ituti da !votannali, monlo !dostado -u dis
+While you are not ?, do not give me money
 Patrol(rare)
 Two siren lights on opposite sides spin around constantly. Attacking causes them to flash out, each one damaging in an arc
 Ult "Police Bots": Spawn 2 police robots, one on either side of you. They walk towards the nearest enemy and shoot them with a taser gun that stuns them after enough hits. They shoot faster when retreating
 Attack Upgrade "Blaring": Another attack damages in the cone next to the first one.
 Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot(it can't spawn more) and both gain a small shield
 Gadget "Spotlights": Switch siren light direction
+
+Angler(mythic)
+Shoot out a jaw with controlled range. It stops earlier if it hits an enemy. It then creates a 4 part floral pattern(like the cat claw) of scrapers that pulls in enemies about to die. It then retracts back into you, carrying those enemies and damaging them when pulled back.
+Ult "Lure": After a short delay, shoot a light down at a circular area. Enemies inside the area are lured to you for a few seconds.
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -102,17 +107,24 @@ Bot Guide Tracker
  - Water Balloons(N)
  - Weedwacker(N)
 
+TODO
+ - Sudo is unaffected by status effects
+ - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
+ - Maybe change healers to use priority like Chill Zombie?
+ - Should negative healing/damage call the other function?
+
 12/14-12/16
 Content
- - Added Chill Zombie(TODO: Chilling Attack)
- - TODO: Add Urchin Zombie
- - TODO: Add Scalpel weapon
-Balancing
- - TODO: Salicycle rework(melee attack, ult wider range, higher health, lower damage)
+ - Added Chill Zombie(TODO: chilling slows)
+ - Added Urchin Zombie
+ - Added Scalpel weapon basekit(no ult link graphics yet), attack upgrade(TODO: speed boost depends on living enemies)
+Graphics
+ - Duration shields show their duration in the bar(TODO: move into logos)
 Technical
- - TODO: Maybe change healers to use priority like Chill Zombie?
  - Fixed Duration effect collision protocol and max duration at start of instantiation
  - Added BuildupEffect, which stacks until an amount and calls a method, decaying over time
+ - Lifesteal effect can have a ratio
+ - Added homing flying projectiles, which guarantee hits
 
 11/28
 Fixes

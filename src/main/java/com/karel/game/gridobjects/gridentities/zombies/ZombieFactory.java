@@ -57,6 +57,7 @@ import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
+import com.karel.game.gridobjects.gridentities.zombies.urchin.UrchinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.watermelon.WatermelonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
@@ -134,6 +135,7 @@ public class ZombieFactory {
             "boid",
             "cancer",
             "chill",
+            "urchin",
             "bot" };
 
     public static GridEntity createZombie(String type) {
@@ -321,7 +323,8 @@ public class ZombieFactory {
             ////rootkit
             case "chill":
                 return new ChillZombie();
-            //urchin
+            case "urchin":
+                return new UrchinZombie();
             //super
             //minishooter
             //hologuard
