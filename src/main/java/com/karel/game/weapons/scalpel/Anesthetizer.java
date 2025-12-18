@@ -9,7 +9,7 @@ import com.karel.game.gridobjects.hitters.Bullet;
 public class Anesthetizer extends Bullet{
     public Anesthetizer(double rot, GridObject source){
         super(rot, source);
-        setDamage(200);
+        setDamage(100);
         setNumTargets(5);
         setSpeed(15);
         setLife(40);

@@ -17,9 +17,9 @@ public class ScalpelBlade extends Bullet {
         isUpgrade = upgraded;
         myScalpel = scp;
         if(charged){
-            setDamage(300);
+            setDamage(350);
         }else{
-            setDamage(50);
+            setDamage(40);
             setNumTargets(-1);
         }
     }
@@ -30,7 +30,7 @@ public class ScalpelBlade extends Bullet {
     public void doHit(GridEntity targ){
         if(isAlliedWith(targ)){
             targ.applyEffect(new PowerPercentageEffect(1.1, 100, this));
-            heal(targ, myScalpel.notifyHeal(isCharged?300:50));
+            heal(targ, myScalpel.notifyHeal(isCharged?350:50));
             if(isCharged){
                 if(myScalpel.getLastEnemy()==targ){
                     heal(targ, getDamage()/5);
@@ -54,7 +54,7 @@ public class ScalpelBlade extends Bullet {
     }
     public void die(){
         if(totalHits()==0){
-            heal((GridEntity)getSource(), myScalpel.notifyHeal(isCharged?300:50));
+            heal((GridEntity)getSource(), myScalpel.notifyHeal(isCharged?300:30));
         }
         super.die();
     }

@@ -113,6 +113,15 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+12/17
+Balancing
+ - Scalpel
+    - (-)Ult projectile damage(200->100)
+    - (-)Attack damage(50->40)
+    - (+)Charged attack damage(300->350)
+    - (-)Self healing from attack(50->30)
+    - (+)Charged attack ally healing(300->350)
+
 12/14-12/16
 Content
  - Added Chill Zombie(TODO: chilling slows)
