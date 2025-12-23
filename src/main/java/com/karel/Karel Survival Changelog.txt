@@ -7,9 +7,15 @@ Attack Upgrade "Blaring": Another attack damages in the cone next to the first o
 Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot(it can't spawn more) and both gain a small shield
 Gadget "Spotlights": Switch siren light direction
 
-Angler(mythic)
+Angler(epic)
 Shoot out a jaw with controlled range. It stops earlier if it hits an enemy. It then creates a 4 part floral pattern(like the cat claw) of scrapers that pulls in enemies about to die. It then retracts back into you, carrying those enemies and damaging them when pulled back.
 Ult "Lure": After a short delay, shoot a light down at a circular area. Enemies inside the area are lured to you for a few seconds.
+
+Toothbrush(mythic)
+Shoot out 9 teeth in a shotgun pattern. If ?, the next shot will be a single high damage tooth with high range that at the end of its range, lands on the ground. Teeth have 4 states of cleanliness, slowly decreasing over time. Up to 8 teeth can be out at a time and the earliest will disappear when over the limit. If rotted too much, a tooth also disappears
+Ult "Brush": Shoot out a toothbrush at the nearest dirty tooth. Upon reaching a tooth, it will be fully cleaned and it will move towards the next tooth in line of sight, repeating until no teeth need cleaning in range. Along the way, leave behind toothpaste bubbles that damage enemies over time and damage enemies on collision. On a tooth being cleaned, it will burst outward, damaging enemies and knocking them back, stronger when tooth is less clean.
+Ult Upgrade "Enamel Protection": Teeth will gain a protective layer that stops them from rotting for a while.
+Gadget "Remember to Floss": You are dragged along with the next toothbrush and will damage enemies a second time.
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -112,6 +118,18 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+12/22
+Content
+ - Added Snake Charmer base kit
+Technical
+ - Added custom hitbox sizes for grid objects(currently linked to texture size) TODO: Add other shapes
+
+12/19
+Balancing
+ - Grenades affected by reload speed
+Content
+ - Added Frost Spirit weapon with attack
 
 12/17
 Balancing

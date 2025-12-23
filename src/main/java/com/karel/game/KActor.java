@@ -167,9 +167,8 @@ public abstract class KActor
         scaleY = h;
     }
     public void scaleTexture(int w){
-        if(image==null)return;
-        scaleX = w;
-        scaleY = w*image.getHeight()/image.getWidth();
+        if(image==null)scaleTexture(w, w);
+        else scaleTexture(w, w*image.getHeight()/image.getWidth());
     }
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getX(), getY());

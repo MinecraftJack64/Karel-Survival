@@ -34,6 +34,9 @@ public abstract class GridObject extends KActor
     private boolean grounded;
     private GridEntity cachedTarget;
     private boolean updatingMounts;
+
+    //TODO: HITBOX STUFF
+    private int collisionRadius = 25;
     public String getTeam(){
         if(faketeam!=null){
             return faketeam;
@@ -583,12 +586,28 @@ public abstract class GridObject extends KActor
         }
         return gs;
     }
+    public void scaleTexture(int w, int h){
+        super.scaleTexture(w, h);
+        collisionRadius = Math.max(w, h); //TODO: Collisions
+    }
+    public int getCollisionRadius(){
+        return collisionRadius;
+    }
+    public boolean isCollidingWith(GridObject other){
+        return collisionRadius+other.getCollisionRadius()>=distanceTo(other); //TODO: Collisions
+    }
     public GridEntity getOneCollidingObject(){
         List<GridEntity> o = getCollidingObjects();
         return o.size()>0?o.get(0):null;
     }
     public List<GridEntity> getCollidingObjects(){
-        return getGEsInRange(50);//TODO
+        ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
+        for(GridEntity g:getWorld().allEntities()){
+            if(this!=g&&isCollidingWith(g)){
+                gs.add(g);
+            }
+        }
+        return gs;
     }
     public List<GridEntity> getCollidingGEs(){
         List<GridEntity> ges = (List<GridEntity>)getCollidingObjects();

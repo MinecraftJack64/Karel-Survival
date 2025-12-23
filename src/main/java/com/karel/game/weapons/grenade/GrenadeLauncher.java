@@ -41,8 +41,8 @@ public class GrenadeLauncher extends Weapon
             }
         }
     }
-    public void reload(){
-        reloadDelayCount++;
+    public void reload(double speed){
+        reloadDelayCount+=speed;
         updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
     }
     public void onGadgetActivate(){

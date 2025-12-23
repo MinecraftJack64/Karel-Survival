@@ -17,6 +17,7 @@ import com.karel.game.weapons.farmer.Farmer;
 import com.karel.game.weapons.fastfood.FastFood;
 import com.karel.game.weapons.flail.Flail;
 import com.karel.game.weapons.flashdrive.FlashDrive;
+import com.karel.game.weapons.frostspirit.FrostSpirit;
 import com.karel.game.weapons.gale.Gale;
 import com.karel.game.weapons.gluegun.GlueGun;
 import com.karel.game.weapons.grenade.GrenadeLauncher;
@@ -40,6 +41,7 @@ import com.karel.game.weapons.scalpel.Scalpel;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
+import com.karel.game.weapons.snakecharmer.SnakeCharmer;
 import com.karel.game.weapons.sodahat.SodaHat;
 import com.karel.game.weapons.soup.Soup;
 import com.karel.game.weapons.spear.SpearWeapon;
@@ -73,7 +75,7 @@ public class ItemFactory
                                     "farmer",
                                     "crystalgun",
                                     "grenade",
-                                    //"snakecharmer",
+                                    "snakecharmer",
                                     "blowgun",
                                     "hearth",
                                     //"mountaineer",
@@ -98,7 +100,7 @@ public class ItemFactory
                                     //"electricfists",
                                     "reaper",
                                     "critters",
-                                    //"frostspirit",
+                                    "frostspirit",
                                     //"fairyring",
                                     //"taxcollector",
                                     //"realsim",
@@ -175,7 +177,7 @@ public class ItemFactory
             case "grenade":
                 return new GrenadeLauncher(holder);//
             case "snakecharmer":
-                //return new SnakeCharmer(holder);
+                return new SnakeCharmer(holder);
             case "blowgun":
                 return new Blowgun(holder);
             case "hearth":
@@ -225,7 +227,7 @@ public class ItemFactory
             case "critters":
                 return new LilCritters(holder);
             case "frostspirit":
-                //return new FrostSpirit(holder);
+                return new FrostSpirit(holder);
             case "fairyring":
                 //return new FairyRing(holder);
             case "taxcollector":
