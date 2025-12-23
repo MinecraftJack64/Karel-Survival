@@ -588,7 +588,7 @@ public abstract class GridObject extends KActor
     }
     public void scaleTexture(int w, int h){
         super.scaleTexture(w, h);
-        collisionRadius = Math.max(w, h); //TODO: Collisions
+        collisionRadius = Math.max(w, h)/2; //TODO: Collisions
     }
     public int getCollisionRadius(){
         return collisionRadius;

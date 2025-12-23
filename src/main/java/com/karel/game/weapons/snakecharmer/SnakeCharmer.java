@@ -1,7 +1,12 @@
 package com.karel.game.weapons.snakecharmer;
 
+import java.util.ArrayList;
+
 import com.karel.game.AmmoManager;
+import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
+import com.karel.game.effects.EffectID;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -16,6 +21,10 @@ public class SnakeCharmer extends Weapon
     private int reloadDelayCount;
     private static final int ult = 2000;
     private boolean zigZag = true;
+    private int ultDuration = 0; // 150
+    private ArrayList<GridEntity> enemies = new ArrayList<GridEntity>();
+    private EffectID stun = new EffectID(this);
+    private static final int ultRange = 150;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime&&getAmmo().hasAmmo()) 
         {
@@ -34,7 +43,46 @@ public class SnakeCharmer extends Weapon
         }
     }
     public void fireUlt(){
+        if(ultDuration>0){
+            cancelUltReset();
+            return;
+        }
         setLocked(true);
+        ultDuration = 150;
+        newSpecial(150, 150);
+        getHolder().applyEffect(new SpeedPercentageEffect(0.75, ultDuration, getHolder()));
+        getHolder().explodeOn(ultRange, 150);
+    }
+    public void update(){
+        super.update();
+        if(ultDuration>0){
+            ultDuration--;
+            updateSpecial(ultDuration);
+            if(ultDuration==0){
+                setLocked(false);
+                disableSpecial();
+                for(GridEntity g: enemies){
+                    g.unstun(stun);
+                    g.clearFakeTeam();
+                }
+                enemies.clear();
+            }else{
+                for(int i = enemies.size()-1; i >= 0; i--){
+                    if(getHolder().distanceTo(enemies.get(i))>ultRange){
+                        enemies.get(i).unstun(stun);
+                        enemies.get(i).clearFakeTeam();
+                        enemies.remove(i);
+                    }
+                }
+                getHolder().explodeOnEnemies(ultRange, (e)->{
+                    if(!enemies.contains(e)){
+                        enemies.add(e);
+                        e.stun(stun);
+                        e.setFakeTeam(getHolder().getTeam());
+                    }
+                });
+            }
+        }
     }
     public void reload(double speed){
         reloadDelayCount++;

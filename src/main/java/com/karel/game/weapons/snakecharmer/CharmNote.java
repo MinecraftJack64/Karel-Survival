@@ -27,7 +27,7 @@ public class CharmNote extends Bullet {
         }
     }
     public void doHit(GridEntity targ){
-        explodeOn(40, damage);
+        explodeOn(60, damage);
         damage-=30;
     }
     public static double zagRange(){
