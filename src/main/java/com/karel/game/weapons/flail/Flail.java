@@ -85,7 +85,7 @@ public class Flail extends Weapon
                 }
             }
         });
-        setGadgetTimer(100);
+        setGadgetTimer(100);//
     }
     public boolean canActivateGadget(){
         return super.canActivateGadget()&&(core==null||core.hasReturned())&&dash==null;

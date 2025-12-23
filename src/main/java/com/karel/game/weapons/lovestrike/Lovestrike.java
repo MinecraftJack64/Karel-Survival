@@ -53,7 +53,7 @@ public class Lovestrike extends Weapon
         return ult;
     }
     public void onGadgetActivate(){
-        setGadgetTimer(300);
+        setGadgetTimer(150);
         trackGadget();
     }
     public int defaultGadgets(){

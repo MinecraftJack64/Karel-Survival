@@ -110,8 +110,6 @@ public abstract class Weapon implements Item, Tickable, EventListener
                 trackingGadget = false;
             }
         }
-        if(currentgadgettimer>0)currentgadgettimer--;
-        if(gadgetscooldown>0)gadgetscooldown--;
     }
     public void render(){
         if(isUsingGadget()){

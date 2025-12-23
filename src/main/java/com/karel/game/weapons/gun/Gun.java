@@ -40,7 +40,7 @@ public class Gun extends Weapon
         return ult;
     }
     public void onGadgetActivate(){
-        setGadgetTimer(360);
+        setGadgetTimer(180);
         trackGadget();
     }
     public Gun(ItemHolder actor){

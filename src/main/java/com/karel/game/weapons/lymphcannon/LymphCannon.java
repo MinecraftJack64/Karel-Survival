@@ -43,7 +43,7 @@ public class LymphCannon extends Weapon
         for(CellTurret c: mycells){
             getHolder().addObjectHere(new Cytokine(c, target));
         }
-        setGadgetTimer(180);
+        setGadgetTimer(180); //M
     }
     public int defaultGadgets(){
         return 1;

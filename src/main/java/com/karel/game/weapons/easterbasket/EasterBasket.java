@@ -51,7 +51,7 @@ public class EasterBasket extends Weapon implements LandingHandler
         getHolder().getWorld().addObject(egg, getHolder().getX()+Greenfoot.getRandomNumber(500)-250, getHolder().getY()+Greenfoot.getRandomNumber(500)-250);
     }
     public void onGadgetActivate(){
-        setGadgetTimer(100);
+        setGadgetTimer(100);//
         for(int i = 0; i < 4; i++){
             spawnSurpriseEgg();
         }

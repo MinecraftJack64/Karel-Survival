@@ -85,7 +85,7 @@ public class FastFood extends Weapon implements AmmoHolder
         }
     }
     public void onGadgetActivate(){
-        setGadgetTimer(120);
+        setGadgetTimer(120);//
         getHolder().addObjectHere(new SodaPuddle(100, 300, 30, getHolder()));
     }
     public int defaultGadgets(){

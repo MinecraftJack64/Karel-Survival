@@ -75,7 +75,7 @@ public class Reaper extends Weapon implements AmmoHolder
                 g.applyEffect(new LifestealEffect(100, 30, 4, getHolder(), new EffectID(this)));
             }
         });
-        setGadgetTimer(150);
+        setGadgetTimer(150); //
     }
     public int defaultGadgets(){
         return 3;

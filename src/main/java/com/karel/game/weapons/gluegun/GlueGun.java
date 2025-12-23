@@ -105,7 +105,7 @@ public class GlueGun extends Weapon
         return ult;
     }
     public void onGadgetActivate(){
-        setGadgetTimer(120);
+        setGadgetTimer(120);//TODO
     }
     public void reload(double speed){
         reloadDelayCount+=speed;

@@ -60,6 +60,8 @@ public class Hearth extends Weapon
         for(Campfire c: campfires){
             c.gadget();
         }
+        setGadgetTimer(200);
+        trackGadget();
     }
     public int defaultGadgets(){
         return 1;

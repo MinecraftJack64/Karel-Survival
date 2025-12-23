@@ -51,7 +51,7 @@ public class WaterBalloons extends Weapon implements AmmoHolder
                 fireGadgetAt(g);
             }
         }
-        setGadgetTimer(200);
+        setGadgetTimer(200);//
     }
     public int defaultGadgets(){
         return 2;

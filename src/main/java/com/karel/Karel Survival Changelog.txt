@@ -119,6 +119,10 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+12/23
+Fixes
+ - Gadget cooldown and timer are no longer half the intended
+
 12/22
 Content
  - Added Snake Charmer base kit

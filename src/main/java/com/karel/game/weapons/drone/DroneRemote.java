@@ -40,7 +40,7 @@ public class DroneRemote extends Weapon
         }
     }
     public void onGadgetActivate(){
-        setGadgetTimer(600);
+        setGadgetTimer(300);
         trackGadget();
     }
     public int defaultGadgets(){

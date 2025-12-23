@@ -44,7 +44,7 @@ public class Scalpel extends Weapon
         return ult;
     }
     public void onGadgetActivate(){
-        setGadgetTimer(360);
+        setGadgetTimer(360);//TODO
         trackGadget();
     }
     public void setLastEnemy(GridEntity t){
