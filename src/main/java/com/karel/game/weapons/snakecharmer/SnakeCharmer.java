@@ -91,7 +91,8 @@ public class SnakeCharmer extends Weapon
         }
     }
     public void onGadgetActivate(){
-        setGadgetCount(1);
+        setGadgetCount(4);
+        trackGadget();
     }
     public int defaultGadgets(){
         return 2;

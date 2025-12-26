@@ -72,6 +72,8 @@ public class Game
     public static Vector moveVector = new Vector(0, 0);
     public static boolean shiftkey;
     public static boolean disableGameInputFlag = false;
+
+    public static String globalSkin = "Nwen";
     
     static String gameMode; // current game mode
     static int gameDiff; // current game difficulty
@@ -190,6 +192,9 @@ public class Game
         return game;
     }
     public static Player getPlayer(){
+        if(game==null){
+            return null;
+        }
         return game.getPlayer();
     }
     public static String gameStatus(){
@@ -319,6 +324,9 @@ public class Game
     }
     public static void playSound(Sound sound){
         if(soundOn)Raylib.playSound(sound);
+    }
+    public static String getGlobalSkin(){
+        return globalSkin;
     }
     public static void goToMenu(){
         if(game!=null){

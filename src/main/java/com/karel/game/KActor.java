@@ -122,6 +122,24 @@ public abstract class KActor
     public double distanceTo(KActor obj){
         return distanceTo(obj.getX(),obj.getY(), obj.getHeight());
     }
+    public double getRandomCellX(){
+        return getWorld().gridXToRealX(Greenfoot.getRandomNumber(getWorld().gridwidth));
+    }
+    public double getRandomCellY(){
+        return getWorld().gridYToRealY(Greenfoot.getRandomNumber(getWorld().gridheight));
+    }
+    
+    public double getXAtOffset(int val){
+        return getWorld().gridXToRealX(getWorld().realXToGridX(getX())+val);
+    }
+    public double getYAtOffset(int val){
+        return getWorld().gridYToRealY(getWorld().realYToGridY(getY())+val);
+    }
+    public void move(double degree, double speed){
+        degree-=90;
+        double deree = degree*Math.PI/180;
+        translate((speed*Math.cos(deree)), (speed*Math.sin(deree)));
+    }
     public void setVisible(boolean visible){
         if(!visible){
             setOpacity(0);

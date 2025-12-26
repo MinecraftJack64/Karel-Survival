@@ -1,7 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
-
+import com.karel.game.particles.FallingSnow;
 import com.raylib.Color;
 import com.raylib.Raylib;
 /*
@@ -52,6 +52,7 @@ public class World
     private boolean paused = false;
 
     private ArrayList<KActor> mtaRequests = new ArrayList<KActor>();
+    private int particleCooldown;
     public World() 
     {
     }
@@ -154,6 +155,14 @@ public class World
     }
     public void drawBG(){
         if(bg.equals("grid")){
+            if(Game.getGlobalSkin().equals("Nwen")){
+                Color red = new Color((byte)255, (byte)200, (byte)200, (byte)255), green = new Color((byte)200, (byte)255, (byte)200, (byte)255);
+                for(int i = 0; i < gridwidth; i++){
+                    for(int j = 0; j < gridheight; j++){
+                        Raylib.drawRectangle((int)(gridXOffset+i*gridSize*gridSizeScale), (int)(j*gridSize*gridSizeScale), (int)(gridSize*gridSizeScale), (int)(gridSize*gridSizeScale), (i+j)%2==0?green:red);
+                    }
+                }
+            }
             for(int i = 1; i < gridwidth; i++){
                 Raylib.drawLine((int)(i*gridSize*gridSizeScale+gridXOffset), 0, (int)(i*gridSize*gridSizeScale+gridXOffset), (int)(gridSize * gridheight*gridSizeScale), Raylib.BLACK);
             }
@@ -178,6 +187,7 @@ public class World
         }
     }
     public void doUpdate(){
+        handleParticles();
         for(int i = 0; i < allKActors().size(); i++){
             KActor g = allKActors().get(i);
             g.update();
@@ -200,6 +210,18 @@ public class World
             scrollY = getPlayer().getY()-400;
         }
     }
+    private void handleParticles() {
+        if(Game.getGlobalSkin().equals("Nwen")){
+            if(getPlayer()!=null){ // TODO: Create specialized managers like SnowParticles
+                if(particleCooldown==0){
+                    addObject(new FallingSnow(), getPlayer().getRandomCellX(), getPlayer().getRandomCellY());
+                    particleCooldown = Greenfoot.getRandomNumber(30)+1;
+                }
+                particleCooldown--;
+            }
+        }
+    }
+
     public void processRemovals(){
         //remove all gridobjects that want to be
         for(int i = allKActors().size()-1; i >= 0; i--){

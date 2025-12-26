@@ -167,24 +167,6 @@ public abstract class GridObject extends KActor
     public boolean isColumnar(){
         return false;
     }
-    public double getRandomCellX(){
-        return getWorld().gridXToRealX(Greenfoot.getRandomNumber(getWorld().gridwidth));
-    }
-    public double getRandomCellY(){
-        return getWorld().gridYToRealY(Greenfoot.getRandomNumber(getWorld().gridheight));
-    }
-    
-    public double getXAtOffset(int val){
-        return getWorld().gridXToRealX(getWorld().realXToGridX(getX())+val);
-    }
-    public double getYAtOffset(int val){
-        return getWorld().gridYToRealY(getWorld().realYToGridY(getY())+val);
-    }
-    public void move(double degree, double speed){
-        degree-=90;
-        double deree = degree*Math.PI/180;
-        translate((speed*Math.cos(deree)), (speed*Math.sin(deree)));
-    }
     public int getNearest(List<? extends GridObject> g){
         int b = -1;
         double bd = 0;
