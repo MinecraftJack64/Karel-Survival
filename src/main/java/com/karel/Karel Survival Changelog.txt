@@ -119,6 +119,36 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+12/28
+Balancing
+ - Mortar
+    - Ult circle range(300->400)
+    - Ult circle delay(30->60)
+    - Ult limit(Infinite->7)
+
+12/27
+Balancing
+ - Mortar
+    - Attack damage(200->300)
+    - Attack radius(50->100)(Ult is unchanged)
+    - Ult charge(2000->3000)
+Content
+ - Added Mortar gadget
+
+12/26
+Content
+ - Added Mortar ult(no shot leading)
+Technical
+ - world can now get GEs in a certain range
+Other
+ - Debug joysticks removed TODO: add settings to change input method
+
+12/25
+Graphics
+ - Added skins(for background, particles, ui components(WIP), and entities(WIP) to change their appearance) and added Christmas skins
+Content
+ - Added the mortar weapon(attack)
+
 12/23
 Fixes
  - Gadget cooldown and timer are no longer half the intended

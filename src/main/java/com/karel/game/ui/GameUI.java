@@ -35,7 +35,7 @@ import com.raylib.Raylib;
 public class GameUI extends UI  
 {
     public static final Color DARKRED = new Color((byte)255, (byte)0, (byte)0, (byte)255);
-    private boolean isButtonMode = true, isJoystickMode = true;
+    private boolean isButtonMode = false, isJoystickMode = false;
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
@@ -136,10 +136,17 @@ public class GameUI extends UI
         getWorld().addToGrid(attack, getWorld().gridwidth-2, getWorld().gridheight-5);
         getWorld().addToGrid(ult, getWorld().gridwidth-5, getWorld().gridheight-4);
         getWorld().addToGrid(movement, 2, getWorld().gridheight-5);
+        updateInputMethods();
+    }
+    public void updateInputMethods(){
         if(!isJoystickMode){
             attack.setVisible(false);
             ult.setVisible(false);
             movement.setVisible(false);
+        }else{
+            attack.setVisible(true);
+            ult.setVisible(true);
+            movement.setVisible(true);
         }
     }
     public void setTutorial(String thing){
@@ -458,7 +465,9 @@ public class GameUI extends UI
     }
     public void update(){
         super.update();
-        Game.setTargetVector(attack);
-        Game.setMovementVector(movement);
+        if(isJoystickMode){
+            Game.setTargetVector(attack);
+            Game.setMovementVector(movement);
+        }
     }
 }

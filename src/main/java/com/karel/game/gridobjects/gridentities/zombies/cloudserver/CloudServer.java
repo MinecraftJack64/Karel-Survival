@@ -25,6 +25,7 @@ import com.karel.game.gridobjects.gridentities.zombies.splitter.SplitterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.particles.Explosion;
 import com.karel.game.shields.ShieldID;
+import com.karel.game.weapons.mortar.ShotLeader;
 
 /*
  * classes
@@ -91,7 +92,7 @@ public class CloudServer extends Boss
     private int phase;//5 phases
     private boolean toSpawnShaman;
     private GridEntity lastTarget;
-    private double lastTargetX, lastTargetY;
+    private ShotLeader targetTracker;
     private static final int hailRange = 250;
     /**
      * Initilise this rocket.
@@ -239,9 +240,9 @@ public class CloudServer extends Boss
                                 break;
                             case 2:
                                 if(Greenfoot.getRandomNumber(2)==0){
-                                    lastTargetX = getTarget().getX();
-                                    lastTargetY = getTarget().getY();
                                     lastTarget = getTarget();
+                                    targetTracker = new ShotLeader(lastTarget, this);
+                                    lastTarget.addObjectHere(targetTracker);
                                     throwBallCooldown = 30;
                                     addObjectHere(new ZHailBall(face(getTarget(), false), distanceTo(getTarget()), distanceTo(getTarget()), this));
                                 }else
@@ -454,12 +455,9 @@ public class CloudServer extends Boss
         if(!isPotentialTarget(lastTarget)){
             addObjectHere(new ZHailBall(face(getTarget(), false), distanceTo(getTarget()), distanceTo(getTarget()), this));
         }else{
-            double spf = lastTarget.distanceTo(lastTargetX, lastTargetY)/30;
             ZHailBall ball = new ZHailBall(face(lastTarget, false), distanceTo(lastTarget), distanceTo(lastTarget), this);
-            int frames = (int)ball.getPath().getDuration()*2;
-            double d = lastTarget.face(lastTargetX, lastTargetY, false)+90;
-            double fx = lastTargetX+getBranchX(d, spf*frames), fy = lastTargetY+getBranchY(d, spf*frames);
-            addObjectHere(new ZHailBall(face(fx, fy, false), distanceTo(fx, fy), distanceTo(fx, fy), this));
+            Location f = targetTracker.getShotPrediction((int)ball.getPath().getDuration());
+            addObjectHere(new ZHailBall(face(f.x, f.y, false), distanceTo(f.x, f.y), distanceTo(f.x, f.y), this));
         }
     }
     public void shamanAttack(){

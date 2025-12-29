@@ -30,6 +30,7 @@ import com.karel.game.weapons.jadecutter.JadeCutter;
 import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.mole.PetMole;
+import com.karel.game.weapons.mortar.Mortar;
 import com.karel.game.weapons.nailgun.NailGun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
@@ -121,6 +122,7 @@ public class ItemFactory
                                     "acidart",
                                     "scalpel",
                                     "flashdrive",
+                                    "mortar",
                                     "inferno",
                                     "doublegun",
                                     "fastfood",
@@ -273,6 +275,9 @@ public class ItemFactory
             case "flashdrive":
                 return new FlashDrive(holder);//
             //MISSING
+            case "mortar":
+                return new Mortar(holder);
+            //Ghost Sprite
             case "inferno":
                 return new Inferno(holder);
             //MISSING

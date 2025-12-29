@@ -1,5 +1,6 @@
 package com.karel.game;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.karel.game.particles.FallingSnow;
 import com.raylib.Color;
@@ -267,6 +268,16 @@ public class World
     public ArrayList<KActor> allKActors(){
         return allKActors;
     }
+    public List<GridEntity> getGEsInRange(double x, double y, int rng){
+        ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
+        for(GridEntity g:allEntities()){
+            if(g.distanceTo(x, y)<=rng){
+                gs.add(g);
+            }
+        }
+        return gs;
+    }
+
     public boolean isPaused(){
         return paused;
     }

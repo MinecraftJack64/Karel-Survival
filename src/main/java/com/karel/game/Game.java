@@ -15,6 +15,9 @@ import com.karel.game.ui.joysticks.Joystick;
 import static com.raylib.Raylib.getFrameTime;
 import static com.raylib.Raylib.getScreenHeight;
 import static com.raylib.Raylib.getScreenWidth;
+
+import java.time.LocalDateTime;
+
 import com.raylib.Raylib;
 import com.raylib.Sound;
 /*
@@ -73,7 +76,7 @@ public class Game
     public static boolean shiftkey;
     public static boolean disableGameInputFlag = false;
 
-    public static String globalSkin = "Nwen";
+    public static String globalSkin = "";
     
     static String gameMode; // current game mode
     static int gameDiff; // current game difficulty
@@ -378,5 +381,12 @@ public class Game
     public static void setMovementVector(Joystick attack) {
         moveVector.setDirection(attack.getAngle());
         moveVector.setLength(attack.getPercentDistance());
+    }
+    static{
+        LocalDateTime now = LocalDateTime.now();
+        //TODO check all dates(halloween, christmas, easter)
+        if(now.getMonthValue()==12&&Math.abs(now.getDayOfMonth()-25)<3){
+            globalSkin = "Nwen";
+        }
     }
 }
