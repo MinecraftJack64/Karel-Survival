@@ -36,7 +36,9 @@ public class SnakeCharmer extends Weapon
             }else if(range>zagrange){
                 ang = (zigZag?-1:1)*Math.toDegrees(Math.asin(zagrange/range));
             }
-            getHolder().addObjectHere(new CharmNote(ang+getHand().getTargetRotation(), getHolder(), zigZag));
+            getHolder().addObjectHere(new CharmNote(ang+getHand().getTargetRotation(), getHolder(), zigZag, false));
+            getHolder().addObjectHere(new CharmNote(ang+getHand().getTargetRotation()-5, getHolder(), zigZag, true));
+            getHolder().addObjectHere(new CharmNote(ang+getHand().getTargetRotation()+5, getHolder(), zigZag, true));
             zigZag = !zigZag;
             reloadDelayCount = 0;
             getAmmo().useAmmo();

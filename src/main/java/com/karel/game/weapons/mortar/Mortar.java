@@ -7,6 +7,7 @@ import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.Location;
 import com.karel.game.Sounds;
+import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.effects.StunEffect;
 import com.karel.game.weapons.Weapon;
 import com.raylib.Texture;
@@ -23,6 +24,7 @@ public class Mortar extends Weapon
     private static final int gunReloadTime = 100, ultRadius = 200;
     private int ultDelay = 0;
     private int shotTime = 0;
+    private int boostTime = 0;
     private double focus = 0.5;
     private double reloadDelayCount;
     private Location target;
@@ -68,6 +70,11 @@ public class Mortar extends Weapon
                     sl.getWorld().removeObject(sl);
                 }
                 onInterrupt();
+                if(getUltUpgrade()==1){
+                    boostTime = 60;
+                    focus = 1;
+                    getHolder().applyEffect(new SpeedPercentageEffect(1.3, 60, getHolder()));
+                }
             }
         }else{
             target = new Location(getHand().getTargetX(), getHand().getTargetY());
@@ -86,6 +93,10 @@ public class Mortar extends Weapon
         boolean gadget = !isUlt&&useGadget();
         MortarShell bullet = new MortarShell(getHolder().getAngle(x, y)+90, Math.min(getHolder().distanceTo(x, y), dist), gadget?50:1700, getHolder(), isUlt, gadget);
         getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
+        if(!isUlt&&getAttackUpgrade()==1&&focus==1){
+            MortarScoutingShell bullet2 = new MortarScoutingShell(getHolder().getAngle(x, y)+90, Math.min(getHolder().distanceTo(x, y), dist), 1400, getHolder());
+            getHolder().getWorld().addObject (bullet2, getHolder().getX(), getHolder().getY());
+        }
         shotTime = (int)bullet.getPath().getDuration();
     }
     public void onGadgetActivate(){
@@ -103,9 +114,13 @@ public class Mortar extends Weapon
             if(focus<1)focus+=0.1;
             else focus=1;
         }else{
-            focus = 0;
+            if(boostTime<=0)focus = 0;
         }
         updateAmmo((int)(focus*10));
+    }
+    public void update(){
+        super.update();
+        if(boostTime>0)boostTime--;
     }
     public void render(){
         if(target!=null) getHolder().renderTexture(aura, target.x, target.y, ultRadius*2, ultRadius*2, ultDelay*3, 127);

@@ -11,7 +11,7 @@ Angler(epic)
 Shoot out a jaw with controlled range. It stops earlier if it hits an enemy. It then creates a 4 part floral pattern(like the cat claw) of scrapers that pulls in enemies about to die. It then retracts back into you, carrying those enemies and damaging them when pulled back.
 Ult "Lure": After a short delay, shoot a light down at a circular area. Enemies inside the area are lured to you for a few seconds.
 
-Toothbrush(mythic)
+Toothbrush/Dentar(mythic)
 Shoot out 9 teeth in a shotgun pattern. If ?, the next shot will be a single high damage tooth with high range that at the end of its range, lands on the ground. Teeth have 4 states of cleanliness, slowly decreasing over time. Up to 8 teeth can be out at a time and the earliest will disappear when over the limit. If rotted too much, a tooth also disappears
 Ult "Brush": Shoot out a toothbrush at the nearest dirty tooth. Upon reaching a tooth, it will be fully cleaned and it will move towards the next tooth in line of sight, repeating until no teeth need cleaning in range. Along the way, leave behind toothpaste bubbles that damage enemies over time and damage enemies on collision. On a tooth being cleaned, it will burst outward, damaging enemies and knocking them back, stronger when tooth is less clean.
 Ult Upgrade "Enamel Protection": Teeth will gain a protective layer that stops them from rotting for a while.
@@ -125,6 +125,11 @@ Balancing
     - Ult circle range(300->400)
     - Ult circle delay(30->60)
     - Ult limit(Infinite->7)
+Content
+ - Added mortar ult and attack upgrades
+ - Added snake charmer attack upgrade
+Technical
+ - Cloud Server hail attack uses ShotLeader now
 
 12/27
 Balancing
