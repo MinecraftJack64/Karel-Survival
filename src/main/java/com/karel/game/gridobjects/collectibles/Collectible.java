@@ -50,7 +50,9 @@ public class Collectible extends GridObject
     }
     public void update()
     {
-        //if(!getWorld().gameStatus().equals("running"))return;
+        if(getTarget()==null){
+            return;
+        }
         double targang = face(getTarget(), false);
         double monangle = targang;
         if(cooldown>0)cooldown--;
