@@ -20,6 +20,7 @@ public class Scream extends Weapon
     private static final int ult = 2000;
     private int ultAmmo = 0; // 10
     private int startUltCooldown = 0; // 30
+    private EffectID slow = new EffectID(this);
     public void fire(){
         if (getAmmo().hasAmmo()) 
         {
@@ -59,14 +60,14 @@ public class Scream extends Weapon
             reloadDelayCount = 0;
             ultAmmo = 10;
             setPlayerLockRotation(true);
-            getHolder().setSpeedMultiplier(0.2, new EffectID(this));
+            getHolder().setSpeedMultiplier(0.2, slow);
             setContinueUlt(true);
         }
     }
     public void onInterrupt(){
         setContinueUlt(false);
         setPlayerLockRotation(false);
-        getHolder().setSpeedMultiplier(1, new EffectID(this));
+        getHolder().setSpeedMultiplier(1, slow);
     }
     public void onGadgetActivate(){
         setGadgetCount(10);

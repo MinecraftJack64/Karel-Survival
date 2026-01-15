@@ -5,9 +5,11 @@ import com.karel.game.gamemodes.adventure.Adventure;
 import com.karel.game.gamemodes.protect.Protect;
 import com.karel.game.gamemodes.sandbox.Sandbox;
 import com.karel.game.gamemodes.survival.Survival;
+import com.karel.game.ui.CurrencyDisplay;
 import com.karel.game.ui.GameUI;
 import com.karel.game.ui.MainMenuUI;
 import com.karel.game.ui.PauseUI;
+import com.karel.game.ui.TinkerUI;
 import com.karel.game.ui.JournalSelectUI;
 import com.karel.game.ui.UI;
 import com.karel.game.ui.joysticks.Joystick;
@@ -57,6 +59,7 @@ public class Game
     private static String nextMenu = "";
     public static UI ui; // main game ui
     public static UI ui2; // overlay ui, usually pause menu
+    public static UI ui3; // currency overlay
     
     //mode information, used for mode select
     private static String[] modenames;
@@ -69,6 +72,7 @@ public class Game
     private static int cdiff = 1; // currently selected difficulty
     
     //TODO: private static int modehs[]; // high scores of each mode
+    public static PlayerData playerData = new PlayerData(); //TODO: load data
 
     public static String inputMethod = "keyboard-mouse";
     public static Vector targetVector = new Vector(0, 60);
@@ -291,6 +295,11 @@ public class Game
                 setUIScreenScaleAndOffset(ui);
                 ui.update();
                 ui.render();
+                if(ui3!=null){
+                    setUIScreenScaleAndOffset(ui3);
+                    ui3.update();
+                    ui3.render();
+                }
             }
         }
         if(!nextMenu.equals("")&&!nextMenu.equals(currentMenu)){
@@ -338,12 +347,19 @@ public class Game
         }
         ui = new MainMenuUI();
         ui.create();
+        ui3 = new CurrencyDisplay();
+        ui3.create();
         nextMenu = "mainmenu";
     }
     public static void openJournal(){
         ui = new JournalSelectUI();
         ui.create();
         nextMenu = "journalhome";
+    }
+    public static void openTinker(){
+        ui = new TinkerUI();
+        ui.create();
+        nextMenu = "tinker";
     }
     public static void togglePause(){
         if(game.usesCustomPause())game.togglePause();

@@ -65,7 +65,7 @@ public class MainMenuUI extends UI
         getWorld().addToGrid(journal, 14, 1);
         Button tinker = new Button(50, 50, "Tinker", Raylib.GREEN){
             public void click(){
-                //Game.openTinker();
+                Game.openTinker();
             }
         };
         getWorld().addToGrid(tinker, 10, 1);

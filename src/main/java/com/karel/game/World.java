@@ -58,20 +58,20 @@ public class World
     {
     }
 
-    public void addToGrid(GridObject a, int x, int y){
-        grid.place(a, x, y);
+    public void addToGrid(GridObject a, double x, double y){
+        grid.place(a, (int)x, (int)y);
         addObject(a, gridXToRealX(x), gridYToRealY(y));
     }
     
-    public void addToGrid(KActor a, int x, int y){
+    public void addToGrid(KActor a, double x, double y){
         addObject(a, gridXToRealX(x), gridYToRealY(y));
     }
 
-    public double gridXToRealX(int x){
+    public double gridXToRealX(double x){
         return 25+x*gridSize;
     }
 
-    public double gridYToRealY(int y){
+    public double gridYToRealY(double y){
         return 25+y*gridSize;
     }
 

@@ -6,13 +6,17 @@ import com.karel.game.ui.buttons.Button;
 public class Slider extends Input{
     private int length, width;
     private int clickOrigin;
-    private double max, value, interval;
+    private double max, min, value, interval;
     private double xOrigin;
     private boolean smooth; // If slider clicks into place while sliding
     private Button slide;
     private StatusBar bar;
     public Slider(int length, double max, double value, double interval, boolean smooth){
+        this(length, max, 0, value, interval, smooth);
+    }
+    public Slider(int length, double max, double min, double value, double interval, boolean smooth){
         setLength(length);
+        setMinValue(min);
         setMaxValue(max);
         setValue(value);
         setInterval(interval);
@@ -42,7 +46,7 @@ public class Slider extends Input{
         slide.notifyWorldRemove();
         bar.notifyWorldRemove();
     }
-    public void update(){
+    public void updateOld(){
         slide.update();
         bar.update();
         super.update();
@@ -61,6 +65,38 @@ public class Slider extends Input{
             if(!smooth)slide.setLocation(value/max*length+beginx, slide.getY());
         }
     }
+    public void update() {
+        slide.update();
+        bar.update();
+        super.update();
+        if (slide.getState()==2) {
+            int offset = getWorld().getMouseX() - clickOrigin;
+            double beginx = getX() - length / 2;
+            double endx = getX() + length / 2;
+            double targx = Math.max(beginx, Math.min(xOrigin + offset, endx));
+            if (smooth)
+                slide.setLocation(targx, slide.getY());
+            double range = max - min;
+            if(range<=0){
+                setValue(min);
+                slide.setLocation(getX(), slide.getY());
+                return;
+            }
+            // position to value
+            double prop = (targx - beginx) / length;
+            setValue(min + prop * range);
+            if (interval == 0)
+                return;
+            // snap to interval relative to min
+            double divis = (value - min) / interval;
+            divis = Math.round(divis);
+            setValue(min + divis * interval);
+
+            // value to position, snap
+            if (!smooth)
+                slide.setLocation((value - min) / range * length + beginx, slide.getY());
+        }
+    }
     public void render(){
         bar.render();
         slide.render();
@@ -71,6 +107,9 @@ public class Slider extends Input{
     }
     public void setMaxValue(double m){
         max = m;
+    }
+    public void setMinValue(double m){
+        min = m;
     }
     public void setValue(double v){
         value = v;
