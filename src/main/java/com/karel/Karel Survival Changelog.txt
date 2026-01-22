@@ -125,6 +125,11 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+1/21
+Mechanics
+ - Revamped high scores for survival mode
+ - Quitting survival mode will instead trigger game over
+
 1/14
 Mechanics
  - Added Currencies(fragments), no way to obtain or use yet

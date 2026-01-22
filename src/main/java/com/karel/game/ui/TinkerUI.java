@@ -35,7 +35,7 @@ public class TinkerUI extends UI{
     public void create(){
         getWorld().addToGrid(backButton, 1, 1);
         getWorld().addToGrid(tinkerButton, 11.5, 7.5);
-        getWorld().addToGrid(fragNumPicker, 11.5, 14);
+        if(fragNumPicker==null)getWorld().addToGrid(fragNumPicker, 11.5, 14);
         tk = new Tinkerer();
         getWorld().addToGrid(tk, 11.5, 7.5);
         for(int i = 0; i < Game.playerData.getNumFrags(); i++){
