@@ -1,6 +1,5 @@
 package com.karel.game.weapons.blade;
 
-import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Melee;
 
@@ -45,22 +44,8 @@ public class CuttingSword extends Melee
             life--;
             double centerx = getSource().getX(), centery = getSource().getY();
             setLocation(centerx+xmax*Math.sin(degtotarg*Math.PI/180), centery+ymax*Math.sin(degtotarg*Math.PI/180));
-            //setRotation(degtotarg);
             degtotarg+=30;
             checkHit();
-        }
-    }
-    @Override
-    public int getDamage(GridEntity targ){
-        return getDamage();
-    }
-    public void doHit(GridEntity targ){
-        super.doHit(targ);
-        if(targ.isDead()&&targ.willNotify(this)){
-            notifyDamage(targ, 1000);
-            if(getSource() instanceof GridEntity ge) {
-                heal(ge, Math.min(targ.getMaxHealth()*2, ge.getMaxHealth()/5));
-            }
         }
     }
 }
