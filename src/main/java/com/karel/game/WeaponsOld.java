@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Weapons  
+public class WeaponsOld
 {
     public static String weaponRarities[][] = new String[][]{{"Hello"}
         /*{Gun.class, TrapSetter.class, DroneRemote.class},
