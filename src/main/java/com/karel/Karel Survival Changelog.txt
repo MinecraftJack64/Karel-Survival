@@ -125,6 +125,17 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+1/26
+Fixes
+ - Game no longer prevents returning to menu in survival mode
+
+1/21
+Mechanics
+ - Revamped high scores for survival mode
+ - Quitting survival mode will instead trigger game over
+Fixes
+ - No longer crashes when entering tinker menu with 0 fragments
+
 1/14
 Mechanics
  - Added Currencies(fragments), no way to obtain or use yet

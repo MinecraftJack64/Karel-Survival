@@ -49,10 +49,14 @@ public abstract class GameMode implements Tickable
         return myui;
     }
     public void stopGame(){
-        //Remove player and zombies
         getWorld().allEntities().clear();
         getWorld().allGridObjects.clear();
-        //Game.removeUI();
+    }
+    /*
+    * return true if game should quit as normal
+    */
+    public boolean quit(){
+        return true;
     }
     public void increaseScore(int amt){
         score+=amt;

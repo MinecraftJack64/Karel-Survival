@@ -33,6 +33,8 @@ public class Survival extends GameMode
         }
     }
     public void startGame(){
+        int d = Game.currentDiff();
+        highscore = Game.playerData.survival.getHighScore(d);
         teams = new Teams();
         teams.addTeam("player");
         teams.addTeam("zombie");
@@ -72,10 +74,21 @@ public class Survival extends GameMode
     public void gameOver() 
     {
         boolean beaths = getScore()>highscore;
+        int maxLevel = spawner.wavelevel;
+        Game.playerData.survival.setHighLevel(Game.currentDiff(), maxLevel);
         if(beaths){
             highscore = getScore();
+            Game.playerData.survival.setHighScore(Game.currentDiff(), highscore);
         }
         gameUI().gameOver(beaths);
         status = "lose";
+    }
+    public boolean quit(){
+        if(status.equals("running")){
+            player.kill(null);
+            return false;
+        }else{
+            return true;
+        }
     }
 }
