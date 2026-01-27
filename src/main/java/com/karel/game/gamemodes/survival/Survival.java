@@ -84,7 +84,11 @@ public class Survival extends GameMode
         status = "lose";
     }
     public boolean quit(){
-        if(status.equals("running"))player.kill(null);
-        return false;
+        if(status.equals("running")){
+            player.kill(null);
+            return false;
+        }else{
+            return true;
+        }
     }
 }
