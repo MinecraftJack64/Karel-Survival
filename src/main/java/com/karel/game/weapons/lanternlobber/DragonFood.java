@@ -7,4 +7,8 @@ public class DragonFood extends GridObject {
         setImage("karelnOff.png");
         scaleTexture(50, 50);
     }
+    public void die(){
+        super.die();
+        getWorld().removeObject(this);
+    }
 }

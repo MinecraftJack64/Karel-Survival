@@ -53,10 +53,11 @@ public class LanternLobber extends Weapon
     public void update(){
         if(getHolder().canAttack()){
             if(ultDuration>0){
-                bait.setLocation(getHand().getTargetX(), getHand().getTargetY());
+                if(bait.isInWorld())bait.setLocation(getHand().getTargetX(), getHand().getTargetY());
+                else ultDuration = 1;
                 ultDuration--;
                 updateSpecial(ultDuration);
-                if(ultDuration==-1){
+                if(ultDuration==0){
                     bait = null;
                     ultDuration = 0;
                     disableSpecial();

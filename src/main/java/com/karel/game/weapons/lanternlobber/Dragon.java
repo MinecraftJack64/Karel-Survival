@@ -9,23 +9,53 @@ import com.karel.game.gridobjects.hitters.Bullet;
  */
 public class Dragon extends Bullet
 {
+    public static final int speed = 8, turn = 4;
     DragonFood bait;
+    private boolean prevInTurn;
     public Dragon(double rotation, DragonFood bait, GridObject source)
     {
         super(rotation, source);
-        setSpeed(10);
+        setSpeed(speed);
+        setImage("button-blue.png");
         setNumTargets(-1);
+        setDamage(200);
         this.bait = bait;
     }
     public void applyPhysics(){
         setLife(2);
         setRotation(getDirection());
-        System.out.println(face(bait, false)+" "+getRotation());
-        if(getFacingOffset(bait)<0){
-            setDirection(getDirection()-10);
-        }else{
-            setDirection(getDirection()+10);
+        double ang = getFacingOffset(bait);
+        if(baitInTurnCircles(0.8)||baitInTurnCircles(1)&&prevInTurn){
+            if(ang<0){
+                setDirection(getDirection()+turn);
+            }else{
+                setDirection(getDirection()-turn);
+            }
+            prevInTurn = true;
+        }
+        else{
+            if(ang<0){
+                setDirection(getDirection()-turn);
+            }else{
+                setDirection(getDirection()+turn);
+            }
+            prevInTurn = false;
         }
         super.applyPhysics();
+    }
+    public void update(){
+        super.update();
+        if(distanceTo(bait)<getSpeed()*2){
+            bait.die();
+            die();
+        }
+    }
+    public boolean baitInTurnCircles(double t){
+        double r = speed/Math.toRadians(turn)*t;
+        double clx = getBranchX(getDirection(), r)+getX(), cly = getBranchY(getDirection(), r)+getY();
+        double crx = getBranchX(getDirection()+180, r)+getX(), cry = getBranchY(getDirection()+180, r)+getY();
+        renderTexture(getImage(), clx, cly, r*2, r*2, 0, 127);
+        renderTexture(getImage(), crx, cry, r*2, r*2, 0, 127);
+        return bait.distanceTo(clx, cly)<r||bait.distanceTo(crx, cry)<r;
     }
 }
