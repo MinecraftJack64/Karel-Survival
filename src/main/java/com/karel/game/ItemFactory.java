@@ -15,6 +15,7 @@ import com.karel.game.weapons.drone.DroneRemote;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.farmer.Farmer;
 import com.karel.game.weapons.fastfood.FastFood;
+import com.karel.game.weapons.fireworks.Fireworks;
 import com.karel.game.weapons.flail.Flail;
 import com.karel.game.weapons.flashdrive.FlashDrive;
 import com.karel.game.weapons.frostspirit.FrostSpirit;
@@ -27,6 +28,7 @@ import com.karel.game.weapons.highjacker.Highjacker;
 import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.jackolantern.JackOLantern;
 import com.karel.game.weapons.jadecutter.JadeCutter;
+import com.karel.game.weapons.lanternlobber.LanternLobber;
 import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.mole.PetMole;
@@ -87,7 +89,7 @@ public class ItemFactory
                                     "nailgun",
                                     "lymphcannon",
                                     "gluegun",
-                                    //"lanternlobber",
+                                    "lanternlobber",
                                     //"whip",
                                     "jadecutter",
                                     "pointpinner",
@@ -201,7 +203,7 @@ public class ItemFactory
             case "gluegun":
                 return new GlueGun(holder);//
             case "lanternlobber":
-                //return new LanternLobber(holder);
+                return new LanternLobber(holder);
             case "whip":
                 //return new Whip(holder);
             case "jadecutter":

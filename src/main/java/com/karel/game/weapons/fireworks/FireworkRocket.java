@@ -1,5 +1,7 @@
-package com.karel.game;
+package com.karel.game.weapons.fireworks;
 
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.effects.PoisonEffect;
 import com.karel.game.gridobjects.hitters.FlyingProjectile;
 

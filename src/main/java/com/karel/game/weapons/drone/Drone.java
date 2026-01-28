@@ -70,7 +70,7 @@ public class Drone extends GridObject implements SubAffecter
         if(remainingshots>0&&tbs<=0){
             tbs = 5;
             remainingshots--;
-            AerialBullet b = new AerialBullet(getRotation(), getHeight(), source.distanceTo(source.getX()+ddx, source.getY()+ddy)/(hoverheight/10), 10, source, combo);
+            DroneBullet b = new DroneBullet(getRotation(), getHeight(), source.distanceTo(source.getX()+ddx, source.getY()+ddy)/(hoverheight/10), 10, source, combo);
             addObjectHere(b);
         }else if(tbs>0){
             tbs--;
@@ -80,7 +80,7 @@ public class Drone extends GridObject implements SubAffecter
         }
     }
     public void ultAttack(){
-        AerialBullet b = new AerialBullet(getRotation(), getHeight(), source.distanceTo(source.getX()+ddx, source.getY()+ddy)/(hoverheight/10), 10, source){
+        DroneBullet b = new DroneBullet(getRotation(), getHeight(), source.distanceTo(source.getX()+ddx, source.getY()+ddy)/(hoverheight/10), 10, source){
             public boolean covertDamage(){
                 return true;
             }
