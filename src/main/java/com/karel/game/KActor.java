@@ -34,7 +34,7 @@ public abstract class KActor
         return world;
     }
     public void setRotation(double rot){
-        rrot = rot;
+        rrot = rot%360;
     }
     public double getRotation(){
         return rrot;

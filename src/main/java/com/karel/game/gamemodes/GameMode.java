@@ -7,7 +7,7 @@ import com.karel.game.Sounds;
 import com.karel.game.Spawner;
 import com.karel.game.Teams;
 import com.karel.game.Tickable;
-import com.karel.game.Weapons;
+import com.karel.game.WeaponsOld;
 import com.karel.game.World;
 import com.karel.game.ui.GameUI;
 import com.karel.game.weapons.Weapon;
@@ -71,7 +71,7 @@ public abstract class GameMode implements Tickable
         return weaponfrags>=beeperbagsize;
     }
     public Weapon getCraft(){
-        String cls = Weapons.attemptWeaponCrafting(weaponfrags, getPlayer().getInventory());
+        String cls = WeaponsOld.attemptWeaponCrafting(weaponfrags, getPlayer().getInventory());
         if(cls!=null){
             try{return (Weapon)(ItemFactory.createItem(cls, getPlayer().getHand()));}catch(Exception e){e.printStackTrace();return null;}
         }else{

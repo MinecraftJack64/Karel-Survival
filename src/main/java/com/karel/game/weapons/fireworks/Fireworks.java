@@ -1,5 +1,10 @@
-package com.karel.game;
+package com.karel.game.weapons.fireworks;
 
+import com.karel.game.AmmoHolder;
+import com.karel.game.AmmoManager;
+import com.karel.game.ItemHolder;
+import com.karel.game.Nuke;
+import com.karel.game.Sounds;
 import com.karel.game.weapons.Weapon;
 
 /**
