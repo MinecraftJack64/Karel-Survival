@@ -22,6 +22,10 @@ Lunge forward, dealing damage to enemies along the way, then biting in front, po
 Ult "Web Shot": Shoot out silk, which has controllable range. It can remain on the ground for a few seconds. If you attack while the web is on the ground, you will be pulled to it and it will be used up. On hitting an enemy, they will be immobilized and weakened. The immobilized enemy can break the web by damaging it enough. If they fail to break it, it will pull them to you. If you walk past a wall, the web will stick to the wall.
 Attack Upgrade "Paralyzing Venom": Poisoned enemies are also stunned
 Gadget "Molt": Gain a 50% shield and after 2 seconds, heal fully and jump forward. You will be vulnerable for the next 3 seconds but move faster.
+
+Billionaire Zombie(Whittler/Tank)
+Shoots a ton of money at you spread in a cones pattern from a far distance, which rapidly lose speed, dealing low damage. The money remains on a ground until it dies and if it picks up its own money, it will be shot out at you, not taking up any unload time.
+Spawns 2 bodyguards next to it. They circle around it.
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -124,6 +128,20 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+1/28
+Fixes
+ - Fixed lantern lobber ult getting into infinite loop
+Content
+ - Added lantern lobber attack upgrade
+
+1/27
+Content
+ - Added the lantern lobber weapon base kit
+Technical
+ - Drone projectile AerialBullet is now available for all and it uses a subclass DroneBullet
+ - Fireworks weapon placed in correct folder
+ - Fixed all angles to be 0-360 degrees
 
 1/26
 Fixes

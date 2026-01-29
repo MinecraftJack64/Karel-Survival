@@ -38,6 +38,9 @@ public class Lantern extends FlyingProjectile
             die();
         }
     }
+    public void onTouchGround(){
+        addObjectHere(new LanternPuddle(100, this));
+    }
     public void die(){
         addObjectHere(new Explosion(getRange()/60));
         super.die();

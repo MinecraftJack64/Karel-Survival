@@ -25,7 +25,7 @@ public class Dragon extends Bullet
         setLife(2);
         setRotation(getDirection());
         double ang = getFacingOffset(bait);
-        if(baitInTurnCircles(0.8)||baitInTurnCircles(1)&&prevInTurn){
+        if(bait.dropped()&&(baitInTurnCircles(0.9)||baitInTurnCircles(1)&&prevInTurn)){
             if(ang<0){
                 setDirection(getDirection()+turn);
             }else{
@@ -54,8 +54,8 @@ public class Dragon extends Bullet
         double r = speed/Math.toRadians(turn)*t;
         double clx = getBranchX(getDirection(), r)+getX(), cly = getBranchY(getDirection(), r)+getY();
         double crx = getBranchX(getDirection()+180, r)+getX(), cry = getBranchY(getDirection()+180, r)+getY();
-        renderTexture(getImage(), clx, cly, r*2, r*2, 0, 127);
-        renderTexture(getImage(), crx, cry, r*2, r*2, 0, 127);
+        //renderTexture(getImage(), clx, cly, r*2, r*2, 0, 127);
+        //renderTexture(getImage(), crx, cry, r*2, r*2, 0, 127);
         return bait.distanceTo(clx, cly)<r||bait.distanceTo(crx, cry)<r;
     }
 }

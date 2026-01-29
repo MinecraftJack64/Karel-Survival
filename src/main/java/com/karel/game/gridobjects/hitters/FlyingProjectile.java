@@ -72,12 +72,16 @@ public class FlyingProjectile extends Projectile
             setHeight(0);
             if(checkHitMode<=1)checkHit();
             if(dieonhit)die();
+            onTouchGround();
         } 
         else {
             if(defaultmove)move(rot, path.getRate());
             setHeight(path.getHeight(frame));
             continueFrame();
         }
+    }
+    public void onTouchGround() {
+        //
     }
     public void die(){
         if(checkHitMode>=1)checkHit();

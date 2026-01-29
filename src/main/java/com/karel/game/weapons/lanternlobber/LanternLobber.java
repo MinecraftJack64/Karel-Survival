@@ -20,9 +20,7 @@ public class LanternLobber extends Weapon
     public void fire(){
         if(bait!=null){
             reloadDelayCount = gunReloadTime - 20;
-            bait = null;
-            ultDuration = 0;
-            disableSpecial();
+            stopUlt();
         }else
         if (reloadDelayCount >= gunReloadTime) 
         {
@@ -58,14 +56,18 @@ public class LanternLobber extends Weapon
                 ultDuration--;
                 updateSpecial(ultDuration);
                 if(ultDuration==0){
-                    bait = null;
-                    ultDuration = 0;
-                    disableSpecial();
-                    setLocked(false);
+                    stopUlt();
                 }
             }
         }
         chargeUlt(100);
+    }
+    public void stopUlt(){
+        if(bait!=null)bait.drop();
+        bait = null;
+        ultDuration = 0;
+        disableSpecial();
+        setLocked(false);
     }
     public void onGadgetActivate(){
         setGadgetTimer(180);
