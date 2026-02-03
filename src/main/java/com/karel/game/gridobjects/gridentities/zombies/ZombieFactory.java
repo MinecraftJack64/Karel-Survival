@@ -43,6 +43,7 @@ import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.president.BodyguardZombie;
 import com.karel.game.gridobjects.gridentities.zombies.president.PresidentZombie;
+import com.karel.game.gridobjects.gridentities.zombies.ribbondancer.RibbonDancerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.rocket.RocketZombie;
 import com.karel.game.gridobjects.gridentities.zombies.russiandoll.RussianDollZombie;
 import com.karel.game.gridobjects.gridentities.zombies.shaman.EvilSpiritZombie;
@@ -129,6 +130,7 @@ public class ZombieFactory {
             "emotionalsupport",
             "concentrated",
             "mimic",
+            "ribbondancer",
             "ironclad",
             "torpedo",
             "cowboy",
@@ -289,7 +291,8 @@ public class ZombieFactory {
                 return new MimicZombie();
             // smartsman
             // alltrades
-            // ribbondancer
+            case "ribbondancer":
+                return new RibbonDancerZombie();
             // camera
             // tapemeasure
             ////pirateship
