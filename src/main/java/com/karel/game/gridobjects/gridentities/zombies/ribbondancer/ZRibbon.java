@@ -20,11 +20,12 @@ public class ZRibbon extends Boomerang
     public ZRibbon(double rotation, GridObject source)
     {
         super(rotation, source);
-        setImage("Projectiles/Bullets/zbullet.png");
+        setImage("Projectiles/Bullets/zribbon.png");
         setLife(40);
         setSpeed(13);
         setReturnSpeed(15);
         setDamage(50);
+        setExpireReturn(2);
     }
     public void doHit(GridEntity targ){
         super.doHit(targ);
@@ -39,6 +40,7 @@ public class ZRibbon extends Boomerang
         }
     }
     public void doReturn(){
+        if(targ==null)return;
         if(!targ.isDead()){
             targ.pullTo(getX(), getY(), this);
         }else
@@ -56,6 +58,7 @@ public class ZRibbon extends Boomerang
         super.doReturn();
     }
     public void dieForReal(){
+        if(targ==null){super.dieForReal();return;}
         targ.unstun(targStun);
         ((GridEntity)getSource()).unstun(sourceStun);
         targ.applyEffect(new PullEffect(getDirection(), getReturnSpeed(), tts, this));

@@ -73,14 +73,14 @@ public class Bullet extends Projectile
     }
     public void applyPhysics(boolean willCheck)
     {
-        if(life <= 0) {
+        if(getNumTargets()==0){
+            finish();
+            return;
+        }
+        else if(life <= 0) {
             expire();
         } 
         else {
-            if(getNumTargets()==0){
-                finish();
-                return;
-            }
             life--;
             move(getDirection(), getSpeed());
             if(willCheck)checkHit();

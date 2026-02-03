@@ -1,7 +1,6 @@
 package com.karel.game.gridobjects.gridentities.zombies.ribbondancer;
 
 import com.karel.game.Sounds;
-import com.karel.game.gridobjects.gridentities.zombies.ZBullet;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 
@@ -14,14 +13,14 @@ import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 public class RibbonDancerZombie extends Zombie
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.controller, ZombieClass.ranger};
-    private static final int gunReloadTime = 75;         // The minimum delay between firing the gun.
+    private static final int gunReloadTime = 125;         // The minimum delay between firing the gun.
     private static final int stabReloadTime = 15;
 
     private double reloadDelayCount;               // How long ago we fired the gun the last time.
     private double reloadStab;
 
     public String getStaticTextureURL(){return "gunzareln.png";}
-    private static double attackrange = 400, retreatrange = 300, stabrange = 150;
+    private static double attackrange = 500, retreatrange = 450, stabrange = 150;
     /**
      * Initilise this rocket.
      */
@@ -50,7 +49,7 @@ public class RibbonDancerZombie extends Zombie
     public void fire() 
     {
         if (reloadDelayCount>=gunReloadTime&&canAttack()){
-            ZBullet bullet = new ZBullet (getRotation(), this);
+            ZRibbon bullet = new ZRibbon (getRotation(), this);
             getWorld().addObject (bullet, getX(), getY());
             Sounds.play("gunshoot");
             reloadDelayCount = 0;
@@ -73,10 +72,10 @@ public class RibbonDancerZombie extends Zombie
     }
     
     public String getName(){
-        return "Shooter Zombie";
+        return "Ribbon Dancer Zombie";
     }
     @Override
     public String getZombieID(){
-        return "shooter";
+        return "ribbondancer";
     }
 }

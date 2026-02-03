@@ -135,6 +135,12 @@ Fixes
 Content
  - Added lantern lobber attack upgrade
 
+2/2
+Content
+ - Added the ribbon dancer zombie
+Technical
+ - finish is always called before expire in bullets
+
 1/27
 Content
  - Added the lantern lobber weapon base kit
