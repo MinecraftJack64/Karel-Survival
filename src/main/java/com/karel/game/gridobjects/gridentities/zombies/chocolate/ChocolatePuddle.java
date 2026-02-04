@@ -19,8 +19,10 @@ public class ChocolatePuddle extends Puddle
         scaleTexture(80);
         setDamage(0);
         setHitAllies(true);
+        setSelfHit(true);
     }
     public void doHit(GridEntity g){
+        System.out.println(g.getEntityID());
         if(isAggroTowards(g)){
             g.applyEffect(new SpeedPercentageEffect(0.75, 2, this));
         }else if(g.getEntityID().equals("zombie-chocolate")){

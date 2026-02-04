@@ -129,17 +129,23 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
-1/28
+2/3
 Fixes
- - Fixed lantern lobber ult getting into infinite loop
+ - Fixed chocolate zombie not being affected by own puddle
 Content
- - Added lantern lobber attack upgrade
+ - Added magma zombie
 
 2/2
 Content
  - Added the ribbon dancer zombie
 Technical
  - finish is always called before expire in bullets
+
+1/28
+Fixes
+ - Fixed lantern lobber ult getting into infinite loop
+Content
+ - Added lantern lobber attack upgrade
 
 1/27
 Content

@@ -37,6 +37,7 @@ import com.karel.game.gridobjects.gridentities.zombies.jackinthebox.JackITBZombi
 import com.karel.game.gridobjects.gridentities.zombies.jailbreak.JailBreakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.joker.JokerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
+import com.karel.game.gridobjects.gridentities.zombies.magma.MagmaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
@@ -129,6 +130,7 @@ public class ZombieFactory {
             "frisbee",
             "emotionalsupport",
             "concentrated",
+            "magma",
             "mimic",
             "ribbondancer",
             "ironclad",
@@ -284,7 +286,8 @@ public class ZombieFactory {
             // ghost
             // beast
             // beermartyr
-            // magma
+            case "magma":
+                return new MagmaZombie();
             // gaslighter
             // mirror
             case "mimic":
