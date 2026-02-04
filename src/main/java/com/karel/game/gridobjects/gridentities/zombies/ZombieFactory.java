@@ -40,6 +40,7 @@ import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.magma.MagmaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
+import com.karel.game.gridobjects.gridentities.zombies.minishooter.MiniShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.president.BodyguardZombie;
@@ -140,6 +141,7 @@ public class ZombieFactory {
             "cancer",
             "chill",
             "urchin",
+            "minishooter",
             "bot" };
 
     public static GridEntity createZombie(String type) {
@@ -332,7 +334,8 @@ public class ZombieFactory {
             case "urchin":
                 return new UrchinZombie();
             //super
-            //minishooter
+            case "minishooter":
+                return new MiniShooterZombie();
             //hologuard
             //caffeinated
             case "bot":

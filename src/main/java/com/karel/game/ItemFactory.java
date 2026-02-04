@@ -51,6 +51,7 @@ import com.karel.game.weapons.spear.SpearWeapon;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.traps.TrapSetter;
 import com.karel.game.weapons.trolltest.TrollTest;
+import com.karel.game.weapons.uraniumdrum.UraniumDrum;
 import com.karel.game.weapons.waterballoons.WaterBalloons;
 import com.karel.game.weapons.weedwacker.Weedwacker;
 
@@ -122,6 +123,7 @@ public class ItemFactory
                                     "paintgun",
                                     "trolltest",
                                     "acidart",
+                                    "uraniumdrum",
                                     "scalpel",
                                     "flashdrive",
                                     "mortar",
@@ -269,7 +271,8 @@ public class ItemFactory
                 return new TrollTest(holder);
             case "acidart":
                 return new Acidart(holder);
-            //uranium drum
+            case "uraniumdrum":
+                return new UraniumDrum(holder);
             //puppeteer
             case "scalpel":
                 return new Scalpel(holder);
