@@ -2,9 +2,9 @@ package com.karel.game.weapons.scalpel;
 
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

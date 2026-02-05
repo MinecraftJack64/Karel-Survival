@@ -1,5 +1,12 @@
-package com.karel.game;
+package com.karel.game.gamemodes.tutorial;
 import java.util.ArrayList;
+
+import com.karel.game.Game;
+import com.karel.game.Greenfoot;
+import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
+import com.karel.game.Spawner;
+import com.karel.game.World;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 
 /**

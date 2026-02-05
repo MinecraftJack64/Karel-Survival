@@ -3,8 +3,8 @@ import com.karel.game.GridEntity;
 import com.karel.game.Item;
 import com.karel.game.ItemAccepter;
 import com.karel.game.ItemHolder;
-import com.karel.game.LandingHandler;
 import com.karel.game.Pet;
+import com.karel.game.physics.LandingHandler;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.Weapon.BotGuide;
 

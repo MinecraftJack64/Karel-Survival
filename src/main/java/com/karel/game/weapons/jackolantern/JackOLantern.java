@@ -1,8 +1,8 @@
 package com.karel.game.weapons.jackolantern;
 
-import com.karel.game.AmmoManager;
 import com.karel.game.ItemHolder;
-import com.karel.game.LandingHandler;
+import com.karel.game.physics.LandingHandler;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 public class JackOLantern extends Weapon implements LandingHandler

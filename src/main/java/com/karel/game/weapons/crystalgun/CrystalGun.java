@@ -1,7 +1,7 @@
 package com.karel.game.weapons.crystalgun;
 
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

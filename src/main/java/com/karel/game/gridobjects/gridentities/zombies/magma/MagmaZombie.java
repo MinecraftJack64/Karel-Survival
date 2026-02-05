@@ -1,10 +1,10 @@
 package com.karel.game.gridobjects.gridentities.zombies.magma;
 
-import com.karel.game.Dasher;
-import com.karel.game.FrictionDasher;
 import com.karel.game.effects.KnockbackEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.physics.Dasher;
+import com.karel.game.physics.FrictionDasher;
 /**
  * Write a description of class RussianDollZombie here.
  * 

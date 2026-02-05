@@ -5,6 +5,7 @@ import com.karel.game.gamemodes.adventure.Adventure;
 import com.karel.game.gamemodes.protect.Protect;
 import com.karel.game.gamemodes.sandbox.Sandbox;
 import com.karel.game.gamemodes.survival.Survival;
+import com.karel.game.gamemodes.tutorial.Tutorial;
 import com.karel.game.playerdata.PlayerData;
 import com.karel.game.ui.CurrencyDisplay;
 import com.karel.game.ui.GameUI;

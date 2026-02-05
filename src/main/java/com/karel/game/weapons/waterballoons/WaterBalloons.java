@@ -1,10 +1,10 @@
 package com.karel.game.weapons.waterballoons;
 
-import com.karel.game.AmmoHolder;
-import com.karel.game.AmmoManager;
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
+import com.karel.game.trackers.AmmoHolder;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

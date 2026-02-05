@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.karel.game.effects.EffectID;
 import com.karel.game.particles.Explosion;
+import com.karel.game.physics.Arc;
 
 import java.util.List;
 import java.util.Map;

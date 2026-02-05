@@ -1,5 +1,8 @@
-package com.karel.game;
+package com.karel.game.physics;
 import java.util.function.Consumer;
+
+import com.karel.game.GridEntity;
+
 import java.util.HashSet;
 
 /**

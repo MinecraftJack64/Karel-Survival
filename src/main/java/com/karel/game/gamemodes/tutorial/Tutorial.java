@@ -1,5 +1,10 @@
-package com.karel.game;
+package com.karel.game.gamemodes.tutorial;
 
+import com.karel.game.Game;
+import com.karel.game.Player;
+import com.karel.game.Spawner;
+import com.karel.game.SupplyCrate;
+import com.karel.game.Teams;
 import com.karel.game.gamemodes.GameMode;
 import com.karel.game.gridobjects.collectibles.WeaponFrag;
 import com.karel.game.weapons.Weapon;

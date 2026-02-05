@@ -1,4 +1,7 @@
-package com.karel.game;
+package com.karel.game.trackers;
+
+import com.karel.game.IAmmoManager;
+
 /**
  * Write a description of class AmmoManager here.
  * 

@@ -2,11 +2,11 @@ package com.karel.game.weapons.traps;
 
 import java.util.ArrayList;
 
-import com.karel.game.Dasher;
 import com.karel.game.ItemHolder;
 import com.karel.game.KActor;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
+import com.karel.game.physics.Dasher;
 import com.karel.game.weapons.Weapon;
 
 /**

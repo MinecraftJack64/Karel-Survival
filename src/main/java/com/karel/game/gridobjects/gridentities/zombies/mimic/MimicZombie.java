@@ -2,9 +2,9 @@ package com.karel.game.gridobjects.gridentities.zombies.mimic;
 
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
-import com.karel.game.LandingHandler;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
+import com.karel.game.physics.LandingHandler;
 import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.Weapon.BotGuide;
 

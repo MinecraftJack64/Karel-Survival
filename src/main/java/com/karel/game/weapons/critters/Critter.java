@@ -1,7 +1,5 @@
 package com.karel.game.weapons.critters;
 
-import com.karel.game.Dasher;
-import com.karel.game.DasherDoer;
 import com.karel.game.ExternalImmunityShield;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
@@ -9,6 +7,8 @@ import com.karel.game.HealCharge;
 import com.karel.game.Pet;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.StunEffect;
+import com.karel.game.physics.Dasher;
+import com.karel.game.physics.DasherDoer;
 import com.karel.game.shields.ShieldID;
 import com.raylib.Texture;
 

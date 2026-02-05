@@ -1,12 +1,12 @@
 package com.karel.game.weapons.shotgun;
 
-import com.karel.game.AmmoHolder;
-import com.karel.game.AmmoManager;
 import com.karel.game.GridObject;
 import com.karel.game.IBoomerang;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.hitters.Projectile;
+import com.karel.game.trackers.AmmoHolder;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

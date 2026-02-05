@@ -1,10 +1,10 @@
 package com.karel.game.weapons.salicycle;
 
-import com.karel.game.AmmoManager;
 import com.karel.game.GridObject;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

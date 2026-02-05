@@ -1,4 +1,6 @@
-package com.karel.game;
+package com.karel.game.physics;
+
+import com.karel.game.GridEntity;
 
 /**
  * Write a description of class Dasher here.

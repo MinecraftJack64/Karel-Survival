@@ -1,9 +1,9 @@
 package com.karel.game.weapons.flail;
-import com.karel.game.Dasher;
-import com.karel.game.DasherDoer;
 import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
-import com.karel.game.SimpleAmmoManager;
+import com.karel.game.physics.Dasher;
+import com.karel.game.physics.DasherDoer;
+import com.karel.game.trackers.SimpleAmmoManager;
 
 /**
  * Write a description of class Flail here.

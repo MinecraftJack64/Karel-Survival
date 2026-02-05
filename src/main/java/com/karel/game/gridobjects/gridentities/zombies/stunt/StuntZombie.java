@@ -2,12 +2,12 @@ package com.karel.game.gridobjects.gridentities.zombies.stunt;
 
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
-import com.karel.game.LandingHandler;
 import com.karel.game.MetalShield;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.cannon.CannonZombie;
+import com.karel.game.physics.LandingHandler;
 import com.karel.game.shields.ShieldID;
 
 import java.util.HashSet;

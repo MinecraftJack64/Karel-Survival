@@ -1,4 +1,4 @@
-package com.karel.game;
+package com.karel.game.trackers;
 /**
  * Shared by attacks to track potential combos by communicating a number
  * 

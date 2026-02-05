@@ -1,9 +1,9 @@
 package com.karel.game.weapons.doublegun;
 
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.hitters.Bullet;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

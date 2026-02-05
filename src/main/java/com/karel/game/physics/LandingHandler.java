@@ -1,4 +1,4 @@
-package com.karel.game;
+package com.karel.game.physics;
 /**
  * Write a description of class LandingHandler here.
  * 

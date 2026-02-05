@@ -2,11 +2,11 @@ package com.karel.game.weapons.snakecharmer;
 
 import java.util.ArrayList;
 
-import com.karel.game.AmmoManager;
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

@@ -1,8 +1,8 @@
 package com.karel.game.weapons.drone;
 
-import com.karel.game.ComboTracker;
 import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.AerialBullet;
+import com.karel.game.trackers.ComboTracker;
 
 /**
  * A straight bullet shot from the drone weapon

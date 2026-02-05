@@ -1,9 +1,9 @@
 package com.karel.game.weapons.uraniumdrum;
 
-import com.karel.game.AmmoManager;
-import com.karel.game.Dasher;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
+import com.karel.game.physics.Dasher;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

@@ -1,6 +1,5 @@
 package com.karel.game.weapons.blade;
 
-import com.karel.game.AmmoManager;
 import com.karel.game.Game;
 import com.karel.game.ItemHolder;
 import com.karel.game.PercentageShield;
@@ -8,6 +7,7 @@ import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.shields.ShieldID;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

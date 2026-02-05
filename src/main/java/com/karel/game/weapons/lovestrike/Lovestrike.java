@@ -5,10 +5,10 @@ import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.ReloadPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 import com.raylib.Texture;
 

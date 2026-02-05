@@ -2,11 +2,11 @@ package com.karel.game.weapons.farmer;
 import java.util.ArrayList;
 
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.InvisibilityEffect;
 import com.karel.game.gridobjects.collectibles.Collectible;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

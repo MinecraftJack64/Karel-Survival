@@ -1,10 +1,10 @@
 package com.karel.game.weapons.trolltest;
 
-import com.karel.game.Dasher;
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
+import com.karel.game.physics.Dasher;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

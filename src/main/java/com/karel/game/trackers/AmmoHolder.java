@@ -1,4 +1,4 @@
-package com.karel.game;
+package com.karel.game.trackers;
 /**
  * Write a description of class AmmoHoder here.
  * 

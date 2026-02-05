@@ -1,9 +1,9 @@
 package com.karel.game.weapons.drone;
 
-import com.karel.game.ComboTracker;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.SubAffecter;
+import com.karel.game.trackers.ComboTracker;
 
 /**
  * represents the drone hovering above a player with the DroneRemote weapon. At the command of the weapon, it shoots 4 consecutive bullets at a targeted location, which also changes at the command of the weapon

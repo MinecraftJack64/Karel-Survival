@@ -1,8 +1,8 @@
 package com.karel.game.weapons.airpump;
 import com.karel.game.ItemHolder;
-import com.karel.game.LandingHandler;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.effects.SpeedPercentageEffect;
+import com.karel.game.physics.LandingHandler;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

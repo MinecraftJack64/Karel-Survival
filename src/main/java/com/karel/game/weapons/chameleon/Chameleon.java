@@ -4,11 +4,11 @@ import java.util.HashSet;
 
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
-import com.karel.game.SimpleAmmoManager;
 import com.karel.game.Sounds;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.StunEffect;
+import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**

@@ -2,12 +2,12 @@ package com.karel.game.gridobjects.gridentities.zombies.chill;
 
 import java.util.Arrays;
 
-import com.karel.game.AmmoManager;
 import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
 import com.karel.game.gridobjects.gridentities.zombies.shooter.ShooterZombie;
+import com.karel.game.trackers.AmmoManager;
 
 /**
  * Write a description of class SteakZombie here.
