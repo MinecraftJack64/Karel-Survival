@@ -29,6 +29,9 @@ public class Kiss extends Bullet
         setSpeed(isUltUpgrade?15:10);
         setLife(isUltUpgrade?40:60);
         setDamage(0);
+        if(isUltUpgrade)setImage("Weapons/lovestrike/projUltUp.png");
+        else setImage("Weapons/lovestrike/projUlt.png");
+        setRotation(getRotation()-180);
         //TODO: go through walls
         notifier = notify;
         upgrade = isAttackUpgrade;

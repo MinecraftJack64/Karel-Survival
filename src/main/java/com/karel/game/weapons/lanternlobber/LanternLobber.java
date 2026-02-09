@@ -60,7 +60,6 @@ public class LanternLobber extends Weapon
                 }
             }
         }
-        chargeUlt(100);
     }
     public void stopUlt(){
         if(bait!=null)bait.drop();

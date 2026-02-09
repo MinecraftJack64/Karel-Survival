@@ -24,7 +24,7 @@ public class Lovestrike extends Weapon
     private static final int ult = 300;
     private int ultchargedelay = 0;
     private Heart heart;
-    private Texture auraTexture = Greenfoot.loadTexture("Weapons/lymphcannon/aura.png");
+    private Texture auraTexture = Greenfoot.loadTexture("Weapons/lovestrike/aura.png");
     public void fire(){
         if (getAmmo().hasAmmo()) 
         {

@@ -24,7 +24,8 @@ public class Heartbreak extends Bullet
         setLife(8);
         setSpeed(15);
         setNumTargets(2);
-        //setAggression(false);
+        setImage("Weapons/lovestrike/projMark.png");
+        setRotation(getRotation()-180);
         setSelfHit(true);
         setHitAllies(true);
     }

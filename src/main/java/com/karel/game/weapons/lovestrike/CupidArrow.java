@@ -29,6 +29,8 @@ public class CupidArrow extends Bullet
         setLife(7);
         setDamage(0);
         setNumTargets(2);
+        setImage("Weapons/lovestrike/proj.png");
+        setRotation(getRotation()-225);
         notifier = notify;
         isUpgrade = upgrade;
     }

@@ -22,6 +22,8 @@ public class Heart extends GridObject implements SubAffecter
         this.isUpgrade = isUpgrade;
         dead = false;
         inherit(source);
+        if(isUpgrade)setImage("Weapons/lovestrike/markUp.png");
+        else setImage("Weapons/lovestrike/mark.png");
     }
     public GridObject getSource(){
         return source;
@@ -44,6 +46,7 @@ public class Heart extends GridObject implements SubAffecter
     public void die(){
         for(int i = 0; i < 10; i++){
             Heartbreak bullet = new Heartbreak(getRotation()+i*36, source);
+            if(isUpgrade)bullet.setImage("Weapons/lovestrike/projMarkUp.png");
             addObjectHere(bullet);
         }
         if(!source.isDead()){

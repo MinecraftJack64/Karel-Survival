@@ -129,6 +129,12 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+2/9
+Graphics
+ - Added lovestrike graphics
+Other
+ - Removed debug on lantern lobber
+
 2/8
 Balancing
  - Uranium Drum
@@ -139,7 +145,7 @@ Balancing
 
 2/5
 Content
- - Added Uranium Drum ult, attack upgrade, ult upgrade
+ - Added Uranium Drum ult, attack upgrade, ult upgrade, gadget
 Technical
  - Physics and tracker classes are moved into correct locations
  - Percentage shield can now heal holder
