@@ -3,8 +3,6 @@ package com.karel.game.weapons.uraniumdrum;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.PoisonEffect;
-import com.karel.game.effects.PowerPercentageEffect;
-import com.karel.game.effects.SilenceEffect;
 import com.karel.game.particles.WaveAttack;
 
 /**
@@ -13,25 +11,19 @@ import com.karel.game.particles.WaveAttack;
  * @author Michael Kolling
  * @version 0.1
  */
-public class UraniumWave extends WaveAttack
+public class MicroUraniumWave extends WaveAttack
 {
-    private static final int damage = 100;
-    private boolean upgrade;
+    private static final int damage = 50;
     
-    public UraniumWave(boolean upgrade, GridObject source)
+    public MicroUraniumWave(GridObject source)
     {
         super(source);
-        this.upgrade = upgrade;
         setImage("Projectiles/Bullets/zfungalspray.png");
         setDamage(damage);
         setMaxRadius(160);
     }
     public void doHit(GridEntity targ){
-        targ.applyEffect(new PoisonEffect(50, 30, 4, this));
-        if(upgrade){
-            targ.applyEffect(new SilenceEffect(20, this));
-            targ.applyEffect(new PowerPercentageEffect(0.5, 60, this));
-        }
+        targ.applyEffect(new PoisonEffect(25, 30, 4, this));
         super.doHit(targ);
     }
 }

@@ -18,6 +18,10 @@ public class PercentageShield extends Shield
         this.strength = strength;
     }
     public int processDamage(int dmg, GridObject source){
+        if(strength>1){
+            getHolder().heal((int)(dmg*(strength-1)), source);
+            return 0;
+        }else
         //source.notifyDamage(getHolder(), dmg);
         return (int)(dmg*(1-strength));//does not stop damage if source is self
     }

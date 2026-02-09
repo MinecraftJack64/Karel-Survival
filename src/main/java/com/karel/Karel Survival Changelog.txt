@@ -129,6 +129,28 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+2/8
+Balancing
+ - Uranium Drum
+    - (-)Ult gives 0.5 second stun followed by 0.5 second slow
+    - (-)Attack gives 0.5 second 50% slow
+    - (+)Attack radius(125->160)
+    - (-)Ult Upgrade wave radius(200->160)
+
+2/5
+Content
+ - Added Uranium Drum ult, attack upgrade, ult upgrade
+Technical
+ - Physics and tracker classes are moved into correct locations
+ - Percentage shield can now heal holder
+Balancing
+ - (-)Uranium Drum ult charge(1500->2500)
+ - (-)Uranium Drum will not reload until unload delay passed
+
+2/4
+Content
+ - Added Uranium Drum(attack)
+
 2/3
 Fixes
  - Fixed chocolate zombie not being affected by own puddle
