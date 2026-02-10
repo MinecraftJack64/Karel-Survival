@@ -177,7 +177,7 @@ public abstract class GridEntity extends GridObject
     }
 
     public void walk(double angle, double speed){
-        if(canmove&&(getHeight()<=0||canFly()))move(angle, getMultipliedSpeed()*speed);
+        if(canmove&&(isOnGround()||canFly()))move(angle, getMultipliedSpeed()*speed);
     }
     
     public boolean canFly(){

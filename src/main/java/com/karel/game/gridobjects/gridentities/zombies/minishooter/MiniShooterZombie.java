@@ -66,10 +66,10 @@ public class MiniShooterZombie extends Zombie
     }
     
     public String getName(){
-        return "Shooter Zombie";
+        return "Mini Shooter Zombie";
     }
     @Override
     public String getZombieID(){
-        return "shooter";
+        return "minishooter";
     }
 }

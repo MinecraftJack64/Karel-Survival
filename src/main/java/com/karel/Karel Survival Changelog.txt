@@ -129,6 +129,12 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+2/10
+Technical
+ - Walk uses isOnGround with canFly
+Content
+ - Added helicopter zombie
+
 2/9
 Graphics
  - Added lovestrike graphics
