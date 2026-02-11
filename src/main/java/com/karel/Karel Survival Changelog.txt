@@ -132,8 +132,12 @@ TODO
 2/10
 Technical
  - Walk uses isOnGround with canFly
+ - Teams default by gamemodes
 Content
  - Added helicopter zombie
+ - Added jogger zombie
+Other
+ - Added punching bag to test dps
 
 2/9
 Graphics

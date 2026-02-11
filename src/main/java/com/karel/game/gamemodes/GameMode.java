@@ -36,6 +36,18 @@ public abstract class GameMode implements Tickable
     public abstract void startGame();
     public abstract Teams getTeams();
     public abstract Spawner getSpawner();
+    public void defaultTeams(){
+        Teams teams = getTeams();
+        teams.addTeam("player");
+        teams.addTeam("zombie");
+        teams.addTeam("lootbox");
+        teams.addTeam("punchingbag");
+        teams.setAggro("player", "zombie", true);
+        teams.setAggro("player", "lootbox", false);
+        teams.setAlly("zombie", "zombie", false);
+        teams.setAlly("player", "player", false);
+        teams.setAggro("player", "punchingbag", false);
+    }
     public World getWorld(){
         return Game.world;
     }

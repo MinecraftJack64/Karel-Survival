@@ -61,13 +61,7 @@ public class Sandbox extends GameMode
     }
     public void startGame(){
         teams = new Teams();
-        teams.addTeam("player");
-        teams.addTeam("zombie");
-        teams.addTeam("lootbox");
-        teams.setAggro("player", "zombie", true);
-        teams.setAggro("player", "lootbox", false);
-        teams.setAlly("zombie", "zombie", false);
-        teams.setAlly("player", "player", false);
+        defaultTeams();
         Player rocket = new Player();
         getWorld().addToGrid(rocket, 12, 8);
         player = rocket;

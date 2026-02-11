@@ -2,6 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies;
 
 import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.Bot;
+import com.karel.game.gridobjects.gridentities.PunchingBag;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
@@ -36,6 +37,7 @@ import com.karel.game.gridobjects.gridentities.zombies.hugging.HuggingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ironclad.IroncladZombie;
 import com.karel.game.gridobjects.gridentities.zombies.jackinthebox.JackITBZombie;
 import com.karel.game.gridobjects.gridentities.zombies.jailbreak.JailBreakZombie;
+import com.karel.game.gridobjects.gridentities.zombies.jogger.JoggerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.joker.JokerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.magma.MagmaZombie;
@@ -128,6 +130,7 @@ public class ZombieFactory {
             "breadboxer",
             "guardianangel",
             "assassin",
+            "jogger",
             "steak",
             "arson",
             "frisbee",
@@ -144,7 +147,8 @@ public class ZombieFactory {
             "chill",
             "urchin",
             "minishooter",
-            "bot" };
+            "bot",
+            "punchingbag"};
 
     public static GridEntity createZombie(String type) {
         switch (type) {
@@ -261,6 +265,8 @@ public class ZombieFactory {
             // vacuum
             case "assassin":
                 return new AssassinZombie();
+            case "jogger":
+                return new JoggerZombie();
             case "steak":
                 return new SteakZombie();
             // milky
@@ -343,6 +349,8 @@ public class ZombieFactory {
             //caffeinated
             case "bot":
                 return new Bot(null);
+            case "punchingbag":
+                return new PunchingBag();
         }
         return new Zombie();
     }
