@@ -9,7 +9,7 @@ import com.karel.game.weapons.Weapon;
 import com.karel.game.weapons.Weapon.BotGuide;
 
 public class MimicZombie extends Zombie {
-    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer};
+    private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.tactician};
 
     private boolean movementLock;
     private boolean rotationLock;

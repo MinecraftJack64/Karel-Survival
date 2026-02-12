@@ -129,6 +129,13 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+2/11
+Other
+ - Mimic Zombie class(Pressurer->Tactician)
+Content
+ - Added the Beer Martyr Zombie
+ - Added the Milky Zombie
+
 2/10
 Technical
  - Walk uses isOnGround with canFly
