@@ -62,6 +62,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public int currentgadgettimer = 0;//how long until gadget becomes inactive
     private Texture auraTexture = Greenfoot.loadTexture("Weapons/hearth/proj.png");//temp
     private boolean trackingGadget;
+    private boolean equipped;
     public Weapon(){
         ultready = false;
     }
@@ -288,6 +289,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
         if(getHolder()!=null){
             getHolder().addEventListener(this);
         }
+        equipped = true;
     }
     public boolean isUltReady(){
         return ultready;
@@ -300,6 +302,10 @@ public abstract class Weapon implements Item, Tickable, EventListener
         if(getHolder()!=null){
             getHolder().removeEventListener(this);
         }
+        equipped = false;
+    }
+    public boolean equipped(){
+        return equipped;
     }
     public AmmoBar getAmmoBar(){
         return Game.gameUI().getAmmoBar();

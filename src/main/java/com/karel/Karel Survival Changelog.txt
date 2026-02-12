@@ -132,9 +132,16 @@ TODO
 2/11
 Other
  - Mimic Zombie class(Pressurer->Tactician)
+ - TODO: show high scores
 Content
  - Added the Beer Martyr Zombie
  - Added the Milky Zombie
+Balancing
+ - All zombies up to this point are now spawnable in survival mode
+ - TODO: reduce zombie spawning(2/3 spawning cannot violate max rules)
+Fixes
+ - Player will not be tinted from picking up orb without chameleon weapon equipped
+ - Fixed bosses before last not spawning
 
 2/10
 Technical
