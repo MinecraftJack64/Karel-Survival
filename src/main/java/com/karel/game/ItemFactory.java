@@ -48,6 +48,7 @@ import com.karel.game.weapons.snakecharmer.SnakeCharmer;
 import com.karel.game.weapons.sodahat.SodaHat;
 import com.karel.game.weapons.soup.Soup;
 import com.karel.game.weapons.spear.SpearWeapon;
+import com.karel.game.weapons.sudo.Sudo;
 import com.karel.game.weapons.teslacoil.TeslaCoil;
 import com.karel.game.weapons.traps.TrapSetter;
 import com.karel.game.weapons.trolltest.TrollTest;
@@ -296,6 +297,8 @@ public class ItemFactory
             //?
             case "jackolantern":
                 return new JackOLantern(holder);
+            case "sudo":
+                return new Sudo(holder);
             default:
                 return new Gun(holder);
         }

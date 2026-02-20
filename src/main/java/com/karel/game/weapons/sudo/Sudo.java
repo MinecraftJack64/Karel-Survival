@@ -21,7 +21,7 @@ public class Sudo extends Weapon
     private String zombie;
     private String weapon;
     private String team;
-    private int mode = 3; // 0 - current, 1 - damage, 2 - heal, 3 - move, 4 - teleport, 5 - give weapon, 6 - give effect 7 - apply team, 8 - summon, 9 - TODO: configure grid entities
+    private int mode = 0; // 0 - current, 1 - damage, 2 - heal, 3 - move, 4 - teleport, 5 - give weapon, 6 - give effect 7 - apply team, 8 - summon, 9 - TODO: configure grid entities
     public void fire(){
         int range = 100;
         boolean scaled = false;
@@ -88,11 +88,13 @@ public class Sudo extends Weapon
         }
         switch(mode){
             case 0:
-                Nuke bullet = new Nuke(getHolder());
-                getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
-                bullet.setPower(10000);
-                Sounds.play("protonwave");
-                reloadDelayCount = 0;
+                if (reloadDelayCount >= gunReloadTime){
+                    Nuke bullet = new Nuke(getHolder());
+                    getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
+                    bullet.setPower(10000);
+                    Sounds.play("protonwave");
+                    reloadDelayCount = 0;
+                }
                 break;
             case 1:
                 double d = getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY());
