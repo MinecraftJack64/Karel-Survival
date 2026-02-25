@@ -5,6 +5,7 @@ import com.karel.game.gridobjects.gridentities.Bot;
 import com.karel.game.gridobjects.gridentities.PunchingBag;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
+import com.karel.game.gridobjects.gridentities.zombies.beermartyr.BeerMartyrZombie;
 import com.karel.game.gridobjects.gridentities.zombies.boid.BoidZombie;
 import com.karel.game.gridobjects.gridentities.zombies.breadboxer.BreadBoxerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.cancer.CancerZombie;
@@ -42,6 +43,7 @@ import com.karel.game.gridobjects.gridentities.zombies.joker.JokerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
 import com.karel.game.gridobjects.gridentities.zombies.magma.MagmaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.marksman.MarksmanZombie;
+import com.karel.game.gridobjects.gridentities.zombies.milky.MilkyZombie;
 import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
 import com.karel.game.gridobjects.gridentities.zombies.minishooter.MiniShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
@@ -132,10 +134,12 @@ public class ZombieFactory {
             "assassin",
             "jogger",
             "steak",
+            "milky",
             "arson",
             "frisbee",
             "emotionalsupport",
             "concentrated",
+            "beermartyr",
             "magma",
             "mimic",
             "ribbondancer",
@@ -269,7 +273,8 @@ public class ZombieFactory {
                 return new JoggerZombie();
             case "steak":
                 return new SteakZombie();
-            // milky
+            case "milky":
+                return new MilkyZombie();
             // kitebaby
             // kitemother
             // bowling
@@ -296,7 +301,8 @@ public class ZombieFactory {
             // gladiator
             // ghost
             // beast
-            // beermartyr
+            case "beermartyr":
+                return new BeerMartyrZombie();
             case "magma":
                 return new MagmaZombie();
             // gaslighter

@@ -33,7 +33,7 @@ public class SpawnCalculator
                     if(type.equals("boss")){
                         type = sc.next();
                         int wave = sc.nextInt();
-                        bosses = new QueueMap<Integer, Boss>();
+                        if(bosses==null)bosses = new QueueMap<Integer, Boss>();
                         bosses.add(wave, (Boss)ZombieFactory.createZombie(type));
                     }else{
                         int level = sc.nextInt();

@@ -99,7 +99,7 @@ public class Chameleon extends Weapon
             colors.add(c);
         }
         getHolder().heal(catcher, heal);
-        tintPlayer();
+        if(equipped())tintPlayer();
     }
     public boolean isColor(int chk){
         return colorCooldown>0&&(color==chk||colors.contains(chk));

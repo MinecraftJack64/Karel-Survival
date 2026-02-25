@@ -34,6 +34,9 @@ public class QueueMap<T extends Comparable<T>, E>
     public int size(){
         return keys.size();
     }
+    public String toString(){
+        return keys.toString()+" "+values.toString();
+    }
     public class Entry{
         public T key;
         public E value;

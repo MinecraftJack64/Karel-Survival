@@ -48,10 +48,11 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         sprint = maxsprint;
         Game.gameUI().newSprint(maxsprint);
         this.setTeam("player");
-        this.inventory = new Item[ItemFactory.getItemTypes().length];
-        for(int i=0; i<inventory.length; i++){
+        this.inventory = new Item[ItemFactory.getItemTypes().length+1]; // including sudo
+        for(int i=0; i<inventory.length-1; i++){
             inventory[i] = ItemFactory.createItem(ItemFactory.getItemTypes()[i], getHand());
         }
+        inventory[inventory.length-1] = ItemFactory.createItem("sudo", getHand());
         for(Item i: inventory){
             if(i!=null){
                 ((Weapon)i).setAttackUpgrade(1);
