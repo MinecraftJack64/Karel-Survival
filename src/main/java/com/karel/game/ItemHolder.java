@@ -15,6 +15,7 @@ public interface ItemHolder
     public double getTargetRotation();
     public double getTargetX();
     public double getTargetY();
+    public double getTargetDistance();
     public boolean isMoving();
     public boolean isAttacking();
     public double getReloadSpeed();

@@ -151,6 +151,9 @@ public class MimicZombie extends Zombie {
             }
             targetLocked = t;
         }
+        public double getTargetDistance(){
+            return getHolder().distanceTo(getTargetX(), getTargetY());
+        }
         public void setRotationLock(boolean t){
             rotationLock = t;
         }

@@ -159,6 +159,9 @@ public class Bot extends Pet implements ItemAccepter
             }
             targetLocked = t;
         }
+        public double getTargetDistance(){
+            return getHolder().distanceTo(getTargetX(), getTargetY());
+        }
         public void setRotationLock(boolean t){
             rotationLock = t;
         }

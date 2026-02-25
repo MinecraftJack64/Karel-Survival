@@ -84,6 +84,9 @@ public class CowboyZombie extends Zombie
         public double getTargetY(){
             return getHolder().getTarget().getY();
         }
+        public double getTargetDistance(){
+            return getHolder().distanceTo(getTargetX(), getTargetY());
+        }
         public void setTargetLock(boolean t){
             //
         }

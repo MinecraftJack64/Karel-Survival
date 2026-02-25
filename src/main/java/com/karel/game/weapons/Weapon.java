@@ -138,7 +138,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
     }
     public boolean on(String id, GridObject source){
         if(id.equals("die")||id.equals("pull")){
-            //TODOonInterrupt();
+            //TODO onInterrupt();
         }
         return false;
     }

@@ -468,6 +468,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         public double getTargetY(){
             return getHolder().getTargetY();
         }
+        public double getTargetDistance(){
+            return getHolder().distanceTo(getTargetX(), getTargetY());
+        }
         public void setTargetLock(boolean t){
             getHolder().setTargetLock(t);
         }
