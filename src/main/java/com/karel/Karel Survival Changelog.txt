@@ -129,9 +129,15 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+2/25
+Content
+ - Added the Electric Fists base kit
+Technical
+ - ItemHolder has target distance by default
+
 2/18
 Other
- - As part of debugging, sudo weapon is now created
+ - As part of debugging, sudo weapon is now created in levels
 
 2/11
 Other

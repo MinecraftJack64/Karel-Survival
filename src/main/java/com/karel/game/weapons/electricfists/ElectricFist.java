@@ -1,6 +1,5 @@
 package com.karel.game.weapons.electricfists;
 
-import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Bullet;
 
@@ -15,7 +14,8 @@ public class ElectricFist extends Bullet
     double tvx, tvy;
     double cdirspeed = 2;
     double pspeed = 17;
-    public ElectricFist(double rotation, GridObject source)
+    private double tx, ty;
+    public ElectricFist(double rotation, double xt, double yt, GridObject source)
     {
         super(rotation, source);
         setLife(10);
@@ -26,11 +26,12 @@ public class ElectricFist extends Bullet
         tvy = Math.sin((rotation-90)*Math.PI/180)*pspeed;
         vx = tvx;
         vy = tvy;
+        tx = xt;
+        ty = yt;
     }
     public void applyPhysics(){
         super.applyPhysics();
-        GridEntity g = getTarget();
-        double dir = face(g==null?getWorld().getPlayer():g, true)-90;
+        double dir = face(tx, ty, true)-90;
         tvx = Math.cos(dir*Math.PI/180)*pspeed;
         tvy = Math.sin(dir*Math.PI/180)*pspeed;
         if(vx>tvx+cdirspeed/2){
@@ -44,14 +45,5 @@ public class ElectricFist extends Bullet
             vy+=cdirspeed;
         }
         translate(vx, vy);
-    }
-    public GridEntity getTarget(){
-        GridEntity next = null;
-        for(GridEntity g: getWorld().allEntities()){
-            if(!getHitStory().contains(g)&&isAggroTowards(g)&&(next==null||distanceTo(g)<distanceTo(next))){
-                next = g;
-            }
-        }
-        return next;
     }
 }

@@ -13,6 +13,7 @@ import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.doublegun.DoubleGun;
 import com.karel.game.weapons.drone.DroneRemote;
 import com.karel.game.weapons.easterbasket.EasterBasket;
+import com.karel.game.weapons.electricfists.ElectricFists;
 import com.karel.game.weapons.farmer.Farmer;
 import com.karel.game.weapons.fastfood.FastFood;
 import com.karel.game.weapons.fireworks.Fireworks;
@@ -102,7 +103,7 @@ public class ItemFactory
                                     //"pinball",
                                     //"antimattergun",
                                     "captorch",
-                                    //"electricfists",
+                                    "electricfists",
                                     "reaper",
                                     "critters",
                                     "frostspirit",
@@ -228,7 +229,7 @@ public class ItemFactory
             case "captorch":
                 return new CapsaicinTorch(holder);
             case "electricfists":
-                //return new ElectricFists(holder);
+                return new ElectricFists(holder);
             case "reaper":
                 return new Reaper(holder);//
             case "critters":
