@@ -131,7 +131,7 @@ TODO
 
 2/25
 Content
- - Added the Electric Fists base kit
+ - Added the Electric Fists base kit+attack upgrade
 Technical
  - ItemHolder has target distance by default
 

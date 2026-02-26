@@ -22,9 +22,10 @@ import com.raylib.Texture;
  */
 public class ElectricFists extends Weapon implements LandingHandler
 {
-    private static final int gunReloadTime = 20, shotTime = 5;
+    private static final int gunReloadTime = 20, shotTime = 5, specialReloadTime = 150;
     private int shotDelay = 0;
     private double reloadDelayCount;
+    private int specialReload;
     private int remainingShots = 0;
     private boolean dir = false;
     private int ultPhase = 0;
@@ -48,6 +49,10 @@ public class ElectricFists extends Weapon implements LandingHandler
                     shotDelay = shotTime;
                     remainingShots--;
                 }else{
+                    if(specialReload>=specialReloadTime){
+                        specialReload = 0;
+                        getHolder().addObjectHere(new ElectricUppercut(getHand().getTargetRotation(), getHolder()));
+                    }
                     onInterrupt();
                 }
             }
@@ -67,6 +72,9 @@ public class ElectricFists extends Weapon implements LandingHandler
         }
     }
     public void onInterrupt(){
+        if(!continueUse()){
+            specialReload = 0;
+        }
         setContinueUse(false);
         setContinueUlt(false);
         setPlayerLockMovement(false);
@@ -75,6 +83,9 @@ public class ElectricFists extends Weapon implements LandingHandler
         dir = !dir;
         disableSpecial();
         projectiles.clear();
+        if(getAttackUpgrade()==1){
+            newSpecial(specialReloadTime, specialReload);
+        }
     }
     public void fireUlt(){
         if(continueUlt()){
@@ -97,6 +108,7 @@ public class ElectricFists extends Weapon implements LandingHandler
                     for(Bullet b: l){
                         getHolder().addObjectHere(b);
                         b.setDirection(getHand().getTargetRotation());
+                        getHolder().heal(getHolder(), 50);
                     }
                     updateSpecial(r.size());
                 }else{
@@ -119,10 +131,18 @@ public class ElectricFists extends Weapon implements LandingHandler
             chargeTime = 15;
             setPlayerLockMovement(true);
             newSpecial(30, 30);
+            getHolder().explodeOn(150, 100);
+            getHolder().knockBackOnEnemies(150, 50);
         }
     }
     public int getUlt(){
         return ult;
+    }
+    public void equip(){
+        super.equip();
+        if(getAttackUpgrade()==1){
+            newSpecial(specialReloadTime, specialReload);
+        }
     }
     public void onGadgetActivate(){
         getAmmo().donateAmmo(3);
@@ -134,6 +154,10 @@ public class ElectricFists extends Weapon implements LandingHandler
     }
     public void reload(double at){
         reloadDelayCount++;
+        if(getAttackUpgrade()==1&&specialReload<specialReloadTime){
+            specialReload++;
+            updateSpecial(specialReload);
+        }
         super.reload(at);
     }
     public void update(){

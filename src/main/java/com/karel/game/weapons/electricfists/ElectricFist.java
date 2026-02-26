@@ -1,5 +1,6 @@
 package com.karel.game.weapons.electricfists;
 
+import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Bullet;
 
@@ -45,5 +46,11 @@ public class ElectricFist extends Bullet
             vy+=cdirspeed;
         }
         translate(vx, vy);
+    }
+    public void doHit(GridEntity g){
+        super.doHit(g);
+        if(g.isDead()){
+            setNumTargets(getNumTargets()+1);
+        }
     }
 }
