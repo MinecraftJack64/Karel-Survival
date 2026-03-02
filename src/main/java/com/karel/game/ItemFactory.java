@@ -11,6 +11,7 @@ import com.karel.game.weapons.critters.LilCritters;
 import com.karel.game.weapons.crossbow.Crossbow;
 import com.karel.game.weapons.crystalgun.CrystalGun;
 import com.karel.game.weapons.doublegun.DoubleGun;
+import com.karel.game.weapons.droid.DroidController;
 import com.karel.game.weapons.drone.DroneRemote;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.electricfists.ElectricFists;
@@ -127,6 +128,7 @@ public class ItemFactory
                                     "acidart",
                                     "uraniumdrum",
                                     "scalpel",
+                                    "droid",
                                     "flashdrive",
                                     "mortar",
                                     "inferno",
@@ -279,6 +281,8 @@ public class ItemFactory
             case "scalpel":
                 return new Scalpel(holder);
             //MISSING A LOT
+            case "droid":
+                return new DroidController(holder);
             case "flashdrive":
                 return new FlashDrive(holder);//
             //MISSING

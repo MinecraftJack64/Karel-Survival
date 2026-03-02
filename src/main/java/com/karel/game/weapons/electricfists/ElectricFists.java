@@ -145,8 +145,7 @@ public class ElectricFists extends Weapon implements LandingHandler
         }
     }
     public void onGadgetActivate(){
-        getAmmo().donateAmmo(3);
-        setGadgetCount(3);
+        //
     }
     @Override
     public int defaultGadgets(){
