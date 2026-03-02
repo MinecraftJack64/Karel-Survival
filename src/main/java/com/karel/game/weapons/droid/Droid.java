@@ -55,8 +55,8 @@ public class Droid extends Pet {
                 attack();
                 ammo = 0;
             }
-            if (distanceTo(getTarget()) < laserrange) {
-                walk(monangle, 0.8);
+            if (distanceTo(getTarget()) > laserrange/2) {
+                walk(monangle+180, 0.8);
             }
             if (remote.getAttackUpgrade() == 1) {
                 //

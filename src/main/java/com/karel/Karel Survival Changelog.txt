@@ -129,6 +129,12 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+3/2
+Content
+ - Added droid weapon base kit(WIP)
+Balancing
+ - Electric Fists damage(4x100->4x150)
+
 2/25
 Content
  - Added the Electric Fists base kit+attack upgrade

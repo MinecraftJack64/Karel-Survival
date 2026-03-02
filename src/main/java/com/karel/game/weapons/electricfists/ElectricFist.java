@@ -20,7 +20,7 @@ public class ElectricFist extends Bullet
     {
         super(rotation, source);
         setLife(10);
-        setDamage(100);
+        setDamage(150);
         setSpeed(0);
         setImage("Projectiles/Bullets/zglove.png");
         tvx = Math.cos((rotation-90)*Math.PI/180)*pspeed;
