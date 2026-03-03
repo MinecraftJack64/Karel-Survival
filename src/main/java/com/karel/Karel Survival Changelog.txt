@@ -130,6 +130,12 @@ TODO
  - Should negative healing/damage call the other function?
 
 3/2
+Completed
+ - Droid weapon base kit
+Technical
+ - Weapons can now lock player controls
+
+3/2
 Content
  - Added droid weapon base kit(WIP: no wandering behavior, override attack)
 Balancing

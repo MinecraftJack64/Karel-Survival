@@ -174,6 +174,9 @@ public class Bot extends Pet implements ItemAccepter
         public boolean isMoving(){
             return true;//TODO
         }
+        public void setControlLock(boolean t){
+            //TODO
+        }
         public double getReloadSpeed(){
             return getHolder().getReloadMultiplier();
         }

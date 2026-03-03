@@ -96,6 +96,9 @@ public class CowboyZombie extends Zombie
         public void setMovementLock(boolean t){
             //
         }
+        public void setControlLock(boolean t){
+            //
+        }
         public boolean isAttacking(){
             return distanceTo(getTarget())<=attackrange;
         }

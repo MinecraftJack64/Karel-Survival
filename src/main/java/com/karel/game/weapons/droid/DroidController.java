@@ -19,6 +19,7 @@ public class DroidController extends Weapon {
     private int reloadDelayCount;
     private Droid droid;
     private int toAttack;
+    private boolean overriding;
     private static final int ult = 1200;
 
     public void fire() {
@@ -35,8 +36,9 @@ public class DroidController extends Weapon {
             toAttack = 0;
         }
         if (reloadDelayCount >= gunReloadTime && getAmmo().hasAmmo()) {
-            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
-            Wrench bullet = new Wrench(getHand().getTargetRotation(), d, d / 2, getHolder(), droid!=null?this:null);
+            double x = !overriding?getHand().getTargetX():droid.getOverrideTargetX(), y = !overriding?getHand().getTargetY():droid.getOverrideTargetY(), r = !overriding?getHand().getTargetRotation():droid.getOverrideTargetRotation();
+            double d = Math.min(getHolder().distanceTo(x, y), 400);
+            Wrench bullet = new Wrench(r, d, d / 2, getHolder(), droid!=null?this:null);
             getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
             Sounds.play("airtoss");
             reloadDelayCount = 0;
@@ -48,7 +50,9 @@ public class DroidController extends Weapon {
         if (droid == null) {
             droid = new Droid(this, getHolder());
             getHolder().addObjectHere(droid);
-        } else {
+        } else if(overriding){
+            cancelOverride();
+        }else{
             if (droid.getMode() != 0) {
                 droid.setMode(0);
                 toAttack = 0;
@@ -71,7 +75,11 @@ public class DroidController extends Weapon {
                         toAttack = 2;
                         break;
                     case 5:
-                        // override
+                        if(!droid.isInWorld())return;
+                        setLocked(true);
+                        droid.override();
+                        overriding = true;
+                        break;
                 }
         }
     }
@@ -97,12 +105,24 @@ public class DroidController extends Weapon {
     public void update() {
         super.update();
         if (droid != null && droid.isDead()) {
+            if(overriding)cancelOverride();
             droid = null;
             dischargeUlt(getUlt());
         }
-        if (droid != null && droid.getMode() != 0) {
+        if (droid != null && droid.getMode() != 0||overriding) {
             chargeUlt(50);
         }
+        if(ultReady()&&droid!=null&&droid.getMode()==0){
+            showPalette();
+        }else{
+            hidePalette();
+        }
+    }
+
+    public void cancelOverride(){
+        if(droid!=null)droid.cancelOverride();
+        overriding = false;
+        setLocked(false);
     }
 
     public void onGadgetActivate() {
@@ -130,7 +150,6 @@ public class DroidController extends Weapon {
         super(actor);
         reloadDelayCount = gunReloadTime;
         setAmmo(new AmmoManager(30, 3, 3));
-        showPalette();
         setPaletteOffset(-90);
         addToPalette(new PaletteSlice(Raylib.YELLOW, null, "Charge!"));
         addToPalette(new PaletteSlice(Raylib.BLUE, null, "Fall Back!"));

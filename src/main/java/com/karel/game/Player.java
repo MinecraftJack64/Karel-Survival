@@ -17,7 +17,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     private Item[] inventory;
     private boolean currentlyscrolling;
     private int currentItemIndex;
-    private boolean movementLocked, rotationLocked, targetLocked;
+    private boolean movementLocked, rotationLocked, targetLocked, controlLocked;
     private double oldtargetx, oldtargety;
     private int hacooldown;
     private int diff;
@@ -177,8 +177,10 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }
         autoult = Game.autoUlt();
         autoattack = Game.autoAttack();
-        this.checkKeys();
-        face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
+        if(!controlLocked){
+            face(getHand().getTargetX(), getHand().getTargetY(), canMove()&&!rotationLocked);
+            this.checkKeys();
+        }
         if (this.hacooldown > 20 && !this.isDead()/* && getWorld().getGame().getDifficulty<2*/) {
             heal(this, diffheal[diff]);
         }
@@ -258,6 +260,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     public void setMovementLock(boolean t){
         movementLocked = t;
     }
+    public void setControlLock(boolean t){
+        controlLocked = t;
+    }
 
     private void checkKeys() {
         //handle sprinting
@@ -290,38 +295,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }
         ismoving = false;
         //handle movement
-        int xd = 0, yd = 0;
-        Vector v = new Vector(xd, yd);
-        if(canMove()&&!movementLocked){
-            if(!getWorld().usesMovementVector()){
-                if (!Greenfoot.isActive("right")) {
-                    if (Greenfoot.isActive("left")) {
-                        xd = -1;
-                        ismoving = true;
-                    }
-                } else {
-                    xd = 1;
-                    ismoving = true;
-                }
-
-                if (!Greenfoot.isActive("up")) {
-                    if (Greenfoot.isActive("down")) {
-                        yd = 1;
-                        ismoving = true;
-                    }
-                } else {
-                    yd = -1;
-                    ismoving = true;
-                }
-                v = new Vector(xd, yd, 0);
-            }else{
-                v = getWorld().getMovementVector();
-                if(v.getLength()>0.2){
-                    v.setLength(1);
-                    ismoving = true;
-                }
-            }
-        }
+        Vector v = getMovementControlVector();
         walk(v.getDirection()+90, sprintamt*v.getLength());
 
         //handle item switching
@@ -383,6 +357,41 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
                 renderTexture(crosshair, l.x, l.y, 70, 70, 0, 127);
             }
         }
+    }
+    public Vector getMovementControlVector(){
+        int xd = 0, yd = 0;
+        Vector v = new Vector(xd, yd);
+        if(canMove()&&!movementLocked){
+            if(!getWorld().usesMovementVector()){
+                if (!Greenfoot.isActive("right")) {
+                    if (Greenfoot.isActive("left")) {
+                        xd = -1;
+                        ismoving = true;
+                    }
+                } else {
+                    xd = 1;
+                    ismoving = true;
+                }
+
+                if (!Greenfoot.isActive("up")) {
+                    if (Greenfoot.isActive("down")) {
+                        yd = 1;
+                        ismoving = true;
+                    }
+                } else {
+                    yd = -1;
+                    ismoving = true;
+                }
+                v = new Vector(xd, yd, 0);
+            }else{
+                v = getWorld().getMovementVector();
+                if(v.getLength()>0.2){
+                    v.setLength(1);
+                    ismoving = true;
+                }
+            }
+        }
+        return v;
     }
     public boolean isAttacking(){
         return isattacking;
@@ -480,6 +489,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }
         public void setMovementLock(boolean t){
             getHolder().setMovementLock(t);
+        }
+        public void setControlLock(boolean t){
+            getHolder().setControlLock(t);
         }
         public boolean isAttacking(){
             return getHolder().isAttacking();

@@ -160,6 +160,9 @@ public class MimicZombie extends Zombie {
         public void setMovementLock(boolean t){
             movementLock = t;
         }
+        public void setControlLock(boolean t){
+            //
+        }
         public boolean isAttacking(){
             return distanceTo(target)<=mimicRange;
         }

@@ -12,6 +12,7 @@ public interface ItemHolder
     public void setRotationLock(boolean t);
     public void setMovementLock(boolean t);
     public void setTargetLock(boolean t);
+    public void setControlLock(boolean t);
     public double getTargetRotation();
     public double getTargetX();
     public double getTargetY();
