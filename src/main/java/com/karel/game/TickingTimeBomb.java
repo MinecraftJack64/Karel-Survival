@@ -10,7 +10,10 @@ public class TickingTimeBomb extends GridEntity implements SubAffecter
 {
     GridObject sourc;
     public TickingTimeBomb(GridObject source){
-        startHealth(75);
+        this(75, source);
+    }
+    public TickingTimeBomb(int health, GridObject source){
+        startHealth(health);
         sourc = source;
         inherit(source);
     }

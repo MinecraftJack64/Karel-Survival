@@ -1,6 +1,7 @@
 package com.karel.game;
 
 import com.raylib.Texture;
+import com.raylib.Color;
 import com.raylib.Sound;
 import com.karel.images.TextureLoader;
 import com.karel.sounds.SoundLoader;
@@ -25,5 +26,8 @@ public class Greenfoot {
     }
     public static Sound loadSound(String url){
         return SoundLoader.loadSound(url);
+    }
+    public static Color cloneColor(Color c) {
+        return new Color(c.r(), c.g(), c.b(), c.a());
     }
 }

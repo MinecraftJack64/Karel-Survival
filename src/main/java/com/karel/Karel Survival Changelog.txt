@@ -131,7 +131,7 @@ TODO
 
 3/2
 Content
- - Added droid weapon base kit(WIP)
+ - Added droid weapon base kit(WIP: no wandering behavior, override attack)
 Balancing
  - Electric Fists damage(4x100->4x150)
 

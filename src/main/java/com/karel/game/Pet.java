@@ -32,7 +32,7 @@ public class Pet extends GridEntity
         }
         return candidate;//use this for now
     }
-    public GridEntity getNearestTarget(){
+    /*public GridEntity getNearestTarget(){
         GridEntity res = null;
         double max = 0;
         for(GridEntity e: getWorld().allEntities){
@@ -45,7 +45,7 @@ public class Pet extends GridEntity
             }
         }
         return res;
-    }
+    }*/
     public boolean notifySpawnerDamage(){//charge ult of spawner?
         return true;
     }

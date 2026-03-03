@@ -1,5 +1,7 @@
 package com.karel.game.weapons;
 
+import java.util.ArrayList;
+
 import com.karel.game.EventListener;
 import com.karel.game.Game;
 import com.karel.game.Greenfoot;
@@ -10,7 +12,10 @@ import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.Tickable;
 import com.karel.game.ui.bars.AmmoBar;
+import com.raylib.Color;
+import com.raylib.Raylib;
 import com.raylib.Texture;
+import com.raylib.Vector2;
 import com.karel.game.IAmmoManager;
 
 /*
@@ -63,6 +68,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
     private Texture auraTexture = Greenfoot.loadTexture("Weapons/hearth/proj.png");//temp
     private boolean trackingGadget;
     private boolean equipped;
+    private boolean showPalette;
+    private double paletteOffset;
+    private ArrayList<PaletteSlice> palette = new ArrayList<>();
     public Weapon(){
         ultready = false;
     }
@@ -115,6 +123,17 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public void render(){
         if(isUsingGadget()){
             getHolder().renderTexture(auraTexture, getHolder().getX(), getHolder().getY()-20, 30, 30, 0, 255);
+        }
+        if(showPalette){
+            double size = 100;
+            double x = paletteOffset;
+            int k = 0;
+            for(PaletteSlice p: palette){
+                p.color.setA((byte)100);
+                Raylib.drawRing(new Vector2(getHolder().renderTransformX((int)(getHolder().getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()))), 0, getHolder().renderTransformY((int)size/2)+(getSelectedPalette()==k?30:0), (float)x, (int)(360/palette.size()+x), 1, p.color);
+                x+=360/palette.size();
+                k++;
+            }
         }
         if(getAmmo()!=null){
             updateAmmo(getAmmo());
@@ -349,6 +368,25 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public void setContinueGadget(boolean v){
         isgadgeting = v;
     }
+
+    public int getSelectedPalette(){
+        return (int)(getHand().getTargetRotation()*palette.size()/360);
+    }
+    public void setPaletteOffset(double ang){
+        paletteOffset = ang;
+    }
+    public void clearPalette(){
+        palette.clear();
+    }
+    public void addToPalette(PaletteSlice p){
+        palette.add(p);
+    }
+    public void showPalette(){
+        showPalette = true;
+    }
+    public void hidePalette(){
+        showPalette = false;
+    }
     
     public void donateGadgets(int amt){
         gadgets+=amt;
@@ -419,6 +457,16 @@ public abstract class Weapon implements Item, Tickable, EventListener
     //TODO: Make abstract
     public String getItemID(){
         return "weapon";
+    }
+    public class PaletteSlice{
+        Color color;
+        Texture icon;
+        String label;
+        public PaletteSlice(Color c, Texture i, String n){
+            color = Greenfoot.cloneColor(c);
+            icon = i;
+            label = n;
+        }
     }
     public BotGuide getBotGuide(){
         return new BotGuide();
