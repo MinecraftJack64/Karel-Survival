@@ -280,8 +280,8 @@ public class Droid extends Pet {
         super.notifyDamage(target, amt);
     }
 
-    public void gadget() {
-        //
+    public Droid clone(){
+        return new Droid(remote, getSpawner());
     }
 
     public int getMode() {

@@ -126,7 +126,10 @@ public class DroidController extends Weapon {
     }
 
     public void onGadgetActivate() {
-        setGadgetCount(1);
+        //
+    }
+    public boolean canActivateGadget(){
+        return super.canActivateGadget()&&droid!=null&&!droid.isDead();
     }
 
     public int defaultGadgets() {
