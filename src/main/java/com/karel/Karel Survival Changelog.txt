@@ -129,7 +129,13 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
-3/2
+3/4
+Content
+ - Droid ult upgrade and gadget
+Fixes
+ - Fixed crash when activating Droid "manual override" ult when no targets exist, also fixed when player dies while overriden
+
+3/3
 Completed
  - Droid weapon base kit
 Technical

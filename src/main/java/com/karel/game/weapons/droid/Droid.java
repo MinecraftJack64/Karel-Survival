@@ -4,6 +4,7 @@ import com.karel.game.BombDropper;
 import com.karel.game.Game;
 import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
+import com.karel.game.GridObject;
 import com.karel.game.Location;
 import com.karel.game.Pet;
 import com.karel.game.Player;
@@ -29,6 +30,7 @@ public class Droid extends Pet {
     private Location patrol, real;
     private DroidController remote;
     private int ammo = 0;
+    private int life = -1;
     private boolean overridden = false;
     private int forcerepatrolcooldown = 30; // 30 cooldown to recalculate patrol location
     private Dasher dash;
@@ -62,6 +64,10 @@ public class Droid extends Pet {
                 dash = null;
             }
         } if(overridden&&remote.isMainWeapon()){
+            if(remote.getHolder().isDead()){
+                remote.cancelOverride();
+                return;
+            }
             remote.fire();
             GridEntity g = remote.getHolder();
             GridEntity targ = g.getTarget();
@@ -154,6 +160,14 @@ public class Droid extends Pet {
                 ult();
             }
         }
+        if(life>0){
+            life--;
+            remote.updateSpecial(life);
+            if(life==0){
+                remote.disableSpecial();
+                kill(this);
+            }
+        }
     }
 
     public GridEntity getTarget() {
@@ -181,6 +195,10 @@ public class Droid extends Pet {
     }
 
     private static final int reloadtime = 30;
+
+    public void setLife(int d){
+        life = d;
+    }
 
     public void attack() {
         switch (mode) {
@@ -225,14 +243,17 @@ public class Droid extends Pet {
     }
 
     public double getOverrideTargetX(){
+        if(remote.getHolder().getTarget()==null)return getX();
         return remote.getHolder().getTarget().getX();
     }
 
     public double getOverrideTargetY(){
+        if(remote.getHolder().getTarget()==null)return getY();
         return remote.getHolder().getTarget().getY();
     }
 
     public double getOverrideTargetRotation(){
+        if(remote.getHolder().getTarget()==null)return remote.getHolder().face(this, false);
         return remote.getHolder().face(remote.getHolder().getTarget(), false);
     }
 
@@ -240,6 +261,13 @@ public class Droid extends Pet {
         setRotation(direction);
         dash = new DasherDoer(getRotation(), 15, 25, 50, 150, this);
         dash.dash();
+    }
+
+    public void die(GridObject source){
+        super.die(source);
+        if(life>0){
+            remote.disableSpecial();
+        }
     }
 
     public void setMode(int m) {
@@ -281,7 +309,12 @@ public class Droid extends Pet {
     }
 
     public Droid clone(){
-        return new Droid(remote, getSpawner());
+        Droid n = new Droid(remote, getSpawner());
+        n.setMode(getMode());
+        if(target!=null)n.setTarget(target);
+        else if(patrol!=null)n.setTarget(patrol);
+        n.setHealth(getHealth());
+        return n;
     }
 
     public int getMode() {

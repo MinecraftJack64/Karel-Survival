@@ -56,7 +56,10 @@ public class DroidController extends Weapon {
             if (droid.getMode() != 0) {
                 droid.setMode(0);
                 toAttack = 0;
-            } else
+            } else {
+                if(getUltUpgrade()==1) for(int i = 45; i < 360; i+=90){
+                    getHolder().addObjectHere(new DroidNanobot(i, droid, getHolder()));
+                }
                 switch (getSelectedPalette()) {
                     case 0:
                         droid.setMode(1);
@@ -81,6 +84,7 @@ public class DroidController extends Weapon {
                         overriding = true;
                         break;
                 }
+            }
         }
     }
 
@@ -126,14 +130,18 @@ public class DroidController extends Weapon {
     }
 
     public void onGadgetActivate() {
-        //
+        setGadgetsCooldown(300);
+        Droid d = droid.clone();
+        d.setLife(300);
+        newSpecial(300, 300);
+        getHolder().getWorld().addObject(d, getHolder().getX()-(droid.getX()-getHolder().getX()), getHolder().getY()-(droid.getY()-getHolder().getY()));
     }
     public boolean canActivateGadget(){
         return super.canActivateGadget()&&droid!=null&&!droid.isDead();
     }
 
     public int defaultGadgets() {
-        return 2;
+        return 1;
     }
 
     public int getUlt() {
