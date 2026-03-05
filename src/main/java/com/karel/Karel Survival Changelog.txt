@@ -133,7 +133,12 @@ TODO
 Content
  - Droid ult upgrade and gadget
 Balancing
- - Droid can set healing targets
+ - Droid
+    - Can set healing targets
+    - Dash speed(15->20) Range(375->500)
+    - TODO: at the end of dash and when switching back from assault and drill modes, burst and stun nearby enemies
+    - TODO: shotgun attack pushes enemies back
+    - Healing activation and cancelling come with burst heals
 Fixes
  - Fixed crash when activating Droid "manual override" ult when no targets exist, also fixed when player dies while overriden
  - Fixed droid following enemy target when healing

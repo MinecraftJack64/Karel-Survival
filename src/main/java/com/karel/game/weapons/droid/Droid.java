@@ -262,7 +262,7 @@ public class Droid extends Pet {
 
     public void dash(double direction) {
         setRotation(direction);
-        dash = new DasherDoer(getRotation(), 15, 25, 50, 150, this);
+        dash = new DasherDoer(getRotation(), 20, 25, 50, 150, this);
         dash.dash();
     }
 
