@@ -191,7 +191,7 @@ public class Droid extends Pet {
     }
 
     public boolean isPotentialTarget(GridEntity g) {
-        return mode == 3 ? g.getHealth() < g.getMaxHealth() && isAlliedWith(g) : super.isPotentialTarget(g);
+        return mode == 3 ? g.getHealth() < g.getMaxHealth() && isAlliedWith(g) && g!=this : super.isPotentialTarget(g);
     }
 
     private static final int reloadtime = 30;
@@ -272,6 +272,9 @@ public class Droid extends Pet {
 
     public void setMode(int m) {
         mode = m;
+        if(mode==3&&target!=null&&isAggroTowards(target)||mode==0&&target!=null&&isAlliedWith(target)){
+            target = null;
+        }
     }
 
     public void setTarget(Location l) {

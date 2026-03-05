@@ -93,10 +93,14 @@ public class DroidController extends Weapon {
             droid.setTarget(l);
         }
     }
-    public void notifyHit(GridEntity l) {
+    public boolean notifyHit(GridEntity l) {
         if(droid!=null){
-            droid.setTarget(l);
+            if(droid.getMode()==0&&droid.isAggroTowards(l)||droid.getMode()==3&&droid.isAlliedWith(l)){
+                droid.setTarget(l);
+                return true;
+            }
         }
+        return false;
     }
 
     public void reload(double speed) {

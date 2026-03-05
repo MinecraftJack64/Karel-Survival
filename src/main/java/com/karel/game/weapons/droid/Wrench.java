@@ -10,12 +10,13 @@ public class Wrench extends com.karel.game.gridobjects.hitters.FlyingProjectile{
         super(rotation, targetdistance, height, source);
         this.notify = notify;
         setDamage(150);
+        setHitAllies(true);
         setRange(35);
     }
     public void doHit(GridEntity t){
-        super.doHit(t);
+        if(isAggroTowards(t))super.doHit(t);
         if(!notified&&notify!=null){
-            notify.notifyHit(t);
+            if(notify.notifyHit(t))
             notified = true;
         }
     }

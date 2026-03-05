@@ -132,8 +132,11 @@ TODO
 3/4
 Content
  - Droid ult upgrade and gadget
+Balancing
+ - Droid can set healing targets
 Fixes
  - Fixed crash when activating Droid "manual override" ult when no targets exist, also fixed when player dies while overriden
+ - Fixed droid following enemy target when healing
 
 3/3
 Completed
