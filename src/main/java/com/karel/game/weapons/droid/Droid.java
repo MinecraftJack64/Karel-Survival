@@ -71,6 +71,9 @@ public class Droid extends Pet {
             remote.fire();
             GridEntity g = remote.getHolder();
             GridEntity targ = g.getTarget();
+            if(targ==null){
+                targ = this;
+            }
             double gang = g.face(targ, g.canMove());
             while(real==null){
                 choosePatrolArea(getX(), getY());
