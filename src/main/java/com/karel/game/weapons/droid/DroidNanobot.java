@@ -53,7 +53,7 @@ public class DroidNanobot extends Bullet
         }
     }
     public void doHit(GridEntity g){
-        heal(g, 75);
+        heal(g, 50);
         super.doHit(g);
     }
 }

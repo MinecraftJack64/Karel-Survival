@@ -10,9 +10,12 @@ import com.karel.game.Pet;
 import com.karel.game.Player;
 import com.karel.game.TickingTimeBomb;
 import com.karel.game.Vector;
+import com.karel.game.effects.EffectID;
 import com.karel.game.effects.PullEffect;
+import com.karel.game.effects.StunEffect;
 import com.karel.game.physics.Dasher;
 import com.karel.game.physics.DasherDoer;
+import com.karel.game.weapons.mortar.ShotLeader;
 import com.raylib.Texture;
 
 /**
@@ -27,6 +30,7 @@ public class Droid extends Pet {
     public static Texture rocket2 = Greenfoot.loadTexture("rocketWithThrust.png");
     private Texture crosshair = Greenfoot.loadTexture("Controls/target.png");
     private GridEntity target;
+    private ShotLeader leader;
     private Location patrol, real;
     private DroidController remote;
     private int ammo = 0;
@@ -74,6 +78,13 @@ public class Droid extends Pet {
             if(targ==null){
                 targ = this;
             }
+            if(leader==null){
+                leader = new ShotLeader(targ, g);
+                g.addObjectHere(leader);
+            }
+            if(leader.getTarget()!=targ){
+                leader = null;
+            }
             double gang = g.face(targ, g.canMove());
             while(real==null){
                 choosePatrolArea(getX(), getY());
@@ -99,6 +110,7 @@ public class Droid extends Pet {
             Vector v = ((Player)remote.getHolder()).getMovementControlVector();
             walk(v.getDirection()+90, v.getLength());
             face(getWorld().getGridMouseX(), getWorld().getGridMouseY(), canMove());
+            ammo++; // double ammo in mode
             if(ammo > reloadtime&&canAttack()&&Game.isAttackDown()||Game.getInputMethod().equals("keyboard")&&Greenfoot.isActive("attack")){
                 attack();
                 ammo = 0;
@@ -107,6 +119,15 @@ public class Droid extends Pet {
                 remote.ult();
             }
         }else if (mode == 0 || mode == 3) {
+            if (remote.getAttackUpgrade() == 1) {
+                if(leader==null&&distanceTo(getTarget()) <= laserrange){
+                    leader = new ShotLeader(getTarget(), this);
+                    getTarget().addObjectHere(leader);
+                }else if(distanceTo(getTarget()) > laserrange){
+                    if(leader!=null)getWorld().removeObject(leader);
+                    leader = null;
+                }
+            }
             if (distanceTo(getTarget()) <= laserrange && ammo > reloadtime && canAttack()
                     && (mode == 0 && isAggroTowards(getTarget()) || mode == 3 && isAlliedWith(getTarget()))) {
                 attack();
@@ -140,9 +161,6 @@ public class Droid extends Pet {
                 if (forcerepatrolcooldown == 0) {
                     real = null;
                 }
-            }
-            if (remote.getAttackUpgrade() == 1) {
-                //
             }
         } else if (mode == 1) {
             if (distanceTo(getTarget()) > laserrange) {
@@ -204,20 +222,27 @@ public class Droid extends Pet {
     }
 
     public void attack() {
+        double ang = getRotation();
+        if(leader!=null){
+            Location l = leader.getShotPrediction((int)(distanceTo(leader)/20));
+            ang = face(l.x, l.y, true);
+            getWorld().removeObject(leader);
+            leader = null;
+        }
         switch (mode) {
             case 0:
-                addObjectHere(new DroidLaser(getRotation(), this));
+                addObjectHere(new DroidLaser(ang, this));
                 break;
             case 1:
-                addObjectHere(new DrillBit(getRotation(), this));
+                addObjectHere(new DrillBit(ang, this));
                 break;
             case 2:
                 for (int i = -45; i < 45; i++) {
-                    addObjectHere(new DroidShot(getRotation() + i, this));
+                    addObjectHere(new DroidShot(ang + i, this));
                 }
                 break;
             case 3:
-                addObjectHere(new DroidHealLaser(getRotation(), this));
+                addObjectHere(new DroidHealLaser(ang, this));
         }
     }
 
@@ -246,18 +271,25 @@ public class Droid extends Pet {
     }
 
     public double getOverrideTargetX(){
+        if(leader!=null)return leader.getShotPrediction(getGShotTime(leader.getTarget())).x;
         if(remote.getHolder().getTarget()==null)return getX();
         return remote.getHolder().getTarget().getX();
     }
 
+    private int getGShotTime(GridObject target2) {
+        GridEntity g = getSpawner();
+        Wrench w = new Wrench(g.getRotation(), g.distanceTo(target2), g.distanceTo(target2), this, remote);
+        return (int)w.getPath().getDuration();
+    }
+
     public double getOverrideTargetY(){
+        if(leader!=null)return leader.getShotPrediction(getGShotTime(leader.getTarget())).y;
         if(remote.getHolder().getTarget()==null)return getY();
         return remote.getHolder().getTarget().getY();
     }
 
     public double getOverrideTargetRotation(){
-        if(remote.getHolder().getTarget()==null)return remote.getHolder().face(this, false);
-        return remote.getHolder().face(remote.getHolder().getTarget(), false);
+        return remote.getHolder().face(getOverrideTargetX(), getOverrideTargetY(), false);
     }
 
     public void dash(double direction) {
@@ -267,6 +299,10 @@ public class Droid extends Pet {
     }
 
     public void die(GridObject source){
+        if(leader!=null){
+            getWorld().removeObject(leader);
+            leader = null;
+        }
         super.die(source);
         if(life>0){
             remote.disableSpecial();
@@ -275,8 +311,26 @@ public class Droid extends Pet {
 
     public void setMode(int m) {
         mode = m;
+        leader = null;
         if(mode==3&&target!=null&&isAggroTowards(target)||mode==0&&target!=null&&isAlliedWith(target)){
             target = null;
+        }
+        switch(mode){
+            case 0:
+                knockBackOnEnemies(100, 150);
+                break;
+            case 1:
+                if(isAggroTowards(getTarget())&&distanceTo(getTarget())<400){
+                    getTarget().applyEffect(new PullEffect(getTarget().face(this, false), 10, 10, this));
+                }
+                break;
+            case 2:
+                explodeOn(100, (g)->{
+                    g.applyEffect(new StunEffect(30, this, new EffectID(this)));
+                });
+                break;
+            case 3:
+                explodeOn(100, -500);
         }
     }
 

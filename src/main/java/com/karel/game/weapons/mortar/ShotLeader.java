@@ -35,4 +35,7 @@ public class ShotLeader extends GridObject {
         double fx = targetX+getBranchX(d, spf*frames), fy = targetY+getBranchY(d, spf*frames);
         return new Location(fx, fy);
     }
+    public GridObject getTarget(){
+        return target;
+    }
 }

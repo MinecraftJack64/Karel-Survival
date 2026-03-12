@@ -154,6 +154,7 @@ public class DroidController extends Weapon {
 
     public void unequip() {
         if (droid != null) {
+            droid.kill(getHolder());
             getHolder().getWorld().removeObject(droid);
             dischargeUlt(getUlt());
         }

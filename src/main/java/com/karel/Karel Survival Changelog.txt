@@ -129,6 +129,22 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+3/12
+Fixes
+ - Droid no longer leaves player locked if unequipped in override mode
+Balancing
+ - Droid now leads shots in manual override
+Content
+ - Added droid attack upgrade
+Technical
+ - ShotLeader can now return target
+
+3/9
+Balancing
+ - Droid
+    - (-)Ult upgrade healing(75x4->50x4)
+    - (+)Changing modes now comes with an instant radius effect
+
 3/4
 Content
  - Droid ult upgrade and gadget

@@ -387,7 +387,7 @@ public abstract class GridObject extends KActor
         if(dmg>=0){
             return explodeOn(range, "enemy", (g)->{damage(g, dmg);}, new Explosion(((double)range)/60));
         }else{
-            return explodeOn(range, "ally", (g)->{heal(g, dmg);}, null);
+            return explodeOn(range, "ally", (g)->{heal(g, -dmg);}, null);
         }
     }
     public int explodeOnAll(int range, int dmg){
