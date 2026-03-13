@@ -223,7 +223,7 @@ public class Droid extends Pet {
 
     public void attack() {
         double ang = getRotation();
-        if(leader!=null){
+        if(leader!=null&&!overridden){
             Location l = leader.getShotPrediction((int)(distanceTo(leader)/20));
             ang = face(l.x, l.y, true);
             getWorld().removeObject(leader);
@@ -237,7 +237,7 @@ public class Droid extends Pet {
                 addObjectHere(new DrillBit(ang, this));
                 break;
             case 2:
-                for (int i = -45; i < 45; i++) {
+                for (int i = 0; i < 1; i++) {
                     addObjectHere(new DroidShot(ang + i, this));
                 }
                 break;

@@ -35,4 +35,7 @@ public class ShieldID{
         ShieldID other = (ShieldID)o;
         return purpose.equals(other.getPurpose())&&(!keyimportance||((key==null&&other.getKey()==null)||key.equals(other.getKey())));
     }
+    public int hashCode(){
+        return 0;
+    }
 }

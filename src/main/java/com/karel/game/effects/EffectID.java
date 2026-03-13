@@ -35,4 +35,7 @@ public class EffectID{
         EffectID other = (EffectID)o;
         return purpose.equals(other.getPurpose())&&(!keyimportance||((key==null&&other.getKey()==null)||key.equals(other.getKey())));
     }
+    public int hashCode(){
+        return 0;
+    }
 }
