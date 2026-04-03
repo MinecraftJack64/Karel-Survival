@@ -129,6 +129,10 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/3
+Content
+ - Added the Snail Shell base kit
+
 3/12
 Fixes
  - Droid no longer leaves player locked if unequipped in override mode
