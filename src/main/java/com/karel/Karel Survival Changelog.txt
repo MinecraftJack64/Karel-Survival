@@ -26,6 +26,21 @@ Gadget "Molt": Gain a 50% shield and after 2 seconds, heal fully and jump forwar
 Billionaire Zombie(Whittler/Tank)
 Shoots a ton of money at you spread in a cones pattern from a far distance, which rapidly lose speed, dealing low damage. The money remains on a ground until it dies and if it picks up its own money, it will be shot out at you, not taking up any unload time.
 Spawns 2 bodyguards next to it. They circle around it.
+Location: Office Building
+
+Waste Auditor(mythic)
+Shoot out a greeting that will be echoed back if it hits an enemy. It will also increase their familiarity meter up to 3, which lowers over time and allows more echoes to be reflected back. Echoes only have slight homing. If they hit you, they heal you slightly and reload you a little.
+Ult "Waste Audit": Bottles and cans will spawn randomly over some time and you gain temporary movement speed increase. At the end, all collected recyclables in your bag are converted into money.
+If you have enough money, you will start a party. During a party, all enemies with familiarity will be stunned depending on how familiar they are with you and spit out recyclables. Their familiarities reset.
+Attack Upgrade "Friends": If you hit an enemy at 3 familiarity, they will be temporarily hypnotized
+Ult Upgrade "Reinforcements": Two clones of you will spawn who are also capable of attacking. They are faster than you and run to collect recyclables and cash in when you do. If they die, they drop all recyclables they were holding.
+Gadget "Can Crush": Stomp on the ground, damaging enemies in an area heavily, forcing a bottle out of them and cashing out all recyclables instantly.
+Your bag holds 20 recyclables.
+
+Snailshell(common)
+Throws a clump of salt onto the ground, which damages zombies standing on it increasingly and forces them to pathfind away from a few seconds.
+Ult "Shell Protection": Retract into your shell which protects you from 80% of all damage and makes you 70% slower. It also reflects projectiles. It lasts a limited time but also has health which allows it to end early.
+Location: Infested Pest Control
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
