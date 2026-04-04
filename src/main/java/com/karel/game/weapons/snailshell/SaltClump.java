@@ -1,0 +1,34 @@
+package com.karel.game.weapons.snailshell;
+
+import com.karel.game.GridObject;
+import com.karel.game.gridobjects.hitters.FlyingProjectile;
+import com.karel.game.particles.FlameTrail;
+
+public class SaltClump extends FlyingProjectile
+{
+    public SaltClump(double rotation, double targetdistance, double height, GridObject source)
+    {
+        super(rotation, targetdistance, height, source);
+        setImage("Projectiles/Throws/molotov.png");
+        scaleTexture(30);
+        setRange(50);
+        setDamage(200);
+    }
+    public void animate(){
+        super.animate();
+        setRotation(getRotation() + 30);
+    }
+    public void applyPhysics(){
+        FlameTrail ft = new FlameTrail(1);
+        addObjectHere(ft);
+        ft.setHeight(getHeight());
+        super.applyPhysics();
+    }
+    public double getGravity(){
+        return 1;
+    }
+    public void die(){
+        addObjectHere(new SaltPuddle(this));
+        super.die();
+    }
+}

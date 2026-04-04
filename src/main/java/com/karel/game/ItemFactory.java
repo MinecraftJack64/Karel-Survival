@@ -46,6 +46,7 @@ import com.karel.game.weapons.scalpel.Scalpel;
 import com.karel.game.weapons.scream.Scream;
 import com.karel.game.weapons.shotgun.Shotgun;
 import com.karel.game.weapons.slicer.Slicer;
+import com.karel.game.weapons.snailshell.SnailShell;
 import com.karel.game.weapons.snakecharmer.SnakeCharmer;
 import com.karel.game.weapons.sodahat.SodaHat;
 import com.karel.game.weapons.soup.Soup;
@@ -135,7 +136,8 @@ public class ItemFactory
                                     "doublegun",
                                     "fastfood",
                                     "salicycle",
-                                    "jackolantern"};
+                                    "jackolantern",
+                                    "snailshell"};
     public static Item createItem(String type, ItemHolder holder)
     {
         switch(type)
@@ -302,6 +304,9 @@ public class ItemFactory
             //?
             case "jackolantern":
                 return new JackOLantern(holder);
+            //
+            case "snailshell":
+                return new SnailShell(holder);
             case "sudo":
                 return new Sudo(holder);
             default:
