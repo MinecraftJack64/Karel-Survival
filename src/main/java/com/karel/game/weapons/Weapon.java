@@ -167,6 +167,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
     }
     public void setAmmo(IAmmoManager ammo){
         this.ammo = ammo;
+        if(equipped()){
+            Game.gameUI().newAmmo(getAmmo());
+        }
     }
     public void onGadgetActivate(){};
     public void onGadgetContinue(){};

@@ -31,7 +31,8 @@ public abstract class GridEntity extends GridObject
     private HashMap<EffectID, Double> exposureAffecters = new HashMap<EffectID, Double>();
     private HashMap<EffectID, Double> sizeAffecters = new HashMap<EffectID, Double>();
     private HashMap<EffectID, Double> reloadAffecters = new HashMap<EffectID, Double>();
-    private double exposureMultiplier = 1, sizeMultiplier = 1, reloadMultiplier = 1;//exposure multiplier is used to increase damage taken from bullets
+    private HashMap<EffectID, Double> visionAffecters = new HashMap<EffectID, Double>();
+    private double exposureMultiplier = 1, sizeMultiplier = 1, reloadMultiplier = 1, visionMultiplier = 1;//exposure multiplier is used to increase damage taken from bullets
     private HashSet<EffectID> immobilizers = new HashSet<EffectID>();//these store the affectors behind each effect
     private boolean canmove = true;//if you can move
     private HashSet<EffectID> silencers = new HashSet<EffectID>();
@@ -130,6 +131,15 @@ public abstract class GridEntity extends GridObject
     }
     public double getReloadMultiplier(){
         return reloadMultiplier;
+    }
+    public void setVisionMultiplier(double perc, EffectID ctrl){
+        visionMultiplier = accountForStatus(visionAffecters, perc, ctrl);
+    }
+    public void setVisionMultiplier(double perc){
+        visionMultiplier = perc;
+    }
+    public double getVisionMultiplier(){
+        return visionMultiplier;
     }
     public void setSizeMultiplier(double perc, EffectID ctrl){
         sizeMultiplier = accountForStatus(sizeAffecters, perc, ctrl);

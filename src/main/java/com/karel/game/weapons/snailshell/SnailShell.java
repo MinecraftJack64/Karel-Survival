@@ -4,6 +4,7 @@ import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.shields.ShieldID;
+import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -14,33 +15,50 @@ import com.karel.game.weapons.Weapon;
  */
 public class SnailShell extends Weapon
 {
-    private static final int gunReloadTime = 90;
+    private static final int gunReloadTime = 30;
     private int reloadDelayCount;
+    private AmmoManager ammo, ammo2;
     private ShieldID shield = new ShieldID(this);
+    private SnailShield shell;
     private SpeedPercentageEffect slow;
     private int ultd = 0;
+    private int mantleCooldown = 0;
     private static final int ult = 2000;
     public void fire(){
-        if (reloadDelayCount >= gunReloadTime) 
+        if(ultd>0){
+            if(reloadDelayCount>=gunReloadTime&&ammo2.hasAmmo()){
+                for(int i = -35; i <= 35; i+=10){
+                    SaltShot bullet = new SaltShot(i+getHand().getTargetRotation(), getHolder());
+                    getHolder().addObjectHere(bullet);
+                }
+                reloadDelayCount = 0;
+                ammo2.useAmmo();
+                openMantle();
+            }
+        }
+        if (reloadDelayCount >= gunReloadTime&&ammo.hasAmmo()) 
         {
-            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 350);
+            double d = Math.min(getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), 400);
             SaltClump bullet = new SaltClump (getHand().getTargetRotation(), d, 300, getHolder());
             getHolder().getWorld().addObject (bullet, getHolder().getX(), getHolder().getY());
             Sounds.play("airtoss");
             reloadDelayCount = 0;
+            ammo.useAmmo();
+            openMantle();
         }
     }
     public void fireUlt(){
+        if(ultd>0){
+            cancelUltReset();
+            return;
+        }
         ultd = 150;
-        getHolder().applyShield(new SnailShield(shield, 0.75, ultd+1));
+        shell = new SnailShield(shield, 0.75, ultd*2);
+        getHolder().applyShield(shell);
         slow = new SpeedPercentageEffect(0.35, ultd, getHolder());
         getHolder().applyEffect(slow);
         newSpecial(ultd, ultd);
-        /*if(getUltUpgrade()==1){
-            for(int i = 0; i < 360; i+=90){
-                getHolder().addObjectHere(new Sandbag(getHolder().getTargetRotation()+i, getHolder()));
-            }
-        }*/
+        setAmmo(ammo2);
     }
     public void endUlt(){
         if(slow!=null&&slow.isApplied()){
@@ -49,10 +67,27 @@ public class SnailShell extends Weapon
         }
         if(getHolder().hasShield(shield))getHolder().removeShield(shield);
         disableSpecial();
+        setAmmo(ammo);
+    }
+    public void openMantle(){
+        mantleCooldown = 0;
+        if(shell!=null)shell.setEffectiveness(0.75);
+    }
+    public void closeMantle(){
+        if(shell!=null)shell.setEffectiveness(0.85);
     }
     public void reload(double speed){
         reloadDelayCount+=speed;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+        if(mantleCooldown<15&&getUltUpgrade()==1&&ultd>0){
+            mantleCooldown++;
+            if(mantleCooldown==15){
+                closeMantle();
+            }
+        }
+        if(getHand().isMoving()){
+            openMantle();
+        }
+        if(ultd==0||reloadDelayCount>=gunReloadTime)super.reload(speed);
     }
     public void update(){
         super.update();
@@ -75,10 +110,9 @@ public class SnailShell extends Weapon
     public SnailShell(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;
-    }
-    public void equip(){
-        super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        ammo = new AmmoManager(90, 2, 2);
+        ammo2 = new AmmoManager(60, 3, 3);
+        setAmmo(ammo);
     }
     public void unequip(){
         endUlt();

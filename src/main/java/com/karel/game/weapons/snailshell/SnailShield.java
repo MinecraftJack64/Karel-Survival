@@ -13,11 +13,11 @@ import com.karel.game.shields.ShieldID;
  */
 public class SnailShield extends Shield
 {
-    private int duration;
+    private int health;
     private double effectiveness;
     public SnailShield(ShieldID myG, double effectiveness, int health){
         super(myG);
-        this.duration = health;
+        this.health = health;
         this.effectiveness = effectiveness;
     }
     public int processDamage(int dmg, GridObject source){
@@ -32,25 +32,26 @@ public class SnailShield extends Shield
             }
             psource.setPower(psource.getPower()*effectiveness);
         }
+        //health-=dmg*effectiveness;
+        if(health<=0){
+            remove();
+        }
         return (int)(dmg*(1-effectiveness));//does not stop damage if not projectile
+    }
+    public void setEffectiveness(double n){
+        effectiveness = n;
     }
     public void redirectProjectile(Bullet psource){
         psource.setDirection(psource.getDirection()-180);
-    }
-    public void tick(){
-        duration--;
-        if(duration==0){
-            remove();
-        }
     }
     public boolean damage(int amt, GridObject source){
         return false;
     }
     public boolean canBreak(){
-        return duration>=0;
+        return health>=0;
     }
     public int getHealth(){
-        return duration>0?duration:1;
+        return health>0?health:1;
     }
 }
 
