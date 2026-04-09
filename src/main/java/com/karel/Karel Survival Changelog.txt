@@ -146,9 +146,20 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/8
+Content
+ - Added Punch Cards base kit
+ - Added Exterramite with just attack
+Balancing
+ - (+)Urchin Zombie, Frisbee Zombie, Weedwacker, Snail Shell, and Electric Fists now add a projectile's original range to it, allowing it to hit much farther
+Technical
+ - Weapons can now allow using attack during ult(removed allowAttackWhileContinueUlt() and renamed to canAttackDuringUlt())(TODO: only for player currently)
+ - Player muted during attack will finish attack
+ - Debug mode for game, allowing ult charge cheat
+
 4/4
 Content
- - ?
+ - Added Snail Shell ult upgrade
 Balancing
  - Snail Shell
     - (+)Attack range(350->400)

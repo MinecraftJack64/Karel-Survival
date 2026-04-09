@@ -33,6 +33,7 @@ public class UrchinShield extends Shield
             redirectProjectile(psource);
             psource.setTeam(getHolder().getTeam());
             psource.setSelfHit(true);
+            psource.resetLife();
             if(psource.getNumTargets()!=-1){
                 psource.setNumTargets(psource.getNumTargets()+1);
             }

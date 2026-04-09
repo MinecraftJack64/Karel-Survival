@@ -15,6 +15,7 @@ public class Bullet extends Projectile
     
     /** A bullet looses one life each act, and will disappear when life = 0 */
     private int life = 40;
+    private int originalLife;
     private double speed;
     private double direction;
     private boolean isDone = false;
@@ -45,12 +46,16 @@ public class Bullet extends Projectile
     }
     public void setLife(int life){
         this.life = life;
+        if(originalLife<life)originalLife = life;
     }
     public int getLife(){
         return life;
     }
     public void addLife(int add){
         this.life+=add;
+    }
+    public void resetLife(){
+        addLife(originalLife);
     }
     public void setSpeed(double speed){
         this.speed = speed;

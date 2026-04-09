@@ -43,6 +43,11 @@ public class AmmoManager implements IAmmoManager
     public int getMaxAmmo(){
         return maxAmmo;
     }
+    public void setProportional(AmmoManager other){
+        ammo = 0;
+        ammoReloadDelay = 0;
+        donateAmmoBar(other.getAmmoBar()/other.getMaxAmmoBar()*getMaxAmmoBar());
+    }
     public void donateAmmo(int amt){
         ammo+=amt;
         handleAmmoOverflow();

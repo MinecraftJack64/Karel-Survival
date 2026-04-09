@@ -97,6 +97,8 @@ public class Game
     private static boolean currentlyTogglingAutoult = false;
 
     private static boolean soundOn = false;
+    
+    public static boolean debugMode = true;
     //TODO: private static boolean currentlycrafting = false;
     static 
     {

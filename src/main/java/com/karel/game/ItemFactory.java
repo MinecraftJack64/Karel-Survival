@@ -15,6 +15,7 @@ import com.karel.game.weapons.droid.DroidController;
 import com.karel.game.weapons.drone.DroneRemote;
 import com.karel.game.weapons.easterbasket.EasterBasket;
 import com.karel.game.weapons.electricfists.ElectricFists;
+import com.karel.game.weapons.exterramite.Exterramite;
 import com.karel.game.weapons.farmer.Farmer;
 import com.karel.game.weapons.fastfood.FastFood;
 import com.karel.game.weapons.fireworks.Fireworks;
@@ -39,6 +40,7 @@ import com.karel.game.weapons.nailgun.NailGun;
 import com.karel.game.weapons.necromancer.Necromancer;
 import com.karel.game.weapons.paintgun.PaintGun;
 import com.karel.game.weapons.pointpinner.Pointpinner;
+import com.karel.game.weapons.punchcards.PunchCards;
 import com.karel.game.weapons.reaper.Reaper;
 import com.karel.game.weapons.rock.RockCatapult;
 import com.karel.game.weapons.salicycle.Salicycle;
@@ -133,7 +135,9 @@ public class ItemFactory
                                     "flashdrive",
                                     "mortar",
                                     "inferno",
+                                    "punchcards",
                                     "doublegun",
+                                    "exterramite",
                                     "fastfood",
                                     "salicycle",
                                     "jackolantern",
@@ -294,8 +298,13 @@ public class ItemFactory
             case "inferno":
                 return new Inferno(holder);
             //MISSING
+            case "punchcards":
+                return new PunchCards(holder);
+            //MISSING
             case "doublegun":
                 return new DoubleGun(holder);
+            case "exterramite":
+                return new Exterramite(holder);
             case "fastfood":
                 return new FastFood(holder);
             //?

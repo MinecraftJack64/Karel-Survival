@@ -95,11 +95,8 @@ public abstract class Weapon implements Item, Tickable, EventListener
         return atkup;
     }
     public boolean use(){
-        if((!continueUlt()||allowAttackWhileContinueUlt())&&(canAttackInAir()||getHolder().isOnGround()))fire();
+        if((!continueUlt()||canAttackDuringUlt())&&(canAttackInAir()||getHolder().isOnGround()))fire();
         return true;
-    }
-    public boolean allowAttackWhileContinueUlt(){
-        return false;
     }
     public void tick(){
         update();
@@ -181,6 +178,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
         return false;
     }
     public boolean canUltInAir(){
+        return false;
+    }
+    public boolean canAttackDuringUlt(){
         return false;
     }
     public int getUltMaxUses(){

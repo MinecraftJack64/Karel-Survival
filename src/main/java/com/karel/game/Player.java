@@ -329,7 +329,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
             boolean didspecial = false;
             if(i instanceof Weapon){
                 Weapon w = (Weapon)i;
-                if(Greenfoot.isActive("inventory")&&Game.getGame() instanceof Sandbox){// TODO remove debug code
+                if(Greenfoot.isActive("inventory")&&(Game.getGame() instanceof Sandbox||Game.debugMode)){
                     w.chargeUlt(100);
                 }
                 didspecial = true;
@@ -343,14 +343,15 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
                     didspecial = false;
                 }
             }
-            if (this.getHeldItem() != null&&(Game.isAttackDown()||Game.getInputMethod().equals("keyboard")&&Greenfoot.isActive("attack")||autoattack||getHeldItem().continueUse())&&!didspecial) {
+            if (this.getHeldItem() != null&&(Game.isAttackDown()||Game.getInputMethod().equals("keyboard")&&Greenfoot.isActive("attack")||autoattack||getHeldItem().continueUse())&&(!didspecial||getHeldItem() instanceof Weapon w&&w.canAttackDuringUlt())) {
                 isattacking = true;
-                if(this.getHeldItem().use())broadcastEvent("attack");;
-    
+                if(this.getHeldItem().use())broadcastEvent("attack");
                 this.hacooldown = 0;
             }else{
                 isattacking = false;
             }
+        }else{
+            if(getHeldItem() instanceof Weapon w&&(w.continueUlt()&&w.ult()||w.continueGadget()&&w.activateGadget()||w.continueUse()&&w.use())){}
         }
         for(Location l: getWorld().getTouchPoints()){
             if(l!=null){
