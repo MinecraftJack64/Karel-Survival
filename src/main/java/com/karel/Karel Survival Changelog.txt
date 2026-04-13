@@ -146,6 +146,10 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/12
+Fixes
+ - Fixed ult duration indicator not working on Snail Shell
+
 4/9
 Content
  - Added Punch Cards gadget and ult upgrade

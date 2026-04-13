@@ -93,6 +93,7 @@ public class SnailShell extends Weapon
         super.update();
         if(ultd>0){
             ultd--;
+            updateSpecial(ultd);
             if(ultd<=0){
                 endUlt();
             }
