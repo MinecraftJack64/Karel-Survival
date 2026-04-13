@@ -146,6 +146,12 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/9
+Content
+ - Added Punch Cards gadget and ult upgrade
+Other
+ - Punched Cards renamed to Punch Cards
+
 4/8
 Content
  - Added Punch Cards base kit

@@ -1,7 +1,11 @@
 package com.karel.game.weapons.punchcards;
 
+import java.util.ArrayList;
+
+import com.karel.game.GridObject;
 import com.karel.game.ItemHolder;
 import com.karel.game.physics.Dasher;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.trackers.AmmoManager;
 import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
@@ -19,6 +23,8 @@ public class PunchCards extends Weapon
     private double reloadDelayCount;
     private int remainingShots = 0;
     private static final int ult = 2000;
+    private int gadgetCooldown = 0; // 45
+    private ArrayList<Integer> punchCard = new ArrayList<Integer>();
     private Dasher dash;
     private AmmoManager ammo = new SimpleAmmoManager(75, 1), ammo2 = new AmmoManager(15, 3, 3);
     public void fire(){
@@ -39,11 +45,12 @@ public class PunchCards extends Weapon
                     onInterrupt();
                 }
             }
-        }else if (reloadDelayCount >= gunReloadTime&&getAmmo().hasAmmo()) {
+        }else if (reloadDelayCount >= gunReloadTime&&getAmmo().hasAmmo()&&gadgetCooldown<=0) {
             if(continueUlt()){
-                getHolder().explodeOn(75, 200);
+                attack();
                 reloadDelayCount = 0;
                 getAmmo().useAmmo();
+                punchCard.add(dash.getLife());
             }else{
                 PunchCard bullet = new PunchCard(getHand().getTargetRotation(), getHolder());
                 getHolder().addObjectHere(bullet);
@@ -54,6 +61,9 @@ public class PunchCards extends Weapon
                 getAmmo().useAmmo();
             }
         }
+    }
+    public void attack(){
+        getHolder().explodeOn(75, 200);
     }
     public void onInterrupt(){
         setContinueUse(false);
@@ -70,11 +80,13 @@ public class PunchCards extends Weapon
                 onInterrupt();
             }
         }else{
+            punchCard.clear();
             setContinueUlt(true);
             setPlayerLockMovement(true);
             dash = new Dasher(getHand().getTargetRotation(), 10, 45, getHolder());
             ammo2.setProportional(ammo);
             setAmmo(ammo2);
+            getHolder().applyShield(new RetaliationShield(new ShieldID(this), 45));
         }
     }
     public boolean canAttackDuringUlt(){
@@ -84,7 +96,7 @@ public class PunchCards extends Weapon
         return ult;
     }
     public void onGadgetActivate(){
-        //
+        gadgetCooldown = 45;
     }
     @Override
     public int defaultGadgets(){
@@ -93,6 +105,13 @@ public class PunchCards extends Weapon
     public void reload(double at){
         reloadDelayCount++;
         super.reload(at);
+        if(gadgetCooldown>0){
+            if(gadgetCooldown==punchCard.get(0)){
+                getHolder().explodeOn(150, 100);
+                punchCard.add(punchCard.remove(0));
+            }
+            gadgetCooldown--;
+        }
     }
     public PunchCards(ItemHolder actor){
         super(actor);
@@ -100,10 +119,20 @@ public class PunchCards extends Weapon
         setAmmo(ammo);
     }
     public String getName(){
-        return "Punched Cards";
+        return "Punch Cards";
     }
     public int getRarity(){
         return 1;
+    }
+    private class RetaliationShield extends com.karel.game.PercentageShield
+    {
+        public RetaliationShield(ShieldID myG, int health){
+            super(myG, 0, health);
+        }
+        public int processDamage(int dmg, GridObject source){
+            attack();
+            return super.processDamage(dmg, source);
+        }
     }
 }
 

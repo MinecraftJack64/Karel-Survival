@@ -33,4 +33,7 @@ public class Dasher
         }
         return true;
     }
+    public int getLife(){
+        return time;
+    }
 }
