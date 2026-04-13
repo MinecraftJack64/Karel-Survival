@@ -147,8 +147,12 @@ TODO
  - Should negative healing/damage call the other function?
 
 4/12
+Graphics
+ - Punch Cards gadget indicates duration now
 Fixes
  - Fixed ult duration indicator not working on Snail Shell
+Technical
+ - Fully implemented ability for phases in status bar
 
 4/9
 Content

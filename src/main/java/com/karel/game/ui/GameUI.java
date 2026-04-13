@@ -39,7 +39,8 @@ public class GameUI extends UI
     public Counter scoreCounter, waveCounter;
     public WaveBar waveHealth;
     private UltBar ultCharge;
-    private AmmoBar ammo, special;
+    private AmmoBar ammo;
+    private SpecialBar special;
     private StatusBar sprint;
     private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2;
     private Button goToMenuBtn, nextLvlBtn;
@@ -394,7 +395,7 @@ public class GameUI extends UI
     public AmmoBar getAmmoBar(){
         return ammo;
     }
-    public AmmoBar getSpecialBar(){
+    public SpecialBar getSpecialBar(){
         return special;
     }
     

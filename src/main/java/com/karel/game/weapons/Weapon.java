@@ -12,6 +12,7 @@ import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.Tickable;
 import com.karel.game.ui.bars.AmmoBar;
+import com.karel.game.ui.bars.SpecialBar;
 import com.raylib.Color;
 import com.raylib.Raylib;
 import com.raylib.Texture;
@@ -299,6 +300,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
     }
     public void disableSpecial(){
         if(isMainWeapon())Game.gameUI().disableSpecial();
+    }
+    public SpecialBar getSpecialBar(){
+        return Game.gameUI().getSpecialBar();
     }
 
     public void equip(){

@@ -88,4 +88,10 @@ public class StatusBar extends Overlay
     public void clearPhases(){
         phases.clear();
     }
+    public ArrayList<Integer> getPhases(){
+        return phases;
+    }
+    public void addPhase(int pos){
+        phases.add(pos);
+    }
 }

@@ -97,6 +97,10 @@ public class PunchCards extends Weapon
     }
     public void onGadgetActivate(){
         gadgetCooldown = 45;
+        newSpecial(gadgetCooldown, gadgetCooldown);
+        for(int card: punchCard){
+            getSpecialBar().addPhase(card);
+        }
     }
     @Override
     public int defaultGadgets(){
@@ -111,6 +115,10 @@ public class PunchCards extends Weapon
                 punchCard.add(punchCard.remove(0));
             }
             gadgetCooldown--;
+            updateSpecial(gadgetCooldown);
+            if(gadgetCooldown==0){
+                disableSpecial();
+            }
         }
     }
     public PunchCards(ItemHolder actor){
