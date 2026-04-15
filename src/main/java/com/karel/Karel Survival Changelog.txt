@@ -149,6 +149,8 @@ TODO
 4/14
 Content
  - Added the Zombie Flow
+Balancing
+ - Cancer Zombie retreat speed(5->2.5)
 
 4/12
 Graphics

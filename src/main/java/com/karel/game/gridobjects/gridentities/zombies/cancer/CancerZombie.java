@@ -49,7 +49,7 @@ public class CancerZombie extends Zombie
         reloadDelayCount+=getReloadMultiplier()+spawnChance;
         double monangle = face(getTarget(), canMove());
         if(distanceTo(getTarget())>attackrange)walk(monangle, 1);
-        else if(distanceTo(getTarget())<retreatrange){fire();walk(monangle, -1);}
+        else if(distanceTo(getTarget())<retreatrange){fire();walk(monangle, -0.5);}
         else{
             fire();
         }
