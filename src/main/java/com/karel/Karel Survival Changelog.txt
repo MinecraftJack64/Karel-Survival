@@ -149,6 +149,7 @@ TODO
 4/12
 Graphics
  - Punch Cards gadget indicates duration now
+ - TODO: electric fists phases(bar charges up during absorption phases and uses up during shooting, showing phases where projectiles were absorbed)
 Fixes
  - Fixed ult duration indicator not working on Snail Shell
 Technical
