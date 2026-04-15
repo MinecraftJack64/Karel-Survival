@@ -24,6 +24,7 @@ import com.karel.game.gridobjects.gridentities.zombies.exorcist.ExorcistZombie;
 import com.karel.game.gridobjects.gridentities.zombies.exploding.ExplodingZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firebreather.FirebreatherZombie;
 import com.karel.game.gridobjects.gridentities.zombies.firingsquad.FiringSquadZombie;
+import com.karel.game.gridobjects.gridentities.zombies.flow.ZombieFlow;
 import com.karel.game.gridobjects.gridentities.zombies.frisbee.FrisbeeZombie;
 import com.karel.game.gridobjects.gridentities.zombies.fungal.FungalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.gatherer.GathererZombie;
@@ -144,6 +145,7 @@ public class ZombieFactory {
             "mimic",
             "ribbondancer",
             "ironclad",
+            "flow",
             "torpedo",
             "cowboy",
             "boid",
@@ -324,7 +326,8 @@ public class ZombieFactory {
             // bully
             // hairy
             // hairdresser
-            // flow
+            case "flow":
+                return new ZombieFlow();
             case "torpedo":
                 return new TorpedoZombie();
             // piratecaptain
