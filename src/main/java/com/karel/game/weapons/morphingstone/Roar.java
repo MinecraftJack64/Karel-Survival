@@ -6,9 +6,8 @@ import com.karel.game.effects.KnockbackEffect;
 import com.karel.game.gridobjects.hitters.Bullet;
 
 /**
- * A bullet that can hit asteroids.
+ * Khoroosh
  * 
- * @author Poul Henriksen
  */
 public class Roar extends Bullet
 {

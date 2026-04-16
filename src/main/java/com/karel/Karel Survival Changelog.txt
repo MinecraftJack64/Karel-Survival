@@ -146,9 +146,13 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/16
+Content
+ - Added the morphing stone ult, ult upgrade, and gadget
+
 4/15
 Content
- - Added the Morphing Stone attack(TODO: weakening)
+ - Added the Morphing Stone with attack and attack upgrade(TODO: weakening after transform, strengthening from attack)
 
 4/14
 Content
