@@ -3,7 +3,6 @@ package com.karel.game.weapons.morphingstone;
 import com.karel.game.GridEntity;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
-import com.karel.game.effects.TeamSwitchEffect;
 import com.karel.game.trackers.SimpleAmmoManager;
 import com.karel.game.weapons.Weapon;
 
@@ -16,20 +15,18 @@ import com.karel.game.weapons.Weapon;
 public class MorphingStone extends Weapon
 {
     private static final int ult = 1000;
-    private int hypnoMaxDuration = 0;
-    GridEntity hypno;
-    TeamSwitchEffect hypnoEffect;
+    private int charges = 0; // 18
+    GuardianBeast beast;
     public void fire(){//one full ammo deals 350 damage
         if (getAmmo().hasAmmo()) 
         {
-            EssenceStone bullet = new EssenceStone(getHand().getTargetRotation(), getHolder(), this);
-            getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
+            getHolder().addObjectHere(charges<=18?new EssenceStone(getHand().getTargetRotation(), getHolder(), this):new Morpher(getHand().getTargetRotation(), getHolder(), this));
             getAmmo().useAmmo();
             Sounds.play("lifestealshoot");
         }
     }
     public void fireUlt(){
-        Hypnotizer bullet = new Hypnotizer(getHand().getTargetRotation(), getHolder(), this);
+        Morpher bullet = new Morpher(getHand().getTargetRotation(), getHolder(), this);
         getHolder().getWorld().addObject(bullet, getHolder().getX(), getHolder().getY());
         Sounds.play("swirl");
     }
@@ -37,34 +34,35 @@ public class MorphingStone extends Weapon
         return ult;
     }
     public void update(){
-        if(hypno!=null&&(hypno.isDead()||!hypno.getTeam().equals(getHolder().getTeam()))){
-            hypno = null;
-            hypnoEffect = null;
+        if(beast!=null&&(beast.isDead()||!beast.getTeam().equals(getHolder().getTeam()))){
+            beast = null;
             disableSpecial();
         }
-        if(hypnoEffect!=null){
-            updateSpecial(hypnoEffect.getDuration());
+        if(beast!=null){
+            updateSpecial(beast.getDuration());
         }
     }
-    public void notifyHypno(GridEntity targ, TeamSwitchEffect effect){
-        hypno = targ;
-        hypnoEffect = effect;
-        hypnoMaxDuration = hypnoEffect.getDuration();
-        newSpecial(hypnoEffect.getDuration(), hypnoEffect.getDuration());
+    public boolean notifyHypno(GridEntity targ){
+        if(charges<=18||targ.getPercentHealth()-200>0.5){
+            return false;
+        }else{
+            charges = 0;
+        }
+        beast = new GuardianBeast(getHolder(), targ, getAttackUpgrade()==1);
+        getHolder().addObjectHere(beast);
+        newSpecial(beast.getDuration(), beast.getDuration());
+        return true;
     }
     public void notifyHit(){
-        //
+        charges++;
     }
     public void notifyKill(GridEntity t){
-        //
-    }
-    public int defaultGadgets(){
-        return 1;
+        charges+=6;
     }
     public void equip(){
         super.equip();
-        if(hypnoEffect!=null){
-            newSpecial(hypnoMaxDuration, hypnoEffect.getDuration());
+        if(beast!=null){
+            newSpecial(beast.getMaxDuration(), beast.getDuration());
         }
     }
     public MorphingStone(ItemHolder actor){

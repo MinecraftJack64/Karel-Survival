@@ -146,6 +146,10 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/15
+Content
+ - Added the Morphing Stone attack(TODO: weakening)
+
 4/14
 Content
  - Added the Zombie Flow

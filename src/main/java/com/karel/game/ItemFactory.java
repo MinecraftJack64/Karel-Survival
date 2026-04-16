@@ -35,6 +35,7 @@ import com.karel.game.weapons.lanternlobber.LanternLobber;
 import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
 import com.karel.game.weapons.mole.PetMole;
+import com.karel.game.weapons.morphingstone.MorphingStone;
 import com.karel.game.weapons.mortar.Mortar;
 import com.karel.game.weapons.nailgun.NailGun;
 import com.karel.game.weapons.necromancer.Necromancer;
@@ -133,6 +134,7 @@ public class ItemFactory
                                     "scalpel",
                                     "droid",
                                     "flashdrive",
+                                    "morphingstone",
                                     "mortar",
                                     "inferno",
                                     "punchcards",
@@ -291,6 +293,9 @@ public class ItemFactory
                 return new DroidController(holder);
             case "flashdrive":
                 return new FlashDrive(holder);//
+            //MISSING
+            case "morphingstone":
+                return new MorphingStone(holder);
             //MISSING
             case "mortar":
                 return new Mortar(holder);
