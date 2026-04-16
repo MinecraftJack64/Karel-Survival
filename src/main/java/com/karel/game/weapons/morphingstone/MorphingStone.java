@@ -76,9 +76,10 @@ public class MorphingStone extends Weapon
         return 1;
     }
     public boolean canActivateGadget(){
-        return canActivateGadget()&&beast!=null;
+        return super.canActivateGadget()&&beast!=null;
     }
     public void onGadgetActivate(){
+        beast.reset();
         setGadgetTimer(beast.getDuration());
     }
     public void equip(){

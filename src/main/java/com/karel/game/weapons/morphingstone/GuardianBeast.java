@@ -34,6 +34,7 @@ public class GuardianBeast extends Pet
     public GuardianBeast(GridEntity hive, GridEntity cache, boolean upgraded, MorphingStone controller)
     {
         super(hive);
+        inherit(hive);
         this.upgraded = upgraded;
         maxlife = life = upgraded?550:450;
         remote = controller;
@@ -73,15 +74,24 @@ public class GuardianBeast extends Pet
         reloadDelay++;
         if(controlled){
             remote.tick();
-            Vector v = ((Player)remote.getHolder()).getMovementControlVector();
+            remote.render();
+            remote.getHolder().setLocation(getX(), getY());
+            remote.setUltCharge((int)(remote.getUlt()*(ultCharge*1.0/ult)));
+            if(controlled){
+                remote.getHolder().setWorld(getWorld());
+            }
+            Vector v = ((Player)remote.getHolder()).getMovementControlVector(getWorld());
             walk(v.getDirection()+90, v.getLength());
             face(getWorld().getGridMouseX(), getWorld().getGridMouseY(), canMove());
             reloadDelay++;
-            if(reloadTime >= reloadDelay&&canAttack()&&Game.isAttackDown()||Game.getInputMethod().equals("keyboard")&&Greenfoot.isActive("attack")){
+            if(reloadTime <= reloadDelay&&(Game.isAttackDown()||Game.getInputMethod().equals("keyboard")&&Greenfoot.isActive("attack"))){
                 attack();
             }
             if(Greenfoot.isActive("ult")&&ultCharge>=ult){
                 ult();
+            }
+            if(Greenfoot.isActive("gadget")){
+                remote.activateGadget();
             }
         }else{
             double monangle = face(getTarget(), canMove());
@@ -131,6 +141,7 @@ public class GuardianBeast extends Pet
     }
     public void die(GridEntity source){
         if(cached!=null){
+            cached.setWorld(null);
             addObjectHere(cached);
             cached.untrap();
             if(cached.getPercentHealth()<0.5){
@@ -139,6 +150,7 @@ public class GuardianBeast extends Pet
         }
         if(controlled){
             remote.setSpecialAmmo(null);
+            remote.dischargeUlt();
         }
         super.die(source);
     }

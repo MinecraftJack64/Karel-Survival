@@ -263,6 +263,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
         }
         if(isMainWeapon())Game.setUltCharge(ultcharge);
     }
+    public void dischargeUlt(){
+        dischargeUlt(ultcharge);
+    }
     public void setUltCharge(int amt){
         if(amt<ultcharge){
             dischargeUlt(ultcharge-amt);

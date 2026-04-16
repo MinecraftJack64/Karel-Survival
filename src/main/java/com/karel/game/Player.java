@@ -360,10 +360,13 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         }
     }
     public Vector getMovementControlVector(){
+        return getMovementControlVector(getWorld());
+    }
+    public Vector getMovementControlVector(World world){
         int xd = 0, yd = 0;
         Vector v = new Vector(xd, yd);
         if(canMove()&&!movementLocked){
-            if(!getWorld().usesMovementVector()){
+            if(!world.usesMovementVector()){
                 if (!Greenfoot.isActive("right")) {
                     if (Greenfoot.isActive("left")) {
                         xd = -1;
@@ -385,7 +388,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
                 }
                 v = new Vector(xd, yd, 0);
             }else{
-                v = getWorld().getMovementVector();
+                v = world.getMovementVector();
                 if(v.getLength()>0.2){
                     v.setLength(1);
                     ismoving = true;
