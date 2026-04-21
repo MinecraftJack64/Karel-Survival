@@ -146,6 +146,15 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+4/?-4/21
+Content
+ - Added the 3 minecraft weapons
+Technical
+ - GridObjects no longer consider themselves potential targets
+ - Added all aggro team
+Balancing
+ - Guardian beast no longer spawns with immunity shield
+
 4/16
 Content
  - Added the morphing stone ult, ult upgrade, and gadget

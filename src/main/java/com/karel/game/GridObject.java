@@ -499,7 +499,7 @@ public abstract class GridObject extends KActor
     }
 
     public boolean isPotentialTarget(GridEntity entity){
-        return isAggroTowards(entity)&&entity.canDetect();
+        return isAggroTowards(entity)&&entity.canDetect()&&entity!=this;
     }
     public double getGravity(){
         return 3;
@@ -569,7 +569,7 @@ public abstract class GridObject extends KActor
         }
         return gs;
     }
-    public <T extends GridObject> List<T> getGOsInRange(int rng, Class<T> cls){
+    public <T> List<T> getGOsInRange(int rng, Class<T> cls){
         ArrayList<T> gs = new ArrayList<>();
         for(GridObject g:getWorld().allObjects()){
             if(distanceTo(g)<=rng&&cls.isInstance(g)){

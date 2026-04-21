@@ -34,6 +34,8 @@ import com.karel.game.weapons.jadecutter.JadeCutter;
 import com.karel.game.weapons.lanternlobber.LanternLobber;
 import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
+import com.karel.game.weapons.mc_sword.MinecraftSword;
+import com.karel.game.weapons.mc_tnt.MinecraftTNT;
 import com.karel.game.weapons.mole.PetMole;
 import com.karel.game.weapons.morphingstone.MorphingStone;
 import com.karel.game.weapons.mortar.Mortar;
@@ -137,6 +139,9 @@ public class ItemFactory
                                     "morphingstone",
                                     "mortar",
                                     "inferno",
+                                    "mc_sword",
+                                    "mc_bow",
+                                    "mc_tnt",
                                     "punchcards",
                                     "doublegun",
                                     "exterramite",
@@ -302,6 +307,11 @@ public class ItemFactory
             //Ghost Sprite
             case "inferno":
                 return new Inferno(holder);
+            //MISSING
+            case "mc_sword":
+                return new MinecraftSword(holder);
+            case "mc_tnt":
+                return new MinecraftTNT(holder);
             //MISSING
             case "punchcards":
                 return new PunchCards(holder);

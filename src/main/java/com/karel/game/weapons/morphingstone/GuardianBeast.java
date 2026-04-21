@@ -57,6 +57,9 @@ public class GuardianBeast extends Pet
         maxlife = life = 550;
         startCooldown = 45;
     }
+    public int spawnImmunityLength(){
+        return 0;
+    }
 
     /**
      * Do what a rocket's gotta do. (Which is: mostly flying about, and turning,

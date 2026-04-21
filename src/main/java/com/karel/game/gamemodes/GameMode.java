@@ -42,11 +42,16 @@ public abstract class GameMode implements Tickable
         teams.addTeam("zombie");
         teams.addTeam("lootbox");
         teams.addTeam("punchingbag");
+        teams.addTeam("allaggro");
         teams.setAggro("player", "zombie", true);
         teams.setAggro("player", "lootbox", false);
         teams.setAlly("zombie", "zombie", false);
         teams.setAlly("player", "player", false);
         teams.setAggro("player", "punchingbag", false);
+        
+        for(String team: teams.getAllTeams()){
+            teams.setAggro(team, "allaggro", true);
+        }
     }
     public World getWorld(){
         return Game.world;
