@@ -34,6 +34,7 @@ import com.karel.game.weapons.jadecutter.JadeCutter;
 import com.karel.game.weapons.lanternlobber.LanternLobber;
 import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
+import com.karel.game.weapons.mc_bow.MinecraftBow;
 import com.karel.game.weapons.mc_sword.MinecraftSword;
 import com.karel.game.weapons.mc_tnt.MinecraftTNT;
 import com.karel.game.weapons.mole.PetMole;
@@ -310,6 +311,8 @@ public class ItemFactory
             //MISSING
             case "mc_sword":
                 return new MinecraftSword(holder);
+            case "mc_bow":
+                return new MinecraftBow(holder);
             case "mc_tnt":
                 return new MinecraftTNT(holder);
             //MISSING

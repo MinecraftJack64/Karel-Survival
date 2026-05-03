@@ -35,6 +35,8 @@ public class GuardianBeast extends Pet
     {
         super(hive);
         inherit(hive);
+        setImage("beast.png");
+        scaleTexture(60);
         this.upgraded = upgraded;
         maxlife = life = upgraded?550:450;
         remote = controller;
@@ -108,6 +110,7 @@ public class GuardianBeast extends Pet
                 }
             }
         }
+        ammo.reload(getReloadMultiplier());
         if(life>0){
             life--;
             if(life==0){

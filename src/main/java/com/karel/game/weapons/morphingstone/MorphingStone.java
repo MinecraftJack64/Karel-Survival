@@ -49,7 +49,7 @@ public class MorphingStone extends Weapon
         }
     }
     public boolean notifyHypno(GridEntity targ){
-        if(charges<=18||targ.getPercentHealth()-200>0.5){
+        if(charges<=18||targ.getPercentHealth()-200>0.5||targ.isDead()||!targ.isInWorld()){
             return false;
         }else{
             charges = 0;

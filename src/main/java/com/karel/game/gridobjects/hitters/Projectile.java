@@ -14,7 +14,7 @@ public class Projectile extends Hitter
         super(source);
     }
     public void applyPhysics(){
-        //
+        super.applyPhysics();
     }
     public void update(){
         applyPhysics();

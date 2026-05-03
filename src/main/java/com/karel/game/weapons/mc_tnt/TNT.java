@@ -11,13 +11,13 @@ import com.karel.game.particles.Explosion;
  */
 public class TNT extends FlyingProjectile
 {
-    private int life = 45;
+    private int life = 60;
     private boolean lit = false;
     private boolean isSuper;
     public TNT(double rotation, double targetdistance, GridObject source, boolean issuper)
     {
         super(rotation, targetdistance, 50, source);
-        setRange(100);
+        setRange(200);
         setDamage(500);
         setCheckHitMode(2);
         setDieOnHit(false);
@@ -39,8 +39,19 @@ public class TNT extends FlyingProjectile
     public void die(){
         addObjectHere(new Explosion(getRange()/60));
         if(isSuper){
-            knockBackOn(100, 100);
-        }else knockBackOnEnemies(100, 100);
+            for(TNT g: getGOsInRange(getRange(), TNT.class)){
+                g.light();
+                g.life = 15;
+                g.knockBack(face(g, false), 350*(1-distanceTo(g)/200.0), 50, this);
+            }
+        }else for(TNT g: getGOsInRange(getRange(), TNT.class)){
+            g.light();
+            g.knockBack(face(g, false), 5, 5, this);
+            canBePulled();
+        }
+        explodeOnEnemies(getRange(), (e)->{
+            e.knockBack(face(e, false), 200-distanceTo(e), 30, this);
+        });
         super.die();
     }
 }

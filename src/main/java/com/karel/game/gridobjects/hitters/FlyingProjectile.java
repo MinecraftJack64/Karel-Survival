@@ -68,6 +68,7 @@ public class FlyingProjectile extends Projectile
      */
     public void applyPhysics()
     {
+        super.applyPhysics();
         if(getHeight()<=0&&path.percentDone(frame)>0.5) {
             setHeight(0);
             if(checkHitMode<=1)checkHit();

@@ -146,6 +146,25 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+5/2
+Balancing
+ - Minecraft Flint and Steel
+    - Fire gives burn effect(no overall damage change)
+    - TNT range(100->200)
+    - TNT detonation time(45->60)
+    - Fire can light TNT immediately
+    - TNT can no longer knockback other gridentities, only other TNT
+    - TNT can light other TNT on explosion
+    - Ult Upgrade also allows TNT knocked back by TNT to explode in 15 frames
+    - TNT on lighting will be knocked back a little
+    - TNT enemy knockback(100->200 with falloff)
+    - TNT TNT knockback(100->350 with falloff)
+    - TODO: TNT knockback not working
+Fixes
+ - TODO: morphing stone causing ghost zombies
+Technical
+ - Flying projectiles now "apply physics" in addition to their own(TODO: make same)
+
 4/?-4/21
 Content
  - Added the 3 minecraft weapons
