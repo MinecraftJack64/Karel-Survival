@@ -40,6 +40,10 @@ public class RockCatapult extends Weapon
     public int getUlt(){
         return ult;
     }
+    public void showReticle(){
+        double d = Math.min(400, getHand().getTargetDistance());
+        showArcReticle(0, 0, getHand().getTargetRotation()-90, d, d/2, 2);
+    }
     public RockCatapult(ItemHolder actor){
         super(actor);
         reloadDelayCount = gunReloadTime;

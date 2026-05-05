@@ -11,6 +11,8 @@ import com.karel.game.Item;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
 import com.karel.game.Tickable;
+import com.karel.game.Vector;
+import com.karel.game.physics.Arc;
 import com.karel.game.ui.bars.AmmoBar;
 import com.karel.game.ui.bars.SpecialBar;
 import com.raylib.Color;
@@ -137,6 +139,14 @@ public abstract class Weapon implements Item, Tickable, EventListener
             updateAmmo(getAmmo());
         }
     }//TODO: MAKE ABSTRACT LATER
+    public void showArcReticle(double ox, double oy, double dir, double dist, double height, double g){
+        Arc a = new Arc(dist, height, g);
+        for(int f = 0; f < a.getDuration(); f++){
+            double h = a.getHeight(f);
+            Vector v = new Vector(dir, a.getDistance(f));
+            Raylib.drawCircle(getHolder().renderTransformX((int)(getHolder().getX()+ox+v.getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()+oy-h+v.getY())), 2, Raylib.BLUE);
+        }
+    }
     public void showReticle(){
         //reticles are made up of basic shapes
         //reticle types:
@@ -144,8 +154,16 @@ public abstract class Weapon implements Item, Tickable, EventListener
         //circle - circle of radius, dxy, propagates at edges
         //cone - cone of radius and length, rdxy, propagates at edges and center
         //arc - arc, dxyh
+        //dropline - line going down
         //give full propagation time for bot guide
         //variables - $d, $x, $y, $r
+        AimingReticle root = getAimingReticle();
+        if(root==null){
+            return;
+        }
+    }
+    public AimingReticle getAimingReticle(){
+        return null;
     }
     public abstract void fire();
     public abstract void fireUlt();
@@ -525,6 +543,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
         public boolean shouldUseUlt(){
             return true;
         }
+    }
+    public class AimingReticle{
+        //
     }
 }
 

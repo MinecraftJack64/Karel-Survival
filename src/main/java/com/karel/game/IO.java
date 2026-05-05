@@ -41,7 +41,7 @@ public class IO {
     }
     public static boolean isActive(String action){
         if(action.equals("attack")){return isMouseDown();}
-        if(action.equals("attackreticle")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_RIGHT);}
+        if(action.equals("attackreticle")){return true;}//return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_RIGHT);}
         return mappings.containsKey(action)&&Raylib.isKeyDown(mappings.get(action)); // TODO
     }
     public static boolean isMouseDown(){
