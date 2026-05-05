@@ -6,18 +6,18 @@ import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.Sounds;
 import com.karel.game.physics.Arc;
+import com.karel.game.physics.LandingHandler;
 
 /**
  * A bullet that can hit asteroids.
  * 
  * @author Poul Henriksen
  */
-public class FlyingProjectile extends Projectile
+public class FlyingProjectile extends Projectile implements LandingHandler
 {
     /** The damage this bullet will deal */
     private static final int damage = 200;
     public boolean defaultmove = true;
-    private Arc path;
     private double rot;
     protected int frame;
     private boolean dieonhit = true;
@@ -35,7 +35,8 @@ public class FlyingProjectile extends Projectile
         super(source);
         rot = rotation;
         hitstory = new HashSet<GridEntity>();
-        path = new Arc(targetdistance, height, getGravity());
+        initiateJump(rotation, targetdistance, height);
+        //path = new Arc(targetdistance, height, getGravity());
         setDamage(damage);
         setImage("rock.png");
         setCollisionMode("radius");
@@ -45,10 +46,10 @@ public class FlyingProjectile extends Projectile
     }
     
     public double percentDone(){
-        return path.percentDone(frame);
+        return getPath().percentDone(frame);
     }
     public Arc getPath(){
-        return path;
+        return getPhysicsArc();
     }
     
     public double getDirection(){
@@ -68,18 +69,12 @@ public class FlyingProjectile extends Projectile
      */
     public void applyPhysics()
     {
-        super.applyPhysics();
-        if(getHeight()<=0&&path.percentDone(frame)>0.5) {
-            setHeight(0);
-            if(checkHitMode<=1)checkHit();
-            if(dieonhit)die();
-            onTouchGround();
-        } 
-        else {
-            if(defaultmove)move(rot, path.getRate());
-            setHeight(path.getHeight(frame));
-            continueFrame();
-        }
+        if(defaultmove)super.applyPhysics();
+    }
+    public void doLanding(){
+        if(checkHitMode<=1)checkHit();
+        if(dieonhit)die();
+        onTouchGround();
     }
     public void onTouchGround() {
         //
@@ -88,9 +83,6 @@ public class FlyingProjectile extends Projectile
         if(checkHitMode>=1)checkHit();
         getWorld().removeObject(this);
         super.die();
-    }
-    public void continueFrame(){
-        frame++;
     }
     @Override
     public HashSet<GridEntity> getHitStory(){

@@ -137,6 +137,16 @@ public abstract class Weapon implements Item, Tickable, EventListener
             updateAmmo(getAmmo());
         }
     }//TODO: MAKE ABSTRACT LATER
+    public void showReticle(){
+        //reticles are made up of basic shapes
+        //reticle types:
+        //line - rectangle of width and length, dxy, propagates along line
+        //circle - circle of radius, dxy, propagates at edges
+        //cone - cone of radius and length, rdxy, propagates at edges and center
+        //arc - arc, dxyh
+        //give full propagation time for bot guide
+        //variables - $d, $x, $y, $r
+    }
     public abstract void fire();
     public abstract void fireUlt();
     public void reload(){

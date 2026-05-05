@@ -19,11 +19,16 @@ public class FaSFire extends Puddle
         scaleTexture(80);
         setDamage(100);
     }
-    public void tick(){
+    public void lightingTick(){
         for(TNT g: getGOsInRange(getRange(), TNT.class)){
-            g.light();
-            g.knockBack(face(g, false), 5, 5, this);
+            if(!g.lit()){
+                g.light();
+                g.knockBack(face(g, false), 5, 5, this);
+            }
         }
+    }
+    public void tick(){
+        lightingTick();
         super.tick();
     }
     public void doHit(GridEntity g){

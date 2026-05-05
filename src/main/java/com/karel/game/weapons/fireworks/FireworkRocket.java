@@ -29,7 +29,9 @@ public class FireworkRocket extends FlyingProjectile
             if(!exploded)explodeOn(250, 50);
             exploded = true;
             setHeight(getPath().getHeight(frame));
-            continueFrame();
+            setXVel(0);
+            setYVel(0);
+            super.applyPhysics();
         }else{
             super.applyPhysics();
         }

@@ -61,7 +61,7 @@ public class Pinpoint extends FlyingProjectile
         }
     }
     public void applyPhysics(){
-        if(percentDone()<=0.5){setHeight(80);continueFrame();}
+        if(percentDone()<=0.5){setHeight(80);} //TODO
         else super.applyPhysics();
         if(getHeight()==0&&target==null){//didn't hit anything
             die();

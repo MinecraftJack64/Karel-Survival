@@ -28,6 +28,7 @@ public class IO {
         mappings.put("attack", KEY_RIGHT_CONTROL);
         mappings.put("sprint", KEY_LEFT_ALT);
         mappings.put("autoaim", KEY_LEFT_SHIFT);
+        mappings.put("ultreticle", KEY_LEFT_CONTROL);
         mappings.put("craft", KEY_E);
         mappings.put("gadget", KEY_Q);
         mappings.put("pause", KEY_ESCAPE);
@@ -39,7 +40,8 @@ public class IO {
         }
     }
     public static boolean isActive(String action){
-        if(action.equals("attack")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_LEFT);}
+        if(action.equals("attack")){return isMouseDown();}
+        if(action.equals("attackreticle")){return Raylib.isMouseButtonDown(Raylib.MouseButton.MOUSE_BUTTON_RIGHT);}
         return mappings.containsKey(action)&&Raylib.isKeyDown(mappings.get(action)); // TODO
     }
     public static boolean isMouseDown(){

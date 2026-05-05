@@ -24,8 +24,10 @@ public class MinecraftTNT extends Weapon implements AmmoHolder
         {
             double d = Math.min(350, getHand().getTargetDistance());
             double r = getHand().getTargetRotation()-90;
-            getHolder().getWorld().addObject(new FaSFire(getHolder()), getHolder().getX()+getHolder().getBranchX(r, d), getHolder().getY()+getHolder().getBranchY(r, d));
+            FaSFire fire = new FaSFire(getHolder());
+            getHolder().getWorld().addObject(fire, getHolder().getX()+getHolder().getBranchX(r, d), getHolder().getY()+getHolder().getBranchY(r, d));
             Sounds.play("shotgunshoot");
+            fire.lightingTick();
             reloadDelayCount = 0;
             ammo.useAmmo();
         }

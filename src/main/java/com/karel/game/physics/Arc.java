@@ -17,6 +17,9 @@ public class Arc
     public double getHeight(double f){
         return -0.5*a*Math.pow(f, 2)+v*f;
     }
+    public double initialYVelocity(){
+        return v;
+    }
     public double getDistance(double f){
         return f*r;
     }

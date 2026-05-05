@@ -36,6 +36,9 @@ public class TNT extends FlyingProjectile
     public void light(){
         lit = true;
     }
+    public boolean lit(){
+        return lit;
+    }
     public void die(){
         addObjectHere(new Explosion(getRange()/60));
         if(isSuper){

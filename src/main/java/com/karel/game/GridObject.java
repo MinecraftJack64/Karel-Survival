@@ -28,10 +28,9 @@ public abstract class GridObject extends KActor
     String joinedteam;
     String oldteam;
     private Arc arcmomentum;
-    private double dirmomentum;
+    private double vx, vy, vh;
     private HashMap<EffectID, Double> powerAffecters = new HashMap<EffectID, Double>();
     private double powermultiplier = 1, basepower = 1;
-    private int arcframe = 0;
     private boolean grounded;
     private GridEntity cachedTarget;
     private boolean updatingMounts;
@@ -508,15 +507,19 @@ public abstract class GridObject extends KActor
         if(arcmomentum==null){
             return;
         }
-        move(dirmomentum, arcmomentum.getRate());
-        setHeight(arcmomentum.getHeight(arcframe));
-        arcframe++;
-        if(getHeight()<0&&arcframe>0){
+        translate(vx, vy);
+        setHeight(getHeight()+vh);
+        //arcframe++;
+        vh-=getGravity();
+        if(getHeight()<0&&vh<0){
             arcmomentum = null;
-            dirmomentum = 0;
-            arcframe = 0;
-            setHeight(0);
+            //dirmomentum = 0;
+            //arcframe = 0;
             doLanding();
+        }
+        if(getHeight()<0){
+            setHeight(0);
+            vh = 0;
         }
     }
     public boolean isOnGround(){
@@ -527,8 +530,30 @@ public abstract class GridObject extends KActor
     }
     public void initiateJump(double direction, double distance, double height){
         arcmomentum = new Arc(distance, height, getGravity());
-        dirmomentum = direction;
-        arcframe = 0;
+        //dirmomentum = direction;
+        //arcframe = 0;
+        Vector v = new Vector(direction-90, arcmomentum.getRate());
+        vx = v.getX();
+        vy = v.getY();
+        vh = arcmomentum.initialYVelocity();
+    }
+    public void setXVel(int v){
+        vx = v;
+    }
+    public void setYVel(int v){
+        vy = v;
+    }
+    public void setHVel(int v){
+        vh = v;
+    }
+    public double getXVel(){
+        return vx;
+    }
+    public double getYVel(){
+        return vy;
+    }
+    public double getHVel(){
+        return vh;
     }
     // if this object will be notified when it does damage
     public boolean covertDamage(){

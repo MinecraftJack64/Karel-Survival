@@ -200,6 +200,9 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         super.render();
         if(getHeldItem()!=null){
             getHeldItem().render();
+            if(Greenfoot.isActive("attackreticle")){
+                getHeldItem().showReticle();
+            }
         }
         if(getWorld().usesInputVector()){
             renderTexture(crosshair, getTargetX(), getTargetY(), crosshairSize, crosshairSize, 0, 127);
