@@ -152,7 +152,7 @@ Balancing
     - Fire gives burn effect(no overall damage change)
     - TNT range(100->200)
     - TNT detonation time(45->60)
-    - Fire can light TNT immediately
+    - TODO: Fire can light TNT immediately
     - TNT can no longer knockback other gridentities, only other TNT
     - TNT can light other TNT on explosion
     - Ult Upgrade also allows TNT knocked back by TNT to explode in 15 frames

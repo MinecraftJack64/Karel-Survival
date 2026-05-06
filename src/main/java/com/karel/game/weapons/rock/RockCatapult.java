@@ -43,6 +43,7 @@ public class RockCatapult extends Weapon
     public void showReticle(){
         double d = Math.min(400, getHand().getTargetDistance());
         showArcReticle(0, 0, getHand().getTargetRotation()-90, d, d/2, 2);
+        showCircleReticle(getHolder().getBranchX(getHand().getTargetRotation()-90, d), getHolder().getBranchY(getHand().getTargetRotation()-90, d), 100);
     }
     public RockCatapult(ItemHolder actor){
         super(actor);

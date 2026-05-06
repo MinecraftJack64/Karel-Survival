@@ -147,6 +147,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
             Raylib.drawCircle(getHolder().renderTransformX((int)(getHolder().getX()+ox+v.getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()+oy-h+v.getY())), 2, Raylib.BLUE);
         }
     }
+    public void showCircleReticle(double ox, double oy, double dist){
+        Raylib.drawCircleLines(getHolder().renderTransformX((int)(getHolder().getX()+ox)), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()+oy)), (float)dist, Raylib.BLUE);
+    }
     public void showReticle(){
         //reticles are made up of basic shapes
         //reticle types:
