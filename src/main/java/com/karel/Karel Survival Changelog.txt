@@ -146,6 +146,10 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+5/6
+Content
+ - Added the Java Beaner base kit+gadget+attack upgrade
+
 5/2
 Balancing
  - Minecraft Flint and Steel

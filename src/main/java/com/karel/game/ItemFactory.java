@@ -31,6 +31,7 @@ import com.karel.game.weapons.highjacker.Highjacker;
 import com.karel.game.weapons.inferno.Inferno;
 import com.karel.game.weapons.jackolantern.JackOLantern;
 import com.karel.game.weapons.jadecutter.JadeCutter;
+import com.karel.game.weapons.javabean.JavaBeaner;
 import com.karel.game.weapons.lanternlobber.LanternLobber;
 import com.karel.game.weapons.lovestrike.Lovestrike;
 import com.karel.game.weapons.lymphcannon.LymphCannon;
@@ -131,6 +132,7 @@ public class ItemFactory
                                     //"gum",
                                     //"tumbleweed",
                                     "paintgun",
+                                    "javabean",
                                     "trolltest",
                                     "acidart",
                                     "uraniumdrum",
@@ -284,6 +286,9 @@ public class ItemFactory
                 //return new TumbleweedLauncher(holder);
             case "paintgun":
                 return new PaintGun(holder);
+            //MISSING
+            case "javabean":
+                return new JavaBeaner(holder);
             //MISSING A LOT
             case "trolltest":
                 return new TrollTest(holder);
