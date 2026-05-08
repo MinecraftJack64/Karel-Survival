@@ -136,7 +136,7 @@ public class Button extends Input
         }
         int size = width/5;
         int shrink = state==2?shrinkAmount:0;
-        if(showBackground)Raylib.drawRectangle(renderTransformX((int)(getX()-width/2+shrink)), renderTransformY((int)(getY()-height/2+shrink)), renderOriginX(width-shrink*2), renderTransformY(height-shrink*2), c);
+        if(showBackground)Raylib.drawRectangle(renderTransformX((int)(getX()-width/2+shrink)), renderTransformY((int)(getY()-height/2+shrink)), renderOriginX(width-shrink*2), renderOriginY(height-shrink*2), c);
         int x = renderTransformX((int)getX()-Raylib.measureText(text, size)/2);
         int y = renderTransformY((int)getY()-Raylib.getFontDefault().getBaseSize()*(size/10)/2-textOffsetY);
         if(showText) Raylib.drawText(text, x, y, (int)(size*getWorld().getScreenScale()), textColor);

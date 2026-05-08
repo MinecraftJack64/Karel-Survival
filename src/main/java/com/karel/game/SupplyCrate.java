@@ -14,6 +14,7 @@ public class SupplyCrate extends GridEntity
         startHealth(350);
         setTeam("lootbox");
         setImage("barrel.png");
+        scaleTexture(50);
         loot = todrop;
     }
     public SupplyCrate(){

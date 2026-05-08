@@ -130,7 +130,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
             int k = 0;
             for(PaletteSlice p: palette){
                 p.color.setA((byte)100);
-                Raylib.drawRing(new Vector2(getHolder().renderTransformX((int)(getHolder().getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()))), 0, getHolder().renderTransformY((int)size/2)+(getSelectedPalette()==k?30:0), (float)x, (int)(360/palette.size()+x), 1, p.color);
+                Raylib.drawRing(new Vector2(getHolder().renderTransformX((int)(getHolder().getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()))), 0, getHolder().renderOriginY((int)size/2)+(getSelectedPalette()==k?30:0), (float)x, (int)(360/palette.size()+x), 1, p.color);
                 x+=360/palette.size();
                 k++;
             }

@@ -37,7 +37,7 @@ public class World
     
     //scrolling
     public double scrollX = 0, scrollY = 0;
-    private boolean scrollToPlayer = false;
+    private boolean scrollToPlayer = true;
     
     //these are constant default values, to be deprecated
     public int gridheight = 16;

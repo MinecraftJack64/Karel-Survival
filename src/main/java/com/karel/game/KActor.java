@@ -20,7 +20,7 @@ public abstract class KActor
     boolean shouldRemove;
     String lastTexturePath = "";
     private GridObject mounter;
-    private String drawCenter = "center"; // "top" or "center"
+    private String drawCenter = "center"; // "top" or "center", where to draw the image
     private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     private boolean shouldUnmount;
     private boolean mountFixed;
@@ -212,24 +212,27 @@ public abstract class KActor
             int w = getImage().getWidth(), h = getImage().getHeight();
             int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
             transColor.setA((byte)getOpacity());
-            Vector2 center = drawCenter.equals("top")?new Vector2(renderOriginX(dw/2), 0):new Vector2(renderOriginX(dw/2), renderTransformY(dh/2));
-            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getX())), renderTransformY((int)(getY()-getHeight())), renderOriginX(dw), renderTransformY(dh)), center, (float)getRotation(), transColor);
+            Vector2 center = drawCenter.equals("top")?new Vector2(renderOriginX(dw/2), 0):new Vector2(renderOriginX(dw/2), renderOriginY(dh/2));
+            Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getX())), renderTransformY((int)(getY()-getHeight())), renderOriginX(dw), renderOriginY(dh)), center, (float)getRotation(), transColor);
         }
     };
     public void renderTexture(Texture tex, double x, double y, double scaleX, double scaleY, double rot, int opacity){
         if(tex!=null){
             int w = tex.getWidth(), h = tex.getHeight();
-            Raylib.drawTexturePro(tex, new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(x)), renderTransformY((int)(y)), renderOriginX((int)scaleX), renderTransformY((int)scaleY)), new Vector2(renderOriginX((int)(scaleX/2)), renderTransformY((int)(scaleY/2))), (float)(rot), new Color((byte)-1, (byte)-1, (byte)-1, (byte)opacity));
+            Raylib.drawTexturePro(tex, new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(x)), renderTransformY((int)(y)), renderOriginX((int)scaleX), renderOriginY((int)scaleY)), new Vector2(renderOriginX((int)(scaleX/2)), renderOriginY((int)(scaleY/2))), (float)(rot), new Color((byte)-1, (byte)-1, (byte)-1, (byte)opacity));
         }
     }
     public int renderTransformX(int x){
         return (int)((x-(isInGridWorld()?getScrollX():0))*getWorld().getScreenScale()+getWorld().getScreenOffsetX());
     }
     public int renderOriginX(int x){
-        return (int)((x-(isInGridWorld()?getScrollX():0))*getWorld().getScreenScale());
+        return (int)(x*getWorld().getScreenScale());
     }
     public int renderTransformY(int y){
         return (int)((y-(isInGridWorld()?getScrollY():0))*getWorld().getScreenScale());
+    }
+    public int renderOriginY(int y){
+        return (int)(y*getWorld().getScreenScale());
     }
     public void playSound(String sound){
         if(isInWorld()){
