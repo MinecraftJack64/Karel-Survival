@@ -26,9 +26,9 @@ public class IO {
         mappings.put("targetback", KEY_DOWN);
         mappings.put("ult", KEY_SPACE);
         mappings.put("attack", KEY_RIGHT_CONTROL);
-        mappings.put("sprint", KEY_LEFT_ALT);
+        mappings.put("sprint", KEY_LEFT_CONTROL);
         mappings.put("autoaim", KEY_LEFT_SHIFT);
-        mappings.put("ultreticle", KEY_LEFT_CONTROL);
+        mappings.put("ultreticle", KEY_LEFT_ALT);
         mappings.put("craft", KEY_E);
         mappings.put("gadget", KEY_Q);
         mappings.put("pause", KEY_ESCAPE);

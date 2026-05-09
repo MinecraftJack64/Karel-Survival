@@ -43,6 +43,12 @@ Ult "Shell Protection": Retract into your shell which protects you from 75% of a
 Ult Upgrade "Mantle Closure": After a short time of not attacking and not moving, protect from 10% more damage
 Gadget "Snail Trap": Your next attack creates a snail trap which attracts zombies and poisons them.
 Location: Infested Pest Control
+
+Ubiquitous Zombie(Whittler)
+Extremely high range. Every second, damage each ally in range for 1 damage.
+
+?(Midranger)
+Shoot out a slow bullet that can change direction twice to face you. On hit, it will poison you weakly(will not kill you).
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -145,6 +151,16 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+5/8
+Technical
+ - Added ability to zoom in
+Other
+ - Alt key for sprinting and Ctrl key for showing ult reticle have been swapped
+
+5/7
+Fixes
+ - Fixed the world scrolling features, which are on for now
 
 5/6
 Content

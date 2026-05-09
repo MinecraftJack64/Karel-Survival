@@ -36,7 +36,7 @@ public class World
     public ArrayList<GridObject> allGridObjects = new ArrayList<GridObject>(); // a list of all grid objects in the world excluding grid entities
     
     //scrolling
-    public double scrollX = 0, scrollY = 0;
+    public double scrollX = 0, scrollY = 0, scrollSize = 1;
     private boolean scrollToPlayer = true;
     
     //these are constant default values, to be deprecated
@@ -102,15 +102,19 @@ public class World
         return scrollY;
     }
 
+    public double getScrollSize(){
+        return scrollSize;
+    }
+
     public double getGravity(){
         return gravity;
     }
 
     public int getGridMouseX(){
-        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale+getScrollX());
+        return (int)((Game.getMouseX()-gridXOffset)/gridSizeScale/getScrollSize()+getScrollX());
     }
     public int getGridMouseY(){
-        return (int)(Game.getMouseY()/gridSizeScale+getScrollY());
+        return (int)(Game.getMouseY()/gridSizeScale/getScrollSize()+getScrollY());
     }
     public Vector getInputVector(){
         return Game.targetVector;

@@ -49,6 +49,9 @@ public abstract class KActor
     public double getScrollY(){
         return getWorld().getScrollY();
     }
+    public double getScrollSize(){
+        return getWorld().getScrollSize();
+    }
     public void setLocation(double x, double y, double height){
         rh = height;
         setLocation(x, y);
@@ -223,16 +226,16 @@ public abstract class KActor
         }
     }
     public int renderTransformX(int x){
-        return (int)((x-(isInGridWorld()?getScrollX():0))*getWorld().getScreenScale()+getWorld().getScreenOffsetX());
+        return (int)((x-(isInGridWorld()?getScrollX():0))*(isInGridWorld()?getScrollSize():1)*getWorld().getScreenScale()+getWorld().getScreenOffsetX());
     }
     public int renderOriginX(int x){
-        return (int)(x*getWorld().getScreenScale());
+        return (int)(x*(isInGridWorld()?getScrollSize():1)*getWorld().getScreenScale());
     }
     public int renderTransformY(int y){
-        return (int)((y-(isInGridWorld()?getScrollY():0))*getWorld().getScreenScale());
+        return (int)((y-(isInGridWorld()?getScrollY():0))*(isInGridWorld()?getScrollSize():1)*getWorld().getScreenScale());
     }
     public int renderOriginY(int y){
-        return (int)(y*getWorld().getScreenScale());
+        return (int)(y*(isInGridWorld()?getScrollSize():1)*getWorld().getScreenScale());
     }
     public void playSound(String sound){
         if(isInWorld()){
