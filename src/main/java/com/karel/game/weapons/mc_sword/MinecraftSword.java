@@ -15,7 +15,8 @@ import com.karel.game.weapons.Weapon;
 public class MinecraftSword extends Weapon
 {
     private static final int gunReloadTime = 20, critTime = 20;
-    private int reloadDelayCount, critDelay;
+    private double reloadDelayCount;
+    private int critDelay;
     private AmmoManager ammo;
     private static final int ult = 3000;
     private boolean nextdir = false;

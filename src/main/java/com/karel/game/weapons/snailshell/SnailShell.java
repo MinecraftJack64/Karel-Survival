@@ -16,7 +16,7 @@ import com.karel.game.weapons.Weapon;
 public class SnailShell extends Weapon
 {
     private static final int gunReloadTime = 30;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private AmmoManager ammo, ammo2;
     private ShieldID shield = new ShieldID(this);
     private SnailShield shell;

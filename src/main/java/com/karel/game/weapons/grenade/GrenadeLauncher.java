@@ -15,7 +15,7 @@ import com.karel.game.weapons.Weapon;
 public class GrenadeLauncher extends Weapon
 {
     private static final int gunReloadTime = 60;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private int sid;
     private static final int ult = 1000;
     public void fire(){
@@ -43,7 +43,7 @@ public class GrenadeLauncher extends Weapon
     }
     public void reload(double speed){
         reloadDelayCount+=speed;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+        updateAmmo(Math.min((int)reloadDelayCount, gunReloadTime));
     }
     public void onGadgetActivate(){
         setGadgetCount(1);
@@ -60,7 +60,7 @@ public class GrenadeLauncher extends Weapon
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, (int)reloadDelayCount);
     }
     public String getName(){
         return "Grenades";

@@ -16,7 +16,7 @@ public class Scream extends Weapon
 {
     private static final int gunReloadTime = 45;
     private static final int ultReloadTime = 8;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 2000;
     private int ultAmmo = 0; // 10
     private int startUltCooldown = 0; // 30

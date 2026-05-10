@@ -15,7 +15,7 @@ public class LanternLobber extends Weapon
     private DragonFood bait;
     private int ultDuration = 0;
     private static final int gunReloadTime = 75;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 2500;
     public void fire(){
         if(bait!=null){
@@ -46,7 +46,7 @@ public class LanternLobber extends Weapon
     }
     public void reload(double speed){
         reloadDelayCount+=speed;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+        updateAmmo(Math.min((int)reloadDelayCount, gunReloadTime));
     }
     public void update(){
         if(getHolder().canAttack()){
@@ -83,7 +83,7 @@ public class LanternLobber extends Weapon
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, (int)reloadDelayCount);
     }
     public String getName(){
         return "Lantern Lobber";

@@ -17,7 +17,7 @@ public class Soup extends Weapon
     private static final int gunReloadTime = 10;
     private AmmoManager ammo;
     private double focus = 0.5;//300 frames to reach 2
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 1600;
     private EffectID spicy = new EffectID(this, "soup au");
     public void fire(){

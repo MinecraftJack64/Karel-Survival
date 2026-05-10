@@ -1,6 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.hardhat;
 
 import com.karel.game.ArmorShield;
+import com.karel.game.PercentageShield;
 import com.karel.game.Sounds;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
@@ -50,8 +51,8 @@ public class HardHatZombie extends Zombie
     public void attack(){
         explodeOn(225, (g)->{
             if(isAlliedWith(g)&&!g.hasShield(hhshieldid)&&!g.hasShield(shieldid)&&g.acceptExternalShields()){//
-                int health = (int)(Math.min(300, Math.min(g.getMaxHealth(), g.getHealth()*2))*(0.5+0.5*getPercentHealth())*getPower());//shield is 300 health by default unless zombie has less max health or health
-                g.applyShield(new ArmorShield(hhshieldid, health));
+                //int health = (int)(Math.min(300, Math.min(g.getMaxHealth(), g.getHealth()*2))*(0.5+0.5*getPercentHealth())*getPower());//shield is 300 health by default unless zombie has less max health or health
+                g.applyShield(new PercentageShield(hhshieldid, 0.5, 198));
             }else if(isAggroTowards(g)){
                 damage(g, 200);
             }

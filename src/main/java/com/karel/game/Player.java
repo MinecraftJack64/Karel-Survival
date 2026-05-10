@@ -34,7 +34,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     private boolean sudoActive;
     public Player() {
         hand = new PlayerHand();
-        setSpeed(5);
+        setSpeed(4.5);
         scaleTexture(45, 45);
         this.setImage(this.rocket);
         diff = Game.currentDiff();
@@ -292,7 +292,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
             }
         }
         if(sprinting){
-            sprintamt = 2;
+            sprintamt = 1.5;
         }else{
             sprintamt = 1;
         }

@@ -17,7 +17,7 @@ import com.karel.game.Greenfoot;
 public class BoidSpawner extends ZombiePackage
 {
     private int count;
-    private int reloadDelayCount = 0; // 5
+    private double reloadDelayCount = 0; // 5
     public BoidSpawner(int count, GridObject source){
         super(source);
         this.count = count;

@@ -37,7 +37,7 @@ public class World
     
     //scrolling
     public double scrollX = 0, scrollY = 0, scrollSize = 1;
-    private boolean scrollToPlayer = true;
+    private boolean scrollToPlayer = false;
     
     //these are constant default values, to be deprecated
     public int gridheight = 16;
@@ -210,7 +210,7 @@ public class World
         }
 
         processRemovals();
-        if(scrollToPlayer){
+        if(scrollToPlayer&&getPlayer()!=null){
             scrollX = getPlayer().getX()-600;
             scrollY = getPlayer().getY()-400;
         }

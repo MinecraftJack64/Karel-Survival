@@ -16,7 +16,7 @@ import com.raylib.Raylib;
  */
 public class DroidController extends Weapon {
     private static final int gunReloadTime = 15;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private Droid droid;
     private int toAttack;
     private boolean overriding;

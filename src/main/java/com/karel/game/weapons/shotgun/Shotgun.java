@@ -18,7 +18,7 @@ import com.karel.game.weapons.Weapon;
 public class Shotgun extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 10;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private AmmoManager ammo;
     private static final int ult = 500;
     private IBoomerang lasso;

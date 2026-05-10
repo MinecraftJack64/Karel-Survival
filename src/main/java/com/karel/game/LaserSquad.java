@@ -1,6 +1,7 @@
 package com.karel.game;
 import java.util.ArrayList;
 
+import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieDropper;
 import com.karel.game.gridobjects.gridentities.zombies.ZombiePackage;
 import com.karel.game.gridobjects.gridentities.zombies.laser.LaserZombie;
@@ -72,5 +73,6 @@ public class LaserSquad extends ZombiePackage
         double d = distanceTo(x, y);
         ZombieDropper pack = new ZombieDropper(getAngle(x, y)+90, d, d, z, this);
         getWorld().addObject(pack, getX(), getY());
+        if(type!=1)((GridEntity)z).applyEffect(new PowerPercentageEffect(1/type, -1, this));
     }
 }

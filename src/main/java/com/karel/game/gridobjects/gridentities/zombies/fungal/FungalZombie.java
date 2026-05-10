@@ -61,8 +61,9 @@ public class FungalZombie extends Zombie
         //explode, works when stunned
         explodeOn(225, (g)->{
             if(isAlliedWith(g)){//
-                //g.applyeffect(new DamagePercentageEffect(1.5, 120));
-                g.applyEffect(new SpeedPercentageEffect(1.5, 120, this, new EffectID(this, "speedboost")));
+                int maxSpeedBoost = 4;
+                if(g.getSpeed()<maxSpeedBoost)
+                    g.applyEffect(new SpeedPercentageEffect(Math.min(maxSpeedBoost/g.getSpeed(), 1.5), 120, this, new EffectID(this, "speedboost")));
             }
         }, null);//TODO replace with better explosion later
         addObjectHere(new FungalWave(this));

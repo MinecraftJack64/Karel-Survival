@@ -16,7 +16,7 @@ import com.karel.game.weapons.Weapon;
 public class WaterBalloons extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 20;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 800;
     AmmoManager ammo;
     public void fire(){//one full ammo deals 350 damage

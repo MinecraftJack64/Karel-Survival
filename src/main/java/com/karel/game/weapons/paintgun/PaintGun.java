@@ -16,7 +16,7 @@ public class PaintGun extends Weapon
     private static final int gunReloadTime = 25;
     private AmmoManager ammo;
     private static final int ultReloadTime = 4;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private int gadgetAngle = 0;
     private static final int ult = 1500;
     private int startUltCooldown = 0; // 30

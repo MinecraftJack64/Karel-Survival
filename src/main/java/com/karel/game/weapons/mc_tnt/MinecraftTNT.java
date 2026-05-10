@@ -16,7 +16,7 @@ import com.karel.game.weapons.Weapon;
 public class MinecraftTNT extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 20;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private AmmoManager ammo;
     private static final int ult = 2000;
     public void fire(){//one full ammo deals 350 damage

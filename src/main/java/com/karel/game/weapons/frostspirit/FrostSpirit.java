@@ -14,7 +14,7 @@ import com.karel.game.weapons.Weapon;
 public class FrostSpirit extends Weapon
 {
     private static final int gunReloadTime = 20;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 2500;
     public void fire(){
         if (reloadDelayCount >= gunReloadTime&&getAmmo().hasAmmo()) 

@@ -19,7 +19,7 @@ public class BodyguardZombie extends SpawnableZombie
     private ZombieClass[] classes = new ZombieClass[]{ZombieClass.tank};
     private static final int gunReloadTime = 50;
 
-    private int reloadDelayCount;
+    private double reloadDelayCount;
 
     public String getStaticTextureURL(){return "bodyguardzareln.png";}
     private static double shootrange = 400, attackrange = 30, idlerange = 20;

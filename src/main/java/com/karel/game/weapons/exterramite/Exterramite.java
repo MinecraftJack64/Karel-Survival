@@ -20,7 +20,7 @@ public class Exterramite extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 13;
     private Dasher dash;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 1500;
     AmmoManager ammo;
     public void fire(){//one full ammo deals 350 damage

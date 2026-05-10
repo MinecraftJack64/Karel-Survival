@@ -18,7 +18,7 @@ public class Blowgun extends Weapon
     private static final int ammoReloadTime = 30;
     private static final int maxAmmo = 20;
     private static final int ammoLimit = 5;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private int ammo;
     private int ammoReloadDelay;
     private static final int ult = 1250;

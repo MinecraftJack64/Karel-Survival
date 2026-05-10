@@ -21,7 +21,7 @@ public class FastFood extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 30;
     private static final int attackDelay = 10;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private AmmoManager ammo;
     private static final int ult = 1200;
     private int startUltCooldown = 0; //40

@@ -18,7 +18,7 @@ import com.karel.game.weapons.Weapon;
 public class SnakeCharmer extends Weapon
 {
     private static final int gunReloadTime = 20;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 2000;
     private boolean zigZag = true;
     private int ultDuration = 0; // 150

@@ -26,7 +26,7 @@ public class TrapSetter extends Weapon
     private int jumpDelayCount = 0;
     private int bearTrapDelay = 0;
     private int remainingBearTraps = 0; // 3
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 700;
     public void fire(){
         if(continueUse()){
@@ -95,14 +95,14 @@ public class TrapSetter extends Weapon
     }
     public void reload(double s){
         reloadDelayCount+=s;
-        updateAmmo(Math.min(reloadDelayCount, gunReloadTime));
+        updateAmmo(Math.min((int)reloadDelayCount, gunReloadTime));
     }
     public int getUlt(){
         return ult;
     }
     public void equip(){
         super.equip();
-        newAmmo(gunReloadTime, reloadDelayCount);
+        newAmmo(gunReloadTime, (int)reloadDelayCount);
     }
     public TrapSetter(ItemHolder actor){
         super(actor);

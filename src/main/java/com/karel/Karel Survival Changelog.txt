@@ -152,6 +152,19 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+5/9
+Balancing
+ - Player speed(5->4.5)
+ - Player sprint speed(2->1.5)
+ - Fungal Zombie has speed boost cap of 4
+ - Laser zombies created by the Setup Wizard are 1/x as strong where x is the number of laser zombies in batch
+ - Hard hat zombies now give percentage shields instead of armor shields
+Other
+ - Turned off scrolling for now
+Fixes
+ - Fixed Player scrolling causing crash on exit
+ - Fixed many weapons and zombies not reloading at all on reload speed reductions(int rounding)
+
 5/8
 Technical
  - Added ability to zoom in

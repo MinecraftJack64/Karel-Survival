@@ -18,7 +18,7 @@ import com.karel.game.weapons.Weapon;
 public class Farmer extends Weapon
 {
     private static final int gunReloadTime = 10;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private int ultBeeperDelay = 0;
     private SimpleAmmoManager ammo;
     private InvisibilityEffect invis;

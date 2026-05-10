@@ -19,7 +19,7 @@ import com.karel.game.weapons.Weapon;
 public class Blade extends Weapon
 {
     private static final int gunReloadTime = 20;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private AmmoManager ammo;
     private static final int ult = 3000;
     private int remainingslices = 160;

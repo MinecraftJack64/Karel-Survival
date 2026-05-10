@@ -71,7 +71,7 @@ public class DurationEffect extends Effect
     }
     public void render(double x){
         int size = 14;
-        if(getTarget()!=null)
+        if(getTarget()!=null&&duration>=0)
             Raylib.drawRing(new Vector2(getTarget().renderTransformX((int)(getTarget().getX()+x-size/2)), getTarget().renderTransformY((int)(getTarget().getY()-getTarget().getHeight()+40-size/2))), 0, getTarget().renderTransformY((int)size/2), (float)-90, (int)(360.0*getDuration()/getMaxDuration()-90), 1, durationColor);
         super.render(x);
     }

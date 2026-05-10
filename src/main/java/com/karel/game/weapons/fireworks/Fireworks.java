@@ -17,7 +17,7 @@ public class Fireworks extends Weapon implements AmmoHolder
 {
     private static final int gunReloadTime = 30;
     private AmmoManager ammo;
-    private int reloadDelayCount;
+    private double reloadDelayCount;
     private static final int ult = 2000;
     private boolean nextammosupercharged = false;
     public void fire(){//one full ammo deals 350 damage
