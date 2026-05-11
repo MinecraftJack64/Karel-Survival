@@ -58,6 +58,7 @@ public class Flail extends Weapon
             //Old: dash = new DasherDoer(getHand().getTargetRotation(), 20, 10, 60, 150, getHolder());
             setContinueUlt(true);
             setPlayerLockRotation(true);
+            setPlayerLockMovement(true);
             dash.dash();
             getHolder().heal(getHolder(), 100);
         }
@@ -67,6 +68,7 @@ public class Flail extends Weapon
             dash = null;
             setContinueUlt(false);
             setPlayerLockRotation(false);
+            setPlayerLockMovement(false);
         }else if(continueUse()){
             setContinueUse(false);
             setPlayerLockMovement(false);

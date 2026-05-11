@@ -67,7 +67,7 @@ public class Droid extends Pet {
             if (!dash.dash()) {
                 dash = null;
             }
-        } if(overridden&&remote.isMainWeapon()){
+        } else if(overridden&&remote.isMainWeapon()){
             if(remote.getHolder().isDead()){
                 remote.cancelOverride();
                 return;

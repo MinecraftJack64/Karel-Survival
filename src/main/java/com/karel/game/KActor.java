@@ -150,6 +150,9 @@ public abstract class KActor
             setOpacity(255);
         }
     }
+    public boolean isVisible(){
+        return getOpacity()>0;
+    }
     public void setOpacityPercent(double perc){
         setOpacity((int)(perc*255));
     }

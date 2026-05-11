@@ -152,6 +152,15 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+5/10
+Fixes
+ - Fixed weedwacker gadget not retracting
+Graphics
+ - L'il Critters shows bar for regeneration
+ - TODO: show bar for starting natural regen
+Balancing
+ - Uranium Drum, Troll Test, Flail, and Droid no longer allow the player to move during a dash
+
 5/9
 Balancing
  - Player speed(5->4.5)

@@ -335,6 +335,9 @@ public abstract class Weapon implements Item, Tickable, EventListener
     public void disableSpecial(){
         if(isMainWeapon())Game.gameUI().disableSpecial();
     }
+    public boolean specialActive(){
+        return Game.gameUI().specialActive();
+    }
     public SpecialBar getSpecialBar(){
         return Game.gameUI().getSpecialBar();
     }

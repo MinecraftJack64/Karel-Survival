@@ -356,6 +356,9 @@ public class GameUI extends UI
     public void disableSpecial(){
         special.setVisible(false);
     }
+    public boolean specialActive(){
+        return special.isVisible();
+    }
     
     public void newSprint(int max){
         sprint.setMax(max);

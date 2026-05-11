@@ -37,7 +37,10 @@ public class TrollTest extends Weapon
         Sounds.play("protonwave");
     }
     public void update(){
-        if(dash!=null&&!dash.dash())dash = null;
+        if(dash!=null&&!dash.dash()){
+            dash = null;
+            setPlayerLockMovement(false);
+        }
     }
     public int getUlt(){
         return ult;
@@ -48,6 +51,7 @@ public class TrollTest extends Weapon
         });
         setGadgetTimer(20);
         dash = new Dasher(getHand().getTargetRotation(), 15, 15, getHolder());
+        setPlayerLockMovement(true);
     }
     public TrollTest(ItemHolder actor){
         super(actor);

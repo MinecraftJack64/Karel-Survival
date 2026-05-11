@@ -55,6 +55,7 @@ public class UraniumDrum extends Weapon
     }
     public void onInterrupt(){
         if(dash!=null){
+            setPlayerLockMovement(false);
             dash = null;
         }
     }
@@ -65,6 +66,7 @@ public class UraniumDrum extends Weapon
         dash = new Dasher(getHand().getTargetRotation(), 15, 10, getHolder());
         getHolder().applyShield(new PercentageShield(new ShieldID(this), 2, 60));
         setGadgetTimer(60);
+        setPlayerLockMovement(true);
     }
     public UraniumDrum(ItemHolder actor){
         super(actor);

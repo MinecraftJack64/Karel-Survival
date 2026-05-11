@@ -16,6 +16,7 @@ public class FlyingCritter extends Bullet implements ICritter
     public FlyingCritter(double rotation, GridEntity source, LilCritters spawner, int id)
     {
         super(rotation, source);
+        setImage("rocket.png");
         setLife(25);
         setSpeed(20);
         setDamage(100);

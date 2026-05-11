@@ -67,10 +67,12 @@ public class LilCritters extends Weapon
                 shieldBroke();
             }
             regenshield-= speed;
+            updateSpecial(90-(int)regenshield);
             if(regenshield<=0){
                 regenshield = 90;
                 myS = new MucusShield(msshield, 600);
                 getHolder().applyShield(myS);
+                disableSpecial();
             }
         }
         reload++;
@@ -114,11 +116,16 @@ public class LilCritters extends Weapon
                 focus = 0;
             }
         }
+        if(!specialActive()&&focus!=nfocus){
+            newSpecial(120, 0);
+        }
         if(ic[focus]==null){
             regencritter-= speed;
+            updateSpecial(120-(int)regencritter);
             if(regencritter<=0){
                 regencritter = 120;
                 regenerate(focus);
+                disableSpecial();
             }
         }
     }
@@ -165,6 +172,7 @@ public class LilCritters extends Weapon
                 }
             }
         }
+        newSpecial(90, 0);
     }
     public void removePassiveCritters(){
         for(int i = 0; i < ic.length; i++){
