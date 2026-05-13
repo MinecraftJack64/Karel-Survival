@@ -21,7 +21,7 @@ public class PassiveCritter extends GridObject implements SubAffecter, ICritter
     private double deg, dist;
     private LilCritters spawner;
     public PassiveCritter(int id, double deg, double dist, LilCritters spawner, ItemHolder source){
-        setImage("rocket.png");
+        setImage("GridEntities/Pets/critters/pet.png");
         this.source = source;//do not set power
         this.id = id;
         this.deg = deg;

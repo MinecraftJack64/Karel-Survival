@@ -15,6 +15,7 @@ import com.karel.game.gridobjects.hitters.Bullet;
 public class InfernalFlame extends Bullet
 {
     private boolean createTrail;
+    private int animFrame;
     public InfernalFlame(double rotation, GridObject source, boolean firstWave)
     {
         super(rotation, source);
@@ -35,6 +36,14 @@ public class InfernalFlame extends Bullet
     public void applyPhysics(){
         if(createTrail) addObjectHere(new FireTrail(getSource()));
         super.applyPhysics();
+    }
+    public void animate(){
+        setImage("Weapons/inferno/proj"+(animFrame)+".png");
+        animFrame++;
+        if(animFrame>2){
+            animFrame = 0;
+        }
+        super.animate();
     }
     public Effect getEffect(){
         return new BurnEffect(5, 30, 3, this);

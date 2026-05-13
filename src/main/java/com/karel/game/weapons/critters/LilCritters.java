@@ -229,7 +229,7 @@ public class LilCritters extends Weapon
             super.remove();
         }
         public int processDamage(int amt, GridObject source){
-            return super.processDamage(amt, source)+amt/3;
+            return super.processDamage(amt, source)+amt/2;
         }
         public void tick(){
             super.tick();

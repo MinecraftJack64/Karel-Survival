@@ -127,6 +127,14 @@ public class Sudo extends Weapon
                 zap.summonZombie(getHand().getTargetRotation()-90, getHolder().distanceTo(getHand().getTargetX(), getHand().getTargetY()), zombie);
         }
     }
+    public int defaultGadgets(){
+        return 100;
+    }
+    public void onGadgetActivate(){
+        getHolder().heal(getHolder(), getHolder().getMaxHealth()-getHolder().getHealth());
+        getHolder().clearMaliciousEffects();
+        setGadgetTimer(10);
+    }
     public void setMode(int m){
         mode = m;
     }

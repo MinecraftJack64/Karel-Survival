@@ -14,6 +14,7 @@ public abstract class KActor
 {
     double rx, ry, rh, rrot;
     int scaleX = 0, scaleY = 0;
+    double scale = 1;
     int rop = 255/*real opacity*/;
     World world;
     Texture image;
@@ -194,6 +195,9 @@ public abstract class KActor
         if(image==null)scaleTexture(w, w);
         else scaleTexture(w, w*image.getHeight()/image.getWidth());
     }
+    public void setSizeScale(double scale){
+        this.scale = scale;
+    }
     public void addKActorHere(KActor obj){
         getWorld().addObject(obj, getX(), getY());
     }
@@ -213,10 +217,10 @@ public abstract class KActor
     public void resetTint(){
         transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     }
-    public void render(){//TODO: add params like x and y offset and scale
+    public void render(){//TODO: add params like x and y offset
         if(getImage()!=null){
             int w = getImage().getWidth(), h = getImage().getHeight();
-            int dw = scaleX==0?w:scaleX, dh = scaleY==0?h:scaleY;
+            int dw = scaleX==0?w:(int)(scaleX*scale), dh = scaleY==0?h:(int)(scaleY*scale);
             transColor.setA((byte)getOpacity());
             Vector2 center = drawCenter.equals("top")?new Vector2(renderOriginX(dw/2), 0):new Vector2(renderOriginX(dw/2), renderOriginY(dh/2));
             Raylib.drawTexturePro(getImage(), new Rectangle(0, 0, w, h), new Rectangle(renderTransformX((int)(getX())), renderTransformY((int)(getY()-getHeight())), renderOriginX(dw), renderOriginY(dh)), center, (float)getRotation(), transColor);

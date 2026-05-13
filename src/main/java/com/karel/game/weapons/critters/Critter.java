@@ -1,7 +1,6 @@
 package com.karel.game.weapons.critters;
 
 import com.karel.game.ExternalImmunityShield;
-import com.karel.game.Greenfoot;
 import com.karel.game.GridEntity;
 import com.karel.game.HealCharge;
 import com.karel.game.Pet;
@@ -10,7 +9,6 @@ import com.karel.game.effects.StunEffect;
 import com.karel.game.physics.Dasher;
 import com.karel.game.physics.DasherDoer;
 import com.karel.game.shields.ShieldID;
-import com.raylib.Texture;
 
 /**
  * Write a description of class Critter here.
@@ -21,8 +19,10 @@ import com.raylib.Texture;
 public class Critter extends Pet implements ICritter
 {
 
-    public static Texture rocket = Greenfoot.loadTexture("rocket.png");
-    public static Texture rocket2 = Greenfoot.loadTexture("rocketWithThrust.png");
+    public static String img = "critters/pet.png";
+    public static String imgUlt = "critters/petUlt.png";
+    public static String imgAtk = "critters/petAttack.png";
+    public static String imgUltAtk = "critters/petUltAttack.png";
     private LilCritters perch;
     private int ammo = 0;
     private Dasher dash;
@@ -36,8 +36,8 @@ public class Critter extends Pet implements ICritter
     {
         super(hive);
         this.id = id;
-        setImage(rocket);
-        scaleTexture(20, 20);
+        setImage(img);
+        scaleTexture(0);
         startHealth(100);
         setSpeed(4);
         if(hive!=null)inherit(hive);
@@ -81,10 +81,12 @@ public class Critter extends Pet implements ICritter
         
     }
     public void animate(){
-        if(getImage()==rocket&&ult>=250){
-            setImage(rocket2);
-        }else if(getImage()==rocket2&&ult<250){
-            setImage(rocket);
+        if(ult>=250){
+            if(dash!=null)setImage(imgUltAtk);
+            else setImage(imgUlt);
+        }else if(ult<250){
+            if(dash!=null)setImage(imgAtk);
+            else setImage(img);
         }
     }
     public GridEntity getTarget(){

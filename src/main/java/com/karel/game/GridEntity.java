@@ -149,11 +149,11 @@ public abstract class GridEntity extends GridObject
     }
     public void scaleSize(double amt){
         setSizeMultiplier(amt);
-        scaleTexture((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
+        setSizeScale(amt);
     }
     public void scaleSize(double amt, EffectID ctrl){
         setSizeMultiplier(amt, ctrl);
-        scaleTexture((int)(amt*getImage().getWidth()), (int)(amt*getImage().getHeight()));
+        setSizeScale(amt);
     }
     public double getSizeMultiplier(){
         return sizeMultiplier;

@@ -4,7 +4,7 @@ Patrol(rare)
 Two siren lights on opposite sides spin around constantly. Attacking causes them to flash out, each one damaging in an arc
 Ult "Police Bots": Spawn 2 police robots, one on either side of you. They walk towards the nearest enemy and shoot them with a taser gun that stuns them after enough hits. They shoot faster when retreating
 Attack Upgrade "Blaring": Another attack damages in the cone next to the first one.
-Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot(it can't spawn more) and both gain a small shield
+Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot with half strength and the same amount of health(it can't spawn more) and both gain a small shield
 Gadget "Spotlights": Switch siren light direction
 
 Angler(epic)
@@ -151,6 +151,20 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+5/12
+Graphics
+ - Added L'il Critter's graphics
+Fixes
+ - Fixed inferno flame not animating
+
+5/11
+Content
+ - Added the sudo weapon gadget which heals you fully and clears malicious effects
+Fixes
+ - Fixed scaling gridentities
+Balancing
+ - (-)L'il Critters shield strength(66%->50%)
 
 5/10
 Fixes
