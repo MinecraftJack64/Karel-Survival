@@ -4,6 +4,7 @@ import com.karel.game.weapons.acidart.Acidart;
 import com.karel.game.weapons.airpump.AirPump;
 import com.karel.game.weapons.blade.Blade;
 import com.karel.game.weapons.blowgun.Blowgun;
+import com.karel.game.weapons.cab.Cab;
 import com.karel.game.weapons.captorch.CapsaicinTorch;
 import com.karel.game.weapons.catclaw.CatClaw;
 import com.karel.game.weapons.chameleon.Chameleon;
@@ -132,6 +133,7 @@ public class ItemFactory
                                     //"gum",
                                     //"tumbleweed",
                                     "paintgun",
+                                    "cab",
                                     "javabean",
                                     "trolltest",
                                     "acidart",
@@ -286,6 +288,8 @@ public class ItemFactory
                 //return new TumbleweedLauncher(holder);
             case "paintgun":
                 return new PaintGun(holder);
+            case "cab":
+                return new Cab(holder);
             //MISSING
             case "javabean":
                 return new JavaBeaner(holder);

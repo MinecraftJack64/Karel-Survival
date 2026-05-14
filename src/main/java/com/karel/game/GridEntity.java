@@ -160,7 +160,7 @@ public abstract class GridEntity extends GridObject
     }
     public double accountForStatus(HashMap<EffectID, Double> acc, double perc, EffectID ctrl){
         if(perc==1&&acc.containsKey(ctrl))acc.remove(ctrl);
-        else acc.put(ctrl, perc);
+        else if(perc!=1&&!acc.containsKey(ctrl)) acc.put(ctrl, perc);
         double high = 1, low = 1;
         for(double p: acc.values()){
             if(p<1&&p<low){
@@ -173,7 +173,7 @@ public abstract class GridEntity extends GridObject
     }
     public int accountForStatus(HashMap<EffectID, Integer> acc, int amt, EffectID ctrl){
         if(amt==0&&acc.containsKey(ctrl))acc.remove(ctrl);
-        else acc.put(ctrl, amt);
+        else if(amt!=0&&!acc.containsKey(ctrl)) acc.put(ctrl, amt);
         int total = 0;
         for(int p: acc.values()){
             total+=p;
@@ -182,7 +182,7 @@ public abstract class GridEntity extends GridObject
     }
     public boolean accountForStatus(HashSet<EffectID> acc, boolean b, EffectID ctrl){
         if(!b&&acc.contains(ctrl))acc.remove(ctrl);
-        else acc.add(ctrl);
+        else if(b&&!acc.contains(ctrl)) acc.add(ctrl);
         return acc.size()>0;
     }
 

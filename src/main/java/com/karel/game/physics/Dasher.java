@@ -10,7 +10,8 @@ import com.karel.game.GridEntity;
  */
 public class Dasher  
 {
-    double speed, direction;//how much to move in one frame, how wide to do things
+    public double speed;//how much to move in one frame, how wide to do things
+    public double direction;
     int time;//how many frames to move
     GridEntity subject;//which gridentity is dashing
     public Dasher(double direction, double speed, int time, GridEntity subject){

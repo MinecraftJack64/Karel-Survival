@@ -529,6 +529,9 @@ public abstract class GridObject extends KActor
         return arcmomentum;
     }
     public void initiateJump(double direction, double distance, double height){
+        if(height==0){
+            height=1;
+        }
         arcmomentum = new Arc(distance, height, getGravity());
         //dirmomentum = direction;
         //arcframe = 0;

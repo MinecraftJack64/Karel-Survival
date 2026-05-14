@@ -152,6 +152,12 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+5/13
+Content
+ - Added the Cab weapon
+Fixes
+ - Unstunning twice will not restun, same with other effects
+
 5/12
 Graphics
  - Added L'il Critter's graphics

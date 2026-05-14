@@ -14,9 +14,10 @@ import java.util.HashSet;
 public class DasherDoer extends Dasher
 {
     private double radius;//how wide to affect others
-    private Consumer<GridEntity> onExplode;//what to do each frame during dashing
-    private int damage = 0;
-    private HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
+    public Consumer<GridEntity> onExplode;//what to do each frame during dashing
+    public int damage = 0;
+    public int numTargets = -1;
+    public HashSet<GridEntity> hitstory = new HashSet<GridEntity>();
     public DasherDoer(double direction, double speed, int time, double radius, Consumer<GridEntity> onExplode, GridEntity subject){
         super(direction, speed, time, subject);
         this.radius = radius;
@@ -34,18 +35,22 @@ public class DasherDoer extends Dasher
         if(damage>0){
             getSubject().explodeOnEnemies((int)radius, (g)->{
                 if(!hitstory.contains(g)){
-                    getSubject().damage(g, damage);
-                    hitstory.add(g);
+                    if(numTargets!=0){
+                        getSubject().damage(g, damage);
+                        numTargets--;
+                        hitstory.add(g);
+                    }
                 }
             });
         }else if(onExplode!=null){
             getSubject().explodeOn((int)radius, (g)->{
-                if(!hitstory.contains(g)){
+                if(!hitstory.contains(g)&&numTargets!=0){
                     onExplode.accept(g);
+                    numTargets--;
                     hitstory.add(g);
                 }
             });
         }
-        return super.dash();
+        return numTargets!=0&&super.dash();
     }
 }
