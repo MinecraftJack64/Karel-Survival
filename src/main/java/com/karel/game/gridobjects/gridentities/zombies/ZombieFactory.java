@@ -2,6 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies;
 
 import com.karel.game.GridEntity;
 import com.karel.game.gridobjects.gridentities.Bot;
+import com.karel.game.gridobjects.gridentities.DamageIndicatorSpawner;
 import com.karel.game.gridobjects.gridentities.PunchingBag;
 import com.karel.game.gridobjects.gridentities.zombies.arson.ArsonZombie;
 import com.karel.game.gridobjects.gridentities.zombies.assassin.AssassinZombie;
@@ -66,6 +67,7 @@ import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
+import com.karel.game.gridobjects.gridentities.zombies.tree.Weevil;
 import com.karel.game.gridobjects.gridentities.zombies.urchin.UrchinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.watermelon.WatermelonZombie;
@@ -153,8 +155,10 @@ public class ZombieFactory {
             "chill",
             "urchin",
             "minishooter",
+            "weevil",
             "bot",
-            "punchingbag"};
+            "punchingbag",
+            "damageindicator"};
 
     public static GridEntity createZombie(String type) {
         switch (type) {
@@ -356,10 +360,14 @@ public class ZombieFactory {
                 return new MiniShooterZombie();
             //hologuard
             //caffeinated
+            case "weevil":
+                return new Weevil();
             case "bot":
                 return new Bot(null);
             case "punchingbag":
                 return new PunchingBag();
+            case "damageindicator":
+                return new DamageIndicatorSpawner();
         }
         return new Zombie();
     }

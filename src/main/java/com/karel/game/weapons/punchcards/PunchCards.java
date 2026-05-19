@@ -95,6 +95,9 @@ public class PunchCards extends Weapon
     public int getUlt(){
         return ult;
     }
+    public boolean canActivateGadget(){
+        return super.canActivateGadget()&&punchCard.size()>0;
+    }
     public void onGadgetActivate(){
         gadgetCooldown = 45;
         newSpecial(gadgetCooldown, gadgetCooldown);

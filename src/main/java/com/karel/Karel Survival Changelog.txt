@@ -49,6 +49,9 @@ Extremely high range. Every second, damage each ally in range for 1 damage.
 
 ?(Midranger)
 Shoot out a slow bullet that can change direction twice to face you. On hit, it will poison you weakly(will not kill you).
+
+Zombie of Wood(Spawner/Tank)
+A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one spawns a bug that slowly loses health over time. It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -151,6 +154,17 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+5/19
+Other
+ - Added damage indicators, grid entities placed in a grid to show damage areas.
+ - Zombies also target punching bags now
+Content
+ - WIP: tree zombie
+
+5/17
+Fixes
+ - Punch Cards gadget no longer can be activated while no punches were made during ult
 
 5/13
 Content
