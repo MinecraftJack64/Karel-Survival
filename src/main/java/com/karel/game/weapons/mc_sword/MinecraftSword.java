@@ -3,6 +3,7 @@ package com.karel.game.weapons.mc_sword;
 import com.karel.game.Game;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
+import com.karel.game.shields.ShieldID;
 import com.karel.game.trackers.AmmoManager;
 import com.karel.game.weapons.Weapon;
 
@@ -37,7 +38,10 @@ public class MinecraftSword extends Weapon
     public void fireUlt(){
         critDelay = 0;
         disableSpecial();
-        getHolder().addObjectHere(new EnderPearl(getHand().getTargetRotation(), Math.min(500, getHand().getTargetDistance()), getHand().getTargetDistance()+30, getHolder(), getUltUpgrade()==1));
+        if(getUltUpgrade()==1){
+            getHolder().clearEffects();
+        }
+        getHolder().applyShield(new UndyingTotem(new ShieldID(this), 90, getUltUpgrade()==1));
     }
     public void onGadgetActivate(){
         setContinueGadget(true);

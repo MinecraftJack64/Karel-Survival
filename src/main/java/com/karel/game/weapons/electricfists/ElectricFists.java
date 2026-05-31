@@ -157,7 +157,7 @@ public class ElectricFists extends Weapon implements LandingHandler
             specialReload++;
             updateSpecial(specialReload);
         }
-        super.reload(at);
+        if(reloadDelayCount>=gunReloadTime)super.reload(at);
     }
     public void update(){
         if(!continueUlt()) for(GridObject g: getHolder().getWorld().allObjects()){
@@ -170,6 +170,7 @@ public class ElectricFists extends Weapon implements LandingHandler
     }
     public void render(){
         getHolder().renderTexture(auraTexture, getHolder().getX(), getHolder().getY(), 300, 300, 0, 50);
+        super.render();
     }
     public ElectricFists(ItemHolder actor){
         super(actor);

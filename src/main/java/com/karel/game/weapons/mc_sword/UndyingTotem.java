@@ -1,4 +1,4 @@
-package com.karel.game.weapons.mc_bow;
+package com.karel.game.weapons.mc_sword;
 
 import com.karel.game.GridObject;
 import com.karel.game.Shield;

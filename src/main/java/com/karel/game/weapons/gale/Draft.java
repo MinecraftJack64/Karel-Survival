@@ -19,7 +19,7 @@ public class Draft extends Bullet
         super(rotation, source);
         setSpeed(22);
         setLife(20);
-        setDamage(3);
+        setDamage(4);
         setNumTargets(-1);
         setMultiHit(false);
         hitfirst = false;
@@ -40,6 +40,6 @@ public class Draft extends Bullet
         }
     }
     public double damageSecrecy(){
-        return super.damageSecrecy()*Math.pow(0.5, getHitStory().size());
+        return super.damageSecrecy()*Math.pow(0.75, getHitStory().size());
     }
 }

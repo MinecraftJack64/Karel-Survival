@@ -1,7 +1,6 @@
 package com.karel.game.weapons.mc_bow;
 import com.karel.game.ItemHolder;
 import com.karel.game.Sounds;
-import com.karel.game.shields.ShieldID;
 import com.karel.game.weapons.Weapon;
 
 /**
@@ -26,10 +25,7 @@ public class MinecraftBow extends Weapon
         }
     }
     public void fireUlt(){
-        if(getUltUpgrade()==1){
-            getHolder().clearEffects();
-        }
-        getHolder().applyShield(new UndyingTotem(new ShieldID(this), 60, getUltUpgrade()==1));
+        getHolder().addObjectHere(new EnderPearl(getHand().getTargetRotation(), Math.min(500, getHand().getTargetDistance()), getHand().getTargetDistance()+30, getHolder(), getUltUpgrade()==1));
     }
     public void reload(double s){
         reloadDelayCount+=s*(getAttackUpgrade()==3?1:1.2);

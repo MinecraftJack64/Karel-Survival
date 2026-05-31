@@ -155,7 +155,23 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+5/28
+Balancing
+ - Minecraft Diamond Sword and Bow switch ults
+ - Diamond Sword
+    - Totem duration(60->90)
+
 5/19
+Balancing
+ - Gale
+    - Attack damage(3->4)
+    - Ult charge falloff(0.5->0.75)
+Fixes
+ - TODO: fix fireworks, pointpinner, lantern lobber, fix damage on crossbow ult and drone attack
+ - TODO: fix cone attacks not hitting in the first quadrant
+ - Fixed electric fists ammo reloading not showing, ammo now only reloads after unload delay
+
+5/18
 Other
  - Added damage indicators, grid entities placed in a grid to show damage areas.
  - Zombies also target punching bags now

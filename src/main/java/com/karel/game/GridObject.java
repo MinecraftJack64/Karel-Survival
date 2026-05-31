@@ -511,7 +511,7 @@ public abstract class GridObject extends KActor
         setHeight(getHeight()+vh);
         //arcframe++;
         vh-=getGravity();
-        if(getHeight()<0&&vh<0){
+        if(getHeight()<=0&&vh<0){
             arcmomentum = null;
             //dirmomentum = 0;
             //arcframe = 0;

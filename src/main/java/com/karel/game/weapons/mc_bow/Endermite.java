@@ -1,4 +1,4 @@
-package com.karel.game.weapons.mc_sword;
+package com.karel.game.weapons.mc_bow;
 
 import com.karel.game.GridEntity;
 import com.karel.game.Pet;
@@ -48,6 +48,6 @@ public class Endermite extends Pet
         if(isAggroTowards(getTarget()))damage(getTarget(), damage);
     }
     public String getPetID(){
-        return "mc_sword-endermite";
+        return "mc_bow-endermite";
     }
 }
