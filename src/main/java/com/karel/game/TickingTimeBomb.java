@@ -11,6 +11,7 @@ public class TickingTimeBomb extends GridEntity implements SubAffecter
     GridObject sourc;
     public TickingTimeBomb(GridObject source){
         this(75, source);
+        setImage("bomb.png");
     }
     public TickingTimeBomb(int health, GridObject source){
         startHealth(health);

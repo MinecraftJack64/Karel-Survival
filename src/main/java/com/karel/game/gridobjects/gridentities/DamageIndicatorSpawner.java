@@ -25,4 +25,7 @@ public class DamageIndicatorSpawner extends GridEntity
         ZombieDropper pack = new ZombieDropper(getAngle(x, y)+90, d, d, z, this);
         getWorld().addObject(pack, getX(), getY());
     }
+    public String getName(){
+        return "Damage Indicator Field";
+    }
 }

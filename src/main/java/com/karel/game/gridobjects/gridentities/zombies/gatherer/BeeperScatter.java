@@ -8,5 +8,6 @@ public class BeeperScatter extends Dropper {
     public BeeperScatter(double rotation, double targetdistance, double height, GridObject source)
     {
         super(rotation, targetdistance, height, new Beeper(50), source);
+        setImage("Objects/beeper0.png");
     }
 }
