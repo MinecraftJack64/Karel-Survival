@@ -52,6 +52,12 @@ Shoot out a slow bullet that can change direction twice to face you. On hit, it 
 
 Zombie of Wood(Spawner/Tank)
 A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one spawns a bug that slowly loses health over time. It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
+
+Pendulum Zombie(Melee)
+
+Jacob's Ladder Zombie(Midranger/Support)
+A chain of cone attacks propagate forward. Finds Melee zombies to push forward.
+
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
