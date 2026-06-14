@@ -47,8 +47,12 @@ Location: Infested Pest Control
 Ubiquitous Zombie(Whittler)
 Extremely high range. Every second, damage each ally in range for 1 damage.
 
-?(Midranger)
+Heatseeker Zombie(Midranger)
 Shoot out a slow bullet that can change direction twice to face you. On hit, it will poison you weakly(will not kill you).
+
+Love Letter Zombie(Support/Ranger)
+A zombie that chooses a random zombie(preferably hurt or actively attacking you) and runs very quickly towards them, standing at a far range. Sends homing love letters in their direction, which heals them 15% of their missing health and makes them 5% stronger(10% if at full health). If that zombie dies, if will cry for a while, then start throwing paper airplanes at the killer of that zombie, if that killer is dead, start sending love letters again.
+Mutation "Reciprocated Feelings": Shoot a bunch of healing hearts in random directions. When a zombie receives a love letter, send one back. Can no longer attack until letter has returned.
 
 Zombie of Wood(Spawner/Tank)
 A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one spawns a bug that slowly loses health over time. It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
@@ -160,6 +164,19 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+6/8
+TODO: Fix chill zombie
+Graphics
+ - Drops from gatherer zombie are beepers now
+ - Zombie dropper uses purple texture again
+ - Cannon Zombie bomb looks like bomb again
+
+5/31
+Fixes
+ - Fixed Firing Squad Zombie crashing game if marksman not in world
+Other
+ - Damage indicator name("Grid Entity"->"Damage Indicator Field")
 
 5/28
 Balancing

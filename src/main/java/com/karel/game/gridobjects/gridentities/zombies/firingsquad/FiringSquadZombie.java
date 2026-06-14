@@ -61,7 +61,7 @@ public class FiringSquadZombie extends Zombie
             Sounds.play("marksmanshoot");
             reloadDelayCount = 0;
             for(MarksmanZombie z: marksmen){
-                if(!z.isDead())z.commandFire();
+                if(!z.isDead()&&z.isInWorld())z.commandFire();
             }
         }
     }

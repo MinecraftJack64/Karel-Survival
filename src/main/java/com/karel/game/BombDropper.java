@@ -10,5 +10,6 @@ public class BombDropper extends Dropper
     public BombDropper(double rotation, double targetdistance, double height, GridObject toSpawn, GridObject source)
     {
         super(rotation, targetdistance, height, toSpawn, source);
+        setImage("bomb.png");
     }
 }
