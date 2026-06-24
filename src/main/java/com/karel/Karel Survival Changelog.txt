@@ -57,6 +57,12 @@ Mutation "Reciprocated Feelings": Shoot a bunch of healing hearts in random dire
 Zombie of Wood(Spawner/Tank)
 A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one may spawn a bug that slowly loses health over time(10% no hit, 80% with hit). It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
 
+Pendulum Zombie(Melee)
+
+Jacob's Ladder Zombie(Midranger/Support)
+A chain of cone attacks propagate forward. Finds Melee zombies to push forward.
+
+
 Zombie Driver(Tank/Support)
 A zombie that spawns driving a large offroad vehicle holding 4 riders(including itself). Also spawns with some combination of Vandal Zombies, Hit-and-Run Zombies, and Drive-by Zombies. Has two driving modes. One mode is the drive-by mode, lasting longer if vandal or drive-by zombie ride it, where it circles you and occasionally stops for a drive-by or vandal zombie to attack. The other mode is the hit-and-run mode where it tries to ram you. After successfully hitting you, go to a drive-by mode for a while, longer if ranged zombies are present. The car has 4000 health and when destroyed, the zombies are released. If destroyed with fire, the car explodes. If the driver is killed first(with area attacks), one of the riders becomes a driver and if all riders are killed, car drives straight.
 
