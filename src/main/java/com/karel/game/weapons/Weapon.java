@@ -236,6 +236,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
             fireUlt();
             if(getGadgets()<defaultGadgets())donateGadgets(1); //TODO remove
             if(!ultshield)ultuses--;
+            updateUltDisplay();
             if(ultuses<=0){
                 resetUltCharge();
             }
@@ -250,7 +251,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
             ultcharge = 0;
             ultready = false;
             ultuses = 0;
-            if(isMainWeapon())Game.setUltCharge(ultcharge);
+            updateUltDisplay();
         }else{
             ultshield = false;
         }
@@ -278,7 +279,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
             ultready = true;
             ultuses = getUltMaxUses();
         }
-        if(isMainWeapon())Game.setUltCharge(ultcharge);
+        updateUltDisplay();
     }
     public void chargeUltFull(){
         chargeUlt(getUlt()-ultcharge);
@@ -292,7 +293,7 @@ public abstract class Weapon implements Item, Tickable, EventListener
         if(ultcharge<0){
             ultcharge = 0;
         }
-        if(isMainWeapon())Game.setUltCharge(ultcharge);
+        updateUltDisplay();
     }
     public void dischargeUlt(){
         dischargeUlt(ultcharge);
@@ -302,6 +303,12 @@ public abstract class Weapon implements Item, Tickable, EventListener
             dischargeUlt(ultcharge-amt);
         }else if(amt>ultcharge){
             chargeUlt(amt-ultcharge);
+        }
+    }
+    public void updateUltDisplay(){
+        if(isMainWeapon()){
+            Game.setUltCharge(ultcharge);
+            Game.setUltCount(ultuses);
         }
     }
     public void updateAmmo(int amt){

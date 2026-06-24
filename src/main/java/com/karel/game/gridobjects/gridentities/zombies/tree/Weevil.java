@@ -16,38 +16,53 @@ import com.karel.game.gridobjects.gridentities.zombies.SpawnableZombie;
 public class Weevil extends SpawnableZombie
 {
     boolean isOriginal = false;
-    HashSet<GridEntity> targeted;
+    HashSet<GridEntity> targeted, hit;
+    GridEntity added;
     public String getStaticTextureURL(){return "hornetzareln.png";}
     /**
      * Initilise this rocket.
      */
-    public Weevil(HashSet<GridEntity> targeted, boolean isOriginal)
+    public Weevil(HashSet<GridEntity> targeted, HashSet<GridEntity> hit, boolean isOriginal)
     {
         this.isOriginal = isOriginal;
         this.targeted = targeted;
+        this.hit = hit;
         scaleTexture(20, 20);
         setSpeed(4.5);
         startHealth(isOriginal?120:40);
     }
     public Weevil(){
-        this(new HashSet<GridEntity>(), true);
+        this(new HashSet<GridEntity>(), new HashSet<GridEntity>(), true);
     }
     public void attack(){
         super.attack();
         getTarget().applyEffect(new PoisonEffect(50, 20, 3, this));
-        if(!targeted.contains(getTarget()))getTarget().applyEffect(new InfectionEffect((g)->{
+        if(added!=null){
+            targeted.remove(added);
+        }
+        if(!hit.contains(getTarget()))getTarget().applyEffect(new InfectionEffect((g)->{
             for(int i = 0; i < 3; i++){
-                g.addObjectHere(new Weevil(targeted, false));
+                g.addObjectHere(new Weevil(targeted, hit, false));
             }
         }, 60, this));
-        targeted.add(getTarget());
+        hit.add(getTarget());
         kill(this);
     }
     public boolean isPotentialTarget(GridEntity g){
-        return super.isPotentialTarget(g)&&!targeted.contains(g);
+        return super.isPotentialTarget(g)&&(!targeted.contains(g)&&!hit.contains(g)||g==added);
     }
     public void behave(){
         super.behave();
+        if(getTarget()!=added){
+            if(targeted.contains(added)){
+                targeted.remove(added);
+                added = null;
+            }
+        }
+        if(!targeted.contains(getTarget())){
+            targeted.add(getTarget());
+            added = getTarget();
+        }
         if(isOriginal){
             hit(2, this);
         }

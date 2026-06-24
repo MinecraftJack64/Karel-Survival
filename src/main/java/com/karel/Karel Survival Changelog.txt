@@ -55,7 +55,20 @@ A zombie that chooses a random zombie(preferably hurt or actively attacking you)
 Mutation "Reciprocated Feelings": Shoot a bunch of healing hearts in random directions. When a zombie receives a love letter, send one back. Can no longer attack until letter has returned.
 
 Zombie of Wood(Spawner/Tank)
-A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one spawns a bug that slowly loses health over time. It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
+A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one may spawn a bug that slowly loses health over time(10% no hit, 80% with hit). It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
+
+Zombie Driver(Tank/Support)
+A zombie that spawns driving a large offroad vehicle holding 4 riders(including itself). Also spawns with some combination of Vandal Zombies, Hit-and-Run Zombies, and Drive-by Zombies. Has two driving modes. One mode is the drive-by mode, lasting longer if vandal or drive-by zombie ride it, where it circles you and occasionally stops for a drive-by or vandal zombie to attack. The other mode is the hit-and-run mode where it tries to ram you. After successfully hitting you, go to a drive-by mode for a while, longer if ranged zombies are present. The car has 4000 health and when destroyed, the zombies are released. If destroyed with fire, the car explodes. If the driver is killed first(with area attacks), one of the riders becomes a driver and if all riders are killed, car drives straight.
+
+Drive-by Zombie(Ranger)
+Works similarly to Marksman Zombie. Has an automatic rifle that shoots groups of 3 bullets(total damage same as marksman). It turns extemely slowly while firing. While on the car, it reloads as fast as a stationary marksman.
+Mutation "Machine Gunner": Its gun is converted into machine gun that turns slowly but fires extemely rapidly. Stops every 20 bullets to reload, freely rotating during this time. Walking speed is greatly reduced.
+
+Hit-and-Run Zombie(Melee)
+Holds a baseball bat but is too dumb to knock back projectiles. While riding car, it starts swinging while sufficiently far away. Does a lot of damage. If not in car, it runs quickly towards you, attacks, then runs away while dodging attacks. Heals over time(doubles its health), then repeats the attack.
+
+Vandal Zombie(Midranger/Penetrator)
+Throws rotten eggs at you. Doesn't do much damage despite its high attack rate, but has high health(600) and is very fast. Also has a chance to blind you if the egg hits your face.
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -158,6 +171,16 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+6/23
+Balancing
+ - Zombie Weevils can pathfind to separate enemies instead of the same one
+Graphics
+ - Ult Bar shows number of ult uses remaining for multiuse ults
+ - TODO: Gadgets are now shown under weapon name
+ - Game renders closer objects at top layer
+Fixes
+ - Fixed sprint bar showing up under wrong conditions
 
 6/8
 TODO: Fix chill zombie

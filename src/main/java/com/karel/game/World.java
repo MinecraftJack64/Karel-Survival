@@ -31,7 +31,7 @@ import com.raylib.Raylib;
 public class World
 {
     public Grid<KActor> grid = new Grid<KActor>(); // grid for pathfinding(unused currently)
-    private ArrayList<KActor> allKActors = new ArrayList<KActor>();
+    private ArrayList<KActor> allKActors = new ArrayList<KActor>(), renderOrder = new ArrayList<KActor>();
     public ArrayList<GridEntity> allEntities = new ArrayList<GridEntity>(); // a list of all grid entities in the world
     public ArrayList<GridObject> allGridObjects = new ArrayList<GridObject>(); // a list of all grid objects in the world excluding grid entities
     
@@ -231,6 +231,16 @@ public class World
         //remove all gridobjects that want to be
         for(int i = allKActors().size()-1; i >= 0; i--){
             if(allKActors().get(i).shouldRemove()){
+                //remove from render list
+                if(allKActors().get(i).isInGridWorld())for(int j = allKActors().get(i).getRenderPosition()+1; j < renderOrder.size(); j++){
+                    //swap with previous
+                    KActor temp = renderOrder.get(j);
+                    renderOrder.set(j, renderOrder.get(j-1));
+                    renderOrder.set(j-1, temp);
+                    temp.setRenderPosition(j-1);
+                }
+                renderOrder.removeLast();
+
                 allKActors().get(i).notifyWorldRemove();
                 allKActors().remove(i);
             }
@@ -247,11 +257,37 @@ public class World
         mtaRequests.add(k);
         mtaRequests.add(o);
     }
+    public void updateRenderOrder(int pos){
+        while(true){
+            if(renderOrder.size()>pos+1&&renderOrder.get(pos).getY()<renderOrder.get(pos+1).getY()){
+                //shift right
+                KActor temp = renderOrder.get(pos+1);
+                renderOrder.set(pos+1, renderOrder.get(pos));
+                renderOrder.set(pos, temp);
+                temp.setRenderPosition(pos);
+                pos++;
+            }else if(pos>0&&renderOrder.get(pos).getY()>renderOrder.get(pos-1).getY()){
+                //shift left
+                KActor temp = renderOrder.get(pos-1);
+                renderOrder.set(pos-1, renderOrder.get(pos));
+                renderOrder.set(pos, temp);
+                temp.setRenderPosition(pos);
+                pos--;
+            }else{
+                break;
+            }
+            renderOrder.get(pos).setRenderPosition(pos);
+        }
+        System.out.println(renderOrder);
+    }
     public void render(){
         drawBG();
         //render remaining objects MOVE TO render()
-        for(KActor g: allKActors()){
+        for(KActor g: renderOrder){
             if(g.getOpacity()>0&&!g.hasMounter())g.render();
+        }
+        for(KActor g: allKActors()){
+            if(!g.isInGridWorld()&&g.getOpacity()>0&&!g.hasMounter())g.render();
         }
         Raylib.drawRectangle(0, 0, gridXOffset, Raylib.getScreenHeight(), Raylib.DARKGRAY);
         Raylib.drawRectangle((int)(gridXOffset+gridSize*gridwidth*gridSizeScale), 0, gridXOffset+2, Raylib.getScreenHeight(), Raylib.DARKGRAY);
@@ -296,6 +332,8 @@ public class World
         }
         a.setWorld(this);
         allKActors.add(a);
+        if(a.isInGridWorld())renderOrder.add(a);
+        a.setRenderPosition(renderOrder.size()-1);
         a.setLocation(x, y);
         a.notifyWorldAdd();
     }

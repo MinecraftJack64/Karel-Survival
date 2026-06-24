@@ -42,7 +42,7 @@ public class GameUI extends UI
     private AmmoBar ammo;
     private SpecialBar special;
     private StatusBar sprint;
-    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, tut1, tut2;
+    private TextDisplay heldItem, ultMessage, ultMessage2, weaponmessagerarity, weaponmessage, weaponmessage2, weaponmessage3, sprintText, autoaimText, autoaimStatusText, ultCountText, tut1, tut2;
     private Button goToMenuBtn, nextLvlBtn;
     private ImageButton weaponCraftButton, pauseButton;
     private Joystick movement, attack, ult;
@@ -91,6 +91,7 @@ public class GameUI extends UI
         ultCharge = new UltBar(100, 350, 30);
         ultMessage = new TextDisplay("Space", 20, Raylib.ORANGE);
         ultMessage2 = new TextDisplay("to fire!", 20, Raylib.ORANGE);
+        ultCountText = new TextDisplay("", 20, Raylib.BLACK);
         placeUltBar();
         
         weaponmessagerarity = new ShyTextDisplay("", 20, Raylib.GRAY);
@@ -115,6 +116,7 @@ public class GameUI extends UI
     }
     public void placeUltBar(){
         getWorld().addObject(ultCharge, 25, 400.0);
+        getWorld().addObject(ultCountText, ultCharge.getX(), ultCharge.getY());
         getWorld().addObject(ultMessage, 35, 170.0);
         getWorld().addObject(ultMessage2, 35, ultMessage.getBottom());
         ultMessage.setVisible(false);
@@ -309,6 +311,13 @@ public class GameUI extends UI
         }
     }
 
+    public void setUltCount(int amt){
+        ultCountText.setText(""+amt);
+        if(amt<=1){
+            ultCountText.setText("");
+        }
+    }
+
     public void newUltCharge(int max, int value){
         ultCharge.setVisible(true);
         ultCharge.setMax(max);
@@ -364,13 +373,9 @@ public class GameUI extends UI
         sprint.setMax(max);
         setSprint(max);
     }
-    public void startSprint(){
-        sprint.setVisible(true);
-        sprintText.setVisible(true);
-    }
-    public void stopSprint(){
-        sprint.setVisible(false);
-        sprintText.setVisible(false);
+    public void setSprintStatus(boolean stat){
+        sprint.setVisible(stat);
+        sprintText.setVisible(stat);
     }
     public void startAutoAim(){
         autoaimText.setVisible(true);

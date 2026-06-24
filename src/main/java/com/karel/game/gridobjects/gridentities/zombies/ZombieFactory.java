@@ -68,6 +68,7 @@ import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tree.Weevil;
+import com.karel.game.gridobjects.gridentities.zombies.ubiquitous.UbiquitousZombie;
 import com.karel.game.gridobjects.gridentities.zombies.urchin.UrchinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.watermelon.WatermelonZombie;
@@ -155,6 +156,7 @@ public class ZombieFactory {
             "chill",
             "urchin",
             "minishooter",
+            "ubiquitous",
             "weevil",
             "bot",
             "punchingbag",
@@ -360,6 +362,8 @@ public class ZombieFactory {
                 return new MiniShooterZombie();
             //hologuard
             //caffeinated
+            case "ubiquitous":
+                return new UbiquitousZombie();
             case "weevil":
                 return new Weevil();
             case "bot":

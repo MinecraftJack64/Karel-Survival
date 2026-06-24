@@ -226,6 +226,10 @@ public class Game
         if(gameUI()!=null)gameUI().setUltCharge(amt);
     }
 
+    public static void setUltCount(int amt){
+        if(gameUI()!=null)gameUI().setUltCount(amt);
+    }
+
     public static void newUltCharge(int max, int value){
         if(gameUI()!=null)gameUI().newUltCharge(max, value);
     }

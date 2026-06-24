@@ -25,6 +25,7 @@ public abstract class KActor
     private Color transColor = new Color((byte)-1, (byte)-1, (byte)-1, (byte)getOpacity());
     private boolean shouldUnmount;
     private boolean mountFixed;
+    private int renderPosition;
     public KActor(){
         if(getStaticTextureURL()!="")setImage(getStaticTextureURL());
     }
@@ -43,6 +44,15 @@ public abstract class KActor
     public void setLocation(double x, double y){
         rx = x;
         ry = y;
+        if(isInGridWorld()&&isInWorld()){
+            getWorld().updateRenderOrder(renderPosition);
+        }
+    }
+    public void setRenderPosition(int a){
+        renderPosition = a;
+    }
+    public int getRenderPosition(){
+        return renderPosition;
     }
     public double getScrollX(){
         return getWorld().getScrollX();

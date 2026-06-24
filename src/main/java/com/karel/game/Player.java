@@ -272,7 +272,6 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
         String sprintkey = "sprint";
         if(Greenfoot.isActive(sprintkey)&&!sprinting&&sprint>=6/*decreasing rate*/){
             sprinting = true;
-            Game.gameUI().startSprint();
         }else if(!Greenfoot.isActive(sprintkey)||sprint<2){
             sprinting = false;
         }
@@ -280,23 +279,22 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
             sprint-=2;
             Game.gameUI().setSprint(sprint);
         }else{
-            if(sprint<maxsprint&&!isMoving()){
+            if(sprint<maxsprint){
                 sprint+=sprintrecoverrate;
                 if(sprint>=maxsprint){
                     sprint = maxsprint;
                 }
                 Game.gameUI().setSprint(sprint);
             }//else sprint is already max
-            else if(!Greenfoot.isActive(sprintkey)){
-                Game.gameUI().stopSprint();
-            }
         }
+        Game.gameUI().setSprintStatus(sprinting||Greenfoot.isActive(sprintkey)||sprint<maxsprint);
         if(sprinting){
             sprintamt = 1.5;
         }else{
             sprintamt = 1;
         }
         ismoving = false;
+
         //handle movement
         Vector v = getMovementControlVector();
         walk(v.getDirection()+90, sprintamt*v.getLength());
