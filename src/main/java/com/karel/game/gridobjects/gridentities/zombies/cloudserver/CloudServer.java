@@ -11,6 +11,7 @@ import com.karel.game.World;
 import com.karel.game.effects.EffectID;
 import com.karel.game.effects.FatalPoisonEffect;
 import com.karel.game.effects.LifestealEffect;
+import com.karel.game.effects.WeightPercentageEffect;
 import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
@@ -88,6 +89,7 @@ public class CloudServer extends Boss
     private int throwBallCooldown; // 30
     private int effectammo = 0; // for random effects
     private int deathwaitcooldown = 100;
+    private int killallcooldown = 180;
     private ShieldID hoverShield = new ShieldID(this, "hover");
     public String getStaticTextureURL(){return "angryheraldzareln.png";}
     private int phase;//5 phases
@@ -154,9 +156,9 @@ public class CloudServer extends Boss
             hoverCooldown = 0;
             //switch instantly
         }
-        if(isHovering){//WIP
+        /*if(isHovering){//TODO: use if testing ground capabilities
             hoverCooldown = 0;
-        }
+        }*/
         lightningammo++;
         if(lightningammo>=lightningreload){
             lightningAttack();
@@ -488,7 +490,7 @@ public class CloudServer extends Boss
         }, new Explosion(10));
     }
     public void startLastPhase(){
-        phase = 6;
+        phase = 4;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)){
                 g.stun(wizardStun);
@@ -497,13 +499,14 @@ public class CloudServer extends Boss
         }
     }
     public boolean checkForSurvivors(){
-        phase = 7;
         boolean found = false;
         for(GridEntity g: getWorld().allEntities){
             if(g!=this&&(isAlliedWith(g)||g instanceof Zombie)&&!g.isDead()){
                 found = true;
                 if(g.canMove()||g.canAttack())g.stun(wizardStun);
-                if(!g.hasEffect("lifesteal"))g.applyEffect(new LifestealEffect(20, 1, -1, this));
+                if(!g.hasEffect("weight"))g.applyEffect(new WeightPercentageEffect(-1, -1, this));
+                killallcooldown--;
+                if(killallcooldown<=0)g.kill(this);
             }
         }
         return found;
@@ -518,7 +521,7 @@ public class CloudServer extends Boss
         return false;
     }
     public void die(GridObject killer){
-        if(phase==5){
+        if(phase==3){
             setHealth(1);
             applyShield(new ExternalImmunityShield(new ShieldID(this), -1));
             startLastPhase();

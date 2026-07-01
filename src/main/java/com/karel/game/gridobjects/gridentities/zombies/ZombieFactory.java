@@ -64,6 +64,7 @@ import com.karel.game.gridobjects.gridentities.zombies.splitter.HeavyZombie;
 import com.karel.game.gridobjects.gridentities.zombies.splitter.LightZombie;
 import com.karel.game.gridobjects.gridentities.zombies.splitter.SplitterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
+import com.karel.game.gridobjects.gridentities.zombies.stripper.StripperZombie;
 import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
@@ -139,6 +140,7 @@ public class ZombieFactory {
             "jogger",
             "steak",
             "milky",
+            "stripper",
             "arson",
             "frisbee",
             "emotionalsupport",
@@ -288,7 +290,8 @@ public class ZombieFactory {
             // bowling
             // case "laser": return new SuperLaserZombie();
             // challenger
-            // stripper
+            case "stripper":
+                return new StripperZombie();
             case "arson":
                 return new ArsonZombie();
             // network

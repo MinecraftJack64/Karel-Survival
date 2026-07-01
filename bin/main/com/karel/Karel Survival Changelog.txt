@@ -1,10 +1,84 @@
 -ituti da !votannali, monlo !dostado -u dis
+While you are not ?, do not give me money
 Patrol(rare)
 Two siren lights on opposite sides spin around constantly. Attacking causes them to flash out, each one damaging in an arc
 Ult "Police Bots": Spawn 2 police robots, one on either side of you. They walk towards the nearest enemy and shoot them with a taser gun that stuns them after enough hits. They shoot faster when retreating
 Attack Upgrade "Blaring": Another attack damages in the cone next to the first one.
-Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot(it can't spawn more) and both gain a small shield
+Ult Upgrade "Reinforcements": When below 50% health, a bot will spawn another bot with half strength and the same amount of health(it can't spawn more) and both gain a small shield
 Gadget "Spotlights": Switch siren light direction
+
+Angler(epic)
+Shoot out a jaw with controlled range. It stops earlier if it hits an enemy. It then creates a 4 part floral pattern(like the cat claw) of scrapers that pulls in enemies about to die. It then retracts back into you, carrying those enemies and damaging them when pulled back.
+Ult "Lure": After a short delay, shoot a light down at a circular area. Enemies inside the area are lured to you for a few seconds.
+
+Toothbrush/Dentar(mythic)
+Shoot out 9 teeth in a shotgun pattern. If ?, the next shot will be a single high damage tooth with high range that at the end of its range, lands on the ground. Teeth have 4 states of cleanliness, slowly decreasing over time. Up to 8 teeth can be out at a time and the earliest will disappear when over the limit. If rotted too much, a tooth also disappears
+Ult "Brush": Shoot out a toothbrush at the nearest dirty tooth. Upon reaching a tooth, it will be fully cleaned and it will move towards the next tooth in line of sight, repeating until no teeth need cleaning in range. Along the way, leave behind toothpaste bubbles that damage enemies over time and damage enemies on collision. On a tooth being cleaned, it will burst outward, damaging enemies and knocking them back, stronger when tooth is less clean.
+Ult Upgrade "Enamel Protection": Teeth will gain a protective layer that stops them from rotting for a while.
+Gadget "Remember to Floss": You are dragged along with the next toothbrush and will damage enemies a second time.
+
+Spider(epic)
+Lunge forward, dealing damage to enemies along the way, then biting in front, poisoning enemies, then retracting back. If you don't attack for 2 seconds, your next attack becomes a pounce that deals damage on impact.
+Ult "Web Shot": Shoot out silk, which has controllable range. It can remain on the ground for a few seconds. If you attack while the web is on the ground, you will be pulled to it and it will be used up. On hitting an enemy, they will be immobilized and weakened. The immobilized enemy can break the web by damaging it enough. If they fail to break it, it will pull them to you. If you walk past a wall, the web will stick to the wall.
+Attack Upgrade "Paralyzing Venom": Poisoned enemies are also stunned
+Gadget "Molt": Gain a 50% shield and after 2 seconds, heal fully and jump forward. You will be vulnerable for the next 3 seconds but move faster.
+
+Billionaire Zombie(Whittler/Tank)
+Shoots a ton of money at you spread in a cones pattern from a far distance, which rapidly lose speed, dealing low damage. The money remains on a ground until it dies and if it picks up its own money, it will be shot out at you, not taking up any unload time.
+Spawns 2 bodyguards next to it. They circle around it.
+Location: Office Building
+
+Waste Auditor(mythic)
+Shoot out a greeting that will be echoed back if it hits an enemy. It will also increase their familiarity meter up to 3, which lowers over time and allows more echoes to be reflected back. Echoes only have slight homing. If they hit you, they heal you slightly and reload you a little.
+Ult "Waste Audit": Bottles and cans will spawn randomly over some time and you gain temporary movement speed increase. At the end, all collected recyclables in your bag are converted into money.
+If you have enough money, you will start a party. During a party, all enemies with familiarity will be stunned depending on how familiar they are with you and spit out recyclables. Their familiarities reset.
+Attack Upgrade "Friends": If you hit an enemy at 3 familiarity, they will be temporarily hypnotized
+Ult Upgrade "Reinforcements": Two clones of you will spawn who are also capable of attacking. They are faster than you and run to collect recyclables and cash in when you do. If they die, they drop all recyclables they were holding.
+Gadget "Can Crush": Stomp on the ground, damaging enemies in an area heavily, forcing a bottle out of them and cashing out all recyclables instantly.
+Your bag holds 20 recyclables.
+
+Snailshell(common)
+Throws a clump of salt onto the ground, which damages zombies standing on it increasingly and forces them to pathfind away from a few seconds.
+Ult "Shell Protection": Retract into your shell which protects you from 75% of all damage and makes you 70% slower. It also reflects projectiles. It lasts a limited time but also has health(it absorbs 25% of received damage) which allows it to end early. During the ult, your attack is switched with a shotgun of salt that blinds enemies.
+Ult Upgrade "Mantle Closure": After a short time of not attacking and not moving, protect from 10% more damage
+Gadget "Snail Trap": Your next attack creates a snail trap which attracts zombies and poisons them.
+Location: Infested Pest Control
+
+Ubiquitous Zombie(Whittler)
+Extremely high range. Every second, damage each ally in range for 1 damage.
+
+Heatseeker Zombie(Midranger)
+Shoot out a slow bullet that can change direction twice to face you. On hit, it will poison you weakly(will not kill you).
+
+Love Letter Zombie(Support/Ranger)
+A zombie that chooses a random zombie(preferably hurt or actively attacking you) and runs very quickly towards them, standing at a far range. Sends homing love letters in their direction, which heals them 15% of their missing health and makes them 5% stronger(10% if at full health). If that zombie dies, if will cry for a while, then start throwing paper airplanes at the killer of that zombie, if that killer is dead, start sending love letters again.
+Mutation "Reciprocated Feelings": Shoot a bunch of healing hearts in random directions. When a zombie receives a love letter, send one back. Can no longer attack until letter has returned.
+
+Zombie of Wood(Spawner/Tank)
+A slow tanky zombie that moves to a certain distance from you, then takes root permanently, gaining a shield. Every few seconds, creates a chain of blasts in the ground. Each one may spawn a bug that slowly loses health over time(10% no hit, 80% with hit). It tries to burrow into you and if it succeeds, you take a little damage over time and release 3 more bugs, this time with only 40 health each but not losing it over time.
+
+Pendulum Zombie(Melee)
+
+Jacob's Ladder Zombie(Midranger/Support)
+A chain of cone attacks propagate forward. Finds Melee zombies to push forward.
+
+
+Zombie Driver(Tank/Support)
+A zombie that spawns driving a large offroad vehicle holding 4 riders(including itself). Also spawns with some combination of Vandal Zombies, Hit-and-Run Zombies, and Drive-by Zombies. Has two driving modes. One mode is the drive-by mode, lasting longer if vandal or drive-by zombie ride it, where it circles you and occasionally stops for a drive-by or vandal zombie to attack. The other mode is the hit-and-run mode where it tries to ram you. After successfully hitting you, go to a drive-by mode for a while, longer if ranged zombies are present. The car has 4000 health and when destroyed, the zombies are released. If destroyed with fire, the car explodes. If the driver is killed first(with area attacks), one of the riders becomes a driver and if all riders are killed, car drives straight.
+Mutation "Hood Evolution": Car grows a hood to protect all zombies inside until it is destroyed and also can make sharper turns.
+
+Drive-by Zombie(Ranger)
+Works similarly to Marksman Zombie. Has an automatic rifle that shoots groups of 3 bullets(total damage same as marksman). It turns extemely slowly while firing. While on the car, it reloads as fast as a stationary marksman.
+Mutation "Machine Gunner": Its gun is converted into machine gun that turns slowly but fires extemely rapidly. Stops every 20 bullets to reload, freely rotating during this time. Walking speed is greatly reduced.
+
+Hit-and-Run Zombie(Melee)
+Holds a baseball bat but is too dumb to knock back projectiles. While riding car, it starts swinging while sufficiently far away. Does a lot of damage. If not in car, it runs quickly towards you, attacks, then runs away while dodging attacks. Heals over time(doubles its health), then repeats the attack.
+Mutation "Rough and Tough": Bat grows spikes, adding range and damage and can now destroy projectiles.
+
+Vandal Zombie(Midranger/Penetrator)
+Throws rotten eggs at you. Doesn't do much damage despite its high attack rate, but has high health(600) and is very fast. Also has a chance to blind you if the egg hits your face.
+Mutation "Angry Jeer": Spews rotten eggs in random directions, doubles attack rate.
+
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -21,7 +95,7 @@ CLOUD SERVER TO SPAWN:
 - Watermelon
 - Marksman
 Phase 1:
-- In the air, dash around, trying to stay near the middle
+- .In the air, dash around, trying to stay near the middle
 - If phase completed while too close, spawn a firebreather zombie on each nearby player
 - Create lightning at random locations
 - Create a rain cloud that follows you, slowing you down and slowly damaging you. They disappear after a while
@@ -47,13 +121,582 @@ Phase 3:
 - Includes previous
 - Can spawn up to 2 assault points
 - On the ground
-  - .Throw 1-2 giant hail balls, leads shots based on player movement in the last second
+  - Throw 1-2 giant hail balls, leads shots based on player movement in the last second
   - Can dash into a clump of zombies, spawning a shaman zombie
   - Lightning bolts bounce at the end of their range towards you again
 Last Phase:
 - .Goes to the middle and stays on the ground
 - .Strikes you with lightning fast if you are too close(like flash drive attack).
 - .Spawns tornados. Some wander around while others chase you. They reflect projectiles. They will knock you into the air and do damage if you touch them.
+
+Bot Guide Tracker
+ - Acidart(Y)
+ - Airpump(Y)
+ - Blade(Y)
+ - Blowgun(Y)
+ - Capsaicin Torch(Y)
+ - Cat Claw(Y)
+ - Critters(Y)
+ - Crossbow(Y)
+ - Crystal Gun(Y)
+ - Double Gun(Y)
+ - Easter basket(Y)
+ - Farmer(N)
+ - Hamburgerer(Y)
+ - Flail(Y)
+ - Flash Drive(N)
+ - Gale(N)
+ - Glue Gun(N)
+ - Grenade(N)
+ - Minigun(Y)
+ - Hearth(N)
+ - Highjacker(N)
+ - Inferno(N)
+ - Jack-O-Lantern(N)
+ - Jade Cutter(N)
+ - Lovestrike(N)
+ - Lymph Cannon(N)
+ - Mole(N)
+ - Nailgun(N)
+ - Necromancer(N)
+ - Paint Gun(N)
+ - Pointpinner(N)
+ - Reaper(N)
+ - Rock Launcher(N)
+ - Salicycle(N)
+ - Scream(N)
+ - Shotgun(N)
+ - Slicer(N)
+ - Soda Hat(N)
+ - Soup(N)
+ - Spear(N)
+ - Tesla Coil(N)
+ - Traps(N)
+ - Troll Test(N)
+ - Water Balloons(N)
+ - Weedwacker(N)
+
+TODO
+ - Sudo is unaffected by status effects
+ - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
+ - Maybe change healers to use priority like Chill Zombie?
+ - Should negative healing/damage call the other function?
+
+6/28
+Other
+ - Temporarily disabled layer rendering
+Content
+ - Added Stripper Zombie
+
+6/23
+Balancing
+ - Zombie Weevils can pathfind to separate enemies instead of the same one
+Graphics
+ - Ult Bar shows number of ult uses remaining for multiuse ults
+ - TODO: Gadgets are now shown under weapon name
+ - Game renders closer objects at top layer
+Fixes
+ - Fixed sprint bar showing up under wrong conditions
+TODO: VERY LAGGY AND DOES NOT WORK ON THROWN PROJECTILES
+
+6/8
+TODO: Fix chill zombie
+Graphics
+ - Drops from gatherer zombie are beepers now
+ - Zombie dropper uses purple texture again
+ - Cannon Zombie bomb looks like bomb again
+
+5/31
+Fixes
+ - Fixed Firing Squad Zombie crashing game if marksman not in world
+Other
+ - Damage indicator name("Grid Entity"->"Damage Indicator Field")
+
+5/28
+Balancing
+ - Minecraft Diamond Sword and Bow switch ults
+ - Diamond Sword
+    - Totem duration(60->90)
+
+5/19
+Balancing
+ - Gale
+    - Attack damage(3->4)
+    - Ult charge falloff(0.5->0.75)
+Fixes
+ - TODO: fix fireworks, pointpinner, lantern lobber, fix damage on crossbow ult and drone attack
+ - TODO: fix cone attacks not hitting in the first quadrant
+ - Fixed electric fists ammo reloading not showing, ammo now only reloads after unload delay
+
+5/18
+Other
+ - Added damage indicators, grid entities placed in a grid to show damage areas.
+ - Zombies also target punching bags now
+Content
+ - WIP: tree zombie
+
+5/17
+Fixes
+ - Punch Cards gadget no longer can be activated while no punches were made during ult
+
+5/13
+Content
+ - Added the Cab weapon
+Fixes
+ - Unstunning twice will not restun, same with other effects
+
+5/12
+Graphics
+ - Added L'il Critter's graphics
+Fixes
+ - Fixed inferno flame not animating
+
+5/11
+Content
+ - Added the sudo weapon gadget which heals you fully and clears malicious effects
+Fixes
+ - Fixed scaling gridentities
+Balancing
+ - (-)L'il Critters shield strength(66%->50%)
+
+5/10
+Fixes
+ - Fixed weedwacker gadget not retracting
+Graphics
+ - L'il Critters shows bar for regeneration
+ - TODO: show bar for starting natural regen
+Balancing
+ - Uranium Drum, Troll Test, Flail, and Droid no longer allow the player to move during a dash
+
+5/9
+Balancing
+ - Player speed(5->4.5)
+ - Player sprint speed(2->1.5)
+ - Fungal Zombie has speed boost cap of 4
+ - Laser zombies created by the Setup Wizard are 1/x as strong where x is the number of laser zombies in batch
+ - Hard hat zombies now give percentage shields instead of armor shields
+Other
+ - Turned off scrolling for now
+Fixes
+ - Fixed Player scrolling causing crash on exit
+ - Fixed many weapons and zombies not reloading at all on reload speed reductions(int rounding)
+
+5/8
+Technical
+ - Added ability to zoom in
+Other
+ - Alt key for sprinting and Ctrl key for showing ult reticle have been swapped
+
+5/7
+Fixes
+ - Fixed the world scrolling features, which are on for now
+
+5/6
+Content
+ - Added the Java Beaner base kit+gadget+attack upgrade
+
+5/2
+Balancing
+ - Minecraft Flint and Steel
+    - Fire gives burn effect(no overall damage change)
+    - TNT range(100->200)
+    - TNT detonation time(45->60)
+    - TODO: Fire can light TNT immediately
+    - TNT can no longer knockback other gridentities, only other TNT
+    - TNT can light other TNT on explosion
+    - Ult Upgrade also allows TNT knocked back by TNT to explode in 15 frames
+    - TNT on lighting will be knocked back a little
+    - TNT enemy knockback(100->200 with falloff)
+    - TNT TNT knockback(100->350 with falloff)
+    - TODO: TNT knockback not working
+Fixes
+ - TODO: morphing stone causing ghost zombies
+Technical
+ - Flying projectiles now "apply physics" in addition to their own(TODO: make same)
+
+4/?-4/21
+Content
+ - Added the 3 minecraft weapons
+Technical
+ - GridObjects no longer consider themselves potential targets
+ - Added all aggro team
+Balancing
+ - Guardian beast no longer spawns with immunity shield
+
+4/16
+Content
+ - Added the morphing stone ult, ult upgrade, and gadget
+
+4/15
+Content
+ - Added the Morphing Stone with attack and attack upgrade(TODO: weakening after transform, strengthening from attack)
+
+4/14
+Content
+ - Added the Zombie Flow
+Balancing
+ - Cancer Zombie retreat speed(5->2.5)
+
+4/12
+Graphics
+ - Punch Cards gadget indicates duration now
+ - TODO: electric fists phases(bar charges up during absorption phases and uses up during shooting, showing phases where projectiles were absorbed)
+Fixes
+ - Fixed ult duration indicator not working on Snail Shell
+Technical
+ - Fully implemented ability for phases in status bar
+
+4/9
+Content
+ - Added Punch Cards gadget and ult upgrade
+Other
+ - Punched Cards renamed to Punch Cards
+
+4/8
+Content
+ - Added Punch Cards base kit
+ - Added Exterramite with just attack
+Balancing
+ - (+)Urchin Zombie, Frisbee Zombie, Weedwacker, Snail Shell, and Electric Fists now add a projectile's original range to it, allowing it to hit much farther
+Technical
+ - Weapons can now allow using attack during ult(removed allowAttackWhileContinueUlt() and renamed to canAttackDuringUlt())(TODO: only for player currently)
+ - Player muted during attack will finish attack
+ - Debug mode for game, allowing ult charge cheat
+
+4/4
+Content
+ - Added Snail Shell ult upgrade
+Balancing
+ - Snail Shell
+    - (+)Attack range(350->400)
+    - (/)Ult armor now has 300 health instead of 150 duration(No Longer in Effect)
+    - (/)During ult, attack is now a blinding shotgun
+    - (+)Attack ammo(1->2)
+Technical
+ - Added the vision effects under VisionPercentageEffect(blindness, vision)(WIP: does not work)
+
+4/3
+Content
+ - Added the Snail Shell base kit
+
+3/12
+Fixes
+ - Droid no longer leaves player locked if unequipped in override mode
+Balancing
+ - Droid now leads shots in manual override
+Content
+ - Added droid attack upgrade
+Technical
+ - ShotLeader can now return target
+
+3/9
+Balancing
+ - Droid
+    - (-)Ult upgrade healing(75x4->50x4)
+    - (+)Changing modes now comes with an instant radius effect
+
+3/4
+Content
+ - Droid ult upgrade and gadget
+Balancing
+ - Droid
+    - Can set healing targets
+    - Dash speed(15->20) Range(375->500)
+    - TODO: at the end of dash and when switching back from assault and drill modes, burst and stun nearby enemies
+    - TODO: shotgun attack pushes enemies back
+    - Healing activation and cancelling come with burst heals
+Fixes
+ - Fixed crash when activating Droid "manual override" ult when no targets exist, also fixed when player dies while overriden
+ - Fixed droid following enemy target when healing
+
+3/3
+Completed
+ - Droid weapon base kit
+Technical
+ - Weapons can now lock player controls
+
+3/2
+Content
+ - Added droid weapon base kit(WIP: no wandering behavior, override attack)
+Balancing
+ - Electric Fists damage(4x100->4x150)
+
+2/25
+Content
+ - Added the Electric Fists base kit+attack upgrade
+Technical
+ - ItemHolder has target distance by default
+
+2/18
+Other
+ - As part of debugging, sudo weapon is now created in levels
+
+2/11
+Other
+ - Mimic Zombie class(Pressurer->Tactician)
+ - TODO: show high scores
+Content
+ - Added the Beer Martyr Zombie
+ - Added the Milky Zombie
+Balancing
+ - All zombies up to this point are now spawnable in survival mode
+ - TODO: reduce zombie spawning(2/3 spawning cannot violate max rules)
+Fixes
+ - Player will not be tinted from picking up orb without chameleon weapon equipped
+ - Fixed bosses before last not spawning
+
+2/10
+Technical
+ - Walk uses isOnGround with canFly
+ - Teams default by gamemodes
+Content
+ - Added helicopter zombie
+ - Added jogger zombie
+Other
+ - Added punching bag to test dps
+
+2/9
+Graphics
+ - Added lovestrike graphics
+Other
+ - Removed debug on lantern lobber
+
+2/8
+Balancing
+ - Uranium Drum
+    - (-)Ult gives 0.5 second stun followed by 0.5 second slow
+    - (-)Attack gives 0.5 second 50% slow
+    - (+)Attack radius(125->160)
+    - (-)Ult Upgrade wave radius(200->160)
+
+2/5
+Content
+ - Added Uranium Drum ult, attack upgrade, ult upgrade, gadget
+Technical
+ - Physics and tracker classes are moved into correct locations
+ - Percentage shield can now heal holder
+Balancing
+ - (-)Uranium Drum ult charge(1500->2500)
+ - (-)Uranium Drum will not reload until unload delay passed
+
+2/4
+Content
+ - Added Uranium Drum(attack)
+
+2/3
+Fixes
+ - Fixed chocolate zombie not being affected by own puddle
+Content
+ - Added magma zombie
+
+2/2
+Content
+ - Added the ribbon dancer zombie
+Technical
+ - finish is always called before expire in bullets
+
+1/28
+Fixes
+ - Fixed lantern lobber ult getting into infinite loop
+Content
+ - Added lantern lobber attack upgrade
+
+1/27
+Content
+ - Added the lantern lobber weapon base kit
+Technical
+ - Drone projectile AerialBullet is now available for all and it uses a subclass DroneBullet
+ - Fireworks weapon placed in correct folder
+ - Fixed all angles to be 0-360 degrees
+
+1/26
+Fixes
+ - Game no longer prevents returning to menu in survival mode
+ - Blade no longer charges bonus from ult twice(one for 1000, and another for 2000)
+Balancing
+ - (-)Bonus from blade ult kill(1000->500)
+
+1/21
+Mechanics
+ - Revamped high scores for survival mode
+ - Quitting survival mode will instead trigger game over
+Fixes
+ - No longer crashes when entering tinker menu with 0 fragments
+
+1/14
+Mechanics
+ - Added Currencies(fragments), no way to obtain or use yet
+ - Added tinker menu
+Fixes
+ - Scream no longer remains stuck after ult
+
+12/28
+Balancing
+ - Mortar
+    - Ult circle range(300->400)
+    - Ult circle delay(30->60)
+    - Ult limit(Infinite->7)
+Content
+ - Added mortar ult and attack upgrades
+ - Added snake charmer attack upgrade
+Technical
+ - Cloud Server hail attack uses ShotLeader now
+
+12/27
+Balancing
+ - Mortar
+    - Attack damage(200->300)
+    - Attack radius(50->100)(Ult is unchanged)
+    - Ult charge(2000->3000)
+Content
+ - Added Mortar gadget
+
+12/26
+Content
+ - Added Mortar ult(no shot leading)
+Technical
+ - world can now get GEs in a certain range
+Other
+ - Debug joysticks removed TODO: add settings to change input method
+
+12/25
+Graphics
+ - Added skins(for background, particles, ui components(WIP), and entities(WIP) to change their appearance) and added Christmas skins
+Content
+ - Added the mortar weapon(attack)
+
+12/23
+Fixes
+ - Gadget cooldown and timer are no longer half the intended
+
+12/22
+Content
+ - Added Snake Charmer base kit
+Technical
+ - Added custom hitbox sizes for grid objects(currently linked to texture size) TODO: Add other shapes
+
+12/19
+Balancing
+ - Grenades affected by reload speed
+Content
+ - Added Frost Spirit weapon with attack
+
+12/17
+Balancing
+ - Scalpel
+    - (-)Ult projectile damage(200->100)
+    - (-)Attack damage(50->40)
+    - (+)Charged attack damage(300->350)
+    - (-)Self healing from attack(50->30)
+    - (+)Charged attack ally healing(300->350)
+
+12/14-12/16
+Content
+ - Added Chill Zombie(TODO: chilling slows)
+ - Added Urchin Zombie
+ - Added Scalpel weapon basekit(no ult link graphics yet), attack upgrade(TODO: speed boost depends on living enemies)
+Graphics
+ - Duration shields show their duration in the bar(TODO: move into logos)
+Technical
+ - Fixed Duration effect collision protocol and max duration at start of instantiation
+ - Added BuildupEffect, which stacks until an amount and calls a method, decaying over time
+ - Lifesteal effect can have a ratio
+ - Added homing flying projectiles, which guarantee hits
+
+11/28
+Fixes
+ - Flail lock target on attack permanently
+Balance
+ - Capsaicin Torch max ammo(140->280)
+ - Bosses cannot accept external shields
+
+11/23
+Fixes
+ - Fixed crash when adding weapon when weedwacker held underneath sudo
+ - Fixed sudo crashing when using ult
+ - Fixed sudo crashing when switching between modes while attacking
+ - Fixed capsaicin torch crash at tip of range
+Balancing
+ - Sudo ult damage default(1->100)
+
+11/19
+Content
+ - Acidart ult upgrade, attack upgrade, and gadget added
+ - Added hail ball attack of cloud server
+Fixes
+ - "Fixed" poison crash temporarily(TODO: Fix for real)
+ - Cop Zombie no longer perma stuns due to mismatch of effectid hash codes
+Other
+ - Implemented bot guides
+    - Acidart
+    - Air Pump
+
+11/18
+Content
+ - Implemented acidart reload speed from ult and slow from attack
+Balancing
+ - Double Gun ult damage at max range(-200->100)
+ - Gun ult damage at max range(0->300)
+ - Acidart
+    - Attack range(300->345)
+
+11/17
+Content
+ - Added highjacker attack upgrade
+ - Added spear gadget
+ - Added chameleon ult upgrade
+Balancing
+ - Chameleon
+    - (/)Cannot activate ult during ult
+    - (+)Tongue damage(60->85)
+    - (+)Ult gives 20% damage boost
+Graphics
+ - Some weapons can show a special bar for durations and special abilities
+    - Chameleon(ult duration)
+    - Necromancer(ult duration)
+    - Blade(ult duration)
+    - Easter Basket(ult jump count)
+    - Crossbow(gadget count)
+    - Double Gun(gadget duration)
+    - Drone(gadget duration)
+    - Highjacker(ult duration)
+    - Other Gadget count and duration
+       - Gun
+       - Jack-O-Lantern
+       - Lovestrike
+       - Necromancer
+       - Rock
+       - Slicer
+       - Weedwacker
+ - Drone shows ammo
+Fixes
+ - Highjacker now spawnable
+
+11/16
+Balancing
+ - Shapeshifter zombies cannot shapeshift into other shapeshifter zombies
+ - Gale ult upgrade debris no longer charge ult
+
+11/14
+Balancing
+ - Added heal and knockback to troll test
+ - Chameleon affected by reload speed
+ - Chameleon purple tongue damages on return as well, and pulls enemies on return(overriding on better choices)
+Graphics
+ - Chameleon now indicates color
+ - TODO: Show super duration for some weapons
+Content
+ - Implemented yellow boost for chameleon ult
+
+11/13
+Content
+ - Lovestrike attack upgrade, ult upgrade, gadget added
+ - Added Troll Test weapon base kit, ult upgrade, gadget
+Balancing
+ - Lovestrike attack pierce(Infinite->2)
+    - Affected by reload speed
+Graphics
+ - Lovestrike shows charging area
 
 11/12
 Graphics

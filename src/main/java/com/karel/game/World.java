@@ -232,14 +232,14 @@ public class World
         for(int i = allKActors().size()-1; i >= 0; i--){
             if(allKActors().get(i).shouldRemove()){
                 //remove from render list
-                if(allKActors().get(i).isInGridWorld())for(int j = allKActors().get(i).getRenderPosition()+1; j < renderOrder.size(); j++){
+                /*if(allKActors().get(i).isInGridWorld())for(int j = allKActors().get(i).getRenderPosition()+1; j < renderOrder.size(); j++){
                     //swap with previous
                     KActor temp = renderOrder.get(j);
                     renderOrder.set(j, renderOrder.get(j-1));
                     renderOrder.set(j-1, temp);
                     temp.setRenderPosition(j-1);
                 }
-                renderOrder.removeLast();
+                renderOrder.removeLast();*/
 
                 allKActors().get(i).notifyWorldRemove();
                 allKActors().remove(i);
@@ -258,7 +258,7 @@ public class World
         mtaRequests.add(o);
     }
     public void updateRenderOrder(int pos){
-        while(true){
+        /*while(true){
             if(renderOrder.size()>pos+1&&renderOrder.get(pos).getY()<renderOrder.get(pos+1).getY()){
                 //shift right
                 KActor temp = renderOrder.get(pos+1);
@@ -278,7 +278,7 @@ public class World
             }
             renderOrder.get(pos).setRenderPosition(pos);
         }
-        System.out.println(renderOrder);
+        System.out.println(renderOrder);*/
     }
     public void render(){
         drawBG();
@@ -287,7 +287,7 @@ public class World
             if(g.getOpacity()>0&&!g.hasMounter())g.render();
         }
         for(KActor g: allKActors()){
-            if(!g.isInGridWorld()&&g.getOpacity()>0&&!g.hasMounter())g.render();
+            if(/*!g.isInGridWorld()&&*/g.getOpacity()>0&&!g.hasMounter())g.render();
         }
         Raylib.drawRectangle(0, 0, gridXOffset, Raylib.getScreenHeight(), Raylib.DARKGRAY);
         Raylib.drawRectangle((int)(gridXOffset+gridSize*gridwidth*gridSizeScale), 0, gridXOffset+2, Raylib.getScreenHeight(), Raylib.DARKGRAY);
@@ -332,8 +332,8 @@ public class World
         }
         a.setWorld(this);
         allKActors.add(a);
-        if(a.isInGridWorld())renderOrder.add(a);
-        a.setRenderPosition(renderOrder.size()-1);
+        /*if(a.isInGridWorld())renderOrder.add(a);
+        a.setRenderPosition(renderOrder.size()-1);*/
         a.setLocation(x, y);
         a.notifyWorldAdd();
     }
