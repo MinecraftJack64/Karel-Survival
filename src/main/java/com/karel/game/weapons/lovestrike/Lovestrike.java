@@ -65,17 +65,17 @@ public class Lovestrike extends Weapon
             int total = 0;
             for(GridEntity g:l){
                 if(g!=null&&getHolder().isAggroTowards(g)&&g.willNotify((GridObject)getHolder())){
-                    chargeUlt(7);
-                    if(isUsingGadget()){
-                        total++;
-                    }
+                    total++;
                 }
             }
             if(total>0){
                 if(total>3)total = 3;
-                getHolder().heal(getHolder(), 30);
-                getHolder().applyEffect(new ReloadPercentageEffect(1+0.25*total, 7, getHolder()));
-                getHolder().applyEffect(new SpeedPercentageEffect(1+0.15*total, 7, getHolder()));
+                chargeUlt(7*total);
+                if(isUsingGadget()){
+                    getHolder().heal(getHolder(), 30);
+                    getHolder().applyEffect(new ReloadPercentageEffect(1+0.25*total, 7, getHolder()));
+                    getHolder().applyEffect(new SpeedPercentageEffect(1+0.15*total, 7, getHolder()));
+                }
             }
             ultchargedelay = 5;
         }else{

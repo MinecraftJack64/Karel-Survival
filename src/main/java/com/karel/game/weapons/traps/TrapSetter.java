@@ -19,7 +19,7 @@ public class TrapSetter extends Weapon
 {
     private ArrayList<ITrap> traps = new ArrayList<ITrap>();
     private Dasher dash;
-    private static final int gunReloadTime = 65;
+    private static final int gunReloadTime = 60;
     private static final int dashWaitTime = 12;
     private static final int bearTrapTime = 15;
     private double nextAngle = 0;

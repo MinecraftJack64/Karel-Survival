@@ -79,6 +79,38 @@ Vandal Zombie(Midranger/Penetrator)
 Throws rotten eggs at you. Doesn't do much damage despite its high attack rate, but has high health(600) and is very fast. Also has a chance to blind you if the egg hits your face.
 Mutation "Angry Jeer": Spews rotten eggs in random directions, doubles attack rate.
 
+Vulture Zombie(Pressurer)
+Generally circles around you overhead. When you are under 50% health, it will occasionally swoop down, attack 5 times or until it is hit, then go back up. It does more damage the less health you have. If you have over 75% health, it will leave after 10 seconds.
+
+Fisherman Zombie(Pressurer/Spawner)
+Upon spawning, throw out its hook(invisible to you) attached to a beeper bait, which appears instantaneously. If you pick up this beeper, the zombie will reel you in. It attempts to throw the beeper to under a zombie 50% of the time and will always not place it too close to you. It releases flopping fish that attack you as it loses health or when you are near it.
+
+Fish Zombie(Meatshield)
+Acts like a normal zombie in water but faster. While outside of water, flop around randomly, though in the general direction of target. Can be hit while flopping, and damages on landing. Slowly loses health after 10 seconds, which eats through all its health in 2 seconds.
+
+Choo Choo Zombie(Leader/Tank)
+
+Peanut Can Zombie(Assault/Meatshield)
+Runs towards you and dies when at point blank range. When it dies, it shoots out 5 spring snakes in random directions which move quickly and pierce, doing high damage. They explode at the end of their range, which is determined by the snake.
+
+Z-fighter Zombie(Pressurer/Support)
+Phases between z-layers(either most back or most front) at random. When it phases, it damages you while healing zombies.
+
+Sacraficer Zombie(Barrager)
+Runs up to a random zombie and stuns them, calling a lightning strike on them from the gods, which takes 80% of health or at least 200. The gods bless it with the ability to behave like the classes of the zombie. Abilities stack, and even zombies that were not stunned but were hit with the lightning strike are factored in.
+Ranger: fire lightning strikes from a distance that deal very low damage but are unavoidable.
+Support: heal zombies in a radius around it.
+Assault: Runs up to you while strafing. When close to you it stuns you and spawns a lightning strike, then retreats.
+Meatshield/Spawner: Creates up to 10 normal zombies randomly in front of it.
+Tank: gain tank level health and walk slowly towards you.
+Midranger: shoot out a wave in a cone pattern in front of it, which damages you.
+Controller: all of its attacks now slow and weaken you slightly. if it has no other attacks, gain a random ability.
+...
+
+King Zombie(Spawner/Leader)
+Queen Zombie(Spawner/Leader)
+Xenozombie()
+
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
 - Warrior Zombie
@@ -181,6 +213,24 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+7/2
+Fixes
+ - Fixed boss waves being hardcoded, now cloud server death allows game to continue
+Balancing
+ - TODO: Boss herald only spawns when all zombies from previous waves die. make indicator for zombies
+ - Lovestrike ult charge sources(infinite->3)
+ - Mousetraps attack and Lovestrike ult trap initial damage(100->150)
+ - Mousetraps attack delay(65->60)
+ - Zombies spawn the frame after the condition passes
+
+6/30
+Fixes
+ - Cloud Server Zombie now dies properly, removed debug grounding
+Content
+ - Added Weight percentage effect TODO: implement Weight
+Balancing
+ - Stripper, Breadboxer, Cowboy, Flow, Minishooter, Tree, Ubiquitous Zombies added to survival mode
 
 6/28
 Other

@@ -24,13 +24,13 @@ public class ZombieSpawner implements Spawner
 
     public int waveHealth = 0;
     public int waveMaxHealth = 0;
-    public int wavelevel = 1;
+    public int wavelevel = 28;
 
     SpawnCalculator calculator = new SpawnCalculator();
-    private SpawnData toSpawn;
-    private int nextSpawn;
-    private int remainingSections;
-    private int forceNextSpawn; // 450
+    public SpawnData toSpawn;
+    public int nextSpawn;
+    public int remainingSections;
+    public int forceNextSpawn; // 450
     //private int lastMaxHealth = 0;//TODO
     
     public QueueMap<Integer, Boss> bosses = calculator.bosses;
@@ -40,6 +40,8 @@ public class ZombieSpawner implements Spawner
     private boolean bossfight;
     public Boss boss;
     public ArrayList<GridEntity> currentlySpawned;
+
+    private SpawnDataDisplay display;
     
     public ZombieSpawner(){
         try{nextBossWave = bosses.peek().getKey();}
@@ -86,8 +88,7 @@ public class ZombieSpawner implements Spawner
                 if(toSpawn.isClear()){
                     toSpawn = null;
                 }
-            }
-            if(toSpawn==null&&allSpawnedDied()){
+            }else if(allSpawnedDied()){
                 wavelevel++;
                 if(!isBossWave()){
                     int count = Greenfoot.getRandomNumber(Math.min(wavelevel, 7))+wavelevel/2;
@@ -107,20 +108,23 @@ public class ZombieSpawner implements Spawner
                     else heraldBossFight();
                 }
             }
-            if(!Game.isPaused()){
-                for(GridEntity ge: currentlySpawned){
-                    if(ge instanceof Zombie){
-                        //System.out.println(ge.getName()+" health: "+ge.getHealth()+" isDead? "+ge.isDead());
-                    }
+            if(!Game.isPaused()&&Game.debugMode){
+                if(display==null){
+                    display = new SpawnDataDisplay();
+                    myWorld.addObject(display, 100, 100);
+                    display.zs = this;
                 }
-                //System.out.println(toSpawn);
-                //System.out.println("Max health: "+lastMaxHealth);
-                //System.out.println("total health: "+totalHealth()+" time until next spawn: "+forceNextSpawn+"\n");
+                display.render();
             }
             Game.gameUI().updateWaveHealth(totalHealth());
         }
         else{
-            if(bossphase < 6){
+            if(boss.isDead()){
+                stopBossFight();
+                wavelevel++;
+                //System.out.println("Boss defeated, wave level now: "+wavelevel);
+            }
+            else if(bossphase < 6){ // TODO: make exclusive to each boss stage
                 cwavecooldown--;
                 if(cwavecooldown<=0){
                     for(int i = 0; i < bossphase; i++)spawnZombie(new Zombie());
@@ -132,12 +136,6 @@ public class ZombieSpawner implements Spawner
                     cwavecooldown = Greenfoot.getRandomNumber(300)+600;
                 }
                 setBossPhase(boss.getPhase());
-            }else{
-                if(boss.isDead()){
-                    stopBossFight();
-                    wavelevel++;
-                    //System.out.println("Boss defeated, wave level now: "+wavelevel);
-                }
             }
         }
     }
@@ -145,6 +143,7 @@ public class ZombieSpawner implements Spawner
     public void spawnZombies(int count, int sections)
     {
         toSpawn = calculator.calculateSpawn(count, wavelevel);
+        currentlySpawned = new ArrayList<GridEntity>();
         //lastMaxHealth = toSpawn.totalHealth();
         Game.gameUI().newWave(toSpawn.totalHealth());
         //System.out.println("first Spawn");
@@ -155,7 +154,6 @@ public class ZombieSpawner implements Spawner
     }
 
     public void spawnZombies(SpawnData dat, int sections){
-        currentlySpawned = new ArrayList<GridEntity>();
         int total = 0;
         for(int i = 0; i < dat.size(); i++){
             int amt = randomCenter(dat.count(i)); // TODO

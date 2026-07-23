@@ -9,7 +9,7 @@ import com.karel.game.gamemodes.SpawnData;
 import com.karel.game.gridobjects.gridentities.zombies.Boss;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieFactory;
 /**
- * Write a description of class ZombieSpawner here.
+ * Calculates which zombies should spawn in a wave assuming survival mode
  * 
  * @author (your name) 
  * @version (a version number or a date)
