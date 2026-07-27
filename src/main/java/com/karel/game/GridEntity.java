@@ -13,6 +13,7 @@ import com.karel.game.ui.bars.BossBar;
 import com.karel.game.ui.bars.HealthBar;
 import com.karel.game.ui.bars.LifeBar;
 import com.karel.game.ui.bars.ShieldBar;
+import com.raylib.Raylib;
 
 /**
  * Write a description of class GridEntity here.
@@ -78,7 +79,7 @@ public abstract class GridEntity extends GridObject
         for(int i = possessors.size()-1; i >= 0; i--){
             possessors.get(i).onDeath();
         }
-        if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){System.out.println("FAILED TO REMOVE"+e);}//remove from world if set to true
+        if(removeOnDeath())try{getWorld().removeObject(this);}catch(Exception e){setTint(Raylib.BLACK);System.out.println("FAILED TO REMOVE"+e);}//remove from world if set to true
     }
     
     public GridObject getKiller(){

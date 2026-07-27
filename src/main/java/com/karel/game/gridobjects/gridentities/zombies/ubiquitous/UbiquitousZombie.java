@@ -37,7 +37,7 @@ public class UbiquitousZombie extends Zombie
         return 400;
     }
     public String getName(){
-        return "Zombie Herald";
+        return "Ubiquitous Zombie";
     }
     @Override
     public String getZombieID(){

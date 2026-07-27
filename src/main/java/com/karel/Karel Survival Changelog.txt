@@ -107,6 +107,15 @@ Midranger: shoot out a wave in a cone pattern in front of it, which damages you.
 Controller: all of its attacks now slow and weaken you slightly. if it has no other attacks, gain a random ability.
 ...
 
+Sacrificial Zombie(Support)
+Very quickly walks up to you but does not attack. Attempts to receive a hit. When about to be killed, lightning will strike it, killing it fully. This blesses all zombies with buffsfor a very long time.
+
+Roid Zombie(Meatshield/Tank)
+A boid zombie, but uses steroids to gain a massive increase of health. After a certain amount of time however, it will rapidly lose health and die.
+
+Zoge(Meatshield) from Battle Cats
+Acts like a regular zombie but upon being hit, burrows into the ground and continues moving as normal, resurfacing later. Upon being killed, it can revive once after a short delay.
+
 King Zombie(Spawner/Leader)
 Queen Zombie(Spawner/Leader)
 Xenozombie()
@@ -213,6 +222,10 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+7/26
+Fixes
+ - Potential targets for hitters now includes hitstory if cliphits is true(Affects ZRainCloud of CloudServer)
 
 7/2
 Fixes
