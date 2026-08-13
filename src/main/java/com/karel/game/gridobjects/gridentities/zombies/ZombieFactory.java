@@ -66,6 +66,7 @@ import com.karel.game.gridobjects.gridentities.zombies.splitter.SplitterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.steak.SteakZombie;
 import com.karel.game.gridobjects.gridentities.zombies.stripper.StripperZombie;
 import com.karel.game.gridobjects.gridentities.zombies.stunt.StuntZombie;
+import com.karel.game.gridobjects.gridentities.zombies.supernova.SupernovaZombie;
 import com.karel.game.gridobjects.gridentities.zombies.torpedo.TorpedoZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tractorbeam.TractorBeamZombie;
 import com.karel.game.gridobjects.gridentities.zombies.tree.Weevil;
@@ -152,6 +153,7 @@ public class ZombieFactory {
             "ironclad",
             "flow",
             "torpedo",
+            "supernova",
             "cowboy",
             "boid",
             "cancer",
@@ -342,7 +344,8 @@ public class ZombieFactory {
             // piratecaptain
             // parrot
             ////camp
-            // supernova
+            case "supernova":
+                return new SupernovaZombie();
             // mole
             // telescreen
             // thoughtpolice

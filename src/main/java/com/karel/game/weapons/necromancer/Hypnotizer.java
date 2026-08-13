@@ -17,17 +17,15 @@ public class Hypnotizer extends Bullet
     public Hypnotizer(double rotation, GridObject source)
     {
         super(rotation, source);
+        setImage("hypno.png");
         setLife(70);
-        setDamage(0);
+        setDamage(50);
         setSpeed(7);
     }
     
     public Hypnotizer(double rotation, GridObject source, Necromancer thing)
     {
-        super(rotation, source);
-        setLife(70);
-        setDamage(50);
-        setSpeed(7);
+        this(rotation, source);
         notifier = thing;
     }
     public void animate()

@@ -116,6 +116,13 @@ A boid zombie, but uses steroids to gain a massive increase of health. After a c
 Zoge(Meatshield) from Battle Cats
 Acts like a regular zombie but upon being hit, burrows into the ground and continues moving as normal, resurfacing later. Upon being killed, it can revive once after a short delay.
 
+Fetch(rare)
+Throws a ball very far, which does a little damage and lands eventually. On throwing, a request dog will spawn which has limited health. it will chase the ball when the ball hits the ground, and on retrieving the ball, it will run back to you, damaging enemies both ways, but more on the return. On returning, it will heal you based on how many enemies were hit, and fulfill half the reload speed, which is otherwise slow.
+Ult "TCP Tag": Throw a special ball which uncovers a server. create 3 dogs, who will hit a few random enemies along the way before running to the server and disappearing. The server then does the same back to you.
+Attack Upgrade "UDP Yard": If the dog fails to return, create a second dog, which is slightly weaker.
+Ult Upgrade "URL not found": Each dog that fails to return or make it to the server creates a 404 bomb where you are.
+Gadget "Have a treat": ?
+
 King Zombie(Spawner/Leader)
 Queen Zombie(Spawner/Leader)
 Xenozombie()
@@ -222,6 +229,12 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+8/13
+Content
+ - Added the Supernova Zombie
+Graphics
+ - Fixed necromancer showing default texture for necromancer ult
 
 7/26
 Fixes
