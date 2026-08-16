@@ -87,6 +87,7 @@ public class Game
     static String gameMode; // current game mode
     static int gameDiff; // current game difficulty
     private static GameMode game; // current game
+    private static int gameCurrentFrame = 0; // which frame the game is on currently
     private static boolean currentlypausing = false;
     public static boolean pauseFlag = false;
     
@@ -115,6 +116,7 @@ public class Game
         ui2 = new PauseUI();
         initPauseUI();
         gameDiff = cdiff;
+        gameCurrentFrame = 0;
         //Create the player and initial enemies
         if(mode.equals("protect")){
             game = new Protect();
@@ -157,6 +159,9 @@ public class Game
     }
     public static int currentDiff(){
         return gameDiff;
+    }
+    public static int currentFrame(){
+        return gameCurrentFrame;
     }
     public static String selectedModeName(){
         return modenames[cmode];
@@ -298,6 +303,7 @@ public class Game
             ui.render();
             setUIScreenScaleAndOffset(ui2);
             if(isPaused()||game!=null&&(isPaused()&&!game.usesCustomPause()||game.showPauseMenu()))ui2.render();
+            gameCurrentFrame++;
         }else{
             if(ui!=null){
                 setUIScreenScaleAndOffset(ui);

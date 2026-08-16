@@ -21,6 +21,8 @@ import java.util.Iterator;
  */
 public abstract class GridObject extends KActor
 {
+    private static int nextId = 0;
+    private int id = 0;
     private HashMap<KActor, Vector> mounts;
     private ArrayList<EventListener> listeners = new ArrayList<EventListener>();
     String team;
@@ -34,9 +36,17 @@ public abstract class GridObject extends KActor
     private boolean grounded;
     private GridEntity cachedTarget;
     private boolean updatingMounts;
-
     //TODO: HITBOX STUFF
     private int collisionRadius = 25;
+
+    public GridObject(){
+        id = nextId;
+        nextId++;
+    }
+    public int getID(){
+        return id;
+    }
+
     public String getTeam(){
         if(faketeam!=null){
             return faketeam;

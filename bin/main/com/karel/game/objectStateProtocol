@@ -1,0 +1,6 @@
+Zombies
+    arson
+        reloadDelayCount: int < time until next attack cycle
+        firingDelay: int < time until next shot
+        ammo: int < shots remaining in attack cycle
+        nextAmmo: int < number of shots in next attack cycle

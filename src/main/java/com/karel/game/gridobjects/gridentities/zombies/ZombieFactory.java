@@ -49,6 +49,7 @@ import com.karel.game.gridobjects.gridentities.zombies.milky.MilkyZombie;
 import com.karel.game.gridobjects.gridentities.zombies.mimic.MimicZombie;
 import com.karel.game.gridobjects.gridentities.zombies.minishooter.MiniShooterZombie;
 import com.karel.game.gridobjects.gridentities.zombies.ninja.NinjaZombie;
+import com.karel.game.gridobjects.gridentities.zombies.peanutcan.PeanutCanZombie;
 import com.karel.game.gridobjects.gridentities.zombies.portal.PortalZombie;
 import com.karel.game.gridobjects.gridentities.zombies.president.BodyguardZombie;
 import com.karel.game.gridobjects.gridentities.zombies.president.PresidentZombie;
@@ -162,6 +163,7 @@ public class ZombieFactory {
             "minishooter",
             "ubiquitous",
             "weevil",
+            "peanutcan",
             "bot",
             "punchingbag",
             "damageindicator"};
@@ -372,6 +374,8 @@ public class ZombieFactory {
                 return new UbiquitousZombie();
             case "weevil":
                 return new Weevil();
+            case "peanutcan":
+                return new PeanutCanZombie();
             case "bot":
                 return new Bot(null);
             case "punchingbag":

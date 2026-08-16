@@ -92,8 +92,10 @@ Choo Choo Zombie(Leader/Tank)
 
 Peanut Can Zombie(Assault/Meatshield)
 Runs towards you and dies when at point blank range. When it dies, it shoots out 5 spring snakes in random directions which move quickly and pierce, doing high damage. They explode at the end of their range, which is determined by the snake.
+Diff <Normal: Snakes are lobbed projectiles, so they will only hit at the tip of their range.
 
 Z-fighter Zombie(Pressurer/Support)
+Promotes from Bully Zombie
 Phases between z-layers(either most back or most front) at random. When it phases, it damages you while healing zombies.
 
 Sacraficer Zombie(Barrager)
@@ -108,7 +110,7 @@ Controller: all of its attacks now slow and weaken you slightly. if it has no ot
 ...
 
 Sacrificial Zombie(Support)
-Very quickly walks up to you but does not attack. Attempts to receive a hit. When about to be killed, lightning will strike it, killing it fully. This blesses all zombies with buffsfor a very long time.
+Very quickly walks up to you but does not attack. Attempts to receive a hit. When about to be killed, lightning will strike it, killing it fully. This blesses all zombies with slight buffs for a very long time.
 
 Roid Zombie(Meatshield/Tank)
 A boid zombie, but uses steroids to gain a massive increase of health. After a certain amount of time however, it will rapidly lose health and die.
@@ -229,6 +231,20 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+8/15
+Content
+ - Added the Peanut Can Zombie
+Balancing
+ - Player clears all effects when revived
+ - Player can now use Sudo weapon even when dead, which does not show animations
+Technical
+ - Game now stores current frame id
+ - All gridobjects now have a unique id
+ - TODO: all gridobjects should have a unique type id, not just entities
+ - TODO: allow difficulty based zombie differences
+ - TODO: Continue serialization
+ - TODO: Center arena stage to 0, 0 instead of top left corner
 
 8/13
 Content

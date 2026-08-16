@@ -360,6 +360,17 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
             }
         }
     }
+    public void update(){
+        super.update();
+        if(isDead()&&sudoActive()){
+            if(Greenfoot.isActive("ult")){
+                if(sudo.ult())broadcastEvent("ult");;
+            }
+            else if(Game.isAttackDown()){
+                sudo.use();
+            }
+        }
+    }
     public Vector getMovementControlVector(){
         return getMovementControlVector(getWorld());
     }
@@ -411,6 +422,7 @@ public class Player extends GridEntity implements ItemAccepter, BeeperAccepter {
     }
     public void reviveWithHealth(){
         super.reviveWithHealth();
+        clearEffects();
         this.setImage(rocket);
     }
 
