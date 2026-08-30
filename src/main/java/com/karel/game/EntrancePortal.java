@@ -7,7 +7,7 @@ import com.raylib.Raylib;
 import com.raylib.Vector2;
 
 /**
- * Write a description of class EntrancePortal here.
+ * Represents one end of a portal. Pulls in targeted entities and attempts to teleport them to another linked EntrancePortal, commonly created by PortalZombie
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -152,6 +152,10 @@ public class EntrancePortal extends GridObject
         //placeholder
         super.die();
         getWorld().removeObject(this);
+    }
+    @Override
+    public String getObjectID(){
+        return "entranceportal";
     }
 }
 

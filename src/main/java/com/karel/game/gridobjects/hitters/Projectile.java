@@ -8,7 +8,7 @@ import com.karel.game.GridObject;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Projectile extends Hitter
+public abstract class Projectile extends Hitter
 {
     public Projectile(GridObject source){
         super(source);

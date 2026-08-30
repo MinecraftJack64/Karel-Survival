@@ -589,6 +589,10 @@ public abstract class GridObject extends KActor
         getWorld().addObject(obj, getX(), getY());
         return obj;
     }
+    public KActor addObjectHere(KActor obj){
+        getWorld().addObject(obj, getX(), getY());
+        return obj;
+    }
     public List<GridEntity> getGEsInRange(int rng){
         ArrayList<GridEntity> gs = new ArrayList<GridEntity>();
         for(GridEntity g:getWorld().allEntities()){
@@ -802,5 +806,12 @@ public abstract class GridObject extends KActor
     }
     public boolean isInGridWorld(){
         return true;
+    }
+    public String getObjectID(){
+        return "";
+    }
+    //object is to be included in save states
+    public boolean saveable(){
+        return !getObjectID().equals("");
     }
 }

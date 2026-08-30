@@ -687,6 +687,10 @@ public abstract class GridEntity extends GridObject
     public void behave(){}
     public String getName(){return "Grid Entity";}
     public String getEntityID(){return "";}
+    @Override
+    public String getObjectID(){
+        return getEntityID();
+    }
     public void setMaxHealthLimit(int amt, EffectID id) {
         healthLimit = accountForStatus(cursers, amt, id);
         if(getHealth()>getEffectiveMaxHealth()){

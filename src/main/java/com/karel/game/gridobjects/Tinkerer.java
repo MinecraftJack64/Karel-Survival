@@ -2,6 +2,9 @@ package com.karel.game.gridobjects;
 
 import com.karel.game.GridObject;
 
+/*
+ * Tinkerer found in middle of tinker menu room. Not in regular gameplay
+ */
 public class Tinkerer extends GridObject{
     int expecting;
     boolean ready;
@@ -22,5 +25,8 @@ public class Tinkerer extends GridObject{
     public void expect(int amt){
         ready = true; // lever down TODO
         expecting = amt;
+    }
+    public boolean saveable(){
+        return false;
     }
 }

@@ -44,4 +44,8 @@ public class Beeper extends Collectible
         super.collect(targ);
         Sounds.play("Beeper.collect"+xp);
     }
+    @Override
+    public String getObjectID(){
+        return "beeper";
+    }
 }

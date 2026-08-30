@@ -11,7 +11,7 @@ import com.karel.game.SubAffecter;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Hitter extends GridObject implements SubAffecter
+public abstract class Hitter extends GridObject implements SubAffecter
 {
     GridObject source;
     GridEntity intendedTarget;

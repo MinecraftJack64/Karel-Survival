@@ -1,8 +1,10 @@
 package com.karel.game.particles;
 
-import com.karel.game.GridObject;
-
-public class SniperCasing extends GridObject{
+/*
+ * Effect representing the bullet casing ejected by a MarksmanZombie.
+ * TODO: Like MelonExplosion, to be unsaveable
+ */
+public class SniperCasing extends ProjectileParticle{
     double direction;
     private int life;
     public SniperCasing(double direction){
@@ -17,7 +19,6 @@ public class SniperCasing extends GridObject{
         setOpacity(getOpacity()-20);
         super.update();
         if(life<=0){
-            die();
             getWorld().removeObject(this);
         }
     }

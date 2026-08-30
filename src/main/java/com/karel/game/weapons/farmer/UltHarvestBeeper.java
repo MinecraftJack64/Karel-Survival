@@ -6,7 +6,7 @@ import com.karel.game.Sounds;
 import com.karel.game.gridobjects.collectibles.Collectible;
 
 /**
- * a collectible usually dropped from zombies when killed that can be collected by the player, healing them
+ * An invisible(TODO) beeper dropped by the Farmer weapon.
  * 
  * @author MinecraftJack64
  * @version 1.0
@@ -30,5 +30,9 @@ public class UltHarvestBeeper extends Collectible
         myFarmer.notifyBeeperCollect();
         super.collect(targ);
         Sounds.play("UltHarvestBeeper.collect");
+    }
+    @Override
+    public String getObjectID(){
+        return "ultharvestbeeper";
     }
 }

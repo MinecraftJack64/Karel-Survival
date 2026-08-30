@@ -54,4 +54,8 @@ public class ChameleonOrb extends Collectible
         super.collect(targ);
         Sounds.play("ChameleonOrb.collect");
     }
+    @Override
+    public String getObjectID(){
+        return "chameleonorb";
+    }
 }

@@ -4,6 +4,9 @@ import com.karel.game.GridObject;
 import com.karel.game.Sounds;
 import com.karel.game.SubAffecter;
 
+/*
+ * Represents one of 2 ZMilkDrop firing cannons of the MilkyZombie. On command, fires multiple milk drops.
+*/
 public class MilkCannon extends GridObject implements SubAffecter {
     GridObject target = null, source;
     private int shotCooldown = 0;//5
@@ -48,5 +51,8 @@ public class MilkCannon extends GridObject implements SubAffecter {
     }
     public GridObject getSource(){
         return source;
+    }
+    public boolean saveable(){
+        return false;
     }
 }

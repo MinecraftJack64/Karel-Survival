@@ -26,6 +26,7 @@ import com.karel.game.weapons.frostspirit.FrostSpirit;
 import com.karel.game.weapons.gale.Gale;
 import com.karel.game.weapons.gluegun.GlueGun;
 import com.karel.game.weapons.grenade.GrenadeLauncher;
+import com.karel.game.weapons.grimoire.Grimoire;
 import com.karel.game.weapons.gun.Gun;
 import com.karel.game.weapons.hearth.Hearth;
 import com.karel.game.weapons.highjacker.Highjacker;
@@ -127,7 +128,7 @@ public class ItemFactory
                                     "flail",
                                     //"rifle",
                                     //"traffix",
-                                    //"spellbook",
+                                    "grimoire",
                                     //"deathsicle",
                                     //"hyperdrive",
                                     //"gum",
@@ -276,8 +277,8 @@ public class ItemFactory
                 //return new Rifle(holder);
             case "traffix":
                 //return new Traffix(holder);
-            case "spellbook":
-                //return new Spellbook(holder);
+            case "grimoire":
+                return new Grimoire(holder);
             case "deathsicle":
                 //return new Deathsicle(holder);
             case "hyperdrive":

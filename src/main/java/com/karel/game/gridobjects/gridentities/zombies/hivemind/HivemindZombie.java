@@ -19,7 +19,7 @@ public class HivemindZombie extends Zombie
 
     public String getStaticTextureURL(){return "hivezareln.png";}
     private static double standingrange = 500;
-    private int bees = 40;
+    private int bees = 25;
     private int attackphasecount = 0;
     private int attackphasecooldown = 0;
     private boolean attackphasesuper = !(Greenfoot.getRandomNumber(5)>0);

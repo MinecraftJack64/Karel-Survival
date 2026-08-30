@@ -5,7 +5,7 @@ import com.karel.game.gridobjects.Tinkerer;
 import com.karel.game.Greenfoot;
 
 /**
- * A weapon fragment that can be collected by the player, increases the players weapon frag count
+ * A weapon fragment, but it's meant for the tinker menu only.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -27,5 +27,8 @@ public class TinkerWeaponFrag extends WeaponFrag
     }
     public GridObject getTarget(){
         return lookfor;
+    }
+    public boolean saveable(){
+        return false;
     }
 }

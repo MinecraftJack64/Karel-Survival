@@ -127,6 +127,7 @@ public class ZombieSpawner implements Spawner
             else if(bossphase < 6){ // TODO: make exclusive to each boss stage
                 cwavecooldown--;
                 if(cwavecooldown<=0){
+                    System.out.println("ZOMBIE SPAWN");
                     for(int i = 0; i < bossphase; i++)spawnZombie(new Zombie());
                     if(bossphase>=3)spawnZombie(new NinjaZombie());
                     if(bossphase==5)spawnZombie(new NinjaZombie());

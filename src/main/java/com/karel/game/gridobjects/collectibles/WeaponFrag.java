@@ -7,7 +7,7 @@ import com.karel.game.particles.WeaponFragComponent;
 import com.karel.game.Greenfoot;
 
 /**
- * A weapon fragment that can be collected by the player, increases the players weapon frag count
+ * A weapon fragment that can be collected by the player, increases the player's weapon frag count
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -34,5 +34,9 @@ public class WeaponFrag extends Collectible
     }
     public GridObject getTarget(){
         return getWorld().getPlayer();
+    }
+    @Override
+    public String getObjectID(){
+        return "weaponfrag";
     }
 }

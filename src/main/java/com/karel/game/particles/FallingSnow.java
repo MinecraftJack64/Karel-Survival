@@ -1,9 +1,8 @@
 package com.karel.game.particles;
 
 import com.karel.game.Greenfoot;
-import com.karel.game.KActor;
 
-public class FallingSnow extends KActor
+public class FallingSnow extends Particle
 {
     private double direction, speed, fall, rotSpeed;
     private int cooldown;

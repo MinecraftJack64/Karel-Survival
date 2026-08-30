@@ -3,6 +3,9 @@ package com.karel.game.weapons.mortar;
 import com.karel.game.GridObject;
 import com.karel.game.Location;
 
+/* 
+ * A special target that helps lead shots and predicts future positions of the target.
+ */
 public class ShotLeader extends GridObject {
     private GridObject target, source;
     private double targetX, targetY;
@@ -37,5 +40,9 @@ public class ShotLeader extends GridObject {
     }
     public GridObject getTarget(){
         return target;
+    }
+    @Override
+    public String getObjectID(){
+        return "shotleader";
     }
 }

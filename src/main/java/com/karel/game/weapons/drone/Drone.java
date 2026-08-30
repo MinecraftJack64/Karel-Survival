@@ -109,4 +109,8 @@ public class Drone extends GridObject implements SubAffecter
     public int getAmmo() {
         return (int)Math.min(40, ammo);
     }
+    @Override
+    public String getObjectID(){
+        return "drone";
+    }
 }

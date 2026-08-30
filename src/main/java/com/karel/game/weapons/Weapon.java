@@ -73,7 +73,8 @@ public abstract class Weapon implements Item, Tickable, EventListener
     private boolean equipped;
     private boolean showPalette;
     private double paletteOffset;
-    private ArrayList<PaletteSlice> palette = new ArrayList<>();
+    private ArrayList<ArrayList<PaletteSlice>> palette = new ArrayList<>();
+    private int selectedPalette = 0;
     public Weapon(){
         ultready = false;
     }
@@ -128,10 +129,10 @@ public abstract class Weapon implements Item, Tickable, EventListener
             double size = 100;
             double x = paletteOffset;
             int k = 0;
-            for(PaletteSlice p: palette){
+            for(PaletteSlice p: palette.get(selectedPalette)){
                 p.color.setA((byte)100);
-                Raylib.drawRing(new Vector2(getHolder().renderTransformX((int)(getHolder().getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()))), 0, getHolder().renderOriginY((int)size/2)+(getSelectedPalette()==k?30:0), (float)x, (int)(360/palette.size()+x), 1, p.color);
-                x+=360/palette.size();
+                Raylib.drawRing(new Vector2(getHolder().renderTransformX((int)(getHolder().getX())), getHolder().renderTransformY((int)(getHolder().getY()-getHolder().getHeight()))), 0, getHolder().renderOriginY((int)size/2)+(getSelectedPalette()==k?30:0), (float)x, (int)(360/palette.get(selectedPalette).size()+x), 1, p.color);
+                x+=360/palette.get(selectedPalette).size();
                 k++;
             }
         }
@@ -421,22 +422,32 @@ public abstract class Weapon implements Item, Tickable, EventListener
     }
 
     public int getSelectedPalette(){
-        return (int)(getHand().getTargetRotation()*palette.size()/360);
+        return (int)(getHand().getTargetRotation()*palette.get(selectedPalette).size()/360);
     }
     public void setPaletteOffset(double ang){
         paletteOffset = ang;
     }
     public void clearPalette(){
-        palette.clear();
+        palette.get(selectedPalette).clear();
     }
     public void addToPalette(PaletteSlice p){
-        palette.add(p);
+        while(palette.size()<=selectedPalette){
+            addNewPalette();
+        }
+        palette.get(selectedPalette).add(p);
     }
     public void showPalette(){
         showPalette = true;
     }
     public void hidePalette(){
         showPalette = false;
+    }
+    public void addNewPalette(){
+        selectedPalette = palette.size();
+        palette.add(new ArrayList<PaletteSlice>());
+    }
+    public void selectPalette(int i){
+        selectedPalette = i;
     }
     
     public void donateGadgets(int amt){

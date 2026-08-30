@@ -1,4 +1,4 @@
-package com.karel.game.particles;
+package com.karel.game.gridobjects;
 import com.karel.game.GridObject;
 import com.karel.game.gridobjects.hitters.Hitter;
 

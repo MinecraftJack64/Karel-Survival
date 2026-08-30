@@ -1,8 +1,10 @@
 package com.karel.game.particles;
 
-import com.karel.game.GridObject;
-
-public class TankScrap extends GridObject{
+/*
+ * Effect representing scrap ejected by IroncladZombie.
+ * TODO: to be a similar type similar to SniperCasing
+ */
+public class TankScrap extends ProjectileParticle{
     double direction;
     private int life;
     public TankScrap(double direction){
@@ -18,7 +20,6 @@ public class TankScrap extends GridObject{
         setOpacity(getOpacity()-20);
         super.update();
         if(life<=0){
-            die();
             getWorld().removeObject(this);
         }
     }

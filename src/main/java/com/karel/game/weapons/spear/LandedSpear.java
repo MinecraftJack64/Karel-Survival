@@ -94,6 +94,10 @@ public class LandedSpear extends Collectible
             super.notifyDamage(target, amt);
         }
     }
+    @Override
+    public String getObjectID(){
+        return "landedspear";
+    }
 }
 
 

@@ -4,7 +4,7 @@ import com.karel.game.GridObject;
 import com.karel.game.gridobjects.collectibles.Beeper;
 
 /**
- * a collectible usually dropped from zombies when killed that can be collected by the player, healing them
+ * the zombie version of a beeper
  * 
  * @author MinecraftJack64
  * @version 1.0
@@ -25,5 +25,9 @@ public class Zombeeper extends Beeper
     public void collect(GridObject targ){
         heal(((GridEntity)targ), healing);
         super.collect(targ);
+    }
+    @Override
+    public String getObjectID(){
+        return "zombeeper";
     }
 }

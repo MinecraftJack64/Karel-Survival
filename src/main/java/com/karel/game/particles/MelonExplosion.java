@@ -1,8 +1,10 @@
 package com.karel.game.particles;
 
-import com.karel.game.GridObject;
-
-public class MelonExplosion extends GridObject{
+/*
+ * Effect of melon shield breaking created by WatermelonZombie
+ * TODO: move to KActor so it doesn't get saved, or mark as non saving
+ */
+public class MelonExplosion extends ProjectileParticle{
     double direction;
     private int life;
     public MelonExplosion(double direction){
@@ -18,7 +20,6 @@ public class MelonExplosion extends GridObject{
         setOpacity(getOpacity()-20);
         super.update();
         if(life<=0){
-            die();
             getWorld().removeObject(this);
         }
     }

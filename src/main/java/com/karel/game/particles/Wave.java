@@ -1,5 +1,4 @@
 package com.karel.game.particles;
-import com.karel.game.GridObject;
 
 /**
  * A proton wave that expands and destroys things in its path.
@@ -7,7 +6,7 @@ import com.karel.game.GridObject;
  * @author Michael Kolling
  * @version 0.1
  */
-public class Wave extends GridObject
+public class Wave extends Particle
 {
     private int life = 60;
     private int frame = 1;
@@ -53,9 +52,11 @@ public class Wave extends GridObject
     }
     public void die(){
         getWorld().removeObject(this);
-        super.die();
     }
     public void update(){
         applyPhysics();
+    }
+    public boolean isInGridWorld(){
+        return true;
     }
 }

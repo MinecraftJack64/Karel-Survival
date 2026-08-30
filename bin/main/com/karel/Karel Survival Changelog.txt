@@ -24,8 +24,8 @@ Attack Upgrade "Paralyzing Venom": Poisoned enemies are also stunned
 Gadget "Molt": Gain a 50% shield and after 2 seconds, heal fully and jump forward. You will be vulnerable for the next 3 seconds but move faster.
 
 Billionaire Zombie(Whittler/Tank)
-Shoots a ton of money at you spread in a cones pattern from a far distance, which rapidly lose speed, dealing low damage. The money remains on a ground until it dies and if it picks up its own money, it will be shot out at you, not taking up any unload time.
-Spawns 2 bodyguards next to it. They circle around it.
+Shoots a ton of money at you spread in a cones pattern from a far distance, which rapidly lose speed, dealing low damage. The money remains on a ground until it dies and if it picks up its own money(range is quite high), it will be shot out at you, not taking up any unload time.
+Spawns 2 weak bodyguards next to it. They circle around it.
 Location: Office Building
 
 Waste Auditor(mythic)
@@ -231,6 +231,24 @@ TODO
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+8/22-?
+Content
+ - Added the Spellbook weapon
+
+8/20
+Balancing
+ - (-)Hivemind Zombie bee count(40->25)
+
+8/16
+Technical
+ - addObjectHere can now also add KActors
+ - Objects now all have their own type id
+ - Waves(explosions) and fragment projectiles are now no longer GridObjects, and Particles instead
+ - Created the Particle class for all particles, which is a KActor
+ - WaveAttack moved to GridObject folder
+Fixes
+ - TODO: fix spawner still ticking during pause, which causes boss stage to overload with enemies over time. May be related to isPaused() not being checked?
 
 8/15
 Content

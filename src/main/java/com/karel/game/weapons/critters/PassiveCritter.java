@@ -65,4 +65,7 @@ public class PassiveCritter extends GridObject implements SubAffecter, ICritter
         getWorld().removeObject(this);
         super.die();
     }
+    public boolean saveable(){
+        return false;
+    }
 }

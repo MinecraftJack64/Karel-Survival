@@ -6,7 +6,7 @@ import com.karel.game.SubAffecter;
 import com.karel.game.effects.PowerPercentageEffect;
 
 /**
- * Write a description of class Heart here.
+ * Represents an infection created by the Lovestrike. When destroyed, explode into Heartbreak
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -58,5 +58,9 @@ public class Heart extends GridObject implements SubAffecter
     }
     public boolean isDead(){
         return dead;
+    }
+    @Override
+    public String getObjectID(){
+        return "heart";
     }
 }

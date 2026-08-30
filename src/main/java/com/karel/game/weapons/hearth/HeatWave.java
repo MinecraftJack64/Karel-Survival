@@ -2,7 +2,7 @@ package com.karel.game.weapons.hearth;
 
 import com.karel.game.GridEntity;
 import com.karel.game.effects.BurnEffect;
-import com.karel.game.particles.WaveAttack;
+import com.karel.game.gridobjects.WaveAttack;
 
 public class HeatWave extends WaveAttack {
     public HeatWave(GridEntity source)

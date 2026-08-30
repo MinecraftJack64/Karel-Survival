@@ -1,7 +1,7 @@
 package com.karel.game.gridobjects.gridentities.zombies.fungal;
 
 import com.karel.game.GridEntity;
-import com.karel.game.particles.WaveAttack;
+import com.karel.game.gridobjects.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.

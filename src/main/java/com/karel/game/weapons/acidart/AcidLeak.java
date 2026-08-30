@@ -7,6 +7,9 @@ import com.karel.game.SubAffecter;
 import com.karel.game.effects.ReloadPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 
+/*
+ * Leaking acid damage created by Acidart weapon
+ */
 public class AcidLeak extends GridObject implements Possessor, SubAffecter {
     private GridObject source;
     private GridEntity possessor;
@@ -83,5 +86,9 @@ public class AcidLeak extends GridObject implements Possessor, SubAffecter {
     }
     public double damageSecrecy(){
         return super.damageSecrecy()*0.15;
+    }
+    @Override
+    public String getObjectID(){
+        return "acidleak";
     }
 }

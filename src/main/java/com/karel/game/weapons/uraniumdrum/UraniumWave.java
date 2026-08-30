@@ -5,7 +5,7 @@ import com.karel.game.GridObject;
 import com.karel.game.effects.PoisonEffect;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.SilenceEffect;
-import com.karel.game.particles.WaveAttack;
+import com.karel.game.gridobjects.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.

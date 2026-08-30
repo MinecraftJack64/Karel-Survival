@@ -8,7 +8,7 @@ import com.karel.game.effects.SpeedPercentageEffect;
 import com.karel.game.gridobjects.collectibles.Collectible;
 
 /**
- * a collectible usually dropped from zombies when killed that can be collected by the player, healing them
+ * a bowl of soup created by the Soup weapon, which gives a scaling boost to the collector
  * 
  * @author MinecraftJack64
  * @version 1.0
@@ -31,5 +31,9 @@ public class SoupBoost extends Collectible
         targ.applyEffect(new HealEffect((int)(34+33*focus), 25, 4+(int)focus, this));
         //2 focus: 50*4, 0.5 focus: 100*6
         super.collect(targ);
+    }
+    @Override
+    public String getObjectID(){
+        return "soupboost";
     }
 }

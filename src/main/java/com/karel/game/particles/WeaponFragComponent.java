@@ -4,6 +4,9 @@ import com.karel.game.Greenfoot;
 import com.karel.game.GridObject;
 import com.karel.game.gridobjects.collectibles.WeaponFrag;
 
+/*
+ * A component of WeaponFrag. Not specifically important.
+ */
 public class WeaponFragComponent extends GridObject{
     private WeaponFrag center;
     private GridObject finalTarget;
@@ -27,5 +30,8 @@ public class WeaponFragComponent extends GridObject{
         else if(distanceTo(center)>30){
             move(face(center, false), 9);
         }
+    }
+    public boolean saveable(){
+        return false;
     }
 }

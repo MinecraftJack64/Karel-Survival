@@ -3,7 +3,7 @@ package com.karel.game.weapons.gun;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.FatalPoisonEffect;
-import com.karel.game.particles.WaveAttack;
+import com.karel.game.gridobjects.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.

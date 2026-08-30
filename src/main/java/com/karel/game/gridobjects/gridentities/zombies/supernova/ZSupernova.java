@@ -2,7 +2,7 @@ package com.karel.game.gridobjects.gridentities.zombies.supernova;
 
 import com.karel.game.GridEntity;
 import com.karel.game.effects.PullEffect;
-import com.karel.game.particles.WaveAttack;
+import com.karel.game.gridobjects.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.

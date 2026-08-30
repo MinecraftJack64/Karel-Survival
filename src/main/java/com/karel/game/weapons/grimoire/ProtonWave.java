@@ -1,10 +1,9 @@
-package com.karel.game.weapons.doublegun;
+package com.karel.game.weapons.grimoire;
 
-import com.karel.game.effects.ReloadPercentageEffect;
-import com.karel.game.effects.SpeedPercentageEffect;
-import com.karel.game.gridobjects.WaveAttack;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
+import com.karel.game.effects.FatalPoisonEffect;
+import com.karel.game.gridobjects.WaveAttack;
 
 /**
  * A proton wave that expands and destroys things in its path.
@@ -12,15 +11,15 @@ import com.karel.game.GridObject;
  * @author Michael Kolling
  * @version 0.1
  */
-public class NeutronWave extends WaveAttack
+public class ProtonWave extends WaveAttack
 {
-    private static final int damage = 400;
-    private int radiate;
+    private static final int damage = 600;
+    private boolean radiate;
     
-    public NeutronWave(GridObject source, int radiate)
+    public ProtonWave(GridObject source, boolean radiate)
     {
         super(source);
-        setImage("Weapons/doublegun/projUlt.png");
+        setImage("Weapons/gun/projUlt.png");
         setDamage(damage);
         setNumTargets(-1);
         setMultiHit(false);
@@ -39,10 +38,8 @@ public class NeutronWave extends WaveAttack
     
     public void doHit(GridEntity g){
         super.doHit(g);
-        if(radiate == 1){
-            g.applyEffect(new SpeedPercentageEffect(0.8, -1, this));
-        }else if(radiate == 2){
-            g.applyEffect(new ReloadPercentageEffect(0.5, 150, this));
+        if(radiate){
+            g.applyEffect(new FatalPoisonEffect(5, 3, this));
         }
     }
     public boolean covertDamage(){

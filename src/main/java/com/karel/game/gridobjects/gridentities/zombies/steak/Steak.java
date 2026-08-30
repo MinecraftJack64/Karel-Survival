@@ -8,7 +8,7 @@ import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.gridobjects.collectibles.Collectible;
 
 /**
- * a collectible usually dropped from zombies when killed that can be collected by the player, healing them
+ * A steak dropped by SteakZombie. Heals zombies when picked up
  * 
  * @author MinecraftJack64
  * @version 1.0
@@ -40,5 +40,9 @@ public class Steak extends Collectible
         else if(isAggroTowards(t))t.applyEffect(new PoisonEffect(healing/4, 30, 4, this));
         super.collect(targ);
         Sounds.play("Steak.collect");
+    }
+    @Override
+    public String getObjectID(){
+        return "steak";
     }
 }

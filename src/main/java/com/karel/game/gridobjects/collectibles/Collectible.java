@@ -80,4 +80,8 @@ public class Collectible extends GridObject
     public void die(){
         getWorld().removeObject(this);
     }
+    @Override
+    public String getObjectID(){
+        return "collectible";
+    }
 }
