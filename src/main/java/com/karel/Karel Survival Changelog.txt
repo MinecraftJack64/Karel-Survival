@@ -130,9 +130,14 @@ Shoot out a large key which goes a controllable distance then stops. It initiall
 Ult "New Password": Shoot out a small fast piercing projectile that upon hitting an enemy, adds future damage against their type, decaying for future hits. The projectile only damages the first enemy and any other targets of the same type.
 Ult Upgrade "Hashing": ?
 
+Es -isi -yn lafo ki dis yakwes de donsdo -irutio; byas -ude la Zhamayka jan fanpro üli übi fans; kwafanto tos nisvuli vok da donski -ro fo tosu; #wifi de la Rozu disti a talyenafo firsi saa vok klats dispyn fanto a midontalyeno betoskati; vivixh lamo -in la conqin ja la xanchay vimakgotanli {la Olosanhi übim maif lafo lay Olosa düti mas sam} mais fo kel mawaska makpyn sa talao kom dü; lamo sas dis a mukilo kameksi vok klats kimufirto lakski; sa gotanli du küs hana; !loq dis ekska -ro junho del dis prosati -u sa sas fesu voska; if lamo lay Rozu makmutanli tagomawasta den fo lay Sicwam mikanstado hmina jikkel fo lay Olosa lay Fhams lay Ixbara lay Bodugau sai;
+
 King Zombie(Spawner/Leader)
 Queen Zombie(Spawner/Leader)
 Xenozombie()
+
+Cancer Zombie in Hospital?
+Fungal zombie featured too
 
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
