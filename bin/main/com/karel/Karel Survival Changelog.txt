@@ -125,6 +125,11 @@ Attack Upgrade "UDP Yard": If the dog fails to return, create a second dog, whic
 Ult Upgrade "URL not found": Each dog that fails to return or make it to the server creates a 404 bomb where you are.
 Gadget "Have a treat": ?
 
+Password Manager(rare)
+Shoot out a large key which goes a controllable distance then stops. It initially faces the direction of your mouse at the time of landing, then it rotates clockwise 360 degrees. If you attack during that time or when the key makes a full turn, the key will shoot out a piercing projectile. If a wall is blocking your target, the attack becomes thrown and does damage on landing before acting as otherwise. Thrown attacks land slightly slower and have less range.
+Ult "New Password": Shoot out a small fast piercing projectile that upon hitting an enemy, adds future damage against their type, decaying for future hits. The projectile only damages the first enemy and any other targets of the same type.
+Ult Upgrade "Hashing": ?
+
 King Zombie(Spawner/Leader)
 Queen Zombie(Spawner/Leader)
 Xenozombie()
