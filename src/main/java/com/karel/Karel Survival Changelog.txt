@@ -244,13 +244,17 @@ Bot Guide Tracker
  - Traps(N)
  - Troll Test(N)
  - Water Balloons(N)
- - Weedwacker(N)
+ - Weedwhacker(N)
 
 TODO
  - Sudo is unaffected by status effects
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+
+10/4
+Balancing
+ - Using the Morphing Stone ult to transform initially also gives a shield
 
 8/22-?
 Content
@@ -391,7 +395,7 @@ Balancing
 
 5/10
 Fixes
- - Fixed weedwacker gadget not retracting
+ - Fixed weedwhacker gadget not retracting
 Graphics
  - L'il Critters shows bar for regeneration
  - TODO: show bar for starting natural regen
@@ -487,7 +491,7 @@ Content
  - Added Punch Cards base kit
  - Added Exterramite with just attack
 Balancing
- - (+)Urchin Zombie, Frisbee Zombie, Weedwacker, Snail Shell, and Electric Fists now add a projectile's original range to it, allowing it to hit much farther
+ - (+)Urchin Zombie, Frisbee Zombie, Weedwhacker, Snail Shell, and Electric Fists now add a projectile's original range to it, allowing it to hit much farther
 Technical
  - Weapons can now allow using attack during ult(removed allowAttackWhileContinueUlt() and renamed to canAttackDuringUlt())(TODO: only for player currently)
  - Player muted during attack will finish attack
@@ -742,7 +746,7 @@ Balance
 
 11/23
 Fixes
- - Fixed crash when adding weapon when weedwacker held underneath sudo
+ - Fixed crash when adding weapon when weedwhacker held underneath sudo
  - Fixed sudo crashing when using ult
  - Fixed sudo crashing when switching between modes while attacking
  - Fixed capsaicin torch crash at tip of range
@@ -797,7 +801,7 @@ Graphics
        - Necromancer
        - Rock
        - Slicer
-       - Weedwacker
+       - Weedwhacker
  - Drone shows ammo
 Fixes
  - Highjacker now spawnable
@@ -1106,7 +1110,7 @@ Technical
 Balancing
  - Firebreather Zombie is immune to burning
 Fixes
- - Fixed a crash due to weapon switching a weapon like drone or weedwacker, since world did not process removals
+ - Fixed a crash due to weapon switching a weapon like drone or weedwhacker, since world did not process removals
 
 9/26
 Balancing
@@ -1364,7 +1368,7 @@ Fixes
  - Fixed blade gadget failing to activate(activation method missing)
 Graphics
  - Added flail, hearth, and mousetraps graphics
- - Shotgun harpoon and Weedwacker blade connectors now appear at correct heights
+ - Shotgun harpoon and Weedwhacker blade connectors now appear at correct heights
  - Sandbox options are flipped, allowing text to be visible for lower rows
 Technical
  - Weapons can render themselves now

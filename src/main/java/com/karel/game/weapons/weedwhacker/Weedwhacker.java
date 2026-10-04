@@ -1,18 +1,18 @@
-package com.karel.game.weapons.weedwacker;
+package com.karel.game.weapons.weedwhacker;
 
 import com.karel.game.ItemHolder;
 import com.karel.game.weapons.Weapon;
 
 /**
- * Write a description of class Weedwacker here.
+ * Write a description of class Weedwhacker here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Weedwacker extends Weapon
+public class Weedwhacker extends Weapon
 {
     private static final int ult = 1500;
-    private WeedwackerBlade drone;
+    private WeedwhackerBlade drone;
     private double resurrect = 120;
     private int droneDistance = 125; // Distance from the player to the drone when mounted
     private int droneExtension = 0;
@@ -25,7 +25,7 @@ public class Weedwacker extends Weapon
     }
     public void fireUlt(){
         if(drone==null){
-            drone = new WeedwackerBlade(getHolder());
+            drone = new WeedwhackerBlade(getHolder());
             getHolder().addObjectHere(drone);
             getHolder().mount(drone, -90, 125);
             resurrect = 120;
@@ -39,7 +39,7 @@ public class Weedwacker extends Weapon
     public boolean bladeActive(){
         return drone!=null;
     }
-    public WeedwackerBlade getBlade(){
+    public WeedwhackerBlade getBlade(){
         return drone;
     }
     public int getUlt(){
@@ -102,7 +102,7 @@ public class Weedwacker extends Weapon
             }
         }else{
             if(resurrect<=0){
-                drone = new WeedwackerBlade(getHolder());
+                drone = new WeedwhackerBlade(getHolder());
                 getHolder().addObjectHere(drone);
                 getHolder().mount(drone, -90, 125);
                 resurrect = 120;
@@ -119,12 +119,12 @@ public class Weedwacker extends Weapon
         getHolder().getWorld().removeObject(drone);
         super.unequip();
     }
-    public Weedwacker(ItemHolder actor){
+    public Weedwhacker(ItemHolder actor){
         super(actor);
-        drone = new WeedwackerBlade(getHolder(), this);
+        drone = new WeedwhackerBlade(getHolder(), this);
     }
     public String getName(){
-        return "Weedwacker";
+        return "Weedwhacker";
     }
     public int getRarity(){
         return 5;

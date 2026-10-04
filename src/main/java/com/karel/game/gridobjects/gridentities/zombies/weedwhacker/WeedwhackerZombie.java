@@ -1,33 +1,33 @@
-package com.karel.game.gridobjects.gridentities.zombies.weedwacker;
+package com.karel.game.gridobjects.gridentities.zombies.weedwhacker;
 
 import com.karel.game.gridobjects.gridentities.zombies.Zombie;
 import com.karel.game.gridobjects.gridentities.zombies.ZombieClass;
-import com.karel.game.weapons.weedwacker.WeedwackerBlade;
+import com.karel.game.weapons.weedwhacker.WeedwhackerBlade;
 
 /**
- * Write a description of class WeedwackerZombie here.
+ * Write a description of class WeedwhackerZombie here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class WeedwackerZombie extends Zombie
+public class WeedwhackerZombie extends Zombie
 {
     private static ZombieClass[] classes = new ZombieClass[]{ZombieClass.pressurer};
-    public String getStaticTextureURL(){return "weedwackerzareln.png";}
-    private static final double attackrange = 128; // this is at the range of the weedwacker blade
+    public String getStaticTextureURL(){return "weedwhackerzareln.png";}
+    private static final double attackrange = 128; // this is at the range of the weedwhacker blade
     private static final double blindrange = 60; // target is too close to hit with the blade
-    WeedwackerBlade bd;
+    WeedwhackerBlade bd;
     /**
      * Initilise this rocket.
      */
-    public WeedwackerZombie()
+    public WeedwhackerZombie()
     {
         setSpeed(2.5);
         startHealth(300);
     }
     public void behave(){
         if(bd == null){
-            bd = new WeedwackerBlade(this);
+            bd = new WeedwhackerBlade(this);
             addObjectHere(bd);
             mount(bd, -90, 125);
             bd.immunize();
@@ -49,10 +49,10 @@ public class WeedwackerZombie extends Zombie
         return 250;
     }
     public String getName(){
-        return "Weedwacker Zombie";
+        return "Weedwhacker Zombie";
     }
     @Override
     public String getZombieID(){
-        return "weedwacker";
+        return "weedwhacker";
     }
 }
