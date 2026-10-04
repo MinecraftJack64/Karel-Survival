@@ -46,6 +46,9 @@ public class FlyingProjectile extends Projectile implements LandingHandler
     }
     
     public double percentDone(){
+        if(getPath()==null){
+            return 1;
+        }
         return getPath().percentDone(frame);
     }
     public Arc getPath(){
@@ -69,7 +72,10 @@ public class FlyingProjectile extends Projectile implements LandingHandler
      */
     public void applyPhysics()
     {
-        if(defaultmove)super.applyPhysics();
+        if(defaultmove){
+            super.applyPhysics();
+            frame++;
+        }
     }
     public void doLanding(){
         if(checkHitMode<=1)checkHit();

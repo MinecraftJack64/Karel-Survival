@@ -255,20 +255,22 @@ TODO
 10/4
 Balancing
  - Using the Morphing Stone ult to transform initially also gives a shield
+ - Tesla Coil now does 1 damage minimum, so it won't be useless against huge groups
 Fixes
  - Mole no longer creates lingering sinkhole if ult is used during ult, cancels properly now
  - First quadrant cone attacks work properly
+ - Lantern lobber no longer crashes due to flight arc not existing on landing, FlyingProjectile returns 1 by default when path doesn't exist
+    - Lantern lobber attack properly creates firecrackers due to FlyingProjectile updating frame
+Graphics
+ - Spellbook xp orb modified temporarily
 TODO
  - electric fists rebalance
  - Flash drive ult mult rebalance?
 bugs
  - Chill zombie does not attack properly at all
  - Morphing stone ult death causes stuck
- - Lantern lobber and fireworks crash?
- - spellbook texture error
  - point pinner ult bug and fireworks attack
  - air pump ult no color change
- - tesla coil no damage
  - blade attack upgrade not functional
 
 8/22-?

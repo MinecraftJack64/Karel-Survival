@@ -32,7 +32,7 @@ public class TeslaCoilZap extends Hitter
         if(l.size()>0){
             double totaldmg = 18*Math.pow(1.25, -l.size());
             double distmult = Math.sqrt(range-Math.min(range, distanceTo(getSource())))/20;
-            int dmg = (int)((totaldmg/l.size()+2)*distmult)/(weak?2:1);
+            int dmg = Math.max((int)((totaldmg/l.size()+2)*distmult)/(weak?2:1), 1);
             for(GridEntity g:l){
                 if(isAggroTowards(g))damage(g, dmg);
             }
