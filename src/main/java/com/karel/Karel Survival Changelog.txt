@@ -255,6 +255,21 @@ TODO
 10/4
 Balancing
  - Using the Morphing Stone ult to transform initially also gives a shield
+Fixes
+ - Mole no longer creates lingering sinkhole if ult is used during ult, cancels properly now
+ - First quadrant cone attacks work properly
+TODO
+ - electric fists rebalance
+ - Flash drive ult mult rebalance?
+bugs
+ - Chill zombie does not attack properly at all
+ - Morphing stone ult death causes stuck
+ - Lantern lobber and fireworks crash?
+ - spellbook texture error
+ - point pinner ult bug and fireworks attack
+ - air pump ult no color change
+ - tesla coil no damage
+ - blade attack upgrade not functional
 
 8/22-?
 Content

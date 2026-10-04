@@ -38,7 +38,7 @@ public class Chameleon extends Weapon
     public void attack(){
         boolean[] hit = {false};
         getHolder().explodeOn(110, "enemy", (g)->{
-            if(Math.abs(getHolder().face(g, false)-getHand().getTargetRotation())<30){
+            if(getHolder().getFacingDistance(g, getHand().getTargetRotation())<30){
                 getHolder().damage(g, 100);
                 hit[0] = true;
                 if(isColor(0)){

@@ -143,16 +143,6 @@ public abstract class GridObject extends KActor
     public boolean isFacing(GridObject other){
         return getFacingDistance(other)<75;
     }
-    // Returns number between -180 and 180
-    public double getFacingOffset(GridObject other){
-        double res = face(other, false)-getTargetRotation();
-        if(res>180){
-            res-=360;
-        }else if(res<-180){
-            res+=360;
-        }
-        return res;
-    }
     // Returns number between 0 and 180
     public double getFacingDistance(GridObject other){
         return Math.abs(getFacingOffset(other));
