@@ -30,7 +30,7 @@ public class AirPump extends Weapon implements LandingHandler
     public void fireUlt(){
         //hop 5 times, dealing damage on landing
         nextIsSuper = true;
-        getAmmo().donateAmmo(1);
+        getAmmo().donateAmmoAllowOverflow(1);
     }
     public void startJump(double rot, double dist, boolean isSuper){
         if(getAttackUpgrade()==1||isSuper){
@@ -51,7 +51,6 @@ public class AirPump extends Weapon implements LandingHandler
         if(secondWind>0){
             secondWind--;
         }
-        if(nextIsSuper)updateAmmo(gunReloadTime+1);
     }
     public int getUlt(){
         return ult;

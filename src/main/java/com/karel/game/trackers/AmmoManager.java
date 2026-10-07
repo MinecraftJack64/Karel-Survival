@@ -58,6 +58,14 @@ public class AmmoManager implements IAmmoManager
         ammoReloadDelay = ammoReloadDelay%ammoReloadTime;
         handleAmmoOverflow();
     }
+    public void donateAmmoAllowOverflow(int amt){
+        ammo+=amt;
+    }
+    public void donateAmmoBarAllowOverflow(int amt){
+        ammoReloadDelay+=amt;
+        ammo+=ammoReloadDelay/ammoReloadTime;
+        ammoReloadDelay = ammoReloadDelay%ammoReloadTime;
+    }
     public void handleAmmoOverflow(){
         if(ammo>=maxAmmo){
             ammo = maxAmmo;

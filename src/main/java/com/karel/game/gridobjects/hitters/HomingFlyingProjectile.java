@@ -16,11 +16,12 @@ public class HomingFlyingProjectile extends FlyingProjectile
         super(rotation, targetdistance, height, source);
         setIntendedTarget((GridEntity)targ);
         target = targ;
-        defaultmove = false;
     }
     public void notifyWorldAdd(){
         super.notifyWorldAdd();
         setOrigin();
+        setXVel(0);
+        setYVel(0);
     }
     public void setOrigin(){
         originX = getX();
@@ -28,7 +29,7 @@ public class HomingFlyingProjectile extends FlyingProjectile
     }
     public void applyPhysics()
     {
-        setLocation((target.getX()-originX)*percentDone()+originX, (target.getY()-originY)*percentDone()+originY);
         super.applyPhysics();
+        setLocation((target.getX()-originX)*percentDone()+originX, (target.getY()-originY)*percentDone()+originY);
     }
 }

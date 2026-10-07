@@ -252,6 +252,14 @@ TODO
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
 
+10/6
+Fixes
+ - Fixed chill zombie attack(set velocity to 0 and moves normally)
+ - Fixed air pump ult indicator(might have been on 10/5)
+TODO
+ - Spellbook xp indication
+ - Morphing stone charge indication
+
 10/4
 Balancing
  - Using the Morphing Stone ult to transform initially also gives a shield
@@ -261,16 +269,16 @@ Fixes
  - First quadrant cone attacks work properly
  - Lantern lobber no longer crashes due to flight arc not existing on landing, FlyingProjectile returns 1 by default when path doesn't exist
     - Lantern lobber attack properly creates firecrackers due to FlyingProjectile updating frame
+ - Fixed air pump supercharged shot not showing by creating ammo bars without handleAmmoOverflow
+ - Ammo bars will not render over their maximum
 Graphics
  - Spellbook xp orb modified temporarily
 TODO
  - electric fists rebalance
  - Flash drive ult mult rebalance?
 bugs
- - Chill zombie does not attack properly at all
  - Morphing stone ult death causes stuck
  - point pinner ult bug and fireworks attack
- - air pump ult no color change
  - blade attack upgrade not functional
 
 8/22-?

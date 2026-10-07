@@ -70,7 +70,7 @@ public class StatusBar extends Overlay
     }
     public void render(){
         Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX(width), renderOriginY(height)), new Vector2(renderOriginX(width/2), renderOriginY(height/2)), (float)getRotation(), bgColor);
-        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX((int)(width*getPerc())), renderOriginY(height)), new Vector2(renderOriginX(width/2), renderOriginY(height/2)), (float)getRotation(), barColor);
+        Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX((int)(width*Math.min(1, getPerc()))), renderOriginY(height)), new Vector2(renderOriginX(width/2), renderOriginY(height/2)), (float)getRotation(), barColor);
         Raylib.drawRectanglePro(new Rectangle((float)renderTransformX((int)getX()), (float)renderTransformY((int)(getY()-getHeight())), renderOriginX((int)(width*getDisabledPerc())), renderOriginY(height)), new Vector2(renderOriginX(-width/2+(int)(width*getDisabledPerc())), renderOriginY(height/2)), (float)getRotation(), disabledColor);
         for(int i: phases){
             Raylib.drawRectanglePro(new Rectangle((float)(renderTransformX((int)getX()+width*i/max-1)), (float)renderTransformY((int)getY()), 2, renderOriginY(height)), new Vector2(renderOriginX(width/2), renderOriginY(height/2)), (float)getRotation(), bgColor);
