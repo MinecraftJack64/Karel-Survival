@@ -68,7 +68,7 @@ public class IntegratedCircuit extends Pet
     }
     public void attack(){
         explodeOn(attackrange, "enemy", (g)->{
-            if(Math.abs(face(g, false)-getTargetRotation())<30){
+            if(getFacingDistance(g)<30){
                 damage(g, 15);
             }
         }, null);

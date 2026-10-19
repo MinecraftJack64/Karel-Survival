@@ -66,7 +66,7 @@ import com.karel.game.weapons.traps.TrapSetter;
 import com.karel.game.weapons.trolltest.TrollTest;
 import com.karel.game.weapons.uraniumdrum.UraniumDrum;
 import com.karel.game.weapons.waterballoons.WaterBalloons;
-import com.karel.game.weapons.weedwacker.Weedwacker;
+import com.karel.game.weapons.weedwhacker.Weedwhacker;
 
 public class ItemFactory
 {
@@ -79,7 +79,7 @@ public class ItemFactory
                                     "shotgun",
                                     "traps",
                                     "spear",
-                                    "weedwacker",
+                                    "weedwhacker",
                                     "necromancer",
                                     "easterbasket",
                                     "catclaw",
@@ -179,8 +179,8 @@ public class ItemFactory
                 return new TrapSetter(holder);
             case "spear":
                 return new SpearWeapon(holder);
-            case "weedwacker":
-                return new Weedwacker(holder);
+            case "weedwhacker":
+                return new Weedwhacker(holder);
             case "necromancer":
                 return new Necromancer(holder);
             case "easterbasket":

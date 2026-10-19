@@ -15,6 +15,8 @@ public interface IAmmoManager
     public int getMaxAmmo();
     public void donateAmmo(int amt);
     public void donateAmmoBar(int amt);
+    public void donateAmmoAllowOverflow(int amt);
+    public void donateAmmoBarAllowOverflow(int amt);
     public void handleAmmoOverflow();
     public boolean hasAmmo();
     public void useAmmo();

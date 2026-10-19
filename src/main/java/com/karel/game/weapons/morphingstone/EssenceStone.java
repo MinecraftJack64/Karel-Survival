@@ -4,6 +4,7 @@ import com.karel.game.Boomerang;
 import com.karel.game.GridEntity;
 import com.karel.game.GridObject;
 import com.karel.game.effects.DamageExposureEffect;
+import com.karel.game.effects.InfectionEffect;
 import com.karel.game.effects.PowerPercentageEffect;
 import com.karel.game.effects.SpeedPercentageEffect;
 
@@ -36,6 +37,11 @@ public class EssenceStone extends Boomerang
         targ.applyEffect(new SpeedPercentageEffect(0.8, 60, this));
         targ.applyEffect(new DamageExposureEffect(1.2, 60, this));
         targ.applyEffect(new PowerPercentageEffect(0.8, 60, this));
+        targ.applyEffect(new InfectionEffect((e)->{
+            targ.applyEffect(new SpeedPercentageEffect(1.1, 30, this));
+            targ.applyEffect(new DamageExposureEffect(0.9, 30, this));
+            targ.applyEffect(new PowerPercentageEffect(1.1, 30, this));
+        }, 60, this));
         super.doHit(targ);
         if(targ.isDead()){
             if(necromancer!=null){

@@ -20,7 +20,7 @@ Gadget "Remember to Floss": You are dragged along with the next toothbrush and w
 Spider(epic)
 Lunge forward, dealing damage to enemies along the way, then biting in front, poisoning enemies, then retracting back. If you don't attack for 2 seconds, your next attack becomes a pounce that deals damage on impact.
 Ult "Web Shot": Shoot out silk, which has controllable range. It can remain on the ground for a few seconds. If you attack while the web is on the ground, you will be pulled to it and it will be used up. On hitting an enemy, they will be immobilized and weakened. The immobilized enemy can break the web by damaging it enough. If they fail to break it, it will pull them to you. If you walk past a wall, the web will stick to the wall.
-Attack Upgrade "Paralyzing Venom": Poisoned enemies are also stunned
+Attack Upgrade "Paralyzing Venom": Poisoned enemies are also stunned after a second
 Gadget "Molt": Gain a 50% shield and after 2 seconds, heal fully and jump forward. You will be vulnerable for the next 3 seconds but move faster.
 
 Billionaire Zombie(Whittler/Tank)
@@ -82,8 +82,9 @@ Mutation "Angry Jeer": Spews rotten eggs in random directions, doubles attack ra
 Vulture Zombie(Pressurer)
 Generally circles around you overhead. When you are under 50% health, it will occasionally swoop down, attack 5 times or until it is hit, then go back up. It does more damage the less health you have. If you have over 75% health, it will leave after 10 seconds.
 
-Fisherman Zombie(Pressurer/Spawner)
+Phisherman Zombie(Pressurer/Spawner)
 Upon spawning, throw out its hook(invisible to you) attached to a beeper bait, which appears instantaneously. If you pick up this beeper, the zombie will reel you in. It attempts to throw the beeper to under a zombie 50% of the time and will always not place it too close to you. It releases flopping fish that attack you as it loses health or when you are near it.
+Location: Cyber Library
 
 Fish Zombie(Meatshield)
 Acts like a normal zombie in water but faster. While outside of water, flop around randomly, though in the general direction of target. Can be hit while flopping, and damages on landing. Slowly loses health after 10 seconds, which eats through all its health in 2 seconds.
@@ -97,6 +98,7 @@ Diff <Normal: Snakes are lobbed projectiles, so they will only hit at the tip of
 Z-fighter Zombie(Pressurer/Support)
 Promotes from Bully Zombie
 Phases between z-layers(either most back or most front) at random. When it phases, it damages you while healing zombies.
+Location: Glitch Gulag
 
 Sacraficer Zombie(Barrager)
 Runs up to a random zombie and stuns them, calling a lightning strike on them from the gods, which takes 80% of health or at least 200. The gods bless it with the ability to behave like the classes of the zombie. Abilities stack, and even zombies that were not stunned but were hit with the lightning strike are factored in.
@@ -129,10 +131,23 @@ Password Manager(rare)
 Shoot out a large key which goes a controllable distance then stops. It initially faces the direction of your mouse at the time of landing, then it rotates clockwise 360 degrees. If you attack during that time or when the key makes a full turn, the key will shoot out a piercing projectile. If a wall is blocking your target, the attack becomes thrown and does damage on landing before acting as otherwise. Thrown attacks land slightly slower and have less range.
 Ult "New Password": Shoot out a small fast piercing projectile that upon hitting an enemy, adds future damage against their type, decaying for future hits. The projectile only damages the first enemy and any other targets of the same type.
 Ult Upgrade "Hashing": ?
+Location: Cyber Library
+
+Daycare Zombie(Spawner/Support)
+Spawns with a group of children(behave like boids). It throws flowers at all of them to attack, which they will shoot out like ninja stars upon receiving, healing a little bit. It also throws flowers to them when they're hurt.
+
+Influencer Zombie(Spawner)
+Promotes from Daycare Zombie
+Slowly ammasses follower zombies over time, which stay near it. To attack, it does a dance and its followers will shoot at you. They will heal it out of their own health bars.
+
+Es -isi -yn lafo ki dis yakwes de donsdo -irutio; byas -ude la Zhamayka jan fanpro üli übi fans; kwafanto tos nisvuli vok da donski -ro fo tosu; #wifi de la Rozu disti a talyenafo firsi saa vok klats dispyn fanto a midontalyeno betoskati; vivixh lamo -in la conqin ja la xanchay vimakgotanli {la Olosanhi übim maif lafo lay Olosa düti mas sam} mais fo kel mawaska makpyn sa talao kom dü; lamo sas dis a mukilo kameksi vok klats kimufirto lakski; sa gotanli du küs hana; !loq dis ekska -ro junho del dis prosati -u sa sas fesu voska; if lamo lay Rozu makmutanli tagomawasta den fo lay Sicwam mikanstado hmina jikkel fo lay Olosa lay Fhams lay Ixbara lay Bodugau sai;
 
 King Zombie(Spawner/Leader)
 Queen Zombie(Spawner/Leader)
 Xenozombie()
+
+Cancer Zombie in Hospital?
+Fungal zombie featured too
 
 CLOUD SERVER TO SPAWN:
 - Portal Zombie
@@ -229,13 +244,44 @@ Bot Guide Tracker
  - Traps(N)
  - Troll Test(N)
  - Water Balloons(N)
- - Weedwacker(N)
+ - Weedwhacker(N)
 
 TODO
  - Sudo is unaffected by status effects
  - Salicycle rework(melee attack, ult wider range, higher health, lower damage)
  - Maybe change healers to use priority like Chill Zombie?
  - Should negative healing/damage call the other function?
+ - Spellbook xp indication
+ - electric fists rebalance
+BUGS
+ - Morphing stone ult death causes stuck
+ - point pinner ult bug and fireworks attack
+ - blade attack upgrade not functional
+
+10/7
+Technical
+ - AmmoBar setSuperchargeThreshold to show as supercharged
+Graphics
+ - Added morphing stone charging indication
+
+10/6
+Fixes
+ - Fixed chill zombie attack(set velocity to 0 and moves normally)
+ - Fixed air pump ult indicator(might have been on 10/5)
+
+10/4
+Balancing
+ - Using the Morphing Stone ult to transform initially also gives a shield
+ - Tesla Coil now does 1 damage minimum, so it won't be useless against huge groups
+Fixes
+ - Mole no longer creates lingering sinkhole if ult is used during ult, cancels properly now
+ - First quadrant cone attacks work properly
+ - Lantern lobber no longer crashes due to flight arc not existing on landing, FlyingProjectile returns 1 by default when path doesn't exist
+    - Lantern lobber attack properly creates firecrackers due to FlyingProjectile updating frame
+ - Fixed air pump supercharged shot not showing by creating ammo bars without handleAmmoOverflow
+ - Ammo bars will not render over their maximum
+Graphics
+ - Spellbook xp orb modified temporarily
 
 8/22-?
 Content
@@ -376,7 +422,7 @@ Balancing
 
 5/10
 Fixes
- - Fixed weedwacker gadget not retracting
+ - Fixed weedwhacker gadget not retracting
 Graphics
  - L'il Critters shows bar for regeneration
  - TODO: show bar for starting natural regen
@@ -472,7 +518,7 @@ Content
  - Added Punch Cards base kit
  - Added Exterramite with just attack
 Balancing
- - (+)Urchin Zombie, Frisbee Zombie, Weedwacker, Snail Shell, and Electric Fists now add a projectile's original range to it, allowing it to hit much farther
+ - (+)Urchin Zombie, Frisbee Zombie, Weedwhacker, Snail Shell, and Electric Fists now add a projectile's original range to it, allowing it to hit much farther
 Technical
  - Weapons can now allow using attack during ult(removed allowAttackWhileContinueUlt() and renamed to canAttackDuringUlt())(TODO: only for player currently)
  - Player muted during attack will finish attack
@@ -644,852 +690,3 @@ Mechanics
  - Added tinker menu
 Fixes
  - Scream no longer remains stuck after ult
-
-12/28
-Balancing
- - Mortar
-    - Ult circle range(300->400)
-    - Ult circle delay(30->60)
-    - Ult limit(Infinite->7)
-Content
- - Added mortar ult and attack upgrades
- - Added snake charmer attack upgrade
-Technical
- - Cloud Server hail attack uses ShotLeader now
-
-12/27
-Balancing
- - Mortar
-    - Attack damage(200->300)
-    - Attack radius(50->100)(Ult is unchanged)
-    - Ult charge(2000->3000)
-Content
- - Added Mortar gadget
-
-12/26
-Content
- - Added Mortar ult(no shot leading)
-Technical
- - world can now get GEs in a certain range
-Other
- - Debug joysticks removed TODO: add settings to change input method
-
-12/25
-Graphics
- - Added skins(for background, particles, ui components(WIP), and entities(WIP) to change their appearance) and added Christmas skins
-Content
- - Added the mortar weapon(attack)
-
-12/23
-Fixes
- - Gadget cooldown and timer are no longer half the intended
-
-12/22
-Content
- - Added Snake Charmer base kit
-Technical
- - Added custom hitbox sizes for grid objects(currently linked to texture size) TODO: Add other shapes
-
-12/19
-Balancing
- - Grenades affected by reload speed
-Content
- - Added Frost Spirit weapon with attack
-
-12/17
-Balancing
- - Scalpel
-    - (-)Ult projectile damage(200->100)
-    - (-)Attack damage(50->40)
-    - (+)Charged attack damage(300->350)
-    - (-)Self healing from attack(50->30)
-    - (+)Charged attack ally healing(300->350)
-
-12/14-12/16
-Content
- - Added Chill Zombie(TODO: chilling slows)
- - Added Urchin Zombie
- - Added Scalpel weapon basekit(no ult link graphics yet), attack upgrade(TODO: speed boost depends on living enemies)
-Graphics
- - Duration shields show their duration in the bar(TODO: move into logos)
-Technical
- - Fixed Duration effect collision protocol and max duration at start of instantiation
- - Added BuildupEffect, which stacks until an amount and calls a method, decaying over time
- - Lifesteal effect can have a ratio
- - Added homing flying projectiles, which guarantee hits
-
-11/28
-Fixes
- - Flail lock target on attack permanently
-Balance
- - Capsaicin Torch max ammo(140->280)
- - Bosses cannot accept external shields
-
-11/23
-Fixes
- - Fixed crash when adding weapon when weedwacker held underneath sudo
- - Fixed sudo crashing when using ult
- - Fixed sudo crashing when switching between modes while attacking
- - Fixed capsaicin torch crash at tip of range
-Balancing
- - Sudo ult damage default(1->100)
-
-11/19
-Content
- - Acidart ult upgrade, attack upgrade, and gadget added
- - Added hail ball attack of cloud server
-Fixes
- - "Fixed" poison crash temporarily(TODO: Fix for real)
- - Cop Zombie no longer perma stuns due to mismatch of effectid hash codes
-Other
- - Implemented bot guides
-    - Acidart
-    - Air Pump
-
-11/18
-Content
- - Implemented acidart reload speed from ult and slow from attack
-Balancing
- - Double Gun ult damage at max range(-200->100)
- - Gun ult damage at max range(0->300)
- - Acidart
-    - Attack range(300->345)
-
-11/17
-Content
- - Added highjacker attack upgrade
- - Added spear gadget
- - Added chameleon ult upgrade
-Balancing
- - Chameleon
-    - (/)Cannot activate ult during ult
-    - (+)Tongue damage(60->85)
-    - (+)Ult gives 20% damage boost
-Graphics
- - Some weapons can show a special bar for durations and special abilities
-    - Chameleon(ult duration)
-    - Necromancer(ult duration)
-    - Blade(ult duration)
-    - Easter Basket(ult jump count)
-    - Crossbow(gadget count)
-    - Double Gun(gadget duration)
-    - Drone(gadget duration)
-    - Highjacker(ult duration)
-    - Other Gadget count and duration
-       - Gun
-       - Jack-O-Lantern
-       - Lovestrike
-       - Necromancer
-       - Rock
-       - Slicer
-       - Weedwacker
- - Drone shows ammo
-Fixes
- - Highjacker now spawnable
-
-11/16
-Balancing
- - Shapeshifter zombies cannot shapeshift into other shapeshifter zombies
- - Gale ult upgrade debris no longer charge ult
-
-11/14
-Balancing
- - Added heal and knockback to troll test
- - Chameleon affected by reload speed
- - Chameleon purple tongue damages on return as well, and pulls enemies on return(overriding on better choices)
-Graphics
- - Chameleon now indicates color
- - TODO: Show super duration for some weapons
-Content
- - Implemented yellow boost for chameleon ult
-
-11/13
-Content
- - Lovestrike attack upgrade, ult upgrade, gadget added
- - Added Troll Test weapon base kit, ult upgrade, gadget
-Balancing
- - Lovestrike attack pierce(Infinite->2)
-    - Affected by reload speed
-Graphics
- - Lovestrike shows charging area
-
-11/12
-Graphics
- - Effects show duration if possible
-Content
- - Added Glue Gun ult upgrade
-Balancing
- - Highjacker and Glue Gun affected by reload speed
-Technical
- - All effects use string now
- - Added accountability for all gridentity effects
- - Health Curse Effect id(healthcurse->health_curse)
-
-11/7
-Balancing
- - Nail gun affected by reload speed
- - Mole affected by reload speed
-
-11/5
-Balancing
- - Flash Drive ult upgrade lightning heals you too(only when no other targets)
- - Cloud Server lightning strikes also damage zombie for half
-
-11/4
-Balancing
- - Farmer
-    - (+)Ult charge from blank attack(50->150)
-    - (-)Ult charge from ult(100%->25%)
-    - (/)Ult damage scales by range(50->25-65)
-    - (/)Ult health drain increases over time, every 40, starting from 1
-    - (-)Ult starts attacking only after losing invincibility
-    - (+)Attack damage(100->175)
-    - (-)Attack ult charge(100%->50%)
- - Flash drive
-    - Ult pet range(35->50)
-    - Ult spawn lightning damage(600->450)
-    - Affected by reload speed
- - Content
-    - Added flash drive ult upgrade
- - Technical
-    - Lightning uses checkHit
-    - Hitters no longer avoid hitting aggro if they were self hitting
-
-11/3
-Balancing
- - Torpedo zombie torpedo disappears when torpedo zombie dies
- - Jack-o-lantern
-    - ult placement range(100->200)
-    - seeds from attack upgrade no longer charge ult
-    - small ghost damage(50->100)
-    - ult charge(1000->900)
-Graphics
- - Fixed health bar curse
-Fixes
- - Fixed Jack-o-lantern ult upgrade spawning normal ghosts
-TODO: Add hunger(like minecraft)
-
-10/31-11/2
-Content
- - Added the Jack-o-Lantern base kit, attack upgrade, ult upgrade, gadget
-
-10/31
-Balancing
- - Bosses are immune to size effect
-    - TODO: only immune to malicious size
- - Jade Cutter only shrinks enemies once
-    - Also affected by reload speed
-    - TODO: Cannot use gadget on ult blade
-    - TODO: If unequipped then reequipped without shooting ult, new blade has ult too
- - Shrunken enemies don't charge more ult
-Fixes
- - Fixed Jade Cutter attack upgrade doing nothing
- - TODO: Fix graphics of shrink and add animations
-Notes
- - When using the sudo sandbox, weapons like the jade cutter are reset
-
-10/26
-Mechanics
- - Added new control methods
-    - Keyboard/Mouse: default
-    - Keyboard: targeting is controlled by arrow keys and firing is controlled by right control
-    - Touch(WIP): joysticks and buttons
-Other
- - Added joysticks
-Technical
- - Overlay no longer has an empty render method
-Idea - swipe on weapon to change
-
-10/23
-Graphics
- - Spear shows translucent orange line when returned via ult and a purple one if loaded
- - Linked portals show line between when teleporting
- - Added Cop Zombie and Ironclad Zombie graphics
-Balancing
- - Demon Zombies lose health slower when their exorcist dies
-
-10/22
-Fixes
- - Fixed Cloud Server spawning too many exorcists
-Balancing
- - Exorcists and Cloud Servers no longer hit themselves if they don't want to and their shots phase through enemies that don't need healing
-Technical
- - willSelfHarm and setSelfHarm renamed to willSelfHit and setSelfHit
-
-10/20
-Balancing
- - Hail range(180->252)
-Technical
- - Spawn calculator uses strings and zombiefactory instead of classes
-Other
- - Updated some Baliski-Baitre(bb_al) translations
-
-10/19
-Balancing
- - Evil Spirit Zombie health is capped at 500
-
-10/18
-Balancing
- - Cloud Server spawned portal life(inf->800)
- - Shapeshifter Zombie can no longer mimic bosses and minibosses
- - Frisbee zombies prioritize targets
-Technical
- - Portal Zombies can now spawn portals with a certain amount of 'life'(amount of time to last)
-Fixes
- - Fixed cloud server crash when bolt tries to change direction without a target
- - Fixed frisbee zombies letting go of their frisbees all the time
-
-10/17
-Balancing
- - Exorcist Zombie attack no longer pierces
-Other
- - Continued with Cloud Server
-Technical
- - Added findCluster() for GridObject
- - Added isColumnar() for GridObject to ignore height in distance checks
-
-10/15
-Balancing
- - Tractor Beam Zombies now pull in ranger zombies that have less than 50% health and heal them over time
-Technical
- - Pulling accounts for sources now
-Graphics
- - Zombie droppers display correct graphics
-Content
- - TODO: Added the Cloud Server Boss
-
-10/14
-Fixes
- - Fixed Concentrated Zombie dealing only 100 damage
- - Fixed inferno infinite loop ult
- - Fixed weird graphics crash when rendering targetless effects
- - Fixed president zombie trying to cast projectiles to entity
-Technical
- - All grid entities have unique ids
-Balancing
- - Inferno cannot use attack or ult while in gadget
-Content
- - Added the Cancer Zombie
-Note
- - Cursing and evil spirits do not work
-
-10/13
-Mechanics
- - Added speed and power accountability system(the highest and lowest make up the final value)
-Content
- - Added the Soda Hat complete kit
- - Added the Chocolate Zombie
-Balancing
- - Acidart ult no longer charges ult
- - Salicycle
-    - Only one ult can be active at a time
-    - Ult charge from ult(1->0.3)
-    - TODO: scabs only come out on an interval
-Fixes
- - Inferno is now obtainable
- - Weapon ammo bar updates regardless of the reload function
- - Fixed double gun second wave values set to seconds and percent instead of proportion and ticks
-Other
- - Temporarily reversed change to weapon interrupts until pulls are fixed
-
-10/12
-Fixes
- - Fixed Scream weapon charging ult from attack
-Technical
- - Knockbacks call notifyPull and notifyPull takes a grid object argument
- - Notifypull broadcasts a pull event.
-Balancing
- - Some weapons' abilities are cancelled when interrupted(killed or pulled)
-    - Blade ult and gadget
-    - Crossbow ult upgrade
-    - Flail attack and ult
-    - Inferno attack and ult
-    - Paint Sprayer ult
-    - Reaper attack
-    - Salicycle gadget
-    - Scream ult and gadget
-
-10/10
-Technical
- - TODO: Added shield.canPierce
-Balancing
- - External Immunity Shields can no longer be pierced
-
-10/9
-Fixes
- - Reaper ult upgrade is no longer always active
-Graphics
- - Temporary gadget display when active
-Balancing
- - Reaper
-    - (+)attack damage(150->175)
-    - (+)ult damage/heal(100->125)
-    - (+)Attack base heal(100->125)
-    - (+)Attack Upgrade heal(50->75)
-    - (-)Ult charge(1200->1500)
- - Wizard and Cloud Server are immune to fatal poison
-Other
- - Added totems, which give effects to nearby allies and enemies
-TODO: support multiple boss bars, reduce boss interference with each other
-TODO: Dashes from weapons can be interrupted, especially on death
-TODO: Poison should not go through immunity shields
-
-10/8
-Content
- - Added salicycle attack upgrade, ult upgrade, and gadget
- - TODO: Pointpinner rework
-
-10/7
-Content
- - Acidart base kit(missing extra effects)
-
-10/4
- - Salicycle ult can't be pulled
-Technical
- - Added boolean GridEntity.acceptHeals(), used by salicycle ult and jailbreak zombie bombs
-
-10/3
-Content
- - Added the Salicycle base kit
-Fixes
- - Health shields tick
-Technical
- - Sliders done
-
-10/1
-Balancing
- - Added extra effects of Grenade gadget and Jack-in-the-box Zombie
-Technical
- - GridObject.isFacing(GridObject) returns true if the degree offset to the other grid object is within 75 degrees
- - Added sliders(WIP)
- - Added button alternate behaviors(not cancelling if unhovered)
-
-9/30
-Balancing
- - Water Balloons affected by reload speed
-    - Balloon damage(115->140)
-    - Ult big balloon causes zombies to take twice the damage for 3 seconds
-    - Balloon causes zombies to take twice the damage for 1 second(30 frames)
- - Air Pump affected by reload speed
-Content
- - Water Balloons gadget added
-
-9/29
-Fixes
- - Fixed Gatherer Zombie not picking up beepers
-Content
- - Added Concentrated Zombie(no graphics yet)
-
-9/28
-Content
- - Added the Frisbee Zombie(needs graphics)
-Technical
- - Added fixed mounting to allow objects to be unaffected by rotation
- - Any BeeperAccepter can collect beepers
-
-9/27
-Balancing
- - Firebreather Zombie is immune to burning
-Fixes
- - Fixed a crash due to weapon switching a weapon like drone or weedwacker, since world did not process removals
-
-9/26
-Balancing
- - Implemented Evil Spirit Zombie Cursing function
-Technical
- - Added event listeners
- - Added HealthCurseEffect
-
-NOTE: Current events: move, ult, gadget, attack, die
-
-9/25
-Content
- - Added the Cop Zombie(Missing graphics)
- - Added the Shaman Zombie(missing graphics)
- - Added the Emotional Support Zombie(missing graphics)
-Other
- - ZombieFactory spawns the correct Cloud Server Zombie
-TODO
- - Show zombie being mimicked when shapeshifter zombie attacked
-Graphics
- - Game Icon set
-
-9/21
-Balancing
- - Farmer
-    - (+)Scarecrow Spawn Immunity length(45->200)
-    - (+)Scarecrow reload time(15->10)
- - Fireworks nuke no longer heals zombies at outer range
-    - Close damage(861->1024)
-
-9/18
-Graphics
- - Added antibody blinking
- - Lymph Cannon antibodies and Stunt Zombie sticky bombs show up on the correct side of target
- - Reduced Hearth campfire and lymph cannon cell turret aura opacity to be more transparent
-Fixes
- - Fixed lymph cannon not doing any damage(shield had a start cooldown and no self filter)
- - Lymph Cannon antibody range did not match detection range(340->425)
- - Lymph Cannon turrets are now protected from target
- - Lymph Cannon attack upgrade no longer always activates
- - Fixed weapon gadget cooldowns being half of normal and cooldowns not working
- - Fixed drone underaiming
-Balancing
- - Lymph Cannon turret immunity duration(45->120)
- - Hearth ult upgrade fires burst on death as well
- - Drone affected by reload speed
- - Drone affected by power effect
- - Drone attack radius(30->40)
-Content
- - Added lymph cannon ult upgrade
- - Added Drone ult upgrade
-TODO: Fireworks and Soup and Lovestrike? too strong
-TODO: Mousetraps and Drone too weak
-
-9/17
-Other
- - Easter Zombie chicks are now spawnable in the sandbox menu
- - Prison Break Zombie renamed Jailbreak Zombie
-Technical
- - All zombies can return their zombie id, which is the id used to create them in the zombie factory
- - TODO: Grid Entities should be able to return their grid entity id, zombie ids have the format "zombie-tractorbeam"
- - Lymph Cannon uses grid entity id instead of class
- - Projectiles can be without a source
- - Added StickyBullet, which is a bullet that sticks to the hit entity for a short while
-    - Stunt zombie sticky bomb and lymph cannon antibody use this
- - Mounts are no longer updated by mounters as it caused double updates. Instead, they update independently and request to be moved together
-Balancing
- - Cloud Server class updated
- - Lymph Cannon
-    - Affected by reload speed
-    - Cell turrets apply spawn immunity after reaching position
-    - Cell turret attack range(300->400)
-Content
- - Added lymph cannon gadget and attack upgrade
-Graphics
- - Lymph Cannon graphics added
-Fixes
- - Fixed mount crash when self removing
- - Fixed mount render crash when not in world
-
-9/16
-Fixes
- - Fixed crash when exiting from tutorial completion screen
- - FIXED WAVES HAVING LESS RANGE THAN INTENDED(collision mode was not set to radius)
- - Fixed all ignore shield damage circumventing heal cooldown on player
-Graphics
- - Readded beeper and weapon fragment graphics(which were removed during rewrite)
- - Beepers blink occasionally
- - More weapon fragment varieties added
- - Weapon fragments are made up of smaller scrp parts that collect independently
- - Added watermelon zombie graphics
-Balancing
- - Weapon Fragment detection range(40->50)
- - Fungal Zombie standing range(150->120)
- - Watermelon Zombie affected by reload speed and classes updated
-Technical
- - Collectibles track collector
-Other
- - Super charging key only works in sandbox mode
-TODO: Some weapons fail to stop if you die, like shotgun and easter basket
-TODO: Add gadget count in gui
-TODO: Remaining zombie graphics: torpedo cowboy mimic* wizard(herald too) cloud
-* halfway
-
-9/15
-Technical
- - Portals correctly deregister color
- - Zombie target cache now global to all gridojects
- - isAggroTowards() and isAlliedWith() now return false if other object has no team
- - Crossbow and Firebreather zombie use Greenfoot.getRandomNumber() instead of Math.random(), use this for more consistent seeds when save files are added
-Fixes
- - Fixed mimic zombie crash due to notifyDamage call after death
- - Fixed mimic zombie target instakill crash, same as bot previously
- - Player can no longer switch weapons while stunned or silenced
- - Fixed zombee crash when hivemind is dead, might be related to the target caching system changes.
-Balancing
- - Crossbow
-    - Cannot focus while firing ult
-    - Ult range(Infinite->1000)
-    - Ult spreads more when unfocused
-    - Each ult arrow only charges ult the first time a zombie is hit(not counting poison)
- - Assassin Zombie can turn invisible like ninja(having an invisible health bar), revealing itself when it attacks
-Mechanics
- - Autoaim is no longer on hard, normal, and impossible difficulty
-Graphics
- - Effects of one type are only rendered once
- - Effect icons are rendered at the correct height and hidden when entity not detectable
- - Autoaim status is indicated(next to sprint bar)
- - Fixed firebreather zombies being invisible due to typo("flamezrel" instead of "flamezarel")
- - Mimic Zombie graphics updated to look more torn
-VOTE: Should autoaim be in normal mode? Should seeds be saved in save file?
-TODO: Fix crash with effect losing target
-
-9/14
-Graphics
- - Finished adding graphics for effects(basic)
- - Added Joker Zombie graphics
- - Added Jack-in-the-box graphics(crank todo)
- - Added Assassin Zombie graphics
- - Added Portal Zombie graphics
- - Added Firebreather Zombie graphics
- - Fixed assassin zombie not showing graphics
- - Fixed light zombie not showing graphics, broke last time splitter was updated
-Balancing
- - Joker Zombie classes updated
- - Jack-in-the-box zombies can spawn in the air and shift towards you while falling
- - Jack-in-the-box zombie class updated
- - Assassin Zombie classes updated and affected by reload speed
- - Evil Spirit Zombie classes updated
- - Setup Wizard classes updated
-Technical
- - KActors can set tint
-Other
- - Renamed Russian Doll Zombie to Space Matryoshka Zombie
-TODO: Add character customization, level editor
-TODO: Crossbow poison instantly skips wizard death animation
-TODO: Add particles when effects apply and when wizard casts a spell
-
-9/12
-Balancing
- - Firing Squad Zombie
-    - (+)Spawn squad cooldown(500->200)
-    - (-)First shot cooldown(100->250)
- - Splitter, light, and heavy zombie classes updated
- - Added crowbar attack to Jail break zombie
- - Warrior Zombie affected by reload speed and classes updated
- - Bodyguard Zombie
-    - (-)Enrage power(1.5->1.2)
-    - (-)Base speed(4->3)
-    - Move to a zone designated by the president zombie
-    - Classes updated
- - President Zombie can only replace up to 6 bodyguards
-Fixes
- - President zombie responds to shield piercing hits
- - Fixed President zombie spawning nuke at (x, x) of target instead of (x, y)
-Other
- - Hugging Zombie "hugging" is now spawnable
-Graphics
- - Shield Zombie shows its correct graphics as a sandbox option
- - Warrior Zombie spear has correct graphics
- - Added tractor beam zombie appearance(TODO: beam)
-Mechanics
- - Started adding graphics for effects and classes. Note immunities shoul show as effects getting blocked
-
-9/11
-Content
- - Added the firing squad zombie
-Balancing
- - Torpedo Zombie classes updated and affected by reload speed
- - Torpedo Zombie bullet correction(0.2, 15->0.18, 13)
- - Exploding Zombie leaves behind a burning puddle if killed while burning
-NOTE: Trollbat is Troll Test
-
-9/9
-Balancing
- - Demon Zombies spawned by the exorcist zombie take on the team of the zombie healed
- - (+)Exorcist Zombie damage/heal(25->35)
- - Exorcist Zombie classes updated and affected by reload speed
- - Demon and Guardian Angel zombies will now attack each other
- - The primary healers(Doctor, Exorcist, and Steak) can no longer see undectable allies
- - Cat Claw
-    - (-)Ult charge(900->1700)
-    - (-)Has to wait until ult completely finishes before attacking
-    - (+)Has a slow passive ult charge
-Fixes
- - Demon Zombies no longer die instantly from getting healed by their exorcist
- - Demon zombie is now listed as spawnable
- - Fixed Demon Zombie crash when no spawner is specified
- - Fixed Demon Zombie not doing any damage
- - Fixed Bot crashing if ult/attack instantly kills last target
-Technical
- - ZExorcistShot moved to correct package
- - Removed unnessecary methods and fields from TutorialSpawner(reverted to spawning zombie)
-Other
- - The zombies spawned in tutorial mode charge ult 4 times as fast
-Mechanics
- - Implemented bot guides for Cat Claw, Critters, Crossbow, Crystal Gun, Double Gun, Easter basket, Hamburgerer, Flail
- - Fixed capsaicin torch bot guide range not working
-TODO: Fix poison crash and tutorial menu crash and crash when updating weapon needs hand on bot with no target
-
-9/7
-Balancing
- - Hornet Neck Zombie class updated
- - Russian Doll Zombie class updated and affected by reload speed
-Technical
- - removed Zombie.wasInOriginalWave()
-Other
- - "prisonbreak" renamed to "jailbreak"
- - Demon Zombie "demon" is now spawnable
-
-9/6
-Content
- - Added flail gadget, ult and attack upgrades
- - Added hearth ult and attack upgrades
- - "Added blade gadget"
- - Zombie herald is spawnable in sandbox mode
-Balancing
- - Cannon Zombie affected by reload speed
- - Flail weapon affected by reload speed
- - Removed old flail attack upgrade, fixing the bot bug
- - (-)Ironclad Zombie projectile speed(25->20)
- - Hearth
-    - (+)Campfires can heal themselves again
-    - (+)Campfire base damage(4, 8->5, 10)
-    - (-)Ult charge(1500->1700)
-    - (-)Maximum active campfires(INF->5); Extra campfires will lose health and die
-    - (+)Hearth can gain up to 50 extra range at maximum focus
- - Updated Zombie Herald classes
-Fixes
- - Mousetraps beartrap dies correctly using die(GridObject) instead of die()
-    - Targets caught by the beartrap are no longer stunned forever even when the trap is removed]
- - Maybe fixed poison crashes?
- - Fixed ironclad zombie retaliation crash?
- - Fixed hearth focus being rounded off incorrectly
- - Fixed blade gadget failing to activate(activation method missing)
-Graphics
- - Added flail, hearth, and mousetraps graphics
- - Shotgun harpoon and Weedwacker blade connectors now appear at correct heights
- - Sandbox options are flipped, allowing text to be visible for lower rows
-Technical
- - Weapons can render themselves now
-Note
- - What is an ammo holder?
-TODO: In game timing and serialization
-
-9/5
-Balancing
- - Bread Boxer Zombie
-    - No longer attacks while in the air
-    - Affected by reload speed(both dodging and attacking)
-    - Classes updated
- - Cannon Zombie classes updated
-Technical
- - Effects are in their own directory
- - InfectionEffect can take a lambda expression
-Graphics
- - Added Breadboxer graphics
- - Added hamburgerer graphics
-TODO: Add effect and zombie class icons
-
-9/1
-Mechanics
- - Finished pausing in sandbox mode
-Fixes
- - Fixed shapeshifter zombie crashing due to possessed being null while unshapeshifting(unknown cause)
-TODO: add effect factory, and fix pipeline
-
-8/31
-Technical
- - Changed player revive to always reset health by default
- - Protect and Sandbox modes revive the player instead of creating a new one
- - Revived entities now show health correctly
- - Added GridObject.getNearestOtherGE which ignores potential target
-Fixes
- - Fixed item crafting crashing the game(very old bug)
- - Bot no longer crashes without targets
- - Guardian angel zombies no longer remain immune when attached
- - Fixed paint gun not being available
-
-8/30
-Content
- - Added rock launcher gadget and ult upgrade
- - Added mousetraps gadget
-Balancing
- - Rock launcher affected by reload speed
- - Rock launcher ult charge from ult halved
- - Mousetraps affected by reload speed
-Technical
- - All weapons can be instantiated with ItemFactory
- - FlyingRock is now seperate from the superclass FlyingProjectile
- - Player uses item factory to get items
-
-8/29
-Mechanics
- - Completed basic sandbox mode, TODO graphics changes and new modes
-
-8/27
-Mechanics
- - Added mode selection for Sandbox Mode(WIP)
-Balancing
- - Stunt Zombie affected by reload speed and classes updated
-    - TODO: Give stunt zombie sticky bomb
-
-8/23
-Mechanics
- - WIP: Added the sandbox mode UI
-Balancing
- - Updated Shield Zombie classes
-Other
- - Updated Shapeshifter Zombie name
-Technical
- - All Gamemodes are in a folder
-
-NEW SUDO IDEAS
- - Attack spawns a selected zombie(lob it)/bot with desired effects
- - Attack carries nearby gridentities(maybe with a filter(zombie or bot))
- - Attack does damage to closest or in an area
- - Attack heals closest or in an area
- - Attack inflicts effect on closest or in an area
- - Attack applies team to grid entity
- - Attack gives a weapon to bot
- - teleports
-OTHER
- - Team edit
- - Pause All
-
-8/18
-Other
- - Updated all zombie factory entries
-
-8/16
-Fixes
- - Mimic zombies do landing and continue use and ult
-Balancing
- - Shapeshifter Zombie class updated
- - Mimic Zombie constantly retries until it gets a useable weapon
- - Cat Claw
-    - (-)Ult claw does less damage the closer to the center they are(75->75, 40)
-    - (-)Ult claw ult charge(1->0.2)
-    - (+)Removed Non charging
-    - (-)Ult charge(700->900)
-Content
- - Implemented Bots (NPCS)
-Technical
- - Cat Claw charges ult fully instead of a hard amount
-Mechanics
- - Implemented bot guides for minigun, blade, blowgun, capsaicin torch
-
-ZOMBIE IDEA
-Kaiju Zombie(Mini-boss/Tank/Tactician)
-Has a variety of powers and stats to choose from, all totaling to a gradually increasing power cap. Every minute, it goes inactive and resumes with unique abilities.
-Powers:
- - Atomic Breath(range, DPS, duration)
- - ?
-
-8/15
-Balancing
- - Shapeshifter Zombie
-    - Health(200->400)
-    - Heals fully when its target dies
-    - Takes 50 damage when it is killed while shapeshifting
-    - Takes 20% more damage and does 20% less damage while shapeshifting
-    - Has a short 0.25s cooldown before being able to shapeshift(only if its shapeshift form dies) and stops for 0.25 seconds to change
-Graphics
- - Added shapeshifter graphics
-Content
- - Added Mimic Zombie
-NOTE
- - BOTS AND ZOMBIES NEED TO LINK ULT CHARGING TO NOTIFY DAMAGE AND LINK LANDING HANDLER AND CALL CONTINUES
-
-8/14
-Balancing
- - Exorcist zombie start attack cooldown(400->100)
- - Doctors and exorcists will now allow the next wave to trigger if they are out of targets
- - Hypnotized zombies allow the next wave to trigger
-Technical
- - grid entites have an isActive boolean to return if the entity is stuck
- - grid entities have an possess method to store possessors(tickable variant) and process them on death and tick
- - TODO: Virus and Demon uses possess()
-Content
- - Added shapeshifter zombie(WIP)

@@ -45,6 +45,9 @@ public class GuardianBeast extends Pet
             controlled = true;
             remote.setSpecialAmmo(ammo);
             setSpeed(remote.getHolder().getSpeed());
+            if(remote.getUltUpgrade()==1){
+                applyShield(new PercentageShield(new ShieldID(this), 0.5, 90));
+            }
         }
         if(cache.trap()){
             cached = cache;
@@ -120,7 +123,7 @@ public class GuardianBeast extends Pet
     }
     public void attack(){
         explodeOn(attackrange, "enemy", (g)->{
-            if(Math.abs(face(g, false)-getTargetRotation())<30){
+            if(getFacingDistance(g)<30){
                 damage(g, 150);
             }
         }, null);

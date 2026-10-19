@@ -75,7 +75,7 @@ import com.karel.game.gridobjects.gridentities.zombies.ubiquitous.UbiquitousZomb
 import com.karel.game.gridobjects.gridentities.zombies.urchin.UrchinZombie;
 import com.karel.game.gridobjects.gridentities.zombies.warrior.WarriorZombie;
 import com.karel.game.gridobjects.gridentities.zombies.watermelon.WatermelonZombie;
-import com.karel.game.gridobjects.gridentities.zombies.weedwacker.WeedwackerZombie;
+import com.karel.game.gridobjects.gridentities.zombies.weedwhacker.WeedwhackerZombie;
 import com.karel.game.gridobjects.gridentities.zombies.wizard.Wizard;
 import com.karel.game.gridobjects.gridentities.zombies.cowboy.CowboyZombie;
 
@@ -107,7 +107,7 @@ public class ZombieFactory {
             "chick",
             "russiandoll",
             "firebreather",
-            "weedwacker",
+            "weedwhacker",
             "herald",
             "wizard",
             "portal",
@@ -208,8 +208,8 @@ public class ZombieFactory {
                 return new RussianDollZombie();
             case "firebreather":
                 return new FirebreatherZombie();
-            case "weedwacker":
-                return new WeedwackerZombie();
+            case "weedwhacker":
+                return new WeedwhackerZombie();
             case "herald":
                 return new ZombieHerald();
             case "wizard":

@@ -106,11 +106,30 @@ public abstract class KActor
     public boolean isFacing(KActor other){
         return getFacingDistance(other)<75;
     }
+    // Returns number between -180 and 180
     public double getFacingOffset(KActor other){
-        return face(other, false)-getTargetRotation();
+        double res = face(other, false)-getTargetRotation();
+        if(res>180){
+            res-=360;
+        }else if(res<-180){
+            res+=360;
+        }
+        return res;
+    }
+    public double getFacingOffset(KActor other, double rotation){
+        double res = face(other, false)-rotation;
+        if(res>180){
+            res-=360;
+        }else if(res<-180){
+            res+=360;
+        }
+        return res;
     }
     public double getFacingDistance(KActor other){
         return Math.abs(getFacingOffset(other));
+    }
+    public double getFacingDistance(KActor other, double distance){
+        return Math.abs(getFacingOffset(other, distance));
     }
     public double getTargetRotation(){
         return getRotation();

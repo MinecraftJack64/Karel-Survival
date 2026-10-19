@@ -27,6 +27,7 @@ public class PetMole extends Weapon
         if(zap.getWorld()!=null){
             if(zap.inUlt()){
                 cancelUltReset();
+                return;
             }
             zap.startUlt();
         }
