@@ -42,10 +42,14 @@ public class MorphingStone extends Weapon
     public void update(){
         if(beast!=null&&(beast.isDead()||!beast.getTeam().equals(getHolder().getTeam()))){
             beast = null;
-            disableSpecial();
+            newSpecial(18, charges, 18);
         }
         if(beast!=null){
             updateSpecial(beast.getDuration());
+        }else{
+            if(getSpecialBar().getValue()==getSpecialBar().getMax()){
+                updateSpecial(19);
+            }
         }
     }
     public boolean notifyHypno(GridEntity targ){
@@ -68,9 +72,15 @@ public class MorphingStone extends Weapon
     }
     public void notifyHit(){
         charges++;
+        if(beast==null){
+            updateSpecial(charges);
+        }
     }
     public void notifyKill(GridEntity t){
         charges+=6;
+        if(beast==null){
+            updateSpecial(charges);
+        }
     }
     public int defaultGadgets(){
         return 1;
@@ -86,6 +96,8 @@ public class MorphingStone extends Weapon
         super.equip();
         if(beast!=null){
             newSpecial(beast.getMaxDuration(), beast.getDuration());
+        }else{
+            newSpecial(18, charges, 18);
         }
     }
     public MorphingStone(ItemHolder actor){
