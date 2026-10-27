@@ -140,6 +140,10 @@ Influencer Zombie(Spawner)
 Promotes from Daycare Zombie
 Slowly ammasses follower zombies over time, which stay near it. To attack, it does a dance and its followers will shoot at you. They will heal it out of their own health bars.
 
+?(super rare)
+Shoots a very long range sniper shot. It marks an enemy when its ult is charged.
+Ult: Spawn a small bot. It will stay near you but when an enemy is marked, it will quickly run to them and fire shotgun shots at them. It heals when it kills a zombie and slowly while standing near you. If it is chasing down a marked target it will not switch if a different one is marked.
+
 Es -isi -yn lafo ki dis yakwes de donsdo -irutio; byas -ude la Zhamayka jan fanpro üli übi fans; kwafanto tos nisvuli vok da donski -ro fo tosu; #wifi de la Rozu disti a talyenafo firsi saa vok klats dispyn fanto a midontalyeno betoskati; vivixh lamo -in la conqin ja la xanchay vimakgotanli {la Olosanhi übim maif lafo lay Olosa düti mas sam} mais fo kel mawaska makpyn sa talao kom dü; lamo sas dis a mukilo kameksi vok klats kimufirto lakski; sa gotanli du küs hana; !loq dis ekska -ro junho del dis prosati -u sa sas fesu voska; if lamo lay Rozu makmutanli tagomawasta den fo lay Sicwam mikanstado hmina jikkel fo lay Olosa lay Fhams lay Ixbara lay Bodugau sai;
 
 King Zombie(Spawner/Leader)
@@ -253,10 +257,12 @@ TODO
  - Should negative healing/damage call the other function?
  - Spellbook xp indication
  - electric fists rebalance
+ - Remove shotgun jamming?
 BUGS
  - Morphing stone ult death causes stuck
  - point pinner ult bug and fireworks attack
  - blade attack upgrade not functional
+ - Shotgun ammo bar not colored properly
 
 10/7
 Technical
